@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "content-tailwind",
+  "description": "An Extension.js example.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "tailwindcss": "^4.1.3"
+  },
+  "type": "module"
+}

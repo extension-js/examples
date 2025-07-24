@@ -1,0 +1,53 @@
+{
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/extension-js/examples.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "programs/*"
+  ],
+  "packageManager": "pnpm@10.10.0",
+  "name": "extension-examples-workspace",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Examples for Extension.js",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "extension": "extension",
+    "test": "playwright test",
+    "test:watch": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:install": "playwright install",
+    "test:coverage": "playwright test --reporter=html --reporter=json --reporter=junit",
+    "postinstall": "playwright install --with-deps",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js,json}\"",
+    "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "build:example": "node build-example.js",
+    "install:all": "pnpm install && pnpm -r install",
+    "clean": "pnpm -r exec rm -rf dist build .extension node_modules/.cache"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@playwright/test": "^1.49.0",
+    "@types/chrome": "^0.0.287",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "extension": "2.0.0-rc.38",
+    "globals": "^15.13.0",
+    "lint-staged": "16.1.0",
+    "prettier": "^3.4.2",
+    "typescript": "5.7.2"
+  }
+}

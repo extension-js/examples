@@ -1,0 +1,69 @@
+# ███████╗██╗  ██╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗███████╗
+# ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝██╔════╝
+# █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗  ███████╗
+# ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  ╚════██║
+# ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗███████║
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.test-output
+*.d.ts.map
+# *.d.ts
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+ 
+# testing
+coverage
+
+# next.js
+.next/
+out/
+
+# tsup
+dist/
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# turbo
+.turbo
+
+# vercel
+.vercel
+
+# swc
+.swc
+
+# pnpm
+.pnpm-store/
+
+# examples
+/examples/**/pnpm-lock.yaml
+/examples/**/extension-env.d.ts
+templates/
+
+# tests
+/test-results/
+test-results.json
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/e2e-report/
+specs/
+templates/wasm/
