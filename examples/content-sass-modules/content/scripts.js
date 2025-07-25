@@ -75,14 +75,14 @@ async function fetchSassStyles() {
   // Fetch the compiled CSS file from the SASS module
   const cssUrl = new URL('./styles.module.scss', import.meta.url)
   console.log('🔍 Fetching SASS module CSS from:', cssUrl.href)
-  
+
   const response = await fetch(cssUrl)
   console.log('🔍 Response status:', response.status)
   console.log('🔍 Response ok:', response.ok)
-  
+
   const text = await response.text()
   console.log('🔍 CSS content length:', text.length)
   console.log('🔍 CSS content preview:', text.substring(0, 100))
-  
+
   return response.ok ? text : Promise.reject(text)
 }

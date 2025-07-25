@@ -35,7 +35,7 @@ const config = {
       browserFlags: ['--kiosk'],
       startingUrl: 'about:debugging#/runtime/this-firefox'
     }
-  },
+  }
 }
 
 export default config

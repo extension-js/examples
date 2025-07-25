@@ -3,14 +3,14 @@ async function hashString(input: string): Promise<string> {
   // Convert string to Uint8Array
   const encoder = new TextEncoder()
   const data = encoder.encode(input)
-  
+
   // Hash using Web Crypto API
   const hashBuffer = await window.crypto.subtle.digest('SHA-256', data)
-  
+
   // Convert to hex string
   const hashArray = Array.from(new Uint8Array(hashBuffer))
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
-  
+  const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
+
   return hashHex
 }
 

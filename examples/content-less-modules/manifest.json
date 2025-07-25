@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Content Scripts Less Modules",
-  "description": "An Extension.js example.",
+  "name": "Extension.js - Less Modules Content Script Example",
+  "description": "A modern browser extension content script example built with Extension.js using Less CSS Modules. Demonstrates how to create scoped styles for content scripts using Less preprocessing with clean, maintainable code.",
   "icons": {
     "48": "images/extension_48.png"
   },
@@ -13,6 +13,12 @@
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["logo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

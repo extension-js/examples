@@ -1,31 +1,22 @@
 {
-  "name": "Browser Flags Example",
-  "version": "1.0.0",
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
-  "description": "An example extension demonstrating browser flag customization",
+  "version": "0.0.1",
+  "name": "Extension.js - Browser Flags Example",
+  "description": "A modern browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle different browser implementations with clean, maintainable code.",
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "48": "images/extension_48.png"
   },
-  "action": {
-    "default_title": "Browser Flags Example",
-    "default_popup": "popup.html"
-  },
-  "permissions": [],
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "background": {
-    "service_worker": "background.js"
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
-  ],
-  "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
-  }
+  ]
 }

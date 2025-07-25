@@ -1,8 +1,13 @@
 {
-  "name": "browser-flags-example",
-  "version": "1.0.0",
-  "description": "An example extension demonstrating browser flag customization",
   "private": true,
+  "name": "extensionjs-browser-flags-example",
+  "description": "A modern browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle different browser implementations with clean, maintainable code.",
+  "version": "0.0.1",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
   "license": "MIT",
   "type": "module"
 }
