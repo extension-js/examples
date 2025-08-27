@@ -1,6 +1,9 @@
-import logo from '../images/logo.svg'
+import logo from '../images/logo.png'
 
-let unmount
+const UNMOUNT_GLOBAL_KEY = '__EXTJS_CONTENT_UNMOUNT__'
+// Use var so re-injection doesn't throw on redeclaration
+// Also pick up any previous unmount function from the last injection
+var unmount = (globalThis && globalThis[UNMOUNT_GLOBAL_KEY]) || undefined
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot?.accept()
@@ -10,10 +13,25 @@ if (import.meta.webpackHot) {
 console.log('hello from content_scripts')
 
 if (document.readyState === 'complete') {
+  // Clean up previous mount if any (e.g., re-injection)
+  try {
+    typeof unmount === 'function' && unmount()
+  } catch {}
   unmount = initial() || (() => {})
+  try {
+    globalThis && (globalThis[UNMOUNT_GLOBAL_KEY] = unmount)
+  } catch {}
 } else {
   document.addEventListener('readystatechange', () => {
-    if (document.readyState === 'complete') unmount = initial() || (() => {})
+    if (document.readyState === 'complete') {
+      try {
+        typeof unmount === 'function' && unmount()
+      } catch {}
+      unmount = initial() || (() => {})
+      try {
+        globalThis && (globalThis[UNMOUNT_GLOBAL_KEY] = unmount)
+      } catch {}
+    }
   })
 }
 
@@ -26,14 +44,13 @@ function initial() {
   // prevents conflicts with the host page's styles.
   // This way, styles from the extension won't leak into the host page.
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
-
-  const styleElement = document.createElement('style')
-  shadowRoot.appendChild(styleElement)
-  fetchCSS().then((response) => (styleElement.textContent = response))
+  const style = new CSSStyleSheet()
+  shadowRoot.adoptedStyleSheets = [style]
+  fetchCSS().then((response) => style.replace(response))
 
   if (import.meta.webpackHot) {
     import.meta.webpackHot?.accept('./styles.css', () => {
-      fetchCSS().then((response) => (styleElement.textContent = response))
+      fetchCSS().then((response) => style.replace(response))
     })
   }
 
@@ -55,11 +72,9 @@ function initial() {
 
   // Create and append description paragraph
   const desc = document.createElement('p')
-  desc.className = 'content_description'
   desc.innerHTML = 'Learn more about creating cross-browser extensions at '
 
   const link = document.createElement('a')
-
   link.href = 'https://extension.js.org'
   link.target = '_blank'
   link.textContent = 'https://extension.js.org'
