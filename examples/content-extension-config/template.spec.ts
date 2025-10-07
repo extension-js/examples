@@ -2,7 +2,7 @@ import path from 'path'
 import {execSync} from 'child_process'
 import {
   extensionFixtures,
-  getShadowRootElement,
+  waitForShadowElement,
   takeScreenshot
 } from '../extension-fixtures'
 import {getDirname} from '../dirname'
@@ -39,7 +39,7 @@ test('should exist an element with the class name extension-root', async ({
 
 test('should exist an h2 element with specified content', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h2 = await getShadowRootElement(page, '#extension-root', 'h2')
+  const h2 = await waitForShadowElement(page, '#extension-root', 'h2')
   if (!h2) {
     throw new Error('h2 element not found in Shadow DOM')
   }
@@ -49,7 +49,7 @@ test('should exist an h2 element with specified content', async ({page}) => {
 
 test('should exist a default color value', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h2 = await getShadowRootElement(page, '#extension-root', 'h2')
+  const h2 = await waitForShadowElement(page, '#extension-root', 'h2')
   if (!h2) {
     throw new Error('h2 element not found in Shadow DOM')
   }
@@ -88,7 +88,7 @@ test('should load all images successfully', async ({page}) => {
 
 test.skip('takes a screenshot of the page', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const contentScriptDiv = await getShadowRootElement(
+  const contentScriptDiv = await waitForShadowElement(
     page,
     '#extension-root',
     'div.content_script'

@@ -67,3 +67,10 @@ test-results.json
 /e2e-report/
 specs/
 templates/wasm/
+
+# e2e / Playwright artifacts
+.failed-tests.json
+.playwright-results.json
+.playwright-stderr.log
+.test-results.json
+TEST_FAILURES.md

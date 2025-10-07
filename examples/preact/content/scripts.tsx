@@ -1,27 +1,64 @@
-// The directive below tells Extension.js to inject the content
-// script of this file into the shadow DOM of the host page and
-// inject all CSS imports into it. This provides style isolation
-// and prevents conflicts with the host page's styles.
-// See https://extension.js.org/docs/content-scripts#use-shadow-dom
-'use shadow-dom'
-
+// Extension.js content script template (Preact)
+// - Export a default function (required in v3) that mounts your UI
+// - Wrapper handles Shadow DOM isolation, CSS injection, HMR and cleanup
+// - Avoid adding your own HMR code; dev warnings will be shown if detected
+// Docs: https://extension.js.org/docs/content-scripts
 import {render} from 'preact'
 import ContentApp from './ContentApp'
-import './styles.css'
 
-export interface ContentScriptOptions {
-  rootElement?: string
-  rootClassName?: string
+let unmount: () => void
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot?.accept()
+  import.meta.webpackHot?.dispose(() => unmount?.())
 }
 
-export default function contentScript(_options: ContentScriptOptions = {}) {
-  return (container: HTMLElement) => {
-    render(<ContentApp />, container)
+if (document.readyState === 'complete') {
+  unmount = initial() || (() => {})
+} else {
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'complete') unmount = initial() || (() => {})
+  })
+}
 
-    return () => {
-      // Preact doesn't have a specific unmount function for `render`
-      // in this context, but we can clear the container.
-      container.innerHTML = ''
-    }
+console.log('Hello from content script')
+
+function initial() {
+  // Create a new div element and append it to the document's body
+  const rootDiv = document.createElement('div')
+  rootDiv.id = 'extension-root'
+  document.body.appendChild(rootDiv)
+
+  // Injecting content_scripts inside a shadow dom
+  // prevents conflicts with the host page's styles.
+  // This way, styles from the extension won't leak into the host page.
+  const shadowRoot = rootDiv.attachShadow({mode: 'open'})
+
+  const styleElement = document.createElement('style')
+  shadowRoot.appendChild(styleElement)
+  fetchCSS().then((response) => (styleElement.textContent = response))
+
+  if (import.meta.webpackHot) {
+    import.meta.webpackHot?.accept('./styles.css', () => {
+      fetchCSS().then((response) => (styleElement.textContent = response))
+    })
   }
+
+  // Create container for Preact app
+  const container = document.createElement('div')
+  container.className = 'content_script'
+  shadowRoot.appendChild(container)
+
+  render(<ContentApp />, container)
+
+  return () => {
+    rootDiv.remove()
+  }
+}
+
+async function fetchCSS() {
+  const cssUrl = new URL('./styles.css', import.meta.url)
+  const response = await fetch(cssUrl)
+  const text = await response.text()
+  return response.ok ? text : Promise.reject(text)
 }

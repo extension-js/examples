@@ -1,14 +1,11 @@
 import path from 'path'
 import {execSync} from 'child_process'
-import {
-  extensionFixtures,
-  getShadowRootElement
-} from '../../templates/extension-fixtures'
-import {getDirname} from '../../templates/dirname'
+import {extensionFixtures, waitForShadowElement} from '../extension-fixtures'
+import {getDirname} from '../../dirname'
 
 const __dirname = getDirname(import.meta.url)
 
-const exampleDir = 'templates/svelte'
+const exampleDir = 'examples/svelte'
 const pathToExtension = path.join(__dirname, `dist/chrome`)
 const test = extensionFixtures(pathToExtension, true)
 
@@ -36,7 +33,7 @@ test('should exist an element with the id extension-root', async ({page}) => {
 
 test('should exist an h2 element with specified content', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h2 = await getShadowRootElement(page, '#extension-root', 'h2')
+  const h2 = await waitForShadowElement(page, '#extension-root', 'h2')
   if (!h2) {
     throw new Error('h2 element not found in Shadow DOM')
   }
@@ -47,7 +44,7 @@ test('should exist an h2 element with specified content', async ({page}) => {
 
 test('should exist a default color value', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h2 = await getShadowRootElement(page, '#extension-root', 'h2')
+  const h2 = await waitForShadowElement(page, '#extension-root', 'h2')
   if (!h2) {
     throw new Error('h2 element not found in Shadow DOM')
   }

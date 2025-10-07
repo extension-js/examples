@@ -2,7 +2,7 @@ import path from 'path'
 import {execSync} from 'child_process'
 import {
   extensionFixtures,
-  getShadowRootElement,
+  waitForShadowElement,
   takeScreenshot
 } from '../extension-fixtures'
 import {getDirname} from '../dirname'
@@ -22,7 +22,7 @@ test('should exist an element with the class name content_script', async ({
   page
 }) => {
   await page.goto('https://extension.js.org/')
-  const div = await getShadowRootElement(
+  const div = await waitForShadowElement(
     page,
     '#extension-root',
     'div.content_script'
@@ -35,7 +35,7 @@ test('should exist an element with the class name content_script', async ({
 
 test('should exist an h1 element with specified content', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h1 = await getShadowRootElement(
+  const h1 = await waitForShadowElement(
     page,
     '#extension-root',
     'div.content_script > h1'
@@ -49,7 +49,7 @@ test('should exist an h1 element with specified content', async ({page}) => {
 
 test('should exist a default color value', async ({page}) => {
   await page.goto('https://extension.js.org/')
-  const h1 = await getShadowRootElement(
+  const h1 = await waitForShadowElement(
     page,
     '#extension-root',
     'div.content_script > h1'

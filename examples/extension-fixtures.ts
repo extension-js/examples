@@ -5,6 +5,9 @@ import {
   type BrowserContext,
   type ElementHandle
 } from '@playwright/test'
+import path from 'path'
+import {execSync} from 'child_process'
+import {getDirname} from '../dirname'
 
 export const extensionFixtures = (
   pathToExtension: string,
@@ -31,7 +34,7 @@ export const extensionFixtures = (
           '--mute-audio', // Mute any audio
           '--no-default-browser-check', // Disable the default browser check, do not prompt to set it as such
           '--no-first-run', // Skip first run wizards
-          '--ash-no-nudges', // Avoids blue bubble "user education" nudges (eg., "… give your browser a new look", Memory Saver)
+          '--ash-no-nudges', // Avoids blue bubble "user education" nudges (eg., "... give your browser a new look", Memory Saver)
           '--disable-search-engine-choice-screen', // Disable the 2023+ search engine choice screen
           '--disable-features=MediaRoute', // Avoid the startup dialog for `Do you want the application “Chromium.app” to accept incoming network connections?`.  Also disables the Chrome Media Router which creates background networking activity to discover cast targets. A superset of disabling DialMediaRouteProvider.
           '--use-mock-keychain', // Use mock keychain on Mac to prevent the blocking permissions dialog about "Chrome wants to use your confidential information stored in your keychain"
@@ -86,16 +89,93 @@ export async function getShadowRootElement(
   shadowHostSelector: string,
   innerSelector: string
 ): Promise<ElementHandle<HTMLElement> | null> {
+  // Wait for shadow host to be present (not necessarily visible)
+  await page.waitForSelector(shadowHostSelector, {
+    state: 'attached',
+    timeout: 15000
+  })
+
+  // Get the shadow host element
   const shadowHost = page.locator(shadowHostSelector)
   const shadowRootHandle = await shadowHost.evaluateHandle(
     (host: HTMLElement) => host.shadowRoot
   )
 
-  const innerElement = await shadowRootHandle.evaluateHandle(
+  // Find element within shadow root
+  const element = await shadowRootHandle.evaluateHandle(
     (shadowRoot: ShadowRoot, selector: string) =>
-      shadowRoot.querySelector(selector),
+      shadowRoot?.querySelector(selector) ?? null,
     innerSelector
   )
 
-  return innerElement.asElement() as ElementHandle<HTMLElement> | null
+  return element.asElement() as ElementHandle<HTMLElement> | null
+}
+
+export async function waitForShadowElement(
+  page: Page,
+  shadowHostSelector: string,
+  innerSelector: string,
+  timeoutMs = 10000
+): Promise<ElementHandle<HTMLElement> | null> {
+  const start = Date.now()
+  while (Date.now() - start < timeoutMs) {
+    try {
+      const el = await getShadowRootElement(
+        page,
+        shadowHostSelector,
+        innerSelector
+      )
+      if (el) return el
+    } catch {}
+    await page.waitForTimeout(250)
+  }
+  return null
+}
+
+export function getPathToExtension(exampleDir: string): string {
+  const __dirname = getDirname(import.meta.url)
+  const absoluteExampleDir = path.join(__dirname, exampleDir)
+  const chromeDist = path.join(absoluteExampleDir, 'dist', 'chrome')
+  try {
+    const fs = require('fs') as typeof import('fs')
+    if (!fs.existsSync(chromeDist)) {
+      execSync(`pnpm extension build ${exampleDir}`, {
+        cwd: __dirname,
+        stdio: 'inherit'
+      })
+    }
+  } catch {}
+  return chromeDist
+}
+
+export async function getExtensionId(pathToExtension: string): Promise<string> {
+  const context = await chromium.launchPersistentContext('', {
+    headless: false,
+    args: [
+      `--disable-extensions-except=${pathToExtension}`,
+      `--load-extension=${pathToExtension}`,
+      '--no-first-run'
+    ]
+  })
+  try {
+    let [background] = context.serviceWorkers()
+    const start = Date.now()
+    while (!background && Date.now() - start < 60000) {
+      try {
+        background = await context.waitForEvent('serviceworker', {
+          timeout: 2000
+        })
+      } catch {
+        // keep polling
+      }
+    }
+    const extensionId = background.url().split('/')[2]
+    return extensionId
+  } finally {
+    await context.close()
+  }
+}
+
+export function getSidebarPath(extensionId: string): string {
+  return `chrome-extension://${extensionId}/sidebar/index.html`
 }
