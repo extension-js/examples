@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "react",
+  "name": "@extension-js/react",
   "description": "React-based extension with sidebar panel",
   "version": "1.0.0",
   "author": {
@@ -18,5 +18,10 @@
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

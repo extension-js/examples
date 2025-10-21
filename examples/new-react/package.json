@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "react-new-tab-example",
+  "name": "@extension-js/new-react",
   "description": "A modern browser extension new tab page example built with Extension.js and React. Demonstrates how to create interactive new tab pages using React components with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -18,5 +18,10 @@
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

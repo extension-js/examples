@@ -1,8 +1,12 @@
 {
-  "name": "transformers-js",
+  "name": "@extension-js/transformers-js",
   "version": "0.0.1",
   "description": "Transformers.js | Sample browser extension",
-  "scripts": {},
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  },
   "type": "module",
   "author": {
     "name": "Your Name",

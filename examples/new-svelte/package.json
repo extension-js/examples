@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "svelte-new-tab-example",
+  "name": "@extension-js/new-svelte",
   "description": "A modern browser extension new tab page example built with Extension.js and Svelte. Demonstrates how to create interactive new tab pages using Svelte components with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -16,5 +16,10 @@
   "devDependencies": {
     "@tsconfig/svelte": "5.0.4",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

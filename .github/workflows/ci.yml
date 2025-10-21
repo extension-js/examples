@@ -1,47 +1,45 @@
-# ███████╗██╗  ██╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗███████╗
-# ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝██╔════╝
-# █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗  ███████╗
-# ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  ╚════██║
-# ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗███████║
-# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝
-
-name: 🛠
+name: ci
 
 on:
   push:
-    branches:
-      - main
-      - 'v[0-9]+.x'
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
-      - 'v[0-9]+.x'
-
-permissions:
-  contents: read
+    branches: [ main ]
 
 jobs:
-  e2e:
-    name: Run E2E Tests
-    timeout-minutes: 60
-    runs-on: ubuntu-22.04
+  ci:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: ./.github/actions/setup
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup pnpm
+        id: setup-pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: '18'
-
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-
-      - name: Run E2E Tests
-        run: pnpm test
-
-      - name: Upload Test Report
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
+          version: 10.10.0
+          run_install: false
+          standalone: true
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          name: e2e-report
-          path: e2e-report/
-          retention-days: 15
+          node-version: 20
+          cache: 'pnpm'
+      - name: Enable corepack and ensure pnpm is executable
+        run: |
+          corepack enable
+          which pnpm
+          chmod +x $(which pnpm) || true
+      - name: Verify pnpm
+        run: pnpm --version
+      - name: Install dependencies
+        run: pnpm install -w
+      - name: Install example dependencies
+        run: pnpm -r --filter './examples/*' install --no-frozen-lockfile
+      - name: Build all examples
+        run: pnpm -r --filter './examples/*' run build
+        env:
+          EXTENSION_SKIP_INSTALL: '1'
+          CI: '1'

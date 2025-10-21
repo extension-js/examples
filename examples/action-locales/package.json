@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "action-locales-example",
+  "name": "@extension-js/action-locales",
   "description": "A modern browser extension action popup example with internationalization built with Extension.js. Demonstrates how to create localized action popups with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -9,5 +9,10 @@
     "name": "Cezar Augusto",
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

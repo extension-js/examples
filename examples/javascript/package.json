@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "javascript",
+  "name": "@extension-js/javascript",
   "description": "JavaScript-based extension template",
   "version": "1.0.0",
   "author": {
@@ -9,5 +9,10 @@
     "url": "https://cezaraugusto.com"
   },
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  }
 }

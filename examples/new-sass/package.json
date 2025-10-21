@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "sass-new-tab-example",
+  "name": "@extension-js/new-sass",
   "description": "A modern browser extension new tab page example built with Extension.js using Sass CSS. Demonstrates how to create custom new tab pages with Sass preprocessing and clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -13,5 +13,10 @@
   "dependencies": {},
   "devDependencies": {
     "sass": "^1.89.2"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

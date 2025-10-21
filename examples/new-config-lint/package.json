@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "linting-new-tab-example",
+  "name": "@extension-js/new-config-lint",
   "description": "A modern browser extension new tab page example built with Extension.js and comprehensive linting tools. Demonstrates how to set up ESLint, Prettier, and Stylelint for new tab pages with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -11,10 +11,9 @@
     "url": "https://cezaraugusto.com"
   },
   "scripts": {
-    "lint:js": "eslint .",
-    "lint:css": "npx stylelint '**/*.scss'",
-    "lint:all": "npm run lint:js && npm run lint:css",
-    "format": "prettier --write \"**/*.{ts,tsx,md,js,json,html,css}\""
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "css-modules-content-script-example",
+  "name": "@extension-js/content-css-modules",
   "description": "A modern browser extension content script example built with Extension.js using CSS Modules. Demonstrates how to create scoped styles for content scripts with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -9,5 +9,10 @@
     "name": "Cezar Augusto",
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

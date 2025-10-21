@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "shadcn-extension",
+  "name": "@extension-js/sidebar-shadcn",
   "description": "An Extension.js example.",
   "version": "0.0.1",
   "license": "MIT",
@@ -31,5 +31,10 @@
     "tailwindcss": "^4.1.3",
     "tw-animate-css": "1.2.5",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

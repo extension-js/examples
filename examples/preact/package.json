@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "preact",
+  "name": "@extension-js/preact",
   "description": "Preact-based extension with sidebar panel",
   "version": "1.0.0",
   "author": {
@@ -16,5 +16,10 @@
   "devDependencies": {
     "@types/react": "^18.2.64",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

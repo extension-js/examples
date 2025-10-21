@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "crypto-new-tab-example",
+  "name": "@extension-js/new-crypto",
   "description": "A modern browser extension new tab page example built with Extension.js demonstrating cryptographic features. Shows how to implement secure crypto operations in new tab pages with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -13,5 +13,10 @@
   "dependencies": {},
   "devDependencies": {
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

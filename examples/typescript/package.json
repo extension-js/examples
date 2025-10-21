@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "typescript",
+  "name": "@extension-js/typescript",
   "description": "TypeScript-based extension template",
   "version": "1.0.0",
   "author": {
@@ -12,5 +12,10 @@
   "type": "module",
   "devDependencies": {
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@extension/analytics",
+  "name": "@extension-js/monorepo-turbopack-clients-analytics",
   "description": "An analytics extension example built with Extension.js in a monorepo structure.",
   "version": "0.0.1",
   "author": {
@@ -10,10 +10,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "extension dev",
     "build": "extension build",
-    "start": "extension start",
-    "preview": "extension preview"
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   },
   "devDependencies": {
     "extension": "workspace:*"

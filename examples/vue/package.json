@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "vue",
+  "name": "@extension-js/vue",
   "description": "Vue.js-based extension with sidebar panel",
   "version": "1.0.0",
   "author": {
@@ -15,5 +15,10 @@
   },
   "devDependencies": {
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

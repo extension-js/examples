@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@extension/base",
+  "name": "@extension-js/monorepo-turbopack-packages-base",
   "description": "Shared utilities and base components for Extension.js monorepo examples.",
   "version": "0.0.1",
   "author": {
@@ -9,5 +9,10 @@
     "url": "https://cezaraugusto.com"
   },
   "license": "MIT",
-  "main": "index.js"
+  "main": "index.js",
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "monorepo-turbopack-example",
+  "name": "@extension-js/monorepo-turbopack",
   "description": "A monorepo example demonstrating how to structure multiple browser extensions using Extension.js with Turborepo for build optimization.",
   "version": "0.0.1",
   "license": "MIT",
@@ -10,19 +10,14 @@
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "workspaces": [
     "packages/*",
     "clients/*"
   ],
   "scripts": {
-    "dev-browser": "turbo run dev --filter @extension/browser",
-    "start-browser": "turbo run start --filter @extension/browser",
-    "build-browser": "turbo run build --filter @extension/browser",
-    "dev-analytics": "turbo run dev --filter @extension/analytics",
-    "build-analytics": "turbo run build --filter @extension/analytics"
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   },
   "devDependencies": {
     "turbo": "^2.1.3"

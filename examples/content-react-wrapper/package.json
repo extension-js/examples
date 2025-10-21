@@ -1,8 +1,13 @@
 {
   "private": true,
-  "name": "content-react-wrapper-example",
+  "name": "@extension-js/content-react-wrapper",
   "description": "An example built with Extension.js.",
   "version": "0.0.1",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  }
 }

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "svelte",
+  "name": "@extension-js/svelte",
   "description": "Svelte-based extension with sidebar panel",
   "version": "1.0.0",
   "author": {
@@ -16,5 +16,10 @@
   "devDependencies": {
     "@tsconfig/svelte": "5.0.4",
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

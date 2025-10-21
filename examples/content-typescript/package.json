@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "typescript-content-script-example",
+  "name": "@extension-js/content-typescript",
   "description": "A modern browser extension content script example built with Extension.js and TypeScript. Demonstrates how to create type-safe content scripts with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -12,5 +12,10 @@
   },
   "devDependencies": {
     "typescript": "5.3.3"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }

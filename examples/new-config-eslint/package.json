@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "eslint-new-tab-example",
+  "name": "@extension-js/new-config-eslint",
   "description": "A modern browser extension new tab page example built with Extension.js and ESLint. Demonstrates how to set up code linting for new tab pages with clean, maintainable code.",
   "version": "0.0.1",
   "license": "MIT",
@@ -12,7 +12,9 @@
   },
   "dependencies": {},
   "scripts": {
-    "lint:all": "eslint ."
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   },
   "devDependencies": {
     "@eslint/js": "^9.6.0",

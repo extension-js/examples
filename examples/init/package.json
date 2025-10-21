@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "basic-example",
+  "name": "@extension-js/init",
   "description": "A basic browser extension example built with Extension.js. Perfect starting point for developers learning browser extension development with modern tooling.",
   "version": "0.0.1",
   "license": "MIT",
@@ -9,5 +9,10 @@
     "name": "Cezar Augusto",
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
   }
 }
