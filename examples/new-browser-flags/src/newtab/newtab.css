@@ -1,0 +1,58 @@
+:root {
+  color-scheme: light dark;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: grid;
+  place-items: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans, "Apple Color Emoji", "Segoe UI Emoji";
+  background: canvas;
+  color: canvastext;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 24px;
+}
+.logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 6px 16px rgba(0,0,0,0.12);
+}
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+.subtitle {
+  opacity: 0.8;
+  font-size: 14px;
+}
+.pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in oklab, currentColor 20%, transparent);
+  font-size: 12px;
+  opacity: 0.9;
+}
+.actions { margin-top: 12px; display: flex; gap: 10px; }
+.btn {
+  appearance: none;
+  border: 1px solid color-mix(in oklab, currentColor 22%, transparent);
+  background: color-mix(in oklab, canvas 92%, currentColor 8%);
+  color: canvastext;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.02); }
+
+

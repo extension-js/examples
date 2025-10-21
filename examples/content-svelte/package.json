@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "svelte-content-script-example",
-  "description": "A modern browser extension content script example built with Extension.js and Svelte. Demonstrates how to create interactive content scripts using Svelte components with clean, maintainable code.",
+  "name": "@extension-js/content-svelte",
+  "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -11,7 +11,7 @@
     "url": "https://cezaraugusto.com"
   },
   "dependencies": {
-    "svelte": "5.15.0"
+    "svelte": "^5.15.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.3",

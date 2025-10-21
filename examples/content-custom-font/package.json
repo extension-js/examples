@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "content-custom-font-example",
-  "description": "A browser extension example demonstrating how to load custom fonts with Tailwind CSS v4. Shows proper font file placement, web accessible resources configuration, and CSS font-face declarations for browser extensions.",
+  "name": "@extension-js/content-custom-font",
+  "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "eslint-new-tab-example",
-  "description": "A modern browser extension new tab page example built with Extension.js and ESLint. Demonstrates how to set up code linting for new tab pages with clean, maintainable code.",
+  "name": "@extension-js/new-config-eslint",
+  "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -11,9 +11,6 @@
     "url": "https://cezaraugusto.com"
   },
   "dependencies": {},
-  "scripts": {
-    "lint:all": "eslint ."
-  },
   "devDependencies": {
     "@eslint/js": "^9.6.0",
     "eslint": "^9.6.0",

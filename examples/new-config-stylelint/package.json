@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "stylelint-new-tab-example",
-  "description": "A modern browser extension new tab page example built with Extension.js and Stylelint. Demonstrates how to set up CSS linting for new tab pages with clean, maintainable code.",
+  "name": "@extension-js/new-config-stylelint",
+  "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -11,9 +11,6 @@
     "url": "https://cezaraugusto.com"
   },
   "dependencies": {},
-  "scripts": {
-    "lint:css": "npx stylelint '**/*.scss'"
-  },
   "devDependencies": {
     "sass": "^1.77.8",
     "stylelint": "^16.7.0",

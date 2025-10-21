@@ -1,17 +1,13 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]]
+![Powered by Extension.js][powered-image]
 
-# content/custom-font
+# Custom Fonts Content
 
-Content Custom Font Example
+What you’ll see: a small UI injected into the page that uses custom web fonts.
 
-> A browser extension example demonstrating how to load custom fonts with Tailwind CSS v4. Shows proper font file placement, web accessible resources configuration, and CSS font-face declarations for browser extensions.
-
-What this example does in the scope of a browser extension. The description should
-describe for an audience of developers looking to use the example. Avoid jargon and
-use simple language.
+How it works here: the content script loads font files and exposes them via `web_accessible_resources`, then applies them in CSS.
 
 ## Installation
 
@@ -28,7 +24,7 @@ npm install
 Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
 ### build
@@ -36,34 +32,17 @@ npx extension@latest dev
 Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
 Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
 ## Learn more
 
-Learn more about this and other examples at @https://extension.js.org/
-
-## Setup Instructions
-
-- Place your font files under `public/fonts/`.
-- Update CSS `@font-face` declarations to reference files in `public/fonts/`.
-
-## Troubleshooting
-
-- If fonts fail to load, verify `web_accessible_resources` includes `fonts/*` patterns.
-- Confirm your CSS paths are correct and relative to the stylesheet.
-
-## Best Practices
-
-- Use `font-display: swap` to improve perceived performance.
-- Prefer modern formats like WOFF2 when available.
-
-See GitHub Issue #271 for additional context.
+Learn more about creating cross-browser extensions at https://extension.js.org

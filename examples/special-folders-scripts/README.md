@@ -1,15 +1,23 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]]
+![Powered by Extension.js][powered-image]
 
-# special/folders-scripts
+# Scripts (special folders)
 
-> A modern browser extension example built with Extension.js demonstrating special folder organization. Shows how to structure extension code using dedicated scripts folders for better maintainability.
+What you’ll see: background code that imports and runs scripts from `src/scripts/`.
 
-What this example does in the scope of a browser extension. The description should
-describe for an audience of developers looking to use the example. Avoid jargon and
-use simple language.
+How it works here: files in `src/scripts/` are regular entry files that you import from the background to execute standalone logic.
+
+## How scripts/ works
+
+- Any JS-like file placed under `src/scripts/` is considered an entrypoint by Extension.js.
+- The example’s background imports three files from `src/scripts/`:
+  - `src/scripts/script-one.js`
+  - `src/scripts/script-two.js`
+  - `src/scripts/script-three.js`
+- Importing them in `src/background.js` ensures they are executed when the background starts.
+- Treat files inside `scripts/` just like any file referenced in `manifest.json`—they are compiled and available to be imported.
 
 ## Installation
 
@@ -26,7 +34,7 @@ npm install
 Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
 ### build
@@ -34,17 +42,17 @@ npx extension@latest dev
 Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
 Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
 ## Learn more
 
-Learn more about this and other examples at @https://extension.js.org/
+Learn more about creating cross-browser extensions at https://extension.js.org

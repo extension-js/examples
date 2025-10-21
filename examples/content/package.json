@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "content-script-example",
-  "description": "A modern browser extension content script example built with Extension.js. Demonstrates how to inject scripts into web pages with clean, maintainable code.",
+  "name": "@extension-js/content",
+  "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
@@ -9,5 +9,7 @@
     "name": "Cezar Augusto",
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
-  }
+  },
+  "dependencies": {},
+  "devDependencies": {}
 }

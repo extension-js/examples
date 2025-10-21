@@ -19,7 +19,7 @@ export const extensionFixtures = (
   }>({
     context: async ({}, use) => {
       const context = await chromium.launchPersistentContext('', {
-        headless: false,
+        headless: headless,
         args: [
           headless ? `--headless=new` : '',
           `--disable-extensions-except=${pathToExtension}`,

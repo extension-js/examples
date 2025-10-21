@@ -1,14 +1,14 @@
 {
   "private": true,
-  "name": "shadcn-extension",
-  "description": "An Extension.js example.",
+  "name": "@extension-js/sidebar-shadcn",
+  "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "author": {
-    "name": "Your Name",
-    "email": "your@email.com",
-    "url": "https://yourwebsite.com"
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.0",

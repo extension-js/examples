@@ -1,15 +1,15 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]]
+![Powered by Extension.js][powered-image]
 
-# special/folders-pages
+# Pages (special folders)
 
-> Demonstrates how Extension.js handles HTML files outside manifest.json using the pages folder
+What you’ll see: a welcome page from `pages/welcome.html` that opens when the extension loads.
 
-What this example does in the scope of a browser extension. The description should
-describe for an audience of developers looking to use the example. Avoid jargon and
-use simple language.
+How it works here: files in `pages/` are treated as entrypoints. The background opens the welcome page on install/startup.
+
+Note: files inside `pages/` are entrypoints. They work just like any HTML you declare in `manifest.json`.
 
 ## Installation
 
@@ -26,7 +26,7 @@ npm install
 Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
 ### build
@@ -34,17 +34,17 @@ npx extension@latest dev
 Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
 Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
 ## Learn more
 
-Learn more about this and other examples at @https://extension.js.org/
+Learn more about creating cross-browser extensions at https://extension.js.org

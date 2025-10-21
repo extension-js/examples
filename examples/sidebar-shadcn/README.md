@@ -1,15 +1,13 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]]
+![Powered by Extension.js][powered-image]
 
-# sidebar/shadcn
+# React Sidebar (shadcn/ui)
 
-> A modern browser extension sidebar example built with Extension.js and Shadcn UI components. Demonstrates how to create beautiful sidebar panels using Shadcn UI with clean, maintainable code.
+What you’ll see: a browser sidebar (side panel) with a React page composed using shadcn/ui components.
 
-What this example does in the scope of a browser extension. The description should
-describe for an audience of developers looking to use the example. Avoid jargon and
-use simple language.
+How it works here: the extension registers a sidebar panel and renders a React UI built from shadcn/ui primitives.
 
 ## Installation
 
@@ -26,7 +24,7 @@ npm install
 Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
 ### build
@@ -34,17 +32,17 @@ npx extension@latest dev
 Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
 Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
 ## Learn more
 
-Learn more about this and other examples at @https://extension.js.org/
+Learn more about creating cross-browser extensions at https://extension.js.org

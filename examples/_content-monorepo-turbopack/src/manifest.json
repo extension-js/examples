@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Monorepo Turbopack Example",
+  "description": "Root manifest used only for building the monorepo example.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "action": {
+    "default_title": "Monorepo Example",
+    "default_icon": {
+      "16": "images/javascript.png",
+      "48": "images/javascript.png",
+      "128": "images/javascript.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"]
+    }
+  ]
+}

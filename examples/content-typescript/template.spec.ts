@@ -13,8 +13,9 @@ const pathToExtension = path.join(__dirname, `dist/chrome`)
 const test = extensionFixtures(pathToExtension, true)
 
 test.beforeAll(async () => {
-  execSync(`pnpm extension build ${exampleDir}`, {
-    cwd: path.join(__dirname, '..')
+  execSync(`node ../../ci-scripts/build-with-manifest.mjs build`, {
+    cwd: __dirname,
+    stdio: 'inherit'
   })
 })
 

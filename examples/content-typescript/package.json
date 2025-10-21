@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "typescript-content-script-example",
-  "description": "A modern browser extension content script example built with Extension.js and TypeScript. Demonstrates how to create type-safe content scripts with clean, maintainable code.",
+  "name": "@extension-js/content-typescript",
+  "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

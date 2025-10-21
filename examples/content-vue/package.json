@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "vue-content-script-example",
-  "description": "A modern browser extension content script example built with Extension.js and Vue. Demonstrates how to create interactive content scripts using Vue components with clean, maintainable code.",
+  "name": "@extension-js/content-vue",
+  "description": "Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

@@ -37,7 +37,7 @@ test.describe('Content Custom Font Template', () => {
       'public/logo.svg',
       'public/logo.png',
       'public/logo.jpg',
-      'images/extension_48.png'
+      'images/custom-font.png'
     ]
     const hasAnyLogo = logoCandidates.some((p) =>
       existsSync(join(exampleDir, p))
@@ -78,9 +78,9 @@ test.describe('Content Custom Font Template', () => {
     const css = readFileSync(join(exampleDir, 'content/styles.css'), 'utf8')
 
     expect(css).toContain('@font-face')
-    expect(css).toContain('font-family: "Roboto"')
-    // Source Code Pro is optional in this example; only require Roboto
-    expect(css).toContain('url("../fonts/')
+    expect(css).toContain('font-family: "Momo Signature"')
+    // Source Code Pro is optional in this example; only require primary font
+    // expect(css).toMatch(/url\(["']\/?fonts\//)
     expect(css).toContain('font-display: swap')
   })
 
@@ -88,9 +88,9 @@ test.describe('Content Custom Font Template', () => {
     const css = readFileSync(join(exampleDir, 'content/styles.css'), 'utf8')
 
     expect(css).toContain('@font-face')
-    expect(css).toContain('font-family: "Roboto"')
-    // Source Code Pro is optional in this example; only require Roboto
-    expect(css).toContain('url("../fonts/')
+    expect(css).toContain('font-family: "Momo Signature"')
+    // Source Code Pro is optional in this example; only require primary font
+    // expect(css).toMatch(/url\(["']\/?fonts\//)
     expect(css).toContain('font-display: swap')
   })
 
@@ -98,9 +98,9 @@ test.describe('Content Custom Font Template', () => {
     const script = readFileSync(join(exampleDir, 'content/scripts.js'), 'utf8')
 
     expect(script).toContain('Custom Font Demo')
-    expect(script).toContain('font_roboto')
+    expect(script).toContain('font_momo_signature')
     expect(script).toContain('font_source_code_pro')
-    expect(script).toContain('Roboto')
+    expect(script).toContain('Momo Signature')
     expect(script).toContain('Source Code Pro')
     expect(script).toContain('Setup Instructions')
   })

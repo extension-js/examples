@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Stylelint Config New Tab Example",
+  "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}
