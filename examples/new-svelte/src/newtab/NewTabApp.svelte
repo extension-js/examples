@@ -3,8 +3,7 @@
 </script>
 
 <header>
-  <h1>
-    <img class="svelte" src="/logo.png" alt="The Svelte logo" width="120px" />
+  <h1><img class="svelte" src="/logo.png" alt="The Svelte logo" width="120px" />
     <br />
     {message}
   </h1>

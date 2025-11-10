@@ -5,9 +5,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '@/components/ui/card'
-import {Label} from '@/components/ui/label'
-import {Switch} from '@/components/ui/switch'
+} from '../components/ui/card'
+import {Label} from '../components/ui/label'
+import {Switch} from '../components/ui/switch'
 import shadcnLogo from '../images/shadcn.svg'
 
 export default function SidebarApp() {

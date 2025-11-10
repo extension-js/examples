@@ -1,18 +1,17 @@
 {
-  "name": "Extension.js - special-folders-pages Example",
+  "name": "Welcome Page Template",
   "version": "0.0.1",
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
-  "description": "Demonstrates how Extension.js handles HTML files outside manifest.json using the pages folder",
+  "description": "Opens a welcome page on extension load, showcasing the pages/ folder",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
   },
   "background": {
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
-  },
-  "action": {
-    "default_popup": "pages/main.html"
   },
   "sandbox": {
     "pages": ["sandbox/index.html"]

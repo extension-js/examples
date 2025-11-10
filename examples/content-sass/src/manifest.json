@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - content-sass Example",
+  "name": "Content Sass Template",
   "description": "A modern browser extension content script example built with Extension.js using Sass CSS. Demonstrates how to create styled content scripts using Sass preprocessing with clean, maintainable code.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
@@ -13,12 +15,7 @@
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["logo.png"],
-      "matches": ["<all_urls>"]
-    }
-  ],
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

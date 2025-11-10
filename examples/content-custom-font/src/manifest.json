@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - content-custom-font Example",
+  "name": "Content Custom Font Template",
   "description": "A browser extension example demonstrating how to load custom fonts with Tailwind CSS v4. Shows proper font file placement, web accessible resources configuration, and CSS font-face declarations for browser extensions.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
@@ -22,7 +24,10 @@
         "fonts/*.otf",
         "fonts/static/*.ttf",
         "fonts/static/*.otf",
-        "logo.png"
+        "assets/*.woff2",
+        "assets/*.woff",
+        "assets/*.ttf",
+        "assets/*.otf"
       ],
       "matches": ["<all_urls>"]
     }
@@ -30,7 +35,6 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "css": ["content/styles.css"],
       "js": ["content/scripts.js"]
     }
   ]

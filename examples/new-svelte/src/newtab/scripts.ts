@@ -1,10 +1,10 @@
-import * as svelte from 'svelte'
+import {mount} from 'svelte'
 import './styles.css'
 import App from './NewTabApp.svelte'
 
-const container = document.getElementById('app')
-const app = svelte.mount(App, {
-  target: container as HTMLElement
-})
+const container = document.getElementById('app') as HTMLElement | null
+if (container) {
+  mount(App, {target: container})
+}
 
-export default app
+export {}

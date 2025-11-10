@@ -1,4 +1,4 @@
-import transformersLogo from '../images/extension_48.png'
+import transformersLogo from '../images/transformers-js.png'
 import {ACTION_NAME} from '../constants.js'
 import './styles.css'
 

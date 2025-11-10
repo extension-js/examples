@@ -37,7 +37,7 @@ test.describe('Content Custom Font Template', () => {
       'public/logo.svg',
       'public/logo.png',
       'public/logo.jpg',
-      'images/extension_48.png'
+      'images/custom-font.png'
     ]
     const hasAnyLogo = logoCandidates.some((p) =>
       existsSync(join(exampleDir, p))

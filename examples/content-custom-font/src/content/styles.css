@@ -6,16 +6,18 @@
   1. Placed in the public/fonts/ directory
   2. Declared in web_accessible_resources in manifest.json
   3. Referenced using relative paths from the extension root
+  4. This example uses static CSS-only @font-face with absolute URLs
+     to the extension root (e.g. /fonts/Roboto-Regular.woff2).
 */
 
-/* Sample Font 1 - Roboto */
+/* Sample Font 1 - Roboto (static CSS) */
 @font-face {
   font-family: "Roboto";
   font-weight: 400;
   font-display: swap;
   font-style: normal;
-  src: url("../fonts/Roboto-Regular.woff2") format("woff2"),
-       url("../fonts/static/Roboto_Condensed-Regular.ttf") format("truetype");
+  src: url("/fonts/Roboto-Regular.woff2") format("woff2"),
+       url("/fonts/static/Roboto_Condensed-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -23,12 +25,9 @@
   font-weight: 700;
   font-display: swap;
   font-style: normal;
-  src: url("../fonts/Roboto-Bold.woff2") format("woff2"),
-       url("../fonts/static/Roboto_Condensed-Bold.ttf") format("truetype");
+  src: url("/fonts/Roboto-Bold.woff2") format("woff2"),
+       url("/fonts/static/Roboto_Condensed-Bold.ttf") format("truetype");
 }
-
-/* Sample Font 2 - Source Code Pro */
-/* Source Code Pro removed: font files not included in this example */
 
 /* Content Script Styles */
 .content_script {
@@ -36,7 +35,7 @@
   bottom: 20px;
   right: 20px;
   z-index: 99999;
-  background: white;
+  background: transparent;
   border: 2px solid #e5e7eb;
   border-radius: 12px;
   padding: 20px;

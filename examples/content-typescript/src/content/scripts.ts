@@ -1,73 +1,32 @@
-// @ts-expect-error - Import handled by webpack
 import logo from '../images/logo.svg'
-
-let unmount: () => void
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot?.accept()
-  import.meta.webpackHot?.dispose(() => unmount?.())
-}
-
-console.log('hello from content_scripts')
-
-if (document.readyState === 'complete') {
-  unmount = initial() || (() => {})
-} else {
-  document.addEventListener('readystatechange', () => {
-    if (document.readyState === 'complete') unmount = initial() || (() => {})
-  })
-}
-
-function initial() {
+export default function initial() {
   const rootDiv = document.createElement('div')
-  rootDiv.id = 'extension-root'
+  rootDiv.setAttribute('data-extension-root', 'true')
   document.body.appendChild(rootDiv)
 
-  // Injecting content_scripts inside a shadow dom
-  // prevents conflicts with the host page's styles.
-  // This way, styles from the extension won't leak into the host page.
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
-  const style = new CSSStyleSheet()
-  shadowRoot.adoptedStyleSheets = [style]
-  fetchCSS().then((response) => style.replace(response))
+  const styleElement = document.createElement('style')
+  shadowRoot.appendChild(styleElement)
+  fetchCSS().then((css) => (styleElement.textContent = css))
 
-  if (import.meta.webpackHot) {
-    import.meta.webpackHot?.accept('./styles.css', () => {
-      fetchCSS().then((response) => style.replace(response))
-    })
-  }
-
-  // Create container div
   const contentDiv = document.createElement('div')
   contentDiv.className = 'content_script'
-
-  // Create and append logo image
+  shadowRoot.appendChild(contentDiv)
   const img = document.createElement('img')
   img.className = 'content_logo'
   img.src = logo
   contentDiv.appendChild(img)
 
-  // Create and append title
   const title = document.createElement('h1')
   title.className = 'content_title'
-  title.textContent = 'Welcome to your TypeScript Extension'
+  title.textContent = 'Content Template'
   contentDiv.appendChild(title)
 
-  // Create and append description paragraph
-  const desc = document.createElement('p')
-  desc.className = 'content_description'
-  desc.innerHTML = 'Learn more about creating cross-browser extensions at '
-
-  const link = document.createElement('a')
-  link.href = 'https://extension.js.org'
-  link.target = '_blank'
-  link.textContent = 'https://extension.js.org'
-
-  desc.appendChild(link)
-  contentDiv.appendChild(desc)
-
-  // Append the content div to shadow root
-  shadowRoot.appendChild(contentDiv)
+  const description = document.createElement('p')
+  description.className = 'content_description'
+  description.innerHTML =
+    'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
+  contentDiv.appendChild(description)
 
   return () => {
     rootDiv.remove()

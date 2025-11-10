@@ -12,7 +12,7 @@ export default {
     <h1>
       <img
         class="vue"
-        src="/logo.svg"
+        src="../images/vue.png"
         alt="The Vue logo"
         width="120px"
       />

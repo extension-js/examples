@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - new Example",
+  "name": "New Template",
   "description": "A modern browser extension new tab page example built with Extension.js. Demonstrates how to create custom new tab pages with clean, maintainable code.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
   },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"

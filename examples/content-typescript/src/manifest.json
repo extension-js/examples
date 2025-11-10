@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - content-typescript Example",
+  "name": "Content Typescript Template",
   "description": "A modern browser extension content script example built with Extension.js and TypeScript. Demonstrates how to create type-safe content scripts with clean, maintainable code.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/typescript.png",
+    "48": "images/typescript.png",
+    "128": "images/typescript.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
@@ -13,12 +15,7 @@
     "chromium:service_worker": "background.ts",
     "firefox:scripts": ["background.ts"]
   },
-  "web_accessible_resources": [
-    {
-      "resources": ["logo.png"],
-      "matches": ["<all_urls>"]
-    }
-  ],
+
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

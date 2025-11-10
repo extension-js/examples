@@ -1,6 +1,6 @@
 .content_script {
-  color: #c9c9c9;
-  background-color: #0a0c10;
+  color: #0a0c10;
+  background-color: #ffffff;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -12,6 +12,10 @@
   flex-direction: column;
   gap: 1em;
   border-radius: 6px;
+}
+
+.content_logo {
+  width: 72px;
 }
 
 .content_title {
@@ -30,13 +34,13 @@
 
 .content_description a {
   text-decoration: none;
-  border-bottom: 2px solid #c9c9c9;
-  color: #e5e7eb;
+  border-bottom: 2px solid #0a0c10;
+  color: #0a0c10;
   margin: 0;
 }
 
 .logo {
   width: 72px;
-  background: #c9c9c9;
+  background: transparent;
   border-radius: 6px;
 }

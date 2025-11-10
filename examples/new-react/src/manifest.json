@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - new-react Example",
+  "name": "New React Template",
   "description": "A modern browser extension new tab page example built with Extension.js and React. Demonstrates how to create interactive new tab pages using React components with clean, maintainable code.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/react.png",
+    "48": "images/react.png",
+    "128": "images/react.png"
   },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"

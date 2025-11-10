@@ -1,64 +1,48 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]][powered-url]
+![Powered by Extension.js][powered-image]
 
-# Transformers.js Sidebar
+# Transformers Js Example
 
-> Sidebar-only browser extension powered by 🤗 Transformers.js and Extension.js. The side panel UI sends text to the background service worker, which runs on-device inference and returns results.
+> Custom transformers for JavaScript.
 
-## What this example shows
+Demonstrates extending the build pipeline with JavaScript transformers.
 
-- A cross-browser sidebar panel (Chromium side panel / Firefox sidebar)
-- Message-based inference with `@huggingface/transformers` in the background
-- Simple model configuration persisted via `chrome.storage.sync`
+## Installation
+
+```bash
+npx extension@latest create <project-name> --template transformers-js
+cd <project-name>
+npm install
+```
 
 ## Commands
 
-Run these from this folder.
+### dev
 
-### Dev
-
-Start a development server and open the extension for live-reload development.
+Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
-### Build
+### build
 
-Create a production build.
+Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
-Preview the built extension in a browser.
+Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
-## Anatomy
+## Learn more
 
-- `background.js`: loads/caches the Transformers pipeline and responds to messages
-- `sidebar/`: UI for the side panel (`index.html`, `scripts.js`, `SidebarApp.js`, `styles.css`)
-- `constants.js`: shared message/action constants
-- `manifest.json`: declares the side panel and minimal permissions
-
-There are no content scripts or popup in this example; Extension.js handles bundling and serving.
-
-## Permissions
-
-Minimal, sidebar-focused permissions:
-
-- `sidePanel` (Chromium)
-- `storage`
-- `unlimitedStorage`
-
-## Notes
-
-- Models are loaded from the Hugging Face Hub by default (`env.allowLocalModels = false`). You can change this in `background.js`.
-- The sidebar UI allows selecting a curated model or entering a custom model ID.
+Learn more about creating cross-browser extensions at https://extension.js.org

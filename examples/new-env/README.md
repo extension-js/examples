@@ -1,15 +1,13 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe
 [powered-url]: https://extension.js.org
 
-[![Powered by Extension.js][powered-image]][powered-url]
+![Powered by Extension.js][powered-image]
 
-# new/env
+# New Env Example
 
-> A modern browser extension new tab page example built with Extension.js and TypeScript using environment variables. Demonstrates how to use environment configuration in new tab pages with clean, maintainable code.
+> Starter with environment variables.
 
-What this example does in the scope of a browser extension. The description should
-describe for an audience of developers looking to use the example. Avoid jargon and
-use simple language.
+Build-time environment variables wired into your extension safely.
 
 ## Installation
 
@@ -26,7 +24,7 @@ npm install
 Run the extension in development mode.
 
 ```bash
-npx extension@latest dev
+npm run dev
 ```
 
 ### build
@@ -34,17 +32,17 @@ npx extension@latest dev
 Build the extension for production.
 
 ```bash
-npx extension@latest build
+npm run build
 ```
 
-### Preview
+### preview
 
 Preview the extension in the browser.
 
 ```bash
-npx extension@latest preview
+npm run preview
 ```
 
 ## Learn more
 
-Learn more about this and other examples at @https://extension.js.org/
+Learn more about creating cross-browser extensions at https://extension.js.org

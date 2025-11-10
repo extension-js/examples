@@ -2,10 +2,12 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - content-svelte Example",
+  "name": "Content Svelte Template",
   "description": "A modern browser extension content script example built with Extension.js and Svelte. Demonstrates how to create interactive content scripts using Svelte components with clean, maintainable code.",
   "icons": {
-    "48": "images/extension_48.png"
+    "16": "images/svelte.png",
+    "48": "images/svelte.png",
+    "128": "images/svelte.png"
   },
   "background": {
     "chromium:service_worker": "background.ts",
