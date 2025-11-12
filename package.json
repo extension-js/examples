@@ -24,8 +24,8 @@
   "scripts": {
     "extension": "extension",
     "generate": "echo 'no-op: local templates'",
-    "build:examples": "pnpm -r --filter './examples/*' run build",
-    "ci": "pnpm -r --filter './examples/*' run build",
+    "build:examples": "pnpm -r --filter './examples/*' exec node ../../ci-scripts/build-with-manifest.mjs build",
+    "ci": "node ci-scripts/normalize-examples.mjs && pnpm run build:examples && pnpm test",
     "test": "playwright test",
     "test:watch": "playwright test --ui",
     "test:debug": "playwright test --debug",

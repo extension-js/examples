@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Content CSS Modules Template",
+  "name": "Extension.js - content-css-modules Example",
   "description": "A modern browser extension content script example built with Extension.js using CSS Modules. Demonstrates how to create scoped styles for content scripts with clean, maintainable code.",
   "icons": {
     "16": "images/javascript.png",

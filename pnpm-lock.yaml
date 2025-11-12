@@ -108,6 +108,12 @@ importers:
         specifier: ^4.2.0
         version: 4.4.2
 
+  examples/content-monorepo-turbopack:
+    devDependencies:
+      turbo:
+        specifier: ^2.1.3
+        version: 2.5.8
+
   examples/content-preact:
     dependencies:
       '@preact/signals':
@@ -215,12 +221,6 @@ importers:
         version: 5.3.3
 
   examples/init: {}
-
-  examples/monorepo-turbopack:
-    devDependencies:
-      turbo:
-        specifier: ^2.1.3
-        version: 2.5.8
 
   examples/new: {}
 
@@ -437,15 +437,15 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  examples/special-folders-pages: {}
-
-  examples/special-folders-scripts: {}
-
-  examples/transformers-js:
+  examples/sidebar-transformers-js:
     dependencies:
       '@huggingface/transformers':
         specifier: 3.7.1
         version: 3.7.1
+
+  examples/special-folders-pages: {}
+
+  examples/special-folders-scripts: {}
 
 packages:
 

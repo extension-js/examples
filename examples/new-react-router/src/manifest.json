@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "New React Router Template",
+  "name": "Extension.js - new-react-router Example",
   "description": "A modern browser extension new tab page example built with Extension.js, React, and React Router. Demonstrates how to create multi-page new tab pages using React Router with clean, maintainable code.",
   "icons": {
     "16": "images/react.png",

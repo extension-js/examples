@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Content Template",
+  "name": "Extension.js - content Example",
   "description": "A modern browser extension content script example built with Extension.js. Demonstrates how to inject scripts into web pages with clean, maintainable code.",
   "icons": {
     "16": "images/javascript.png",

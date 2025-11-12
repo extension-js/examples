@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "New Crypto Template",
+  "name": "Extension.js - new-crypto Example",
   "description": "A modern browser extension new tab page example built with Extension.js demonstrating cryptographic features. Shows how to implement secure crypto operations in new tab pages with clean, maintainable code.",
   "icons": {
     "16": "images/typescript.png",

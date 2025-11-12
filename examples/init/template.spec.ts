@@ -1,7 +1,8 @@
 import path from 'path'
 import {execSync} from 'child_process'
 import fs from 'fs'
-import {extensionFixtures, getDirname} from '../extension-fixtures'
+import {extensionFixtures} from '../extension-fixtures'
+import {getDirname} from '../dirname'
 
 const __dirname = getDirname(import.meta.url)
 const exampleDir = 'examples/init'
@@ -9,8 +10,9 @@ const pathToExtension = path.join(__dirname, `dist/chrome`)
 const test = extensionFixtures(pathToExtension, true)
 
 test.beforeAll(async () => {
-  execSync(`pnpm extension build ${exampleDir}`, {
-    cwd: path.join(__dirname, '..')
+  execSync(`node ../../ci-scripts/build-with-manifest.mjs build`, {
+    cwd: __dirname,
+    stdio: 'inherit'
   })
 })
 

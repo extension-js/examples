@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "1.0.0",
-  "name": "Transformers Js Template",
+  "name": "Extension.js - sidebar-transformers-js Example",
   "description": "Transformers.js-based extension template",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,

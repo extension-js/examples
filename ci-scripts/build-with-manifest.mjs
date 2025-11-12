@@ -54,6 +54,9 @@ function transformManifestPaths(manifest) {
     for (const k of ['newtab', 'history', 'bookmarks']) if (m.chrome_url_overrides[k]) m.chrome_url_overrides[k] = prefixSrc(m.chrome_url_overrides[k]);
   }
   if (m.side_panel && m.side_panel.default_path) m.side_panel.default_path = prefixSrc(m.side_panel.default_path);
+  // sandbox pages
+  if (m.sandbox && Array.isArray(m.sandbox.pages)) m.sandbox.pages = m.sandbox.pages.map(prefixSrc);
+  if (m.sandbox && typeof m.sandbox.page === 'string') m.sandbox.page = prefixSrc(m.sandbox.page);
   return m;
 }
 

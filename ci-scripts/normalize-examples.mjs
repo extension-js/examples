@@ -11,6 +11,16 @@ function walk(dir, filterFn) {
   for (const entry of entries) {
     const full = path.join(dir, entry.name)
     if (entry.isDirectory()) {
+      // Skip dependency/build directories
+      if (
+        entry.name === 'node_modules' ||
+        entry.name === 'dist' ||
+        entry.name === '.next' ||
+        entry.name === 'build' ||
+        entry.name === '.turbo'
+      ) {
+        continue
+      }
       results.push(...walk(full, filterFn))
     } else if (!filterFn || filterFn(full)) {
       results.push(full)
@@ -36,7 +46,11 @@ function toPackageName(relDir) {
 }
 
 function normalizePackageJsons() {
-  const pkgFiles = walk(examplesDir, (f) => f.endsWith('package.json'))
+  const pkgFiles = walk(examplesDir, (f) => {
+    if (!f.endsWith('package.json')) return false
+    // Extra guard: never touch package.json inside node_modules
+    return !f.split(path.sep).includes('node_modules')
+  })
   for (const file of pkgFiles) {
     const pkg = readJson(file)
 
