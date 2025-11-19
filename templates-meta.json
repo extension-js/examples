@@ -6,7 +6,7 @@
   "generatedAt": "2025-11-19T06:52:30.989Z",
   "templates": [
     {
-      "slug": "_content-monorepo-turbopack",
+      "slug": "content-monorepo-turbopack",
       "name": "@extension-js/monorepo-turbopack",
       "version": "0.0.1",
       "manifest_version": 3,
