@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - JavaScript Sidebar Example",
+  "name": "JavaScript Sidebar Example",
   "author": "Cezar Augusto",
   "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
   "icons": {

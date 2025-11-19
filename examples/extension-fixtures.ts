@@ -7,21 +7,24 @@ import {
 } from '@playwright/test'
 import path from 'path'
 import {execSync} from 'child_process'
+import fs from 'fs'
 import {getDirname} from '../dirname'
 
 export const extensionFixtures = (
   pathToExtension: string,
-  headless: boolean
+  headless: boolean = false
 ) => {
   return base.extend<{
     context: BrowserContext
     extensionId: string
   }>({
     context: async ({}, use) => {
-      const context = await chromium.launchPersistentContext('', {
+      const os = await import('os')
+      const tmpRoot = os.tmpdir()
+      const userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
+      const context = await chromium.launchPersistentContext(userDataDir, {
         headless: headless,
         args: [
-          headless ? `--headless=new` : '',
           `--disable-extensions-except=${pathToExtension}`,
           `--load-extension=${pathToExtension}`,
           '--no-first-run', // Disable Chrome's native first run experience.
@@ -55,19 +58,39 @@ export const extensionFixtures = (
       await context.close()
     },
     extensionId: async ({context}, use) => {
-      /*
-      // for manifest v2:
-      let [background] = context.backgroundPages()
-      if (!background)
-        background = await context.waitForEvent('backgroundpage')
-      */
-
-      // for manifest v3:
-      let [background] = context.serviceWorkers()
-      if (!background) background = await context.waitForEvent('serviceworker')
-
-      const extensionId = background.url().split('/')[2]
-      await use(extensionId)
+      // Try Preferences-based discovery first (works even without background/service worker).
+      let extensionId: string | undefined
+      try {
+        // derive userDataDir from context
+        // @ts-ignore internal property accessible via as any
+        const browserContext: any = context
+        const userDataDir: string | undefined =
+          browserContext?._browser?._options?.userDataDir ||
+          browserContext?._options?.userDataDir
+        if (userDataDir) {
+          const prefsPath = path.join(userDataDir, 'Default', 'Preferences')
+          const prefsText = fs.readFileSync(prefsPath, 'utf-8')
+          const prefs = JSON.parse(prefsText)
+          const settings = prefs?.extensions?.settings || {}
+          for (const [id, info] of Object.entries<any>(settings)) {
+            if (
+              info?.path &&
+              path.resolve(String(info.path)) === path.resolve(pathToExtension)
+            ) {
+              extensionId = id
+              break
+            }
+          }
+        }
+      } catch {}
+      if (!extensionId) {
+        // Fallback for MV3 with background service worker.
+        let [background] = context.serviceWorkers()
+        if (!background)
+          background = await context.waitForEvent('serviceworker')
+        extensionId = background.url().split('/')[2]
+      }
+      await use(extensionId!)
     }
   })
 }
@@ -149,7 +172,10 @@ export function getPathToExtension(exampleDir: string): string {
 }
 
 export async function getExtensionId(pathToExtension: string): Promise<string> {
-  const context = await chromium.launchPersistentContext('', {
+  const os = await import('os')
+  const tmpRoot = os.tmpdir()
+  const userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
+  const context = await chromium.launchPersistentContext(userDataDir, {
     headless: false,
     args: [
       `--disable-extensions-except=${pathToExtension}`,
@@ -158,19 +184,25 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
     ]
   })
   try {
-    let [background] = context.serviceWorkers()
-    const start = Date.now()
-    while (!background && Date.now() - start < 60000) {
-      try {
-        background = await context.waitForEvent('serviceworker', {
-          timeout: 2000
-        })
-      } catch {
-        // keep polling
+    // Try Preferences lookup
+    try {
+      const prefsPath = path.join(userDataDir, 'Default', 'Preferences')
+      const prefsText = fs.readFileSync(prefsPath, 'utf-8')
+      const prefs = JSON.parse(prefsText)
+      const settings = prefs?.extensions?.settings || {}
+      for (const [id, info] of Object.entries<any>(settings)) {
+        if (
+          info?.path &&
+          path.resolve(String(info.path)) === path.resolve(pathToExtension)
+        ) {
+          return id
+        }
       }
-    }
-    const extensionId = background.url().split('/')[2]
-    return extensionId
+    } catch {}
+    // Fallback to waiting for background service worker
+    let [background] = context.serviceWorkers()
+    if (!background) background = await context.waitForEvent('serviceworker')
+    return background.url().split('/')[2]
   } finally {
     await context.close()
   }
@@ -178,4 +210,48 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
 
 export function getSidebarPath(extensionId: string): string {
   return `chrome-extension://${extensionId}/sidebar/index.html`
+}
+
+export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
+  const roots = ['dist', 'build', '.extension']
+  const channels = ['chrome', 'chromium', 'chrome-mv3']
+  const candidateDirs: string[] = []
+  for (const root of roots) {
+    for (const ch of channels) {
+      candidateDirs.push(path.join(exampleDirAbsolute, root, ch))
+    }
+  }
+  const hasManifest = (dir: string) => {
+    try {
+      return fs.existsSync(path.join(dir, 'manifest.json'))
+    } catch {
+      return false
+    }
+  }
+  for (const dir of candidateDirs) if (hasManifest(dir)) return dir
+  // Try building once if not present
+  try {
+    execSync(
+      `node ../../ci-scripts/build-with-manifest.mjs build --browser=chrome`,
+      {
+        cwd: exampleDirAbsolute,
+        stdio: 'inherit'
+      }
+    )
+  } catch {}
+  for (const dir of candidateDirs) if (hasManifest(dir)) return dir
+  // As a last attempt, search shallowly under known roots for any manifest.json
+  for (const root of roots) {
+    const rootPath = path.join(exampleDirAbsolute, root)
+    try {
+      const entries = fs.readdirSync(rootPath, {withFileTypes: true})
+      for (const entry of entries) {
+        if (!entry.isDirectory()) continue
+        const dir = path.join(rootPath, entry.name)
+        if (hasManifest(dir)) return dir
+      }
+    } catch {}
+  }
+  // Last resort: return default expected path (will fail loudly in Playwright if missing)
+  return path.join(exampleDirAbsolute, 'dist', 'chrome')
 }

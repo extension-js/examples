@@ -1,3 +1,94 @@
+name: Examples CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  test-and-generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+        working-directory: ./examples
+
+      - name: Setup Playwright
+        uses: microsoft/playwright-github-action@v1
+
+      - name: Normalize examples (names/manifests)
+        run: node ci-scripts/normalize-examples.mjs
+        working-directory: ./examples
+
+      - name: Build all examples (pinned CLI)
+        run: pnpm run build:examples
+        working-directory: ./examples
+
+      - name: Run tests (Chromium, headless via xvfb)
+        run: xvfb-run -a pnpm test
+        working-directory: ./examples
+
+      - name: Package artifacts (zip dist/* per browser)
+        run: node ci-scripts/package-artifacts.mjs
+        working-directory: ./examples
+
+      - name: Create/Update GitHub Release (nightly)
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          prerelease: true
+          generate_release_notes: false
+
+      - name: Upload artifacts to Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          files: examples/artifacts/*.zip
+
+      - name: Generate templates metadata with download URLs
+        run: RELEASE_TAG=nightly pnpm run generate
+        working-directory: ./examples
+
+      - name: Upload templates-meta.json to Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          files: examples/templates-meta.json
+
+      - name: Upload Playwright Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report
+          path: examples/e2e-report
+
+      - name: Upload Templates Metadata (artifact)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: templates-meta.json
+          path: examples/templates-meta.json
+
 name: ci
 
 on:

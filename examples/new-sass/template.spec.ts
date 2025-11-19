@@ -1,19 +1,15 @@
 import path from 'path'
-import {execSync} from 'child_process'
-import {extensionFixtures, takeScreenshot} from '../extension-fixtures'
+import {
+  extensionFixtures,
+  takeScreenshot,
+  resolveBuiltExtensionPath
+} from '../extension-fixtures'
 import {getDirname} from '../dirname'
 
 const __dirname = getDirname(import.meta.url)
 const exampleDir = 'examples/new-sass'
-const pathToExtension = path.join(__dirname, `dist/chrome`)
-const test = extensionFixtures(pathToExtension, true)
-
-test.beforeAll(async () => {
-  execSync(`node ../../ci-scripts/build-with-manifest.mjs build`, {
-    cwd: __dirname,
-    stdio: 'inherit'
-  })
-})
+const pathToExtension = resolveBuiltExtensionPath(__dirname)
+const test = extensionFixtures(pathToExtension)
 
 test('should exist an element with the welcome message text', async ({
   page

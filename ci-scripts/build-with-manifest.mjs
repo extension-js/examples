@@ -4,6 +4,16 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
 const CWD = process.cwd();
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
+const EXTENSION_BIN = process.platform === 'win32'
+  ? path.join(REPO_ROOT, 'node_modules', '.bin', 'extension.cmd')
+  : path.join(REPO_ROOT, 'node_modules', '.bin', 'extension');
+let EXT_VERSION = 'latest';
+try {
+  const pkg = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8'));
+  EXT_VERSION = pkg?.devDependencies?.extension || EXT_VERSION;
+} catch {}
 
 function run(cmd, args, opts = {}) {
   const r = spawnSync(cmd, args, { stdio: 'inherit', shell: false, ...opts });
@@ -62,6 +72,7 @@ function transformManifestPaths(manifest) {
 
 function main() {
   const mode = process.argv[2] || 'build'; // build | dev | preview
+  const extraArgs = process.argv.slice(3);
   const rootManifest = path.join(CWD, 'manifest.json');
   const srcDir = path.join(CWD, 'src');
   const srcManifest = path.join(srcDir, 'manifest.json');
@@ -74,7 +85,11 @@ function main() {
       fs.writeFileSync(rootManifest, JSON.stringify(patched, null, 2) + '\n');
       wroteTempManifest = true;
     }
-    run('extension', [mode], { cwd: CWD, env: { ...process.env, EXTENSION_SKIP_INSTALL: '1' } });
+    // Always run the CLI via npx using the pinned version from package.json
+    run('npx', ['-y', `extension@${EXT_VERSION}`, mode, ...extraArgs], {
+      cwd: CWD,
+      env: { ...process.env, EXTENSION_SKIP_INSTALL: '1' }
+    });
   } finally {
     if (wroteTempManifest && fs.existsSync(rootManifest)) {
       try { fs.unlinkSync(rootManifest); } catch {}

@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - React Sidebar Example",
+  "name": "React Sidebar Example",
   "author": "Cezar Augusto",
   "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
   "icons": {

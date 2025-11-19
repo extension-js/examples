@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - Special Folders Pages Example",
+  "name": "Special Folders Pages Example",
   "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
   "icons": {
     "16": "images/javascript.png",

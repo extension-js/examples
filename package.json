@@ -23,8 +23,9 @@
   },
   "scripts": {
     "extension": "extension",
-    "generate": "echo 'no-op: local templates'",
-    "build:examples": "pnpm -r --filter './examples/*' exec node ../../ci-scripts/build-with-manifest.mjs build",
+    "generate": "node ci-scripts/generate-templates-meta.mjs",
+    "build:examples": "node ci-scripts/build-all.mjs",
+    "pretest": "pnpm run build:examples",
     "ci": "node ci-scripts/normalize-examples.mjs && pnpm run build:examples && pnpm test",
     "test": "playwright test",
     "test:watch": "playwright test --ui",
@@ -34,6 +35,7 @@
     "test:install": "playwright install",
     "test:coverage": "playwright test --reporter=html --reporter=json --reporter=junit",
     "postinstall": "playwright install --with-deps",
+    "prepublishOnly": "pnpm generate",
     "format": "prettier --write \"**/*.{ts,tsx,md,js,json}\"",
     "lint": "eslint .",
     "lint-staged": "lint-staged",
@@ -48,15 +50,15 @@
   ],
   "devDependencies": {
     "@eslint/js": "^9.16.0",
-    "@playwright/test": "^1.49.0",
+    "@playwright/test": "^1.56.1",
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "2.0.0-rc.38",
+    "extension": "3.0.0-next.7",
     "globals": "^15.13.0",
+    "knip": "^5.33.0",
     "lint-staged": "16.1.0",
     "prettier": "^3.4.2",
-    "typescript": "5.7.2",
-    "knip": "^5.33.0"
+    "typescript": "5.7.2"
   }
 }

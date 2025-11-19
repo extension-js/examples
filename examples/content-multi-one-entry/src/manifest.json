@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - JavaScript Content (Multiple Scripts) Example",
+  "name": "JavaScript Content (Multiple Scripts) Example",
   "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],

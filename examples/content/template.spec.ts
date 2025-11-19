@@ -1,29 +1,22 @@
 import path from 'path'
-import {execSync} from 'child_process'
 import {
   extensionFixtures,
   getShadowRootElement,
-  takeScreenshot
+  takeScreenshot,
+  resolveBuiltExtensionPath
 } from '../extension-fixtures'
 import {getDirname} from '../dirname'
 
 const __dirname = getDirname(import.meta.url)
 
 const exampleDir = 'examples/content'
-const pathToExtension = path.join(__dirname, `dist/chrome`)
-const test = extensionFixtures(pathToExtension, true)
-
-test.beforeAll(async () => {
-  execSync(`node ../../ci-scripts/build-with-manifest.mjs build`, {
-    cwd: __dirname,
-    stdio: 'inherit'
-  })
-})
+const pathToExtension = resolveBuiltExtensionPath(__dirname)
+const test = extensionFixtures(pathToExtension)
 
 test('should exist an element with the class name content_script', async ({
   page
 }) => {
-  await page.goto('https://extension.js.org/')
+  await page.goto('https://example.com/')
   const div = await getShadowRootElement(
     page,
     '#extension-root',
@@ -36,7 +29,7 @@ test('should exist an element with the class name content_script', async ({
 })
 
 test('should exist an h1 element with specified content', async ({page}) => {
-  await page.goto('https://extension.js.org/')
+  await page.goto('https://example.com/')
   const h1 = await getShadowRootElement(
     page,
     '#extension-root',
@@ -50,7 +43,7 @@ test('should exist an h1 element with specified content', async ({page}) => {
 })
 
 test('should exist a default color value', async ({page}) => {
-  await page.goto('https://extension.js.org/')
+  await page.goto('https://example.com/')
   const h1 = await getShadowRootElement(
     page,
     '#extension-root',
@@ -66,7 +59,7 @@ test('should exist a default color value', async ({page}) => {
 })
 
 test.skip('takes a screenshot of the page', async ({page}) => {
-  await page.goto('https://extension.js.org/')
+  await page.goto('https://example.com/')
   const contentScriptDiv = await getShadowRootElement(
     page,
     '#extension-root',

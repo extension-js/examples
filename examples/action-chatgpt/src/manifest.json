@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - React Action Example",
+  "name": "React Action Example",
   "description": "React action popup example. Opens a toolbar popup and renders a basic React UI.",
   "icons": {
     "16": "images/chatgpt.png",

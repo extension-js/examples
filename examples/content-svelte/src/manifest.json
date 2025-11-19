@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "manifest_version": 3,
   "version": "0.0.1",
-  "name": "Extension.js - Svelte Content Example",
+  "name": "Svelte Content Example",
   "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
   "icons": {
     "16": "images/svelte.png",

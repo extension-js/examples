@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Extension.js - Monorepo Turbopack/Clients/Analytics Example",
+  "name": "Monorepo Turbopack/Clients/Analytics Example",
   "version": "0.0.1",
   "description": "An analytics extension example built with Extension.js in a monorepo structure.",
   "permissions": ["activeTab", "storage"],
