@@ -7,6 +7,11 @@
 
 import {defineConfig, devices} from '@playwright/test'
 
+// Remove conflicting color environment variables to avoid noisy warnings on Node 20+.
+if (process.env.FORCE_COLOR) {
+  delete process.env.NO_COLOR
+}
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv

@@ -1,5 +1,6 @@
 {
   "private": true,
+  "packageManager": "pnpm@8.15.0",
   "name": "@extension-js/monorepo-turbopack",
   "description": "A monorepo example demonstrating how to structure multiple browser extensions using Extension.js with Turborepo for build optimization.",
   "version": "0.0.1",
@@ -20,7 +21,7 @@
     "build:firefox": "extension build --browser=firefox"
   },
   "devDependencies": {
+    "extension": "3.0.0-next.9",
     "turbo": "^2.1.3"
-  },
-  "packageManager": "pnpm@8.15.0"
+  }
 }

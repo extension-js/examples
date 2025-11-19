@@ -110,6 +110,9 @@ importers:
 
   examples/content-monorepo-turbopack:
     devDependencies:
+      extension:
+        specifier: 3.0.0-next.9
+        version: 3.0.0-next.9
       turbo:
         specifier: ^2.1.3
         version: 2.6.1

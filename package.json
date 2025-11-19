@@ -22,9 +22,10 @@
     "url": "https://cezaraugusto.com"
   },
   "scripts": {
-    "extension": "extension",
     "generate": "node ci-scripts/generate-templates-meta.mjs",
     "build:examples": "node ci-scripts/build-all.mjs",
+    "dev:examples": "node ci-scripts/dev-all-examples.mjs",
+    "dev:examples:fast": "node ci-scripts/dev-all-examples.mjs --minAlive=10 --timeout=60",
     "pretest": "pnpm run build:examples",
     "ci": "node ci-scripts/normalize-examples.mjs && pnpm run build:examples && pnpm test",
     "test": "playwright test",

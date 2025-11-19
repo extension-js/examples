@@ -6,17 +6,45 @@ import { spawnSync } from 'node:child_process';
 const CWD = process.cwd();
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '..');
-const EXTENSION_BIN = process.platform === 'win32'
-  ? path.join(REPO_ROOT, 'node_modules', '.bin', 'extension.cmd')
-  : path.join(REPO_ROOT, 'node_modules', '.bin', 'extension');
-let EXT_VERSION = 'latest';
-try {
-  const pkg = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8'));
-  EXT_VERSION = pkg?.devDependencies?.extension || EXT_VERSION;
-} catch {}
+
+function loadEnvValue(envKey, defaultValue) {
+  if (process.env[envKey]) return process.env[envKey];
+
+  const envFilesToTry = ['.env', '.env.example'];
+
+  for (const envFile of envFilesToTry) {
+    try {
+      const envFilePath = path.join(REPO_ROOT, envFile);
+
+      if (!fs.existsSync(envFilePath)) continue;
+
+      const envFileText = fs.readFileSync(envFilePath, 'utf8');
+
+      for (const line of envFileText.split(/\r?\n/)) {
+        const keyValueMatch = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
+
+        if (!keyValueMatch) continue;
+
+        const parsedKey = keyValueMatch[1];
+        let parsedValue = keyValueMatch[2];
+        if (parsedValue?.startsWith('"') && parsedValue?.endsWith('"')) parsedValue = parsedValue.slice(1, -1);
+        if (parsedValue?.startsWith("'") && parsedValue?.endsWith("'")) parsedValue = parsedValue.slice(1, -1);
+        if (parsedKey === envKey) return parsedValue;
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  return defaultValue;
+}
+
+const EXT_VERSION = loadEnvValue('EXTENSION_CLI_VERSION', 'next');
 
 function run(cmd, args, opts = {}) {
-  const r = spawnSync(cmd, args, { stdio: 'inherit', shell: false, ...opts });
+  const mergedEnv = { ...(opts.env || process.env) };
+  if (mergedEnv.FORCE_COLOR) delete mergedEnv.NO_COLOR;
+  const r = spawnSync(cmd, args, { stdio: 'inherit', shell: false, ...opts, env: mergedEnv });
   if (r.error) throw r.error;
   if (r.status !== 0) process.exit(r.status);
 }
@@ -85,11 +113,32 @@ function main() {
       fs.writeFileSync(rootManifest, JSON.stringify(patched, null, 2) + '\n');
       wroteTempManifest = true;
     }
-    // Always run the CLI via npx using the pinned version from package.json
-    run('npx', ['-y', `extension@${EXT_VERSION}`, mode, ...extraArgs], {
+    // Ensure we generate a distributable artifact we can load later:
+    const args = [...extraArgs];
+    const ZIP_NAME = 'extension-build.zip';
+    if (!args.some((a) => String(a).startsWith('--zip'))) args.push('--zip');
+    if (!args.some((a, i) => a === '--zip-filename' || String(a).startsWith('--zip-filename'))) {
+      args.push('--zip-filename', ZIP_NAME);
+    }
+    if (!args.some((a) => a === '--silent')) args.push('--silent');
+
+    // Always use npx with version defined via EXTENSION_CLI_VERSION (defaults to "next")
+    run('npx', ['-y', `extension@${EXT_VERSION}`, mode, '.', ...args], {
       cwd: CWD,
       env: { ...process.env, EXTENSION_SKIP_INSTALL: '1' }
     });
+
+    // If a zip was produced, extract it to a stable output directory (dist/chromium)
+    try {
+      const zipPath = path.join(CWD, ZIP_NAME);
+      if (fs.existsSync(zipPath)) {
+        const outDir = path.join(CWD, 'dist', 'chromium');
+        fs.mkdirSync(outDir, { recursive: true });
+        // Use system unzip
+        run('unzip', ['-o', zipPath, '-d', outDir], { cwd: CWD });
+        try { fs.unlinkSync(zipPath); } catch {}
+      }
+    } catch {}
   } finally {
     if (wroteTempManifest && fs.existsSync(rootManifest)) {
       try { fs.unlinkSync(rootManifest); } catch {}

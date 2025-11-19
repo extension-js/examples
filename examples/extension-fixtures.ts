@@ -69,17 +69,25 @@ export const extensionFixtures = (
           browserContext?._options?.userDataDir
         if (userDataDir) {
           const prefsPath = path.join(userDataDir, 'Default', 'Preferences')
-          const prefsText = fs.readFileSync(prefsPath, 'utf-8')
-          const prefs = JSON.parse(prefsText)
-          const settings = prefs?.extensions?.settings || {}
-          for (const [id, info] of Object.entries<any>(settings)) {
-            if (
-              info?.path &&
-              path.resolve(String(info.path)) === path.resolve(pathToExtension)
-            ) {
-              extensionId = id
-              break
-            }
+          // Retry a few times to allow Chromium to persist extension settings.
+          for (let i = 0; i < 20 && !extensionId; i++) {
+            try {
+              const prefsText = fs.readFileSync(prefsPath, 'utf-8')
+              const prefs = JSON.parse(prefsText)
+              const settings = prefs?.extensions?.settings || {}
+              for (const [id, info] of Object.entries<any>(settings)) {
+                if (
+                  info?.path &&
+                  path.resolve(String(info.path)) ===
+                    path.resolve(pathToExtension)
+                ) {
+                  extensionId = id
+                  break
+                }
+              }
+              if (extensionId) break
+            } catch {}
+            await new Promise((r) => setTimeout(r, 250))
           }
         }
       } catch {}
