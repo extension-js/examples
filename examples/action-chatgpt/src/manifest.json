@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - React Action Example",
+  "description": "React action popup example. Opens a toolbar popup and renders a basic React UI.",
+  "icons": {
+    "16": "images/chatgpt.png",
+    "48": "images/chatgpt.png",
+    "128": "images/chatgpt.png"
+  },
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "background": {
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
+  },
+  "action": {
+    "default_popup": "./action/index.html",
+    "default_title": "Extension.js React Action",
+    "default_icon": {
+      "16": "images/chatgpt.png",
+      "48": "images/chatgpt.png",
+      "128": "images/chatgpt.png"
+    }
+  }
+}

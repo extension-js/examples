@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@extension-js/new",
+  "description": "New tab page example using plain JavaScript. Renders a simple page you can customize.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

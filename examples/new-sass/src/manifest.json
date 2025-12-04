@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Sass New Tab Example",
+  "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
+  "icons": {
+    "16": "images/sass.png",
+    "48": "images/sass.png",
+    "128": "images/sass.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}

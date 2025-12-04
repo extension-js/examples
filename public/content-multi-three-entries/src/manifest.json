@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - JavaScript Content (Multiple Entries) Example",
+  "description": "Content script example split across three entries (2 + 1 + 1). Each script injects a small element.",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/script-top-left.js", "content/script-top-right.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/script-bottom-left.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/script-bottom-right.js"]
+    }
+  ]
+}

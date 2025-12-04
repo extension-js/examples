@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Special Folders Pages Example",
+  "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "sandbox": {
+    "pages": ["sandbox/index.html"]
+  }
+}

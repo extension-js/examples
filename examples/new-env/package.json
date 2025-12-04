@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "name": "@extension-js/new-env",
+  "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  }
+}

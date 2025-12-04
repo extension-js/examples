@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Custom Fonts Content Example",
+  "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "fonts/*.woff2",
+        "fonts/*.woff",
+        "fonts/*.ttf",
+        "fonts/*.otf",
+        "fonts/static/*.ttf",
+        "fonts/static/*.otf",
+        "assets/*.woff2",
+        "assets/*.woff",
+        "assets/*.ttf",
+        "assets/*.otf"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"]
+    }
+  ]
+}

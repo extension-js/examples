@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@extension-js/content-env",
+  "description": "Content script example that reads environment variables (.env) and renders a small UI.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3"
+  }
+}
