@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Vue Content Example",
+  "description": "Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.",
+  "icons": {
+    "16": "images/vue.png",
+    "48": "images/vue.png",
+    "128": "images/vue.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content/scripts.ts"]
+    }
+  ]
+}

@@ -1,0 +1,2673 @@
+{
+  "version": "2",
+  "sourceRepo": "extension-js/examples",
+  "generatorVersion": "2",
+  "commit": "6278f6d7cb97de9d237731074ba962c3ef6056c8",
+  "generatedAt": "2025-12-23T22:42:15.808Z",
+  "templates": [
+    {
+      "slug": "action",
+      "name": "@extension-js/action",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Action popup example. Opens a toolbar popup with a simple page.",
+      "uiContext": ["action"],
+      "surfaces": ["action", "background"],
+      "entrypoints": ["./action/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/action/index.html",
+        "src/action/scripts.js",
+        "src/action/styles.css",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/action/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/action.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/action.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "4746f303d77f87f2e815f9e5bcc19d9255e4f8013cf66513d532046e3c46d9ca",
+          "size": 387583
+        },
+        "edge": {
+          "sha256": "e1f04083b506cb9a5527a098d9aa6e429f08720ce8d7fd5ffc1f74065b1369ca",
+          "size": 387583
+        },
+        "firefox": {
+          "sha256": "77b364c767ae02f674952a4887816e01bd7a6f4af91d2f494636ef0a47ad3a1d",
+          "size": 387583
+        }
+      }
+    },
+    {
+      "slug": "action-chatgpt",
+      "name": "@extension-js/action-chatgpt",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React action popup example. Opens a toolbar popup and renders a basic React UI.",
+      "uiContext": ["action"],
+      "surfaces": ["action", "background"],
+      "entrypoints": ["./action/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": true,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": true,
+          "hasEnv": true
+        }
+      },
+      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "src/action/ActionApp.tsx",
+        "src/action/index.html",
+        "src/action/scripts.tsx",
+        "src/action/styles.css",
+        "src/background.ts",
+        "src/images/chatgpt.png",
+        "src/images/extensionjs.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "3fe1541aae6f67d15b5e85d3fe80f08d3b5239c813ce91029825ae5721ddd534",
+          "size": 189836
+        },
+        "edge": {
+          "sha256": "4d8724d9f534cd832744cc8402f75929e43c4b0efda0375b0dd0632c4af5151c",
+          "size": 189836
+        },
+        "firefox": {
+          "sha256": "aac026e3cced873ec934b2697389c8dfcea9e2e9366d3197073da6d4f540b3d4",
+          "size": 189836
+        }
+      }
+    },
+    {
+      "slug": "action-locales",
+      "name": "@extension-js/action-locales",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
+      "uiContext": ["action"],
+      "surfaces": ["action", "background"],
+      "entrypoints": ["./action/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/_locales/en/messages.json",
+        "src/_locales/pt_BR/messages.json",
+        "src/action/index.html",
+        "src/action/scripts.js",
+        "src/action/styles.css",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/action-locales/public/screenshot.png"
+    },
+    {
+      "slug": "content",
+      "name": "@extension-js/content",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "807a774380829328824b8d099df56290a5df8e054527940abbeb30f77494df6e",
+          "size": 406913
+        },
+        "edge": {
+          "sha256": "dab73d37f9de7b084e8f835f8170bca6632b7dda9cc790fb088452a462d5b102",
+          "size": 406913
+        },
+        "firefox": {
+          "sha256": "f64ad5f56e05c3fca1760ff3bc326614db4ebc24771d18dd37a7b909b6de782c",
+          "size": 406892
+        }
+      }
+    },
+    {
+      "slug": "content-css-modules",
+      "name": "@extension-js/content-css-modules",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.css",
+        "src/images/javascript.png",
+        "src/images/logo.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "2fb3fbc14d63ef1118546a45c04681bc992bb3babca74aced398d416a9915b3a",
+          "size": 51791
+        },
+        "edge": {
+          "sha256": "29da276284133cca59c570eb277b0ed26a91dd76e7f216fdb53ae537d266032b",
+          "size": 51791
+        },
+        "firefox": {
+          "sha256": "66b0585b81954cfc2770d70dc98e98e086396323df87679cb280b018ed231164",
+          "size": 51768
+        }
+      }
+    },
+    {
+      "slug": "content-custom-font",
+      "name": "@extension-js/content-custom-font",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["postcss.config.js"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "44e068a1704ee98534dc6e80665b05bd6588fe2e46666c383ef62017b9f2ccb5",
+          "size": 37266
+        },
+        "edge": {
+          "sha256": "d7904bab01ee63735f077606942d4670fdf1151b8297c76d20f0b2602f4f6dcd",
+          "size": 37266
+        },
+        "firefox": {
+          "sha256": "de24c8012fed8dea2f10e7bb77053dd81ddf8c7acd8edc4f571e86d5329b9dfc",
+          "size": 37246
+        }
+      }
+    },
+    {
+      "slug": "content-env",
+      "name": "@extension-js/content-env",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example that reads environment variables (.env) and renders a small UI.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.ts"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/env.png",
+        "src/images/javascript.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-env/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-env.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-env.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-env.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "46b8b61bf6b05ea4f575c9a7d4f197931e751ae24b24f6fe44721e9c67b68fb8",
+          "size": 335068
+        },
+        "edge": {
+          "sha256": "a2bf79ed18d9b06e8c931c45a96906dcc06165c8df7236d11a56ae366a21a61e",
+          "size": 335066
+        },
+        "firefox": {
+          "sha256": "8877d38eb2a14daa522f10dda39040a3f8589f6520621262bb09b812f585837f",
+          "size": 335045
+        }
+      }
+    },
+    {
+      "slug": "content-less",
+      "name": "@extension-js/content-less",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "less",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.less",
+        "src/images/javascript.png",
+        "src/images/less.png",
+        "src/images/logo.svg",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-less/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-less.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-less.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-less.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "cfdacd314e18d6993ed874aa5b1517c12f92a9aa39d0e17962a2f935c5a30dc5",
+          "size": 432592
+        },
+        "edge": {
+          "sha256": "cda520520ce51d4b924470063301458d8966147175bdf6b7b6716e4f2bfb35df",
+          "size": 432592
+        },
+        "firefox": {
+          "sha256": "086a24e6246d556c0243d808cc66dedee3ea64d0599fbe6b20fd4314390c0ae6",
+          "size": 432572
+        }
+      }
+    },
+    {
+      "slug": "content-less-modules",
+      "name": "@extension-js/content-less-modules",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "less",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.less",
+        "src/images/javascript.png",
+        "src/images/less.png",
+        "src/images/logo.svg",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "aae23181a2da7c8ab0f35ca7782456181305f4dffb5834c910c52696a48cba74",
+          "size": 116525
+        },
+        "edge": {
+          "sha256": "aa9d817ac73a787ea575a77e6314363216a6b14f87580a8f267c741289de2119",
+          "size": 116525
+        },
+        "firefox": {
+          "sha256": "1ea317bb75ffe6f1ada906b5eb9fbc6a45b64c58c77a5ec404a92981c49514ee",
+          "size": 116502
+        }
+      }
+    },
+    {
+      "slug": "content-multi-one-entry",
+      "name": "@extension-js/content-multi-one-entry",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": [
+        "content/script-top-left.js",
+        "content/script-top-right.js",
+        "content/script-bottom-left.js",
+        "content/script-bottom-right.js"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/script-bottom-left.js",
+        "src/content/script-bottom-right.js",
+        "src/content/script-top-left.js",
+        "src/content/script-top-right.js",
+        "src/content/styles.css",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "9163a516640f478452708f498c67713412382e3f8f9d84d0c502c2daddf7a75c",
+          "size": 35238
+        },
+        "edge": {
+          "sha256": "ae198d3732cb8ed9a9293dc3fa4bee8903c028a904e74d50b6c6c19e8312a8cf",
+          "size": 35238
+        },
+        "firefox": {
+          "sha256": "29d49b20aa0fff5bf0d8e1cef66a5dabde2ec441c5c393a7ba958911ae888bfa",
+          "size": 35216
+        }
+      }
+    },
+    {
+      "slug": "content-multi-three-entries",
+      "name": "@extension-js/content-multi-three-entries",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example split across three entries (2 + 1 + 1). Each script injects a small element.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": [
+        "content/script-top-left.js",
+        "content/script-top-right.js",
+        "content/script-bottom-left.js",
+        "content/script-bottom-right.js"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/script-bottom-left.js",
+        "src/content/script-bottom-right.js",
+        "src/content/script-top-left.js",
+        "src/content/script-top-right.js",
+        "src/content/styles.css",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "6a710f3003cbab1ecf155aad83a39fea5d225630b98e6a8c68b95d771f14cce7",
+          "size": 39062
+        },
+        "edge": {
+          "sha256": "74b6d330c84d9fddc7a483b6d9d3e53235c03a38f6775bca77e0dec9381da1b2",
+          "size": 39062
+        },
+        "firefox": {
+          "sha256": "c3b6272b10190284fd7d568b06ec96b40de0b269061baeb1815da0724805db93",
+          "size": 39039
+        }
+      }
+    },
+    {
+      "slug": "content-preact",
+      "name": "@extension-js/content-preact",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example rendered with Preact. Mounts a small UI inside a Shadow DOM on any page.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["./content/scripts.tsx"],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/preact.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-preact/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "983cbb01b59b1ab2a1658cb1ebe186c6c23da183596fda5536998bbd1f2aadcc",
+          "size": 1150403
+        },
+        "edge": {
+          "sha256": "cd54fd808d465375493e854c07476fd2904710f1f5878c3759b458a80456466f",
+          "size": 1150403
+        },
+        "firefox": {
+          "sha256": "9070a972e06a441e906b5b0daf618f75da1d004c9593560520967663991ad13d",
+          "size": 1150381
+        }
+      }
+    },
+    {
+      "slug": "content-react",
+      "name": "@extension-js/content-react",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["./content/scripts.tsx"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/ambient.css-url.d.ts",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/react.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-react/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "1c26ac72646c350daa73b7776ed5e74f4e9df5ee549fc7e48f6670b1ece7cece",
+          "size": 1316746
+        },
+        "edge": {
+          "sha256": "cef06dec3313e433b472c4eb3893f03327cd186873575a204d78ee9d06aeddd8",
+          "size": 1316746
+        },
+        "firefox": {
+          "sha256": "f14491f4a966bc8ec7dddc77326c4b14fa90f2c230f68c5caa1adb3ec2feff2a",
+          "size": 1316724
+        }
+      }
+    },
+    {
+      "slug": "content-sass",
+      "name": "@extension-js/content-sass",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "sass",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.scss",
+        "src/images/javascript.png",
+        "src/images/logo.svg",
+        "src/images/sass.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "ac7b0766959b1818e646887381580bd8a5f95b1f481246eaf3c830fab34cf2c5",
+          "size": 109336
+        },
+        "edge": {
+          "sha256": "2a8f5d5122628fbb4ff2ea410cb960713408966b35076dfbea3aa5061297957e",
+          "size": 109336
+        },
+        "firefox": {
+          "sha256": "d9b0e818d0dd4fd1cb46a06870c55c7ead8062b34e4aced6ac3565130e558384",
+          "size": 109316
+        }
+      }
+    },
+    {
+      "slug": "content-sass-modules",
+      "name": "@extension-js/content-sass-modules",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
+      "uiFramework": "",
+      "css": "sass",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {
+          "build": "extension build"
+        },
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.scss",
+        "src/images/javascript.png",
+        "src/images/logo.svg",
+        "src/images/sass.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "732a44761eb42f188caf1bb270239cd4108fb8551fb5d48abc95c13a2c2f3996",
+          "size": 109381
+        },
+        "edge": {
+          "sha256": "d68e42e440263f960ac73cf4a096f2d9e7962c462389802288939ecd892c974b",
+          "size": 109381
+        },
+        "firefox": {
+          "sha256": "0cb797d451881df73d10a4dc8a1e720bba11748fda5d2df765a8d72bf9b6fc3e",
+          "size": 109356
+        }
+      }
+    },
+    {
+      "slug": "content-svelte",
+      "name": "@extension-js/content-svelte",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["./content/scripts.ts"],
+      "uiFramework": "svelte",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.svelte",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/svelte.d.ts",
+        "src/images/chromeWindow.png",
+        "src/images/svelte.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-svelte/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "33bbd8ffcc36f8e252fc53d3e0262991863f2ffa0d1590ed227c71b9f92f5840",
+          "size": 1267232
+        },
+        "edge": {
+          "sha256": "5d82b93c016304255252834b8897ed81e15a1f1fd6bafa87156920511f6098ff",
+          "size": 1267232
+        },
+        "firefox": {
+          "sha256": "35ae7372450d0c88fe3bcb466929d97ed4bfa570b301f322b053417b4cb8bf9e",
+          "size": 1267210
+        }
+      }
+    },
+    {
+      "slug": "content-typescript",
+      "name": "@extension-js/content-typescript",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.ts"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/logo.svg",
+        "src/images/typescript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-typescript/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "8e2d09a8f4e0a740c3dccb5d9ad57fda09ad0d5085b1045adef6720f58d47307",
+          "size": 332975
+        },
+        "edge": {
+          "sha256": "7c87a29956c7963c8f6f725883b5de1e71d0f8280f0d8f8bc8f4f715a172169d",
+          "size": 332975
+        },
+        "firefox": {
+          "sha256": "e95673132915121cc5448793d5abe842c4ea7e32d916b2bb25f20602fa90ec9b",
+          "size": 332953
+        }
+      }
+    },
+    {
+      "slug": "content-vue",
+      "name": "@extension-js/content-vue",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.",
+      "uiContext": ["content"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["./content/scripts.ts"],
+      "uiFramework": "vue",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.vue",
+        "src/content/scripts.ts",
+        "src/content/shims-vue.d.ts",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/logo.svg",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/images/vue.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/content-vue/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "6577c6b47fa0d79fd6c0ca7bfe8ab23b64f28ef5385c41b051429be0ed2bc111",
+          "size": 1110357
+        },
+        "edge": {
+          "sha256": "3e9ab17c6aceec3f6edc1c52fa2847b6c025f501cc99982272aee7b46f3e7799",
+          "size": 1110357
+        },
+        "firefox": {
+          "sha256": "394347b780e61f1215a7185194469642939cddc502896306fc25af589ca25e6a",
+          "size": 1110339
+        }
+      }
+    },
+    {
+      "slug": "init",
+      "name": "@extension-js/init",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
+      "uiContext": [],
+      "surfaces": [],
+      "entrypoints": [],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/images/javascript.png",
+        "src/index.js",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/init/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/init.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/init.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/init.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "0b7c20948d8140f3cb2496e965d7977781dadccc54569e662340bbad85b7418f",
+          "size": 262344
+        },
+        "edge": {
+          "sha256": "98c0701a1560426df37654a64158b9eb9683816905f02caf389ca17cea7e13d6",
+          "size": 262344
+        },
+        "firefox": {
+          "sha256": "5670f5ea81a0d7b65d8f5ed5def8eb5c9977a52e2820049d7c18c9c0c3c44cd0",
+          "size": 262344
+        }
+      }
+    },
+    {
+      "slug": "javascript",
+      "name": "@extension-js/javascript",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.js"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/content/ContentApp.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/extension_48.png",
+        "src/images/javascript.png",
+        "src/images/logo.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.js",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/javascript/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/javascript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/javascript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/javascript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "d09701b20f75ec54113a38af4ef6392c8607c6ba157cfdd2658dc41ec285633b",
+          "size": 46323
+        },
+        "edge": {
+          "sha256": "f77e7960eeb61432ea620578961b9245fef6ad67b0473075a6d146e09d5aaba4",
+          "size": 46323
+        },
+        "firefox": {
+          "sha256": "608b4b8f42fa6478b70eb92335015e1b923528e307fb4c9f245c16d1f432c5d9",
+          "size": 46316
+        }
+      }
+    },
+    {
+      "slug": "new",
+      "name": "@extension-js/new",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example using plain JavaScript. Renders a simple page you can customize.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "825cd51f6c1402bbfadbefcd6977d945f6c8e6659705f1b5f19b9494c6247c27",
+          "size": 334715
+        },
+        "edge": {
+          "sha256": "cd63c7bc8c51e2e96c81ecaa45ccfcfa855128fa6c6f311a212ad79faabdb59d",
+          "size": 334715
+        },
+        "firefox": {
+          "sha256": "ac08e382b09d5ab7e5755118b2cc9e8fcf6fd34c2ac87cca27c357f1c0daef4a",
+          "size": 334715
+        }
+      }
+    },
+    {
+      "slug": "new-browser-flags",
+      "name": "@extension-js/new-browser-flags",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
+      "uiContext": ["content", "newTab", "sidebar"],
+      "surfaces": ["content", "newtab", "sidebar", "background"],
+      "entrypoints": [
+        "newtab/index.html",
+        "sidebar/index.html",
+        "content/content.js"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["extension.config.js"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {
+          "build": "extension build"
+        },
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting", "notifications"],
+      "host_permissions": ["<all_urls>"],
+      "optional_permissions": [],
+      "files": [
+        "extension.config.js",
+        "src/background.js",
+        "src/content/content.js",
+        "src/images/extension.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/newtab.css",
+        "src/newtab/newtab.js",
+        "src/sidebar/index.html",
+        "src/sidebar/sidebar.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "7854ff194f1cfebf78d90be51f3ec5e1feca1a66978027a441543fad55c9811d",
+          "size": 140425
+        },
+        "edge": {
+          "sha256": "e631e3fe6d29848526917e65f93bf9664e768c7d4ede21a8f8fd4247a67511a0",
+          "size": 140425
+        },
+        "firefox": {
+          "sha256": "c0d74666863f45f1f469e9526a4c24d7e62493850b8b76ec359303bd6881a7bd",
+          "size": 140294
+        }
+      }
+    },
+    {
+      "slug": "new-config-eslint",
+      "name": "@extension-js/new-config-eslint",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "eslint.config.mjs"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/eslint.png",
+        "src/images/javascript.png",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-config-eslint/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "679d4be906e0ce49e7ceb6a63c5a54901d46a3a6192499b854c6a1d71e225700",
+          "size": 228732
+        },
+        "edge": {
+          "sha256": "32e39a2fd59293af98267d26d26a4b2e0356b94993f073d287ce445e0347a862",
+          "size": 228732
+        },
+        "firefox": {
+          "sha256": "579c12dce97e5294f28ed8c8d76896ef662ed69515be99bbbf09a143fa4eaf9b",
+          "size": 228732
+        }
+      }
+    },
+    {
+      "slug": "new-config-prettier",
+      "name": "@extension-js/new-config-prettier",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json", ".prettierrc"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/images/prettier.png",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-config-prettier/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "aa7c7497af6be997058bc56a3f028e3c1097e4050602b2c3fb2c28f6581e3b87",
+          "size": 248222
+        },
+        "edge": {
+          "sha256": "9a05aaf48fe18aa249b464193089a183a0f6d27aedcb0cff9c4eec1c83de04c0",
+          "size": 248222
+        },
+        "firefox": {
+          "sha256": "0f0e68c473eb5d5f532ab2e883b3501c3ad6c1578a1b70fe1995927e1f7032f7",
+          "size": 248222
+        }
+      }
+    },
+    {
+      "slug": "new-config-stylelint",
+      "name": "@extension-js/new-config-stylelint",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "sass",
+      "configFiles": [".stylelintrc.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/images/stylelint.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.scss"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-config-stylelint/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "2a2f991649636e6570934ae20f2d3102a7d32245bbf76bb27a0bb59c559bbfe8",
+          "size": 253214
+        },
+        "edge": {
+          "sha256": "2bcb91aaf21f6a6a2e85cf2718b081721286418a3130ef05f3ed4377477331b5",
+          "size": 253214
+        },
+        "firefox": {
+          "sha256": "8bbaf50b8aa45dce2b72b05f4161e79f689f3eedc0c9b61fdcaef8e86348f598",
+          "size": 253214
+        }
+      }
+    },
+    {
+      "slug": "new-crypto",
+      "name": "@extension-js/new-crypto",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example demonstrating basic crypto operations inside an extension.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "extension.config.js",
+        "public/logo.png",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "d257ac2ddd96434f6a6860607fbbacdada1c08f5211adacf0b09dc01ab243a37",
+          "size": 133771
+        },
+        "edge": {
+          "sha256": "58e3ff7774979cbfb6cec1c4093b3c279f0c937fc17182cb329b81a5e91a44a4",
+          "size": 133771
+        },
+        "firefox": {
+          "sha256": "e2940e5174fd50e2a44ded6d750212b85a8165fa68629245137c4db8d38c384a",
+          "size": 133771
+        }
+      }
+    },
+    {
+      "slug": "new-env",
+      "name": "@extension-js/new-env",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": true,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": true
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-env/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-env.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-env.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-env.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "6b2bf66c8d41b39702f646cd92397a3249c4bb3b9883999b1f71a9bc6dde9c3f",
+          "size": 231366
+        },
+        "edge": {
+          "sha256": "a24491524f30f15a61edb70665b86ad8b57a0a43341ea51b98476a0502e27e76",
+          "size": 231366
+        },
+        "firefox": {
+          "sha256": "2a2d96c5185236b84102b4484824509a1edd08e10c4705cb208585d5ce32ec92",
+          "size": 231366
+        }
+      }
+    },
+    {
+      "slug": "new-less",
+      "name": "@extension-js/new-less",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "less",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/less.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.less"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-less/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-less.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-less.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-less.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "8472f01416917ee2c633bee68ba20f129d3878b1376913b498b4d35e1984de9a",
+          "size": 396903
+        },
+        "edge": {
+          "sha256": "ed96f0a48f97f4c04877f09470cb60e765b7ba11efc5157bc8955600ed26fc43",
+          "size": 396903
+        },
+        "firefox": {
+          "sha256": "f91b82bd8c93037c98b442bb650187b89dc82806c29e47d3c4ae2bec451cc581",
+          "size": 396903
+        }
+      }
+    },
+    {
+      "slug": "new-preact",
+      "name": "@extension-js/new-preact",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/preact.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-preact/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "646b578adc4c195453313183fe17e78f818967389b559473abd229712ad840f6",
+          "size": 337845
+        },
+        "edge": {
+          "sha256": "6500408733bbc5a58d40dc176aa1dc231d7efb38aca0d69b306abf719b7f4c2f",
+          "size": 337845
+        },
+        "firefox": {
+          "sha256": "85a746b2aacde134add66fc594e9b08e93b8bc7b87d51ea2a50ed2937e74a3bb",
+          "size": 337845
+        }
+      }
+    },
+    {
+      "slug": "new-react",
+      "name": "@extension-js/new-react",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/react.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-react/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "60d2490e0e7368474768fefe4769a588b6a23e3087daa2e1cb13c9910c26a873",
+          "size": 460089
+        },
+        "edge": {
+          "sha256": "26a1926948ac82f6df44cfd20ab11138acb442cef21e4247746d87f5507b1205",
+          "size": 460089
+        },
+        "firefox": {
+          "sha256": "312e426de76b4333fedea6a8c375fc22623cc761cc9693de9bbee0406947aa3c",
+          "size": 460089
+        }
+      }
+    },
+    {
+      "slug": "new-react-router",
+      "name": "@extension-js/new-react-router",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/react.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-react-router/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "6549d3ca4928851a221ae67bf47811be20d3a68cfdbc5614adcd6949bfcbed3b",
+          "size": 494153
+        },
+        "edge": {
+          "sha256": "c07baeba5187fe4e32bde9880c7fb4cb34c86976df6ee3a10d34c72f0d7becd2",
+          "size": 494153
+        },
+        "firefox": {
+          "sha256": "c93db26e9e1c9ef21f3a4b422c58b73ccef7fac99fe473bbbe547c8b25cc34da",
+          "size": 494153
+        }
+      }
+    },
+    {
+      "slug": "new-sass",
+      "name": "@extension-js/new-sass",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "sass",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/sass.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.scss"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-sass/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "95a1729e510e927bc32ed431fe76cde09d04e1590eadecd4eb96c6a567ecd38c",
+          "size": 764654
+        },
+        "edge": {
+          "sha256": "8204bb64036454825316c1964267073a0e71a90946c6826cb89c67f6248caafd",
+          "size": 764654
+        },
+        "firefox": {
+          "sha256": "fac6e61664959c9e1d3bf82e9e6e63fd80f3ce3db636bf2f861abf8e29fbb069",
+          "size": 764654
+        }
+      }
+    },
+    {
+      "slug": "new-svelte",
+      "name": "@extension-js/new-svelte",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "svelte",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/logo.png",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/svelte.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.svelte",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-svelte/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "2c980d325a2e4b9b9372f6bde614058dc9ec5d57a1794e20f84a311e1cbfbea3",
+          "size": 333446
+        },
+        "edge": {
+          "sha256": "f52a9a43f5525d9d7fc247ad0eb426340dde39b5dff67a610d3b49961da45b48",
+          "size": 333446
+        },
+        "firefox": {
+          "sha256": "88d387e66461f531965634acdd6db916233aa3aa9b88c5e95ff76421a53c1db8",
+          "size": 333446
+        }
+      }
+    },
+    {
+      "slug": "new-typescript",
+      "name": "@extension-js/new-typescript",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-typescript/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "486d671f043f814912e152d640979d68e27aa05f26555f68e183cb25c7e85d30",
+          "size": 594867
+        },
+        "edge": {
+          "sha256": "9eaf3bbc201e3f2af0e05edf6f6ceb69b4813c1a2419f964b89f01106dd1090b",
+          "size": 594867
+        },
+        "firefox": {
+          "sha256": "21a2236cbb6a7bb4b50c5deaee91ac43ec78ebbde0b26583078922e5dd26158e",
+          "size": 594867
+        }
+      }
+    },
+    {
+      "slug": "new-vue",
+      "name": "@extension-js/new-vue",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
+      "uiContext": ["newTab"],
+      "surfaces": ["newtab", "background"],
+      "entrypoints": ["newtab/index.html"],
+      "uiFramework": "vue",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/vue.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.vue",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/new-vue/public/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "26999cb47ae2cebda40de3f200fcc0e04a6a49f7aca348715ab610ef8763423e",
+          "size": 243322
+        },
+        "edge": {
+          "sha256": "e645f908bdae1e89554982a4f2dc9ebcccf14f970730ac0e1a057a92572a6768",
+          "size": 243322
+        },
+        "firefox": {
+          "sha256": "1019f370180cb422f55a2c12350d97bc21ff5956bd6ecd882fb53842a6414d2c",
+          "size": 243322
+        }
+      }
+    },
+    {
+      "slug": "preact",
+      "name": "@extension-js/preact",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.tsx"],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/extension_48.png",
+        "src/images/preact.png",
+        "src/manifest.json",
+        "src/public/extension.svg",
+        "src/public/logo.svg",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "d0f9f4461095ed908f729c8e0c078efc12895bcbd528e5411a9b9cda3f2369b3",
+          "size": 112188
+        },
+        "edge": {
+          "sha256": "db5eea25d487dfec9b5529edd2502f537b8c191d671fefad4de47b2c5d8d1c17",
+          "size": 112188
+        },
+        "firefox": {
+          "sha256": "abb1d7da2a6c9a9a144f1fa9dcebb1aae28ea53bb60bd4ba002efa5ed788930e",
+          "size": 112182
+        }
+      }
+    },
+    {
+      "slug": "react",
+      "name": "@extension-js/react",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "React-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.tsx"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/extension.svg",
+        "public/logo.svg",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/extension_48.png",
+        "src/images/react.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c159c7fc1fcebda0003e99fa010e7745b794d40207aac8ac380d04e099d69a29",
+          "size": 255308
+        },
+        "edge": {
+          "sha256": "f18ed7fb9b750fd1c81f5a13b6c3887f7e2bdfffd2d951b90e4eff6cd5aed77c",
+          "size": 255308
+        },
+        "firefox": {
+          "sha256": "d729291e37f7f506e2bcc61b7a66da7ff088cf11697aea6d91a2edd4b83749d3",
+          "size": 255301
+        }
+      }
+    },
+    {
+      "slug": "sidebar",
+      "name": "@extension-js/sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
+      "uiContext": ["sidebar"],
+      "surfaces": ["sidebar", "background"],
+      "entrypoints": ["sidebar/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "5bc1ca18b2b6ebca65e820afeb190f44c346791a83f827e06e6edc2f2782b934",
+          "size": 66789
+        },
+        "edge": {
+          "sha256": "f6dc113346e3788a204c4ee72d9b74b6cd449d5d324fb9c63397ecccc036f6d3",
+          "size": 66789
+        },
+        "firefox": {
+          "sha256": "69c792102a2e8fd338a0939e05ab66cb27dde43e59ea09af8f61cca8c4ac10ae",
+          "size": 66737
+        }
+      }
+    },
+    {
+      "slug": "sidebar-monorepo-turbopack",
+      "name": "@extension-js/sidebar-monorepo-turbopack",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Sidebar + content_script monorepo example using Extension.js with Turbopack.",
+      "uiContext": [],
+      "surfaces": [],
+      "entrypoints": [],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {
+          "build": "extension build"
+        },
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "packages/analytics/src/index.js",
+        "packages/extension/src/background.js",
+        "packages/extension/src/content/scripts.js",
+        "packages/extension/src/content/styles.css",
+        "packages/extension/src/images/javascript.png",
+        "packages/extension/src/manifest.json",
+        "packages/extension/src/sidebar/SidebarApp.js",
+        "packages/extension/src/sidebar/index.html",
+        "packages/extension/src/sidebar/scripts.js",
+        "packages/extension/src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-monorepo-turbopack.chrome.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "005da173e31116fb9237ae4fc159a9124416d0427cec4eda574f39a366172595",
+          "size": 36398
+        }
+      }
+    },
+    {
+      "slug": "sidebar-shadcn",
+      "name": "@extension-js/sidebar-shadcn",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
+      "uiContext": ["sidebar"],
+      "surfaces": ["sidebar", "background"],
+      "entrypoints": ["sidebar/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["postcss.config.js", "tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.ts",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/switch.tsx",
+        "src/images/react.png",
+        "src/images/shadcn.png",
+        "src/images/shadcn.svg",
+        "src/images/typescript.png",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "dca060208b504d6b794bfdab85c7c04975b25b596f8b52c46647af4a49f85b17",
+          "size": 69054
+        },
+        "edge": {
+          "sha256": "8d0a989ec4c4a73c6ae8368b43475f480126385e568b884ce09371d617a9de25",
+          "size": 69054
+        },
+        "firefox": {
+          "sha256": "14b856c72e47f59746268dbc67e8d0a59b428fa95bc34fde1dc25deb91405d0d",
+          "size": 69003
+        }
+      }
+    },
+    {
+      "slug": "sidebar-transformers-js",
+      "name": "@extension-js/sidebar-transformers-js",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
+      "uiContext": ["sidebar"],
+      "surfaces": ["sidebar", "background"],
+      "entrypoints": ["sidebar/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/constants.js",
+        "src/images/javascript.png",
+        "src/images/logo.png",
+        "src/images/transformers-js.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.js",
+        "src/sidebar/index.html",
+        "src/sidebar/sakura.css",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "98b7d728d7d32e68a1d4361e94e48d7eb4b65d75933163f2eec76e7d15ce9c5b",
+          "size": 5534692
+        },
+        "edge": {
+          "sha256": "bb7dbd8785ee1993861556ce017d867fffc9bdc6c7eff5355de128c0e27845e4",
+          "size": 5534692
+        },
+        "firefox": {
+          "sha256": "1774eda39983f92def54c5ccdb9b97d163bb2838e8c765947ccd86618fde291e",
+          "size": 5534654
+        }
+      }
+    },
+    {
+      "slug": "special-folders-pages",
+      "name": "@extension-js/special-folders-pages",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
+      "uiContext": [],
+      "surfaces": ["background"],
+      "entrypoints": [],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "public/css/file.css",
+        "public/html/file.html",
+        "public/js/file.js",
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json",
+        "src/sandbox/index.html",
+        "src/sandbox/scripts.js",
+        "src/sandbox/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "0f33cb4b371c3bf666445c028e33ebd964d10b9501ff8edbc140e44da2f3bddf",
+          "size": 37895
+        },
+        "edge": {
+          "sha256": "d9aa38147053dbc9b298d910b99b2cafd96ddf5ede5eafe094c1e6507af7269a",
+          "size": 37895
+        },
+        "firefox": {
+          "sha256": "ef216cb3f7973de379b77011c2fc534ab94b19db3dd20339fed40fa2033e2c33",
+          "size": 37876
+        }
+      }
+    },
+    {
+      "slug": "special-folders-scripts",
+      "name": "@extension-js/special-folders-scripts",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
+      "uiContext": [],
+      "surfaces": ["background"],
+      "entrypoints": [],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["activeTab", "scripting"],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.js",
+        "src/images/javascript.png",
+        "src/manifest.json"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c3d78927834818135c7db35f5763217aca26b1b512d924cfb5701c379f9e01dd",
+          "size": 34092
+        },
+        "edge": {
+          "sha256": "868666e130e6571a8aa1d60ac25f5a949939be305cfc4f85e985673ca99224c2",
+          "size": 34092
+        },
+        "firefox": {
+          "sha256": "c560add591374a11a882866ad0f3ce6f2b349dc2d974c365dc52e8f1a61d2b56",
+          "size": 34080
+        }
+      }
+    },
+    {
+      "slug": "svelte",
+      "name": "@extension-js/svelte",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "Svelte-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiFramework": "svelte",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.ts",
+        "src/content/ContentApp.svelte",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/extension_48.png",
+        "src/images/logo.png",
+        "src/images/svelte.png",
+        "src/manifest.json",
+        "src/public/extension.svg",
+        "src/sidebar/SidebarApp.svelte",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "e9d9a8dca2dfc1657549a608a9d02ee965a76988eb47e58f59a382b079f7b76e",
+          "size": 165520
+        },
+        "edge": {
+          "sha256": "d1bff1ca0f8ab93963f6274ce178e3b61066bb60f0c11800cca6fb1b0aa3716c",
+          "size": 165520
+        },
+        "firefox": {
+          "sha256": "435fb330716b089462557084ca7ebd276e089883ed2507182ebf7792ebe1bfc0",
+          "size": 165516
+        }
+      }
+    },
+    {
+      "slug": "typescript",
+      "name": "@extension-js/typescript",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "TypeScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.ts",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/types.d.ts",
+        "src/images/extension_48.png",
+        "src/images/logo.svg",
+        "src/images/typescript.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.ts",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/typescript/screenshot.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "890b492991b5804cbeebe38db72f0dd6b538b25536c48b63de1d110a98909f9a",
+          "size": 23973
+        },
+        "edge": {
+          "sha256": "b699c420fe40f75797c4bec8faea0bd5a67c7dc2636dd3839b28252fd33c110b",
+          "size": 23973
+        },
+        "firefox": {
+          "sha256": "df2333c4321ec3f40b548d24cb4dbaff5e86a6e1e407f8f890ba701afa806a05",
+          "size": 23969
+        }
+      }
+    },
+    {
+      "slug": "vue",
+      "name": "@extension-js/vue",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "Vue.js-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": ["content", "sidebar"],
+      "surfaces": ["content", "sidebar", "background"],
+      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiFramework": "vue",
+      "css": "css",
+      "configFiles": ["tsconfig.json"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "files": [
+        "src/background.ts",
+        "src/content/ContentApp.vue",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/types.d.ts",
+        "src/images/extension_48.png",
+        "src/images/logo.svg",
+        "src/images/vue.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.vue",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": null,
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "147e66335eb257d1984e49cb1dbe2589852487394988539e1a419f0bea01cdd3",
+          "size": 80074
+        },
+        "edge": {
+          "sha256": "ce9fc58d35e54f03a8a37e72a616ba0021cc5eb282bf879d5736dc7ad7de1971",
+          "size": 80074
+        },
+        "firefox": {
+          "sha256": "9c972261a2c5c3b5bac24a28beeebeb3a50aea2f2bb044d97ee9e2bfbb832ab8",
+          "size": 80069
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - JavaScript Action Example",
+  "description": "Action popup example. Opens a toolbar popup with a simple page.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "action": {
+    "default_popup": "./action/index.html",
+    "default_title": "Extension.js Action Popup",
+    "default_icon": {
+      "16": "images/javascript.png",
+      "48": "images/javascript.png",
+      "128": "images/javascript.png"
+    }
+  }
+}

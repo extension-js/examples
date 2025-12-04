@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@extension-js/init",
+  "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

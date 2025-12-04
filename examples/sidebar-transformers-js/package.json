@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@extension-js/sidebar-transformers-js",
+  "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.7.1"
+  },
+  "devDependencies": {}
+}

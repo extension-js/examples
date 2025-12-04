@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - TypeScript New Tab Example",
+  "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
+  "icons": {
+    "16": "images/typescript.png",
+    "48": "images/typescript.png",
+    "128": "images/typescript.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}
