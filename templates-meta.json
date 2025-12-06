@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "1",
   "commit": "main",
-  "generatedAt": "2025-12-05T01:36:58.607Z",
+  "generatedAt": "2025-12-06T21:20:43.754Z",
   "templates": [
     {
       "slug": "action",
@@ -15,7 +15,7 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": [],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/action/public/logo.png",
@@ -23,6 +23,7 @@
         "public/action/src/action/index.html",
         "public/action/src/action/scripts.js",
         "public/action/src/action/styles.css",
+        "public/action/src/background.js",
         "public/action/src/images/javascript.png",
         "public/action/src/manifest.json"
       ],
@@ -35,16 +36,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b49348f49ba20b121be2160608ed082ef268bcb10b57589d1cde6cf38257f7f5",
-          "size": 387583
+          "sha256": "65cd668e9182324f81e26ab62d3523088fded68548ecd404262ea2b2000d0ecf",
+          "size": 388128
         },
         "edge": {
-          "sha256": "aca3c79df39bd83c7a7683e5a2cf95d1347693fd3100605441e303585e0104cf",
-          "size": 387583
+          "sha256": "e04f0f6fc99077768f81f1b6b383fa738aa060bd32a45f4ac48303c6322e525f",
+          "size": 388128
         },
         "firefox": {
-          "sha256": "2f4ee5c99b717c1d69127cd6abdd00513c0899f0bed699324f5248a4bff888f0",
-          "size": 387583
+          "sha256": "1b22d27d8eff4adfa850517a65bd2fae967967ce856ad04f17aed2693ffcc1ad",
+          "size": 388110
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action"
@@ -59,7 +60,7 @@
       "uiFramework": "react",
       "css": "css",
       "configFiles": ["postcss.config.js", "tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": true,
       "files": [
         "public/action-chatgpt/public/logo.png",
@@ -67,6 +68,7 @@
         "public/action-chatgpt/src/action/index.html",
         "public/action-chatgpt/src/action/scripts.tsx",
         "public/action-chatgpt/src/action/styles.css",
+        "public/action-chatgpt/src/background.ts",
         "public/action-chatgpt/src/images/chatgpt.png",
         "public/action-chatgpt/src/images/extensionjs.png",
         "public/action-chatgpt/src/manifest.json"
@@ -80,16 +82,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "fe493b3269c9bcfdc5936e1870836b94277e4fb2ca4967df80a0892768e3b138",
-          "size": 189779
+          "sha256": "60fff4216b2fb0578e5157adae9e2fdebf0445898aedfd1de97b3e5265ca9766",
+          "size": 190314
         },
         "edge": {
-          "sha256": "1781b14f6efb2553a8efbccc2e879331ae4378585dba734e9b479c5bd522466c",
-          "size": 189779
+          "sha256": "69b447f28583e8dd55d760dd103cc3ee1c762bad7f67ebc3e8deaf6c6d548cc4",
+          "size": 190314
         },
         "firefox": {
-          "sha256": "c4a7eed5012309c0234514606c5d3cc62776c48a44dbbc993790869b185401d3",
-          "size": 189779
+          "sha256": "9c35c419cc5f109e45a933c9ce440b8fa992ef96dddf425a2d1929dbb274b0a0",
+          "size": 190296
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-chatgpt"
@@ -104,7 +106,7 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": [],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/action-locales/public/logo.png",
@@ -114,6 +116,7 @@
         "public/action-locales/src/action/index.html",
         "public/action-locales/src/action/scripts.js",
         "public/action-locales/src/action/styles.css",
+        "public/action-locales/src/background.js",
         "public/action-locales/src/images/javascript.png",
         "public/action-locales/src/manifest.json"
       ],
@@ -126,16 +129,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "baf9528861e27f59f930334389fa8d3581db2fa4208b8395c928f2c11ca5711d",
-          "size": 402657
+          "sha256": "423a1270c823c13111367a9a8d050badaa802defd1cce7fc691a740cfda8518c",
+          "size": 403207
         },
         "edge": {
-          "sha256": "07713e4fbd730f4e6aa4f5ec2ea2e69b7ea521d2083ebed49e9b5d4f5742e23c",
-          "size": 402657
+          "sha256": "6bee9466d03eec46494cf12082dc77ee0f753fedc15ab407a372cf5fd8313cf7",
+          "size": 403207
         },
         "firefox": {
-          "sha256": "f8255e4c477830e447fa55c62e950f62becce499d3e46d5295d380b559f21552",
-          "size": 402657
+          "sha256": "70af6ba152e8ec8c7859bd398fe065b37d70d496f0df9adce875c8e5a1483796",
+          "size": 403187
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-locales"
@@ -169,15 +172,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b8c898990cfdb10fea5d7141a7668e19da091d1b9e4950b320274ac06df31b03",
+          "sha256": "3ad16369b6441a334a568b6fab470000f65b8ac5a2603a8aa0cf615455469a1e",
           "size": 406913
         },
         "edge": {
-          "sha256": "fa1074ea54c7f0a880cd6201e24b1389f5636beb59c21c109b0f5be4ab31ac68",
+          "sha256": "347308f865d9ce6bed6f1a4c9db397b0c2d5c969e1a4d16c99265f525e6015dc",
           "size": 406913
         },
         "firefox": {
-          "sha256": "2c8d52f09c6a89e6b1aa6a75c5be0f9d44d0c9bcfdfe69cb8918ede667f83753",
+          "sha256": "92defd324d5edb7dea1591317504d043f845f9ce959bfe0bea6a534cce6fa0c0",
           "size": 406892
         }
       },
@@ -212,15 +215,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "d83b5e6b56511d976f8988a4af84efe79b9a4e28c9727c700499a483fe2fb80a",
+          "sha256": "555344e98295deef4d034b7823cc227fc1bb036da04bea9dd6d58bcf688b4e7c",
           "size": 51791
         },
         "edge": {
-          "sha256": "def993e38e8f2965061a16d7ce68613a238b446170709d34dcbd8faa6411c6e2",
+          "sha256": "bbc2d77259945ae718a75835b14b88291fb17a0438448dc5db3f4c4611d60b4d",
           "size": 51791
         },
         "firefox": {
-          "sha256": "176cd73e6d7b325d1cac2b01ae3c77f5625e09417da5e97533c948f52e4a8c96",
+          "sha256": "f2911cd0b835e3b7e1fa6dc6596322f1227e19850a97727f1806dda93ec5d1e2",
           "size": 51768
         }
       },
@@ -254,15 +257,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "87c822d43989c4d72890a205609dae78a625b1964e332af2c4ed461ddbba82fc",
+          "sha256": "3573110562a953b6f679557af954951cffe91e446bb987efe8da3471b9ae19ae",
           "size": 37268
         },
         "edge": {
-          "sha256": "0ca32e4272d6d614493e8c5d9f40531a221b3d9c9fcc5d29f90e11b0da6da7ad",
+          "sha256": "2b2f49e324c2bd4ec4faaa5a6163783e9b94ae350a38c9063e4ab202fbc98bc7",
           "size": 37268
         },
         "firefox": {
-          "sha256": "677d3ceb6a53f367c1473f220e60e1e29b34626da03b872bf43539756d88bc97",
+          "sha256": "48a9cc097b0d9280d835e4387e992925c2583dd4d8f76aac155443226cc6294d",
           "size": 37248
         }
       },
@@ -300,15 +303,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "915692fdd8c964b2f44d8c80d9756de5b712d43c783286dd984bdc82dc27cbac",
+          "sha256": "021ad8940f1489667c929d71c4a920e693f027e61d8ea7c62342a72317ee76aa",
           "size": 335068
         },
         "edge": {
-          "sha256": "456fdeca3fc480f6758f9d3ac5ad8b95bef56d537a2beb9d3b27b1d1fe2b1398",
+          "sha256": "035a2fcb2e7e8468d9f1aa86021cfea77fd0880497426f956f67aa0c84226400",
           "size": 335066
         },
         "firefox": {
-          "sha256": "24abf4924091df630705877b64f096db169e047ca86420fcc2be43848a3f2c31",
+          "sha256": "698ae5c8e20b779cf722b7d0668add27818fb10315f43daad67dabfc704ae57f",
           "size": 335045
         }
       },
@@ -345,15 +348,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "9e88dc61b11227c00ca13e268a082919297dac1f9403769da8515e3c541d312c",
+          "sha256": "fa908028d6155c4a764c02c0fe297cefc7af13fbe83554741652689116ceadba",
           "size": 432592
         },
         "edge": {
-          "sha256": "4b3db116351b80f7fe86298af594f14588f23d444eb03ae0a05a2f6c01acbe39",
+          "sha256": "2e2a3ea6abea603c6e8782bc33592b0b37968e9f5daa9a1c22d9ebdec7fd8610",
           "size": 432592
         },
         "firefox": {
-          "sha256": "68f4b69285d9fd882055c6a4cdc55dc02f79d363000435d8e33ba890a16a7585",
+          "sha256": "068f66278186656d9495edb027956e66b00f1e9a6c8f9a679e6f1374c88dae70",
           "size": 432572
         }
       },
@@ -389,15 +392,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b46229eb3ca124fbc9da764d67405b10b3df5aa5b88a40f8d282c436e4e7ac08",
+          "sha256": "ff69b06f5c680673d2ee45aaeabee7f7b12faa9fe0219ac7d320719c7f459cad",
           "size": 116525
         },
         "edge": {
-          "sha256": "65578f8ce8c4a313a1afb49843f9fcd47f6a6a5aa902afecf46965de6fbdcfc3",
+          "sha256": "bf7293e9066d0c220a3c9fea77c90f43551a9e2c1ff0b0c59b64d7ddead34448",
           "size": 116525
         },
         "firefox": {
-          "sha256": "0c557c5a8b13470c04269c874f860948c7cd91d35d953da40a04191a88b752b0",
+          "sha256": "28b9322fcdb53230599b77ba61829d8a840940d1fabdf579c50fba91561e939f",
           "size": 116502
         }
       },
@@ -434,15 +437,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "8adc50091bc22307ebcec968b18f69e6ab37b4c4dbfb8a2e831cc134a0863a39",
+          "sha256": "d223d29e51ea122ec10092a2bcbf557c17917fe90b4735e1e1507b128b92b2a6",
           "size": 35238
         },
         "edge": {
-          "sha256": "322731a06de76f7fb936451b93b500a6ce7cf5570d6746057bd9cf6a43983eac",
+          "sha256": "91ff37f169375e147f5ad75863518dc87b57e7be4059ab7da4edf48a2448c614",
           "size": 35238
         },
         "firefox": {
-          "sha256": "12e06834e693bdd3c17171f93c1ce2fbdf47e4b402d7fc442c759b342ba255ae",
+          "sha256": "0aef5548e33c641b7e059e67e6fdc333040f478ad8dc505122ba76abca918fbc",
           "size": 35216
         }
       },
@@ -479,15 +482,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "706157a2134041073df77bd5ba73ca9e9ded59cfdaa80100dc406f406c4aa9c3",
+          "sha256": "9caefa02a51fb9f5de93bb8463aa2bb735d597392d88f3ad0b21517477eaa2f6",
           "size": 39062
         },
         "edge": {
-          "sha256": "2a182f6d08a378ec7276a047cc79f33e89b84844f56a0cf6173304d6f5becc1c",
+          "sha256": "dc582ebbcff32ab54a6e63ea6c0918b85587cc558e7387c07194c68a0f64e1d9",
           "size": 39062
         },
         "firefox": {
-          "sha256": "b5399bd1e0f0be420afd3ddd62b173e382688478859d0a16520b6abf3e39e30e",
+          "sha256": "85d9eda82158c00eeeaf3d11d2a209d0087a25f3cf0a65f01e2c693d938dab81",
           "size": 39039
         }
       },
@@ -527,15 +530,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "cd8a622692223de671db9b4b8b5adfd554db81990b81663da4140dd551c01c37",
+          "sha256": "8f284692f6c9908eeb60edd3320de1ef0f00f76306ccc8b241c1036b749a7fb3",
           "size": 1148464
         },
         "edge": {
-          "sha256": "27aca3e1e27a992fc7bc2c51a5d56cd6bc8bb5e9bb48420f2eae84b768743e44",
+          "sha256": "9de7bb3728a52f7a8dc367e04e44fade1cf1389bb99f89bd24412cae09878ae1",
           "size": 1148464
         },
         "firefox": {
-          "sha256": "5ba36efa4f0e5e43b64d1177e7b609c2671c8c3f655c1962d021b425816806be",
+          "sha256": "7c3261be76cd7213bcce8d879976264fd23ab4366c0fd9e79e3633fbad37703a",
           "size": 1148442
         }
       },
@@ -577,15 +580,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ac8483737643f04c2a175b6908cdc7845452ac3e81e3f9df4eaec7005a7cf524",
+          "sha256": "2b73fa4bf90b8148563822daaf0eeb1b082b20d03f8de0ed434c923cb3a52e38",
           "size": 1316810
         },
         "edge": {
-          "sha256": "a0ba5c755cf977a536572a9d2cc9885aab80a231393c9dd864b76d0321939166",
+          "sha256": "9fe71b35be6cfaff59202ad50180dcc2fb9cfadd48f960ad072be13be7658fb5",
           "size": 1316810
         },
         "firefox": {
-          "sha256": "780fe6901fdca3ec6e30be4862e343bc3794634d5c907b909eeff515e80d66a4",
+          "sha256": "ae33d62b684601d6b993c2b7048b0e3cf2ab88df23d8ab71e75389b3959e7d92",
           "size": 1316788
         }
       },
@@ -621,15 +624,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f112bc8d7ad4febfaa1b332d817ab2674f96acf15b45b27962278195f4c2b05e",
+          "sha256": "74de56c15810275ae594ac4f9422f2963792fda0ae8aac9b84b2ae732ba5a469",
           "size": 109336
         },
         "edge": {
-          "sha256": "74bc585d252a32ef0e0136199c7e841af84a95b55d950b833e972f92242eb33e",
+          "sha256": "aefac3feaa2bc6be68a9741a15da0a54c6dcedf23fb936f1f14d7c1466543235",
           "size": 109336
         },
         "firefox": {
-          "sha256": "12de3da5c429875ab8249cf0794f0335be7514e4f38bde7c1229838b61893925",
+          "sha256": "4740f9abc3a20e352c83e0b32c3b920b92d6f14966dc3f018bfb929c83f84bfb",
           "size": 109316
         }
       },
@@ -665,15 +668,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "70b12088d5d1de5619864e309c16dfc24f9b379e633aa50dd1dcb774e4a0f755",
+          "sha256": "bae1155fd08845baa29e4bb09043801e907a394d0d7fb961777cf7f7660bec30",
           "size": 109382
         },
         "edge": {
-          "sha256": "6bd58b649c90aa045935546343fb9eb7d37305d068e05704ac6f70423bdea6a8",
+          "sha256": "eee5c237dc7fd172540542a7bcd942e62508ffd078d482e88911488045a4d4a0",
           "size": 109382
         },
         "firefox": {
-          "sha256": "ec42fe11307398e8fab441d282d60f7df81efdae841b20975ca1584ff843dc79",
+          "sha256": "fa8e6d2915308af11ead6c080e4952d925ad9669f4186b5d4e21a6b2e501c115",
           "size": 109357
         }
       },
@@ -715,15 +718,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "7f1fdfa2aa568ed7377f54b2bb93333c6c94ceaa7e29cb0b1e116baaf2f1c512",
+          "sha256": "385d2a8590ea421e74692f8d7b350c50a82be94dd9c425b502fd716dd84b116d",
           "size": 1267227
         },
         "edge": {
-          "sha256": "78b2278504a3865ecb09d9862bb23f6ad72ef1454e5f70e7a7e334a2e91115b8",
+          "sha256": "f91bff5a2a3c337b3fdacf1f7da4024fa0de7430ba2c597543f9cb178925b8e4",
           "size": 1267227
         },
         "firefox": {
-          "sha256": "041062834b16a342baeeb8889d57197f0091a65b61cb6c99ebcb38e98861ecda",
+          "sha256": "721f28175e4111b280d1ae619005a16faba6eef786805f4ec2eba806890395b6",
           "size": 1267205
         }
       },
@@ -759,15 +762,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "8d6764d46221387ee03c35528bc29c8c0cfaa5beb0dc24914e33f001a4693643",
+          "sha256": "1746505cfee7a7c56ab7fde89cca7dadd8e6e2c636870a53b70110337844785b",
           "size": 332975
         },
         "edge": {
-          "sha256": "c3a03045bcf885f5b4475061268ef1f57cf33550745cf9e5e714108cd6dc0557",
+          "sha256": "72366663c4daf13e2a0e9c78b7347c0e47c5aa519ced362fa4d8205e46baca7c",
           "size": 332975
         },
         "firefox": {
-          "sha256": "c6cb0afc31904fcf432c35dbee2dfba048a536f00e93f871ab62dbc4d64b29fb",
+          "sha256": "ac9c7ae1c0d131309b84aa0e7ef28b1ff02c5b91a0dd1d204cf309bad7ead2b9",
           "size": 332953
         }
       },
@@ -809,16 +812,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6ddaa8578fa2a7e8aa6dadf6ad494e21619b40c987563cfc9fadfc91d2d340df",
-          "size": 1110358
+          "sha256": "da812ca036c4aa0afd8e1966aee8415a86941b22d93ba89e2d8d6910d5961f0b",
+          "size": 1110355
         },
         "edge": {
-          "sha256": "33b799899c83b1726b56f33bb391d44cd28fac8ca0cf73f078639242c6738299",
-          "size": 1110358
+          "sha256": "5ccbaac5efcd3ae7802290b6c238a5dc76dd08ca92a2a8adcd52932a20f3cd35",
+          "size": 1110355
         },
         "firefox": {
-          "sha256": "5e680ef94855bcac48c02d7f95266d07a793dfbfbd4f3b4b09f004fc7eee3a10",
-          "size": 1110340
+          "sha256": "93d41ceeaa7bd66f9fa1df8cf54e4765c81978820d576fdad66aaa6dcace615b",
+          "size": 1110337
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
@@ -851,15 +854,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ff042e46d52a4b1875d4d3e9a38fa99881737a3e1e031257f532f5fb191971ad",
+          "sha256": "7f61a947f381dd812dee257b442e28ed615a12cec6eb8536c9a79e7a035dfa4e",
           "size": 262344
         },
         "edge": {
-          "sha256": "73432f0a270be4954833df627e1b477fa1013a19d67a824904387d5537a88c6f",
+          "sha256": "fdfcb6aceb12f09afc46af9872d597ec5032628abd3ab94dd7856842b0757409",
           "size": 262344
         },
         "firefox": {
-          "sha256": "e2c7258744283a4c0e7f472296e936703bf5781740c352752be41e79a73d9bca",
+          "sha256": "4804d763917140b9e4e1ada79a1eaee9e77c094b52deaeb6480f0f8712f1dd6f",
           "size": 262344
         }
       },
@@ -900,15 +903,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "78ac7fd8f4f51f5dc86d4443803f58321c250601beefe13fb9449087131e3a57",
+          "sha256": "23a760f01ba35c81c246014eb721394197a37509dcd6f9d82767b275a23fef9c",
           "size": 46323
         },
         "edge": {
-          "sha256": "674602a44e869bd317408e9115bd0232860b83b06b71406fc27cc340a0a46114",
+          "sha256": "d53af0b5dda4e40f87955184bec241088ffa7769329e69a71ca924e6ba28bce7",
           "size": 46323
         },
         "firefox": {
-          "sha256": "7e2cc1b028948d25a9ba634512ca8d5ee84c283ecc18a1576946b5c5be18caba",
+          "sha256": "8c55bc9cb113d6f0f3846385c47dc501e4d9e2b997f304eeaf338066aa7d66fb",
           "size": 46316
         }
       },
@@ -924,11 +927,12 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": [],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new/public/logo.png",
         "public/new/public/screenshot.png",
+        "public/new/src/background.js",
         "public/new/src/images/javascript.png",
         "public/new/src/manifest.json",
         "public/new/src/newtab/index.html",
@@ -944,16 +948,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "d00a6a89327a2e78c45fe691b160b5c2655ad191aa678270d56d40920610680e",
-          "size": 334715
+          "sha256": "d2a8ad1b6f64ac4c790f38b1dbf9c08c4917c42b52200b068e8f2e69d26d2961",
+          "size": 335263
         },
         "edge": {
-          "sha256": "c092bf60c42dbad90c4d8d0801924a8eb52ee3fc3bb0a9740a448719cb2571dc",
-          "size": 334715
+          "sha256": "4d83b91fdb83ce7486c2723360999b4341180cddcc4a8e479d7f8f3a018afd0e",
+          "size": 335263
         },
         "firefox": {
-          "sha256": "0a4939a392b841b832ad81d3ff02a243377af19f8e061abcc4d17ca3b318bb65",
-          "size": 334715
+          "sha256": "68ce1928e130b97545011bd3c19962ca1adb3a99867266e9bed552c015394ab0",
+          "size": 335249
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new"
@@ -991,16 +995,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "e7607d179719a4c5825678a58b25b625487f6b592725d10f89d770f68e2626b3",
-          "size": 140425
+          "sha256": "c59ab8c1454cee941b9c27bcd2affb2d862ddad56e2ef8501f3987e812c92867",
+          "size": 140426
         },
         "edge": {
-          "sha256": "a954d06533fd85880968c4be09de148b843e82545ed8591aca6ccb935d9614eb",
-          "size": 140425
+          "sha256": "b9e47ba62902deeeba5dd2a18b3bbb6cff9f319a8cb3fb883a0a38f03a6c63af",
+          "size": 140426
         },
         "firefox": {
-          "sha256": "7a02ba90990d0e5ed410f16fff1f08d90f43d5889f184d3b9cc55324b3103641",
-          "size": 140294
+          "sha256": "1b48db65b214fa84a46ed6f1da0dca3ddfdffa5216c1d2e18491f8a28c1fdc8b",
+          "size": 140295
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-browser-flags"
@@ -1015,10 +1019,11 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json", "eslint.config.mjs"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-config-eslint/public/screenshot.png",
+        "public/new-config-eslint/src/background.js",
         "public/new-config-eslint/src/images/eslint.png",
         "public/new-config-eslint/src/images/javascript.png",
         "public/new-config-eslint/src/images/typescript.png",
@@ -1036,16 +1041,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "57f11871efc50f498dc8b3525c99a98337f493a334f9dde0d43b68266398d132",
-          "size": 228732
+          "sha256": "d480d53a17c85e8c38d8d53404a8a06eefdd3a51378f3368039e51510fcd703c",
+          "size": 229278
         },
         "edge": {
-          "sha256": "d157170dab540191d24c9a676dd3768b1528ceef6aae0cd0b75e2a8dd4b31558",
-          "size": 228732
+          "sha256": "c10ff3e8a80dce1e621f1432b4dc5060a3a9777de371ee8860ba355c1ec0f8a8",
+          "size": 229278
         },
         "firefox": {
-          "sha256": "f4a003aaf29e30ebd85bf100a6120c60231a595b85710e27d8c33c59025202f3",
-          "size": 228732
+          "sha256": "4d42ba1eba35011172e302be7b416a206042d67a7808b15e80705f1be6d64d12",
+          "size": 229266
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-eslint"
@@ -1060,10 +1065,11 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json", ".prettierrc"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-config-prettier/public/screenshot.png",
+        "public/new-config-prettier/src/background.js",
         "public/new-config-prettier/src/images/javascript.png",
         "public/new-config-prettier/src/images/prettier.png",
         "public/new-config-prettier/src/images/typescript.png",
@@ -1081,16 +1087,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "42e88e9ecffbff49c5a62aa27b967dacbe11471745f1304e2c52f50727029cf5",
-          "size": 248222
+          "sha256": "02aca047340db0aa58e5e46d34cc862914179627152549cfbb510c1d30196966",
+          "size": 248768
         },
         "edge": {
-          "sha256": "3db9f766da3812d4a2b2fec517aa47e2d54fed11fe1dc92773a55bd62043385c",
-          "size": 248222
+          "sha256": "bbd9c8237ae8b5369078beb1d89fce6d5b7a7f73c8d7558647ed4cdc48de5d2a",
+          "size": 248768
         },
         "firefox": {
-          "sha256": "3db9f766da3812d4a2b2fec517aa47e2d54fed11fe1dc92773a55bd62043385c",
-          "size": 248222
+          "sha256": "fa9d1f456f0a59fdacc0ecf91831432fef90108c3e45cd672e9993784437648c",
+          "size": 248754
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-prettier"
@@ -1105,11 +1111,12 @@
       "uiFramework": "",
       "css": "sass",
       "configFiles": [".stylelintrc.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-config-stylelint/public/logo.png",
         "public/new-config-stylelint/public/screenshot.png",
+        "public/new-config-stylelint/src/background.js",
         "public/new-config-stylelint/src/images/javascript.png",
         "public/new-config-stylelint/src/images/stylelint.png",
         "public/new-config-stylelint/src/manifest.json",
@@ -1126,16 +1133,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "05fbc58d254f378c634b3605d11db5be8717158983d3af5a2c04bdaed67375f1",
-          "size": 253214
+          "sha256": "4101a110f4220f15f7eee8e7f3fd8a538756477ec9653bc27b0ce650595edd55",
+          "size": 253762
         },
         "edge": {
-          "sha256": "17ca255976a9c7b1ce99ec0855f0c2eb5d01609120b5ecf4ecafc5d96cefd401",
-          "size": 253214
+          "sha256": "314786acdfaec63c189c348f8e26c4f2bab68b79ab544fcad4b3ec2b9530298d",
+          "size": 253762
         },
         "firefox": {
-          "sha256": "5bf27c76528df1a26e2be82ced54c2d67d6812024c68ceb61184e2fc3de1ef93",
-          "size": 253214
+          "sha256": "25aa7726dda012fa15398f5c8e6627d89e9f56ed4200a32ffd37a014681af7e8",
+          "size": 253750
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-stylelint"
@@ -1150,11 +1157,12 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-crypto/extension.config.js",
         "public/new-crypto/public/logo.png",
+        "public/new-crypto/src/background.js",
         "public/new-crypto/src/images/javascript.png",
         "public/new-crypto/src/images/typescript.png",
         "public/new-crypto/src/manifest.json",
@@ -1171,16 +1179,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f6020b9bcc5a142093d1faca08aa152c5a29da1fb13faeeec4bbfff5c56cd150",
-          "size": 133771
+          "sha256": "41138a3be9ae0e9695602665050213188c746348883fd5697e32a01af8042278",
+          "size": 134318
         },
         "edge": {
-          "sha256": "4362cf08789b9655d93cea0ab7fba02e0888b598a43445affa7484d8c1eab89e",
-          "size": 133771
+          "sha256": "7f6dcab861535ab26a1342c0654f27ea7b77129a12f3fe2b6b62396772024fe6",
+          "size": 134318
         },
         "firefox": {
-          "sha256": "11cf53238179ae928e012c10d7953a7afe055abb1f39d7eab0a7bb2a6916cae2",
-          "size": 133771
+          "sha256": "6834368f64a50231e890618d465c8354e1ce0e9c073b56a40586569fa600b0a7",
+          "size": 134304
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-crypto"
@@ -1195,11 +1203,12 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-env/public/logo.png",
         "public/new-env/public/screenshot.png",
+        "public/new-env/src/background.js",
         "public/new-env/src/images/javascript.png",
         "public/new-env/src/images/typescript.png",
         "public/new-env/src/manifest.json",
@@ -1216,16 +1225,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c69483329678a2e05b5ef2bc6d204f7ea3033e54ab27dad029b9cf2b49c761d9",
-          "size": 231366
+          "sha256": "9ee13f2bcdd8df48765ec47d62e9be1a5362ab1103949e67792b8aeb7c732e91",
+          "size": 231912
         },
         "edge": {
-          "sha256": "1dca07787684adb865ed1599b00f00d77d4bc53510c4f6702e53f467e769553e",
-          "size": 231366
+          "sha256": "171e1e1f28e1a0b93fe17ec6468a28c30b412cb6d0f0684b92604b9562ec7bdb",
+          "size": 231912
         },
         "firefox": {
-          "sha256": "71fc3fd1b8d5267b23f7750bd2c8ab9227a0ea0bdee63d72ce37da29d7d524f8",
-          "size": 231366
+          "sha256": "2b1767789101e1c79d8386618b4c2ce6a81db3d685f4740cad9cd9ecabaceaf9",
+          "size": 231900
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-env"
@@ -1240,10 +1249,11 @@
       "uiFramework": "",
       "css": "less",
       "configFiles": [],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-less/public/screenshot.png",
+        "public/new-less/src/background.js",
         "public/new-less/src/images/less.png",
         "public/new-less/src/manifest.json",
         "public/new-less/src/newtab/index.html",
@@ -1259,16 +1269,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "82df5f85239babfb80b9a59167ca51cc02d444e98a39dc2b9d4c8e2dbb72d622",
-          "size": 396903
+          "sha256": "e1d384925b437dcc1e4cae98612de774741e15e94b4d6a3db9e6aa770b0ccabd",
+          "size": 397453
         },
         "edge": {
-          "sha256": "28a0a7bcef8cdfe95e1ae9ffe29861073c35cca5ef51a47222c22c689c4937b3",
-          "size": 396903
+          "sha256": "b76a9a2a22e317fee5c697957ba109af3cfa5110c9dd5ec15ca9e0199053f3cf",
+          "size": 397453
         },
         "firefox": {
-          "sha256": "d51b4007137d3bcd1b05e098e8d348d83dd35e3226be5e6cc87a6efd5d314721",
-          "size": 396903
+          "sha256": "6accf15d263f33b2fa28631a602490a130f3423406c274211791411778c86811",
+          "size": 397440
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-less"
@@ -1283,11 +1293,12 @@
       "uiFramework": "preact",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-preact/public/logo.png",
         "public/new-preact/public/screenshot.png",
+        "public/new-preact/src/background.js",
         "public/new-preact/src/images/preact.png",
         "public/new-preact/src/manifest.json",
         "public/new-preact/src/newtab/NewTabApp.tsx",
@@ -1304,16 +1315,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ad5d01840eccd8e54c4c93ca94a85eff66a3d2ace2ceb4d5446e0452b4e4a03a",
-          "size": 337845
+          "sha256": "9db74e92cfc47731db51d0024c35213550765418a4909cd17a70543f585dcda5",
+          "size": 338395
         },
         "edge": {
-          "sha256": "ebc56a0427366697313057901db4a156e5e7bc9c09ef6674b12e647156e772ac",
-          "size": 337845
+          "sha256": "6eb88a45b37562fd6ccf929f5dc20c7a15b9b6e33619fa95a25bf7422577cbe8",
+          "size": 338395
         },
         "firefox": {
-          "sha256": "446ca5d9825c33fb7710973888ead0278ad8b03e1f0e29e3acd1fdf749e80c0e",
-          "size": 337845
+          "sha256": "d30e9e431fefbd6b946d3c6d20fdb05cf551941a08bbc8fc0d8be2b1e23e6dae",
+          "size": 338382
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-preact"
@@ -1328,11 +1339,12 @@
       "uiFramework": "react",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-react/public/logo.png",
         "public/new-react/public/screenshot.png",
+        "public/new-react/src/background.js",
         "public/new-react/src/images/react.png",
         "public/new-react/src/manifest.json",
         "public/new-react/src/newtab/NewTabApp.tsx",
@@ -1349,16 +1361,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "2381b0fd13a7810d8203baaa1576a74c06d91532526136cb5ba6da04ca6f12f0",
-          "size": 460106
+          "sha256": "6ed0b91a04aaad48fea949189ce33d5ba7f3abf9297b69d46e30c42adcf19f85",
+          "size": 460656
         },
         "edge": {
-          "sha256": "f49270b9b2d1f458d9278ffe5efa4c6c57f0b5f2e2f7ab4e2dd87a0b5c5a5656",
-          "size": 460106
+          "sha256": "25aaef4329f87f0b0b372256d50fd8bfea578ab426759c1c226b62231b6163a3",
+          "size": 460656
         },
         "firefox": {
-          "sha256": "e8fbfd0cf4b2a55f8328669b659331e23f92e0c6e13f6a1e04e8c67522fe56eb",
-          "size": 460106
+          "sha256": "d260a9c7390200c4ffeaf4880be26721266905afb407c92dcc8a961b6533047f",
+          "size": 460642
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react"
@@ -1373,11 +1385,12 @@
       "uiFramework": "react",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-react-router/public/logo.png",
         "public/new-react-router/public/screenshot.png",
+        "public/new-react-router/src/background.js",
         "public/new-react-router/src/images/react.png",
         "public/new-react-router/src/manifest.json",
         "public/new-react-router/src/newtab/NewTabApp.tsx",
@@ -1394,16 +1407,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b2a9c452c2e7aaf649a120c7ddec6c21e9d8dda5640bc086c38efa5a40428b85",
-          "size": 494134
+          "sha256": "101eddd9aaa60522daacf91658a9c785339fd8095c857bc608d651de2b0a3e28",
+          "size": 494682
         },
         "edge": {
-          "sha256": "4017c6a745b01e3cb949ee33f7c6fa3cd797f5b206f2cc6ee1ab004c3d4af7af",
-          "size": 494134
+          "sha256": "53add0529e5f6c2b1bbdc53e2caba304edd697f253949061120f25caf7c2df49",
+          "size": 494682
         },
         "firefox": {
-          "sha256": "968ab2247d37cbb99b0c4f75a04b8986c9f667febe6b0204682bc58488006f77",
-          "size": 494134
+          "sha256": "618e8c7dfe64c0da00a574d5067979f9008ca10dd7f8b33a6e2407a52fa9e75d",
+          "size": 494669
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react-router"
@@ -1418,10 +1431,11 @@
       "uiFramework": "",
       "css": "sass",
       "configFiles": [],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-sass/public/screenshot.png",
+        "public/new-sass/src/background.js",
         "public/new-sass/src/images/sass.png",
         "public/new-sass/src/manifest.json",
         "public/new-sass/src/newtab/index.html",
@@ -1437,16 +1451,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f50dd440d47c624eeacea9b77c566ef0b5f2d4515e9072d434ebf7461bdb5d9b",
-          "size": 764654
+          "sha256": "cbbfdfb3cbf37b1ececaaa65399e2bff35806741d8d879765d5ff12bdd252203",
+          "size": 765203
         },
         "edge": {
-          "sha256": "dbac4847831af0786617f7e8cb7e48c9f35f5b3a62b851f9cbe5d1d2cc251374",
-          "size": 764654
+          "sha256": "52964456c8bea98c1d9f22e10158536425fd64eecdb70a16932085a3a149bbc7",
+          "size": 765203
         },
         "firefox": {
-          "sha256": "cce503faf227f920d9bb103b5f462bba003d0b708d25c1d1974eb4a94fc639db",
-          "size": 764654
+          "sha256": "44d2ed9afc5cbb18685a176fcc09a51055c33d6f49be2c1e7037d152e87eebb6",
+          "size": 765190
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-sass"
@@ -1461,11 +1475,12 @@
       "uiFramework": "svelte",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-svelte/public/logo.png",
         "public/new-svelte/public/screenshot.png",
+        "public/new-svelte/src/background.js",
         "public/new-svelte/src/images/svelte.png",
         "public/new-svelte/src/manifest.json",
         "public/new-svelte/src/newtab/NewTabApp.svelte",
@@ -1482,16 +1497,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "dffb7ff0790d1daf388e8b09699b4884a286d84fb55dcfada54b53b9e878af19",
-          "size": 333446
+          "sha256": "5c3770025cfcc80c83037f8c4423058c9c5d03d7f133d6a3f4e0edbcaf003e45",
+          "size": 333995
         },
         "edge": {
-          "sha256": "d59e4fdee979c7ca674a5d0c1de973ee0856b0e9c56461c4c2f9bd4f5a43f2e1",
-          "size": 333446
+          "sha256": "4f3c54fe07fd557fccd5d9b2c9392f805d14d7c5d25a9cd67326c34b685c50b0",
+          "size": 333995
         },
         "firefox": {
-          "sha256": "7f1738896d4bd3ae1ea4115086f9ec3f0c0a4868a66ec095694af7cb3f71e7e6",
-          "size": 333446
+          "sha256": "9e54114a0c33cca0f6ed9002dc4a92fe5293fd1de60a77f750b76f142082833a",
+          "size": 333983
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-svelte"
@@ -1506,10 +1521,11 @@
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-typescript/public/screenshot.png",
+        "public/new-typescript/src/background.js",
         "public/new-typescript/src/images/typescript.png",
         "public/new-typescript/src/manifest.json",
         "public/new-typescript/src/newtab/index.html",
@@ -1525,16 +1541,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "eb6628af7719391c980611835f5fab9c8e173b6a0cc0c137c336360b14f81b73",
-          "size": 594867
+          "sha256": "039e8a59739c90ac0ee07f7d4b66434754bf8f51b66c2d5613aa8502c40593a6",
+          "size": 595413
         },
         "edge": {
-          "sha256": "b6fe72516bfc958fb7cf21d1a56c02553a597eb5c28a04f3c3d585623b541ff2",
-          "size": 594867
+          "sha256": "225ef20d710a016b1ab967d2f77ec3a69a91875cd8e3482083e21ac474aecf1f",
+          "size": 595413
         },
         "firefox": {
-          "sha256": "47e9dafe36ff81a37c67f9d510fb3843a05270916d1682baf85ca25cbe9f72a2",
-          "size": 594867
+          "sha256": "d3911c1365f6f4832a1f993e98759d8d74514dc19ca9f9ea38a9892aa70d34dc",
+          "size": 595399
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-typescript"
@@ -1549,10 +1565,11 @@
       "uiFramework": "vue",
       "css": "css",
       "configFiles": ["tsconfig.json"],
-      "hasBackground": false,
+      "hasBackground": true,
       "hasEnv": false,
       "files": [
         "public/new-vue/public/screenshot.png",
+        "public/new-vue/src/background.js",
         "public/new-vue/src/images/vue.png",
         "public/new-vue/src/manifest.json",
         "public/new-vue/src/newtab/NewTabApp.vue",
@@ -1569,16 +1586,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "a9eb90967387c054d8f8bf70c1f35751cba864bc4c583c1cc4bd90b68cbb7976",
-          "size": 243322
+          "sha256": "c519660754a6a81e9f939d89d4f47379519515b49c36682779185a8c5fdee354",
+          "size": 243871
         },
         "edge": {
-          "sha256": "68613a694b7629ed333af23b1b3cdd65fc5b10d27b5fdeecf1c5f1fb8066103e",
-          "size": 243322
+          "sha256": "db601e20d17086ac552ee299a272317007490dcbdd5f7bff77f6046b07b5d850",
+          "size": 243871
         },
         "firefox": {
-          "sha256": "aefd09490a2951830eb4c4988802d6a3b2dd88f28b97af4793051685fc1acce9",
-          "size": 243322
+          "sha256": "af7046735150be0d61c02472a3e25f2009259ca00b2c57d65c4143154a21a3b0",
+          "size": 243858
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-vue"
@@ -1619,15 +1636,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "7c482b193101a5eadf3972d84b099aa96861d2d76fe0b5bceb55d63370af9522",
+          "sha256": "4dd69a897f9fb0c970851841207c8ed031a830836310cf2624d74ede83a4a7c6",
           "size": 107230
         },
         "edge": {
-          "sha256": "eaee93c20e9064b8377f86021a88b36839de93ca6f1b82c58e7fff6b1b6ef0ff",
+          "sha256": "e1d9dd4315a1394031aef1bfd2577fc0aa81ca3721c43de00761047053355bde",
           "size": 107230
         },
         "firefox": {
-          "sha256": "de64855202384feed6ae18fdb876baa700ad7a03fd2ecf6c9f335a007a390a6a",
+          "sha256": "887139323bc91d26afb8ba1657be79ac68d8eb031dbb092cd58b6c5aa9af5ebd",
           "size": 107224
         }
       },
@@ -1669,15 +1686,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "46358ec4be0196eb5b485569a9fdcff68f43da92e7b4123fb30715c13f5a01d8",
+          "sha256": "3dacb326ef3ce3878ba2b966938855ee1b59d616f6cad0f37b2b9e14619f45b3",
           "size": 255390
         },
         "edge": {
-          "sha256": "aca8d5e8e5bb92b27b2f1af310fa94023ae5683e1961286dd6dc2676af6075f4",
+          "sha256": "5f6f106b78be277d0eafcaef5dc1ffc2c6e72c6d27b373753d691e5b7f7ccefc",
           "size": 255390
         },
         "firefox": {
-          "sha256": "56e986b01e7fc1ee7beeae3c01a5efb10b007b95da2a936cb0a813325b58cf5d",
+          "sha256": "f8c3624f4baf4f598c4019df26994e03ddaefc89090b4d2f6a1ac64a48c4ee39",
           "size": 255383
         }
       },
@@ -1712,16 +1729,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c0366676da47e607bf9943f157f28d132bf3a3df822162b1fd247ccd5b4c686b",
-          "size": 66787
+          "sha256": "1b509350841d5eaaedde35b9145a3162a9364bfe173db846f924af8e55e2005f",
+          "size": 66788
         },
         "edge": {
-          "sha256": "91ae5e96d6851ac5cf6d6c16f9475c06288634038d5e22da50e4c4c5c3b00155",
-          "size": 66787
+          "sha256": "d173db94ce2486187ad9442f40ddb2a8db9f148f7a95f037294fff45fd351d80",
+          "size": 66788
         },
         "firefox": {
-          "sha256": "102b8f4f4cd30954f6536df2bb56d6c23db9a3851657d7a691d73878d8ad9c9f",
-          "size": 66735
+          "sha256": "6dfc8ea3accddda55c2c518d2e4c1fe1ca21f7687d998d5d423a1485f980d257",
+          "size": 66736
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
@@ -1792,15 +1809,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "470dabb34c694af8e86e31713d68fa8fcb10b983341eb015c29bbaba5424465f",
+          "sha256": "3b71757cb1aeaba6f74b7091cb71cfac09c3a59855230dea069614caabc6cc38",
           "size": 69069
         },
         "edge": {
-          "sha256": "5988675f6fc0aee2118ab6bdfa2e2401ad3498750f635fdb6d23dddb0fdbdfb9",
+          "sha256": "a26883ccd885c06868ccb58dd09c878ec64cfc84e8427b289047131cea2322d3",
           "size": 69069
         },
         "firefox": {
-          "sha256": "84bcd5e4776044f03badeec368bf5cfc3ee58c4ace78df73c3ece8053a06c7d9",
+          "sha256": "c684d0be488494b2071541b561f56e4e1f5024fcf6c8ae9a9acb6337a293c2ef",
           "size": 69018
         }
       },
@@ -1840,16 +1857,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6b3296d9bf7892df5dce35db6ba70892a676eb9c93a27fa6056927a987cde76f",
-          "size": 5534735
+          "sha256": "7581d7f64daa4242808ddf8a7db20e1bbe98dff030060f5fa3012deb919d01a6",
+          "size": 5534731
         },
         "edge": {
-          "sha256": "942daf5cfe7f6d37811c1ee26ea800f1b9351ed4261201cf8c2b29f3d6a9c06c",
-          "size": 5534735
+          "sha256": "d1b9da9b960001c6a5f9541ad96299aae80eafb6258c2ed750a5d920266cf32c",
+          "size": 5534731
         },
         "firefox": {
-          "sha256": "536e40ff9491d4ec7f4f014cc8709f268e32a7efdcfc66063b84da970b34bd3a",
-          "size": 5534673
+          "sha256": "e2524f57946065628c75497a75109fd56d50dbf3f78c7e6f7c2924dc37809ef1",
+          "size": 5534670
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-transformers-js"
@@ -1886,16 +1903,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "23ed7fc123db17ce2f248a4a6ee5ba2392646c1ff74f8dcffacfa19e39e6854e",
-          "size": 37894
+          "sha256": "14e34a50435762821552b173fbd046de14e0239c43a1e7154db0af129028c9ed",
+          "size": 37895
         },
         "edge": {
-          "sha256": "81add9cb995101480dacd48260cdfb7977a5d102995e069247dbe0761d1f269d",
-          "size": 37894
+          "sha256": "8c93b8963657b141112179124cc92baeb5a736b4c43ba04db066892e04fef70d",
+          "size": 37895
         },
         "firefox": {
-          "sha256": "eb33bc0de2b598e7a75a145a4d521744baf2334f1fc0304922e40e91b75c01bf",
-          "size": 37875
+          "sha256": "17ff6135518f8f73e85c6a2aa3a0a6e13fd6d6aff8629a6c6c0b84165097e4af",
+          "size": 37876
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-pages"
@@ -1926,15 +1943,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "eea2ba028783b49fde173221d76a6a2d7b521df5c471e4125b826175d1f6618d",
+          "sha256": "eb9bdd931342ac2cc942a019fbe84703a107d77e4941389aebb78e4661669d37",
           "size": 34092
         },
         "edge": {
-          "sha256": "3279e179107c03d153264ff4aa5bae093af198bc7db5b95ab74515c9e1664b16",
+          "sha256": "1c48fc59d54c2d031a16ba7a4f077b40619b94388aa9cbc13c2020bea14ea815",
           "size": 34092
         },
         "firefox": {
-          "sha256": "fc38bcf7d81f15ca5edf52e13a7dfb6729bf88bdd0d8297f5e26fbc4412ebf8c",
+          "sha256": "8df6dbcfb3a058f7fe3d61eb00b61ab244d849efa24d6be90895736e1d74cf56",
           "size": 34080
         }
       },
@@ -1976,15 +1993,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c6c860fc8e3e87e1010e72946d58330b200a23dd837941620456d4fda6b34520",
+          "sha256": "113af5dae0fd88ec22a965a2a87b200962dffd7784eaabb533d8d0c762d2e7a7",
           "size": 165520
         },
         "edge": {
-          "sha256": "d915cf20379470217a486223d9b1773a18334607fecdac66b018b6123c449c64",
+          "sha256": "460c2265e12a0a8fb62397b3a64edac5b9281651e0e67f7157eb858ad99a438f",
           "size": 165520
         },
         "firefox": {
-          "sha256": "bfa6ae8c8158e03f3ae6386984e8aa2ff47a41e8139376c11a42acce00577284",
+          "sha256": "1d58c86bf7ad7df2163913eeb85030d80a9b0ca5db485db3836c44ca8e7886c2",
           "size": 165516
         }
       },
@@ -2026,15 +2043,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "eea8f9e5c946af7e273adc2b579036c2f394e254d9b30337bc201ec0374d5a10",
+          "sha256": "6885f917fc2da3f06c27a3ac1e13a246f3b8dc05dbcaa582cbc77bcd5c51d7c7",
           "size": 23973
         },
         "edge": {
-          "sha256": "5af7245721df2dc9b46aebd9cc376eb94b9926b3bc45cf049828d0300b578d78",
+          "sha256": "995523268bd49a9b5de5b12f7d2118efb9fcd9a52cd9701da1d7f2f40b06712a",
           "size": 23973
         },
         "firefox": {
-          "sha256": "d8986f1e39e8d82c12d50fafb1573f31c58c5682b104f07aeb05357f05dc6f20",
+          "sha256": "59746d8ca3729e8d1fba000889628400d02415d354b849a71c6c4f06bf57ab0b",
           "size": 23969
         }
       },
@@ -2076,15 +2093,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "4abf6c0e1d9e32e297968d52f2406b695245bebef109d8554b8e81b16837b4d9",
+          "sha256": "c4c586cf9b4237a81b0d5935e3554be46fa39eac9378adcc3d55bf963ac6db2e",
           "size": 80074
         },
         "edge": {
-          "sha256": "60c419744b242677a25b4b0ea07a4f11c8ec15de9d5c74eca16982d8afd82895",
+          "sha256": "71ba1f506343b4ef2dc3c62bcc99bd87c0b8c59f7f7ef5743a0ceccb63a04a9a",
           "size": 80074
         },
         "firefox": {
-          "sha256": "c98a4763b1f6df5a172928024a6dddd8cd3bf504b2def2bb07a72d1fb1fc6ee6",
+          "sha256": "48e2ab2074f4120376c87c6d84ae1e93ab3a2cd142f6a74b3f9ba1bf01ca0422",
           "size": 80069
         }
       },

@@ -9,6 +9,10 @@
     "48": "images/sass.png",
     "128": "images/sass.png"
   },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"
   }

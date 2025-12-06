@@ -9,6 +9,10 @@
     "48": "images/vue.png",
     "128": "images/vue.png"
   },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"
   }

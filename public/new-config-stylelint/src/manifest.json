@@ -9,6 +9,10 @@
     "48": "images/stylelint.png",
     "128": "images/stylelint.png"
   },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"
   }

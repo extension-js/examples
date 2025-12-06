@@ -9,6 +9,10 @@
     "48": "images/svelte.png",
     "128": "images/svelte.png"
   },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"
   }

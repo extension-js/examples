@@ -11,6 +11,10 @@
     "128": "images/javascript.png"
   },
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
   "action": {
     "default_popup": "./action/index.html",
     "default_title": "__MSG_actionTitle__",
