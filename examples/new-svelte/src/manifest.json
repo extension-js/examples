@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Svelte New Tab Example",
+  "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
+  "icons": {
+    "16": "images/svelte.png",
+    "48": "images/svelte.png",
+    "128": "images/svelte.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@extension-js/new-less",
+  "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "devDependencies": {
+    "less": "^4.4.0"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Bem-vindo à sua extensão de localização",
+    "description": "The title of the extension page"
+  },
+  "learnMore": {
+    "message": "Saiba mais sobre como criar extensões multiplataforma em ",
+    "description": "The learn more text"
+  },
+  "extDesc": {
+    "message": "Um exemplo de extensão demonstrando i18n (locales).",
+    "description": "Descrição da extensão exibida na loja e nas configurações"
+  },
+  "actionTitle": {
+    "message": "Abrir Ação de Locales",
+    "description": "Título padrão do botão de ação"
+  }
+}

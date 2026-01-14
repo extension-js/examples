@@ -1,0 +1,11 @@
+{
+  "name": "@extension-js/sidebar-monorepo-turbopack-packages-extension",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  }
+}

@@ -1,0 +1,35 @@
+.monorepo_content {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 2147483647;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 12px 14px;
+	border-radius: 12px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+	color: #111827;
+	font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+		Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+	backdrop-filter: saturate(150%) blur(8px);
+}
+
+.monorepo_badge {
+	align-self: flex-start;
+	font-size: 12px;
+	line-height: 1;
+	padding: 6px 8px;
+	border-radius: 9999px;
+	background: #111827;
+	color: #fff;
+}
+
+.monorepo_info {
+	font-size: 12px;
+	opacity: 0.85;
+}
+
+

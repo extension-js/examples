@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@extension-js/new-preact",
+  "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {
+    "@preact/signals": "^1.3.0",
+    "preact": "^10.22.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "@prefresh/core": "^1.5.2",
+    "typescript": "5.3.3"
+  }
+}

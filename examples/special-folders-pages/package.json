@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@extension-js/special-folders-pages",
+  "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

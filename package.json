@@ -1,0 +1,75 @@
+{
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/extension-js/examples.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "workspaces": [
+    "programs/*"
+  ],
+  "packageManager": "pnpm@10.10.0",
+  "name": "extension-examples-workspace",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Examples for Extension.js",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "extension": "extension",
+    "generate": "node ci-scripts/generate-templates-meta.mjs",
+    "build:examples": "node ci-scripts/build-all.mjs",
+    "artifacts:package": "node ci-scripts/package-artifacts.mjs",
+    "artifacts:stage": "node ci-scripts/publish-artifacts.mjs",
+    "artifacts:prepare": "pnpm run build:examples && pnpm run artifacts:package && pnpm run generate && pnpm run artifacts:stage",
+    "pretest": "node -e \"const fs=require('fs'); if (!process.env.SKIP_BUILD && !fs.existsSync('examples/content/dist/chrome')) { require('child_process').execSync('pnpm run build:examples', {stdio: 'inherit'}); }\"",
+    "ci": "node ci-scripts/normalize-examples.mjs && pnpm run build:examples && pnpm test",
+    "test": "playwright test",
+    "test:ci": "pnpm lint",
+    "test:all": "pnpm lint && pnpm test",
+    "test:watch": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:install": "playwright install",
+    "test:coverage": "playwright test --reporter=html --reporter=json --reporter=junit",
+    "test:content": "playwright test --project=content",
+    "test:sidebar": "playwright test --project=sidebar",
+    "test:action": "playwright test --project=action",
+    "test:newtab": "playwright test --project=newtab",
+    "test:special": "playwright test --project=special-folders",
+    "test:mixed": "playwright test --project=mixed-context",
+    "test:other": "playwright test --project=other",
+    "postinstall": "node -e \"if (!process.env.CI) { require('child_process').execSync('playwright install --with-deps', {stdio: 'inherit'}); }\"",
+    "prepublishOnly": "pnpm generate",
+    "format": "prettier --write \"**/*.{ts,tsx,md,js,mjs,json}\"",
+    "lint": "eslint .",
+    "lint-staged": "lint-staged",
+    "install:all": "pnpm install && pnpm -r install",
+    "clean": "pnpm -r exec rm -rf dist build .extension node_modules/.cache"
+  },
+  "files": [
+    "public/**",
+    "templates-meta.json",
+    "templates-meta.d.ts"
+  ],
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@playwright/test": "^1.56.1",
+    "@types/chrome": "^0.0.287",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
+    "extension": "3.0.0-next.62",
+    "globals": "^15.13.0",
+    "knip": "^5.33.0",
+    "lint-staged": "16.1.0",
+    "prettier": "^3.4.2",
+    "typescript": "5.7.2"
+  }
+}

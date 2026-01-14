@@ -1,0 +1,18 @@
+{
+  "title": {
+    "message": "Welcome to your Locale Extension",
+    "description": "The title of the extension page"
+  },
+  "learnMore": {
+    "message": "Learn more in the ",
+    "description": "The learn more text"
+  },
+  "extDesc": {
+    "message": "An example extension demonstrating i18n locales.",
+    "description": "Extension description shown in the store and settings"
+  },
+  "actionTitle": {
+    "message": "Open Locales Action",
+    "description": "Default title for the action button"
+  }
+}

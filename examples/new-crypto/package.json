@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@extension-js/new-crypto",
+  "description": "New tab page example demonstrating basic crypto operations inside an extension.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "5.3.3"
+  }
+}

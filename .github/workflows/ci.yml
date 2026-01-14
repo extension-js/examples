@@ -1,0 +1,573 @@
+name: Examples CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  # Shared setup job - runs once, all other jobs depend on it
+  setup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright browsers
+        run: pnpm test:install chromium
+
+  # Build and lint job - depends on setup
+  build-and-lint:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Normalize examples (names/manifests)
+        run: node ci-scripts/normalize-examples.mjs
+
+      - name: Run lint and validation
+        run: pnpm run test:ci
+
+
+  # E2E Test Jobs - run in parallel, each builds and tests its own batch
+  e2e-content:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for content project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs content)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build content examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run content batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:content
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-content
+          path: |
+            examples/content*/dist/
+            examples/content*/build/
+            examples/content*/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-sidebar:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for sidebar project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs sidebar)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build sidebar examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run sidebar batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:sidebar
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-sidebar
+          path: |
+            examples/sidebar*/dist/
+            examples/sidebar*/build/
+            examples/sidebar*/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-action:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for action project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs action)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build action examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run action batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:action
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-action
+          path: |
+            examples/action*/dist/
+            examples/action*/build/
+            examples/action*/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-newtab:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for newtab project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs newtab)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build newtab examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run newtab batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:newtab
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-newtab
+          path: |
+            examples/new*/dist/
+            examples/new*/build/
+            examples/new*/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-special-folders:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for special-folders project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs special-folders)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build special-folders examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run special-folders batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:special
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-special-folders
+          path: |
+            examples/special-folders*/dist/
+            examples/special-folders*/build/
+            examples/special-folders*/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-mixed-context:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for mixed-context project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs mixed-context)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build mixed-context examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run mixed-context batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:mixed
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-mixed-context
+          path: |
+            examples/javascript/dist/
+            examples/preact/dist/
+            examples/react/dist/
+            examples/svelte/dist/
+            examples/typescript/dist/
+            examples/vue/dist/
+            examples/javascript/build/
+            examples/preact/build/
+            examples/react/build/
+            examples/svelte/build/
+            examples/typescript/build/
+            examples/vue/build/
+            examples/javascript/.extension/
+            examples/preact/.extension/
+            examples/react/.extension/
+            examples/svelte/.extension/
+            examples/typescript/.extension/
+            examples/vue/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  e2e-other:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Restore Playwright browsers from cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Get examples for other project
+        id: get-examples
+        run: |
+          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs other)
+          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
+          echo "Building examples: $EXAMPLES"
+
+      - name: Build other examples
+        run: |
+          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+
+      - name: Run other batch E2E tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:other
+
+      - name: Upload build artifacts
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-examples-other
+          path: |
+            examples/init/dist/
+            examples/init/build/
+            examples/init/.extension/
+          compression-level: 6
+          retention-days: 1
+          if-no-files-found: ignore
+
+  # Packaging and publication are handled by publish-artifacts.yml on main

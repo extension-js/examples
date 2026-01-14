@@ -1,0 +1,100 @@
+name: Publish artifacts
+
+on:
+  workflow_run:
+    workflows: ["Examples CI"]
+    types:
+      - completed
+    branches: [ main ]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-commit:
+    # Prevent loops on bot commits and only run if CI succeeded (or manual dispatch)
+    if: |
+      github.actor != 'github-actions[bot]' && 
+      (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install
+        run: pnpm install
+
+      - name: Download build artifacts from CI
+        if: github.event_name == 'workflow_run'
+        uses: dawidd6/action-download-artifact@v3
+        continue-on-error: true
+        with:
+          name: |
+            built-examples-content
+            built-examples-sidebar
+            built-examples-action
+            built-examples-newtab
+            built-examples-special-folders
+            built-examples-mixed-context
+            built-examples-other
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: ci.yml
+          run_id: ${{ github.event.workflow_run.id }}
+          path: examples/
+
+      - name: Normalize examples (only if rebuilding)
+        if: failure() || github.event_name == 'workflow_dispatch'
+        run: node ci-scripts/normalize-examples.mjs
+
+      - name: Build all examples (only if artifacts not downloaded)
+        run: |
+          # Check if dist folders exist, if not build
+          if [ -z "$(find examples -name 'dist' -type d -mindepth 2 | head -1)" ]; then
+            echo "Artifacts not found, building examples..."
+            pnpm run build:examples
+          else
+            echo "Using build artifacts from CI workflow"
+          fi
+
+      - name: Package distributions
+        run: node ci-scripts/package-artifacts.mjs
+
+      - name: Generate metadata
+        run: pnpm run generate
+
+      - name: Stage public artifacts
+        run: node ci-scripts/publish-artifacts.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public templates-meta.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update artifacts [skip ci]"
+            git push
+          fi
+
+

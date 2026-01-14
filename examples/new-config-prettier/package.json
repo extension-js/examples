@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@extension-js/new-config-prettier",
+  "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.3.2"
+  }
+}

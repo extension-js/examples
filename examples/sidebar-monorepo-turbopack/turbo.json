@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.v2.json",
+  "tasks": {
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "start": {
+      "persistent": true,
+      "cache": false
+    },
+    "build": {
+      "inputs": [
+        "packages/**/*",
+        "package.json",
+        "pnpm-lock.yaml",
+        "turbo.json"
+      ],
+      "outputs": ["dist/**"]
+    }
+  },
+  "globalEnv": ["NODE_ENV"],
+  "extends": ["//"]
+}

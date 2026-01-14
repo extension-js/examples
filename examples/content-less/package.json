@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "@extension-js/content-less",
+  "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "devDependencies": {
+    "less": "^4.2.0"
+  },
+  "dependencies": {}
+}
