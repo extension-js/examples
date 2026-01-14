@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - ESLint Config New Tab Example",
+  "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
+  "icons": {
+    "16": "images/eslint.png",
+    "48": "images/eslint.png",
+    "128": "images/eslint.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}

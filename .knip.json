@@ -1,0 +1,11 @@
+{
+  "project": ["examples/*"],
+  "ignore": [
+    "**/postcss.config.js",
+    "**/tailwind.config.js",
+    "**/vite.config.*",
+    "**/webpack.config.js",
+    "**/extension.config.*",
+    "**/playwright.config.*"
+  ]
+}

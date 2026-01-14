@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Special Folders Scripts Example",
+  "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "chromium:action": {
+    "default_icon": {
+      "48": "images/javascript.png"
+    },
+    "default_title": "Run Special Folders Scripts"
+  },
+  "firefox:browser_action": {
+    "default_icon": {
+      "48": "images/javascript.png"
+    },
+    "default_title": "Run Special Folders Scripts"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  }
+}

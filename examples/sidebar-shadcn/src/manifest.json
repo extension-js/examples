@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "0.0.1",
+  "name": "Extension.js - React Sidebar Example",
+  "author": "Cezar Augusto",
+  "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
+  "icons": {
+    "16": "images/shadcn.png",
+    "48": "images/shadcn.png",
+    "128": "images/shadcn.png"
+  },
+  "chromium:action": {
+    "default_icon": {
+      "48": "images/shadcn.png"
+    },
+    "default_title": "Open Extension.js Shadcn Sidebar"
+  },
+  "firefox:browser_action": {
+    "default_icon": {
+      "48": "images/shadcn.png"
+    },
+    "default_title": "Open Extension.js Shadcn Sidebar"
+  },
+  "chromium:side_panel": {
+    "default_path": "sidebar/index.html",
+    "default_title": "Extension.js Shadcn Sidebar Panel"
+  },
+  "firefox:sidebar_action": {
+    "default_panel": "sidebar/index.html",
+    "default_title": "Extension.js Shadcn Sidebar Panel"
+  },
+  "chromium:permissions": ["sidePanel"],
+  "background": {
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
+  }
+}

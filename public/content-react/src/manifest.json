@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - React Content Example",
+  "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
+  "icons": {
+    "16": "images/react.png",
+    "48": "images/react.png",
+    "128": "images/react.png"
+  },
+  "background": {
+    "chromium:service_worker": "background.ts",
+    "firefox:scripts": ["background.ts"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./content/scripts.tsx"]
+    }
+  ]
+}

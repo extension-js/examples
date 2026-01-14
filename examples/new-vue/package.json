@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "@extension-js/new-vue",
+  "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3"
+  }
+}

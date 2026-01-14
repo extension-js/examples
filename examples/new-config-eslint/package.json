@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "@extension-js/new-config-eslint",
+  "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0",
+    "globals": "^15.9.0",
+    "typescript": "5.3.3",
+    "typescript-eslint": "^8.5.0"
+  }
+}

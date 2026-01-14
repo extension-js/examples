@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "@extension-js/content-svelte",
+  "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {
+    "svelte": "^5.15.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "@tsconfig/svelte": "5.0.4",
+    "tailwindcss": "^4.1.3",
+    "typescript": "5.3.3"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "0.0.1",
+  "name": "Extension.js - JavaScript Sidebar Example",
+  "author": "Cezar Augusto",
+  "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
+  "icons": {
+    "16": "images/javascript.png",
+    "48": "images/javascript.png",
+    "128": "images/javascript.png"
+  },
+  "chromium:action": {
+    "default_icon": {
+      "16": "images/javascript.png",
+      "32": "images/javascript.png",
+      "48": "images/javascript.png",
+      "128": "images/javascript.png"
+    },
+    "default_title": "Open Extension.js Sidebar"
+  },
+  "firefox:browser_action": {
+    "default_icon": {
+      "16": "images/javascript.png",
+      "32": "images/javascript.png",
+      "48": "images/javascript.png",
+      "128": "images/javascript.png"
+    },
+    "default_title": "Open Extension.js Sidebar"
+  },
+  "chromium:side_panel": {
+    "default_path": "sidebar/index.html",
+    "default_title": "Extension.js Sidebar Panel"
+  },
+  "firefox:sidebar_action": {
+    "default_panel": "sidebar/index.html",
+    "default_title": "Extension.js Sidebar Panel"
+  },
+  "chromium:permissions": ["sidePanel"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  }
+}

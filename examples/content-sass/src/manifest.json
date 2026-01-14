@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - Sass Content Example",
+  "description": "Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.",
+  "icons": {
+    "16": "images/sass.png",
+    "48": "images/sass.png",
+    "128": "images/sass.png"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"]
+    }
+  ]
+}

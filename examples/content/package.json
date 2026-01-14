@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@extension-js/content",
+  "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* Custom Font Face Declarations */
+/* 
+  IMPORTANT: In browser extensions, font files must be:
+  1. Placed in the public/fonts/ directory
+  2. Declared in web_accessible_resources in manifest.json
+  3. Referenced using relative paths from the extension root
+  4. This example uses static CSS-only @font-face with absolute URLs
+     to the extension root (e.g. /fonts/Roboto-Regular.woff2).
+*/
+/* Sample Font 1 - Momo Signature (static CSS) */
+@font-face {
+  font-family: "Momo Signature";
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  src: url("/fonts/MomoSignature-Regular.woff2") format("woff2"),
+       url("/fonts/MomoSignature-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Momo Signature";
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+  src: url("/fonts/MomoSignature-Bold.woff2") format("woff2"),
+       url("/fonts/MomoSignature-Bold.ttf") format("truetype");
+}
+
+/* Content Script Styles */
+.content_script {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  background: transparent;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  font-family: 'Momo Signature', cursive;
+}
+
+.font_demo {
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+.font_demo h3 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.font_demo p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Font-specific styles */
+.font_momo_signature {
+  font-family: 'Momo Signature', cursive;
+}

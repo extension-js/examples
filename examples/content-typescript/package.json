@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@extension-js/content-typescript",
+  "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "devDependencies": {
+    "typescript": "5.3.3"
+  }
+}

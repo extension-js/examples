@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "Extension.js - New Browser Flags Example",
+  "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
+  "permissions": ["activeTab", "scripting", "notifications"],
+  "chromium:permissions": ["sidePanel"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chromium:side_panel": {
+    "default_path": "sidebar/index.html",
+    "default_title": "Browser Flags Sidebar"
+  },
+  "firefox:sidebar_action": {
+    "default_panel": "sidebar/index.html",
+    "default_title": "Browser Flags Sidebar"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/content.js"]
+    }
+  ],
+  "icons": {
+    "16": "images/extension.png",
+    "48": "images/extension.png",
+    "128": "images/extension.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}

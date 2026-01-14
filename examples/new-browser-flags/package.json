@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@extension-js/new-browser-flags",
+  "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "scripts": {
+    "build": "extension build",
+    "build:edge": "extension build --browser=edge",
+    "build:firefox": "extension build --browser=firefox"
+  }
+}
