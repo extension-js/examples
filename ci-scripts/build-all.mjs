@@ -102,88 +102,123 @@ async function buildExample(slug, browser) {
       path.join(repoRoot, 'ci-scripts', 'build-with-manifest.mjs')
     )
 
-    // Capture output for better error reporting, especially for Edge builds
-    const success = await new Promise((resolve) => {
-      const child = spawn(
-        'node',
-        [scriptPath, 'build', `--browser=${browser}`],
-        {
-          cwd: exampleDirectory,
-          stdio: ['inherit', 'pipe', 'pipe'],
-          env: {...process.env, XDG_CONFIG_HOME},
-          shell: false
-        }
-      )
-
-      let stdout = ''
-      let stderr = ''
-
-      child.stdout?.on('data', (data) => {
-        const text = data.toString()
-        stdout += text
-        process.stdout.write(data)
-      })
-
-      child.stderr?.on('data', (data) => {
-        const text = data.toString()
-        stderr += text
-        process.stderr.write(data)
-      })
-
-      child.on('close', (exitCode) => {
-        const hasRootManifestAfter = fs.existsSync(rootManifestPath)
-        if (!hadRootManifestBefore && hasRootManifestAfter) {
-          console.error(
-            `►►► \nError: Unexpected root manifest.json created during build: ${rootManifestPath}`
-          )
-          process.exit(1)
-        }
-
-        if (exitCode !== 0) {
-          console.error(`►►► \nError: Build failed for ${slug} [${browser}]`)
-          console.error(`►►► Exit code: ${exitCode}`)
-          if (stderr) {
-            console.error(`►►► \n--- Stderr output ---`)
-            stderr.split('\n').forEach((line) => {
-              if (line.trim()) {
-                console.error(`►►► ${line}`)
-              }
-            })
+    const runBuildOnce = () =>
+      new Promise((resolve) => {
+        const child = spawn(
+          'node',
+          [scriptPath, 'build', `--browser=${browser}`],
+          {
+            cwd: exampleDirectory,
+            stdio: ['inherit', 'pipe', 'pipe'],
+            env: {...process.env, XDG_CONFIG_HOME},
+            shell: false
           }
-          if (
-            stdout &&
-            (stdout.includes('Error') || stdout.includes('error'))
-          ) {
-            console.error(`►►► \n--- Relevant stdout output ---`)
-            // Only show lines with errors
-            const errorLines = stdout
-              .split('\n')
-              .filter(
-                (line) =>
-                  line.toLowerCase().includes('error') ||
-                  line.toLowerCase().includes('failed') ||
-                  line.toLowerCase().includes('exception')
-              )
-            if (errorLines.length > 0) {
-              errorLines.forEach((line) => {
-                console.error(`►►► ${line}`)
+        )
+
+        let stdout = ''
+        let stderr = ''
+
+        child.stdout?.on('data', (data) => {
+          const text = data.toString()
+          stdout += text
+          process.stdout.write(data)
+        })
+
+        child.stderr?.on('data', (data) => {
+          const text = data.toString()
+          stderr += text
+          process.stderr.write(data)
+        })
+
+        child.on('close', (exitCode) => {
+          const hasRootManifestAfter = fs.existsSync(rootManifestPath)
+          if (!hadRootManifestBefore && hasRootManifestAfter) {
+            console.error(
+              `►►► \nError: Unexpected root manifest.json created during build: ${rootManifestPath}`
+            )
+            process.exit(1)
+          }
+
+          if (exitCode !== 0) {
+            console.error(`►►► \nError: Build failed for ${slug} [${browser}]`)
+            console.error(`►►► Exit code: ${exitCode}`)
+            if (stderr) {
+              console.error(`►►► \n--- Stderr output ---`)
+              stderr.split('\n').forEach((line) => {
+                if (line.trim()) {
+                  console.error(`►►► ${line}`)
+                }
               })
             }
+            if (
+              stdout &&
+              (stdout.includes('Error') || stdout.includes('error'))
+            ) {
+              console.error(`►►► \n--- Relevant stdout output ---`)
+              // Only show lines with errors
+              const errorLines = stdout
+                .split('\n')
+                .filter(
+                  (line) =>
+                    line.toLowerCase().includes('error') ||
+                    line.toLowerCase().includes('failed') ||
+                    line.toLowerCase().includes('exception')
+                )
+              if (errorLines.length > 0) {
+                errorLines.forEach((line) => {
+                  console.error(`►►► ${line}`)
+                })
+              }
+            }
           }
-        }
-        resolve(exitCode === 0)
+
+          resolve({
+            ok: exitCode === 0,
+            stdout,
+            stderr
+          })
+        })
+
+        child.on('error', (error) => {
+          console.error(
+            `►►► \nError: Failed to start build for ${slug} [${browser}]:`,
+            error.message
+          )
+          resolve({ok: false, stdout: '', stderr: error.message})
+        })
       })
 
-      child.on('error', (error) => {
-        console.error(
-          `►►► \nError: Failed to start build for ${slug} [${browser}]:`,
-          error.message
+    // Run build until outputs exist or retries exhausted.
+    const maxAttempts = process.env.CI ? 3 : 2
+    let result = {ok: false, stdout: '', stderr: ''}
+    let hasOutputs = false
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      if (attempt > 1) {
+        console.log(
+          `►►► Retrying build for ${slug} [${browser}] (attempt ${attempt}/${maxAttempts})...`
         )
-        resolve(false)
-      })
-    })
+      }
 
-    return {slug, browser, ok: success}
+      result = await runBuildOnce()
+      hasOutputs = hasBuiltManifest(exampleDirectory, browser)
+
+      if (hasOutputs) break
+
+      if (!result.stdout.includes('Run the command again to proceed')) {
+        // Avoid tight loop; give filesystem a moment to settle.
+        await new Promise((resolve) => setTimeout(resolve, 250))
+      }
+    }
+
+    if (!hasOutputs) {
+      console.error(
+        `►►► \nError: Build did not produce a manifest for ${slug} [${browser}]`
+      )
+      return {slug, browser, ok: false, error: 'manifest missing'}
+    }
+
+    return {slug, browser, ok: result.ok}
   } catch (error) {
     console.error(`►►► Error building ${slug} [${browser}]:`, error)
     return {slug, browser, ok: false, error: error.message}
@@ -212,6 +247,41 @@ async function runParallel(tasks, limit) {
 }
 
 const browsers = ['chrome', 'edge', 'firefox']
+
+const OUTPUT_ROOTS = ['dist', 'build', '.extension']
+const CHANNELS_BY_BROWSER = {
+  chrome: ['chrome', 'chromium', 'chrome-mv3'],
+  edge: ['edge'],
+  firefox: ['firefox']
+}
+
+function hasBuiltManifest(exampleDirectory, browser) {
+  const baseDirs = [exampleDirectory]
+  const monorepoExtensionDir = path.join(
+    exampleDirectory,
+    'packages',
+    'extension'
+  )
+  if (fs.existsSync(monorepoExtensionDir)) {
+    baseDirs.push(monorepoExtensionDir)
+  }
+  const channels = CHANNELS_BY_BROWSER[browser] || [browser]
+
+  for (const baseDir of baseDirs) {
+    for (const root of OUTPUT_ROOTS) {
+      for (const channel of channels) {
+        const manifestPath = path.join(
+          baseDir,
+          root,
+          channel,
+          'manifest.json'
+        )
+        if (fs.existsSync(manifestPath)) return true
+      }
+    }
+  }
+  return false
+}
 
 // Parse command-line arguments for filtering
 // Usage: node build-all.mjs [--filter="content,sidebar"] or [--filter="^content|^sidebar"]
