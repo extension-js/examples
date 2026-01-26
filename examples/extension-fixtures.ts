@@ -14,17 +14,10 @@ export const extensionFixtures = (
   pathToExtension: string,
   headless?: boolean
 ) => {
-  // Default to HEADED mode (not headless) for better extension compatibility
-  // Content scripts inject more reliably in headed mode
-  // In CI, default to headless mode unless HEADLESS=false is explicitly set
-  // Only use headless if explicitly set via HEADLESS=true, headless parameter, or in CI (unless HEADLESS=false)
+  // Default to HEADED mode (not headless) for better extension compatibility.
+  // Only enable headless if explicitly requested via HEADLESS=true or parameter.
   const isHeadless =
-    headless !== undefined
-      ? headless
-      : !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+    headless !== undefined ? headless : process.env.HEADLESS === 'true'
 
   // Map to store userDataDir per context instance (for parallel test safety)
   const userDataDirMap = new WeakMap<BrowserContext, string>()
@@ -414,10 +407,7 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
   const os = await import('os')
   const tmpRoot = os.tmpdir()
   const userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
-  const isHeadless = !!(
-    process.env.HEADLESS === 'true' ||
-    (process.env.CI && process.env.HEADLESS !== 'false')
-  )
+  const isHeadless = process.env.HEADLESS === 'true'
   const context = await chromium.launchPersistentContext(userDataDir, {
     headless: isHeadless,
     args: [

@@ -7,6 +7,8 @@
 
 import {defineConfig, devices} from '@playwright/test'
 
+const isHeadless = process.env.HEADLESS === 'true'
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -54,10 +56,9 @@ export default defineConfig({
     // Respect HEADLESS environment variable, default to false (headed mode) for better extension compatibility
     // Content scripts inject more reliably in headed mode
     // In CI, use headless mode unless HEADLESS=false is explicitly set (requires xvfb-run)
-    headless: !!(
-      process.env.HEADLESS === 'true' ||
-      (process.env.CI && process.env.HEADLESS !== 'false')
-    ),
+    // Extensions load reliably only in headed mode.
+    // Use HEADLESS=true explicitly when needed.
+    headless: isHeadless,
 
     // Collect traces only on failure for better performance
     trace: 'retain-on-failure',
@@ -91,10 +92,7 @@ export default defineConfig({
       testMatch: /examples\/(content|content-.*)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -104,10 +102,7 @@ export default defineConfig({
       testMatch: /examples\/(sidebar|sidebar-.*)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -117,10 +112,7 @@ export default defineConfig({
       testMatch: /examples\/(action|action-.*)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -130,10 +122,7 @@ export default defineConfig({
       testMatch: /examples\/(new|new-.*)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -143,10 +132,7 @@ export default defineConfig({
       testMatch: /examples\/special-folders-.*\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -157,10 +143,7 @@ export default defineConfig({
         /examples\/(javascript|preact|react|svelte|typescript|vue)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     },
 
@@ -170,10 +153,7 @@ export default defineConfig({
       testMatch: /examples\/(init)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
-        headless: !!(
-          process.env.HEADLESS === 'true' ||
-          (process.env.CI && process.env.HEADLESS !== 'false')
-        )
+        headless: isHeadless
       }
     }
   ]
