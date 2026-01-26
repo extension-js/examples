@@ -270,12 +270,7 @@ function hasBuiltManifest(exampleDirectory, browser) {
   for (const baseDir of baseDirs) {
     for (const root of OUTPUT_ROOTS) {
       for (const channel of channels) {
-        const manifestPath = path.join(
-          baseDir,
-          root,
-          channel,
-          'manifest.json'
-        )
+        const manifestPath = path.join(baseDir, root, channel, 'manifest.json')
         if (fs.existsSync(manifestPath)) return true
       }
     }
