@@ -47,6 +47,21 @@ const CURATED_ALLOWED_KEYS = [
   'docsUrl'
 ]
 
+const FALLBACK_ICON_CANDIDATES = [
+  ['public', 'logo.png'],
+  ['public', 'logo.svg'],
+  ['public', 'icon.png'],
+  ['public', 'icon.svg'],
+  ['public', 'app-icon.png'],
+  ['public', 'app-icon.svg'],
+  ['src', 'images', 'logo.png'],
+  ['src', 'images', 'logo.svg'],
+  ['src', 'images', 'icon.png'],
+  ['src', 'images', 'icon.svg'],
+  ['src', 'images', 'extension.png'],
+  ['src', 'images', 'extension.svg']
+]
+
 function readJsonSafe(filePath) {
   try {
     return JSON.parse(fs.readFileSync(filePath, 'utf8'))
@@ -485,14 +500,40 @@ function resolveManifestIconFile(exampleDirectory, iconPath) {
   return null
 }
 
+function resolveFallbackIconFile(exampleDirectory, slug) {
+  for (const candidate of FALLBACK_ICON_CANDIDATES) {
+    const filePath = path.join(exampleDirectory, ...candidate)
+    
+    if (exists(filePath)) return filePath
+  }
+
+  const slugCandidates = [
+    path.join(exampleDirectory, 'public', `${slug}.png`),
+    path.join(exampleDirectory, 'public', `${slug}.svg`),
+    path.join(exampleDirectory, 'src', 'images', `${slug}.png`),
+    path.join(exampleDirectory, 'src', 'images', `${slug}.svg`)
+  ]
+
+  for (const filePath of slugCandidates) {
+    if (exists(filePath)) return filePath
+  }
+
+  return null
+}
+
 function detectTemplateIcon(exampleDirectory, manifest) {
   const iconPath = pickManifestIconPath(manifest || {})
-  if (!iconPath) return null
+  if (iconPath) {
+    const resolved = resolveManifestIconFile(exampleDirectory, iconPath)
+    if (resolved) return path.relative(repoRoot, resolved).replace(/\\/g, '/')
+  }
 
-  const resolved = resolveManifestIconFile(exampleDirectory, iconPath)
-  if (!resolved) return null
+  const slug = path.basename(exampleDirectory)
+  const fallback = resolveFallbackIconFile(exampleDirectory, slug)
 
-  return path.relative(repoRoot, resolved).replace(/\\/g, '/')
+  if (!fallback) return null
+
+  return path.relative(repoRoot, fallback).replace(/\\/g, '/')
 }
 
 function getGitCommit() {
