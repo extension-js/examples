@@ -131,14 +131,35 @@ function main() {
   }
 
   // Rewrite metadata paths to committed layout under public/<slug>/...
+  const normalizeTemplatePath = (slug, filePath) => {
+    if (!filePath) return filePath
+
+    let clean = String(filePath)
+      .replace(/^\/+/, '')
+      .replace(/^\.\/+/, '')
+
+    if (clean.startsWith(`public/${slug}/`)) return clean
+
+    if (clean.startsWith(`examples/${slug}/`)) {
+      clean = clean.replace(`examples/${slug}/`, '')
+    }
+
+    if (clean.startsWith(`${slug}/`)) {
+      clean = clean.replace(`${slug}/`, '')
+    }
+
+    return `public/${slug}/${clean}`
+  }
+
   templatesMetadata.templates = (templatesMetadata.templates || []).map(
     (template) => {
       const slug = template.slug
       return {
         ...template,
         screenshot: `public/${slug}/screenshot.png`,
-        files: (template.files || []).map(
-          (filePath) => `public/${slug}/${filePath}`
+        icon: template.icon ? normalizeTemplatePath(slug, template.icon) : null,
+        files: (template.files || []).map((filePath) =>
+          normalizeTemplatePath(slug, filePath)
         ),
         repositoryUrl: `https://github.com/extension-js/examples/tree/main/examples/${slug}`
       }
