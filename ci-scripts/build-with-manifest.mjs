@@ -47,9 +47,15 @@ function main() {
   // No manifest rewriting.
   // Extension.js resolves manifest.json recursively (e.g. src/manifest.json),
   // so this script must never create a temporary root manifest.json.
+  const env = {...process.env, XDG_CONFIG_HOME}
+
+  if (process.env.EXTENSION_SKIP_INSTALL !== undefined) {
+    env.EXTENSION_SKIP_INSTALL = process.env.EXTENSION_SKIP_INSTALL
+  }
+
   run('npx', ['-y', `extension@${EXT_VERSION}`, mode, ...extraArgs], {
     cwd: CWD,
-    env: {...process.env, XDG_CONFIG_HOME, EXTENSION_SKIP_INSTALL: '1'}
+    env
   })
 }
 

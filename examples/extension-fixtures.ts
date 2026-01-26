@@ -464,8 +464,9 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
     }
   }
   for (const dir of candidateDirs) if (hasManifest(dir)) return dir
-  // Try building once if not present
-  try {
+  // Try building if not present. Some Extension.js versions install deps first
+  // and require a second invocation to actually build.
+  const runBuild = () => {
     execSync(
       `node ../../ci-scripts/build-with-manifest.mjs build --browser=chrome`,
       {
@@ -473,8 +474,18 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
         stdio: 'inherit'
       }
     )
+  }
+  try {
+    runBuild()
   } catch {
     /* noop */
+  }
+  if (!candidateDirs.some((dir) => hasManifest(dir))) {
+    try {
+      runBuild()
+    } catch {
+      /* noop */
+    }
   }
   for (const dir of candidateDirs) if (hasManifest(dir)) return dir
   // As a last attempt, search shallowly under known roots for any manifest.json
