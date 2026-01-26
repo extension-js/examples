@@ -51,6 +51,7 @@ export interface TemplateMeta {
   files: string[]
   browsers: string[]
   screenshot: string | null
+  icon: string | null
   downloads?: Record<string, string>
   integrity?: Record<string, TemplateIntegrity>
   repositoryUrl?: string

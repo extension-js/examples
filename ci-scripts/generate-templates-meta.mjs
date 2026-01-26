@@ -417,6 +417,84 @@ function detectScreenshot(exampleDirectory) {
     : null
 }
 
+function pickIconPathFromRecord(record) {
+  if (!record || typeof record !== 'object') return null
+
+  const sizes = [128, 96, 64, 48, 32, 16]
+
+  for (const size of sizes) {
+    const value = record[String(size)]
+    if (typeof value === 'string' && value.trim()) return value.trim()
+  }
+
+  for (const value of Object.values(record)) {
+    if (typeof value === 'string' && value.trim()) return value.trim()
+  }
+
+  return null
+}
+
+function pickIconPath(value) {
+  if (!value) return null
+  if (typeof value === 'string') return value.trim() || null
+  if (typeof value === 'object') return pickIconPathFromRecord(value)
+
+  return null
+}
+
+function getDefaultIconFromSection(manifest, key) {
+  const section = manifest?.[key]
+
+  if (!section || typeof section !== 'object') return null
+
+  return pickIconPath(section.default_icon)
+}
+
+function pickManifestIconPath(manifest) {
+  return (
+    pickIconPath(manifest?.icons) ||
+    getDefaultIconFromSection(manifest, 'action') ||
+    getDefaultIconFromSection(manifest, 'browser_action') ||
+    getDefaultIconFromSection(manifest, 'page_action') ||
+    getDefaultIconFromSection(manifest, 'sidebar_action') ||
+    getDefaultIconFromSection(manifest, 'chromium:action') ||
+    getDefaultIconFromSection(manifest, 'firefox:browser_action') ||
+    getDefaultIconFromSection(manifest, 'chromium:browser_action')
+  )
+}
+
+function normalizeRelativePath(input) {
+  return String(input || '')
+    .trim()
+    .replace(/^\/+/, '')
+    .replace(/^\.\/+/, '')
+}
+
+function resolveManifestIconFile(exampleDirectory, iconPath) {
+  if (!iconPath || typeof iconPath !== 'string') return null
+  if (iconPath.startsWith('data:') || iconPath.startsWith('http')) return null
+
+  const cleaned = normalizeRelativePath(iconPath)
+  const directCandidate = path.join(exampleDirectory, cleaned)
+
+  if (exists(directCandidate)) return directCandidate
+
+  const srcCandidate = path.join(exampleDirectory, 'src', cleaned)
+
+  if (exists(srcCandidate)) return srcCandidate
+  return null
+}
+
+function detectTemplateIcon(exampleDirectory, manifest) {
+  const iconPath = pickManifestIconPath(manifest || {})
+  if (!iconPath) return null
+
+  const resolved = resolveManifestIconFile(exampleDirectory, iconPath)
+  if (!resolved) return null
+
+  return path.relative(repoRoot, resolved).replace(/\\/g, '/')
+}
+
 function getGitCommit() {
   try {
     const gitResult = spawnSync('git', ['rev-parse', 'HEAD'], {
@@ -494,7 +572,8 @@ function buildTemplateEntry(exampleDirectory) {
     docsUrl: curated?.docsUrl,
     files: collectFiles(exampleDirectory),
     browsers: ['chrome', 'edge', 'firefox'],
-    screenshot: detectScreenshot(exampleDirectory)
+    screenshot: detectScreenshot(exampleDirectory),
+    icon: detectTemplateIcon(exampleDirectory, manifest)
   }
 
   try {
@@ -630,6 +709,7 @@ export interface TemplateMeta {
   files: string[]
   browsers: string[]
   screenshot: string | null
+  icon: string | null
   downloads?: Record<string, string>
   integrity?: Record<string, TemplateIntegrity>
   repositoryUrl?: string
