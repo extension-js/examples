@@ -43,7 +43,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/action/screenshot.png",
-      "icon": "public/action/public/logo.png",
+      "icon": "public/action/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/action.edge.zip",
@@ -104,7 +104,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/action-chatgpt/screenshot.png",
-      "icon": "public/action-chatgpt/public/logo.png",
+      "icon": "public/action-chatgpt/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.edge.zip",
@@ -166,7 +166,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/action-locales/screenshot.png",
-      "icon": "public/action-locales/public/logo.png",
+      "icon": "public/action-locales/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action-locales.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/action-locales.edge.zip",
@@ -401,7 +401,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-env/screenshot.png",
-      "icon": "public/content-env/public/logo.png",
+      "icon": "public/content-env/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-env.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-env.edge.zip",
@@ -778,7 +778,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-react/screenshot.png",
-      "icon": "public/content-react/public/logo.png",
+      "icon": "public/content-react/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-react.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-react.edge.zip",
@@ -963,7 +963,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-svelte/screenshot.png",
-      "icon": "public/content-svelte/public/logo.png",
+      "icon": "public/content-svelte/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.edge.zip",
@@ -1144,7 +1144,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/init/screenshot.png",
-      "icon": "public/init/public/logo.png",
+      "icon": "public/init/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/init.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/init.edge.zip",
@@ -1268,7 +1268,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new/screenshot.png",
-      "icon": "public/new/public/logo.png",
+      "icon": "public/new/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new.edge.zip",
@@ -1519,7 +1519,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-config-stylelint/screenshot.png",
-      "icon": "public/new-config-stylelint/public/logo.png",
+      "icon": "public/new-config-stylelint/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.edge.zip",
@@ -1580,7 +1580,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-crypto/screenshot.png",
-      "icon": "public/new-crypto/public/logo.png",
+      "icon": "public/new-crypto/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.edge.zip",
@@ -1641,7 +1641,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-env/screenshot.png",
-      "icon": "public/new-env/public/logo.png",
+      "icon": "public/new-env/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-env.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-env.edge.zip",
@@ -1761,7 +1761,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-preact/screenshot.png",
-      "icon": "public/new-preact/public/logo.png",
+      "icon": "public/new-preact/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.edge.zip",
@@ -1822,7 +1822,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-react/screenshot.png",
-      "icon": "public/new-react/public/logo.png",
+      "icon": "public/new-react/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react.edge.zip",
@@ -1883,7 +1883,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-react-router/screenshot.png",
-      "icon": "public/new-react-router/public/logo.png",
+      "icon": "public/new-react-router/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.edge.zip",
@@ -2003,7 +2003,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/new-svelte/screenshot.png",
-      "icon": "public/new-svelte/public/logo.png",
+      "icon": "public/new-svelte/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.edge.zip",
@@ -2252,7 +2252,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/react/screenshot.png",
-      "icon": "public/react/public/logo.svg",
+      "icon": "public/react/public/icon.png",
       "downloads": {
         "chrome": "https://github.com/extension-js/examples/releases/download/nightly/react.chrome.zip",
         "edge": "https://github.com/extension-js/examples/releases/download/nightly/react.edge.zip",
