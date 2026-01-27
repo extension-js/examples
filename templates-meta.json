@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-01-27T11:40:55.862Z",
+  "generatedAt": "2026-01-27T12:33:32.652Z",
   "templates": [
     {
       "slug": "action",
@@ -32,7 +32,6 @@
       "optional_permissions": [],
       "files": [
         "public/action/public/icon.png",
-        "public/action/public/logo.png",
         "public/action/public/screenshot.png",
         "public/action/src/action/index.html",
         "public/action/src/action/scripts.js",
@@ -51,16 +50,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "fba22402221609fe86460c76e656f54cafbcdac7a2f424845dbe6fc77e74113f",
-          "size": 422868
+          "sha256": "a0a1ecc8fc4eade4e9d11e13efd8954cc56c9b601541076e7bb242b57a27bb4a",
+          "size": 320924
         },
         "edge": {
-          "sha256": "41a43b63eb2a05eb78651a32f35e4e9e9d2ab9dbfd3e972c101352f383cf84fa",
-          "size": 422868
+          "sha256": "54b71a90207f4cc5eecc165a7b71b07d14f33158413fec1da41b48b26211347f",
+          "size": 320924
         },
         "firefox": {
-          "sha256": "f1b44d648ea6ed587ea889430a9051255a2c5ab7bb20a1ed35edf85b14ef818b",
-          "size": 422849
+          "sha256": "151ebd69c1b9bbb2806950a190fecc34f6399721464582f6d2f756c49613c357",
+          "size": 320905
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action"
@@ -92,7 +91,6 @@
       "optional_permissions": [],
       "files": [
         "public/action-chatgpt/public/icon.png",
-        "public/action-chatgpt/public/logo.png",
         "public/action-chatgpt/src/action/ActionApp.tsx",
         "public/action-chatgpt/src/action/index.html",
         "public/action-chatgpt/src/action/scripts.tsx",
@@ -112,16 +110,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "80ccdf21f9f7e7fd32764d98f52e6cd32e58fa7e020f19f8e737773103cbbdbf",
-          "size": 188325
+          "sha256": "cba49b607d8bc0c452e9f0949b3d9d33fce2bc4ec24192df8c1d7be8536f0a63",
+          "size": 173629
         },
         "edge": {
-          "sha256": "21cbce643b729a0a01146c31cda444b2c049960746331f5e8535a3539f8f085f",
-          "size": 188325
+          "sha256": "a593a562729a813df556369d9ffa765cdfc4e84616f21a6e18ab59cdae417278",
+          "size": 173629
         },
         "firefox": {
-          "sha256": "f9d728385c0cf1ad5dffab112773541a43781dbc5923b28d4d3c13bfb5d3f702",
-          "size": 188307
+          "sha256": "ac474a4c81c30a5834d256e24d3494ae4ca442a518682b6e4333559422dbc521",
+          "size": 173611
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-chatgpt"
@@ -153,7 +151,6 @@
       "optional_permissions": [],
       "files": [
         "public/action-locales/public/icon.png",
-        "public/action-locales/public/logo.png",
         "public/action-locales/public/screenshot.png",
         "public/action-locales/src/_locales/en/messages.json",
         "public/action-locales/src/_locales/pt_BR/messages.json",
@@ -174,16 +171,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "25e6e42e4be7d9b27e3506150ff196ccbfd6608b6ac1dad58dc621530bee6954",
-          "size": 437942
+          "sha256": "ab1ef8773212fc60162f1ca10e2132beb239fd5867040efffdb4dc932169a860",
+          "size": 335998
         },
         "edge": {
-          "sha256": "767630309f3e8f5bf6849bfd0fda080b0bb2b85ae36ffc951277c1fe042f01fe",
-          "size": 437942
+          "sha256": "f9c8fcbe30fc436d74e2e1a139b589a05fc9818dea74c7719211f476df66eac4",
+          "size": 335998
         },
         "firefox": {
-          "sha256": "004cb87a274a9720a1339365420a2c69f30ebe287a4a708d6bffdae7c0be5d5f",
-          "size": 437923
+          "sha256": "851283f68e0866ced2949a0a57b297d6493fdd971245c6bfef3a80e46a5cf56b",
+          "size": 335979
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-locales"
@@ -232,15 +229,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "25b6728b4dbebad802fdb6519f0e945bd9591ff1baacc8c355987939d94d8b25",
+          "sha256": "cd3016393860c937f05669164d24975174dfb84328cbbaf7fb3f31dd54427e51",
           "size": 406879
         },
         "edge": {
-          "sha256": "b00a03318744585a991838c051182a767e9699e4fef776331176841afb93236f",
+          "sha256": "946f576e6045bda313609faa653ed131de0c54bb5c6cc135981a0dc91163b551",
           "size": 406879
         },
         "firefox": {
-          "sha256": "11d7d7bba5fa3c59597895edb5e95e42c8596f2c77cbce9660d96cb817020fe6",
+          "sha256": "f8df94a5bbf3f0af426baf222ae7de806f3d9956383487663b485115f6411a1f",
           "size": 406857
         }
       },
@@ -290,15 +287,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "22e94a8873aeeacc42c8338628e824693dd7cbcaf13790c53dc352566184c568",
+          "sha256": "409bf9760eb5a472b08a9beee94c7c5982bb8f5062409bac0124fe287178632b",
           "size": 51768
         },
         "edge": {
-          "sha256": "bbca9a3947eedc3c25bf5bc15afd846246aa1a315e73bba561b05a8fa0abb27e",
+          "sha256": "f79de52e8d56e68f069ee9a6f63b4abad70ffa1c2bb0e80586e29ef6d925dcb9",
           "size": 51768
         },
         "firefox": {
-          "sha256": "720bbc5f7b4c6a0d8812835e52974e3619e618710ba2e32d4110196e3ed7939a",
+          "sha256": "804a8a83395a994b97a6399d39979c1990f5ed755c9c4bd09451f7a60874712f",
           "size": 51747
         }
       },
@@ -348,16 +345,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "18596bcbc3b62c5bb356d37d4f69c588e87f2cb8e35aa2ad3988737ab9a9f00b",
-          "size": 42108
+          "sha256": "c951c8a8fb6e3a99a4f0658819ac46921cc1a4940bed042c6849c6e482c71705",
+          "size": 69179
         },
         "edge": {
-          "sha256": "9613bb7437a54a98e2e819288301d11391d8cbd4d622838c97e1cf66c8ddb2e2",
-          "size": 42108
+          "sha256": "c69df26f15e73b131fb2ba6e8c64dbc1b89e375ec578b1e3eec4ca8406376255",
+          "size": 69179
         },
         "firefox": {
-          "sha256": "1aad3f4523ba77dd0de15785e033ab9fe683a108ed7f558bd451e1f5cecf67de",
-          "size": 42088
+          "sha256": "21b445d4fbcc39a92b44c1a31c5c448632d973a4e50b46e158a5f5f22caebd83",
+          "size": 69159
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-custom-font"
@@ -389,7 +386,6 @@
       "optional_permissions": [],
       "files": [
         "public/content-env/public/icon.png",
-        "public/content-env/public/logo.png",
         "public/content-env/public/screenshot.png",
         "public/content-env/src/background.ts",
         "public/content-env/src/content/scripts.ts",
@@ -409,16 +405,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "795ac5b130b6e2c5123edc98148e9d06a1010a34ea3be4363d902737fb4b2808",
-          "size": 335125
+          "sha256": "ca6e09333d379153ec3cc8eeec1152d1e5a32bcc8735cadbd084f42fe10c7c19",
+          "size": 333585
         },
         "edge": {
-          "sha256": "e87a7bf2d6ec38f771d35eb3d55c3c19745eaf1365d9d76092545b03b28e6e6e",
-          "size": 335123
+          "sha256": "73377d952cfdeb9b81c70f91d76aae9f0e65693979b9b36850a64148015d74ed",
+          "size": 333583
         },
         "firefox": {
-          "sha256": "bf4f9f42e4a0cdeda2c0085898dd04276000c277d67ef5263ae562a0d00cb33f",
-          "size": 335102
+          "sha256": "504a8d3060323311702cc634b8562fc0a5a6b6b4ca36826c0fc9454bf462555e",
+          "size": 333562
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-env"
@@ -469,15 +465,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "223ff39c17763843aeb52dcba84623da51b891e26f64dd694b7b6291397c9263",
+          "sha256": "75cf99112e24c7cb606b146169290562e9a7cbd4c13d5c286dd206875694e2dd",
           "size": 348844
         },
         "edge": {
-          "sha256": "d91137277aacbf7ccea3881f938f75b4275dbcf3afad946d6c4fb810aa608e56",
+          "sha256": "c94a0375b591316e35d2f8db4412ee598f8c5fa0d9d3854705abf9e67ba2f735",
           "size": 348844
         },
         "firefox": {
-          "sha256": "b869b583f1edcdaa63b581c93620b2499c8853ff7abbe3d69dc93e21c4c79243",
+          "sha256": "b8491a4602a87a888f24bcdcf92ef9c32db4899bc5fcea5f69bc5d655895d356",
           "size": 348824
         }
       },
@@ -528,15 +524,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "a70933a917c9cf172cabceb459f075330a2f287db916ceacdf0158a4bf945822",
+          "sha256": "8badca0e480c057be88ce59c99625bb4078cadaa9dac104b99c54c3fd25fb81a",
           "size": 32784
         },
         "edge": {
-          "sha256": "80780083605e9f9ef891f75c9582a1c9bf43ff509ff1dafb11d2aa8e2bbbd07c",
+          "sha256": "3acd6972dc55766162d5d2ef07187d34cebbb1d7f16c37c1548bac9a3a7a8cfe",
           "size": 32784
         },
         "firefox": {
-          "sha256": "fb967d9695943f962298cd3a6842e83edf2547791f39353c30bad8ca48127c4f",
+          "sha256": "9a785d0dfccbf00b2d2f597eba191eb513ddebae0a4643f99d19fe54c5a48799",
           "size": 32764
         }
       },
@@ -593,15 +589,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b079e2e6399b9d7290446da88bf975b5ff41d9aa63ddd855ceed88b6a408473e",
+          "sha256": "ae17c0b8678f2a31ff670ad733c4ad3bcc5d8684b260197cc349c0ce43f4539a",
           "size": 67085
         },
         "edge": {
-          "sha256": "dedc52d1db9509a1d4076d33a8f84a41e3e6446b23acfd2c49a05d98a238489f",
+          "sha256": "838045c2f56f0d47037df7d569d45d219cd0d2236009fbc9233abc6145bec521",
           "size": 67085
         },
         "firefox": {
-          "sha256": "65dd1995a8ec8296c37f3900e05ee7f3ffc4adaa8f5aeda6ae801d062249c6f6",
+          "sha256": "2869e1ddda0803392dcf0e4e3b7198a8683864a7628503cc8044a99e9464594e",
           "size": 67063
         }
       },
@@ -658,15 +654,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "a6a59b31e2b9023f94be2adeacd3587a4c6796a4ff0964af949ab65e91cb97f5",
+          "sha256": "419bba3b4303b5bcc4726e1f346498108327e8cc7df0a9943d6baefcb52b84c2",
           "size": 71182
         },
         "edge": {
-          "sha256": "4236fc9180006c0e8854c4a7e6d37662a5aa5bb68b3f534813de93df6d6ef097",
+          "sha256": "01bd9c90d20dde1fec5a6d25a1d6b7f06705be4bdfa529c2242e85bbca508de4",
           "size": 71182
         },
         "firefox": {
-          "sha256": "2fffe25d36d9f154e1931987a00373d4594e00f6950796ddbf1e2af31e7577bc",
+          "sha256": "1ce85b95b7a1ce90b516223a39a9de4083a93acbb360a75aedb4c4f07b763874",
           "size": 71160
         }
       },
@@ -721,16 +717,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "1463f44cb47a348c46c580f3102596ce107550443e801fa9f85c665a1cf7ed83",
-          "size": 1121731
+          "sha256": "ef97b887bc84ec02203a624979c76c9cabbf9367ff3098d6044e4155ffed01fa",
+          "size": 1148425
         },
         "edge": {
-          "sha256": "3d76de7aa058443737549bb93b448e83001852959e0a12c2f4c5adcbd1633ee5",
-          "size": 1121731
+          "sha256": "fc538134f27fbfc7a090dc4e5c45611c67148b0c2a96f6d2de54a73c09047c5b",
+          "size": 1148425
         },
         "firefox": {
-          "sha256": "9b41437a9a98d767ea096fe2c4fabf7e5c2e183d754ceee6672d358534739f56",
-          "size": 1121710
+          "sha256": "8447b1008cf4b0c33f612e2144fbbcf58f97271fac427902c621a2c4921f9a4a",
+          "size": 1148404
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
@@ -762,7 +758,6 @@
       "optional_permissions": [],
       "files": [
         "public/content-react/public/icon.png",
-        "public/content-react/public/logo.png",
         "public/content-react/public/screenshot.png",
         "public/content-react/src/ambient.css-url.d.ts",
         "public/content-react/src/background.ts",
@@ -786,16 +781,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "8983e61f82a18926b594d688ede6f00159c98e72540821079237bbd2c0e6131a",
-          "size": 1316774
+          "sha256": "07567730305890972cec5fb8343c8669f81cc1d127c35732e3bc0c824c503f82",
+          "size": 1242140
         },
         "edge": {
-          "sha256": "80ab60abdcd81f5496d573bd86001dc3a08bc0e47ebedd2fdc233c7c08d45028",
-          "size": 1316774
+          "sha256": "7644a05be45aabe7d21a9617d1a803d53dfeb05648f737882afeebc20d9a2462",
+          "size": 1242140
         },
         "firefox": {
-          "sha256": "2824bbd746138f40d906ae8397a50931db0c645b9b62aa286e1f19f096c875df",
-          "size": 1316753
+          "sha256": "567005fae2e90d0dc1f903780e5c6770c2c462685e008dc1e7bbee3c00a9bf18",
+          "size": 1242119
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-react"
@@ -845,15 +840,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6566c8b3e33ca1ff9e37e0d434a4070ae566a4a9d636d2970e3da2e5825b0199",
+          "sha256": "17d57f94c9b38f65486f83a8fea34ad1c798298a708c12ec4716b37e66839688",
           "size": 9530
         },
         "edge": {
-          "sha256": "99a8d00a4d390d62ccc1b6f79ace9d1457b0cdcc11b758f8621e8422f4603104",
+          "sha256": "6dbbca788f4c80151e25e9b9742852803086b97d1337ef83cf91d7fe39a70c23",
           "size": 9530
         },
         "firefox": {
-          "sha256": "be8540885926b51174476ec857efb61632b25045a3ce5e7c5f93afd7a385b0dc",
+          "sha256": "977307f7f6a09df2364bfe342504a79c62fea8c18e910e005bc0aa831d60dd6d",
           "size": 9509
         }
       },
@@ -906,15 +901,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "32912ce5c63a0cb9d4ab94cf0db84f53878816a3d19a1ad2797ec2dea3b78fae",
+          "sha256": "81455f1a050b90feed982604c26f272f99a2f5dd7a1c3b0640f61aee60561cf3",
           "size": 9549
         },
         "edge": {
-          "sha256": "3ce1284c950d88b4b874a868ccbe5e9f73b1ed445baecd7e265f4db6aa10b433",
+          "sha256": "3e77a68116b9a034b8ed5912681c37fee3dd8ca75829b584f603754d7ceb0857",
           "size": 9549
         },
         "firefox": {
-          "sha256": "1371584c6160cbdb709ea14aff7cbf1c0ef9e5454f050895faa520a064ba9827",
+          "sha256": "c75e12e6b4046342120c1fe6a1393bacfb851a9368596fb6ab46323fa0618483",
           "size": 9527
         }
       },
@@ -947,7 +942,6 @@
       "optional_permissions": [],
       "files": [
         "public/content-svelte/public/icon.png",
-        "public/content-svelte/public/logo.png",
         "public/content-svelte/public/screenshot.png",
         "public/content-svelte/src/background.ts",
         "public/content-svelte/src/content/ContentApp.svelte",
@@ -971,16 +965,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "88b9028ecb79cd7d116c09e39f7acfe11f73eaddb851845f760018c6fe15cfa0",
-          "size": 1267177
+          "sha256": "f58bfc884fb8578a24d6c9c5e9a1e6fda1e36081bcf6d1438d2ece68bb3de66c",
+          "size": 1199250
         },
         "edge": {
-          "sha256": "324d7f3ba52828044d9bc03c94df5620bbf2ff20297c28a4b63dd46426da0a75",
-          "size": 1267177
+          "sha256": "aa75b5163330cea70a13345bfab795f19ddbdca0b37c2660d03f14b564635c77",
+          "size": 1199250
         },
         "firefox": {
-          "sha256": "f0a452893f2205bc93ad4242d51eb2aa6c6b1fe9b816303713cf404e83789592",
-          "size": 1267155
+          "sha256": "10fc76559241da12ecdf686ea6a937a17bcfb8b32f03c160c5fd9eb56999e475",
+          "size": 1199228
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-svelte"
@@ -1030,15 +1024,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "43b14052853f335840305244dbf8fd66c1923098370ac0b136da9e128db5335e",
+          "sha256": "db5f701e113d153e08a59ed22890b94904114cdd8d2f0e4dd4e7928d0edaff9a",
           "size": 334237
         },
         "edge": {
-          "sha256": "b65a2dbc6dc752fb14099a98ccd762465b4d1f0978a23a38a04a9a6a226b78e9",
+          "sha256": "84cd718791fad387c99e76563f7b6878edd7840c32d6f5c01ff7a6428bae6f39",
           "size": 334237
         },
         "firefox": {
-          "sha256": "b9c7006b8c11d98cf113e650685c98f1a958e5e7a92378c8014d8f128dc4e7a1",
+          "sha256": "f141e8147c44c755b674a456667c70c6878f8da0298e0534dc89852d41343a68",
           "size": 334214
         }
       },
@@ -1095,15 +1089,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6eec0362e19af055eb53e07f055550bc6ff8f9ab5b0264333365d17e7d28bec9",
+          "sha256": "d0412fd66898ac88acfb10b558c86e64bf65293f6699ae9293cc0596c5aad067",
           "size": 1083082
         },
         "edge": {
-          "sha256": "b911e025e418f5624117a2cc3ba9fb8cf6f1aaf9d5b09e5ddf1e4c225d6351df",
+          "sha256": "7158927f1c91e447626f09861e624cbe8f056dec9976b095a1665b42d60ffd82",
           "size": 1083082
         },
         "firefox": {
-          "sha256": "a52dbeedf1e23d04bb580ae66c06a1f4a50783982bd6b46db1f4a2a1072f7e55",
+          "sha256": "c6380026ba299c066cb0bd375458d525df184d993ccfff9f744fc3c1551fb968",
           "size": 1083060
         }
       },
@@ -1136,7 +1130,6 @@
       "optional_permissions": [],
       "files": [
         "public/init/public/icon.png",
-        "public/init/public/logo.png",
         "public/init/public/screenshot.png",
         "public/init/src/images/javascript.png",
         "public/init/src/index.js",
@@ -1152,16 +1145,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "dee6bb92a5551917315463da29766348aef1fa734265e869efb8f0d0b24856d7",
-          "size": 297278
+          "sha256": "8ef7f7c904a35819f70afe2ec9638f5776d7a4fe87ac6fe139caa1161e4c2182",
+          "size": 230442
         },
         "edge": {
-          "sha256": "021ce9fdb88cb3e4c9d149f8ecf803ce04db9037b3d3b271d22a15736a67c42b",
-          "size": 297278
+          "sha256": "0561ab67e41a807a72c67dcdf53f872a0cdeac00d95b5074371b798f9ce1b650",
+          "size": 230442
         },
         "firefox": {
-          "sha256": "6a50f83de0ec21db6b3a4671ff708a9bc5a1a6c8aaf66fb89d91ce0ad19e4146",
-          "size": 297278
+          "sha256": "5b91a8151c1f70c354234a0259dfe8749fb30515a1774c3cb8acc32d253818e6",
+          "size": 230442
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/init"
@@ -1216,15 +1209,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "69d0d2c91aeed3244ab52e455ea60f63a8492a51922e596ffaf62f46bd97c89d",
+          "sha256": "689ca5b21fcd2d88d0c7973a07685f5ba6c913c8fc51bf607b70ae2238807d1b",
           "size": 23361
         },
         "edge": {
-          "sha256": "b00b1b6a930981c8d160797ec9726bda8d079e002b011345e3520960e64da9ec",
+          "sha256": "9176a78415f03175ec458e593ebda89594c3bd81575298e2465d1e765b25747d",
           "size": 23361
         },
         "firefox": {
-          "sha256": "15914e1c7d24f808aa8380d8b6d9dfca396a53db4de0ff6dad7311149a2bbeae",
+          "sha256": "a8f24cfe9c112766467c1174f8701e5821a2eb9fcf19aff8dd61fe08949cbc32",
           "size": 23354
         }
       },
@@ -1257,7 +1250,6 @@
       "optional_permissions": [],
       "files": [
         "public/new/public/icon.png",
-        "public/new/public/logo.png",
         "public/new/public/screenshot.png",
         "public/new/src/background.js",
         "public/new/src/images/javascript.png",
@@ -1276,16 +1268,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "417bd0358dc654e8353ddddfcf53b229320855fe52857a37567ac4fd56f5e4b8",
-          "size": 369995
+          "sha256": "89e615a8c724b8f5d9b593ad1bb272f88de86bf95c5edd19304fb21e59ad999f",
+          "size": 268051
         },
         "edge": {
-          "sha256": "c2a24d5a521319627512bcd75c94ba5a287693af7b8b3ea9f6a81aa2c0787812",
-          "size": 369995
+          "sha256": "7c8f02a2459b43456fd8f71c62a164e004a79b467520304c05dd33f900ab35bc",
+          "size": 268051
         },
         "firefox": {
-          "sha256": "57270d353518362e2de1c75f86a9d8e25c805c9ab2b8fc2bb9d837303865d50d",
-          "size": 369982
+          "sha256": "e249493734891694cd887c7fc31a685082679a5daec14f5b033a9b6321d3e0e1",
+          "size": 268038
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new"
@@ -1344,16 +1336,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "202b6adf895539569ef7ab4a6236286f9cf36d816527afeeaca054649fc34b43",
-          "size": 140039
+          "sha256": "bb3ad9dd50410785259e42404ff9142133a1a28b29aa5503e6f62b2803b205e8",
+          "size": 104931
         },
         "edge": {
-          "sha256": "f6edebd410e7a8eb92a7532438a7bc2d644047ac27e34f8a8c920cd6486ebe87",
-          "size": 140039
+          "sha256": "0abe226c9020574253606a0230486030c58e1ca090346dd67fae9e178b273d29",
+          "size": 104931
         },
         "firefox": {
-          "sha256": "94658ccc9529bf44b57c5df8350669c8de9a3c58166e9d6995b1e9b7bdcee974",
-          "size": 139912
+          "sha256": "aff3bd1d5d6f01084fc1ea8c179a82989c6ad4e45967cb7e4fcb8ddc241911a5",
+          "size": 104804
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-browser-flags"
@@ -1405,16 +1397,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "514d9aac0176bd853deb01af80e046d6dd86e39faeab006ca42161297caf24f8",
-          "size": 212279
+          "sha256": "181bbbfc475ef6298869218de71cd77ced41d34db9328fc8008773310b155353",
+          "size": 228918
         },
         "edge": {
-          "sha256": "6393e6e1ebd79e3e673a497eb9dcd772939e6f6e51fe6a5233a1321a717872d0",
-          "size": 212279
+          "sha256": "84a76b9ffe26bda8366bb3202c01aa063ea06c8a2899cdab3d38a3fcf4b3eb7a",
+          "size": 228918
         },
         "firefox": {
-          "sha256": "8e261234fbe3b60ab060a97731c712f4d9d6d441a0880fe2f4447a9b72f95946",
-          "size": 212267
+          "sha256": "6fc85d960b0477cc18fffdc2d6f53f962f2878f4f85d3b40b558ff487cd70bee",
+          "size": 228906
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-eslint"
@@ -1466,16 +1458,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "d37255d37f68b1e64b6b59f185c42974cf21d5f1134880edfca9f0802dbd4163",
-          "size": 225013
+          "sha256": "d29ffc5b46240c7a09dd5bc9654f87195d867291bce1c5380804bc65db7eff1c",
+          "size": 248399
         },
         "edge": {
-          "sha256": "b546b633d2c5354c88cd1f8541412e9908b95bef80fa251968458e1f4107ca2e",
-          "size": 225013
+          "sha256": "fb60cf884a84addcc24e4a2686c9d57cc6cb0c054b845a952e95f1adb2f25e85",
+          "size": 248399
         },
         "firefox": {
-          "sha256": "00a250a08d963690cf03fa27c177e7a154e268a3d84544a08de2de4ba73d8898",
-          "size": 225000
+          "sha256": "b686719ea61422c799e629d116cc95764fc5b488301f330ed81f9e18dc6b6676",
+          "size": 248386
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-prettier"
@@ -1507,7 +1499,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-config-stylelint/public/icon.png",
-        "public/new-config-stylelint/public/logo.png",
         "public/new-config-stylelint/public/screenshot.png",
         "public/new-config-stylelint/src/background.js",
         "public/new-config-stylelint/src/images/javascript.png",
@@ -1527,16 +1518,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6fb66e8e3a24905c18022221a25fc6f80442ef7a386b5dc90163b6d7d44639aa",
-          "size": 232726
+          "sha256": "2fd6dc72d8278cf3fca00ccc8880fa9d2b009b3cbc2ef4fa7b343bf36f82f26f",
+          "size": 224194
         },
         "edge": {
-          "sha256": "030aaa01acdb4ee7a5e0b0fd8a0d761f89d465f19e10f19add570c6d8d85778c",
-          "size": 232726
+          "sha256": "afa85a15e0c307005e382cba5409bf99f023d3a1f7279cc68e092104a64eaa1b",
+          "size": 224194
         },
         "firefox": {
-          "sha256": "5690fedd583e2d0fd634b3713c892e067d58151708586f186418cf9d2e6e9922",
-          "size": 232714
+          "sha256": "f71ba0f603a2683a2513d6f5229fc1eddeb872facdd0d87d5ab39d14b26b7276",
+          "size": 224182
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-stylelint"
@@ -1569,7 +1560,6 @@
       "files": [
         "public/new-crypto/extension.config.js",
         "public/new-crypto/public/icon.png",
-        "public/new-crypto/public/logo.png",
         "public/new-crypto/src/background.js",
         "public/new-crypto/src/images/javascript.png",
         "public/new-crypto/src/images/typescript.png",
@@ -1588,16 +1578,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "cf7a23df60028596bd0e7d85e5ff2d08a1e771f6c21ba45760e10de856853f72",
-          "size": 169064
+          "sha256": "f6f54adf96b22d3447c654740c25d29a2a543cd1a384188bd04ffaa15ab7609f",
+          "size": 67120
         },
         "edge": {
-          "sha256": "5edeb4452adf297f4bd679a0984e616d5eb292431d3493955b3b07233bcfd8b5",
-          "size": 169064
+          "sha256": "cf06bfcc666f2475e714d7c716988132e7a47c02de1684f2e488c7a92158c412",
+          "size": 67120
         },
         "firefox": {
-          "sha256": "30c07677f5d37b1da7e4823abdf1e333ae8b1e9b9f38923f79cd77a764945150",
-          "size": 169051
+          "sha256": "8493e78039cf6fc3d41bf8431033e69b65cdae694bb59daa874af306e4213f79",
+          "size": 67107
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-crypto"
@@ -1629,7 +1619,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-env/public/icon.png",
-        "public/new-env/public/logo.png",
         "public/new-env/public/screenshot.png",
         "public/new-env/src/background.js",
         "public/new-env/src/images/javascript.png",
@@ -1649,16 +1638,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "1cf7e0c821a927e9b9f866a38cb9b68032320bddef461ea51366b186d98a5f81",
-          "size": 201363
+          "sha256": "2de428250af694bc6c2a68e548a883133f05eb50079798910081e5720d8516b4",
+          "size": 199823
         },
         "edge": {
-          "sha256": "5b41c200aaf8f560c07c52e044955ba6c79782096a79535c744400512c0e6194",
-          "size": 201362
+          "sha256": "9d5ffdd4bf892c674e2038ad1879de2882e839b9c5175e57a39450ca73bc99a6",
+          "size": 199822
         },
         "firefox": {
-          "sha256": "32d07b73e2d718a44b9171b33a5e44153d5e847de5aaa3d26aa709caa29e167c",
-          "size": 201352
+          "sha256": "95df8e5802c776d5d0476040aef37dad0d9d063e9e592ec5ede847660bf48086",
+          "size": 199812
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-env"
@@ -1708,15 +1697,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6e8fef9119bf0019231fbcce8cd7380058e4ad75d1bbeca96f3da16705132789",
+          "sha256": "6dedf8a712ccb147b90f6135e248ebbc30b118998d79619d6860ba1cd910b673",
           "size": 397093
         },
         "edge": {
-          "sha256": "7f2f3c8de18ec5665306e3e829d9a55614c92e93ba87dc184b2e0d996ef9c364",
+          "sha256": "6084a6fb48898ed71c0e03aa5ab3ec1050e1cf5a8e865cbfb76f3a6be21b76d3",
           "size": 397093
         },
         "firefox": {
-          "sha256": "73d0a6d790507dff860b025a9223a38a4beb1ff7e2f4ba1337310dabbe79a257",
+          "sha256": "517a2dd82ddcc89e78697b97dad7004b1ee157c55ad57526b909ba3800d89874",
           "size": 397081
         }
       },
@@ -1749,7 +1738,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-preact/public/icon.png",
-        "public/new-preact/public/logo.png",
         "public/new-preact/public/screenshot.png",
         "public/new-preact/src/background.js",
         "public/new-preact/src/images/preact.png",
@@ -1769,16 +1757,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "61194fc69bc879e3bb364d5d22a393401b81d1c21b60fab2b6b6600fc072ecb8",
-          "size": 338165
+          "sha256": "4f948632b18c057fa15a71a16128ab559dcbfba4acc6540811f7bb40dd300ee3",
+          "size": 291739
         },
         "edge": {
-          "sha256": "aa71ab434265a1d00d5d6a8a2c45654ccd57fbd5221e8f4681c375b3591f23cd",
-          "size": 338165
+          "sha256": "86d63c96e25ddde5d7fc903ed31a67d4c815564281865819e7bc938826150b05",
+          "size": 291739
         },
         "firefox": {
-          "sha256": "ae226e31a3a503446a23dd517c818db1efeb5fc2a63efb9859fa00432caf651f",
-          "size": 338153
+          "sha256": "ef20a1f2e42beb467c9723a067b962cfe1ec675417cc2a00decfb3f115a1a28a",
+          "size": 291727
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-preact"
@@ -1810,7 +1798,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-react/public/icon.png",
-        "public/new-react/public/logo.png",
         "public/new-react/public/screenshot.png",
         "public/new-react/src/background.js",
         "public/new-react/src/images/react.png",
@@ -1830,16 +1817,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "93386aea0b7a3a88b1f50a2ff250581d9b2c4eabc741c50599d8019b44c6a85e",
-          "size": 460417
+          "sha256": "74493261f5e48ca04d32765c8e06549a8c22edb057d18e7b06ee2e5b20f890ca",
+          "size": 385783
         },
         "edge": {
-          "sha256": "9f71c28e6a7aa3aad622390988e5e744e7bde2fbd4a766ddafe7e6060153581b",
-          "size": 460417
+          "sha256": "ffc87806421db44ff8ca77adb2dcf33f98874076de20d121e7041bd75612db72",
+          "size": 385783
         },
         "firefox": {
-          "sha256": "f423a6e15194a4e9975f30cc577df39f1318f37e3a49bc8edbdd5dcc309ba296",
-          "size": 460404
+          "sha256": "bad3a7f740dc5e187325c643c8eebc26bfb07aa3e1bbaaffa4178da592a1c245",
+          "size": 385770
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react"
@@ -1871,7 +1858,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-react-router/public/icon.png",
-        "public/new-react-router/public/logo.png",
         "public/new-react-router/public/screenshot.png",
         "public/new-react-router/src/background.js",
         "public/new-react-router/src/images/react.png",
@@ -1891,16 +1877,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "173407a130e79fce61d01a698aa526ec3426cbedcea38fdfc5619d4a05602eb0",
-          "size": 494481
+          "sha256": "decbc9b7a960a1746f755ac9eff17865b4c91f7a6aafbc9bc731c2c60e427135",
+          "size": 419847
         },
         "edge": {
-          "sha256": "1e7111ff29d8e877eb4025220caa6441e698813201bb4b9c08f3c8cf9af2c7f3",
-          "size": 494481
+          "sha256": "6c0d6b70c3b51d5545d94cddcd7d9427a1df363cb6cd125cb7367495d6c7a006",
+          "size": 419847
         },
         "firefox": {
-          "sha256": "5d5b005701bae03b26b08cb1553f449715cb31210aa48ac349106caba550c23f",
-          "size": 494469
+          "sha256": "6d573b518d2613c1487f364d69eeeb3e83b517296cbe0fed2fa2612f48124d18",
+          "size": 419835
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react-router"
@@ -1950,15 +1936,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "038dbd9bf44a1839338681f216722b4f33b6068fb6e6bbc68b310125ff805f09",
+          "sha256": "b6646130688870fd4ebf40fbce1ab5b3a73f754cd43de27622d806667260fd63",
           "size": 764844
         },
         "edge": {
-          "sha256": "d3f07d18ae2c1b6e722bf5e68f1210fddde7759618e26bc53f135ec58d596814",
+          "sha256": "0c19736ecd808e9e685fbb7c1856fabfde4b530c61325c9df988a25afa078f22",
           "size": 764844
         },
         "firefox": {
-          "sha256": "894b12979b98975a8c5c7dadcf57186169683e8cf56d1ddf1c01de9a40450c09",
+          "sha256": "b08c1a46e11c5086bc660d03236c440e54dc339cb106598a6dc05655b6576722",
           "size": 764831
         }
       },
@@ -1991,7 +1977,6 @@
       "optional_permissions": [],
       "files": [
         "public/new-svelte/public/icon.png",
-        "public/new-svelte/public/logo.png",
         "public/new-svelte/public/screenshot.png",
         "public/new-svelte/src/background.js",
         "public/new-svelte/src/images/svelte.png",
@@ -2011,16 +1996,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "5b1c6ceda099c34d8fb0661aba57786f865c7f3958668dbee3cff231ee3113b9",
-          "size": 333680
+          "sha256": "1a4028abe777ae51f75f57444ca7c25df487fade4578b520c543f8b776c5c444",
+          "size": 265753
         },
         "edge": {
-          "sha256": "65078aad41d2fe1c155012345330387bf18acdec25fc521cce73a80d230507e2",
-          "size": 333680
+          "sha256": "f7b2e1652c1547abb90e809eaf9c16b641dd047cad802fa2c9b0b75b28c2454f",
+          "size": 265753
         },
         "firefox": {
-          "sha256": "019f6d4a92d3798ec1a5644ae76b0aaaf00c8354fc2b19866fded52b3bc00341",
-          "size": 333668
+          "sha256": "0dfb471e166dd326f5ecf16c0191f4f2c53db62e26740816ad79e458a311b82d",
+          "size": 265741
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-svelte"
@@ -2070,15 +2055,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "9fd361b28794f40a360c079b3003a04413f8a2306618bf1c93d8b610a0fc4cfd",
+          "sha256": "cb7e015b6a8686fa6fb1664c9709c1312d2cb245609d73ebcff972fcebc895eb",
           "size": 595026
         },
         "edge": {
-          "sha256": "7afc12533c2261b75df061455d9aa45e3616b71127aee519a8698b9bc3e50abe",
+          "sha256": "180383db443296931d79a0e04e380e6537c0b5e3bb6f0dac62130bc9c2f9f7c9",
           "size": 595026
         },
         "firefox": {
-          "sha256": "053005a14ffef106a2d0e96b8c12368e396b3d39172a55009027d2f54a01ccff",
+          "sha256": "ad7f01fea869d915ae257308efb6df06156b0b98f10e14f4684a361663f6522b",
           "size": 595014
         }
       },
@@ -2130,15 +2115,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ce9d032f1403a5d950a61a8d61192c5209e7f96a154cbb768f1e872c45d18824",
+          "sha256": "c3837289d10c4b61766877f948a0cec8d6421cfccaf739cc721a3edf16b32692",
           "size": 242991
         },
         "edge": {
-          "sha256": "a98b4db93339c53c04f015fc0ee9783040f1cfaf98b20b563226c00ccdb89cea",
+          "sha256": "621c2e51026d4cf278ceb77bc2fd710580cc111faf04b905a51ad543677d1187",
           "size": 242991
         },
         "firefox": {
-          "sha256": "d813b3841a124a94130fb3d85a1a5912e12c96237590ad74071c80edb27d4a08",
+          "sha256": "0e41bbfaaba51f7750817217699b672ee0ce89ef453a0a68ca45fc239a48f0b7",
           "size": 242979
         }
       },
@@ -2195,15 +2180,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b9f5f1c77fb341c657db490d2d2fc9847ef1f8b716c5b5feeb489bcd34df23b3",
+          "sha256": "335b20e7f957b695ead1d29a221a888bc5f75211bfc5c6b691d9116dd3c2d69f",
           "size": 107122
         },
         "edge": {
-          "sha256": "1bb0c31b99e2c76050c938270d77e00a05edf976062aae134fbe7aca04244fe3",
+          "sha256": "3fb5bd659a2961f4d648a4f8b626690d129898420395e6c6ef7a55c61855372c",
           "size": 107122
         },
         "firefox": {
-          "sha256": "9d68bb13e5b92c1bcdad88e3ae7446053e4b033425c0d71d392073fdde813343",
+          "sha256": "64f03247c65516d5fd3f9421da3a6ac67adbc0419faa218e073b3e35b6ef0308",
           "size": 107114
         }
       },
@@ -2237,7 +2222,6 @@
       "files": [
         "public/react/public/extension.svg",
         "public/react/public/icon.png",
-        "public/react/public/logo.svg",
         "public/react/src/background.ts",
         "public/react/src/content/ContentApp.tsx",
         "public/react/src/content/scripts.tsx",
@@ -2260,16 +2244,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "9d19615da6a345d80b0fa05701cba24777d6c10e17e9e068d9f61239b9d96d19",
-          "size": 199493
+          "sha256": "3595a220d5f17cb1cb80cb876350b05bc5849fcef9cf2209f5c23095c3e6410a",
+          "size": 249832
         },
         "edge": {
-          "sha256": "7ad7a8351de42d0a64d5f7a919113ffd95f7ea3b0af35736f419d32d809da290",
-          "size": 199493
+          "sha256": "e7ec7afdd78c97da5206383cae37bbd0987473509a43aeb83a3e70a6659ce2bc",
+          "size": 249832
         },
         "firefox": {
-          "sha256": "c715923e508294ac1a1ae4171f9394e81b9d9d972435a5f0f9ba7d0b47f676b7",
-          "size": 199485
+          "sha256": "37aa5a83812bccc179367d756787e51dd862c3efa16e5df354c99d09b7097562",
+          "size": 249824
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/react"
@@ -2318,15 +2302,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "87b618f4294390b861447c7375e080e538d0fff968f8167ff2fab1ae84ecfca1",
+          "sha256": "90f7b70abdf179224087009e19f6c0eb3dad016c641f56727e6b42a0fcd88ced",
           "size": 66411
         },
         "edge": {
-          "sha256": "2e36708549c7fca31b0ac3c9b77544b3ad899ada390c45605fc3aefe3ad7ffc2",
+          "sha256": "a4dcf2e513c9cd00510493caa7aa30b91697e5e14df08d689df21fa1d4a1c827",
           "size": 66411
         },
         "firefox": {
-          "sha256": "a6b9c8da4fb64781358c3a4656cc60b560873547df872fcdd3c7774d8b758bfb",
+          "sha256": "f0748e11fd257c47361db4555d7b729fefd9b84a4f907488ef21f73ba07a7bff",
           "size": 66358
         }
       },
@@ -2430,16 +2414,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "01e3ba8d17894f1ada9f86810ba5355493ad897ab33ba908cb1df957b4f2c4cb",
-          "size": 82182
+          "sha256": "a17a5f1b0270599d59b4cb7040f2547853e6de50e185d2efc96759adaa20241a",
+          "size": 68863
         },
         "edge": {
-          "sha256": "b1e09e4ae2998f8820a831e340f70ba0ed92944d8342d6b5f4c663d73a3e90c9",
-          "size": 82182
+          "sha256": "8977af52d749614ef88e03d0d7a9c9662b64554187ba114eb8bf6ceaee57251c",
+          "size": 68863
         },
         "firefox": {
-          "sha256": "8b7e5e16b2dab5cdda00e3636305ffb3fff6a0fbbe31c79f530d6c4e716c7628",
-          "size": 82132
+          "sha256": "db380ad0d9b908b19f2b4f5dfa51d479a9434bdf72cdb6db5da40c05e1c18f88",
+          "size": 68813
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
@@ -2493,15 +2477,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "749d290f27911d069bdcf9fb4aaf5863b6d3a842035c0479671035117f87dc5e",
+          "sha256": "ef205f22fd1e63abbd33cb2517a53e1c2d08d101c2e1929ddc155dc1d9b08194",
           "size": 5483582
         },
         "edge": {
-          "sha256": "2a2951b729a6dfedda48a9d78ff6cbbe11adb9de74f9aa3521045d51083e7ae2",
+          "sha256": "6c4e6626df3a427a602c8831e14b60de07130f1fdfd32fce91d852c35a3d22b5",
           "size": 5483582
         },
         "firefox": {
-          "sha256": "12400a9a7c2426dcb386ab3e01f0c41382af8cae49f72d180b687aedd0969b0b",
+          "sha256": "5860a8d94365e42fd37ff753287e247e0699fedbc36198a62ae5f9539450ce9a",
           "size": 5483524
         }
       },
@@ -2554,15 +2538,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6daebdf578c68b9006d05cf6297f2f5a8dbac96ed92b9c3b2e8fecb9ac4c29d3",
+          "sha256": "2b9eded0cca37a2b82bc7a8dd2b6f9b2d9b31a044000e777d714373531e9ecf0",
           "size": 37463
         },
         "edge": {
-          "sha256": "dea07993add77a304e3b34abe0c8c25a3f5f6c78760a5c852e2935d7c4b9036a",
+          "sha256": "a2e181a6d91c7a92f13c63dd021b96f3050729d68152677085cc5e1fe47e0232",
           "size": 37463
         },
         "firefox": {
-          "sha256": "604e3f1ee2ba357d21bd71efd78c222e863e947d8f3d9224ffcbc2866867aafd",
+          "sha256": "882213c0aa2b8e844c24375374fc6a71a2dc27b896450d6be27d42a0cf6f3d2c",
           "size": 37446
         }
       },
@@ -2609,15 +2593,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6e1b691637e17a56e786592e855c147f6cd3034d16f222974bc7b72baca8ac79",
+          "sha256": "a89fecb888e636f0263f07b895c9cbeab45c2b2a847fd6c925945b5a954b7926",
           "size": 33939
         },
         "edge": {
-          "sha256": "630c13e43eacb6ae3e406f011b86e419b1dc0de7f6c05fc2da51f986e1006c15",
+          "sha256": "b5fcb504de8c0cef322d7138681d7d87e4a43389ddccc1a51033652e89429820",
           "size": 33939
         },
         "firefox": {
-          "sha256": "44564e0098f2c6b0cea1b6d9e2d25906064bab460fe77a63d2a50e3ecd04ef70",
+          "sha256": "adbbcead55ed950a2c025beee2e1afe13775312e5f732658a458e97c9932bec9",
           "size": 33926
         }
       },
@@ -2674,15 +2658,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c710f73edfcedfba20e5ab700c594c9fc68c55435b852a305c378cbb1366d85f",
+          "sha256": "e33574256f42f72984e95e799165488a0d0d9980d2b9aa418e24a015c773cd88",
           "size": 165413
         },
         "edge": {
-          "sha256": "566afe36d2f7c574428392530b53bfb67a4bb0499e86eadcfb694e3f7161eb4e",
+          "sha256": "5110aa1fdc867958e7f5e89b5bdce7bd562f4086d88e6c11e978aa40209a39ae",
           "size": 165413
         },
         "firefox": {
-          "sha256": "ade8f13543b7eb852755cc83ead05f27d063b4fb1ce16466f3b9ae29f7c9bec4",
+          "sha256": "89eb0cf4f72d4327b90ba7ee7beb19a9c619396b6fa549afce542a5f7356d708",
           "size": 165406
         }
       },
@@ -2739,15 +2723,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "bdde727889e4f406d3454271b2244380f7843f800edcc5fc54bb8e9493ccef09",
+          "sha256": "9a36f82c40df0d4d3e088d07b2b2bcf7eafa59fc7a5f92330014c7425ce35139",
           "size": 25032
         },
         "edge": {
-          "sha256": "ea8ab581308b307bf9a1f397d9d991d4c134fd1cdf7cae5615cc8a7c352e6f31",
+          "sha256": "5e7bd07886bdf76a10c8720ff9243868b2afae54c78fc31246bca6fd01df9e6a",
           "size": 25032
         },
         "firefox": {
-          "sha256": "bb540da67575ef567cbc0e7b529f410c02d7e8179e73100bd65cee1a6afbf038",
+          "sha256": "8e458495f5ee03af9a254dd54df07b52eff3791e9b0e979c52a70870a024617a",
           "size": 25026
         }
       },
@@ -2804,15 +2788,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "da1170272e2f821fe16ecbafabe70288e5e2747a609463d849d887c5fed25396",
+          "sha256": "bd752235c7554faee5081ccb71441309f42b22991db25e79a52a2068d93f252c",
           "size": 52028
         },
         "edge": {
-          "sha256": "bfdd27776063d529e2c5f6fbcaa08782b7cb5ab62fec42c82b21228914d2a794",
+          "sha256": "a776228d5868a9d88be20858d6a8730c7dfcb0fec8b380f39a625136bf156cc6",
           "size": 52028
         },
         "firefox": {
-          "sha256": "6e2adaca22d558385b8e6405883ed6751f1914b062db16014d53e32cf53f5f7c",
+          "sha256": "1fdadd132e0b6fe3286b48ffffb9baffb18cf23e0fe6034fa9569a8e07cdac47",
           "size": 52022
         }
       },
