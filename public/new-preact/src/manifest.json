@@ -5,9 +5,11 @@
   "name": "Extension.js - Preact New Tab Example",
   "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
   "icons": {
-    "16": "images/preact.png",
-    "48": "images/preact.png",
-    "128": "images/preact.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

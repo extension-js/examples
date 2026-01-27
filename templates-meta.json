@@ -2,8 +2,8 @@
   "version": "2",
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
-  "commit": "2b12117e3df8c2621fd3c024ce61e4feb67ca903",
-  "generatedAt": "2026-01-27T00:05:08.096Z",
+  "commit": "main",
+  "generatedAt": "2026-01-27T11:15:07.061Z",
   "templates": [
     {
       "slug": "action",
@@ -31,19 +31,39 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/action/index.html",
-        "src/action/scripts.js",
-        "src/action/styles.css",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/action/public/icon.png",
+        "public/action/public/logo.png",
+        "public/action/public/screenshot.png",
+        "public/action/src/action/index.html",
+        "public/action/src/action/scripts.js",
+        "public/action/src/action/styles.css",
+        "public/action/src/background.js",
+        "public/action/src/images/javascript.png",
+        "public/action/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/action/public/screenshot.png",
-      "icon": "examples/action/public/logo.png"
+      "screenshot": "public/action/screenshot.png",
+      "icon": "public/action/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/action.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/action.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "ef1f078a0364de33ce9ce3e339d5f22b851abe734b854fef76c585b40bea3b30",
+          "size": 422868
+        },
+        "edge": {
+          "sha256": "86c0c52929e42337cb8740a57c2b4caf76194654aa0723dca7ed400e8c470e95",
+          "size": 422868
+        },
+        "firefox": {
+          "sha256": "bd07f7c7562fd87b3529ece4bcedb019cb728c19ec466e2a212e491525a0e341",
+          "size": 422849
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action"
     },
     {
       "slug": "action-chatgpt",
@@ -71,20 +91,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "src/action/ActionApp.tsx",
-        "src/action/index.html",
-        "src/action/scripts.tsx",
-        "src/action/styles.css",
-        "src/background.ts",
-        "src/images/chatgpt.png",
-        "src/images/extensionjs.png",
-        "src/manifest.json"
+        "public/action-chatgpt/public/icon.png",
+        "public/action-chatgpt/public/logo.png",
+        "public/action-chatgpt/src/action/ActionApp.tsx",
+        "public/action-chatgpt/src/action/index.html",
+        "public/action-chatgpt/src/action/scripts.tsx",
+        "public/action-chatgpt/src/action/styles.css",
+        "public/action-chatgpt/src/background.ts",
+        "public/action-chatgpt/src/images/chatgpt.png",
+        "public/action-chatgpt/src/images/extensionjs.png",
+        "public/action-chatgpt/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/action-chatgpt/public/logo.png"
+      "screenshot": "public/action-chatgpt/screenshot.png",
+      "icon": "public/action-chatgpt/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/action-chatgpt.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "1f2bec0c43d8f68da7c429a78e4e3c5bf5d05b92c263bf1869ee4dd1d906e10f",
+          "size": 188325
+        },
+        "edge": {
+          "sha256": "a34a0d63dd66619200daa0e4867d5b88c8648e67ef6991b657d8130aefacd55e",
+          "size": 188325
+        },
+        "firefox": {
+          "sha256": "18f7045ef0ddc42747535b1756c83a7dadc5f3afd01425ad6d172bd79d286d5d",
+          "size": 188307
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-chatgpt"
     },
     {
       "slug": "action-locales",
@@ -112,21 +152,41 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/_locales/en/messages.json",
-        "src/_locales/pt_BR/messages.json",
-        "src/action/index.html",
-        "src/action/scripts.js",
-        "src/action/styles.css",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/action-locales/public/icon.png",
+        "public/action-locales/public/logo.png",
+        "public/action-locales/public/screenshot.png",
+        "public/action-locales/src/_locales/en/messages.json",
+        "public/action-locales/src/_locales/pt_BR/messages.json",
+        "public/action-locales/src/action/index.html",
+        "public/action-locales/src/action/scripts.js",
+        "public/action-locales/src/action/styles.css",
+        "public/action-locales/src/background.js",
+        "public/action-locales/src/images/javascript.png",
+        "public/action-locales/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/action-locales/public/screenshot.png",
-      "icon": "examples/action-locales/public/logo.png"
+      "screenshot": "public/action-locales/screenshot.png",
+      "icon": "public/action-locales/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/action-locales.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/action-locales.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/action-locales.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "1315353ae9b1450b147c6dfd2165961afe1ded3083562244248b7aaeb2876bac",
+          "size": 437942
+        },
+        "edge": {
+          "sha256": "e2a0d3cd8dd4466fc9b275c5dcc4fa298990ad7ce19114eb03672f0097572148",
+          "size": 437942
+        },
+        "firefox": {
+          "sha256": "1f2e0a14af05bc0679e9bdb460cd5889ea12cdf696b585ad09e94558c5b9b5f4",
+          "size": 437923
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-locales"
     },
     {
       "slug": "content",
@@ -154,17 +214,37 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.css",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/content/public/icon.png",
+        "public/content/public/screenshot.png",
+        "public/content/src/background.js",
+        "public/content/src/content/scripts.js",
+        "public/content/src/content/styles.css",
+        "public/content/src/images/javascript.png",
+        "public/content/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content/public/screenshot.png",
-      "icon": "examples/content/public/icon.png"
+      "screenshot": "public/content/screenshot.png",
+      "icon": "public/content/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "39ec4892fa9c4380906a1ac1fe8558f55baa5e1f7080253a429e87a5d3a2a244",
+          "size": 406879
+        },
+        "edge": {
+          "sha256": "b1377c3e530f8edce3b3d2bddbe2b26c3b24f11606327c27946ca5f576abbee9",
+          "size": 406879
+        },
+        "firefox": {
+          "sha256": "d34bd992656229585e49187a420a6a381aa60505331bdf7720d02d41af443b46",
+          "size": 406857
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content"
     },
     {
       "slug": "content-css-modules",
@@ -192,17 +272,37 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.module.css",
-        "src/images/javascript.png",
-        "src/images/logo.png",
-        "src/manifest.json"
+        "public/content-css-modules/public/icon.png",
+        "public/content-css-modules/src/background.js",
+        "public/content-css-modules/src/content/scripts.js",
+        "public/content-css-modules/src/content/styles.module.css",
+        "public/content-css-modules/src/images/javascript.png",
+        "public/content-css-modules/src/images/logo.png",
+        "public/content-css-modules/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-css-modules/public/icon.png"
+      "screenshot": "public/content-css-modules/screenshot.png",
+      "icon": "public/content-css-modules/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-css-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "3da2e1c0d773c93841424c7793e78cc426e081b74066eb01df7a8d893a63c725",
+          "size": 51768
+        },
+        "edge": {
+          "sha256": "c6d349a9260cb2185cf2d1672cd5dd36799db37fbe8f7de4fd8001e1e62bf4cd",
+          "size": 51768
+        },
+        "firefox": {
+          "sha256": "98948da4da5c7fa7bf399920347ec2758a12dde7659af9121d5eaa4e74dfbfee",
+          "size": 51747
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-css-modules"
     },
     {
       "slug": "content-custom-font",
@@ -230,16 +330,37 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.css",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/content-custom-font/public/icon.png",
+        "public/content-custom-font/src/background.js",
+        "public/content-custom-font/src/content/scripts.js",
+        "public/content-custom-font/src/content/styles.css",
+        "public/content-custom-font/src/images/javascript.png",
+        "public/content-custom-font/src/manifest.json",
+        "public/content-custom-font/src/public/icon.png"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-custom-font/public/icon.png"
+      "screenshot": "public/content-custom-font/screenshot.png",
+      "icon": "public/content-custom-font/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-custom-font.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "a7834579475569f0a8cc614fc8ba94ace28f3037f6cebad58fe0eb823509b8af",
+          "size": 42108
+        },
+        "edge": {
+          "sha256": "d259502343b98c63375803dee20d207ccf2923651671ffd44b37a4258d7c1274",
+          "size": 42108
+        },
+        "firefox": {
+          "sha256": "f6a3b989d8b1388f47a56a0d1e68430f66edfecd2d86a5d1f310fedaa5f50ac2",
+          "size": 42088
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-custom-font"
     },
     {
       "slug": "content-env",
@@ -267,20 +388,40 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/env.png",
-        "src/images/javascript.png",
-        "src/images/typescript.png",
-        "src/manifest.json"
+        "public/content-env/public/icon.png",
+        "public/content-env/public/logo.png",
+        "public/content-env/public/screenshot.png",
+        "public/content-env/src/background.ts",
+        "public/content-env/src/content/scripts.ts",
+        "public/content-env/src/content/styles.css",
+        "public/content-env/src/images/env.png",
+        "public/content-env/src/images/javascript.png",
+        "public/content-env/src/images/typescript.png",
+        "public/content-env/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-env/public/screenshot.png",
-      "icon": "examples/content-env/public/logo.png"
+      "screenshot": "public/content-env/screenshot.png",
+      "icon": "public/content-env/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-env.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-env.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-env.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "b2d1f238b8a1692aede43b4a76a36b72fff5d0618881159edbe6923450cefaa5",
+          "size": 335125
+        },
+        "edge": {
+          "sha256": "afc25cb0a228fcd03559fd079a0d7c7090019c7b406006836e983414fbc3bd62",
+          "size": 335123
+        },
+        "firefox": {
+          "sha256": "0fb6647b2fe751ef2c746c54a027c7a7f49bdc7c392232294d3a5a3d7793f85a",
+          "size": 335102
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-env"
     },
     {
       "slug": "content-less",
@@ -308,19 +449,39 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.less",
-        "src/images/javascript.png",
-        "src/images/less.png",
-        "src/images/logo.svg",
-        "src/manifest.json"
+        "public/content-less/public/icon.png",
+        "public/content-less/public/screenshot.png",
+        "public/content-less/src/background.js",
+        "public/content-less/src/content/scripts.js",
+        "public/content-less/src/content/styles.less",
+        "public/content-less/src/images/javascript.png",
+        "public/content-less/src/images/less.png",
+        "public/content-less/src/images/logo.svg",
+        "public/content-less/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-less/public/screenshot.png",
-      "icon": "examples/content-less/public/icon.svg"
+      "screenshot": "public/content-less/screenshot.png",
+      "icon": "public/content-less/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-less.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-less.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-less.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "64179d11b554bac582e72a1a57c0e7621bd599d754b92a013a8f8fcf0a3a172c",
+          "size": 348844
+        },
+        "edge": {
+          "sha256": "ab2aa5ab76c8a3d3c0fbf816a683794224a7f5309c17a4ffe381741ccf058238",
+          "size": 348844
+        },
+        "firefox": {
+          "sha256": "a4e791e310aa00f246960338f6f96f3a9c7805aec8eeb9d038720a2ca01e8a19",
+          "size": 348824
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less"
     },
     {
       "slug": "content-less-modules",
@@ -348,18 +509,38 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.module.less",
-        "src/images/javascript.png",
-        "src/images/less.png",
-        "src/images/logo.svg",
-        "src/manifest.json"
+        "public/content-less-modules/public/icon.png",
+        "public/content-less-modules/src/background.js",
+        "public/content-less-modules/src/content/scripts.js",
+        "public/content-less-modules/src/content/styles.module.less",
+        "public/content-less-modules/src/images/javascript.png",
+        "public/content-less-modules/src/images/less.png",
+        "public/content-less-modules/src/images/logo.svg",
+        "public/content-less-modules/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-less-modules/public/icon.svg"
+      "screenshot": "public/content-less-modules/screenshot.png",
+      "icon": "public/content-less-modules/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-less-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "53e4f297d443ff5837f92ee1cbf9c3686ec8895ffbd0846b88aded05bcf03337",
+          "size": 32784
+        },
+        "edge": {
+          "sha256": "8e7d7215e58aa666ee2134cf28487eb36cd76091ba9780442156bbc70728cfbb",
+          "size": 32784
+        },
+        "firefox": {
+          "sha256": "d8e5f4a45718e01e6a9bb81fc92e317263fddcd73ef197b5b09781a20d97024f",
+          "size": 32764
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less-modules"
     },
     {
       "slug": "content-multi-one-entry",
@@ -392,19 +573,39 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/content/script-bottom-left.js",
-        "src/content/script-bottom-right.js",
-        "src/content/script-top-left.js",
-        "src/content/script-top-right.js",
-        "src/content/styles.css",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/content-multi-one-entry/public/icon.png",
+        "public/content-multi-one-entry/src/background.js",
+        "public/content-multi-one-entry/src/content/script-bottom-left.js",
+        "public/content-multi-one-entry/src/content/script-bottom-right.js",
+        "public/content-multi-one-entry/src/content/script-top-left.js",
+        "public/content-multi-one-entry/src/content/script-top-right.js",
+        "public/content-multi-one-entry/src/content/styles.css",
+        "public/content-multi-one-entry/src/images/javascript.png",
+        "public/content-multi-one-entry/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-multi-one-entry/public/icon.png"
+      "screenshot": "public/content-multi-one-entry/screenshot.png",
+      "icon": "public/content-multi-one-entry/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-one-entry.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "89f288167028d04932f0388f1ee8562edb9381207e84d4078dacc90546902eec",
+          "size": 67085
+        },
+        "edge": {
+          "sha256": "6e29b317cd20c81b3c96b8b6f29c47cf3b682b9798f8416130a84b63b4bb5887",
+          "size": 67085
+        },
+        "firefox": {
+          "sha256": "77358506dda2e125e25bb4ae5e2c41fcc29a43be26aa82e830326006736a37c2",
+          "size": 67063
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry"
     },
     {
       "slug": "content-multi-three-entries",
@@ -437,19 +638,39 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/content/script-bottom-left.js",
-        "src/content/script-bottom-right.js",
-        "src/content/script-top-left.js",
-        "src/content/script-top-right.js",
-        "src/content/styles.css",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/content-multi-three-entries/public/icon.png",
+        "public/content-multi-three-entries/src/background.js",
+        "public/content-multi-three-entries/src/content/script-bottom-left.js",
+        "public/content-multi-three-entries/src/content/script-bottom-right.js",
+        "public/content-multi-three-entries/src/content/script-top-left.js",
+        "public/content-multi-three-entries/src/content/script-top-right.js",
+        "public/content-multi-three-entries/src/content/styles.css",
+        "public/content-multi-three-entries/src/images/javascript.png",
+        "public/content-multi-three-entries/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-multi-three-entries/public/icon.png"
+      "screenshot": "public/content-multi-three-entries/screenshot.png",
+      "icon": "public/content-multi-three-entries/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-multi-three-entries.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "15cf74a36e2c0ed16562112c1d42d8d3aa7ed32eeb0ba694fe940a4f307c24e4",
+          "size": 71182
+        },
+        "edge": {
+          "sha256": "fdd8ac3429d4ed4eddd0392658f2405938e9454c06fdf2a39a097221844ac62d",
+          "size": 71182
+        },
+        "firefox": {
+          "sha256": "b211174595c2353fa255af47a79bfaf784da13cc6b415160ad7604aed19eb811",
+          "size": 71160
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries"
     },
     {
       "slug": "content-preact",
@@ -477,22 +698,42 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/content/ContentApp.tsx",
-        "src/content/scripts.tsx",
-        "src/content/styles.css",
-        "src/images/chromeWindow.png",
-        "src/images/preact.png",
-        "src/images/tailwind.png",
-        "src/images/tailwind_bg.png",
-        "src/images/typescript.png",
-        "src/manifest.json"
+        "public/content-preact/public/icon.png",
+        "public/content-preact/public/screenshot.png",
+        "public/content-preact/src/background.ts",
+        "public/content-preact/src/content/ContentApp.tsx",
+        "public/content-preact/src/content/scripts.tsx",
+        "public/content-preact/src/content/styles.css",
+        "public/content-preact/src/images/chromeWindow.png",
+        "public/content-preact/src/images/preact.png",
+        "public/content-preact/src/images/tailwind.png",
+        "public/content-preact/src/images/tailwind_bg.png",
+        "public/content-preact/src/images/typescript.png",
+        "public/content-preact/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-preact/public/screenshot.png",
-      "icon": "examples/content-preact/public/icon.png"
+      "screenshot": "public/content-preact/screenshot.png",
+      "icon": "public/content-preact/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "667c7fec7734dff82610298e81fb7de16cf693805a5efb24c5ac11b9e43898e6",
+          "size": 1121731
+        },
+        "edge": {
+          "sha256": "603cc6dcd27e351b93e0ceff14fadc96a4af9a6f8383e6583bb818bcc1e64b26",
+          "size": 1121731
+        },
+        "firefox": {
+          "sha256": "ec03b170d1c6244ec98023d84d85623e9f28c079ac5c850da0ade18da184a19d",
+          "size": 1121710
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
     },
     {
       "slug": "content-react",
@@ -520,24 +761,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/ambient.css-url.d.ts",
-        "src/background.ts",
-        "src/content/ContentApp.tsx",
-        "src/content/scripts.tsx",
-        "src/content/styles.css",
-        "src/images/chromeWindow.png",
-        "src/images/react.png",
-        "src/images/tailwind.png",
-        "src/images/tailwind_bg.png",
-        "src/images/typescript.png",
-        "src/manifest.json"
+        "public/content-react/public/icon.png",
+        "public/content-react/public/logo.png",
+        "public/content-react/public/screenshot.png",
+        "public/content-react/src/ambient.css-url.d.ts",
+        "public/content-react/src/background.ts",
+        "public/content-react/src/content/ContentApp.tsx",
+        "public/content-react/src/content/scripts.tsx",
+        "public/content-react/src/content/styles.css",
+        "public/content-react/src/images/chromeWindow.png",
+        "public/content-react/src/images/react.png",
+        "public/content-react/src/images/tailwind.png",
+        "public/content-react/src/images/tailwind_bg.png",
+        "public/content-react/src/images/typescript.png",
+        "public/content-react/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-react/public/screenshot.png",
-      "icon": "examples/content-react/public/logo.png"
+      "screenshot": "public/content-react/screenshot.png",
+      "icon": "public/content-react/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "06008e4397a5e1d163b1e7519999c300f7ec412a87c76d41017d6353cd11121c",
+          "size": 1316774
+        },
+        "edge": {
+          "sha256": "ae201cb62e1b401c5889acb978fd1d2af5cb8e0df968e46c4d3aba0d8138d2ae",
+          "size": 1316774
+        },
+        "firefox": {
+          "sha256": "050b7bbff74d3ca6942f553cdb16aff214dddaf221916141cd8da2ca13399a63",
+          "size": 1316753
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-react"
     },
     {
       "slug": "content-sass",
@@ -565,18 +826,38 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.scss",
-        "src/images/javascript.png",
-        "src/images/logo.svg",
-        "src/images/sass.png",
-        "src/manifest.json"
+        "public/content-sass/public/icon.png",
+        "public/content-sass/src/background.js",
+        "public/content-sass/src/content/scripts.js",
+        "public/content-sass/src/content/styles.scss",
+        "public/content-sass/src/images/javascript.png",
+        "public/content-sass/src/images/logo.svg",
+        "public/content-sass/src/images/sass.png",
+        "public/content-sass/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-sass/public/icon.svg"
+      "screenshot": "public/content-sass/screenshot.png",
+      "icon": "public/content-sass/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-sass.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "b38d336b643b9ad0216fb414fd99b0d2ae7a4334b86874889bff56c5f89c3dc9",
+          "size": 9530
+        },
+        "edge": {
+          "sha256": "9b2e91c0356b12e44a9cfe543e6ad0258b844b743f5adc8a4a1928baabfee19c",
+          "size": 9530
+        },
+        "firefox": {
+          "sha256": "1b278821580461221e795bdb7f19f558b3bee0eb4b9a9c080dfeeacb4f7099ca",
+          "size": 9509
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass"
     },
     {
       "slug": "content-sass-modules",
@@ -606,18 +887,38 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "src/background.js",
-        "src/content/scripts.js",
-        "src/content/styles.module.scss",
-        "src/images/javascript.png",
-        "src/images/logo.svg",
-        "src/images/sass.png",
-        "src/manifest.json"
+        "public/content-sass-modules/public/icon.png",
+        "public/content-sass-modules/src/background.js",
+        "public/content-sass-modules/src/content/scripts.js",
+        "public/content-sass-modules/src/content/styles.module.scss",
+        "public/content-sass-modules/src/images/javascript.png",
+        "public/content-sass-modules/src/images/logo.svg",
+        "public/content-sass-modules/src/images/sass.png",
+        "public/content-sass-modules/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/content-sass-modules/public/icon.svg"
+      "screenshot": "public/content-sass-modules/screenshot.png",
+      "icon": "public/content-sass-modules/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-sass-modules.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "cbb5c985b7cd878cf5a67a03746c209ce5bead6ca84a8cbf32cf959088a3a20d",
+          "size": 9549
+        },
+        "edge": {
+          "sha256": "9da3db38916116999a1172bedf76c0078383902e1d54f32db6f3636c542d0f9c",
+          "size": 9549
+        },
+        "firefox": {
+          "sha256": "7a76300fcfee580e108ce60d0492ec0df45b4237ba48573fe7484dd4c6d3bf03",
+          "size": 9527
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass-modules"
     },
     {
       "slug": "content-svelte",
@@ -645,24 +946,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/content/ContentApp.svelte",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/content/svelte.d.ts",
-        "src/images/chromeWindow.png",
-        "src/images/svelte.png",
-        "src/images/tailwind.png",
-        "src/images/tailwind_bg.png",
-        "src/images/typescript.png",
-        "src/manifest.json"
+        "public/content-svelte/public/icon.png",
+        "public/content-svelte/public/logo.png",
+        "public/content-svelte/public/screenshot.png",
+        "public/content-svelte/src/background.ts",
+        "public/content-svelte/src/content/ContentApp.svelte",
+        "public/content-svelte/src/content/scripts.ts",
+        "public/content-svelte/src/content/styles.css",
+        "public/content-svelte/src/content/svelte.d.ts",
+        "public/content-svelte/src/images/chromeWindow.png",
+        "public/content-svelte/src/images/svelte.png",
+        "public/content-svelte/src/images/tailwind.png",
+        "public/content-svelte/src/images/tailwind_bg.png",
+        "public/content-svelte/src/images/typescript.png",
+        "public/content-svelte/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-svelte/public/screenshot.png",
-      "icon": "examples/content-svelte/public/logo.png"
+      "screenshot": "public/content-svelte/screenshot.png",
+      "icon": "public/content-svelte/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "aa553d98df9d7c46ef548f3634a3cac7a0d315478f46e09ac71b76c4bc72a956",
+          "size": 1267177
+        },
+        "edge": {
+          "sha256": "2a169c10f9f221488f6e9e15d43dfd65407007ed0f7c0fa3db7bc2a356298505",
+          "size": 1267177
+        },
+        "firefox": {
+          "sha256": "2ba085dc98232b46d15ea24e04bbef6d2366c025fffd5ffce30f016c3eaa1b06",
+          "size": 1267155
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-svelte"
     },
     {
       "slug": "content-typescript",
@@ -690,18 +1011,38 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/logo.svg",
-        "src/images/typescript.png",
-        "src/manifest.json"
+        "public/content-typescript/public/icon.png",
+        "public/content-typescript/public/screenshot.png",
+        "public/content-typescript/src/background.ts",
+        "public/content-typescript/src/content/scripts.ts",
+        "public/content-typescript/src/content/styles.css",
+        "public/content-typescript/src/images/logo.svg",
+        "public/content-typescript/src/images/typescript.png",
+        "public/content-typescript/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-typescript/public/screenshot.png",
-      "icon": "examples/content-typescript/public/icon.svg"
+      "screenshot": "public/content-typescript/screenshot.png",
+      "icon": "public/content-typescript/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "28bb8b0a334490bc9e0434b46f2dbd40e48bc5a17ea32040f876e8070d73dab4",
+          "size": 334237
+        },
+        "edge": {
+          "sha256": "9de397fa71e19c48ad248774f243522ba65b4280f420df52ace945cc67deb10e",
+          "size": 334237
+        },
+        "firefox": {
+          "sha256": "759278035dc286f29e57efd38d8bc05d952e78653e1204129b5279c7936a1258",
+          "size": 334214
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-typescript"
     },
     {
       "slug": "content-vue",
@@ -729,24 +1070,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/content/ContentApp.vue",
-        "src/content/scripts.ts",
-        "src/content/shims-vue.d.ts",
-        "src/content/styles.css",
-        "src/images/chromeWindow.png",
-        "src/images/logo.svg",
-        "src/images/tailwind.png",
-        "src/images/tailwind_bg.png",
-        "src/images/typescript.png",
-        "src/images/vue.png",
-        "src/manifest.json"
+        "public/content-vue/public/icon.png",
+        "public/content-vue/public/screenshot.png",
+        "public/content-vue/src/background.ts",
+        "public/content-vue/src/content/ContentApp.vue",
+        "public/content-vue/src/content/scripts.ts",
+        "public/content-vue/src/content/shims-vue.d.ts",
+        "public/content-vue/src/content/styles.css",
+        "public/content-vue/src/images/chromeWindow.png",
+        "public/content-vue/src/images/logo.svg",
+        "public/content-vue/src/images/tailwind.png",
+        "public/content-vue/src/images/tailwind_bg.png",
+        "public/content-vue/src/images/typescript.png",
+        "public/content-vue/src/images/vue.png",
+        "public/content-vue/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/content-vue/public/screenshot.png",
-      "icon": "examples/content-vue/public/icon.svg"
+      "screenshot": "public/content-vue/screenshot.png",
+      "icon": "public/content-vue/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/content-vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "ba5dd8cdb8a380a7a2fd9f3897d5b07a2079e802c9e2931351e75269ccf248a5",
+          "size": 1083082
+        },
+        "edge": {
+          "sha256": "72425244d1c6ce5e31042b1e1a99ae07bdb7df54cf21e9d67927138e9269cfb2",
+          "size": 1083082
+        },
+        "firefox": {
+          "sha256": "6cc78b18cd8050d9136da9ff4863c9cd7f28f49029f4ea5df8fb5941c54e14bb",
+          "size": 1083060
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
     },
     {
       "slug": "init",
@@ -774,16 +1135,36 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/images/javascript.png",
-        "src/index.js",
-        "src/manifest.json"
+        "public/init/public/icon.png",
+        "public/init/public/logo.png",
+        "public/init/public/screenshot.png",
+        "public/init/src/images/javascript.png",
+        "public/init/src/index.js",
+        "public/init/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/init/public/screenshot.png",
-      "icon": "examples/init/public/logo.png"
+      "screenshot": "public/init/screenshot.png",
+      "icon": "public/init/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/init.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/init.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/init.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "e0f1dd645534e3b49703282803371409805413ae805723f2f64aec6e4b6ad5f2",
+          "size": 297278
+        },
+        "edge": {
+          "sha256": "d5cabe12a609d271f50c4a5e84ed0917ab7764b2d696873bce26a882fcaac646",
+          "size": 297278
+        },
+        "firefox": {
+          "sha256": "c1e635efe8cf05b3aa3d6e3a3dd37c221b91cfc4939ee25949627e6dc597bfea",
+          "size": 297278
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/init"
     },
     {
       "slug": "javascript",
@@ -811,23 +1192,43 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/content/ContentApp.js",
-        "src/content/scripts.js",
-        "src/content/styles.css",
-        "src/images/extension_48.png",
-        "src/images/javascript.png",
-        "src/images/logo.png",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.js",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.js",
-        "src/sidebar/styles.css"
+        "public/javascript/public/icon.png",
+        "public/javascript/src/background.js",
+        "public/javascript/src/content/ContentApp.js",
+        "public/javascript/src/content/scripts.js",
+        "public/javascript/src/content/styles.css",
+        "public/javascript/src/images/extension_48.png",
+        "public/javascript/src/images/javascript.png",
+        "public/javascript/src/images/logo.png",
+        "public/javascript/src/manifest.json",
+        "public/javascript/src/sidebar/SidebarApp.js",
+        "public/javascript/src/sidebar/index.html",
+        "public/javascript/src/sidebar/scripts.js",
+        "public/javascript/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/javascript/screenshot.png",
-      "icon": "examples/javascript/public/icon.png"
+      "screenshot": "public/javascript/screenshot.png",
+      "icon": "public/javascript/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/javascript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/javascript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/javascript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "470fe0d5c737dacc7738267049908e5b0a37ec120bb7f22f3a717dee10c7ea43",
+          "size": 23361
+        },
+        "edge": {
+          "sha256": "7ec78b199180b18bd5904721002c7d77385fde2d3c010b58ef335d1dd1ad7b8c",
+          "size": 23361
+        },
+        "firefox": {
+          "sha256": "91cfcfc84d4e3cd933e4bc52c946a35edc2d1e918e3b31d81193e1d85edec3dd",
+          "size": 23354
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/javascript"
     },
     {
       "slug": "new",
@@ -855,19 +1256,39 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.js",
-        "src/newtab/styles.css"
+        "public/new/public/icon.png",
+        "public/new/public/logo.png",
+        "public/new/public/screenshot.png",
+        "public/new/src/background.js",
+        "public/new/src/images/javascript.png",
+        "public/new/src/manifest.json",
+        "public/new/src/newtab/index.html",
+        "public/new/src/newtab/scripts.js",
+        "public/new/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new/public/screenshot.png",
-      "icon": "examples/new/public/logo.png"
+      "screenshot": "public/new/screenshot.png",
+      "icon": "public/new/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "accf7448a842618410bf817e09b690642d74d4ca12a194db30002e9501874500",
+          "size": 369995
+        },
+        "edge": {
+          "sha256": "05a8a7be786e31170b620227ac94b8d4120b32e86b9b99228f41d9306711d5cd",
+          "size": 369995
+        },
+        "firefox": {
+          "sha256": "22d016f85e5c92cccee0c8e202252caf4fd3fc40a85db558dd265aca1d0be75b",
+          "size": 369982
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new"
     },
     {
       "slug": "new-browser-flags",
@@ -901,21 +1322,41 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "files": [
-        "extension.config.js",
-        "public/icon.png",
-        "src/background.js",
-        "src/content/content.js",
-        "src/images/extension.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/newtab.css",
-        "src/newtab/newtab.js",
-        "src/sidebar/index.html",
-        "src/sidebar/sidebar.css"
+        "public/new-browser-flags/extension.config.js",
+        "public/new-browser-flags/public/icon.png",
+        "public/new-browser-flags/src/background.js",
+        "public/new-browser-flags/src/content/content.js",
+        "public/new-browser-flags/src/images/extension.png",
+        "public/new-browser-flags/src/manifest.json",
+        "public/new-browser-flags/src/newtab/index.html",
+        "public/new-browser-flags/src/newtab/newtab.css",
+        "public/new-browser-flags/src/newtab/newtab.js",
+        "public/new-browser-flags/src/sidebar/index.html",
+        "public/new-browser-flags/src/sidebar/sidebar.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/new-browser-flags/public/icon.png"
+      "screenshot": "public/new-browser-flags/screenshot.png",
+      "icon": "public/new-browser-flags/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-browser-flags.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "9e50355827b13eaa96301e3a5ec85781394198801767ee1bb8290da7795d20c5",
+          "size": 140039
+        },
+        "edge": {
+          "sha256": "ec4779cd698544e1f3e2e31cc5b7da8851775b81ca4db8d8c223df7aea57c88c",
+          "size": 140039
+        },
+        "firefox": {
+          "sha256": "273f8f9358c819c8db5ea95274e540ed4af9340168903c9366586b14b409ff26",
+          "size": 139912
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-browser-flags"
     },
     {
       "slug": "new-config-eslint",
@@ -943,20 +1384,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/eslint.png",
-        "src/images/javascript.png",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-config-eslint/public/icon.png",
+        "public/new-config-eslint/public/screenshot.png",
+        "public/new-config-eslint/src/background.js",
+        "public/new-config-eslint/src/images/eslint.png",
+        "public/new-config-eslint/src/images/javascript.png",
+        "public/new-config-eslint/src/images/typescript.png",
+        "public/new-config-eslint/src/manifest.json",
+        "public/new-config-eslint/src/newtab/index.html",
+        "public/new-config-eslint/src/newtab/scripts.ts",
+        "public/new-config-eslint/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-config-eslint/public/screenshot.png",
-      "icon": "examples/new-config-eslint/public/icon.png"
+      "screenshot": "public/new-config-eslint/screenshot.png",
+      "icon": "public/new-config-eslint/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-eslint.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c78ce4881387d099d98cf24db28d5bf0d19bff594c57413e1ea409311b4a691e",
+          "size": 212279
+        },
+        "edge": {
+          "sha256": "c78ce4881387d099d98cf24db28d5bf0d19bff594c57413e1ea409311b4a691e",
+          "size": 212279
+        },
+        "firefox": {
+          "sha256": "80ba8bd60d0761d0f2582939a7bd8efcbf8126ce3365b0bbe67a1942d532f97c",
+          "size": 212267
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-eslint"
     },
     {
       "slug": "new-config-prettier",
@@ -984,20 +1445,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/images/prettier.png",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-config-prettier/public/icon.png",
+        "public/new-config-prettier/public/screenshot.png",
+        "public/new-config-prettier/src/background.js",
+        "public/new-config-prettier/src/images/javascript.png",
+        "public/new-config-prettier/src/images/prettier.png",
+        "public/new-config-prettier/src/images/typescript.png",
+        "public/new-config-prettier/src/manifest.json",
+        "public/new-config-prettier/src/newtab/index.html",
+        "public/new-config-prettier/src/newtab/scripts.ts",
+        "public/new-config-prettier/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-config-prettier/public/screenshot.png",
-      "icon": "examples/new-config-prettier/public/icon.png"
+      "screenshot": "public/new-config-prettier/screenshot.png",
+      "icon": "public/new-config-prettier/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-prettier.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "ba20b7ac7edca49339f634635c00a5ef8c75343efcd6cb3181998f32d986e9a3",
+          "size": 225013
+        },
+        "edge": {
+          "sha256": "b4d536fcb86cfe4c331906faba6b26b0b1aa1bacbb9fed72cd2452028883a55d",
+          "size": 225013
+        },
+        "firefox": {
+          "sha256": "8a9bc8b02237664bcb79640acdcc7623a1b43a69294d73e1025bd7ee48eed666",
+          "size": 225000
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-prettier"
     },
     {
       "slug": "new-config-stylelint",
@@ -1025,20 +1506,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/images/stylelint.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.js",
-        "src/newtab/styles.scss"
+        "public/new-config-stylelint/public/icon.png",
+        "public/new-config-stylelint/public/logo.png",
+        "public/new-config-stylelint/public/screenshot.png",
+        "public/new-config-stylelint/src/background.js",
+        "public/new-config-stylelint/src/images/javascript.png",
+        "public/new-config-stylelint/src/images/stylelint.png",
+        "public/new-config-stylelint/src/manifest.json",
+        "public/new-config-stylelint/src/newtab/index.html",
+        "public/new-config-stylelint/src/newtab/scripts.js",
+        "public/new-config-stylelint/src/newtab/styles.scss"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-config-stylelint/public/screenshot.png",
-      "icon": "examples/new-config-stylelint/public/logo.png"
+      "screenshot": "public/new-config-stylelint/screenshot.png",
+      "icon": "public/new-config-stylelint/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-config-stylelint.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "4171892c48a8bd48e464b737928107174957df8a3d5fdbafd2d18f0033ac4c14",
+          "size": 232726
+        },
+        "edge": {
+          "sha256": "db365d081361dfcbcaf9673ba79d08513d3ace54b10ca7b93ae6075b2b56440e",
+          "size": 232726
+        },
+        "firefox": {
+          "sha256": "3bdd0b6983bb8c6e0618fce74aa68e9f7df76448ae7fb9529876d3afe4b9e72a",
+          "size": 232714
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-stylelint"
     },
     {
       "slug": "new-crypto",
@@ -1066,20 +1567,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "extension.config.js",
-        "public/icon.png",
-        "public/logo.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-crypto/extension.config.js",
+        "public/new-crypto/public/icon.png",
+        "public/new-crypto/public/logo.png",
+        "public/new-crypto/src/background.js",
+        "public/new-crypto/src/images/javascript.png",
+        "public/new-crypto/src/images/typescript.png",
+        "public/new-crypto/src/manifest.json",
+        "public/new-crypto/src/newtab/index.html",
+        "public/new-crypto/src/newtab/scripts.ts",
+        "public/new-crypto/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/new-crypto/public/logo.png"
+      "screenshot": "public/new-crypto/screenshot.png",
+      "icon": "public/new-crypto/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-crypto.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c6ca1bf14043db14cd9d5afd55ff6badce5d7a405e868c7a1014cb58d8465442",
+          "size": 169064
+        },
+        "edge": {
+          "sha256": "06d70124952177404a1fe519855d620715814fad32e04d4653a21599c031e5d3",
+          "size": 169064
+        },
+        "firefox": {
+          "sha256": "89085db595c39c80e8d8f77c8526da4b8e859601b6606d6771012d70abc6fafd",
+          "size": 169051
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-crypto"
     },
     {
       "slug": "new-env",
@@ -1107,20 +1628,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-env/public/icon.png",
+        "public/new-env/public/logo.png",
+        "public/new-env/public/screenshot.png",
+        "public/new-env/src/background.js",
+        "public/new-env/src/images/javascript.png",
+        "public/new-env/src/images/typescript.png",
+        "public/new-env/src/manifest.json",
+        "public/new-env/src/newtab/index.html",
+        "public/new-env/src/newtab/scripts.ts",
+        "public/new-env/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-env/public/screenshot.png",
-      "icon": "examples/new-env/public/logo.png"
+      "screenshot": "public/new-env/screenshot.png",
+      "icon": "public/new-env/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-env.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-env.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-env.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "9e41ca8a8a6c53750933a4cedc876d637279f3269eda80859db7277e0b93f2dc",
+          "size": 201363
+        },
+        "edge": {
+          "sha256": "c6cc57887988534af37ca9d09828f31d6607a891b39bffdaf597d8edc0723b2a",
+          "size": 201362
+        },
+        "firefox": {
+          "sha256": "716f2cb32bff9ac68e9d5cbdd348e11a8acc1a4e0a0f57e2fbe19bb5db57f17a",
+          "size": 201352
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-env"
     },
     {
       "slug": "new-less",
@@ -1148,18 +1689,38 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/less.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.js",
-        "src/newtab/styles.less"
+        "public/new-less/public/icon.png",
+        "public/new-less/public/screenshot.png",
+        "public/new-less/src/background.js",
+        "public/new-less/src/images/less.png",
+        "public/new-less/src/manifest.json",
+        "public/new-less/src/newtab/index.html",
+        "public/new-less/src/newtab/scripts.js",
+        "public/new-less/src/newtab/styles.less"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-less/public/screenshot.png",
-      "icon": "examples/new-less/public/icon.png"
+      "screenshot": "public/new-less/screenshot.png",
+      "icon": "public/new-less/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-less.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-less.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-less.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "f017423a9b21b559d445360e1fb3aaec57a58170fa311ab789823a37db8bdeda",
+          "size": 397093
+        },
+        "edge": {
+          "sha256": "a7754576a4471a7d1b0a634bf81bc28b1ba1d881825d2c536aec947ba1a397ed",
+          "size": 397093
+        },
+        "firefox": {
+          "sha256": "c82ad583ddc5824f85448b3b67143dc5e966ad4cbb5fd4c6c5a1cc81f537eff9",
+          "size": 397081
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-less"
     },
     {
       "slug": "new-preact",
@@ -1187,20 +1748,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/preact.png",
-        "src/manifest.json",
-        "src/newtab/NewTabApp.tsx",
-        "src/newtab/index.html",
-        "src/newtab/scripts.tsx",
-        "src/newtab/styles.css"
+        "public/new-preact/public/icon.png",
+        "public/new-preact/public/logo.png",
+        "public/new-preact/public/screenshot.png",
+        "public/new-preact/src/background.js",
+        "public/new-preact/src/images/preact.png",
+        "public/new-preact/src/manifest.json",
+        "public/new-preact/src/newtab/NewTabApp.tsx",
+        "public/new-preact/src/newtab/index.html",
+        "public/new-preact/src/newtab/scripts.tsx",
+        "public/new-preact/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-preact/public/screenshot.png",
-      "icon": "examples/new-preact/public/logo.png"
+      "screenshot": "public/new-preact/screenshot.png",
+      "icon": "public/new-preact/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "413b3f46eec7d98df39e17abe6a2930b7a79d34538238586ad6e29b3cceb4dca",
+          "size": 338165
+        },
+        "edge": {
+          "sha256": "9f300aac8aab68f35cae22ffcc8209c59b3d7132cb19721368e15fa3e7d08d02",
+          "size": 338165
+        },
+        "firefox": {
+          "sha256": "7a91b466cff030a07b6230b8275dc6d419d75c137b9271ba3c4aa732400bfde7",
+          "size": 338153
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-preact"
     },
     {
       "slug": "new-react",
@@ -1228,20 +1809,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/react.png",
-        "src/manifest.json",
-        "src/newtab/NewTabApp.tsx",
-        "src/newtab/index.html",
-        "src/newtab/scripts.tsx",
-        "src/newtab/styles.css"
+        "public/new-react/public/icon.png",
+        "public/new-react/public/logo.png",
+        "public/new-react/public/screenshot.png",
+        "public/new-react/src/background.js",
+        "public/new-react/src/images/react.png",
+        "public/new-react/src/manifest.json",
+        "public/new-react/src/newtab/NewTabApp.tsx",
+        "public/new-react/src/newtab/index.html",
+        "public/new-react/src/newtab/scripts.tsx",
+        "public/new-react/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-react/public/screenshot.png",
-      "icon": "examples/new-react/public/logo.png"
+      "screenshot": "public/new-react/screenshot.png",
+      "icon": "public/new-react/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "279ed2a9163d3dc33de56bb7cd7c11a5ab988660468cadd436d6185cafbe0c1a",
+          "size": 460417
+        },
+        "edge": {
+          "sha256": "b7d07fd33e6bcf60e10aab846b012a4cad1d461ebb8b176d2d008e7b03fb4334",
+          "size": 460417
+        },
+        "firefox": {
+          "sha256": "c993e2202559e9379e09536000d774bb682bd47b38d1741c2d66501617b5e388",
+          "size": 460404
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react"
     },
     {
       "slug": "new-react-router",
@@ -1269,20 +1870,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/react.png",
-        "src/manifest.json",
-        "src/newtab/NewTabApp.tsx",
-        "src/newtab/index.html",
-        "src/newtab/scripts.tsx",
-        "src/newtab/styles.css"
+        "public/new-react-router/public/icon.png",
+        "public/new-react-router/public/logo.png",
+        "public/new-react-router/public/screenshot.png",
+        "public/new-react-router/src/background.js",
+        "public/new-react-router/src/images/react.png",
+        "public/new-react-router/src/manifest.json",
+        "public/new-react-router/src/newtab/NewTabApp.tsx",
+        "public/new-react-router/src/newtab/index.html",
+        "public/new-react-router/src/newtab/scripts.tsx",
+        "public/new-react-router/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-react-router/public/screenshot.png",
-      "icon": "examples/new-react-router/public/logo.png"
+      "screenshot": "public/new-react-router/screenshot.png",
+      "icon": "public/new-react-router/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-react-router.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "102828068c43755750d4e5fdb26cfc82ca5204b12c4402d96e9020a4610b4471",
+          "size": 494481
+        },
+        "edge": {
+          "sha256": "5d089d19b52698b83a4abc28aef05baeaa7935ab7532720f5d8852f444934547",
+          "size": 494481
+        },
+        "firefox": {
+          "sha256": "e4ea5a9c38102c23a4b3ef320f3990b2d95cd0809d76ecd4f15a06fc0c487ba6",
+          "size": 494469
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react-router"
     },
     {
       "slug": "new-sass",
@@ -1310,18 +1931,38 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/sass.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.js",
-        "src/newtab/styles.scss"
+        "public/new-sass/public/icon.png",
+        "public/new-sass/public/screenshot.png",
+        "public/new-sass/src/background.js",
+        "public/new-sass/src/images/sass.png",
+        "public/new-sass/src/manifest.json",
+        "public/new-sass/src/newtab/index.html",
+        "public/new-sass/src/newtab/scripts.js",
+        "public/new-sass/src/newtab/styles.scss"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-sass/public/screenshot.png",
-      "icon": "examples/new-sass/public/icon.png"
+      "screenshot": "public/new-sass/screenshot.png",
+      "icon": "public/new-sass/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-sass.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "58cfca57164c64eb0128574e90a8a81431f3318a8d652ad955245785b4ad9061",
+          "size": 764844
+        },
+        "edge": {
+          "sha256": "fa54567afe9bdecb81284680e78f85851a97d6212f87e7cb8396bc7fd7c70d33",
+          "size": 764844
+        },
+        "firefox": {
+          "sha256": "ddbb760c783e45027d786922bf71f7c4b54c3abc37e2e6a0de9e786a77d8e346",
+          "size": 764831
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-sass"
     },
     {
       "slug": "new-svelte",
@@ -1349,20 +1990,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/logo.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/svelte.png",
-        "src/manifest.json",
-        "src/newtab/NewTabApp.svelte",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-svelte/public/icon.png",
+        "public/new-svelte/public/logo.png",
+        "public/new-svelte/public/screenshot.png",
+        "public/new-svelte/src/background.js",
+        "public/new-svelte/src/images/svelte.png",
+        "public/new-svelte/src/manifest.json",
+        "public/new-svelte/src/newtab/NewTabApp.svelte",
+        "public/new-svelte/src/newtab/index.html",
+        "public/new-svelte/src/newtab/scripts.ts",
+        "public/new-svelte/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-svelte/public/screenshot.png",
-      "icon": "examples/new-svelte/public/logo.png"
+      "screenshot": "public/new-svelte/screenshot.png",
+      "icon": "public/new-svelte/public/logo.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "cd55eb057e140947b46fee2fe018594cca87c2189ed560de2fee88c327d3178b",
+          "size": 333680
+        },
+        "edge": {
+          "sha256": "c1c05b370cfbab0c217f816b26f549b7035b788de3ee8ba193290a185cda9687",
+          "size": 333680
+        },
+        "firefox": {
+          "sha256": "bf3dd82d0c7c236228bc25dcf91c82333cf2f26e54be22d77a68edf6a9ed38fe",
+          "size": 333668
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-svelte"
     },
     {
       "slug": "new-typescript",
@@ -1390,18 +2051,38 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-typescript/public/icon.png",
+        "public/new-typescript/public/screenshot.png",
+        "public/new-typescript/src/background.js",
+        "public/new-typescript/src/images/typescript.png",
+        "public/new-typescript/src/manifest.json",
+        "public/new-typescript/src/newtab/index.html",
+        "public/new-typescript/src/newtab/scripts.ts",
+        "public/new-typescript/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-typescript/public/screenshot.png",
-      "icon": "examples/new-typescript/public/icon.png"
+      "screenshot": "public/new-typescript/screenshot.png",
+      "icon": "public/new-typescript/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "e9312119c841cd49d64a74bcde185fb54abbda38a376e8044d738002202c967b",
+          "size": 595026
+        },
+        "edge": {
+          "sha256": "3e8d51aac7f225e5ebdab6bcd7b9366aecc4f220ad94b3d31bc1521250cd014f",
+          "size": 595026
+        },
+        "firefox": {
+          "sha256": "e3abf7eb8cda7f17bde9c80243707ce097febba7d355e1c24dfdec11b1d871aa",
+          "size": 595014
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-typescript"
     },
     {
       "slug": "new-vue",
@@ -1429,19 +2110,39 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "public/screenshot.png",
-        "src/background.js",
-        "src/images/vue.png",
-        "src/manifest.json",
-        "src/newtab/NewTabApp.vue",
-        "src/newtab/index.html",
-        "src/newtab/scripts.ts",
-        "src/newtab/styles.css"
+        "public/new-vue/public/icon.png",
+        "public/new-vue/public/screenshot.png",
+        "public/new-vue/src/background.js",
+        "public/new-vue/src/images/vue.png",
+        "public/new-vue/src/manifest.json",
+        "public/new-vue/src/newtab/NewTabApp.vue",
+        "public/new-vue/src/newtab/index.html",
+        "public/new-vue/src/newtab/scripts.ts",
+        "public/new-vue/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/new-vue/public/screenshot.png",
-      "icon": "examples/new-vue/public/icon.png"
+      "screenshot": "public/new-vue/screenshot.png",
+      "icon": "public/new-vue/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/new-vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c9c00980dd0d30eacf8fa6a59d0bcb67d0acba0c763a5df4265e31fc8b92298f",
+          "size": 242991
+        },
+        "edge": {
+          "sha256": "8829179170ea8e128d56404fb6dc95f608e4c0f4278c9ab715a5e8ce00ac60d3",
+          "size": 242991
+        },
+        "firefox": {
+          "sha256": "8a5de77d9918ac9d615114c4df0aab796edf1934e764e6db5dab833fd7733875",
+          "size": 242979
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-vue"
     },
     {
       "slug": "preact",
@@ -1469,24 +2170,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.ts",
-        "src/content/ContentApp.tsx",
-        "src/content/scripts.tsx",
-        "src/content/styles.css",
-        "src/images/extension_48.png",
-        "src/images/preact.png",
-        "src/manifest.json",
-        "src/public/extension.svg",
-        "src/public/logo.svg",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
+        "public/preact/public/icon.png",
+        "public/preact/src/background.ts",
+        "public/preact/src/content/ContentApp.tsx",
+        "public/preact/src/content/scripts.tsx",
+        "public/preact/src/content/styles.css",
+        "public/preact/src/images/extension_48.png",
+        "public/preact/src/images/preact.png",
+        "public/preact/src/manifest.json",
+        "public/preact/src/public/extension.svg",
+        "public/preact/src/public/logo.svg",
+        "public/preact/src/sidebar/SidebarApp.tsx",
+        "public/preact/src/sidebar/index.html",
+        "public/preact/src/sidebar/scripts.tsx",
+        "public/preact/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/preact/public/icon.png"
+      "screenshot": "public/preact/screenshot.png",
+      "icon": "public/preact/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/preact.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/preact.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/preact.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "1d1ae76d3807819a280626bc643cd412eba6ad6c455e5c99fa2fca6129f1e504",
+          "size": 107122
+        },
+        "edge": {
+          "sha256": "fc647c07d71427b4e24c23d8666d5260f7ad0497becfbd8bdd4f0599b8c1d28b",
+          "size": 107122
+        },
+        "firefox": {
+          "sha256": "5fc9120520d321e45e32e0ec07d27ae8ba8ba9ccec9d94ace9f28d86d042c00d",
+          "size": 107114
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/preact"
     },
     {
       "slug": "react",
@@ -1514,24 +2235,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/extension.svg",
-        "public/icon.svg",
-        "public/logo.svg",
-        "src/background.ts",
-        "src/content/ContentApp.tsx",
-        "src/content/scripts.tsx",
-        "src/content/styles.css",
-        "src/images/extension_48.png",
-        "src/images/react.png",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
+        "public/react/public/extension.svg",
+        "public/react/public/icon.png",
+        "public/react/public/logo.svg",
+        "public/react/src/background.ts",
+        "public/react/src/content/ContentApp.tsx",
+        "public/react/src/content/scripts.tsx",
+        "public/react/src/content/styles.css",
+        "public/react/src/images/extension_48.png",
+        "public/react/src/images/react.png",
+        "public/react/src/manifest.json",
+        "public/react/src/sidebar/SidebarApp.tsx",
+        "public/react/src/sidebar/index.html",
+        "public/react/src/sidebar/scripts.tsx",
+        "public/react/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/react/public/logo.svg"
+      "screenshot": "public/react/screenshot.png",
+      "icon": "public/react/public/logo.svg",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/react.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/react.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/react.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "ddd16ee00b911aa588bcfd1ca3d9643a1fb93c81c7a451885a7a2c6160387d46",
+          "size": 199493
+        },
+        "edge": {
+          "sha256": "1f91c14b92d7bb03d546873a10881cf5c761ecfb2828870702cdda15c66a2b0f",
+          "size": 199493
+        },
+        "firefox": {
+          "sha256": "d8564cf860cad7dbf2ca4194568240a223d659209cbed3ce71a3b3e650a81212",
+          "size": 199485
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/react"
     },
     {
       "slug": "sidebar",
@@ -1559,17 +2300,37 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.js",
-        "src/sidebar/styles.css"
+        "public/sidebar/public/icon.png",
+        "public/sidebar/src/background.js",
+        "public/sidebar/src/images/javascript.png",
+        "public/sidebar/src/manifest.json",
+        "public/sidebar/src/sidebar/index.html",
+        "public/sidebar/src/sidebar/scripts.js",
+        "public/sidebar/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/sidebar/public/icon.png"
+      "screenshot": "public/sidebar/screenshot.png",
+      "icon": "public/sidebar/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "4048f64ffab6028d76fbcba4ce945465f0949d7994e652837bc204ca443b5bd5",
+          "size": 66411
+        },
+        "edge": {
+          "sha256": "17efe9f4a2cdff4d2fc8507fc4dc8ea58f30d84f2007c9e3f94f4c038eec28cd",
+          "size": 66411
+        },
+        "firefox": {
+          "sha256": "a7188f7185b91139cd44c6c48b6f3c903652801f5635db7a0d6c289e62069be8",
+          "size": 66358
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
     },
     {
       "slug": "sidebar-monorepo-turbopack",
@@ -1599,21 +2360,22 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "packages/analytics/src/index.js",
-        "packages/extension/src/background.js",
-        "packages/extension/src/content/scripts.js",
-        "packages/extension/src/content/styles.css",
-        "packages/extension/src/images/javascript.png",
-        "packages/extension/src/manifest.json",
-        "packages/extension/src/sidebar/SidebarApp.js",
-        "packages/extension/src/sidebar/index.html",
-        "packages/extension/src/sidebar/scripts.js",
-        "packages/extension/src/sidebar/styles.css",
-        "public/icon.png"
+        "public/sidebar-monorepo-turbopack/packages/analytics/src/index.js",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/background.js",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/content/scripts.js",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/content/styles.css",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/images/javascript.png",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/manifest.json",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/SidebarApp.js",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/index.html",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/scripts.js",
+        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/styles.css",
+        "public/sidebar-monorepo-turbopack/public/icon.png"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/sidebar-monorepo-turbopack/public/icon.png"
+      "screenshot": "public/sidebar-monorepo-turbopack/screenshot.png",
+      "icon": "public/sidebar-monorepo-turbopack/public/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turbopack"
     },
     {
       "slug": "sidebar-shadcn",
@@ -1641,26 +2403,46 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.ts",
-        "src/components/ui/button.tsx",
-        "src/components/ui/card.tsx",
-        "src/components/ui/label.tsx",
-        "src/components/ui/switch.tsx",
-        "src/images/react.png",
-        "src/images/shadcn.png",
-        "src/images/shadcn.svg",
-        "src/images/typescript.png",
-        "src/lib/utils.ts",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
+        "public/sidebar-shadcn/public/icon.png",
+        "public/sidebar-shadcn/src/background.ts",
+        "public/sidebar-shadcn/src/components/ui/button.tsx",
+        "public/sidebar-shadcn/src/components/ui/card.tsx",
+        "public/sidebar-shadcn/src/components/ui/label.tsx",
+        "public/sidebar-shadcn/src/components/ui/switch.tsx",
+        "public/sidebar-shadcn/src/images/react.png",
+        "public/sidebar-shadcn/src/images/shadcn.png",
+        "public/sidebar-shadcn/src/images/shadcn.svg",
+        "public/sidebar-shadcn/src/images/typescript.png",
+        "public/sidebar-shadcn/src/lib/utils.ts",
+        "public/sidebar-shadcn/src/manifest.json",
+        "public/sidebar-shadcn/src/sidebar/SidebarApp.tsx",
+        "public/sidebar-shadcn/src/sidebar/index.html",
+        "public/sidebar-shadcn/src/sidebar/scripts.tsx",
+        "public/sidebar-shadcn/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/sidebar-shadcn/public/icon.png"
+      "screenshot": "public/sidebar-shadcn/screenshot.png",
+      "icon": "public/sidebar-shadcn/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-shadcn.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "6b5f0d1a9b480e0ce2c88012019e6380bfc7f55a0fbe49e6a8717f8e3dd5a9fd",
+          "size": 82182
+        },
+        "edge": {
+          "sha256": "976451fddbd6c53f9c6187b477d81c82cacedcdb4f74f40022546bb289e76eb2",
+          "size": 82182
+        },
+        "firefox": {
+          "sha256": "3b79a96bdcb43fd44e4f72b7ae444bf212d386bc72e456ee8910bc7d9d962490",
+          "size": 82132
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
     },
     {
       "slug": "sidebar-transformers-js",
@@ -1688,22 +2470,42 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/constants.js",
-        "src/images/javascript.png",
-        "src/images/logo.png",
-        "src/images/transformers-js.png",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.js",
-        "src/sidebar/index.html",
-        "src/sidebar/sakura.css",
-        "src/sidebar/scripts.js",
-        "src/sidebar/styles.css"
+        "public/sidebar-transformers-js/public/icon.png",
+        "public/sidebar-transformers-js/src/background.js",
+        "public/sidebar-transformers-js/src/constants.js",
+        "public/sidebar-transformers-js/src/images/javascript.png",
+        "public/sidebar-transformers-js/src/images/logo.png",
+        "public/sidebar-transformers-js/src/images/transformers-js.png",
+        "public/sidebar-transformers-js/src/manifest.json",
+        "public/sidebar-transformers-js/src/sidebar/SidebarApp.js",
+        "public/sidebar-transformers-js/src/sidebar/index.html",
+        "public/sidebar-transformers-js/src/sidebar/sakura.css",
+        "public/sidebar-transformers-js/src/sidebar/scripts.js",
+        "public/sidebar-transformers-js/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/sidebar-transformers-js/public/icon.png"
+      "screenshot": "public/sidebar-transformers-js/screenshot.png",
+      "icon": "public/sidebar-transformers-js/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/sidebar-transformers-js.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "7e97e98773dea2b1bd36ca1f63bd63f7f84c39409b8c5c838f96976ff98093c0",
+          "size": 5483582
+        },
+        "edge": {
+          "sha256": "cfba519b6f9bab83dea6b809cf7db8149071546771917e43f0cd33a98026d3fc",
+          "size": 5483582
+        },
+        "firefox": {
+          "sha256": "815ef47d955ded96aa87dbaad2ad183ee33caa8605897efb44ee6aa3c697f2bc",
+          "size": 5483524
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-transformers-js"
     },
     {
       "slug": "special-folders-pages",
@@ -1731,20 +2533,40 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/css/file.css",
-        "public/html/file.html",
-        "public/icon.png",
-        "public/js/file.js",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json",
-        "src/sandbox/index.html",
-        "src/sandbox/scripts.js",
-        "src/sandbox/styles.css"
+        "public/special-folders-pages/public/css/file.css",
+        "public/special-folders-pages/public/html/file.html",
+        "public/special-folders-pages/public/icon.png",
+        "public/special-folders-pages/public/js/file.js",
+        "public/special-folders-pages/src/background.js",
+        "public/special-folders-pages/src/images/javascript.png",
+        "public/special-folders-pages/src/manifest.json",
+        "public/special-folders-pages/src/sandbox/index.html",
+        "public/special-folders-pages/src/sandbox/scripts.js",
+        "public/special-folders-pages/src/sandbox/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/special-folders-pages/public/icon.png"
+      "screenshot": "public/special-folders-pages/screenshot.png",
+      "icon": "public/special-folders-pages/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-pages.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "534abf76db8bb3febb521e2e3e37bb1f4096398d2b6392fec0047d00b6c55ae9",
+          "size": 37463
+        },
+        "edge": {
+          "sha256": "66360e4ac1e87a0f5a282d30fe93906404e21a7299784b0091d1e755efd38b7d",
+          "size": 37463
+        },
+        "firefox": {
+          "sha256": "03321352d6d2d61751437d42022926f023a949a40657052c422818394e40245b",
+          "size": 37446
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-pages"
     },
     {
       "slug": "special-folders-scripts",
@@ -1772,14 +2594,34 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.js",
-        "src/images/javascript.png",
-        "src/manifest.json"
+        "public/special-folders-scripts/public/icon.png",
+        "public/special-folders-scripts/src/background.js",
+        "public/special-folders-scripts/src/images/javascript.png",
+        "public/special-folders-scripts/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/special-folders-scripts/public/icon.png"
+      "screenshot": "public/special-folders-scripts/screenshot.png",
+      "icon": "public/special-folders-scripts/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/special-folders-scripts.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "faf71e6e9e2f8546ac4b04572efc9e675f96c7076ca235957eeec4572a4f5fe2",
+          "size": 33939
+        },
+        "edge": {
+          "sha256": "19c607c8a1d7f723896a0f49baa08301e0173ab94a93a496148d6cffb01176b2",
+          "size": 33939
+        },
+        "firefox": {
+          "sha256": "4ed9e21c4910b4d1ec2c3a800fb53541ca417a9fc2b16dee5383b1a169471aa6",
+          "size": 33926
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-scripts"
     },
     {
       "slug": "svelte",
@@ -1807,24 +2649,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.png",
-        "src/background.ts",
-        "src/content/ContentApp.svelte",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/extension_48.png",
-        "src/images/logo.png",
-        "src/images/svelte.png",
-        "src/manifest.json",
-        "src/public/extension.svg",
-        "src/sidebar/SidebarApp.svelte",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.ts",
-        "src/sidebar/styles.css"
+        "public/svelte/public/icon.png",
+        "public/svelte/src/background.ts",
+        "public/svelte/src/content/ContentApp.svelte",
+        "public/svelte/src/content/scripts.ts",
+        "public/svelte/src/content/styles.css",
+        "public/svelte/src/images/extension_48.png",
+        "public/svelte/src/images/logo.png",
+        "public/svelte/src/images/svelte.png",
+        "public/svelte/src/manifest.json",
+        "public/svelte/src/public/extension.svg",
+        "public/svelte/src/sidebar/SidebarApp.svelte",
+        "public/svelte/src/sidebar/index.html",
+        "public/svelte/src/sidebar/scripts.ts",
+        "public/svelte/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/svelte/public/icon.png"
+      "screenshot": "public/svelte/screenshot.png",
+      "icon": "public/svelte/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/svelte.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/svelte.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/svelte.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "47d81c0e0bfb5751a9ddc36db5f933d9db55ddbcdeb3eef4e5cfc74cdb069e68",
+          "size": 165413
+        },
+        "edge": {
+          "sha256": "144d98360f997841e4a2b807a4aa0ea2205379ea5aeb624874da90c9f96c9269",
+          "size": 165413
+        },
+        "firefox": {
+          "sha256": "307fcf2ac74a41f2a2c017c24c5016bdef256ef226a7981634b9312505d9d9e0",
+          "size": 165406
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/svelte"
     },
     {
       "slug": "typescript",
@@ -1852,24 +2714,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "src/background.ts",
-        "src/content/ContentApp.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/content/types.d.ts",
-        "src/images/extension_48.png",
-        "src/images/logo.svg",
-        "src/images/typescript.png",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.ts",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.ts",
-        "src/sidebar/styles.css"
+        "public/typescript/public/icon.png",
+        "public/typescript/src/background.ts",
+        "public/typescript/src/content/ContentApp.ts",
+        "public/typescript/src/content/scripts.ts",
+        "public/typescript/src/content/styles.css",
+        "public/typescript/src/content/types.d.ts",
+        "public/typescript/src/images/extension_48.png",
+        "public/typescript/src/images/logo.svg",
+        "public/typescript/src/images/typescript.png",
+        "public/typescript/src/manifest.json",
+        "public/typescript/src/sidebar/SidebarApp.ts",
+        "public/typescript/src/sidebar/index.html",
+        "public/typescript/src/sidebar/scripts.ts",
+        "public/typescript/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "examples/typescript/screenshot.png",
-      "icon": "examples/typescript/public/icon.svg"
+      "screenshot": "public/typescript/screenshot.png",
+      "icon": "public/typescript/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/typescript.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/typescript.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/typescript.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "0e90457c08e8f6547308aa07a7bd47894dc5018fa796a3091801b558b87ea00e",
+          "size": 25032
+        },
+        "edge": {
+          "sha256": "25102ea9d3c951843d25f95c82172a189f24c74427813fcc2e9f2a7bd14b4b08",
+          "size": 25032
+        },
+        "firefox": {
+          "sha256": "0d41d2d44cdd404b484ef5a3ca0ed4f1c47e08bdfce9d1fa95e9f1a5d768cb3a",
+          "size": 25026
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/typescript"
     },
     {
       "slug": "vue",
@@ -1897,24 +2779,44 @@
       "host_permissions": [],
       "optional_permissions": [],
       "files": [
-        "public/icon.svg",
-        "src/background.ts",
-        "src/content/ContentApp.vue",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/content/types.d.ts",
-        "src/images/extension_48.png",
-        "src/images/logo.svg",
-        "src/images/vue.png",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.vue",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.ts",
-        "src/sidebar/styles.css"
+        "public/vue/public/icon.png",
+        "public/vue/src/background.ts",
+        "public/vue/src/content/ContentApp.vue",
+        "public/vue/src/content/scripts.ts",
+        "public/vue/src/content/styles.css",
+        "public/vue/src/content/types.d.ts",
+        "public/vue/src/images/extension_48.png",
+        "public/vue/src/images/logo.svg",
+        "public/vue/src/images/vue.png",
+        "public/vue/src/manifest.json",
+        "public/vue/src/sidebar/SidebarApp.vue",
+        "public/vue/src/sidebar/index.html",
+        "public/vue/src/sidebar/scripts.ts",
+        "public/vue/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": null,
-      "icon": "examples/vue/public/icon.svg"
+      "screenshot": "public/vue/screenshot.png",
+      "icon": "public/vue/public/icon.png",
+      "downloads": {
+        "chrome": "https://github.com/extension-js/examples/releases/download/nightly/vue.chrome.zip",
+        "edge": "https://github.com/extension-js/examples/releases/download/nightly/vue.edge.zip",
+        "firefox": "https://github.com/extension-js/examples/releases/download/nightly/vue.firefox.zip"
+      },
+      "integrity": {
+        "chrome": {
+          "sha256": "c05c8fa65185fcb89540ac50121f0b9748690e00c2c493b381133d53d22bbdeb",
+          "size": 52028
+        },
+        "edge": {
+          "sha256": "2b28e175238035848f5b6d3871536266dd78c30ed2db9e53945f3bfd7c3f938d",
+          "size": 52028
+        },
+        "firefox": {
+          "sha256": "7236c2b04970256be3a5d91ced20e8998c7fae79d62e0af34608ab5e4316f8c9",
+          "size": 52022
+        }
+      },
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/vue"
     }
   ]
 }
