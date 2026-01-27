@@ -5,9 +5,11 @@
   "name": "Extension.js - CSS Modules Content Example",
   "description": "Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.",
   "icons": {
-    "16": "images/logo.png",
-    "48": "images/logo.png",
-    "128": "images/logo.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],

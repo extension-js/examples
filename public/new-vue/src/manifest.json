@@ -5,9 +5,11 @@
   "name": "Extension.js - Vue New Tab Example",
   "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
   "icons": {
-    "16": "images/vue.png",
-    "48": "images/vue.png",
-    "128": "images/vue.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

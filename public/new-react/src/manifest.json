@@ -5,9 +5,11 @@
   "name": "Extension.js - New React Example",
   "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
   "icons": {
-    "16": "images/react.png",
-    "48": "images/react.png",
-    "128": "images/react.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",
