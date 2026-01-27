@@ -26,9 +26,11 @@
     }
   ],
   "icons": {
-    "16": "images/extension.png",
-    "48": "images/extension.png",
-    "128": "images/extension.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "chrome_url_overrides": {
     "newtab": "newtab/index.html"

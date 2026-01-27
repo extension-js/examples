@@ -5,9 +5,11 @@
   "name": "Extension.js - Less Modules Content Example",
   "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
   "icons": {
-    "16": "images/less.png",
-    "48": "images/less.png",
-    "128": "images/less.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],

@@ -5,9 +5,11 @@
   "name": "Extension.js - Sass New Tab Example",
   "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
   "icons": {
-    "16": "images/sass.png",
-    "48": "images/sass.png",
-    "128": "images/sass.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

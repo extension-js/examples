@@ -19,16 +19,6 @@ try {
   /* noop */
 }
 
-let EXT_VERSION = 'latest'
-try {
-  const pkg = JSON.parse(
-    fs.readFileSync(path.join(REPO_ROOT, 'package.json'), 'utf8')
-  )
-  EXT_VERSION = pkg?.devDependencies?.extension || EXT_VERSION
-} catch {
-  /* noop */
-}
-
 function run(command, args, opts = {}) {
   const r = spawnSync(command, args, {
     stdio: 'inherit',
@@ -49,11 +39,15 @@ function main() {
   // so this script must never create a temporary root manifest.json.
   const env = {...process.env, XDG_CONFIG_HOME}
 
+  // Ensure the root workspace binary is available from any example dir.
+  const binDir = path.join(REPO_ROOT, 'node_modules', '.bin')
+  env.PATH = env.PATH ? `${binDir}${path.delimiter}${env.PATH}` : binDir
+
   if (process.env.EXTENSION_SKIP_INSTALL !== undefined) {
     env.EXTENSION_SKIP_INSTALL = process.env.EXTENSION_SKIP_INSTALL
   }
 
-  run('npx', ['-y', `extension@${EXT_VERSION}`, mode, ...extraArgs], {
+  run('extension', [mode, ...extraArgs], {
     cwd: CWD,
     env
   })

@@ -6,9 +6,11 @@
   "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
   "default_locale": "en",
   "icons": {
-    "16": "images/javascript.png",
-    "48": "images/javascript.png",
-    "128": "images/javascript.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "background": {
@@ -19,9 +21,11 @@
     "default_popup": "./action/index.html",
     "default_title": "__MSG_actionTitle__",
     "default_icon": {
-      "16": "images/javascript.png",
-      "48": "images/javascript.png",
-      "128": "images/javascript.png"
+      "16": "public/icon.png",
+      "32": "public/icon.png",
+      "48": "public/icon.png",
+      "64": "public/icon.png",
+      "128": "public/icon.png"
     }
   }
 }

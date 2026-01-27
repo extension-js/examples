@@ -5,9 +5,11 @@
   "name": "Extension.js - Prettier Config New Tab Example",
   "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
   "icons": {
-    "16": "images/prettier.png",
-    "48": "images/prettier.png",
-    "128": "images/prettier.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

@@ -7,25 +7,29 @@
   "author": "Cezar Augusto",
   "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
   "icons": {
-    "16": "images/javascript.png",
-    "48": "images/javascript.png",
-    "128": "images/javascript.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "chromium:action": {
     "default_icon": {
-      "16": "images/javascript.png",
-      "32": "images/javascript.png",
-      "48": "images/javascript.png",
-      "128": "images/javascript.png"
+      "16": "public/icon.png",
+      "32": "public/icon.png",
+      "48": "public/icon.png",
+      "64": "public/icon.png",
+      "128": "public/icon.png"
     },
     "default_title": "Open Extension.js Sidebar"
   },
   "firefox:browser_action": {
     "default_icon": {
-      "16": "images/javascript.png",
-      "32": "images/javascript.png",
-      "48": "images/javascript.png",
-      "128": "images/javascript.png"
+      "16": "public/icon.png",
+      "32": "public/icon.png",
+      "48": "public/icon.png",
+      "64": "public/icon.png",
+      "128": "public/icon.png"
     },
     "default_title": "Open Extension.js Sidebar"
   },
