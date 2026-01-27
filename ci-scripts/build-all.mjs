@@ -304,14 +304,14 @@ if (!fs.existsSync(nodeModulesPath)) {
   try {
     const rootInstallSuccess = await run(
       'pnpm',
-      ['install', '--frozen-lockfile'],
+      ['install', '--frozen-lockfile', '--prod=false'],
       repoRoot
     )
     if (!rootInstallSuccess) {
       console.error(
         '►►► \nError: Failed to install workspace dependencies. Retrying without --frozen-lockfile...'
       )
-      const retrySuccess = await run('pnpm', ['install'], repoRoot)
+      const retrySuccess = await run('pnpm', ['install', '--prod=false'], repoRoot)
       if (!retrySuccess) {
         console.error(
           '►►► \nError: Failed to install workspace dependencies after retry. Aborting builds.'
@@ -363,11 +363,11 @@ for (const slug of slugs) {
         try {
           // Install from example directory - workspace deps already installed at root
           // Use --frozen-lockfile to prevent lockfile updates (workspace install already handled it)
-          installSuccess = await run(
-            'pnpm',
-            ['install', '--frozen-lockfile'],
-            exampleDirectory
-          )
+            installSuccess = await run(
+              'pnpm',
+              ['install', '--frozen-lockfile', '--prod=false'],
+              exampleDirectory
+            )
 
           if (installSuccess) {
             break
@@ -377,7 +377,11 @@ for (const slug of slugs) {
             console.log(
               `►►► \n[WARNING] Retrying ${slug} without --frozen-lockfile as final attempt...`
             )
-            installSuccess = await run('pnpm', ['install'], exampleDirectory)
+            installSuccess = await run(
+              'pnpm',
+              ['install', '--prod=false'],
+              exampleDirectory
+            )
             if (!installSuccess) {
               console.error(
                 `►►► \nError: Failed to install dependencies for ${slug} after ${maxRetries} attempts + fallback`
@@ -394,7 +398,11 @@ for (const slug of slugs) {
               console.log(
                 `\n[WARNING] Retrying ${slug} without --frozen-lockfile as final attempt...`
               )
-              installSuccess = await run('pnpm', ['install'], exampleDirectory)
+              installSuccess = await run(
+                'pnpm',
+                ['install', '--prod=false'],
+                exampleDirectory
+              )
             } catch (fallbackError) {
               console.error(
                 `►►► \nError: Failed to install dependencies for ${slug} after ${maxRetries} attempts + fallback:`,
