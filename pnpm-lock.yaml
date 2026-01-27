@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.3.0
-        version: 3.3.0(webpack@5.103.0)
+        specifier: 3.3.3-mext.1
+        version: 3.3.3-mext.1(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -526,10 +526,6 @@ packages:
 
   '@babel/helper-string-parser@7.27.1':
     resolution: {integrity: sha512-qMlSxKbpRlAridDExk92nSobyDdpPijUq2DW6oDnUqd0iOGxmQjyqhMIihI9+zv4LPyZdRje2cavWPbCbWm3eA==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.27.1':
-    resolution: {integrity: sha512-D2hP9eA+Sqx1kBZgzxZh0y1trbuU+JoDkiEwqhQ36nodYqJwyEIhPSdMNd7lOm/4io72luTPWH20Yda0xOuUow==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.28.5':
@@ -2383,16 +2379,16 @@ packages:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
 
-  extension-create@3.3.0:
-    resolution: {integrity: sha512-5iGUiDJ9iYZhIOUi+MMhgXGXs9OoXLLkpS200lr1Buxmqb7zjNQ+CKR/9vSNKnPjQrl3DEEgxzvW1cekDiKq8A==}
+  extension-create@3.3.3-mext.1:
+    resolution: {integrity: sha512-ci823rDH1BCJHEZdvvxRvz7TUHiIc+o9mZA2c+N7h7TwaTIow1yNBL/PLVezwadOHU2CpUhzY1aRrH/xZg7a8g==}
     engines: {node: '>=18'}
 
-  extension-develop@3.3.0:
-    resolution: {integrity: sha512-hbN2s2aRGAfY2C5oHBRoq+pwq3KATKHzWqgm9+TGkytdwOiIhXFjxs9FFafU6CGh51FCmWWqBxlMMR5UYR54FA==}
+  extension-develop@3.3.3-mext.1:
+    resolution: {integrity: sha512-4jEYPlrtM5kxdk3jLIyilS6n5hN4hLTgHQ+h3L2gbdEXcttoxqBhXcXIeJsxNcB3n8R41aIui2A9aorPf0CJKA==}
     engines: {node: '>=18'}
 
-  extension@3.3.0:
-    resolution: {integrity: sha512-5bEUfdHnxuyU00lVusasfCyJliE1MUiadrmXhTCpggUdOONvE0Ifk5+T2S0DoWspNUzqy6AvAsd9w02+31OBnw==}
+  extension@3.3.3-mext.1:
+    resolution: {integrity: sha512-0RQ+Jd63yGkd1nSFV9UWBUIqiQBqFDe7sdALMcmCDZ7uUlwvJUXm5ZMwTUf4aOqDNK3cEgy5gP/LKkwL0Cp7Mg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3360,10 +3356,6 @@ packages:
   postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
 
-  postcss@8.5.5:
-    resolution: {integrity: sha512-d/jtm+rdNT8tpXuHY5MMtcbJFBkhXE6593XVR9UoGCH8jSFGci7jGvMGH5RYd5PBJW+00NZQt6gf7CbagJCrhg==}
-    engines: {node: ^10 || ^12 || >=14}
-
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3570,11 +3562,6 @@ packages:
 
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
-    hasBin: true
-
-  semver@7.7.2:
-    resolution: {integrity: sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==}
-    engines: {node: '>=10'}
     hasBin: true
 
   semver@7.7.3:
@@ -4146,13 +4133,11 @@ snapshots:
 
   '@babel/code-frame@7.27.1':
     dependencies:
-      '@babel/helper-validator-identifier': 7.27.1
+      '@babel/helper-validator-identifier': 7.28.5
       js-tokens: 4.0.0
       picocolors: 1.1.1
 
   '@babel/helper-string-parser@7.27.1': {}
-
-  '@babel/helper-validator-identifier@7.27.1': {}
 
   '@babel/helper-validator-identifier@7.28.5': {}
 
@@ -4977,7 +4962,7 @@ snapshots:
       '@alloc/quick-lru': 5.2.0
       '@tailwindcss/node': 4.1.17
       '@tailwindcss/oxide': 4.1.17
-      postcss: 8.5.5
+      postcss: 8.5.6
       tailwindcss: 4.1.17
 
   '@tailwindcss/typography@0.5.19(tailwindcss@4.1.17)':
@@ -5973,7 +5958,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-create@3.3.0:
+  extension-create@3.3.3-mext.1:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.13.2
@@ -5984,7 +5969,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.3.0(webpack@5.103.0):
+  extension-develop@3.3.3-mext.1(webpack@5.103.0):
     dependencies:
       '@rspack/core': 1.7.3(@swc/helpers@0.5.18)
       '@rspack/dev-server': 1.2.1(@rspack/core@1.7.3(@swc/helpers@0.5.18))(webpack@5.103.0)
@@ -6021,11 +6006,11 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  extension@3.3.0(webpack@5.103.0):
+  extension@3.3.3-mext.1(webpack@5.103.0):
     dependencies:
       commander: 14.0.2
-      extension-create: 3.3.0
-      extension-develop: 3.3.0(webpack@5.103.0)
+      extension-create: 3.3.3-mext.1
+      extension-develop: 3.3.3-mext.1(webpack@5.103.0)
       pintor: 0.3.0
       semver: 7.7.3
       update-check: 1.5.4
@@ -6943,12 +6928,6 @@ snapshots:
 
   postcss-value-parser@4.2.0: {}
 
-  postcss@8.5.5:
-    dependencies:
-      nanoid: 3.3.11
-      picocolors: 1.1.1
-      source-map-js: 1.2.1
-
   postcss@8.5.6:
     dependencies:
       nanoid: 3.3.11
@@ -7185,8 +7164,6 @@ snapshots:
   semver@5.7.2:
     optional: true
 
-  semver@7.7.2: {}
-
   semver@7.7.3: {}
 
   send@0.19.0:
@@ -7266,7 +7243,7 @@ snapshots:
     dependencies:
       '@img/colour': 1.0.0
       detect-libc: 2.1.2
-      semver: 7.7.2
+      semver: 7.7.3
     optionalDependencies:
       '@img/sharp-darwin-arm64': 0.34.4
       '@img/sharp-darwin-x64': 0.34.4
