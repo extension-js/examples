@@ -18,5 +18,7 @@ test('build outputs a manifest with javascript icons', async () => {
     )
   }
   const json = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
-  test.expect(json?.icons?.['16']).toBe('icons/javascript.png')
+  test
+    .expect(['icon.png', 'public/icon.png', 'icons/javascript.png'])
+    .toContain(json?.icons?.['16'])
 })

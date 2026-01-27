@@ -5,9 +5,11 @@
   "name": "Extension.js - Crypto New Tab Example",
   "description": "New tab page example demonstrating basic crypto operations inside an extension.",
   "icons": {
-    "16": "images/javascript.png",
-    "48": "images/javascript.png",
-    "128": "images/javascript.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

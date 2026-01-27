@@ -7,19 +7,29 @@
   "author": "Cezar Augusto",
   "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
   "icons": {
-    "16": "images/shadcn.png",
-    "48": "images/shadcn.png",
-    "128": "images/shadcn.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "chromium:action": {
     "default_icon": {
-      "48": "images/shadcn.png"
+      "16": "public/icon.png",
+      "32": "public/icon.png",
+      "48": "public/icon.png",
+      "64": "public/icon.png",
+      "128": "public/icon.png"
     },
     "default_title": "Open Extension.js Shadcn Sidebar"
   },
   "firefox:browser_action": {
     "default_icon": {
-      "48": "images/shadcn.png"
+      "16": "public/icon.png",
+      "32": "public/icon.png",
+      "48": "public/icon.png",
+      "64": "public/icon.png",
+      "128": "public/icon.png"
     },
     "default_title": "Open Extension.js Shadcn Sidebar"
   },

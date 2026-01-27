@@ -490,6 +490,7 @@ function resolveManifestIconFile(exampleDirectory, iconPath) {
   if (iconPath.startsWith('data:') || iconPath.startsWith('http')) return null
 
   const cleaned = normalizeRelativePath(iconPath)
+  if (!cleaned.toLowerCase().endsWith('.png')) return null
   const directCandidate = path.join(exampleDirectory, cleaned)
 
   if (exists(directCandidate)) return directCandidate
@@ -503,7 +504,7 @@ function resolveManifestIconFile(exampleDirectory, iconPath) {
 function resolveFallbackIconFile(exampleDirectory, slug) {
   for (const candidate of FALLBACK_ICON_CANDIDATES) {
     const filePath = path.join(exampleDirectory, ...candidate)
-    
+
     if (exists(filePath)) return filePath
   }
 
@@ -522,18 +523,19 @@ function resolveFallbackIconFile(exampleDirectory, slug) {
 }
 
 function detectTemplateIcon(exampleDirectory, manifest) {
+  const slug = path.basename(exampleDirectory)
+  const preferred = resolveFallbackIconFile(exampleDirectory, slug)
+  if (preferred) {
+    return path.relative(repoRoot, preferred).replace(/\\/g, '/')
+  }
+
   const iconPath = pickManifestIconPath(manifest || {})
   if (iconPath) {
     const resolved = resolveManifestIconFile(exampleDirectory, iconPath)
     if (resolved) return path.relative(repoRoot, resolved).replace(/\\/g, '/')
   }
 
-  const slug = path.basename(exampleDirectory)
-  const fallback = resolveFallbackIconFile(exampleDirectory, slug)
-
-  if (!fallback) return null
-
-  return path.relative(repoRoot, fallback).replace(/\\/g, '/')
+  return null
 }
 
 function getGitCommit() {

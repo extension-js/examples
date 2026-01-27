@@ -5,9 +5,11 @@
   "name": "Extension.js - React Content Example",
   "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
   "icons": {
-    "16": "images/react.png",
-    "48": "images/react.png",
-    "128": "images/react.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.ts",

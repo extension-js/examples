@@ -5,9 +5,11 @@
   "name": "Extension.js - Svelte Content Example",
   "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
   "icons": {
-    "16": "images/svelte.png",
-    "48": "images/svelte.png",
-    "128": "images/svelte.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.ts",

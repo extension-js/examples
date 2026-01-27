@@ -5,9 +5,11 @@
   "name": "Extension.js - TypeScript New Tab Example",
   "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
   "icons": {
-    "16": "images/typescript.png",
-    "48": "images/typescript.png",
-    "128": "images/typescript.png"
+    "16": "public/icon.png",
+    "32": "public/icon.png",
+    "48": "public/icon.png",
+    "64": "public/icon.png",
+    "128": "public/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",
