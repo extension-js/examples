@@ -5,10 +5,10 @@
   "name": "Extension.js - Init Example",
   "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
   "icons": {
-    "16": "public/icon.png",
-    "32": "public/icon.png",
-    "48": "public/icon.png",
-    "64": "public/icon.png",
-    "128": "public/icon.png"
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
   }
 }

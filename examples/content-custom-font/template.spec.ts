@@ -32,20 +32,13 @@ test.describe('Content Custom Font Template', () => {
     // Fonts directory is optional - fonts may be added by users
     // expect(hasAnyReadme, 'Either public/fonts/README.md or fonts/README.txt should exist').toBe(true)
 
-    // Allow different logo placements to accommodate platforms/templates
-    const logoCandidates = [
-      'public/logo.svg',
-      'public/logo.png',
-      'public/logo.jpg',
-      'src/images/javascript.png'
-    ]
+    const logoCandidates = ['src/images/icon.png']
     const hasAnyLogo = logoCandidates.some((p) =>
       existsSync(join(exampleDir, p))
     )
-    expect(
-      hasAnyLogo,
-      'A logo file should exist in public/ or src/images/'
-    ).toBe(true)
+    expect(hasAnyLogo, 'A logo file should exist at src/images/icon.png').toBe(
+      true
+    )
   })
 
   test('should have correct package.json', async () => {

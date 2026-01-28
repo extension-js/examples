@@ -5,11 +5,11 @@
   "name": "Extension.js - Custom Fonts Content Example",
   "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
   "icons": {
-    "16": "public/icon.png",
-    "32": "public/icon.png",
-    "48": "public/icon.png",
-    "64": "public/icon.png",
-    "128": "public/icon.png"
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
   },
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],

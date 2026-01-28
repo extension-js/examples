@@ -5,9 +5,9 @@
   "name": "Extension.js - Monorepo Turbopack Example",
   "description": "Monorepo example with content script and sidebar.",
   "icons": {
-    "16": "images/javascript.png",
-    "48": "images/javascript.png",
-    "128": "images/javascript.png"
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
   },
   "chromium:action": {
     "default_title": "Open Side Panel"
