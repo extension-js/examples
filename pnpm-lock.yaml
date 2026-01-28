@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.3.3-mext.1
-        version: 3.3.3-mext.1(webpack@5.103.0)
+        specifier: 3.3.3-next.3
+        version: 3.3.3-next.3(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -2379,16 +2379,16 @@ packages:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
 
-  extension-create@3.3.3-mext.1:
-    resolution: {integrity: sha512-ci823rDH1BCJHEZdvvxRvz7TUHiIc+o9mZA2c+N7h7TwaTIow1yNBL/PLVezwadOHU2CpUhzY1aRrH/xZg7a8g==}
+  extension-create@3.3.3-next-2:
+    resolution: {integrity: sha512-/TyjS0mpWwKRgQT1KRF9CYDkr/ol/fGwcuoW9kZB0lCj+5v4lw/9psn05AY2Q6BhsUAGYvlU+WSsjtLD4tLQzw==}
     engines: {node: '>=18'}
 
-  extension-develop@3.3.3-mext.1:
-    resolution: {integrity: sha512-4jEYPlrtM5kxdk3jLIyilS6n5hN4hLTgHQ+h3L2gbdEXcttoxqBhXcXIeJsxNcB3n8R41aIui2A9aorPf0CJKA==}
+  extension-develop@3.3.3-next-2:
+    resolution: {integrity: sha512-kO/B0SOkCCDwTEU2+t8k9sAradoa4rhAKUxTtJ+h7jN0mGoFBA1tnxe3P73elt0FL8lQe8qxNC0lVRsDQ9AoBg==}
     engines: {node: '>=18'}
 
-  extension@3.3.3-mext.1:
-    resolution: {integrity: sha512-0RQ+Jd63yGkd1nSFV9UWBUIqiQBqFDe7sdALMcmCDZ7uUlwvJUXm5ZMwTUf4aOqDNK3cEgy5gP/LKkwL0Cp7Mg==}
+  extension@3.3.3-next.3:
+    resolution: {integrity: sha512-dFudd2OhJyv3b+ioSVgtxVgBkigtXHIBxbVKW67bAHL3JB+JGkCl14bYO8WmsvsLDyNPLhArGRTpc1b5WvlPnw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5958,7 +5958,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-create@3.3.3-mext.1:
+  extension-create@3.3.3-next-2:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.13.2
@@ -5969,7 +5969,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.3.3-mext.1(webpack@5.103.0):
+  extension-develop@3.3.3-next-2(webpack@5.103.0):
     dependencies:
       '@rspack/core': 1.7.3(@swc/helpers@0.5.18)
       '@rspack/dev-server': 1.2.1(@rspack/core@1.7.3(@swc/helpers@0.5.18))(webpack@5.103.0)
@@ -6006,11 +6006,11 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  extension@3.3.3-mext.1(webpack@5.103.0):
+  extension@3.3.3-next.3(webpack@5.103.0):
     dependencies:
       commander: 14.0.2
-      extension-create: 3.3.3-mext.1
-      extension-develop: 3.3.3-mext.1(webpack@5.103.0)
+      extension-create: 3.3.3-next-2
+      extension-develop: 3.3.3-next-2(webpack@5.103.0)
       pintor: 0.3.0
       semver: 7.7.3
       update-check: 1.5.4

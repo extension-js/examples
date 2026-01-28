@@ -65,7 +65,7 @@
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "3.3.3-mext.1",
+    "extension": "3.3.3-next.3",
     "globals": "^15.13.0",
     "knip": "^5.33.0",
     "lint-staged": "16.1.0",
