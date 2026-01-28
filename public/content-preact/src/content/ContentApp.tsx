@@ -1,5 +1,4 @@
 import {useSignal} from '@preact/signals'
-
 import preactLogo from '../images/preact.png'
 import tailwindBg from '../images/tailwind_bg.png'
 import typescriptLogo from '../images/typescript.png'

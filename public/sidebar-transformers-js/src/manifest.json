@@ -54,7 +54,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["images/transformers-js.png", "images/logo.png"],
+      "resources": ["images/icon.png"],
       "matches": ["<all_urls>"]
     }
   ]
