@@ -1,6 +1,8 @@
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import './styles.css'
-import reactLogo from '../images/react.png'
+import iconUrl from '../images/icon.png'
+
+const reactLogo = iconUrl
 
 function Home() {
   return (

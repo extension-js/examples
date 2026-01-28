@@ -1,4 +1,5 @@
-import logo from '../images/logo.svg'
+import iconUrl from '../images/icon.png'
+const logo = iconUrl
 export default function initial() {
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')

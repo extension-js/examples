@@ -1,6 +1,8 @@
-import transformersLogo from '../images/transformers-js.png'
 import {ACTION_NAME} from '../constants.js'
 import './styles.css'
+import iconUrl from '../images/icon.png'
+
+const transformersLogo = iconUrl
 
 const DEFAULTS = {
   task: 'text-classification',

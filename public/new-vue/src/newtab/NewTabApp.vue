@@ -1,18 +1,14 @@
-<script lang="ts">
-export default {
-  data() {
-    return {
-      message: 'Welcome to your Vue Extension.'
-    }
-  }
-}
+<script lang="ts" setup>
+import iconUrl from '../images/icon.png'
+
+const message = 'Welcome to your Vue Extension.'
 </script>
 <template>
   <header>
     <h1>
       <img
         class="vue"
-        src="../images/vue.png"
+        :src="iconUrl"
         alt="The Vue logo"
         width="120px"
       />
