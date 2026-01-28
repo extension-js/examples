@@ -311,7 +311,11 @@ if (!fs.existsSync(nodeModulesPath)) {
       console.error(
         '►►► \nError: Failed to install workspace dependencies. Retrying without --frozen-lockfile...'
       )
-      const retrySuccess = await run('pnpm', ['install', '--prod=false'], repoRoot)
+      const retrySuccess = await run(
+        'pnpm',
+        ['install', '--prod=false'],
+        repoRoot
+      )
       if (!retrySuccess) {
         console.error(
           '►►► \nError: Failed to install workspace dependencies after retry. Aborting builds.'
@@ -363,11 +367,11 @@ for (const slug of slugs) {
         try {
           // Install from example directory - workspace deps already installed at root
           // Use --frozen-lockfile to prevent lockfile updates (workspace install already handled it)
-            installSuccess = await run(
-              'pnpm',
-              ['install', '--frozen-lockfile', '--prod=false'],
-              exampleDirectory
-            )
+          installSuccess = await run(
+            'pnpm',
+            ['install', '--frozen-lockfile', '--prod=false'],
+            exampleDirectory
+          )
 
           if (installSuccess) {
             break

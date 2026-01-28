@@ -1,5 +1,7 @@
 import './styles.css'
-import preactLogo from '../images/preact.png'
+import iconUrl from '../images/icon.png'
+
+const preactLogo = iconUrl
 
 export default function ContentApp() {
   return (

@@ -1,7 +1,9 @@
 import {useState, type FormEvent} from 'react'
 import OpenAI from 'openai/index.mjs'
-import chatgptLogo from '../images/chatgpt.png'
-import extensionJsLogo from '../images/extensionjs.png'
+import iconUrl from '../images/icon.png'
+
+const chatgptLogo = iconUrl
+const extensionJsLogo = iconUrl
 
 const openai = new OpenAI({
   apiKey: import.meta.env.EXTENSION_PUBLIC_OPENAI_API_KEY!,

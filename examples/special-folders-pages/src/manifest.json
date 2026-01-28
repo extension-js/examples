@@ -5,11 +5,11 @@
   "name": "Extension.js - Special Folders Pages Example",
   "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
   "icons": {
-    "16": "public/icon.png",
-    "32": "public/icon.png",
-    "48": "public/icon.png",
-    "64": "public/icon.png",
-    "128": "public/icon.png"
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

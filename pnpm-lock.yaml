@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.3.3-next.3
-        version: 3.3.3-next.3(webpack@5.103.0)
+        specifier: 3.3.3-next.7
+        version: 3.3.3-next.7(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -505,6 +505,69 @@ importers:
         version: 5.3.3
 
   examples/vue:
+    dependencies:
+      vue:
+        specifier: ^3.4.27
+        version: 3.5.24(typescript@5.3.3)
+    devDependencies:
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  templates/javascript: {}
+
+  templates/preact:
+    dependencies:
+      preact:
+        specifier: ^10.19.6
+        version: 10.27.2
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.64
+        version: 18.3.27
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  templates/react:
+    dependencies:
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.1
+        version: 18.3.1(react@18.3.1)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.64
+        version: 18.3.27
+      '@types/react-dom':
+        specifier: ^18.2.21
+        version: 18.3.7(@types/react@18.3.27)
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  templates/svelte:
+    dependencies:
+      svelte:
+        specifier: ^5.15.0
+        version: 5.43.12
+    devDependencies:
+      '@tsconfig/svelte':
+        specifier: 5.0.4
+        version: 5.0.4
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  templates/typescript:
+    devDependencies:
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  templates/vue:
     dependencies:
       vue:
         specifier: ^3.4.27
@@ -2387,8 +2450,8 @@ packages:
     resolution: {integrity: sha512-kO/B0SOkCCDwTEU2+t8k9sAradoa4rhAKUxTtJ+h7jN0mGoFBA1tnxe3P73elt0FL8lQe8qxNC0lVRsDQ9AoBg==}
     engines: {node: '>=18'}
 
-  extension@3.3.3-next.3:
-    resolution: {integrity: sha512-dFudd2OhJyv3b+ioSVgtxVgBkigtXHIBxbVKW67bAHL3JB+JGkCl14bYO8WmsvsLDyNPLhArGRTpc1b5WvlPnw==}
+  extension@3.3.3-next.7:
+    resolution: {integrity: sha512-cOebYeJ9dN2ngZKU7fyCWCPnUD6PkHMgh2mivYXoMoHZJM2lUMfkwUt0gx4kziB77Eb6pHc4TslQju76BIEE2A==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6006,7 +6069,7 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  extension@3.3.3-next.3(webpack@5.103.0):
+  extension@3.3.3-next.7(webpack@5.103.0):
     dependencies:
       commander: 14.0.2
       extension-create: 3.3.3-next-2

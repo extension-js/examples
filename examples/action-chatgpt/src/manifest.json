@@ -5,11 +5,11 @@
   "name": "Extension.js - React Action Example",
   "description": "React action popup example. Opens a toolbar popup and renders a basic React UI.",
   "icons": {
-    "16": "public/icon.png",
-    "32": "public/icon.png",
-    "48": "public/icon.png",
-    "64": "public/icon.png",
-    "128": "public/icon.png"
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
   },
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "background": {
@@ -20,11 +20,11 @@
     "default_popup": "./action/index.html",
     "default_title": "Extension.js React Action",
     "default_icon": {
-      "16": "public/icon.png",
-      "32": "public/icon.png",
-      "48": "public/icon.png",
-      "64": "public/icon.png",
-      "128": "public/icon.png"
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
     }
   }
 }
