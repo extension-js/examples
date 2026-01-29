@@ -71,6 +71,24 @@ function readJsonSafe(filePath) {
   }
 }
 
+function resolveManifestPath(exampleDirectory) {
+  const srcManifest = path.join(exampleDirectory, 'src', 'manifest.json')
+  if (exists(srcManifest)) return srcManifest
+  const monorepoManifest = path.join(
+    exampleDirectory,
+    'packages',
+    'extension',
+    'src',
+    'manifest.json'
+  )
+
+  if (exists(monorepoManifest)) return monorepoManifest
+  const rootManifest = path.join(exampleDirectory, 'manifest.json')
+
+  if (exists(rootManifest)) return rootManifest
+  return null
+}
+
 function listDirs(directory) {
   return fs
     .readdirSync(directory, {withFileTypes: true})
@@ -577,10 +595,12 @@ function buildTemplateEntry(exampleDirectory) {
   const slug = path.basename(exampleDirectory)
   const packageJson =
     readJsonSafe(path.join(exampleDirectory, 'package.json')) || {}
-  const manifest =
-    readJsonSafe(path.join(exampleDirectory, 'src', 'manifest.json')) ||
-    readJsonSafe(path.join(exampleDirectory, 'manifest.json')) ||
-    {}
+  const manifestPath = resolveManifestPath(exampleDirectory)
+  if (!manifestPath) {
+    console.warn(`[templates-meta] Missing manifest.json for ${slug}, skipping`)
+    return null
+  }
+  const manifest = readJsonSafe(manifestPath) || {}
 
   const curated = readCuratedTemplateMeta(exampleDirectory)
   const {permissions, host_permissions, optional_permissions} =
@@ -653,7 +673,9 @@ function main() {
   const exampleDirectories = listDirs(examplesDir).filter((directory) =>
     exists(path.join(directory, 'package.json'))
   )
-  const templates = exampleDirectories.map(buildTemplateEntry)
+  const templates = exampleDirectories
+    .map(buildTemplateEntry)
+    .filter(Boolean)
 
   const templatesMetadata = {
     version: '2',
