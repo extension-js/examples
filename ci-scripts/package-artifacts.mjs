@@ -28,6 +28,30 @@ function zipDir(sourceDirectory, outputFile) {
   }
 }
 
+function readJsonSafe(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+  } catch {
+    return null
+  }
+}
+
+function resolveSourceManifest(exampleDirectory) {
+  const srcManifest = path.join(exampleDirectory, 'src', 'manifest.json')
+  if (fs.existsSync(srcManifest)) return srcManifest
+  const monorepoManifest = path.join(
+    exampleDirectory,
+    'packages',
+    'extension',
+    'src',
+    'manifest.json'
+  )
+  if (fs.existsSync(monorepoManifest)) return monorepoManifest
+  const rootManifest = path.join(exampleDirectory, 'manifest.json')
+  if (fs.existsSync(rootManifest)) return rootManifest
+  return null
+}
+
 /** @type {Record<string, Record<string, {file: string, size: number, sha256: string}>>} */
 const artifactsIndex = {}
 
@@ -37,6 +61,10 @@ for (const slug of fs.readdirSync(examplesDir)) {
   if (!fs.statSync(exampleDirectory).isDirectory()) {
     continue
   }
+  const sourceManifestPath = resolveSourceManifest(exampleDirectory)
+  const sourceManifest = sourceManifestPath
+    ? readJsonSafe(sourceManifestPath)
+    : null
   const browsers = ['chrome', 'edge', 'firefox']
 
   for (const browser of browsers) {
@@ -44,6 +72,32 @@ for (const slug of fs.readdirSync(examplesDir)) {
 
     if (!fs.existsSync(buildDirectory)) {
       continue
+    }
+    if (!sourceManifest) {
+      throw new Error(
+        `►►► Missing source manifest.json for ${slug}; cannot validate artifacts.`
+      )
+    }
+    const builtManifestPath = path.join(buildDirectory, 'manifest.json')
+    if (!fs.existsSync(builtManifestPath)) {
+      throw new Error(
+        `►►► Missing built manifest.json for ${slug} (${browser}).`
+      )
+    }
+    const builtManifest = readJsonSafe(builtManifestPath)
+    if (!builtManifest) {
+      throw new Error(
+        `►►► Invalid built manifest.json for ${slug} (${browser}).`
+      )
+    }
+    if (
+      sourceManifest.name !== builtManifest.name ||
+      sourceManifest.description !== builtManifest.description
+    ) {
+      throw new Error(
+        `►►► Build manifest mismatch for ${slug} (${browser}). ` +
+          `Expected "${sourceManifest.name}" but got "${builtManifest.name}".`
+      )
     }
 
     const zipFileName = `${slug}.${browser}.zip`
