@@ -27,6 +27,8 @@ try {
 // The extension CLI has path resolution issues when too many builds run in parallel
 const MAX_CONCURRENT = process.env.CI ? 2 : 4
 
+const OUTPUT_ROOTS = ['dist', 'build', '.extension']
+
 function run(command, args, workingDirectory) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
@@ -44,6 +46,26 @@ function run(command, args, workingDirectory) {
       resolve(exitCode === 0)
     })
   })
+}
+
+function cleanOutputs(exampleDirectory) {
+  const baseDirs = [exampleDirectory]
+  const monorepoExtensionDir = path.join(
+    exampleDirectory,
+    'packages',
+    'extension'
+  )
+  if (fs.existsSync(monorepoExtensionDir)) {
+    baseDirs.push(monorepoExtensionDir)
+  }
+  for (const baseDir of baseDirs) {
+    for (const root of OUTPUT_ROOTS) {
+      const target = path.join(baseDir, root)
+      if (fs.existsSync(target)) {
+        fs.rmSync(target, {recursive: true, force: true})
+      }
+    }
+  }
 }
 
 function listExamples(filter = null) {
@@ -248,7 +270,6 @@ async function runParallel(tasks, limit) {
 
 const browsers = ['chrome', 'edge', 'firefox']
 
-const OUTPUT_ROOTS = ['dist', 'build', '.extension']
 const CHANNELS_BY_BROWSER = {
   chrome: ['chrome', 'chromium', 'chrome-mv3'],
   edge: ['edge'],
@@ -430,6 +451,8 @@ for (const slug of slugs) {
         error: 'Dependency installation failed'
       }))
     }
+
+    cleanOutputs(exampleDirectory)
 
     const browserResults = []
     for (const browser of browsers) {
