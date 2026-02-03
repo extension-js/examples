@@ -82,7 +82,22 @@ jobs:
         run: node ci-scripts/package-artifacts.mjs
 
       - name: Generate metadata
+        env:
+          RELEASE_TAG: nightly
         run: pnpm run generate
+
+      - name: Publish GitHub release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          name: nightly
+          prerelease: true
+          files: |
+            artifacts/*.zip
+            artifacts/index.json
+            templates-meta.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Stage public artifacts
         run: node ci-scripts/publish-artifacts.mjs

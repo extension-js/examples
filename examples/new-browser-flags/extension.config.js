@@ -14,7 +14,7 @@ const config = {
       // Disable default browser flags made by Extension.js
       excludeBrowserFlags: [],
       // Use a stable dev profile (resolved relative to project dir)
-      profile: './dist/dedicated-profile-chromium',
+      profile: profile('chromium'),
       // Kiosk mode so only the New Tab page is visible.
       browserFlags: ['--kiosk'],
       // Launch the overridden New Tab so your extension page shows immediately.
@@ -24,7 +24,7 @@ const config = {
       // Disable default browser flags made by Extension.js
       excludeBrowserFlags: [],
       // Use a stable dev profile (resolved relative to project dir)
-      profile: './dist/dedicated-profile-chrome',
+      profile: profile('chrome'),
       // Kiosk mode so only the New Tab page is visible.
       browserFlags: ['--kiosk'],
       // Launch the overridden New Tab so your extension page shows immediately.
@@ -33,7 +33,7 @@ const config = {
     edge: {
       // Edge follows Chrome config; only brand/profile differs.
       excludeBrowserFlags: [],
-      profile: './dist/dedicated-profile-edge',
+      profile: profile('edge'),
       // Kiosk mode so only the New Tab page is visible.
       browserFlags: ['--kiosk'],
       // Launch the overridden New Tab so your extension page shows immediately.
@@ -42,7 +42,7 @@ const config = {
     firefox: {
       // Firefox follows Chrome config; only brand/profile/URL differ.
       excludeBrowserFlags: [],
-      profile: './dist/dedicated-profile-firefox',
+      profile: profile('firefox'),
       // Kiosk mode so only the New Tab page is visible.
       browserFlags: ['--kiosk'],
       // Launch the overridden New Tab so your extension page shows immediately.

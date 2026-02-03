@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.3.3-next.7
-        version: 3.3.3-next.7(webpack@5.103.0)
+        specifier: 3.4.1
+        version: 3.4.1(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -1576,6 +1576,9 @@ packages:
   '@types/chrome@0.0.287':
     resolution: {integrity: sha512-wWhBNPNXZHwycHKNYnexUcpSbrihVZu++0rdp6GEk5ZgAglenLx+RwdEouh6FrHS0XQiOxSd62yaujM1OoQlZQ==}
 
+  '@types/chrome@0.1.36':
+    resolution: {integrity: sha512-BvHbuyGttYXnGt5Gpwa4769KIinKHY1iLjlAPrrMBS2GI9m/XNMPtdsq0NgQalyuUdxvlMN/0OyGw0shFVIoUQ==}
+
   '@types/connect-history-api-fallback@1.5.4':
     resolution: {integrity: sha512-n6Cr2xS1h4uAulPRdlw6Jl6s1oG8KrVilPN2yUITEs+K48EzMJJ3W1xy8K5eWuFvjp3R74AOIGSmp2UfBJ8HFw==}
 
@@ -1636,6 +1639,9 @@ packages:
   '@types/node@24.10.1':
     resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
+  '@types/node@25.1.0':
+    resolution: {integrity: sha512-t7frlewr6+cbx+9Ohpl0NOTKXZNV9xHRmNOvql47BFJKcEG1CxtxlPEEe+gR9uhVWM4DwhnvTF110mIL4yP9RA==}
+
   '@types/prop-types@15.7.15':
     resolution: {integrity: sha512-F6bEyamV9jKGAFBEmlQnesRPGOQqS2+Uwi0Em15xenOxHaf2hv6L8YCVn3rPdPJOiJfPiCnLIRyvwVaqMY3MIw==}
 
@@ -1685,6 +1691,9 @@ packages:
 
   '@types/sockjs@0.3.36':
     resolution: {integrity: sha512-MK9V6NzAS1+Ud7JV9lJLFqW85VbC9dq3LmwZCuBe4wBDgKC0Kj/jd8Xl+nSviU+Qc3+m7umHHyHg//2KSa0a0Q==}
+
+  '@types/webextension-polyfill@0.12.4':
+    resolution: {integrity: sha512-wK8YdSI0pDiaehSLDIvtvonYmLwUUivg4Z6JCJO8rkyssMAG82cFJgwPK/V7NO61mJBLg/tXeoXQL8AFzpXZmQ==}
 
   '@types/ws@8.18.1':
     resolution: {integrity: sha512-ThVF6DCVhA8kUGy+aazFQ4kXQ7E1Ty7A3ypFOe0IcJV8O/M511G99AW24irKrW56Wt44yG9+ij8FaqoBGkuBXg==}
@@ -2442,16 +2451,16 @@ packages:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
 
-  extension-create@3.3.3-next-2:
-    resolution: {integrity: sha512-/TyjS0mpWwKRgQT1KRF9CYDkr/ol/fGwcuoW9kZB0lCj+5v4lw/9psn05AY2Q6BhsUAGYvlU+WSsjtLD4tLQzw==}
+  extension-create@3.4.1:
+    resolution: {integrity: sha512-fLPKiXqc1ljgQnmtWj8CxfXqLhiOI5XTbKjbme8ZYf2CxPMt+WQCAvdFkj1DNDrRrbdtVCun95jhHBWYEkDPZg==}
     engines: {node: '>=18'}
 
-  extension-develop@3.3.3-next-2:
-    resolution: {integrity: sha512-kO/B0SOkCCDwTEU2+t8k9sAradoa4rhAKUxTtJ+h7jN0mGoFBA1tnxe3P73elt0FL8lQe8qxNC0lVRsDQ9AoBg==}
+  extension-develop@3.4.1:
+    resolution: {integrity: sha512-i7rFXsSmwEGLC9sIFaUSz4j7xG/0/KiBRQZr60VL064xjBb614vVyIcbrC6xppkVStbNdYtQ1eb99KBLxvOfAQ==}
     engines: {node: '>=18'}
 
-  extension@3.3.3-next.7:
-    resolution: {integrity: sha512-cOebYeJ9dN2ngZKU7fyCWCPnUD6PkHMgh2mivYXoMoHZJM2lUMfkwUt0gx4kziB77Eb6pHc4TslQju76BIEE2A==}
+  extension@3.4.1:
+    resolution: {integrity: sha512-ddE9MDrShMJWA/aIvePgJJXKDHt68rACThwBvO2Ij0H/nirlcVkGrvr+k4qcWwrF/tndiv4e1PJzWg1rdgLVFQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -5054,6 +5063,11 @@ snapshots:
       '@types/filesystem': 0.0.36
       '@types/har-format': 1.2.16
 
+  '@types/chrome@0.1.36':
+    dependencies:
+      '@types/filesystem': 0.0.36
+      '@types/har-format': 1.2.16
+
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 4.19.7
@@ -5130,6 +5144,10 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
+  '@types/node@25.1.0':
+    dependencies:
+      undici-types: 7.16.0
+
   '@types/prop-types@15.7.15': {}
 
   '@types/qs@6.14.0': {}
@@ -5192,6 +5210,8 @@ snapshots:
   '@types/sockjs@0.3.36':
     dependencies:
       '@types/node': 22.19.1
+
+  '@types/webextension-polyfill@0.12.4': {}
 
   '@types/ws@8.18.1':
     dependencies:
@@ -6021,7 +6041,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-create@3.3.3-next-2:
+  extension-create@3.4.1:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.13.2
@@ -6032,7 +6052,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.3.3-next-2(webpack@5.103.0):
+  extension-develop@3.4.1(webpack@5.103.0):
     dependencies:
       '@rspack/core': 1.7.3(@swc/helpers@0.5.18)
       '@rspack/dev-server': 1.2.1(@rspack/core@1.7.3(@swc/helpers@0.5.18))(webpack@5.103.0)
@@ -6069,11 +6089,14 @@ snapshots:
       - utf-8-validate
       - webpack
 
-  extension@3.3.3-next.7(webpack@5.103.0):
+  extension@3.4.1(webpack@5.103.0):
     dependencies:
+      '@types/chrome': 0.1.36
+      '@types/node': 25.1.0
+      '@types/webextension-polyfill': 0.12.4
       commander: 14.0.2
-      extension-create: 3.3.3-next-2
-      extension-develop: 3.3.3-next-2(webpack@5.103.0)
+      extension-create: 3.4.1
+      extension-develop: 3.4.1(webpack@5.103.0)
       pintor: 0.3.0
       semver: 7.7.3
       update-check: 1.5.4
