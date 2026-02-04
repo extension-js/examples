@@ -514,69 +514,6 @@ importers:
         specifier: 5.3.3
         version: 5.3.3
 
-  templates/javascript: {}
-
-  templates/preact:
-    dependencies:
-      preact:
-        specifier: ^10.19.6
-        version: 10.27.2
-    devDependencies:
-      '@types/react':
-        specifier: ^18.2.64
-        version: 18.3.27
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
-  templates/react:
-    dependencies:
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      react-dom:
-        specifier: ^18.3.1
-        version: 18.3.1(react@18.3.1)
-    devDependencies:
-      '@types/react':
-        specifier: ^18.2.64
-        version: 18.3.27
-      '@types/react-dom':
-        specifier: ^18.2.21
-        version: 18.3.7(@types/react@18.3.27)
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
-  templates/svelte:
-    dependencies:
-      svelte:
-        specifier: ^5.15.0
-        version: 5.43.12
-    devDependencies:
-      '@tsconfig/svelte':
-        specifier: 5.0.4
-        version: 5.0.4
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
-  templates/typescript:
-    devDependencies:
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
-  templates/vue:
-    dependencies:
-      vue:
-        specifier: ^3.4.27
-        version: 3.5.24(typescript@5.3.3)
-    devDependencies:
-      typescript:
-        specifier: 5.3.3
-        version: 5.3.3
-
 packages:
 
   '@alloc/quick-lru@5.2.0':
