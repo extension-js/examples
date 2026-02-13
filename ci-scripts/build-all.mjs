@@ -132,7 +132,13 @@ async function buildExample(slug, browser) {
           {
             cwd: exampleDirectory,
             stdio: ['inherit', 'pipe', 'pipe'],
-            env: {...process.env, XDG_CONFIG_HOME},
+            env: {
+              ...process.env,
+              XDG_CONFIG_HOME,
+              // Dependencies are installed explicitly before build; skipping
+              // CLI auto-install avoids pnpm shim execution issues in CI.
+              EXTENSION_SKIP_INSTALL: process.env.EXTENSION_SKIP_INSTALL ?? '1'
+            },
             shell: false
           }
         )
