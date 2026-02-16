@@ -28,6 +28,7 @@ try {
 const MAX_CONCURRENT = process.env.CI ? 2 : 4
 
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
+const ISOLATED_BUILD_SLUGS = new Set(['sidebar-monorepo-turbopack'])
 
 function run(command, args, workingDirectory) {
   return new Promise((resolve, reject) => {
@@ -103,11 +104,19 @@ function listExamples(filter = null) {
 
 async function buildExample(slug, browser) {
   const exampleDirectory = path.resolve(path.join(examplesDir, slug))
+  const monorepoExtensionDirectory = path.join(
+    exampleDirectory,
+    'packages',
+    'extension'
+  )
+  const buildDirectory = fs.existsSync(monorepoExtensionDirectory)
+    ? monorepoExtensionDirectory
+    : exampleDirectory
   console.log(`►►► \n=== Building ${slug} [${browser}] ===`)
 
   // Guardrail: example builds must never create a temporary root manifest.json.
   // Extension.js resolves src/manifest.json recursively.
-  const rootManifestPath = path.join(exampleDirectory, 'manifest.json')
+  const rootManifestPath = path.join(buildDirectory, 'manifest.json')
   const hadRootManifestBefore = fs.existsSync(rootManifestPath)
 
   // Verify the example directory exists
@@ -130,7 +139,7 @@ async function buildExample(slug, browser) {
           'node',
           [scriptPath, 'build', `--browser=${browser}`],
           {
-            cwd: exampleDirectory,
+            cwd: buildDirectory,
             stdio: ['inherit', 'pipe', 'pipe'],
             env: {
               ...process.env,
@@ -365,12 +374,13 @@ if (!fs.existsSync(nodeModulesPath)) {
   )
 }
 
-// Create build tasks grouped by example to prevent cross-contamination
-// Build all browsers for the same example sequentially, but different examples in parallel
-const tasks = []
+// Create build tasks grouped by example to prevent cross-contamination.
+// Build all browsers for the same example sequentially, but different examples in parallel.
+const parallelTasks = []
+const isolatedTasks = []
 for (const slug of slugs) {
   // Create a task that builds all browsers for this example sequentially
-  tasks.push(async () => {
+  const task = async () => {
     const exampleDirectory = path.resolve(path.join(examplesDir, slug))
     const packageJsonPath = path.join(exampleDirectory, 'package.json')
     let installSuccess = true // Default to true if no package.json exists
@@ -396,7 +406,12 @@ for (const slug of slugs) {
           // Use --frozen-lockfile to prevent lockfile updates (workspace install already handled it)
           installSuccess = await run(
             'pnpm',
-            ['install', '--frozen-lockfile', '--prod=false'],
+            [
+              'install',
+              '--frozen-lockfile',
+              '--prod=false',
+              '--ignore-workspace'
+            ],
             exampleDirectory
           )
 
@@ -410,7 +425,7 @@ for (const slug of slugs) {
             )
             installSuccess = await run(
               'pnpm',
-              ['install', '--prod=false'],
+              ['install', '--prod=false', '--ignore-workspace'],
               exampleDirectory
             )
             if (!installSuccess) {
@@ -431,7 +446,7 @@ for (const slug of slugs) {
               )
               installSuccess = await run(
                 'pnpm',
-                ['install', '--prod=false'],
+                ['install', '--prod=false', '--ignore-workspace'],
                 exampleDirectory
               )
             } catch (fallbackError) {
@@ -466,11 +481,24 @@ for (const slug of slugs) {
       browserResults.push(browserResult)
     }
     return browserResults
-  })
+  }
+
+  if (ISOLATED_BUILD_SLUGS.has(slug)) {
+    isolatedTasks.push(task)
+  } else {
+    parallelTasks.push(task)
+  }
 }
 
 // Run example builds in parallel (each example builds all browsers sequentially)
-const exampleResults = await runParallel(tasks, MAX_CONCURRENT)
+const exampleResults = []
+if (parallelTasks.length > 0) {
+  exampleResults.push(...(await runParallel(parallelTasks, MAX_CONCURRENT)))
+}
+if (isolatedTasks.length > 0) {
+  // Some examples (e.g. monorepo/turbopack) are sensitive to parallel builds.
+  exampleResults.push(...(await runParallel(isolatedTasks, 1)))
+}
 
 // Flatten results
 const allBuildResults = exampleResults.flat()
