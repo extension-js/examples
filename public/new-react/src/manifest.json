@@ -1,6 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
-  "manifest_version": 3,
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
   "version": "0.0.1",
   "name": "Extension.js - New React Example",
   "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
