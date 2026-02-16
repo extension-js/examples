@@ -673,9 +673,7 @@ function main() {
   const exampleDirectories = listDirs(examplesDir).filter((directory) =>
     exists(path.join(directory, 'package.json'))
   )
-  const templates = exampleDirectories
-    .map(buildTemplateEntry)
-    .filter(Boolean)
+  const templates = exampleDirectories.map(buildTemplateEntry).filter(Boolean)
 
   const templatesMetadata = {
     version: '2',

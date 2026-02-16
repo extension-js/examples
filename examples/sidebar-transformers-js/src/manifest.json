@@ -5,8 +5,6 @@
   "version": "1.0.0",
   "name": "Extension.js - Transformers.js Sidebar Example",
   "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
-  "chromium:manifest_version": 3,
-  "firefox:manifest_version": 2,
   "author": "Your Name",
   "icons": {
     "16": "images/icon.png",
