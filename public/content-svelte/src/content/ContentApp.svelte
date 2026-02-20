@@ -1,15 +1,15 @@
 <script lang="ts">
-  import svelteLogo from '../images/svelte.png'
-  import tailwindBg from '../images/tailwind_bg.png'
-  import typescriptLogo from '../images/typescript.png'
-  import tailwindLogo from '../images/tailwind.png'
-  import chromeWindowBg from '../images/chromeWindow.png'
+import svelteLogo from '../images/svelte.png'
+import tailwindBg from '../images/tailwind_bg.png'
+import typescriptLogo from '../images/typescript.png'
+import tailwindLogo from '../images/tailwind.png'
+import chromeWindowBg from '../images/chromeWindow.png'
 
-  let isDialogOpen = true
+let isDialogOpen = true
 
-  function toggleDialog() {
-    isDialogOpen = !isDialogOpen
-  }
+function toggleDialog() {
+  isDialogOpen = !isDialogOpen
+}
 </script>
 
 {#if !isDialogOpen}

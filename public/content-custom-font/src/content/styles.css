@@ -15,8 +15,9 @@
   font-weight: 400;
   font-display: swap;
   font-style: normal;
-  src: url("/fonts/MomoSignature-Regular.woff2") format("woff2"),
-       url("/fonts/MomoSignature-Regular.ttf") format("truetype");
+  src:
+    url("/fonts/MomoSignature-Regular.woff2") format("woff2"),
+    url("/fonts/MomoSignature-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -24,8 +25,9 @@
   font-weight: 700;
   font-display: swap;
   font-style: normal;
-  src: url("/fonts/MomoSignature-Bold.woff2") format("woff2"),
-       url("/fonts/MomoSignature-Bold.ttf") format("truetype");
+  src:
+    url("/fonts/MomoSignature-Bold.woff2") format("woff2"),
+    url("/fonts/MomoSignature-Bold.ttf") format("truetype");
 }
 
 /* Content Script Styles */
@@ -40,7 +42,7 @@
   background-color: #f3f4f6;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  font-family: 'Momo Signature', cursive;
+  font-family: "Momo Signature", cursive;
 }
 
 .font_demo {
@@ -62,5 +64,5 @@
 
 /* Font-specific styles */
 .font_momo_signature {
-  font-family: 'Momo Signature', cursive;
+  font-family: "Momo Signature", cursive;
 }

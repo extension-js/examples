@@ -11,6 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import iconUrl from "../images/icon.png"
+import iconUrl from '../images/icon.png'
 const vueLogo = iconUrl
 </script>
