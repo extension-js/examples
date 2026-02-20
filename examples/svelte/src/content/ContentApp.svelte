@@ -1,14 +1,14 @@
 <script>
-  import iconUrl from "../images/icon.png";
-  const logo = iconUrl
+import iconUrl from '../images/icon.png'
+const logo = iconUrl
 
-  function openSidebar() {
-    if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {
-      browser.runtime.sendMessage({type: 'openSidebar'})
-    } else {
-      chrome.runtime.sendMessage({type: 'openSidebar'})
-    }
+function openSidebar() {
+  if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {
+    browser.runtime.sendMessage({type: 'openSidebar'})
+  } else {
+    chrome.runtime.sendMessage({type: 'openSidebar'})
   }
+}
 </script>
 
 <button

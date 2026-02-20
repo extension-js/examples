@@ -94,8 +94,9 @@ button {
 
 .sidebar_output {
   font-size: 0.875rem;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
-    'Courier New', monospace;
+  font-family:
+    "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New",
+    monospace;
   background-color: #f9fafb;
   color: #374151;
   padding: 1em;
@@ -117,7 +118,7 @@ button {
 }
 
 .sidebar_output--loading::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 1em;
   right: 1em;

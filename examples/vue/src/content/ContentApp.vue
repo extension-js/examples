@@ -1,6 +1,6 @@
 <script>
-import iconUrl from "../images/icon.png"
-import { defineComponent } from 'vue'
+import iconUrl from '../images/icon.png'
+import {defineComponent} from 'vue'
 
 const vueLogo = iconUrl
 
@@ -8,13 +8,13 @@ export default defineComponent({
   name: 'ContentApp',
   setup() {
     const openSidebar = () => {
-        if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {
-          browser.runtime.sendMessage({ type: 'openSidebar' })
+      if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {
+        browser.runtime.sendMessage({type: 'openSidebar'})
       } else {
-        chrome.runtime.sendMessage({ type: 'openSidebar' })
+        chrome.runtime.sendMessage({type: 'openSidebar'})
       }
     }
-    return { vueLogo, openSidebar }
+    return {vueLogo, openSidebar}
   }
 })
 </script>

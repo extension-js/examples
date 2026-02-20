@@ -1,6 +1,6 @@
 <script lang="ts">
-import iconUrl from "../images/icon.png";
-  let message = 'Welcome to your Svelte Extension.'
+import iconUrl from '../images/icon.png'
+let message = 'Welcome to your Svelte Extension.'
 </script>
 
 <header>

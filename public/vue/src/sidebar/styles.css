@@ -38,8 +38,9 @@ body {
 .sidebar_title {
   font-size: 1.85em;
   line-height: 1.1;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
   font-weight: 700;
   margin: 0;
   text-align: center;
@@ -56,4 +57,4 @@ body {
   border-bottom: 2px solid var(--sidebar-border);
   color: var(--sidebar-link);
   margin: 0;
-} 
+}
