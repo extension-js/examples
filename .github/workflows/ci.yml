@@ -84,6 +84,9 @@ jobs:
       - name: Run lint and validation
         run: pnpm run test:ci
 
+      - name: Verify CLI banner includes Extension ID
+        run: pnpm run test:banner
+
 
   # E2E Test Jobs - run in parallel, each builds and tests its own batch
   e2e-content:
