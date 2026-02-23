@@ -26,6 +26,7 @@ try {
 // Parallel execution limit (reduced to prevent race conditions in extension CLI)
 // The extension CLI has path resolution issues when too many builds run in parallel
 const MAX_CONCURRENT = process.env.CI ? 2 : 4
+const STRICT_ONE_RUN = process.env.EXTENSION_STRICT_ONE_RUN !== 'false'
 
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
 const ISOLATED_BUILD_SLUGS = new Set(['sidebar-monorepo-turbopack'])
@@ -225,8 +226,9 @@ async function buildExample(slug, browser) {
         })
       })
 
-    // Run build until outputs exist or retries exhausted.
-    const maxAttempts = process.env.CI ? 3 : 2
+    // In strict mode we never allow first-run bootstrap to pass via retries.
+    // A successful build must produce outputs in one run.
+    const maxAttempts = STRICT_ONE_RUN ? 1 : process.env.CI ? 3 : 2
     let result = {ok: false, stdout: '', stderr: ''}
     let hasOutputs = false
 
@@ -238,6 +240,17 @@ async function buildExample(slug, browser) {
       }
 
       result = await runBuildOnce()
+      if (result.stdout.includes('Run the command again to proceed')) {
+        console.error(
+          `►►► \nError: ${slug} [${browser}] requested a second run, which is a regression.`
+        )
+        return {
+          slug,
+          browser,
+          ok: false,
+          error: 'second-run bootstrap hint detected'
+        }
+      }
       hasOutputs = hasBuiltManifest(exampleDirectory, browser)
 
       if (hasOutputs) break
