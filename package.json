@@ -39,6 +39,8 @@
     "test:report": "playwright show-report",
     "test:install": "playwright install",
     "test:banner": "node ci-scripts/test-browser-banner.mjs",
+    "test:canary-one-run": "node ci-scripts/assert-canary-one-run-builds.mjs",
+    "test:stable-install-modes": "node ci-scripts/assert-stable-install-modes.mjs",
     "test:coverage": "playwright test --reporter=html --reporter=json --reporter=junit",
     "test:content": "playwright test --project=content",
     "test:sidebar": "playwright test --project=sidebar",

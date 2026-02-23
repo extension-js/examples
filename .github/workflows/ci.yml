@@ -87,6 +87,12 @@ jobs:
       - name: Verify CLI banner includes Extension ID
         run: pnpm run test:banner
 
+      - name: Assert one-run builds on canary
+        run: pnpm run test:canary-one-run
+
+      - name: Assert stable install modes
+        run: pnpm run test:stable-install-modes
+
 
   # E2E Test Jobs - run in parallel, each builds and tests its own batch
   e2e-content:
