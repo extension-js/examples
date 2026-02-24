@@ -2,11 +2,11 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {spawn} from 'node:child_process'
+import {fileURLToPath} from 'node:url'
 
-const repoRoot = path.resolve(
-  path.dirname(new URL(import.meta.url).pathname),
-  '..'
-)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const repoRoot = path.resolve(__dirname, '..')
 const examplesRoot = path.join(repoRoot, 'examples')
 const XDG_CONFIG_HOME =
   process.env.XDG_CONFIG_HOME || path.join(repoRoot, '.xdg-config')
@@ -35,6 +35,28 @@ function parseExamplesArg() {
     .filter(Boolean)
 }
 
+function commandFor(tool) {
+  if (process.platform !== 'win32') return tool
+  if (tool === 'pnpm') return 'pnpm.cmd'
+  return tool
+}
+
+function getConfiguredExtensionSpec() {
+  const packageJsonPath = path.join(repoRoot, 'package.json')
+  const rootPackage = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'))
+  const spec =
+    rootPackage?.devDependencies?.extension ||
+    rootPackage?.dependencies?.extension
+
+  if (!spec || typeof spec !== 'string') {
+    throw new Error(
+      'Could not resolve extension version spec from examples package.json'
+    )
+  }
+
+  return spec.trim()
+}
+
 function cleanOutputs(exampleDir) {
   for (const root of OUTPUT_ROOTS) {
     const target = path.join(exampleDir, root)
@@ -55,9 +77,9 @@ function hasBuiltManifest(exampleDir, browser) {
 
 function run(command, args, cwd) {
   return new Promise((resolve) => {
-    const child = spawn(command, args, {
+    const child = spawn(commandFor(command), args, {
       cwd,
-      shell: false,
+      shell: process.platform === 'win32',
       stdio: ['inherit', 'pipe', 'pipe'],
       env: {
         ...process.env,
@@ -88,7 +110,10 @@ async function main() {
   fs.mkdirSync(XDG_CONFIG_HOME, {recursive: true})
   const browser = 'chrome'
   const examples = parseExamplesArg()
+  const extensionSpec = getConfiguredExtensionSpec()
   let failures = 0
+
+  console.log(`Extension spec under test: ${extensionSpec}`)
 
   for (const slug of examples) {
     const exampleDir = path.join(examplesRoot, slug)
@@ -99,13 +124,13 @@ async function main() {
     }
 
     cleanOutputs(exampleDir)
-    console.log(`\n►►► Canary one-run check: ${slug} [${browser}]`)
+    console.log(`\n►►► One-run check: ${slug} [${browser}]`)
 
     const result = await run(
       'pnpm',
       [
         'dlx',
-        'extension@canary',
+        `extension@${extensionSpec}`,
         'build',
         '--browser=chrome',
         '--silent',
@@ -121,7 +146,7 @@ async function main() {
 
     if (result.code !== 0 || askedSecondRun || !hasManifest) {
       failures += 1
-      console.error(`✖ Failed one-run canary assertion for ${slug}`)
+      console.error(`✖ Failed one-run assertion for ${slug}`)
       if (askedSecondRun) {
         console.error('  Reason: build asked for a second run')
       } else if (!hasManifest) {
@@ -130,16 +155,16 @@ async function main() {
         console.error(`  Reason: build exited with code ${result.code}`)
       }
     } else {
-      console.log(`✔ One-run canary build passed for ${slug}`)
+      console.log(`✔ One-run build passed for ${slug}`)
     }
   }
 
   if (failures > 0) {
-    console.error(`\n✖ One-run canary checks failed: ${failures}`)
+    console.error(`\n✖ One-run checks failed: ${failures}`)
     process.exit(1)
   }
 
-  console.log('\n✔ All one-run canary checks passed')
+  console.log('\n✔ All one-run checks passed')
 }
 
 main()

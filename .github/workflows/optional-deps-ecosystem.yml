@@ -1,0 +1,158 @@
+name: Optional Deps Consumer Contract
+
+on:
+  pull_request:
+    paths:
+      - 'examples/**'
+      - 'ci-scripts/assert-optional-deps-canary-matrix.mjs'
+      - 'ci-scripts/assert-canary-one-run-builds.mjs'
+      - 'ci-scripts/assert-stable-install-modes.mjs'
+      - 'ci-scripts/assert-stable-pnpm-postcss-repro.mjs'
+      - '.github/workflows/optional-deps-ecosystem.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'examples/**'
+      - 'ci-scripts/assert-optional-deps-canary-matrix.mjs'
+      - 'ci-scripts/assert-canary-one-run-builds.mjs'
+      - 'ci-scripts/assert-stable-install-modes.mjs'
+      - 'ci-scripts/assert-stable-pnpm-postcss-repro.mjs'
+      - '.github/workflows/optional-deps-ecosystem.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+  workflow_dispatch:
+  schedule:
+    - cron: '30 6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: optional-deps-ecosystem-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  versioned-ecosystem:
+    name: ecosystem matrix (${{ matrix.os }} / ${{ matrix.pm }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            pm: pnpm
+          - os: ubuntu-latest
+            pm: npm
+          - os: ubuntu-latest
+            pm: yarn
+          - os: ubuntu-latest
+            pm: bun
+          - os: macos-latest
+            pm: pnpm
+          - os: windows-latest
+            pm: pnpm
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Enable corepack for Yarn
+        if: matrix.pm == 'yarn'
+        run: corepack enable
+
+      - name: Setup Bun
+        if: matrix.pm == 'bun'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Run optional deps ecosystem checks
+        run: node ci-scripts/assert-optional-deps-canary-matrix.mjs --pm ${{ matrix.pm }}
+
+  first-run-repros:
+    if: github.event_name != 'pull_request' || github.base_ref == 'main'
+    name: first-run reproducibility guards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Assert one-run builds
+        run: pnpm run test:canary-one-run
+
+      - name: Assert stable install modes
+        run: pnpm run test:stable-install-modes -- --pm pnpm
+
+      - name: Assert stable pnpm PostCSS repro
+        run: pnpm run test:stable-pnpm-postcss-repro
+
+  install-vs-exec-matrix:
+    if: github.event_name != 'pull_request' || github.base_ref == 'main'
+    name: install vs exec (${{ matrix.pm }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - pm: npm
+          - pm: pnpm
+          - pm: yarn
+          - pm: bun
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.10.0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Enable corepack for Yarn
+        if: matrix.pm == 'yarn'
+        run: corepack enable
+
+      - name: Setup Bun
+        if: matrix.pm == 'bun'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Assert install and exec modes
+        run: pnpm run test:stable-install-modes -- --pm ${{ matrix.pm }}
