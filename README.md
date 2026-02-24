@@ -17,6 +17,26 @@
 
 This repository contains browser extension examples built with Extension.js. Each example demonstrates different patterns, frameworks, and use cases for building cross-browser extensions.
 
+## Optional Deps Contract Guards
+
+These checks validate first-run determinism and install-mode behavior using the
+`extension` version declared in this repository's `package.json`.
+
+Run all contract checks locally:
+
+```bash
+pnpm run test:optional-deps-contract-all
+```
+
+Run install vs exec checks for one package manager:
+
+```bash
+pnpm run test:stable-install-modes -- --pm npm
+pnpm run test:stable-install-modes -- --pm pnpm
+pnpm run test:stable-install-modes -- --pm yarn
+pnpm run test:stable-install-modes -- --pm bun
+```
+
 ## License
 
 MIT (c) Cezar Augusto and the Extension.js Authors.

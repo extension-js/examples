@@ -93,6 +93,9 @@ jobs:
       - name: Assert stable install modes
         run: pnpm run test:stable-install-modes
 
+      - name: Assert stable pnpm PostCSS repro
+        run: pnpm run test:stable-pnpm-postcss-repro
+
 
   # E2E Test Jobs - run in parallel, each builds and tests its own batch
   e2e-content:
