@@ -120,6 +120,10 @@ function prepTempExample(slug) {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), `extjs-${slug}-`))
   const dst = path.join(tempRoot, slug)
   fs.cpSync(src, dst, {recursive: true})
+  fs.rmSync(path.join(dst, 'node_modules'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, 'dist'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, 'build'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, '.extension'), {recursive: true, force: true})
   return dst
 }
 
