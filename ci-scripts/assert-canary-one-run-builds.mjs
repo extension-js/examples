@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import {spawn} from 'node:child_process'
 import {fileURLToPath} from 'node:url'
@@ -64,6 +65,16 @@ function cleanOutputs(exampleDir) {
   }
 }
 
+function prepTempExample(slug) {
+  const src = path.join(examplesRoot, slug)
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), `extjs-${slug}-`))
+  const exampleDir = path.join(tempRoot, slug)
+  fs.cpSync(src, exampleDir, {recursive: true})
+  fs.rmSync(path.join(exampleDir, 'node_modules'), {recursive: true, force: true})
+  cleanOutputs(exampleDir)
+  return {tempRoot, exampleDir}
+}
+
 function hasBuiltManifest(exampleDir, browser) {
   const channels = CHANNELS_BY_BROWSER[browser] || [browser]
   for (const root of OUTPUT_ROOTS) {
@@ -116,46 +127,50 @@ async function main() {
   console.log(`Extension spec under test: ${extensionSpec}`)
 
   for (const slug of examples) {
-    const exampleDir = path.join(examplesRoot, slug)
-    if (!fs.existsSync(exampleDir)) {
+    const sourceExampleDir = path.join(examplesRoot, slug)
+    if (!fs.existsSync(sourceExampleDir)) {
       console.error(`✖ Missing example: ${slug}`)
       failures += 1
       continue
     }
 
-    cleanOutputs(exampleDir)
-    console.log(`\n►►► One-run check: ${slug} [${browser}]`)
+    const {tempRoot, exampleDir} = prepTempExample(slug)
+    try {
+      console.log(`\n►►► One-run check: ${slug} [${browser}]`)
 
-    const result = await run(
-      'pnpm',
-      [
-        'dlx',
-        `extension@${extensionSpec}`,
-        'build',
-        '--browser=chrome',
-        '--silent',
-        'true',
-        '--no-telemetry'
-      ],
-      exampleDir
-    )
+      const result = await run(
+        'pnpm',
+        [
+          'dlx',
+          `extension@${extensionSpec}`,
+          'build',
+          '--browser=chrome',
+          '--silent',
+          'true',
+          '--no-telemetry'
+        ],
+        exampleDir
+      )
 
-    const output = `${result.stdout}\n${result.stderr}`
-    const askedSecondRun = output.includes('Run the command again to proceed')
-    const hasManifest = hasBuiltManifest(exampleDir, browser)
+      const output = `${result.stdout}\n${result.stderr}`
+      const askedSecondRun = output.includes('Run the command again to proceed')
+      const hasManifest = hasBuiltManifest(exampleDir, browser)
 
-    if (result.code !== 0 || askedSecondRun || !hasManifest) {
-      failures += 1
-      console.error(`✖ Failed one-run assertion for ${slug}`)
-      if (askedSecondRun) {
-        console.error('  Reason: build asked for a second run')
-      } else if (!hasManifest) {
-        console.error('  Reason: no build manifest produced on first run')
+      if (result.code !== 0 || askedSecondRun || !hasManifest) {
+        failures += 1
+        console.error(`✖ Failed one-run assertion for ${slug}`)
+        if (askedSecondRun) {
+          console.error('  Reason: build asked for a second run')
+        } else if (!hasManifest) {
+          console.error('  Reason: no build manifest produced on first run')
+        } else {
+          console.error(`  Reason: build exited with code ${result.code}`)
+        }
       } else {
-        console.error(`  Reason: build exited with code ${result.code}`)
+        console.log(`✔ One-run build passed for ${slug}`)
       }
-    } else {
-      console.log(`✔ One-run build passed for ${slug}`)
+    } finally {
+      fs.rmSync(tempRoot, {recursive: true, force: true})
     }
   }
 

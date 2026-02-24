@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: ^3.8.2
-        version: 3.8.2(webpack@5.103.0)
+        specifier: 3.8.3
+        version: 3.8.3(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -2394,12 +2394,12 @@ packages:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
 
-  extension-create@3.8.2:
-    resolution: {integrity: sha512-msTA2QoyCCu9DUnjg9EXwPyKOrV1qje3QPA3+dkNNVco25oup/OkXX92TUFKDxQvVWZDZvdshd0WKN2mX5/uTQ==}
+  extension-create@3.8.3:
+    resolution: {integrity: sha512-JfZJYygWuRt0nlN1tmBegaV+i3Iys9qNsx7bOio0NauaYfiT6j1oNgoWExbVnVuT9xWqZHve3aUEYUP/hVXquw==}
     engines: {node: '>=18'}
 
-  extension-develop@3.8.2:
-    resolution: {integrity: sha512-XmhJL7tkNwlSDeRZ6y2FUmnZ1kme8BIt6kQnp3rakFQiaj770Wb0f622sG3f8EUaAawK0HCdkKu7CMTq7w5Bxw==}
+  extension-develop@3.8.3:
+    resolution: {integrity: sha512-mjci1G0pI+Ku2ezRNQ+HUoiw5/AViteCQUEjJNxs6Dv7JxbYZOAqWc1Vs6IXmnDev//XZ05RKbDGFmQwzSm4Ww==}
     engines: {node: '>=18'}
 
   extension-from-store@0.1.1:
@@ -2407,12 +2407,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@3.8.2:
-    resolution: {integrity: sha512-tJdXDSDifIwTQc8aAd8/aymqgS1T0heOkSW0Brb4sNWI06B+e7vNmdwUCmC84pTqDXn0CI7TTsnTTEQXQ2CMaQ==}
+  extension-install@3.8.3:
+    resolution: {integrity: sha512-z3hEI4yIuadsP0ivLbxUOjUkg64QzrPmNnUyg62dCsIg/69CeIyRh7xDpqSsAb1PpQFdC4LE5yKCaCEiT4ajFw==}
     engines: {node: '>=18'}
 
-  extension@3.8.2:
-    resolution: {integrity: sha512-yM2HrktkbSfZ9sJi8CxUmVQ2GaxxCY6ntgmaVwvSzWolyvqhONJXcPopyaZV7fMmaAD3cENy1/m42PTIYakBfA==}
+  extension@3.8.3:
+    resolution: {integrity: sha512-uDnTNS+VY/zZ+bkod3Z/1KvJIc+ub1/nwRxEmDVuFQdYpY2L83KCLYIHWVR9DVMNsurqv5Fiv/MZXw6wzTpeTQ==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6031,7 +6031,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-create@3.8.2:
+  extension-create@3.8.3:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.13.5
@@ -6042,7 +6042,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.8.2(webpack@5.103.0):
+  extension-develop@3.8.3(webpack@5.103.0):
     dependencies:
       '@rspack/core': 1.7.5(@swc/helpers@0.5.18)
       '@rspack/dev-server': 1.2.1(@rspack/core@1.7.5(@swc/helpers@0.5.18))(webpack@5.103.0)
@@ -6086,20 +6086,20 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@3.8.2:
+  extension-install@3.8.3:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@3.8.2(webpack@5.103.0):
+  extension@3.8.3(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.36
       '@types/node': 25.2.0
       '@types/webextension-polyfill': 0.12.4
       commander: 14.0.3
-      extension-create: 3.8.2
-      extension-develop: 3.8.2(webpack@5.103.0)
-      extension-install: 3.8.2
+      extension-create: 3.8.3
+      extension-develop: 3.8.3(webpack@5.103.0)
+      extension-install: 3.8.3
       pintor: 0.3.0
       semver: 7.7.3
       update-check: 1.5.4

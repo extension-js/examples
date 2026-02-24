@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import {spawn} from 'node:child_process'
 import {fileURLToPath} from 'node:url'
@@ -110,6 +111,18 @@ function hasBuiltManifest(exampleDir) {
   return false
 }
 
+function prepTempExample(slug) {
+  const src = path.join(examplesRoot, slug)
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), `extjs-${slug}-`))
+  const dst = path.join(tempRoot, slug)
+  fs.cpSync(src, dst, {recursive: true})
+  fs.rmSync(path.join(dst, 'node_modules'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, 'dist'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, 'build'), {recursive: true, force: true})
+  fs.rmSync(path.join(dst, '.extension'), {recursive: true, force: true})
+  return {tempRoot, exampleDir: dst}
+}
+
 async function installDeps(exampleDir) {
   if (packageManager === 'pnpm') {
     let result = await run('pnpm', ['install', '--frozen-lockfile'], exampleDir)
@@ -183,38 +196,43 @@ async function main() {
   )
 
   for (const slug of examples) {
-    const exampleDir = path.join(examplesRoot, slug)
-    if (!fs.existsSync(exampleDir)) {
+    const sourceExampleDir = path.join(examplesRoot, slug)
+    if (!fs.existsSync(sourceExampleDir)) {
       console.error(`✖ Missing example: ${slug}`)
       failures += 1
       continue
     }
 
     console.log(`\n►►► Ecosystem check: ${slug} [${packageManager}]`)
-    const installCode = await installDeps(exampleDir)
-    if (installCode !== 0) {
-      console.error(`✖ Dependency install failed for ${slug}`)
-      failures += 1
-      continue
-    }
-
-    const result = await runVersionedBuild(exampleDir, extensionSpec)
-    const output = `${result.stdout}\n${result.stderr}`
-    const askedSecondRun = output.includes(secondRunHint)
-    const hasManifest = hasBuiltManifest(exampleDir)
-
-    if (result.code !== 0 || askedSecondRun || !hasManifest) {
-      failures += 1
-      console.error(`✖ Ecosystem assertion failed for ${slug}`)
-      if (askedSecondRun) {
-        console.error('  Reason: build asked for a second run')
-      } else if (!hasManifest) {
-        console.error('  Reason: no build manifest produced on first run')
-      } else {
-        console.error(`  Reason: build exited with code ${result.code}`)
+    const {tempRoot, exampleDir} = prepTempExample(slug)
+    try {
+      const installCode = await installDeps(exampleDir)
+      if (installCode !== 0) {
+        console.error(`✖ Dependency install failed for ${slug}`)
+        failures += 1
+        continue
       }
-    } else {
-      console.log(`✔ Ecosystem assertion passed for ${slug}`)
+
+      const result = await runVersionedBuild(exampleDir, extensionSpec)
+      const output = `${result.stdout}\n${result.stderr}`
+      const askedSecondRun = output.includes(secondRunHint)
+      const hasManifest = hasBuiltManifest(exampleDir)
+
+      if (result.code !== 0 || askedSecondRun || !hasManifest) {
+        failures += 1
+        console.error(`✖ Ecosystem assertion failed for ${slug}`)
+        if (askedSecondRun) {
+          console.error('  Reason: build asked for a second run')
+        } else if (!hasManifest) {
+          console.error('  Reason: no build manifest produced on first run')
+        } else {
+          console.error(`  Reason: build exited with code ${result.code}`)
+        }
+      } else {
+        console.log(`✔ Ecosystem assertion passed for ${slug}`)
+      }
+    } finally {
+      fs.rmSync(tempRoot, {recursive: true, force: true})
     }
   }
 
