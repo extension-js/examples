@@ -25,7 +25,9 @@ try {
 
 // Parallel execution limit (reduced to prevent race conditions in extension CLI)
 // The extension CLI has path resolution issues when too many builds run in parallel
-const MAX_CONCURRENT = process.env.CI ? 2 : 4
+const MAX_CONCURRENT = Number(
+  process.env.EXTENSION_MAX_CONCURRENT || (process.env.CI ? '1' : '4')
+)
 const STRICT_ONE_RUN = process.env.EXTENSION_STRICT_ONE_RUN !== 'false'
 
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
