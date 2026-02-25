@@ -66,7 +66,10 @@ function prepTempProject() {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'extjs-js-postcss-'))
   const targetDir = path.join(tempRoot, 'javascript')
   fs.cpSync(javascriptExample, targetDir, {recursive: true})
-  fs.rmSync(path.join(targetDir, 'node_modules'), {recursive: true, force: true})
+  fs.rmSync(path.join(targetDir, 'node_modules'), {
+    recursive: true,
+    force: true
+  })
   fs.rmSync(path.join(targetDir, 'dist'), {recursive: true, force: true})
   fs.rmSync(path.join(targetDir, 'build'), {recursive: true, force: true})
   fs.rmSync(path.join(targetDir, '.extension'), {recursive: true, force: true})
@@ -114,7 +117,9 @@ async function runAttempt(index, stableVersion) {
     XDG_CONFIG_HOME: path.join(tempRoot, '.xdg-config')
   }
 
-  console.log(`\n=== attempt ${index}/${attempts} (stable ${stableVersion}) ===`)
+  console.log(
+    `\n=== attempt ${index}/${attempts} (stable ${stableVersion}) ===`
+  )
 
   let result = await run(
     'corepack',
@@ -172,7 +177,9 @@ async function main() {
   }
 
   if (failures > 0) {
-    console.error(`\n✖ PostCSS stable pnpm repro failed (${failures}/${attempts})`)
+    console.error(
+      `\n✖ PostCSS stable pnpm repro failed (${failures}/${attempts})`
+    )
     process.exit(1)
   }
 
