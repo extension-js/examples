@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-02-16T22:19:57.986Z",
+  "generatedAt": "2026-02-25T12:23:57.520Z",
   "templates": [
     {
       "slug": "action",
@@ -50,15 +50,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "83455362bd1038a90dae1001661a2e4aad363096164a320d9e5b06650d7356e7",
+          "sha256": "9d03cdd4612a78cd1971ad7e5fd035ddba48a1312ac3b20900b4558ae2b5c52d",
           "size": 193787
         },
         "edge": {
-          "sha256": "bd12537be4f1225a0dad76735491866f3cfd58552bf42cc5faadb1dccea45e57",
+          "sha256": "dff7ce0e2ba1e723df4677acba0af93f2ea27a4f21079808233215678fdec3b7",
           "size": 193787
         },
         "firefox": {
-          "sha256": "deb5c0c513aed9bf8e821f329743d3f027867a21c88e14e585384df9bbc7f47f",
+          "sha256": "b750dad853dfe79fcc9fdd4dc93af0f0e8efd6e037dc420268aaa4ab02197545",
           "size": 193768
         }
       },
@@ -114,16 +114,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "dbb1a200f65de41e799b398fec6be9bae46c956c687dd2c92428ac8114a312a0",
-          "size": 278299
+          "sha256": "5c500c2732f01ecac318c4611ff160c57211ec817983b8a67b14a4344f2a3259",
+          "size": 278298
         },
         "edge": {
-          "sha256": "b698392896ce3c6a8a959378510811e8a0947ba3e669fe1c50c172f5ad82505a",
-          "size": 278299
+          "sha256": "d6f4a99d91211c4d693b8518c9bdf3eaad2410f79c461cacdff12c2df2e78dd6",
+          "size": 278298
         },
         "firefox": {
-          "sha256": "a410f2f6bc368f6830b9c821c7b382e0b7885a2171781381166cf9d55098a4c1",
-          "size": 278279
+          "sha256": "114f18ce93635c017a10ebba0e2c68a1224e907912900ea31d9583038a29d0fb",
+          "size": 278278
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-chatgpt"
@@ -175,15 +175,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "5b54dea69336a7be5c9e0df14783005ddfe302b52d1e77be16514bbd6546ba31",
+          "sha256": "f29a4bd7867e5be2fd6ea31b2fe95d409c7d073e8b1ad9909aa142068edc7b1d",
           "size": 195624
         },
         "edge": {
-          "sha256": "20f87de8bc5b56b7d89f958292386d30172e2ad36c9c6cb6004ba343e6f873e0",
+          "sha256": "f9b74654bd450956511b80235dee8dab4bc9e0a6247d0a8c63191c1a72293853",
           "size": 195624
         },
         "firefox": {
-          "sha256": "89f12b264ca7584f3d662454dedf3074be20ebe55fdc30618772fa3cc332b220",
+          "sha256": "8decd5d3d7eb46fbe0e60b913895a2bacaf8669935c3b0f03684f0dd3ac98a23",
           "size": 195605
         }
       },
@@ -233,16 +233,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ba3a0924edc27b55b4a110dd218fa423db7b32b018daf47eda301f902d1591c1",
-          "size": 185231
+          "sha256": "9c9a2d20b35598e21719a83e13d12d1c5c05652ead8ca93f99d4a08ad7b29362",
+          "size": 185228
         },
         "edge": {
-          "sha256": "07f910dbdafa58f4047fc8f3929ef109abe308f8693768ba763f06f4d4710469",
-          "size": 185231
+          "sha256": "35a062d1db01dc198b315c8a2e772211ef5c3815790661e515bc57a8bfa9e3d4",
+          "size": 185228
         },
         "firefox": {
-          "sha256": "7f269cdaf723c94cde18f14c0706ef11ebc81126610b9e015934183daa1faa81",
-          "size": 185198
+          "sha256": "071d24a4cf951be3396abbb624f8a01a1bf5fa2c29959831d840db1367c505ff",
+          "size": 185195
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content"
@@ -291,16 +291,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "cfa1621e1f13b1ac7ded71ab3fad6e3277d9a201eba43b5deb9556985d1666ff",
-          "size": 169877
+          "sha256": "cfc519fd1e6f3dff5d63b87a2d1a4894dc6cd4203643d1af01d65bb60cf29a0f",
+          "size": 169985
         },
         "edge": {
-          "sha256": "a202ed3b9deca386c7f65bddef647f94a003685a58fbafd8b5a932c1023ec0f6",
-          "size": 169877
+          "sha256": "94302ea5fadb51b4daaef71ba7a96e5746cd63e06e7ea8b4a62a72ea2d71c06d",
+          "size": 169985
         },
         "firefox": {
-          "sha256": "abbab38352481913f8b86e146f7b4b2ed3083807a3d02be4f59d00e749921327",
-          "size": 169843
+          "sha256": "d962b906c94015a617e55f4e72b449fab6c89bcc90d2836149c32515a3dc1a6b",
+          "size": 169946
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-css-modules"
@@ -349,16 +349,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "d85022ab3cb8270941fa3f31968ccde2c187b8014d7806e5c6a9a22e217e2cc0",
-          "size": 201455
+          "sha256": "7294dd6e9639f9ce5c2fdd229f279954d7cc6be3bc7a0a77e160dcdad332d5da",
+          "size": 201439
         },
         "edge": {
-          "sha256": "4df25638947dc9605cd35b553d186ebc8222483f7762085ce6f530db3cc0dc3b",
-          "size": 201455
+          "sha256": "46842607cfe85c8ac3e712feeaf441b9597aec5b13da9f512a1f334cc7b7c4a8",
+          "size": 201439
         },
         "firefox": {
-          "sha256": "9e4a33c56ac9f5c37295b47ca3c71425e383fe57aac23d7fb4ec6e4b493e34c4",
-          "size": 201422
+          "sha256": "a5bc534eddd98dd5ac8e9c72d9c5839780d3656a0c9c61456c25d566c44ce0b7",
+          "size": 201406
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-custom-font"
@@ -407,16 +407,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f7ea6f143cc27d5a49a25c98f729f6e1980aadd2698b920aebd50ef065940a7d",
-          "size": 122390
+          "sha256": "665a9cc9196c4c421045d297a3c7366d09719a53ea68b4f675d6b4b0ac1924e3",
+          "size": 122395
         },
         "edge": {
-          "sha256": "e6d6b5aab6e3233defc2739d46099bac1fcf2f9929f072ab535049cac8694cd5",
-          "size": 122388
+          "sha256": "9a52657f6347b69814de7a053868c38a4dc963889e7928b840626103454ccff6",
+          "size": 122393
         },
         "firefox": {
-          "sha256": "57e89586048632d228644ce6a2585ceec9ff5a61b434c5587eaaa54900ededca",
-          "size": 122367
+          "sha256": "6876dd65b2e6f616166c0a3934370cf8bc029181086776898d14ce6dbb35bf28",
+          "size": 122372
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-env"
@@ -465,16 +465,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "349211ff7ab8e0c548de024489cff4ba431c37b8dff2a143c20628f642bd4026",
-          "size": 181388
+          "sha256": "3d9926dd1525f963d0ae0ce22e04011f947bc1e31d80ce109adcc6c8434c6028",
+          "size": 181389
         },
         "edge": {
-          "sha256": "e28a453727652fc51a4260f24d60f7b7f7c7b4a7f500cad747d4742d92dbdf4b",
-          "size": 181388
+          "sha256": "1a86da9692b1b1418e1a30026d22464282d529f1b4fa93366f4f2111ebaeb1f6",
+          "size": 181389
         },
         "firefox": {
-          "sha256": "5a1860a05dc36f1ac94ff7706e4543ed7c176f150c1aee5f8bf6b96f31a653ae",
-          "size": 181340
+          "sha256": "e2c1664692de9c066ca28cf28077ebe853646895258cbf8886fb640180b43e96",
+          "size": 181341
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less"
@@ -523,16 +523,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "27f7aaf3a54a3a7ac24cbe0f0c7114771f2b7b7bd4a2bf6856fceacbb0447b44",
-          "size": 181261
+          "sha256": "781ccf0206a6195cce8f22cbeeff0904a72130ff1788e0bf441ffa382b603c48",
+          "size": 181378
         },
         "edge": {
-          "sha256": "83365e0f7edc4dce4893048652266728e869bacdce42a5b410f818684545c572",
-          "size": 181261
+          "sha256": "fd9d94d097b37c0e24736d9633a8b3ddf8d022f02bc17571477f0eae1cf9aee9",
+          "size": 181378
         },
         "firefox": {
-          "sha256": "aa407078ad85a01c274171b6039e43fc05a28d1b221e9ab65509a6a40190e624",
-          "size": 181229
+          "sha256": "57ce08cfb743d1199b9c07e9e1c84131946fd3f4c0a6ba6de0c626df3e0bce41",
+          "size": 181340
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less-modules"
@@ -589,16 +589,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b93d21fe403d27421e74fa090579ad2f251aaa05c3686d62b139ab16260a3b6f",
-          "size": 292256
+          "sha256": "1930f2b87589deb1dc7d85bd966c01a011d3d6472e411a89bba9d40554f871cf",
+          "size": 292245
         },
         "edge": {
-          "sha256": "6cc1fd2918d8a440d50f6fc66c46ebeeb33d160365b0078da4e0c1717b250113",
-          "size": 292256
+          "sha256": "7023ca099d552ee7da3c7d6b77eac1b7cf709076f3fd3e21f84b3ba64508d94e",
+          "size": 292245
         },
         "firefox": {
-          "sha256": "281382bd346edc48d2f941449b61823d7b1460fa051f3b73f076a0ce55e6e7a3",
-          "size": 292221
+          "sha256": "da6e18880d8b35bccbfc7cbfb61521940a09b72d3fd2e88193e5aa4badf33069",
+          "size": 292210
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry"
@@ -655,16 +655,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6efcbcb1d8c63b83a64689597e850a86d9066a5eca2eb5f5d55e067c62fa5db1",
-          "size": 71310
+          "sha256": "b77a40ab64c591c027c04d6b90eca14d1364bf0732e532e84ac0f95183c36c84",
+          "size": 71279
         },
         "edge": {
-          "sha256": "fbe263b97d58ca92ca5babc1e7583a22c1b0d8332c04a4ef5a22fcbd6b89682a",
-          "size": 71310
+          "sha256": "772633b4beb6cf611d8483073ae287801dbf782ea5538c252fa960de3917e77e",
+          "size": 71279
         },
         "firefox": {
-          "sha256": "974d0bc560893bf3f7bc4006f1275f6f80cc311de62e95c0bb58a2be0ebb6204",
-          "size": 71276
+          "sha256": "db7fe2645c7e5d6aa4b3c4b82efdd2e3aea54085b1504630deefbcb41dd204fb",
+          "size": 71245
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries"
@@ -723,16 +723,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "cd4dd764e45f21dcaba06388d682a85c3e974acbd0b44730163b106782fec756",
-          "size": 985755
+          "sha256": "ea07c6e64cef204050e9fbb39f07ffff2d8423a7330cbb6a81fe7ee2c1ee4055",
+          "size": 985670
         },
         "edge": {
-          "sha256": "c9375e0200052105e3c40e568a147db6e34b7bdc12bb84905ceb074c4366f1fb",
-          "size": 985755
+          "sha256": "8ecf4f8ccff0904f1ad1c081bf2128990713c8917a0365367a4a7194b183ac87",
+          "size": 985670
         },
         "firefox": {
-          "sha256": "8b4bb38782d2b23691a061afcc2576422f1f7e0f753e1bc3ffddbb13e384bbd5",
-          "size": 985704
+          "sha256": "949b02c0dbbc78db5c42a64e45d9a99a4c5481ab999080577e34180427c6ace8",
+          "size": 985619
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
@@ -792,16 +792,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "1f65db8d3065d5119dbfb29475831486761d4bafb38146f618228be3badfa7d4",
-          "size": 1079759
+          "sha256": "1f36305f744c112fd670fd2c92c6373c1fd09ce6477e53f016569dff0cb6892d",
+          "size": 1079767
         },
         "edge": {
-          "sha256": "66813ebd0a4912b07889b18f3ac468560dfb3bfce7b7bd92fe8371c4422952ff",
-          "size": 1079759
+          "sha256": "069170b13bfbf56f79cf181fd5041f2559d7c03d247e32a86bea6960e5675790",
+          "size": 1079767
         },
         "firefox": {
-          "sha256": "4958c776015285e3a643fc29a28d7e5f499363d522400571a094c5e0303837bc",
-          "size": 1079711
+          "sha256": "c92a0cad0c25b7c7af71aba19f2475a1c3185ea353d32bfb124b395216698c08",
+          "size": 1079715
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-react"
@@ -850,16 +850,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ea16a256ee6beabc1660e0cb7a7e51a4e6637f270edbf5f852b5f67813dbeec5",
-          "size": 138538
+          "sha256": "a35ebe034339b9bfb06e66112dbcfc52eb4490c37fba1861202e71e73bb667fb",
+          "size": 138537
         },
         "edge": {
-          "sha256": "483701f4b4c72756b983c8f8027f6f0a2c4e4a6f2ed4c16270adb5ef5ee47fc3",
-          "size": 138538
+          "sha256": "ded51fbd40d653df4f49451c33b457a22a5eb41f2970c354557b01ef916acffa",
+          "size": 138537
         },
         "firefox": {
-          "sha256": "b685c17b75507d8f80f2ca9dd7c7a0b6c229d3413f1bfcb2658133810a0021de",
-          "size": 138490
+          "sha256": "33ebe290baa7fcf0768339ac7b29a4a38dc94e94a6fb8e2ad710ec6da923f8c6",
+          "size": 138489
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass"
@@ -910,16 +910,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c819a45e39713bdd2fc9e5535aade9733d718f5454235afc9bcd0b71a72bdbb4",
-          "size": 138556
+          "sha256": "3fbd94a47d727f96844bb465dbd5d14659d224e5812fec722717478c0e7f00b9",
+          "size": 138725
         },
         "edge": {
-          "sha256": "284895f2e0e849c1256676517e62aebb24a91f5c66c854f3328aa1e87c6af8f4",
-          "size": 138556
+          "sha256": "fd4e183340e308d32f8eeec0fab2917430e6871febbe074633ae25efb5150fd7",
+          "size": 138725
         },
         "firefox": {
-          "sha256": "ad1991d25a3653614dc7d94096fc7574a0c578a7d8d0ef5ea8c3628d5874924f",
-          "size": 138525
+          "sha256": "226af77efd0b5017a75c7dfb156f1358a93f7469c11061514a1d3cd81cd28de5",
+          "size": 138688
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass-modules"
@@ -979,16 +979,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f304d7e7373b1953a971ca31ab3ab2e960e66df9053208400e0ff383b1534b25",
-          "size": 1037737
+          "sha256": "1841cff0962033c5d0d0a466e7867abeb8fd057dfa8bc06919070b229358168e",
+          "size": 1037772
         },
         "edge": {
-          "sha256": "be213b5fbd943857af67e3f7278f0a1ced912bf78b7f9ec992ecb7b4b40bd901",
-          "size": 1037737
+          "sha256": "83993a17c24699bf427253b106441584a02917226028a51d578b0cdf53e90306",
+          "size": 1037772
         },
         "firefox": {
-          "sha256": "5d424c682038f1b59a75c5fd82ca535abd0449332dba148b2652df0275d76526",
-          "size": 1037686
+          "sha256": "6540b40f2e0b29e1b294334040f6e6a31d85a5efda4867b03b20a1d565426b37",
+          "size": 1037721
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-svelte"
@@ -1037,16 +1037,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f151a78401ba39502e00b20cf7af45274a298182098b9e0defcdee83b4b8ed4e",
-          "size": 157253
+          "sha256": "adba19eab5f6a6fe269ce64a08acdc460e632774893bbc105aeb5e397285f6fa",
+          "size": 157259
         },
         "edge": {
-          "sha256": "81349dc759f0da50674fd2571501b2dd5d1d43ba542ef82ae5d3ce61defe593a",
-          "size": 157253
+          "sha256": "b370f61532daaf37fbc024a5d2c0940cf38ad6e4f5650aabce56736232cbc8cd",
+          "size": 157259
         },
         "firefox": {
-          "sha256": "c9bff815461132c660c2ee72254c2a82911c8c7f5b06beb6fbf574938598f24d",
-          "size": 157220
+          "sha256": "eb35b571bb5c98609fe6ad8e31845bcac02d27e1bfc9b5b5322817e45047526a",
+          "size": 157226
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-typescript"
@@ -1107,16 +1107,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "bf027f8cfe6f512c1df310d90912c23e149e076a55bbdff40f4ea256e2fcbe75",
-          "size": 952345
+          "sha256": "0a8d9cecce13779477353c98862c737eac9bebad1c2cf8be4f0729d11df5e269",
+          "size": 952386
         },
         "edge": {
-          "sha256": "a76bb151cf6e956798ee87e527a075cec7442abc42d28a0380f77f073ac93a37",
-          "size": 952345
+          "sha256": "e81cc665fb6d651108a206cbcc3547495485b77a37f4a0e639d5cce95fb77faf",
+          "size": 952386
         },
         "firefox": {
-          "sha256": "474fd7d5ca1fb116513266747d95a4374d57ee75b6e228f0360287df59ee0a9a",
-          "size": 952300
+          "sha256": "d89b1c25aa29390fbb6ac21e11e94650f3976999b332225c7fba57914dc86516",
+          "size": 952340
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
@@ -1164,15 +1164,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "8d00021fbfd0e995de69a6a05bfbd9af126a73e2bd0d2a2317c44c1a2a0f5503",
+          "sha256": "0560dd9cc01ca940449fdd108508ab04f00a22baad1263e007b0b245fa005a6c",
           "size": 351376
         },
         "edge": {
-          "sha256": "14267838c86bb5c1df1bc8461c16fccb48663b5027173da71f2d1d3ac91d162e",
+          "sha256": "5933d8280ecd39fc78806e1266f12b4c1658ac1513beea09a772f703e7680171",
           "size": 351376
         },
         "firefox": {
-          "sha256": "3534cb1b696ebf65973163db1bec6292429c221a4b150ee40febeadc8b07cbd5",
+          "sha256": "e322b4d01ad43a25e8803a1dde53b7d11061f90591bdad6f107dbcfcc60757ed",
           "size": 351376
         }
       },
@@ -1227,16 +1227,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "940139a7e76f61039140d2ca1f2162308d1e1c9dc504a260826c76975c99e1c8",
-          "size": 170732
+          "sha256": "e14496ebe91bd6bb641b88cf2d950dab2e6d965bf12213b91aa1b80fac2865c9",
+          "size": 170757
         },
         "edge": {
-          "sha256": "dfb4e06fedfbdfe594449a981cfa0931abd6fa7a5c831cc8aa523e07f2b4838c",
-          "size": 170732
+          "sha256": "5ad374ea6ce08da7f05a2aa5b2061fe88eb19b4e4901a90002ab66a545737416",
+          "size": 170757
         },
         "firefox": {
-          "sha256": "4a7f7ff8c95eed3ef7b3287f8201278490ba3282a20063c76fdc5ccbbc0e6473",
-          "size": 170714
+          "sha256": "98d35a401f270f1bfb47c8f0ae1f3ac47a0a64041fe89e1879b1d1a4f2a53fec",
+          "size": 170738
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/javascript"
@@ -1286,15 +1286,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "12025fa63cfd9c4c6fcad20703b0e70caeab67a8ccae8bafda2b02629f6336b9",
+          "sha256": "5962b8b527b1ea826bfb6e3dc9357280e2d5e1af2d53590691854490703ffa8a",
           "size": 242392
         },
         "edge": {
-          "sha256": "4c61a5bec8121f49aa7869b6ce82cc072570e248740d68bcf3b83831643d12f5",
+          "sha256": "15bd78f276b0afe1e1d6368209f7f2502ead4314faf00db979bf8c66f17dd231",
           "size": 242392
         },
         "firefox": {
-          "sha256": "63cf6a19fb7916860fe3bbc06d49e5914781ea4e6f2a3d13710f9cd8c5a6619b",
+          "sha256": "c69d8e60258250db412c027c4b073817da744d4f21787e6ff70c388b7cf4a4ff",
           "size": 242379
         }
       },
@@ -1354,16 +1354,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "9126ccba643d74fe40f65744c424e594e358845579a990a76954bc342fb41486",
-          "size": 330681
+          "sha256": "aafa76e877028ac84ccfb11796569a7b02a95c3f6067d5dea6a2f72f09b98400",
+          "size": 330680
         },
         "edge": {
-          "sha256": "1e6991bfda1e43e8cc2d8daa4f49e0feb11a1de9efdec8a539134f8579952653",
-          "size": 330681
+          "sha256": "100a8da16b8f22f360321c255fb58f5b349498db4ef6ddc5cdabc579c065b3bb",
+          "size": 330680
         },
         "firefox": {
-          "sha256": "44def358f0eb893f32d81f6a8decf257dbb9fd711137c373f441571e1fd6acdb",
-          "size": 330549
+          "sha256": "183e62ada7bfa3ee124e5adcbf6de850a7e9640d106a696b160e4b278c8fa868",
+          "size": 330548
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-browser-flags"
@@ -1417,15 +1417,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "720e265dbff3f4a7a41e49279bd60e8cefc192fea9ef35a13d9d33b82c8c6085",
+          "sha256": "916fac8c1584ea9c7cc803f926826d10566a43c55623c0571ef39dbe4363cb83",
           "size": 246554
         },
         "edge": {
-          "sha256": "89a510b2248ee490c4e1d74699a804848429aea1e52c532e446f74b1105dfeac",
+          "sha256": "26d871deab7b550e94000f244d77e3a68ab6f30ccd69a61d599c26ef77b7c0a3",
           "size": 246554
         },
         "firefox": {
-          "sha256": "3f3800b104704aaad49c4562326f321166da0ae40f5ad3e531ce0004952ba684",
+          "sha256": "a5e9c51c572f85b68c9ff317663f3ba64c13f290683007a4442f0663f27e6cb7",
           "size": 246542
         }
       },
@@ -1476,15 +1476,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f13fe2a2523991121aa9482d11d4bdd55e7ab632f9688e6f4e2948b751c9863c",
+          "sha256": "281a06a31a103fe5205afa86136e053f29d1839451b3e2c870fdc1fb0526456e",
           "size": 271126
         },
         "edge": {
-          "sha256": "aa0b3761346edeef92de6af5ef0a9471de5742ce77eaf6db8ee22da0da4fceed",
+          "sha256": "f5d97b53830b901ae975acb40dd90a2f7a874e4e9206b4102398f007f365fc15",
           "size": 271126
         },
         "firefox": {
-          "sha256": "a4e512471740e6cc4c9ea5e52aa8cff7560f640aba53d3dc512b96cd41b65216",
+          "sha256": "4a8c953c91e3554f6158a6fe148101ff9c794e5ff02fc24acc037f42befc473c",
           "size": 271114
         }
       },
@@ -1535,15 +1535,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "c793b555dc8cc2bf503ea42b86b3f5a2e836a710d9def53158801711638f440e",
+          "sha256": "ab1b45985239c5198bddd9c9af25911dfbf6bbe202fd4730cfe3a5de3c57b163",
           "size": 209072
         },
         "edge": {
-          "sha256": "fbdad06614a653b702cd0cb48c69f45d81bf0c2ec2ad1428ad5121f1e5a02c29",
+          "sha256": "df518e0e757d55ae6dc9daff857f2a3ed9deebf71f0359bcf1aa649dd5c19d3a",
           "size": 209072
         },
         "firefox": {
-          "sha256": "8e28257e98332f3a3b2cb9f3189d2842ebf3a19f4fbf1446b3413090b88e4fbb",
+          "sha256": "6ad64ac72837d39629549f67ea3eb767274a352ca3eaf64aa73e8157c160fb39",
           "size": 209059
         }
       },
@@ -1594,15 +1594,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "25df668dc2458e038e17f30db211744e809262d9af038bae535a7648794d04c1",
+          "sha256": "1da70692722d697369e4e8046cb315dd78abbc333fa2c0681ad37154e0c7e1a4",
           "size": 286308
         },
         "edge": {
-          "sha256": "3cdcf84b92b615891cc991221b9f694d6c9417cefd1cb1061320597aae657fb8",
+          "sha256": "8be52d42a676f91c552e53a22b03ad49aa804db4943482dafa0bf96b77740097",
           "size": 286308
         },
         "firefox": {
-          "sha256": "b5eb551800b4d846d76f16fad9aa523d17f01656f03111959c726044a0ead3d6",
+          "sha256": "db804fa7415fe0fe41fe11fb4bff917e7333c0bca49213cf90967685cefdcc1f",
           "size": 286295
         }
       },
@@ -1653,16 +1653,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "a3f2ca1d11e78381b639d1c3443156e4edcd6dfd7ec1e3eb646d0c9d5f9a631e",
+          "sha256": "aaf92a16d17448e82dcec96120e374cf2576c6118c499f180b7e00d2e0a9e9f3",
           "size": 222417
         },
         "edge": {
-          "sha256": "b260b72a470f3f5e18540b696df002ab754b3e4e8f609fe3cc1bef260da6cd6a",
-          "size": 222415
+          "sha256": "675ecb8c0654be776120cf1ac9b68d6e78341cf53fbd13b0050a87b44f6571d0",
+          "size": 222416
         },
         "firefox": {
-          "sha256": "b36732fe64f7b488a0afcabb6e60efac7154ea274d49330a79e64f4896baeebf",
-          "size": 222403
+          "sha256": "98ca29ba065f796c6c144c6a84e063da9f46a330edbf1139d20697771d10ed36",
+          "size": 222404
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-env"
@@ -1712,15 +1712,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "108fd8e7c24e8e90b83e5ee142974c4d7f49c0fb46b25a52dd92a8a88a236cdf",
+          "sha256": "341ac49762a286da4888c9f68831ee985c1059a430fba1dac396854aa8ff6447",
           "size": 407283
         },
         "edge": {
-          "sha256": "961efb3435312f88fefd727e7975be710015eef76ab3e6d16c881db51827f06d",
+          "sha256": "26fe7ef12141d59b4cd5d5e1c51b6ffb9c0318550acbbb64dce5a8683b2fcf19",
           "size": 407283
         },
         "firefox": {
-          "sha256": "a5112af5cb7f84af63c5768fc7a46a579f6ecc813a345b354516b1b098e3ba39",
+          "sha256": "dfb3cdacb27d60a3fd81be5807cd706bfc9429be7f68f6aafb3020c462c9f368",
           "size": 407272
         }
       },
@@ -1772,16 +1772,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "2f7f858d51bb5594f942a7e2fd40f8e1aedacb16da2ab3aefd6591dc61ffe560",
-          "size": 296609
+          "sha256": "571400442587b557a145fbb4dbc3a21ac904ee4fd6c41253c48ec306596e25a6",
+          "size": 296540
         },
         "edge": {
-          "sha256": "541de11c18b511d9f120484b6a9ec437f6f82b048489f7c755c2f7481a34bcab",
-          "size": 296609
+          "sha256": "931cfd4a0453c620e78ed0d82140b7083746e6c1d53cd68c0a6807e62d03bdea",
+          "size": 296540
         },
         "firefox": {
-          "sha256": "db297bde55f69f805e78a38c202b46c1a680ae72b435606d9a91cc76fbdf0dad",
-          "size": 296597
+          "sha256": "d4567b3dbed96da78fc5491b5daffd80079e104fe732d14229550cda8fc06572",
+          "size": 296528
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-preact"
@@ -1832,15 +1832,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "fefc1cfea177a68d65fb541f5a485813cf8388f7b64b78b028b40496173b9562",
+          "sha256": "7b774dd06c813af42bb6251cb4b0f2c901313cc028c085b51fdf74043871440a",
           "size": 396001
         },
         "edge": {
-          "sha256": "07ea0613c9f42f6a5406417b7ec4b58c7e9f376e2bc212d5f81cdba771cea1b7",
+          "sha256": "f447db7765c1b8786042102e6476c5c5048089a340b7edff3128dddcbfa2c8e5",
           "size": 396001
         },
         "firefox": {
-          "sha256": "0bab9f106d756a77f2df0ba4d66d7ebde2cc9d198c9c2b6dbc4409a9c1d86913",
+          "sha256": "fbe7602438afd982cbf699d0b4d02b6ede4988eb39e4c2589aafc9ccf10ab621",
           "size": 395990
         }
       },
@@ -1892,15 +1892,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6ee554daee729520f26ed90f0477528f9b21ae91de463f50f1c7d549024ba621",
+          "sha256": "0dba72d898968af4bd5bbe64bf686184b852a8bfc9838c684ff0d815eb6e6981",
           "size": 436412
         },
         "edge": {
-          "sha256": "6eb581af1e8ff48e738f5db1576e292115565ca8568b252e004f9b286faaf189",
+          "sha256": "0e518b05a4520b23db59ba90f09500724039f338fc95688ce773c5c73c743b9c",
           "size": 436412
         },
         "firefox": {
-          "sha256": "48f357d580ad0467047800041c1d0fa138a88e4c1ba6d2c8de9a6f97c37eb101",
+          "sha256": "1dcdd21fc7cc7a560a8d934cdf20a5ba741d6a0e1358aea529b0e82a0b9bc8d5",
           "size": 436399
         }
       },
@@ -1951,15 +1951,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "6c210411923b062544e8310386e5ea4971a241c2650f88665a69d7e0bd07d429",
+          "sha256": "556c8fbd00a95d6074d73c9e3adbaebe9461a65acf21bbecff0daf89b4fb2514",
           "size": 401003
         },
         "edge": {
-          "sha256": "03d89a93b9929d947ddb807215c507d0570d13f7eec0afa6443ca9b78bc80e9b",
+          "sha256": "ce177680c06197fa3baf428f76c24cc4542b56610101452ad6552d86932b45d0",
           "size": 401003
         },
         "firefox": {
-          "sha256": "d2538e2e2fa6d9da2e89567e943ce4c22b4e1c8367d241561ae62cb0366c45e5",
+          "sha256": "ec715ea65ebb459e51bb4bfa668b0c7b97a66234d7f2be7f2e33701e655d6eb6",
           "size": 400992
         }
       },
@@ -2011,16 +2011,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "5a587edf0d1b68637d3c42fe205c8d802cfa1ed80bf3ccc495513e0ce25bac66",
-          "size": 347223
+          "sha256": "ee4f6f84d04e01702f389e63589be360440fcdf51e66ed5889720e7c9cd39d1c",
+          "size": 347273
         },
         "edge": {
-          "sha256": "995174668340d38f86605e8d001c8e668eb4c7c0c9878ef1112fdfd29583d06f",
-          "size": 347223
+          "sha256": "f325b2d6cf966014c309f19f9b8905de93e3a43604700242d29566f9cfc907b2",
+          "size": 347273
         },
         "firefox": {
-          "sha256": "e889995eea7c07106c66ee6f976dbc0c05c06bbe9f88cf04e1d58287328b4f04",
-          "size": 347211
+          "sha256": "539915ec4ae190d0d55b6c78b0dbfe02401c0f1f8f75c32cf55496062c5f504f",
+          "size": 347261
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-svelte"
@@ -2070,15 +2070,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ab1fc89cd045593bc8c690da7bf9ea7deb90c7dc37a52ffbe9e3e1e9a1e7ff68",
+          "sha256": "abdcb3ccfd888df714f873ffe161b256826c55d0e6ca131f1c23bc96dd827d97",
           "size": 191740
         },
         "edge": {
-          "sha256": "41b7d71d461b730d70b320e2d393c862a8f46963fce8fec7093fdf5ed87b992d",
+          "sha256": "7c109c68e20860c56371a49030331a826b0ebd9622a0c6d6e009f74d6ee85ac0",
           "size": 191740
         },
         "firefox": {
-          "sha256": "29ba9115d387df71db952c1ac2cfdeb0e364c6284e8cb8b850431f57de6ed9d1",
+          "sha256": "2028bcd043b17c96b85a3509ed18e37c3d5bb5ccb08de846864ad835c238aa5e",
           "size": 191728
         }
       },
@@ -2130,16 +2130,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "98cd1bb3c4579c6df9b6746692a94b6433c1fb63484b15005ce55dd83b73e740",
-          "size": 310996
+          "sha256": "71829eb15b7617323de2d0ef1bec00e5ed5083adf92c7bc39c932a5d38518a3c",
+          "size": 311036
         },
         "edge": {
-          "sha256": "6a9a8fb348123d928a8e3c38a8a08e416a12893ffbb82be25fe8a8157de8bd84",
-          "size": 310996
+          "sha256": "3e8494f72276e5f44ba4c50489ad140bcce5e0da1e1a9458869198f125ed7b88",
+          "size": 311036
         },
         "firefox": {
-          "sha256": "0e726326d6485c59ce161002134c086682447d1827510bfa8a3e00c5044d1c24",
-          "size": 310984
+          "sha256": "c26c036ac0ee4cea1b9cfcef3d2d258a3fc8f846e050d85311bea776a05602a3",
+          "size": 311024
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-vue"
@@ -2195,16 +2195,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "5021145e1a06d06ffcf97fc636c1823c8ced86897a06268253afe392f9d44667",
-          "size": 268563
+          "sha256": "46379519f4d20811e302e7037e569d8c4dc5746b2a3690e4376545330e4a1dd6",
+          "size": 268453
         },
         "edge": {
-          "sha256": "05187964ff0b9e265764fdd1784f376a1ea58acfc7698ed4b01eabf4d7f7d78c",
-          "size": 268563
+          "sha256": "8384d46c5a85a19bb496244afcf3fedce385994a01887be3599a5c92e3691e81",
+          "size": 268453
         },
         "firefox": {
-          "sha256": "1216890dd7e9767d7d573c7e5587e86e7ee9c51f747c91af6e7b9128fbc80239",
-          "size": 268544
+          "sha256": "60a2260a0170ff8875dfd40c47b8aaec4bbdd1c50c7c6057c33f6b560af25685",
+          "size": 268435
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/preact"
@@ -2258,16 +2258,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "b10b7dc3db8850274943b109278bcdd477e42f728a8f658d6aa586f615d3857b",
-          "size": 409714
+          "sha256": "f7215672fcb73df16a5271d2ff249aa4cccf3b5b103702e9bce29ce12860d817",
+          "size": 409743
         },
         "edge": {
-          "sha256": "f11352ebe19bf57fd23c5aef119ce43db2ce96e7219f9990a32501be6ca887a2",
-          "size": 409714
+          "sha256": "47ab26c37a97b989dd5a538f4a5f2686d5de629327c805078efad726503ba921",
+          "size": 409743
         },
         "firefox": {
-          "sha256": "44e5d671db370d0e47e46985bddb79cdfae3d77fac5dc8fec597618183c0f489",
-          "size": 409696
+          "sha256": "847f7bb6a0f3a6895ae5b548fd6529fce7e8bf8235ce2bf6b4573729d3f4e30a",
+          "size": 409725
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/react"
@@ -2317,16 +2317,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "14592099c762db84d466e8bdcbda02f55723228c8d18767fc5de89cc5cbe1f77",
-          "size": 219464
+          "sha256": "188f4640b8caff57484bd9769ff345cd76dfa1b65feab2509a013944713cfc08",
+          "size": 219465
         },
         "edge": {
-          "sha256": "b683b006dcb02e02cc0c99109cde67190e276dc519cb24ee202a2203aa7c7abd",
-          "size": 219464
+          "sha256": "762048906d5d3c36463a1e47bd5f2f8729e7992e50ff117264e50839e8f834a9",
+          "size": 219465
         },
         "firefox": {
-          "sha256": "cf21309f5ddc4e6dccd17184de9f05c4b36b881c583904924f731ad91014820d",
-          "size": 219414
+          "sha256": "4ae11ea44f92c6ac349040f5429187cf131fba9eab4851df45d856a7a8475555",
+          "size": 219415
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
@@ -2432,16 +2432,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "dc86e25e7c933af84d188768b9aed64a3f640cd26a0aaf28540f2df1060b6c64",
-          "size": 245108
+          "sha256": "b462519b76f5f931a3fec8fa8f4ac339661e0a62db0f1c15254c1e3381116932",
+          "size": 245107
         },
         "edge": {
-          "sha256": "6f361c5b11bcaeaa892b3ea51da935aaa42da7924003eed01754312a879b556d",
-          "size": 245108
+          "sha256": "517b8f3c5907161800250d7d0f5051c4dc9d4f4b5d5cf408b8a7728a41122da2",
+          "size": 245107
         },
         "firefox": {
-          "sha256": "0541798942e50fb1ac1d4bcf61fc8ae062653744fc63dd83a1a837cb9da15d14",
-          "size": 245058
+          "sha256": "8658af7ef402d257ba8afa81bce87ab9acbd4b513fc9dde560a337730c060128",
+          "size": 245057
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
@@ -2494,15 +2494,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "3b55998455e85a69d2fbbfaeda4804619f4901c8a915e9b511c14bc05dc84b57",
+          "sha256": "d4aec8d1812ceaf424a58bc3abc6dbcf21f8bf9694a7acf186a833453b06fe89",
           "size": 5649326
         },
         "edge": {
-          "sha256": "73ab6befbe72b2dea747649960dfe8e9ea56d1f356925ac3bf398edfdcfbd782",
+          "sha256": "8c61919130adf07dee770aebebf3faaeaacf9b8615671853d28a993770734eb7",
           "size": 5649326
         },
         "firefox": {
-          "sha256": "28e7beb0bbcdd117420bcbd350ef3215abc47533a7f54c30caa70f280266b97e",
+          "sha256": "9269c66c241fb1ec7732405c00b9b69eeb9840b9b95401a28c9ec9b734bf851d",
           "size": 5649270
         }
       },
@@ -2557,15 +2557,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "ee689f67659f09dc3d6557c5365a92fc2252f9f8f1eb8787ec5505d415c7e886",
+          "sha256": "249adcf0609f6915ce0a60fbf6cdf2af779e333e6a5b7cab4cac3bb3fca069ff",
           "size": 196724
         },
         "edge": {
-          "sha256": "334e6e923a2cb51361547a7efa4225da31c92a4e7212064797e5dbebca8617f3",
+          "sha256": "c80924c80779544ca63086d8f01770e23fedb9efaecaff3430b62a348ebad302",
           "size": 196724
         },
         "firefox": {
-          "sha256": "53e10c41373135d6fc9af496e237a1315d8b9a85f2834d81c815ec0da9e9c000",
+          "sha256": "ebda1f3d243e830a23c36a83d77f9f6672a7c1837ef3190240aaa6acf03cfd0c",
           "size": 196705
         }
       },
@@ -2614,15 +2614,15 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "daeb218d42e3be533e9bce943e0fde2ffc98fb083829cd96d289444d932b0eaa",
+          "sha256": "3398eaf1a4ea6dcfdb169faa66d073823e62e3323430e960d7422d35ff15b2ee",
           "size": 110524
         },
         "edge": {
-          "sha256": "53de7a51bb306cee4bfdee19f2b2c8a127744570517c970639de4d748d3625ac",
+          "sha256": "d49181672b8ac20d7e41d091bf037fa77ce5e8aa402c319ad3f8f16931faa00d",
           "size": 110524
         },
         "firefox": {
-          "sha256": "b2a2327db7d62f6ae69aa830d7baed2b59db828315d621178c4d7eafea874b3e",
+          "sha256": "1d8276d6553c4b347000dee60552273d513990b57129245d2baab0a6cf213468",
           "size": 110511
         }
       },
@@ -2678,16 +2678,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "39b6e15d1b45df9e6ad6808c23d72a95ac4815905d9100ad22a9301d69ce336e",
-          "size": 325752
+          "sha256": "e6d9ca08cf3f7231ae6fb3a763aa9ff62850c09727aa58ffeb492ad839edfca5",
+          "size": 325877
         },
         "edge": {
-          "sha256": "b8fdc52fc74b0d72ccb889543c017728f51c21d15f8a79928d8600cb06b286a2",
-          "size": 325752
+          "sha256": "770e625b284f1a9541e19ce30a18dbccff4c9d6668bbfe819cb5b3c7a0b809a9",
+          "size": 325877
         },
         "firefox": {
-          "sha256": "ac7633e00b38818613dbb4a806af84fc56217f043ff236afc182cf3c4547f0c3",
-          "size": 325735
+          "sha256": "861fc8a6c191a30432d4fd91fb917ef02d4e179e56e83552ad28a3318ea7369a",
+          "size": 325860
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/svelte"
@@ -2742,16 +2742,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "f69abb62a9232f85c5337da93acb55df45be470d9b5b468e1d5200acc88f9fd9",
-          "size": 189541
+          "sha256": "c7548e443365df3f4d37ec534ce06839760ab122d59832544a93b3c7ac6d0ff7",
+          "size": 189566
         },
         "edge": {
-          "sha256": "957deafa0a2cc39a1581be9e14d58ff0a665d498c6f2ca770d2a657cfe30b7bc",
-          "size": 189541
+          "sha256": "1599afdbfb46f189bf42e1677f3f284d728317325899bf317e04e9b987372a70",
+          "size": 189566
         },
         "firefox": {
-          "sha256": "91ddc94336964356f87a384bc1a894eee2b4bafb4450bb7fd1d5d93ec33c3e45",
-          "size": 189522
+          "sha256": "c5404bf716d0a75d9c7dc60c4f098cf0717c6976be673346c0934da5ed73547a",
+          "size": 189547
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/typescript"
@@ -2806,16 +2806,16 @@
       },
       "integrity": {
         "chrome": {
-          "sha256": "e93bbe3646c7f1e00fe45d31f421e468b615554a2661df5dc90bd8fc0562869d",
-          "size": 307593
+          "sha256": "48baef862ea1ce00dbc1e34ac4c418d13bc0fdf8c2edc7a033df8b58ecb8f3d3",
+          "size": 307698
         },
         "edge": {
-          "sha256": "280ddfeecd14d20ca3e7b4d314bc82913ee8c732711e69991dc7d0d82f83b1ab",
-          "size": 307593
+          "sha256": "54caf87c876af9b3e0a87cb1864564c191f16bf10dbba77f8f75cb5493e3e175",
+          "size": 307698
         },
         "firefox": {
-          "sha256": "fe658a8a96c8fadc203cc7cd3d4a0028f509e91a8252597de6d2bce5df8e4707",
-          "size": 307576
+          "sha256": "014e2bb88d8c3fb6272bb3aca565cfc9fa061c093b9c1ef7eb6add472f67a73c",
+          "size": 307681
         }
       },
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/vue"
