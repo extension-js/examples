@@ -70,7 +70,10 @@ function prepTempExample(slug) {
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), `extjs-${slug}-`))
   const exampleDir = path.join(tempRoot, slug)
   fs.cpSync(src, exampleDir, {recursive: true})
-  fs.rmSync(path.join(exampleDir, 'node_modules'), {recursive: true, force: true})
+  fs.rmSync(path.join(exampleDir, 'node_modules'), {
+    recursive: true,
+    force: true
+  })
   cleanOutputs(exampleDir)
   return {tempRoot, exampleDir}
 }
@@ -94,7 +97,9 @@ function run(command, args, cwd) {
       stdio: ['inherit', 'pipe', 'pipe'],
       env: {
         ...process.env,
-        XDG_CONFIG_HOME
+        XDG_CONFIG_HOME,
+        PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
+        npm_config_frozen_lockfile: 'false'
       }
     })
 

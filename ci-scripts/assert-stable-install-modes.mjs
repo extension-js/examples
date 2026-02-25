@@ -83,6 +83,8 @@ function run(command, args, cwd, env = {}) {
         ...process.env,
         CI: 'true',
         COREPACK_ENABLE_AUTO_PIN: '0',
+        PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
+        npm_config_frozen_lockfile: 'false',
         ...env
       }
     })
@@ -140,7 +142,11 @@ async function installDependencies(pm, exampleDir) {
   if (pm === 'pnpm') {
     let result = await run('pnpm', ['install', '--frozen-lockfile'], exampleDir)
     if (result.code !== 0) {
-      result = await run('pnpm', ['install', '--no-frozen-lockfile'], exampleDir)
+      result = await run(
+        'pnpm',
+        ['install', '--no-frozen-lockfile'],
+        exampleDir
+      )
     }
     return result.code === 0
   }
@@ -195,7 +201,11 @@ async function installExtension(pm, exampleDir, extensionSpec) {
     return result.code === 0
   }
 
-  const result = await run('bun', ['add', '-d', `extension@${extensionSpec}`], exampleDir)
+  const result = await run(
+    'bun',
+    ['add', '-d', `extension@${extensionSpec}`],
+    exampleDir
+  )
   return result.code === 0
 }
 
@@ -210,7 +220,15 @@ async function runInstalledBuild(pm, exampleDir) {
   if (pm === 'pnpm') {
     return run(
       'pnpm',
-      ['exec', 'extension', 'build', '--browser=chrome', '--silent', 'true', '--no-telemetry'],
+      [
+        'exec',
+        'extension',
+        'build',
+        '--browser=chrome',
+        '--silent',
+        'true',
+        '--no-telemetry'
+      ],
       exampleDir
     )
   }
@@ -218,14 +236,26 @@ async function runInstalledBuild(pm, exampleDir) {
   if (pm === 'bun') {
     return run(
       'bun',
-      ['x', 'extension', 'build', '--browser=chrome', '--silent', 'true', '--no-telemetry'],
+      [
+        'x',
+        'extension',
+        'build',
+        '--browser=chrome',
+        '--silent',
+        'true',
+        '--no-telemetry'
+      ],
       exampleDir
     )
   }
 
   // npm/yarn/bun all install local bin in node_modules/.bin. Executing the
   // local binary directly avoids PM-specific behavior differences.
-  return run(localExtensionBinary(exampleDir), ['build', '--browser=chrome', '--silent', 'true', '--no-telemetry'], exampleDir)
+  return run(
+    localExtensionBinary(exampleDir),
+    ['build', '--browser=chrome', '--silent', 'true', '--no-telemetry'],
+    exampleDir
+  )
 }
 
 async function runExecBuild(pm, exampleDir, extensionSpec) {
@@ -292,12 +322,19 @@ async function runExecBuild(pm, exampleDir, extensionSpec) {
 
 async function assertLocalInstallMode(slug, pm, extensionSpec) {
   const exampleDir = prepTempExample(slug)
-  console.log(`\n=== ${slug}: ${pm} install + local extension (${extensionSpec}) ===`)
+  console.log(
+    `\n=== ${slug}: ${pm} install + local extension (${extensionSpec}) ===`
+  )
 
   const didInstallDeps = await installDependencies(pm, exampleDir)
-  if (!didInstallDeps) return {ok: false, reason: `${pm} dependency install failed`}
+  if (!didInstallDeps)
+    return {ok: false, reason: `${pm} dependency install failed`}
 
-  const didInstallExtension = await installExtension(pm, exampleDir, extensionSpec)
+  const didInstallExtension = await installExtension(
+    pm,
+    exampleDir,
+    extensionSpec
+  )
   if (!didInstallExtension) {
     return {ok: false, reason: `${pm} extension install failed`}
   }
@@ -313,10 +350,13 @@ async function assertLocalInstallMode(slug, pm, extensionSpec) {
 
 async function assertExecMode(slug, pm, extensionSpec) {
   const exampleDir = prepTempExample(slug)
-  console.log(`\n=== ${slug}: ${pm} install + exec extension@${extensionSpec} ===`)
+  console.log(
+    `\n=== ${slug}: ${pm} install + exec extension@${extensionSpec} ===`
+  )
 
   const didInstallDeps = await installDependencies(pm, exampleDir)
-  if (!didInstallDeps) return {ok: false, reason: `${pm} dependency install failed`}
+  if (!didInstallDeps)
+    return {ok: false, reason: `${pm} dependency install failed`}
 
   const r = await runExecBuild(pm, exampleDir, extensionSpec)
   if (r.code !== 0) return {ok: false, reason: `${pm} exec build failed`}
@@ -358,7 +398,9 @@ async function main() {
       const local = await assertLocalInstallMode(slug, pm, extensionSpec)
       if (!local.ok) {
         failures += 1
-        console.error(`✖ ${slug} local-install mode failed (${pm}): ${local.reason}`)
+        console.error(
+          `✖ ${slug} local-install mode failed (${pm}): ${local.reason}`
+        )
       } else {
         console.log(`✔ ${slug} local-install mode passed (${pm})`)
       }

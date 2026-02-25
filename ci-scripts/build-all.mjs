@@ -70,6 +70,10 @@ function cleanOutputs(exampleDirectory) {
   }
 }
 
+function hasPnpmLockfile(directory) {
+  return fs.existsSync(path.join(directory, 'pnpm-lock.yaml'))
+}
+
 function listExamples(filter = null) {
   const allExamples = fs
     .readdirSync(examplesDir, {withFileTypes: true})
@@ -145,6 +149,8 @@ async function buildExample(slug, browser) {
             env: {
               ...process.env,
               XDG_CONFIG_HOME,
+              PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
+              npm_config_frozen_lockfile: 'false',
               // Dependencies are installed explicitly before build; skipping
               // CLI auto-install avoids pnpm shim execution issues in CI.
               EXTENSION_SKIP_INSTALL: process.env.EXTENSION_SKIP_INSTALL ?? '1'
@@ -415,16 +421,25 @@ for (const slug of slugs) {
         }
 
         try {
+          const useFrozenLockfile = hasPnpmLockfile(exampleDirectory)
           // Install from example directory - workspace deps already installed at root
-          // Use --frozen-lockfile to prevent lockfile updates (workspace install already handled it)
+          // Use --frozen-lockfile only when an example lockfile exists.
+          // Many examples intentionally have no lockfile, which would fail in CI.
           installSuccess = await run(
             'pnpm',
-            [
-              'install',
-              '--frozen-lockfile',
-              '--prod=false',
-              '--ignore-workspace'
-            ],
+            useFrozenLockfile
+              ? [
+                  'install',
+                  '--frozen-lockfile',
+                  '--prod=false',
+                  '--ignore-workspace'
+                ]
+              : [
+                  'install',
+                  '--no-frozen-lockfile',
+                  '--prod=false',
+                  '--ignore-workspace'
+                ],
             exampleDirectory
           )
 

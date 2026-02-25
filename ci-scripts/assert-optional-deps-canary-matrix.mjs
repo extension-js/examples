@@ -77,7 +77,9 @@ function run(command, args, cwd) {
       stdio: ['inherit', 'pipe', 'pipe'],
       env: {
         ...process.env,
-        CI: 'true'
+        CI: 'true',
+        PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
+        npm_config_frozen_lockfile: 'false'
       }
     })
     let stdout = ''
@@ -127,7 +129,11 @@ async function installDeps(exampleDir) {
   if (packageManager === 'pnpm') {
     let result = await run('pnpm', ['install', '--frozen-lockfile'], exampleDir)
     if (result.code !== 0) {
-      result = await run('pnpm', ['install', '--no-frozen-lockfile'], exampleDir)
+      result = await run(
+        'pnpm',
+        ['install', '--no-frozen-lockfile'],
+        exampleDir
+      )
     }
     return result.code
   }
