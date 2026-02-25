@@ -17,25 +17,131 @@
 
 This repository contains browser extension examples built with Extension.js. Each example demonstrates different patterns, frameworks, and use cases for building cross-browser extensions.
 
-## Optional Deps Contract Guards
+<details>
+  <summary><img src="./public/javascript/src/images/icon.png" alt="javascript template icon" width="22" /> JavaScript Sidebar Example</summary>
 
-These checks validate first-run determinism and install-mode behavior using the
-`extension` version declared in this repository's `package.json`.
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/javascript/README.md">examples/javascript</a></td>
+      <td rowspan="5"><img src="./examples/javascript/public/screenshot.png" alt="javascript screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/javascript">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
 
-Run all contract checks locally:
+<details>
+  <summary><img src="./public/react/src/images/icon.png" alt="react template icon" width="22" /> React Sidebar Example</summary>
 
-```bash
-pnpm run test:optional-deps-contract-all
-```
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/react/README.md">examples/react</a></td>
+      <td rowspan="5"><img src="./examples/react/public/screenshot.png" alt="react screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/react">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
 
-Run install vs exec checks for one package manager:
+<details>
+  <summary><img src="./public/preact/src/images/icon.png" alt="preact template icon" width="22" /> Preact Sidebar Example</summary>
 
-```bash
-pnpm run test:stable-install-modes -- --pm npm
-pnpm run test:stable-install-modes -- --pm pnpm
-pnpm run test:stable-install-modes -- --pm yarn
-pnpm run test:stable-install-modes -- --pm bun
-```
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/preact/README.md">examples/preact</a></td>
+      <td rowspan="5"><img src="./examples/preact/public/screenshot.png" alt="preact screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/preact">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/svelte/src/images/icon.png" alt="svelte template icon" width="22" /> Svelte Sidebar Example</summary>
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/svelte/README.md">examples/svelte</a></td>
+      <td rowspan="5"><img src="./examples/svelte/public/screenshot.png" alt="svelte screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/svelte">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/vue/src/images/icon.png" alt="vue template icon" width="22" /> Vue Sidebar Example</summary>
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/vue/README.md">examples/vue</a></td>
+      <td rowspan="5"><img src="./examples/vue/public/screenshot.png" alt="vue screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/vue">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/typescript/src/images/icon.png" alt="typescript template icon" width="22" /> TypeScript Sidebar Example</summary>
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/typescript/README.md">examples/typescript</a></td>
+      <td rowspan="5"><img src="./examples/typescript/public/screenshot.png" alt="typescript screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Sidebar, Content Script, Action</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">TypeScript</td></tr>
+    <tr><td>CSS</td><td align="right">Standard CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/typescript">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
 
 ## License
 
