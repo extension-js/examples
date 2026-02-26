@@ -106,12 +106,48 @@ jobs:
       - name: Assert one-run builds on canary
         run: pnpm run test:canary-one-run
 
+  # Optional dependency guards run separately to avoid build-and-lint timeout pressure
+  optional-deps-guards:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Enable corepack for Yarn
+        run: corepack enable
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
       - name: Assert stable install modes
         run: pnpm run test:stable-install-modes
 
       - name: Assert stable pnpm PostCSS repro
         run: pnpm run test:stable-pnpm-postcss-repro
-
 
   # E2E Test Jobs - run in parallel, each builds and tests its own batch
   e2e-content:
