@@ -15,9 +15,13 @@
     "clients/*"
   ],
   "scripts": {
-    "build": "extension build",
-    "build:edge": "extension build --browser=edge",
-    "build:firefox": "extension build --browser=firefox"
+    "dev": "extension dev packages/extension",
+    "start": "extension start packages/extension",
+    "build": "extension build packages/extension",
+    "preview": "extension preview packages/extension",
+    "build:chrome": "extension build packages/extension --browser=chrome",
+    "build:edge": "extension build packages/extension --browser=edge",
+    "build:firefox": "extension build packages/extension --browser=firefox"
   },
   "devDependencies": {
     "turbo": "^2.1.3"
