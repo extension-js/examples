@@ -32,6 +32,7 @@ const STRICT_ONE_RUN = process.env.EXTENSION_STRICT_ONE_RUN !== 'false'
 
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
 const ISOLATED_BUILD_SLUGS = new Set(['sidebar-monorepo-turbopack'])
+const SKIPPED_EXAMPLES = new Set(['playwright'])
 
 function run(command, args, workingDirectory) {
   return new Promise((resolve, reject) => {
@@ -81,6 +82,7 @@ function listExamples(filter = null) {
     .readdirSync(examplesDir, {withFileTypes: true})
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name)
+    .filter((name) => !SKIPPED_EXAMPLES.has(name))
     .sort()
 
   if (!filter) {
