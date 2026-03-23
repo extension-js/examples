@@ -152,6 +152,90 @@ jobs:
       - name: Assert stable pnpm PostCSS repro
         run: pnpm run test:stable-pnpm-postcss-repro
 
+  create-dev-workflow-guards:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Enable corepack for Yarn
+        run: corepack enable
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Assert create + first dev for content-react
+        run: pnpm run test:content-react-first-dev
+
+      - name: Assert create + first dev for all templates
+        run: pnpm run test:create-dev-workflow:all-templates
+
+  create-dev-workflow-guards-windows:
+    needs: setup
+    runs-on: windows-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Enable corepack for Yarn
+        run: corepack enable
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Restore node_modules from cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Assert create + first dev for content-react on Windows
+        run: pnpm run test:content-react-first-dev
+
+      - name: Assert create + first dev for all templates on Windows
+        run: pnpm run test:create-dev-workflow:all-templates
+
   # E2E Test Jobs - run in parallel, each builds and tests its own batch
   e2e-content:
     needs: setup
