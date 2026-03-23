@@ -11,11 +11,15 @@ const repoRoot = path.resolve(__dirname, '..')
 const secondRunHint = 'Run the command again to proceed'
 const missingOptionalDepsHint =
   'Optional dependency install reported success but packages are missing'
-const readyHint = 'compiled successfully'
+const compileSuccessHints = ['compiled successfully', 'compiled with warnings']
+const readyHint = 'Extension ready for development'
 const duplicateSpecializedDepsHint =
   /Found \d+ specialized integration(s)? needing installation/i
 const failureHints = [
   missingOptionalDepsHint,
+  'could not be resolved after optional dependency installation',
+  'Module parse failed',
+  'JavaScript parse error',
   'compiled with errors',
   'Unhandled rejection'
 ]
@@ -27,21 +31,28 @@ function commandFor(tool) {
   return tool
 }
 
+function buildBaseEnv(overrides = {}) {
+  return {
+    ...process.env,
+    CI: 'true',
+    COREPACK_ENABLE_AUTO_PIN: '0',
+    npm_config_yes: 'true',
+    // Ensure create/dev flows run the npm lane consistently even when this
+    // smoke script is launched through pnpm in CI.
+    npm_config_user_agent: `npm/11.0.0 node/${process.versions.node} ${process.platform} ${process.arch}`,
+    npm_execpath: '',
+    NPM_EXEC_PATH: '',
+    ...overrides
+  }
+}
+
 function run(command, args, cwd, extraEnv = {}) {
   return new Promise((resolve) => {
     const child = spawn(commandFor(command), args, {
       cwd,
       shell: process.platform === 'win32',
       stdio: ['ignore', 'pipe', 'pipe'],
-      env: {
-        ...process.env,
-        CI: 'true',
-        COREPACK_ENABLE_AUTO_PIN: '0',
-        PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
-        npm_config_frozen_lockfile: 'false',
-        npm_config_yes: 'true',
-        ...extraEnv
-      }
+      env: buildBaseEnv(extraEnv)
     })
 
     let stdout = ''
@@ -110,25 +121,64 @@ function runDevUntilReady(
       cwd,
       shell: process.platform === 'win32',
       stdio: ['ignore', 'pipe', 'pipe'],
-      env: {
-        ...process.env,
-        CI: 'true',
-        COREPACK_ENABLE_AUTO_PIN: '0',
-        PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
-        npm_config_frozen_lockfile: 'false',
-        npm_config_yes: 'true',
-        ...extraEnv
-      }
+      env: buildBaseEnv(extraEnv)
     })
 
     let stdout = ''
     let stderr = ''
     let settled = false
+    let sawCompileSuccess = false
+    let sawReadyBanner = false
+    let childClosed = false
 
-    const finish = (result) => {
+    const waitForChildClose = (timeoutMs = 8000) =>
+      new Promise((done) => {
+        if (childClosed) {
+          done()
+          return
+        }
+        const timeout = setTimeout(done, timeoutMs)
+        child.once('close', () => {
+          clearTimeout(timeout)
+          done()
+        })
+      })
+
+    const terminateChild = async () => {
+      if (childClosed) return
+
+      if (process.platform === 'win32' && child.pid) {
+        try {
+          await run('taskkill', ['/PID', String(child.pid), '/T', '/F'], cwd)
+        } catch {
+          // best-effort
+        }
+        await waitForChildClose()
+        return
+      }
+
+      try {
+        child.kill('SIGTERM')
+      } catch {
+        // best-effort
+      }
+      await waitForChildClose(1000)
+
+      if (!childClosed) {
+        try {
+          child.kill('SIGKILL')
+        } catch {
+          // best-effort
+        }
+        await waitForChildClose()
+      }
+    }
+
+    const finish = async (result) => {
       if (settled) return
       settled = true
       clearTimeout(timer)
+      await terminateChild()
       resolve(result)
     }
 
@@ -136,8 +186,7 @@ function runDevUntilReady(
       const output = `${stdout}\n${stderr}`
 
       if (failureHints.some((hint) => output.includes(hint))) {
-        child.kill('SIGTERM')
-        finish({
+        void finish({
           code: 1,
           stdout,
           stderr,
@@ -146,9 +195,15 @@ function runDevUntilReady(
         return
       }
 
+      if (compileSuccessHints.some((hint) => output.includes(hint))) {
+        sawCompileSuccess = true
+      }
       if (output.includes(readyHint)) {
-        child.kill('SIGTERM')
-        finish({code: 0, stdout, stderr, error: null})
+        sawReadyBanner = true
+      }
+
+      if (sawCompileSuccess && sawReadyBanner) {
+        void finish({code: 0, stdout, stderr, error: null})
       }
     }
 
@@ -166,17 +221,22 @@ function runDevUntilReady(
       maybeFinishFromOutput()
     })
 
-    child.on('close', (code) =>
-      finish({code: code ?? 1, stdout, stderr, error: null})
-    )
+    child.on('close', (code) => {
+      childClosed = true
+      void finish({code: code ?? 1, stdout, stderr, error: null})
+    })
 
     child.on('error', (error) => {
-      finish({code: 1, stdout, stderr, error: String(error?.message || error)})
+      void finish({
+        code: 1,
+        stdout,
+        stderr,
+        error: String(error?.message || error)
+      })
     })
 
     const timer = setTimeout(() => {
-      child.kill('SIGTERM')
-      finish({
+      void finish({
         code: 1,
         stdout,
         stderr,
@@ -266,6 +326,23 @@ async function runTemplate(templateSlug, extensionSpec) {
       throw new Error(
         `Create command failed.\n${createResult.stdout}\n${createResult.stderr}\n${
           createResult.error || ''
+        }`
+      )
+    }
+
+    const installResult = await run(
+      'npm',
+      ['install', '--no-audit', '--no-fund'],
+      projectDir,
+      {
+        EXTENSION_JS_CACHE_DIR: cacheDir
+      }
+    )
+
+    if (installResult.code !== 0) {
+      throw new Error(
+        `npm install failed.\n${installResult.stdout}\n${installResult.stderr}\n${
+          installResult.error || ''
         }`
       )
     }
