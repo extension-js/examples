@@ -23,6 +23,9 @@
   },
   "scripts": {
     "extension": "extension",
+    "test:content-workflows": "node scripts/verify-content-template-first-dev.mjs",
+    "test:content-react": "node scripts/verify-content-template-first-dev.mjs --templates content-react",
+    "test:content-frameworks": "node scripts/verify-content-template-first-dev.mjs --templates content-react,content-vue,content-svelte",
     "generate": "node ci-scripts/generate-templates-meta.mjs",
     "build:examples": "node ci-scripts/build-all.mjs",
     "artifacts:package": "node ci-scripts/package-artifacts.mjs",
@@ -44,7 +47,7 @@
     "test:optional-deps-contract": "node ci-scripts/assert-optional-deps-canary-matrix.mjs",
     "test:optional-deps-ecosystem": "node ci-scripts/assert-optional-deps-canary-matrix.mjs",
     "test:stable-install-modes": "node ci-scripts/assert-stable-install-modes.mjs",
-    "test:content-react-first-dev": "node ci-scripts/assert-content-react-first-dev.mjs",
+
     "test:create-dev-workflow": "node ci-scripts/assert-create-dev-workflow.mjs",
     "test:create-dev-workflow:all-templates": "node ci-scripts/assert-create-dev-workflow-all-templates.mjs",
     "test:stable-pnpm-postcss-repro": "node ci-scripts/assert-stable-pnpm-postcss-repro.mjs",
@@ -76,7 +79,7 @@
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "3.10.0",
+    "extension": "3.10.3",
     "globals": "^15.13.0",
     "knip": "^5.33.0",
     "lint-staged": "16.1.0",

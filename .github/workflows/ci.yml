@@ -189,7 +189,7 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - name: Assert create + first dev for content-react
-        run: pnpm run test:content-react-first-dev
+        run: pnpm run test:content-react
 
       - name: Assert create + first dev for all templates
         run: pnpm run test:create-dev-workflow:all-templates
@@ -231,7 +231,7 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - name: Assert create + first dev for content-react on Windows
-        run: pnpm run test:content-react-first-dev
+        run: pnpm run test:content-react
 
       - name: Assert create + first dev for all templates on Windows
         run: pnpm run test:create-dev-workflow:all-templates
