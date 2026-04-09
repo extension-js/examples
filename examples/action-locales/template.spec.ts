@@ -57,29 +57,26 @@ baseTest.describe('i18n build artifacts', () => {
     baseTest.expect(Object.keys(messages).length).toBeGreaterThan(0)
   })
 
-  baseTest(
-    '__MSG_*__ manifest patterns reference valid locale keys',
-    () => {
-      const manifest = JSON.parse(
-        fs.readFileSync(path.join(pathToExtension, 'manifest.json'), 'utf8')
+  baseTest('__MSG_*__ manifest patterns reference valid locale keys', () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(pathToExtension, 'manifest.json'), 'utf8')
+    )
+    const messages = JSON.parse(
+      fs.readFileSync(
+        path.join(pathToExtension, '_locales', 'en', 'messages.json'),
+        'utf8'
       )
-      const messages = JSON.parse(
-        fs.readFileSync(
-          path.join(pathToExtension, '_locales', 'en', 'messages.json'),
-          'utf8'
+    )
+    const manifestStr = JSON.stringify(manifest)
+    const msgRefs = manifestStr.match(/__MSG_(\w+)__/g) || []
+    for (const ref of msgRefs) {
+      const key = ref.replace(/__MSG_(\w+)__/, '$1')
+      baseTest
+        .expect(
+          messages[key],
+          `manifest references __MSG_${key}__ but _locales/en/messages.json has no "${key}" key`
         )
-      )
-      const manifestStr = JSON.stringify(manifest)
-      const msgRefs = manifestStr.match(/__MSG_(\w+)__/g) || []
-      for (const ref of msgRefs) {
-        const key = ref.replace(/__MSG_(\w+)__/, '$1')
-        baseTest
-          .expect(
-            messages[key],
-            `manifest references __MSG_${key}__ but _locales/en/messages.json has no "${key}" key`
-          )
-          .toBeDefined()
-      }
+        .toBeDefined()
     }
-  )
+  })
 })
