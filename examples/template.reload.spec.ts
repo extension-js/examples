@@ -33,7 +33,7 @@ const bundledLocalCliCjs = path.resolve(
   '..',
   '..',
   'programs',
-  'cli',
+  'extension',
   'dist',
   'cli.cjs'
 )
@@ -75,9 +75,10 @@ function readManifest(dir: string): Manifest | null {
 
 function cleanDevRoots(dir: string) {
   for (const root of DEV_ROOTS)
-    try {
-      fs.rmSync(path.join(dir, root), {recursive: true, force: true})
-    } catch {}
+    for (const ch of DEV_CHANNELS)
+      try {
+        fs.rmSync(path.join(dir, root, ch), {recursive: true, force: true})
+      } catch {}
 }
 
 async function waitForDevManifest(dir: string, timeoutMs = 60000) {

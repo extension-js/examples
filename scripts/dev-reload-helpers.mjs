@@ -44,7 +44,7 @@ export const DEFAULT_VERIFY_STARTING_URL = 'https://example.com/'
 
 /**
  * Prefer the monorepo `pnpm extension` script (root package.json) so dev runs match
- * local CLI fixes (dotenv, same `node programs/cli/dist/cli.cjs` entry). Optional
+ * local CLI fixes (dotenv, same `node programs/extension/dist/cli.cjs` entry). Optional
  * `EXTENSION_LOCAL_CLI_CJS=/abs/path/cli.cjs` forces direct `node` + `cli.cjs` for debugging.
  */
 export function resolveDevCliInvocation() {
@@ -571,7 +571,13 @@ export async function stopChild(child) {
     }
     const killTimer = setTimeout(() => {
       try {
-        child.kill('SIGKILL')
+        // Kill entire process group so grandchild dev-server processes
+        // don't linger as orphans on CI.
+        if (process.platform !== 'win32' && child.pid) {
+          process.kill(-child.pid, 'SIGKILL')
+        } else {
+          child.kill('SIGKILL')
+        }
       } catch {
         // Process may have already exited between checks.
       }
@@ -582,7 +588,11 @@ export async function stopChild(child) {
       finish()
     })
     try {
-      child.kill('SIGTERM')
+      if (process.platform !== 'win32' && child.pid) {
+        process.kill(-child.pid, 'SIGTERM')
+      } else {
+        child.kill('SIGTERM')
+      }
     } catch {
       clearTimeout(killTimer)
       finish()
@@ -644,7 +654,8 @@ export function startDevProcess({
   const child = spawn(cliInvocation.command, args, {
     cwd: usesDirectNodeCli ? projectPath : workspaceRoot,
     env,
-    stdio: ['ignore', 'pipe', 'pipe']
+    stdio: ['ignore', 'pipe', 'pipe'],
+    ...(process.platform !== 'win32' && {detached: true})
   })
 
   let output = ''

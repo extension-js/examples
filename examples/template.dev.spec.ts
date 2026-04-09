@@ -43,7 +43,7 @@ const bundledLocalCliCjs = path.resolve(
   '..',
   '..',
   'programs',
-  'cli',
+  'extension',
   'dist',
   'cli.cjs'
 )
