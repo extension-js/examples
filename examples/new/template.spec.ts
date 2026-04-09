@@ -1,3 +1,4 @@
+import type {Page} from '@playwright/test'
 import {
   extensionFixtures,
   resolveBuiltExtensionPath
@@ -8,7 +9,7 @@ const __dirname = getDirname(import.meta.url)
 const pathToExtension = resolveBuiltExtensionPath(__dirname)
 const test = extensionFixtures(pathToExtension)
 
-async function waitForWelcomeHeading(page) {
+async function waitForWelcomeHeading(page: Page) {
   await test.expect
     .poll(
       async () => {

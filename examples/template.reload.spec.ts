@@ -99,13 +99,13 @@ interface DevServer {
 }
 
 function startDev(exampleDir: string): DevServer {
-  const env: Record<string, string> = {
-    ...(process.env as Record<string, string>),
-    EXTENSION_AUTHOR_MODE: 'true'
+  const env = {
+    ...process.env,
+    EXTENSION_AUTHOR_MODE: 'true',
+    ...(fs.existsSync(localDevelopRoot)
+      ? {EXTENSION_DEVELOP_ROOT: localDevelopRoot}
+      : {})
   }
-  if (fs.existsSync(localDevelopRoot))
-    env.EXTENSION_DEVELOP_ROOT = localDevelopRoot
-
   const args = [
     localCliCjs,
     'dev',
@@ -117,7 +117,7 @@ function startDev(exampleDir: string): DevServer {
   const proc = spawn(process.execPath, args, {
     cwd: exampleDir,
     env,
-    stdio: 'pipe'
+    stdio: 'pipe' as const
   })
 
   const server: DevServer = {proc, output: '', compileCount: 0}

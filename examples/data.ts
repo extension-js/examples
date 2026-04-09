@@ -1,4 +1,10 @@
-import {type Template, type UIContext, type ConfigFiles} from './types.js'
+import {
+  type Template,
+  type UIContext,
+  type UIFramework,
+  type CssTech,
+  type ConfigFiles
+} from './types.js'
 import fs from 'fs'
 import path from 'path'
 import {getDirname} from './dirname.js'
@@ -33,7 +39,7 @@ function detectUIContexts(manifest: any): UIContext[] | undefined {
   return contexts.length ? contexts : undefined
 }
 
-function detectUIFramework(exampleDir: string): string | undefined {
+function detectUIFramework(exampleDir: string): UIFramework | undefined {
   const pkgPath = path.join(exampleDir, 'package.json')
   const pkg = readJSON(pkgPath) ?? {}
   const deps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})}
@@ -44,7 +50,7 @@ function detectUIFramework(exampleDir: string): string | undefined {
   return undefined
 }
 
-function detectCssTech(exampleName: string, exampleDir: string): string {
+function detectCssTech(exampleName: string, exampleDir: string): CssTech {
   // Name-based heuristics first
   if (exampleName.includes('sass-modules')) return 'sass-modules'
   if (exampleName.includes('less-modules')) return 'less-modules'
