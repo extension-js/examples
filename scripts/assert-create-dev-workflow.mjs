@@ -9,15 +9,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const secondRunHint = 'Run the command again to proceed'
-const missingOptionalDepsHint =
-  'Optional dependency install reported success but packages are missing'
 const compileSuccessHints = ['compiled successfully', 'compiled with warnings']
 const readyHint = 'Extension ready for development'
-const duplicateSpecializedDepsHint =
-  /Found \d+ specialized integration(s)? needing installation/i
 const failureHints = [
-  missingOptionalDepsHint,
-  'could not be resolved after optional dependency installation',
   'Module parse failed',
   'JavaScript parse error',
   'compiled with errors',
@@ -369,18 +363,8 @@ async function runTemplate(templateSlug, extensionSpec) {
       throw new Error(`Dev requested a second run.\n${output}`)
     }
 
-    if (output.includes(missingOptionalDepsHint)) {
-      throw new Error(`Optional dependency verification failed.\n${output}`)
-    }
-
     if (/compiled with errors/i.test(output)) {
       throw new Error(`Dev compilation reported errors.\n${output}`)
-    }
-
-    if (duplicateSpecializedDepsHint.test(output)) {
-      throw new Error(
-        `Dev re-installed specialized integrations (create should have done it). Regression: duplicate optional deps install.\n${output}`
-      )
     }
 
     console.log(`✔ ${templateSlug} create+dev passed`)

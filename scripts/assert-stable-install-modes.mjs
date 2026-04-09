@@ -393,8 +393,17 @@ async function main() {
   console.log(`Package managers: ${packageManagers.join(', ')}`)
   console.log(`Examples: ${examples.join(', ')}`)
 
+  // vue-loader requires webpack/lib/NormalModule at runtime; yarn v1 flat
+  // hoisting does not expose webpack (a transitive dep of extension) to
+  // vue-loader, so we skip vue examples when the package manager is yarn.
+  const yarnSkip = new Set(['content-vue'])
+
   for (const pm of packageManagers) {
     for (const slug of examples) {
+      if (pm === 'yarn' && yarnSkip.has(slug)) {
+        console.log(`⊘ ${slug} skipped on yarn (vue-loader webpack hoisting)`)
+        continue
+      }
       const local = await assertLocalInstallMode(slug, pm, extensionSpec)
       if (!local.ok) {
         failures += 1

@@ -9,9 +9,21 @@ import {fileURLToPath} from 'node:url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-export const repoRoot = path.resolve(__dirname, '..', '..', '..')
+/**
+ * When nested inside the extension.js monorepo (`_FUTURE/examples/`), the
+ * monorepo root lives three directories above this script. In CI the examples
+ * repo is checked out standalone, so three levels up has no package.json.
+ * `workspaceRoot` always resolves to the examples repo root (one level up from
+ * `scripts/`) and is used as the cwd for `pnpm extension` invocations.
+ */
+export const workspaceRoot = path.resolve(__dirname, '..')
+const monorepoCandidate = path.resolve(__dirname, '..', '..', '..')
+export const repoRoot = fsSync.existsSync(
+  path.join(monorepoCandidate, 'programs', 'cli')
+)
+  ? monorepoCandidate
+  : workspaceRoot
 export const examplesRoot = path.resolve(__dirname, '..', 'examples')
-export const stagingRoot = path.resolve(__dirname, '..', '..', 'staging')
 export const localCliPath = path.join(
   repoRoot,
   'programs',
@@ -630,7 +642,7 @@ export function startDevProcess({
   }
 
   const child = spawn(cliInvocation.command, args, {
-    cwd: usesDirectNodeCli ? projectPath : repoRoot,
+    cwd: usesDirectNodeCli ? projectPath : workspaceRoot,
     env,
     stdio: ['ignore', 'pipe', 'pipe']
   })

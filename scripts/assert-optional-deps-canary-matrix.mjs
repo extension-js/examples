@@ -201,7 +201,16 @@ async function main() {
     `Optional deps ecosystem assertion using ${packageManager} (extension@${extensionSpec}): ${examples.join(', ')}`
   )
 
+  // vue-loader requires webpack/lib/NormalModule at runtime; yarn v1 flat
+  // hoisting does not expose webpack (a transitive dep of extension) to
+  // vue-loader, so we skip vue examples when the package manager is yarn.
+  const yarnSkip = new Set(['content-vue'])
+
   for (const slug of examples) {
+    if (packageManager === 'yarn' && yarnSkip.has(slug)) {
+      console.log(`⊘ ${slug} skipped on yarn (vue-loader webpack hoisting)`)
+      continue
+    }
     const sourceExampleDir = path.join(examplesRoot, slug)
     if (!fs.existsSync(sourceExampleDir)) {
       console.error(`✖ Missing example: ${slug}`)

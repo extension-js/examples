@@ -26,7 +26,6 @@ import {
   resolveContentStyleExpectation,
   resolveReinjectKey,
   runWithRetries,
-  stagingRoot,
   startDevProcess,
   stopChild,
   waitFor
@@ -58,8 +57,7 @@ const templatesArg = parseArg(
     'content-multi-one-entry',
     'content-multi-three-entries',
     'javascript',
-    'react',
-    'staging-content-main-world'
+    'react'
   ].join(',')
 )
 const templates = templatesArg
@@ -73,9 +71,6 @@ const templateConfigMap = {
   },
   'content-multi-three-entries': {
     target: {groupIndex: 2, scriptIndex: 0}
-  },
-  'staging-content-main-world': {
-    exampleDir: path.join(stagingRoot, 'content-main-world')
   }
 }
 
@@ -210,7 +205,6 @@ async function waitForInitialContent(
 async function verifyReloadScenario({
   dev,
   label,
-  reinjectKey,
   visibleEdit,
   reloadEdits,
   restoreEdits,
@@ -255,10 +249,6 @@ async function verifyReloadScenario({
     (event) =>
       event?.type === 'action_event' && event?.action === 'extension_reload'
   )
-  const beforeReloadVisibleSnapshotCount = countRenderablePageSnapshots(
-    dev.getOutput()
-  )
-
   for (const edit of reloadEdits) {
     await fs.writeFile(edit.path, edit.source, 'utf8')
   }

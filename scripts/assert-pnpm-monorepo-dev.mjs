@@ -137,18 +137,18 @@ function runDevUntilReady(cwd, extraEnv = {}, timeoutMs = 90_000) {
       if (process.platform === 'win32' && child.pid) {
         try {
           await run('taskkill', ['/PID', String(child.pid), '/T', '/F'], cwd)
-        } catch {}
+        } catch { /* ignore */ }
         await waitClose()
         return
       }
       try {
         child.kill('SIGTERM')
-      } catch {}
+      } catch { /* ignore */ }
       await waitClose(1500)
       if (!childClosed) {
         try {
           child.kill('SIGKILL')
-        } catch {}
+        } catch { /* ignore */ }
         await waitClose()
       }
     }
@@ -272,7 +272,7 @@ async function main() {
   } finally {
     try {
       fs.rmSync(tempRoot, {recursive: true, force: true})
-    } catch {}
+    } catch { /* ignore */ }
   }
 }
 

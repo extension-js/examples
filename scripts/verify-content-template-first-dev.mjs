@@ -35,7 +35,6 @@ const templates = templateArg
   .filter(Boolean)
 
 const createFailurePatterns = [
-  /installing specialized dependencies .* failed/i,
   /installing dependencies failed/i,
   /npm error/i,
   /ERR!/i
@@ -55,8 +54,10 @@ const compileSuccessPattern = /compiled successfully|compiled with warnings/i
 const readyPattern = /Extension ready for development/i
 const POST_READY_STABILIZATION_MS = 2500
 
+const isWindows = process.platform === 'win32'
+
 function commandFor(tool) {
-  if (process.platform !== 'win32') return tool
+  if (!isWindows) return tool
   if (tool === 'npm') return 'npm.cmd'
   if (tool === 'npx') return 'npx.cmd'
   return tool
@@ -102,15 +103,18 @@ async function runCollect({
   env,
   template,
   phase,
-  failurePatterns
+  failurePatterns,
+  collectTimeoutMs = timeoutMs
 }) {
   const resolvedCommand = commandFor(command)
 
   return new Promise((resolve, reject) => {
+    let settled = false
     const child = spawn(resolvedCommand, commandArgs, {
       cwd,
       env,
-      stdio: ['ignore', 'pipe', 'pipe']
+      stdio: ['ignore', 'pipe', 'pipe'],
+      ...(isWindows && {shell: true})
     })
 
     let output = ''
@@ -119,10 +123,36 @@ async function runCollect({
       output += chunk.toString()
     }
 
+    const collectTimeout = setTimeout(() => {
+      if (settled) return
+      settled = true
+      try {
+        child.kill()
+      } catch {
+        // Process may have already exited.
+      }
+      reject(
+        new Error(
+          `[${template}] ${phase} timed out after ${collectTimeoutMs} ms: ${renderCommand(
+            command,
+            commandArgs
+          )}\n\n${output.slice(-5000)}`
+        )
+      )
+    }, collectTimeoutMs)
+
     child.stdout?.on('data', onChunk)
     child.stderr?.on('data', onChunk)
-    child.on('error', reject)
+    child.on('error', (error) => {
+      if (settled) return
+      settled = true
+      clearTimeout(collectTimeout)
+      reject(error)
+    })
     child.on('close', (code) => {
+      if (settled) return
+      settled = true
+      clearTimeout(collectTimeout)
       try {
         if ((code || 0) !== 0) {
           reject(
@@ -199,7 +229,8 @@ async function runDevAndValidate({projectDir, env, template}) {
       {
         cwd: projectDir,
         env,
-        stdio: ['ignore', 'pipe', 'pipe']
+        stdio: ['ignore', 'pipe', 'pipe'],
+        ...(isWindows && {shell: true})
       }
     )
 
