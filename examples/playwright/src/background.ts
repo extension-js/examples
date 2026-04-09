@@ -1,3 +1,5 @@
+console.log('Hello from the background script')
+
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
@@ -9,6 +11,7 @@ if (isFirefoxLike) {
 
   browser.runtime.onMessage.addListener((message: any) => {
     if (!message || message.type !== 'openSidebar') return
+
     browser.sidebarAction.open()
   })
 }

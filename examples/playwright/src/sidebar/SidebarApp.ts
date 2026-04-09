@@ -1,13 +1,25 @@
+import iconUrl from '../images/icon.png'
+const logo = iconUrl
+
 function SidebarApp() {
   const root = document.getElementById('root')
   if (!root) return
 
   root.innerHTML = `
     <div class="sidebar_app">
-      <h1 class="sidebar_title">Playwright Contract Example</h1>
+      <img
+        class="sidebar_logo"
+        src="${logo}"
+        alt="The Extension.js logo"
+      />
+      <h1 class="sidebar_title">Sidebar Panel</h1>
       <p class="sidebar_description">
-        This page is loaded by Playwright after waiting for
-        <code>ready.json</code>.
+        Learn more in the
+        <a
+          href="https://extension.js.org"
+          target="_blank" rel="noopener noreferrer"
+        >Extension.js docs</a>
+        .
       </p>
     </div>
   `

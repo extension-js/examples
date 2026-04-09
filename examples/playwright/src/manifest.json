@@ -2,22 +2,44 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "1.0.0",
-  "name": "Extension.js - Playwright Contract Example",
-  "description": "Playwright contract-first example with no-browser and ready.json synchronization.",
+  "version": "0.0.1",
+  "name": "Extension.js - Playwright Sidebar Example",
+  "author": "Cezar Augusto",
+  "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
   "chromium:action": {
-    "default_title": "Open Side Panel"
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_title": "Open Extension.js Sidebar"
   },
   "firefox:browser_action": {
-    "default_title": "Open Side Panel"
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_title": "Open Extension.js Sidebar"
   },
   "chromium:side_panel": {
     "default_path": "sidebar/index.html",
-    "default_title": "Playwright Side Panel"
+    "default_title": "Extension.js Sidebar Panel"
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Playwright Side Panel"
+    "default_title": "Extension.js Sidebar Panel"
   },
   "chromium:permissions": ["sidePanel"],
   "background": {
