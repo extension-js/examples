@@ -106,7 +106,9 @@ function runDevUntilReady(cwd, extraEnv = {}, timeoutMs = 90_000) {
       ],
       {
         cwd,
-        shell: process.platform === 'win32',
+        ...(process.platform === 'win32'
+          ? {shell: true}
+          : {detached: true}),
         stdio: ['ignore', 'pipe', 'pipe'],
         env: {
           ...process.env,
@@ -143,15 +145,17 @@ function runDevUntilReady(cwd, extraEnv = {}, timeoutMs = 90_000) {
         await waitClose()
         return
       }
+      // Kill entire process group so grandchild dev-server processes
+      // don't linger as orphans on CI.
       try {
-        child.kill('SIGTERM')
+        if (child.pid) process.kill(-child.pid, 'SIGTERM')
       } catch {
         /* ignore */
       }
       await waitClose(1500)
       if (!childClosed) {
         try {
-          child.kill('SIGKILL')
+          if (child.pid) process.kill(-child.pid, 'SIGKILL')
         } catch {
           /* ignore */
         }

@@ -44,7 +44,9 @@ function run(command, args, cwd, extraEnv = {}) {
   return new Promise((resolve) => {
     const child = spawn(commandFor(command), args, {
       cwd,
-      shell: process.platform === 'win32',
+      ...(process.platform === 'win32'
+        ? {shell: true}
+        : {detached: true}),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: buildBaseEnv(extraEnv)
     })
@@ -113,7 +115,9 @@ function runDevUntilReady(
   return new Promise((resolve) => {
     const child = spawn(commandFor(command), args, {
       cwd,
-      shell: process.platform === 'win32',
+      ...(process.platform === 'win32'
+        ? {shell: true}
+        : {detached: true}),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: buildBaseEnv(extraEnv)
     })
@@ -151,8 +155,10 @@ function runDevUntilReady(
         return
       }
 
+      // Kill entire process group so grandchild dev-server processes
+      // don't linger as orphans on CI.
       try {
-        child.kill('SIGTERM')
+        if (child.pid) process.kill(-child.pid, 'SIGTERM')
       } catch {
         // best-effort
       }
@@ -160,7 +166,7 @@ function runDevUntilReady(
 
       if (!childClosed) {
         try {
-          child.kill('SIGKILL')
+          if (child.pid) process.kill(-child.pid, 'SIGKILL')
         } catch {
           // best-effort
         }

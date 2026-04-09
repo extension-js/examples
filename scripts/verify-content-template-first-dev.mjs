@@ -114,7 +114,7 @@ async function runCollect({
       cwd,
       env,
       stdio: ['ignore', 'pipe', 'pipe'],
-      ...(isWindows && {shell: true})
+      ...(isWindows ? {shell: true} : {detached: true})
     })
 
     let output = ''
@@ -193,7 +193,13 @@ function terminateChild(child) {
 
     const forceKillTimer = setTimeout(() => {
       try {
-        child.kill('SIGKILL')
+        // Kill the entire process group on non-Windows so grandchild
+        // dev-server processes don't linger as orphans on CI.
+        if (!isWindows && child.pid) {
+          process.kill(-child.pid, 'SIGKILL')
+        } else {
+          child.kill('SIGKILL')
+        }
       } catch {
         // Ignore cleanup failures.
       }
@@ -204,7 +210,13 @@ function terminateChild(child) {
     child.once('exit', finalize)
 
     try {
-      child.kill('SIGTERM')
+      // Kill the entire process group on non-Windows so grandchild
+      // dev-server processes don't linger as orphans on CI.
+      if (!isWindows && child.pid) {
+        process.kill(-child.pid, 'SIGTERM')
+      } else {
+        child.kill('SIGTERM')
+      }
     } catch {
       finalize()
     }
@@ -230,7 +242,7 @@ async function runDevAndValidate({projectDir, env, template}) {
         cwd: projectDir,
         env,
         stdio: ['ignore', 'pipe', 'pipe'],
-        ...(isWindows && {shell: true})
+        ...(isWindows ? {shell: true} : {detached: true})
       }
     )
 
