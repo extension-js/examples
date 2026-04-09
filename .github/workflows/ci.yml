@@ -176,12 +176,12 @@ jobs:
       - run: pnpm run test:create-dev-workflow:all-templates
 
   # ──────────────────────────────────────────────────────────────────────────
-  # Dev reload regression (custom verification scripts)
+  # Dev reload regression — Chromium
   # ──────────────────────────────────────────────────────────────────────────
-  dev-reload-regression:
+  dev-reload-chromium:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -204,10 +204,60 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Run dev reload regression suite
+      - name: Content live reload (Chromium)
         env:
           CI: true
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm run test:dev-reload-suite
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" node scripts/verify-content-live.mjs --browser=chromium
+
+      - name: Full extension reload (Chromium)
+        env:
+          CI: true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" node scripts/verify-full-extension-reload.mjs --browser=chromium
+
+      - name: Dev-live playwright regression
+        env:
+          CI: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm playwright test --workers=1 --project=dev-live
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # Dev reload regression — Firefox
+  # ──────────────────────────────────────────────────────────────────────────
+  dev-reload-firefox:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Content live reload (Firefox)
+        env:
+          CI: true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" node scripts/verify-content-live.mjs --browser=firefox
+
+      - name: Full extension reload (Firefox)
+        env:
+          CI: true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" node scripts/verify-full-extension-reload.mjs --browser=firefox
 
   # ──────────────────────────────────────────────────────────────────────────
   # E2E — Content scripts (17 examples)
