@@ -18,7 +18,7 @@ import {ALL_TEMPLATES, SUPPORTED_BROWSERS} from './data.js'
 
 const __dirname = getDirname(import.meta.url)
 const repoRoot = path.resolve(__dirname, '..', '..', '..')
-const localCliCjs = path.resolve(repoRoot, 'programs', 'extension', 'dist', 'cli.cjs')
+const localCliCjs = path.resolve(repoRoot, 'programs', 'cli', 'dist', 'cli.cjs')
 
 function hasLocalCli(): boolean {
   return fs.existsSync(localCliCjs)
