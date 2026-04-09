@@ -44,7 +44,7 @@ export const DEFAULT_VERIFY_STARTING_URL = 'https://example.com/'
 
 /**
  * Prefer the monorepo `pnpm extension` script (root package.json) so dev runs match
- * local CLI fixes (dotenv, same `node programs/extension/dist/cli.cjs` entry). Optional
+ * local CLI fixes (dotenv, same `node programs/cli/dist/cli.cjs` entry). Optional
  * `EXTENSION_LOCAL_CLI_CJS=/abs/path/cli.cjs` forces direct `node` + `cli.cjs` for debugging.
  */
 export function resolveDevCliInvocation() {

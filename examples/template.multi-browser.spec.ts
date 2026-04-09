@@ -17,7 +17,7 @@ import {getDirname} from './dirname.js'
 
 const __dirname = getDirname(import.meta.url)
 const repoRoot = path.resolve(__dirname, '..', '..', '..')
-const localCliCjs = path.resolve(repoRoot, 'programs', 'extension', 'dist', 'cli.cjs')
+const localCliCjs = path.resolve(repoRoot, 'programs', 'cli', 'dist', 'cli.cjs')
 
 const BROWSERS = ['chrome', 'edge', 'firefox'] as const
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
