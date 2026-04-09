@@ -14,7 +14,7 @@
 import {expect} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
-import {spawn} from 'child_process'
+import {spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
 import {
   extensionFixtures,
@@ -147,14 +147,15 @@ function getHtmlPageUrl(
   return `chrome-extension://${extensionId}/${entryPath}`
 }
 
-function startDev(exampleDir: string) {
+function startDev(exampleDir: string): ChildProcess {
   const env = {
     ...process.env,
-    EXTENSION_AUTHOR_MODE: 'true'
+    EXTENSION_AUTHOR_MODE: 'true',
+    ...(fs.existsSync(localDevelopRoot)
+      ? {EXTENSION_DEVELOP_ROOT: localDevelopRoot}
+      : {})
   }
-  if (fs.existsSync(localDevelopRoot)) {
-    env.EXTENSION_DEVELOP_ROOT = localDevelopRoot
-  }
+  const spawnOpts = {cwd: exampleDir, env, stdio: 'pipe' as const}
   const proc = localCliCjs
     ? spawn(
         process.execPath,
@@ -166,11 +167,7 @@ function startDev(exampleDir: string) {
           '--no-browser',
           '--install=false'
         ],
-        {
-          cwd: exampleDir,
-          env,
-          stdio: 'pipe'
-        }
+        spawnOpts
       )
     : spawn(
         'pnpm',
@@ -182,16 +179,12 @@ function startDev(exampleDir: string) {
           '--no-browser',
           '--install=false'
         ],
-        {
-          cwd: exampleDir,
-          env,
-          stdio: 'pipe'
-        }
+        spawnOpts
       )
   return proc
 }
 
-async function stopDev(proc: ReturnType<typeof startDev>) {
+async function stopDev(proc: ChildProcess) {
   if (proc.killed) return
   proc.kill('SIGTERM')
   await new Promise((resolve) => {

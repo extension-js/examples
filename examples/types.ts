@@ -9,11 +9,21 @@ export type ConfigFiles =
   | '.prettierrc'
   | 'eslint.config.mjs'
 
+export type UIFramework = 'react' | 'preact' | 'vue' | 'svelte'
+export type CssTech =
+  | 'css'
+  | 'css-modules'
+  | 'sass'
+  | 'sass-modules'
+  | 'less'
+  | 'less-modules'
+  | 'stylus'
+
 export interface Template {
   name: string
   uiContext: UIContext[] | undefined
-  uiFramework: 'react' | 'preact' | 'vue' | 'svelte' | undefined
-  css: 'css' | 'sass' | 'less' | 'stylus'
+  uiFramework: UIFramework | undefined
+  css: CssTech
   hasBackground: boolean
   hasEnv: boolean
   configFiles: ConfigFiles[] | undefined
