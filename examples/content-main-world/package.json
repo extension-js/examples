@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@extension-js/content-main-world",
-  "description": "Main world content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
+  "description": "Main world content script with multiple groups. ISOLATED entries precede the MAIN world entry so bridge injection exercises canonical-index vs array-position resolution.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",
