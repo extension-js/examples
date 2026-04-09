@@ -8,6 +8,23 @@ const __dirname = getDirname(import.meta.url)
 const pathToExtension = resolveBuiltExtensionPath(__dirname)
 const test = extensionFixtures(pathToExtension)
 
+async function waitForWelcomeHeading(page) {
+  await test.expect
+    .poll(
+      async () => {
+        try {
+          return await page.locator('h1').first().textContent()
+        } catch {
+          return null
+        }
+      },
+      {
+        timeout: 60000
+      }
+    )
+    .toMatch(/Welcome to your/i)
+}
+
 test('should exist an element with the welcome message text', async ({
   page,
   extensionId
@@ -20,13 +37,7 @@ test('should exist an element with the welcome message text', async ({
       timeout: 60000
     }
   )
-  // Wait for page to fully load - use condition-based wait instead of fixed timeout
-  const h1 = await page.waitForSelector('h1', {
-    state: 'visible',
-    timeout: 60000
-  })
-  const textContent = await h1.textContent()
-  test.expect(textContent).toMatch(/Welcome to your/i)
+  await waitForWelcomeHeading(page)
 })
 
 test('should exist a default color value', async ({page, extensionId}) => {
@@ -37,7 +48,7 @@ test('should exist a default color value', async ({page, extensionId}) => {
       timeout: 60000
     }
   )
-  await page.waitForSelector('h1', {state: 'visible', timeout: 60000})
+  await waitForWelcomeHeading(page)
   const h1 = page.locator('h1')
   const color = await page.evaluate(
     (locator) => {

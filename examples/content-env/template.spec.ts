@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+import {test as baseTest} from '@playwright/test'
 import {
   extensionFixtures,
   waitForShadowElement,
@@ -57,4 +60,25 @@ test('should exist a default color value', async ({page}) => {
     window.getComputedStyle(node as HTMLElement).getPropertyValue('color')
   )
   test.expect(color).toEqual('rgb(201, 201, 201)')
+})
+
+// Verify import.meta.env.EXTENSION_PUBLIC_DESCRIPTION_TEXT is compiled into
+// the background script. The build replaces import.meta.env.* at compile time.
+// .env.chrome sets it to "Chrome Extension example".
+baseTest('env variable is compiled into built background script', async () => {
+  const bgPath = path.join(pathToExtension, 'background', 'service_worker.js')
+  const bgCode = fs.readFileSync(bgPath, 'utf8')
+  const envValues = [
+    'Chrome Extension example',
+    'Chromium-based example',
+    'Edge Extension example',
+    'Firefox Add-on example'
+  ]
+  const isInjected = envValues.some((v) => bgCode.includes(v))
+  baseTest
+    .expect(
+      isInjected,
+      'background script should contain the injected env value'
+    )
+    .toBe(true)
 })

@@ -38,19 +38,20 @@ export default defineConfig({
   // Prevent accidental test.only commits
   forbidOnly: !!process.env.CI,
 
-  // Retries for reliability - increased for CI to handle transient failures
-  retries: process.env.CI ? 2 : 2,
+  // CI: 2 retries absorb transient failures. Local: 1 retry for faster iteration.
+  retries: process.env.CI ? 2 : 1,
 
-  // Balance between speed and stability - reduced workers for CI to prevent resource contention
-  // Using 2 workers in CI to avoid OOM issues with headed browsers
-  workers: process.env.CI ? 2 : 2,
+  // CI: 2 workers to avoid OOM with headed browsers. Local: 4 for speed.
+  workers: process.env.CI ? 2 : 4,
 
-  // Enhanced reporting for better debugging
-  reporter: [
-    ['html', {outputFolder: 'e2e-report'}],
-    ['list'],
-    ['json', {outputFile: 'test-results.json'}]
-  ],
+  // CI gets machine-readable JSON; locally just list + HTML report.
+  reporter: process.env.CI
+    ? [
+        ['list'],
+        ['html', {outputFolder: 'e2e-report'}],
+        ['json', {outputFile: 'test-results.json'}]
+      ]
+    : [['list'], ['html', {outputFolder: 'e2e-report'}]],
 
   use: {
     // Respect HEADLESS environment variable, default to false (headed mode) for better extension compatibility
@@ -90,6 +91,58 @@ export default defineConfig({
     {
       name: 'content',
       testMatch: /examples\/(content|content-.*)\/.*\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
+    {
+      name: 'dev-live',
+      testMatch: /examples\/template\.dev\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
+    {
+      name: 'reload',
+      testMatch: /examples\/template\.reload\.spec\.ts$/,
+      // Disable parallel test execution: reload tests start dev servers
+      // and run builds that share the Extension.js CLI process.
+      fullyParallel: false,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
+    // Scaffold + install + first build per template
+    {
+      name: 'create',
+      testMatch: /examples\/template\.create\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
+    // Per-template asset pipeline (shadow DOM, CSS, icons, frameworks, SW)
+    {
+      name: 'assets',
+      testMatch: /examples\/template\.assets\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
+    // Production build × chrome/edge/firefox with manifest validation
+    // Includes Firefox-specific manifest key checks and CSS presence assertions
+    {
+      name: 'multi-browser',
+      testMatch: /examples\/template\.multi-browser\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless
@@ -154,6 +207,16 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless
+      }
+    },
+
+    // Firefox Runtime - Loads built extensions in Firefox via RDP
+    {
+      name: 'firefox',
+      testMatch: /examples\/template\.firefox\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Firefox'],
+        headless: false // Extensions require headed Firefox
       }
     }
   ]

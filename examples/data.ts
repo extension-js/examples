@@ -120,6 +120,20 @@ const ALL_TEMPLATES: Template[] = exampleDirs.map((name) => {
   }
 })
 
+const DEFAULT_TEMPLATE: Template = ALL_TEMPLATES.find(
+  (t) => t.name === 'javascript'
+) ??
+  ALL_TEMPLATES.find((t) => t.name === 'init') ??
+  ALL_TEMPLATES[0] ?? {
+    name: 'javascript',
+    uiContext: undefined,
+    uiFramework: undefined,
+    css: 'css',
+    hasBackground: false,
+    hasEnv: false,
+    configFiles: undefined
+  }
+
 const SUPPORTED_BROWSERS: string[] = ['chrome', 'edge', 'firefox']
 
-export {SUPPORTED_BROWSERS, ALL_TEMPLATES}
+export {SUPPORTED_BROWSERS, ALL_TEMPLATES, DEFAULT_TEMPLATE}
