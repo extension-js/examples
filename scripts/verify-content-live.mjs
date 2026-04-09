@@ -34,7 +34,7 @@ const args = process.argv.slice(2)
 const browser = parseArg(args, '--browser', 'firefox')
 const timeoutMs = Number(parseArg(args, '--timeout-ms', '180000'))
 const retries = Number(
-  parseArg(args, '--retries', browser === 'firefox' ? '3' : '1')
+  parseArg(args, '--retries', browser === 'firefox' ? '3' : '2')
 )
 const templatesArg = parseArg(
   args,

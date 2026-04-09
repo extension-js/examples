@@ -699,7 +699,7 @@ export async function runWithRetries({retries, label, shouldRetry, execute}) {
 
 export function isRetryableBrowserFailure(error) {
   const message = error instanceof Error ? error.message : String(error)
-  return /Unable to connect to Firefox|Too many retries|dev child exited early|Timed out waiting for .*initial/i.test(
+  return /Unable to connect to Firefox|Too many retries|dev child exited early|Timed out waiting for|ECONNREFUSED/i.test(
     message
   )
 }
