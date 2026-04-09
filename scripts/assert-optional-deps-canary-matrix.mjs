@@ -17,7 +17,7 @@ const packageManager = pmIndex >= 0 ? process.argv[pmIndex + 1] : undefined
 
 if (!packageManager || !supportedPms.has(packageManager)) {
   console.error(
-    'Usage: node ci-scripts/assert-optional-deps-canary-matrix.mjs --pm <pnpm|npm|yarn|bun>'
+    'Usage: node scripts/assert-optional-deps-canary-matrix.mjs --pm <pnpm|npm|yarn|bun>'
   )
   process.exit(1)
 }

@@ -23,7 +23,10 @@ const PROJECT_TO_EXAMPLES = {
   newtab: /^(new|new-.*)$/,
   'special-folders': /^special-folders-.*$/,
   'mixed-context': /^(javascript|preact|react|svelte|typescript|vue)$/,
-  other: /^(init)$/
+  other: /^(init)$/,
+  // Assets project tests a cross-section of all context types
+  assets:
+    /^(content|content-css-modules|content-sass|content-less|content-sass-modules|content-less-modules|content-main-world|content-multi-one-entry|content-multi-three-entries|action|new|sidebar|react|vue|svelte|preact|javascript)$/
 }
 
 function getExamplesForProject(projectName) {
