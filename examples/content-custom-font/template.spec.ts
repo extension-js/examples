@@ -2,10 +2,17 @@ import {test, expect} from '@playwright/test'
 import {readFileSync, existsSync} from 'fs'
 import {join} from 'path'
 import {getDirname} from '../dirname.js'
+import {
+  extensionFixtures,
+  resolveBuiltExtensionPath,
+  getShadowRootElement
+} from '../extension-fixtures.js'
 
 const __dirname = getDirname(import.meta.url)
 const exampleDir = __dirname
 const srcDir = join(exampleDir, 'src')
+const pathToExtension = resolveBuiltExtensionPath(__dirname)
+const runtimeTest = extensionFixtures(pathToExtension)
 
 test.describe('Content Custom Font Template', () => {
   test('should have all required files', async () => {
@@ -89,4 +96,23 @@ test.describe('Content Custom Font Template', () => {
     expect(readme).toContain('Custom Font')
     expect(readme.length).toBeGreaterThan(100)
   })
+})
+
+runtimeTest('custom font is applied in shadow DOM', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const fontDemo = await getShadowRootElement(
+    page,
+    '[data-extension-root="true"]',
+    '.font_momo_signature',
+    30000
+  )
+  runtimeTest.expect(fontDemo).not.toBeNull()
+  // Verify the computed font-family includes the custom font name
+  const fontFamily = await fontDemo!.evaluate((el) =>
+    window.getComputedStyle(el).getPropertyValue('font-family')
+  )
+  runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
 })

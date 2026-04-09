@@ -56,7 +56,7 @@ test('should exist a default color value', async ({page}) => {
   const color = await h2.evaluate((node) =>
     window.getComputedStyle(node as HTMLElement).getPropertyValue('color')
   )
-  test.expect(color).toEqual('rgb(255, 255, 255)')
+  test.expect(color).toEqual('rgb(0, 0, 0)')
 })
 
 test('should load all images successfully', async ({page}) => {

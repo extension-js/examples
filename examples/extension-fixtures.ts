@@ -332,24 +332,26 @@ export async function getShadowRootElement(
     timeout: effectiveTimeout
   })
 
-  // Get the shadow host element
-  const shadowHost = page.locator(shadowHostSelector)
-  const shadowRootHandle = await shadowHost.evaluateHandle(
-    (host: HTMLElement) => host.shadowRoot
-  )
-
-  // Wait for shadow root to be ready and element to exist
   const startTime = Date.now()
   while (Date.now() - startTime < effectiveTimeout) {
-    const element = await shadowRootHandle.evaluateHandle(
-      (shadowRoot: ShadowRoot, selector: string) =>
-        shadowRoot?.querySelector(selector) ?? null,
-      innerSelector
-    )
-    const elementHandle =
-      element.asElement() as ElementHandle<HTMLElement> | null
-    if (elementHandle) {
-      return elementHandle
+    const shadowHosts = page.locator(shadowHostSelector)
+    const hostCount = await shadowHosts.count()
+
+    for (let hostIndex = 0; hostIndex < hostCount; hostIndex++) {
+      const shadowHost = shadowHosts.nth(hostIndex)
+      const shadowRootHandle = await shadowHost.evaluateHandle(
+        (host: HTMLElement) => host.shadowRoot
+      )
+      const element = await shadowRootHandle.evaluateHandle(
+        (shadowRoot: ShadowRoot | null, selector: string) =>
+          shadowRoot?.querySelector(selector) ?? null,
+        innerSelector
+      )
+      const elementHandle =
+        element.asElement() as ElementHandle<HTMLElement> | null
+      if (elementHandle) {
+        return elementHandle
+      }
     }
     await page.waitForTimeout(250)
   }
@@ -468,7 +470,7 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
   // and require a second invocation to actually build.
   const runBuild = () => {
     execSync(
-      `node ../../ci-scripts/build-with-manifest.mjs build --browser=chrome`,
+      `node ../../scripts/build-with-manifest.mjs build --browser=chrome`,
       {
         cwd: exampleDirAbsolute,
         stdio: 'inherit'

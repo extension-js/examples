@@ -46,3 +46,30 @@ test('should exist a default color value', async ({page, extensionId}) => {
   )
   test.expect(color).toEqual('rgb(201, 201, 201)')
 })
+
+test('should hash a string using crypto.subtle', async ({
+  page,
+  extensionId
+}) => {
+  await page.goto(
+    `chrome-extension://${extensionId}/chrome_url_overrides/newtab.html`,
+    {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    }
+  )
+  await page.waitForSelector('#hash-button', {state: 'visible', timeout: 60000})
+
+  // Type a known string and click the hash button
+  await page.fill('#input-text', 'hello')
+  await page.click('#hash-button')
+
+  // SHA-256 of "hello" is a well-known value
+  const output = page.locator('#hashed-output')
+  await test
+    .expect(output)
+    .toHaveText(
+      '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824',
+      {timeout: 10000}
+    )
+})

@@ -16,4 +16,20 @@ test('scripts folder is accessible', async ({page, extensionId}) => {
   const manifestPath = path.join(pathToExtension, 'manifest.json')
   const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
   test.expect(manifest.name).toContain('Special Folders Scripts')
+
+  test
+    .expect(
+      fs.existsSync(path.join(pathToExtension, 'scripts', 'script-one.js'))
+    )
+    .toBe(true)
+  test
+    .expect(
+      fs.existsSync(path.join(pathToExtension, 'scripts', 'script-two.js'))
+    )
+    .toBe(true)
+  test
+    .expect(
+      fs.existsSync(path.join(pathToExtension, 'scripts', 'script-three.js'))
+    )
+    .toBe(true)
 })

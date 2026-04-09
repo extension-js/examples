@@ -12,10 +12,12 @@ Starter extension with a sidebar panel. Includes dev, build, and preview scripts
 ## Installation
 
 ```bash
-npx extension@latest create <project-name> --template javascript
+npx extension@latest create <project-name>
 cd <project-name>
 npm install
 ```
+
+This template is also the CLI default, so `--template` is optional. Use `--template javascript` (or `init`) if you want to name it explicitly.
 
 ## Commands
 

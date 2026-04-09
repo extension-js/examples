@@ -10,7 +10,7 @@ const pathToExtension = resolveBuiltExtensionPath(__dirname)
 const test = extensionFixtures(pathToExtension)
 
 test.beforeAll(async () => {
-  execSync(`node ../../ci-scripts/build-with-manifest.mjs build`, {
+  execSync(`node ../../scripts/build-with-manifest.mjs build`, {
     cwd: __dirname,
     stdio: 'inherit'
   })

@@ -12,10 +12,12 @@ How it works: shows the smallest set of files to run an extension, useful as a c
 ## Installation
 
 ```bash
-npx extension@latest create <project-name> --template init
+npx extension@latest create <project-name>
 cd <project-name>
 npm install
 ```
+
+The default starter is the JavaScript template. You can pass `--template init` or `--template javascript` explicitly if you prefer; both resolve to the same example.
 
 ## Commands
 
