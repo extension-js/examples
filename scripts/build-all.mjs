@@ -23,10 +23,10 @@ try {
   // Do nothing (we still pass it through; if it fails, the underlying tool will error)
 }
 
-// Parallel execution limit (reduced to prevent race conditions in extension CLI)
-// The extension CLI has path resolution issues when too many builds run in parallel
+// Parallel execution limit. Each example builds browsers sequentially;
+// different examples run in parallel up to this limit.
 const MAX_CONCURRENT = Number(
-  process.env.EXTENSION_MAX_CONCURRENT || (process.env.CI ? '1' : '4')
+  process.env.EXTENSION_MAX_CONCURRENT || (process.env.CI ? '4' : '4')
 )
 const STRICT_ONE_RUN = process.env.EXTENSION_STRICT_ONE_RUN !== 'false'
 
@@ -139,7 +139,7 @@ async function buildExample(slug, browser) {
   try {
     // Use absolute path for the script to avoid resolution issues
     const scriptPath = path.resolve(
-      path.join(repoRoot, 'ci-scripts', 'build-with-manifest.mjs')
+      path.join(repoRoot, 'scripts', 'build-with-manifest.mjs')
     )
 
     const runBuildOnce = () =>
@@ -306,7 +306,14 @@ async function runParallel(tasks, limit) {
   return Promise.all(allTaskResults)
 }
 
-const browsers = ['chrome', 'edge', 'firefox']
+// Parse --browsers flag: defaults to all three, pass --browsers=chrome for e2e-only
+const browsersArg = process.argv.find((arg) => arg.startsWith('--browsers='))
+const browsers = browsersArg
+  ? browsersArg
+      .split('=')[1]
+      .split(',')
+      .map((b) => b.trim())
+  : ['chrome', 'edge', 'firefox']
 
 const CHANNELS_BY_BROWSER = {
   chrome: ['chrome', 'chromium', 'chrome-mv3'],

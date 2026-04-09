@@ -45,7 +45,7 @@ check_result "Install Playwright browsers"
 # Step 2: Run lint and validation (build-and-lint job equivalent)
 print_step "2. Run lint and validation"
 echo "Normalizing examples..."
-node ci-scripts/normalize-examples.mjs
+node scripts/normalize-examples.mjs
 check_result "Normalize examples"
 
 pnpm run test:ci
@@ -84,17 +84,17 @@ for batch_info in "${BATCHES[@]}"; do
     
     # Normalize examples (needed before building)
     echo "Normalizing examples..."
-    node ci-scripts/normalize-examples.mjs
+    node scripts/normalize-examples.mjs
     check_result "Normalize examples"
     
     # Get examples for this project
     echo "Getting examples for $batch_name project..."
-    EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs "$batch_name")
+    EXAMPLES=$(node scripts/get-examples-for-project.mjs "$batch_name")
     echo "Building examples: $EXAMPLES"
     
     # Build only the examples for this batch
     echo "Building $batch_name examples..."
-    node ci-scripts/build-all.mjs --filter="$EXAMPLES"
+    node scripts/build-all.mjs --filter="$EXAMPLES"
     check_result "Build $batch_name examples"
     
     # Run tests for this batch in headed mode (no xvfb needed)

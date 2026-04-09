@@ -9,7 +9,7 @@
  *
  * Run after:
  * - pnpm run build:examples
- * - node ci-scripts/package-artifacts.mjs
+ * - node scripts/package-artifacts.mjs
  * - pnpm run generate  (writes templates-meta.json)
  */
 import fs from 'node:fs'

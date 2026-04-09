@@ -4,10 +4,10 @@ on:
   pull_request:
     paths:
       - 'examples/**'
-      - 'ci-scripts/assert-optional-deps-canary-matrix.mjs'
-      - 'ci-scripts/assert-canary-one-run-builds.mjs'
-      - 'ci-scripts/assert-stable-install-modes.mjs'
-      - 'ci-scripts/assert-stable-pnpm-postcss-repro.mjs'
+      - 'scripts/assert-optional-deps-canary-matrix.mjs'
+      - 'scripts/assert-canary-one-run-builds.mjs'
+      - 'scripts/assert-stable-install-modes.mjs'
+      - 'scripts/assert-stable-pnpm-postcss-repro.mjs'
       - '.github/workflows/optional-deps-ecosystem.yml'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -16,10 +16,10 @@ on:
       - main
     paths:
       - 'examples/**'
-      - 'ci-scripts/assert-optional-deps-canary-matrix.mjs'
-      - 'ci-scripts/assert-canary-one-run-builds.mjs'
-      - 'ci-scripts/assert-stable-install-modes.mjs'
-      - 'ci-scripts/assert-stable-pnpm-postcss-repro.mjs'
+      - 'scripts/assert-optional-deps-canary-matrix.mjs'
+      - 'scripts/assert-canary-one-run-builds.mjs'
+      - 'scripts/assert-stable-install-modes.mjs'
+      - 'scripts/assert-stable-pnpm-postcss-repro.mjs'
       - '.github/workflows/optional-deps-ecosystem.yml'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -83,7 +83,7 @@ jobs:
           bun-version: latest
 
       - name: Run optional deps ecosystem checks
-        run: node ci-scripts/assert-optional-deps-canary-matrix.mjs --pm ${{ matrix.pm }}
+        run: node scripts/assert-optional-deps-canary-matrix.mjs --pm ${{ matrix.pm }}
 
   first-run-repros:
     if: github.event_name != 'pull_request' || github.base_ref == 'main'

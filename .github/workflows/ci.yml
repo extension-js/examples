@@ -6,35 +6,31 @@ on:
   pull_request:
     branches: ['**']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  NODE_VERSION: '22'
+  BUN_VERSION: '1.2.14'
 
 jobs:
-  # Shared setup job - runs once, all other jobs depend on it
+  # ──────────────────────────────────────────────────────────────────────────
+  # Setup — primes caches so downstream jobs get fast restores
+  # ──────────────────────────────────────────────────────────────────────────
   setup:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
-
-      - name: Enable corepack for Yarn
-        run: corepack enable
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
 
       - name: Cache node_modules
         uses: actions/cache@v4
@@ -42,254 +38,232 @@ jobs:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-
+            ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-
 
-      - name: Install dependencies
-        run: pnpm install
+      - run: pnpm install
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
 
-      - name: Install Playwright browsers
-        run: pnpm test:install chromium
+      - run: pnpm test:install chromium firefox
 
-  # Build and lint job - depends on setup
+  # ──────────────────────────────────────────────────────────────────────────
+  # Build, lint, contract assertions
+  # ──────────────────────────────────────────────────────────────────────────
   build-and-lint:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Enable corepack for Yarn
-        run: corepack enable
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Normalize examples (names/manifests)
-        run: node ci-scripts/normalize-examples.mjs
+      - run: node scripts/normalize-examples.mjs
+      - run: pnpm lint
+      - run: pnpm run test:banner
+      - run: pnpm run test:canary-one-run
 
-      - name: Run lint and validation
-        run: pnpm run test:ci
-
-      - name: Verify CLI banner includes Extension ID
-        run: pnpm run test:banner
-
-      - name: Assert one-run builds on canary
-        run: pnpm run test:canary-one-run
-
-  # Optional dependency guards run separately to avoid build-and-lint timeout pressure
+  # ──────────────────────────────────────────────────────────────────────────
+  # Optional dependency guards
+  # ──────────────────────────────────────────────────────────────────────────
   optional-deps-guards:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
+      - run: corepack enable
 
-      - name: Enable corepack for Yarn
-        run: corepack enable
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: ${{ env.BUN_VERSION }}
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Assert stable install modes
-        run: pnpm run test:stable-install-modes
+      - run: pnpm run test:stable-install-modes
+      - run: pnpm run test:stable-pnpm-postcss-repro
 
-      - name: Assert stable pnpm PostCSS repro
-        run: pnpm run test:stable-pnpm-postcss-repro
-
+  # ──────────────────────────────────────────────────────────────────────────
+  # Create + first-dev workflow (Linux)
+  # ──────────────────────────────────────────────────────────────────────────
   create-dev-workflow-guards:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 45
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
+      - run: corepack enable
 
-      - name: Enable corepack for Yarn
-        run: corepack enable
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: ${{ env.BUN_VERSION }}
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Assert create + first dev for content-react
-        run: pnpm run test:content-react
+      - run: pnpm run test:content-react
+      - run: pnpm run test:create-dev-workflow:all-templates
 
-      - name: Assert create + first dev for all templates
-        run: pnpm run test:create-dev-workflow:all-templates
-
+  # ──────────────────────────────────────────────────────────────────────────
+  # Create + first-dev workflow (Windows)
+  # ──────────────────────────────────────────────────────────────────────────
   create-dev-workflow-guards-windows:
     needs: setup
     runs-on: windows-latest
     timeout-minutes: 60
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
+      - run: corepack enable
 
-      - name: Enable corepack for Yarn
-        run: corepack enable
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
+      - uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: ${{ env.BUN_VERSION }}
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Assert create + first dev for content-react on Windows
-        run: pnpm run test:content-react
+      - run: pnpm run test:content-react
+      - run: pnpm run test:create-dev-workflow:all-templates
 
-      - name: Assert create + first dev for all templates on Windows
-        run: pnpm run test:create-dev-workflow:all-templates
+  # ──────────────────────────────────────────────────────────────────────────
+  # Dev reload regression (custom verification scripts)
+  # ──────────────────────────────────────────────────────────────────────────
+  dev-reload-regression:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
 
-  # E2E Test Jobs - run in parallel, each builds and tests its own batch
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Run dev reload regression suite
+        env:
+          CI: true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm run test:dev-reload-suite
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Content scripts (17 examples)
+  # ──────────────────────────────────────────────────────────────────────────
   e2e-content:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Get examples for content project
+      - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs content)
+          EXAMPLES=$(node scripts/get-examples-for-project.mjs content)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
 
-      - name: Build content examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+      - name: Build (chrome only)
+        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
-      - name: Run content batch E2E tests
+      - name: Run tests
         env:
           CI: true
           SKIP_BUILD: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:content
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-content
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload build artifacts
         if: github.ref == 'refs/heads/main'
@@ -304,59 +278,61 @@ jobs:
           retention-days: 1
           if-no-files-found: ignore
 
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Sidebar (4 examples)
+  # ──────────────────────────────────────────────────────────────────────────
   e2e-sidebar:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Get examples for sidebar project
+      - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs sidebar)
+          EXAMPLES=$(node scripts/get-examples-for-project.mjs sidebar)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
 
-      - name: Build sidebar examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+      - name: Build (chrome only)
+        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
-      - name: Run sidebar batch E2E tests
+      - name: Run tests
         env:
           CI: true
           SKIP_BUILD: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:sidebar
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-sidebar
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload build artifacts
         if: github.ref == 'refs/heads/main'
@@ -371,126 +347,61 @@ jobs:
           retention-days: 1
           if-no-files-found: ignore
 
-  e2e-action:
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
-      - name: Get examples for action project
-        id: get-examples
-        run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs action)
-          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
-
-      - name: Build action examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
-
-      - name: Run action batch E2E tests
-        env:
-          CI: true
-          SKIP_BUILD: true
-          HEADLESS: false
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:action
-
-      - name: Upload build artifacts
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-examples-action
-          path: |
-            examples/action*/dist/
-            examples/action*/build/
-            examples/action*/.extension/
-          compression-level: 6
-          retention-days: 1
-          if-no-files-found: ignore
-
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — New tab (10+ examples)
+  # ──────────────────────────────────────────────────────────────────────────
   e2e-newtab:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 25
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Get examples for newtab project
+      - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs newtab)
+          EXAMPLES=$(node scripts/get-examples-for-project.mjs newtab)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
 
-      - name: Build newtab examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+      - name: Build (chrome only)
+        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
-      - name: Run newtab batch E2E tests
+      - name: Run tests
         env:
           CI: true
           SKIP_BUILD: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:newtab
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-newtab
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload build artifacts
         if: github.ref == 'refs/heads/main'
@@ -505,126 +416,61 @@ jobs:
           retention-days: 1
           if-no-files-found: ignore
 
-  e2e-special-folders:
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            node_modules
-            examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
-
-      - name: Get examples for special-folders project
-        id: get-examples
-        run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs special-folders)
-          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
-
-      - name: Build special-folders examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
-
-      - name: Run special-folders batch E2E tests
-        env:
-          CI: true
-          SKIP_BUILD: true
-          HEADLESS: false
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:special
-
-      - name: Upload build artifacts
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-examples-special-folders
-          path: |
-            examples/special-folders*/dist/
-            examples/special-folders*/build/
-            examples/special-folders*/.extension/
-          compression-level: 6
-          retention-days: 1
-          if-no-files-found: ignore
-
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Mixed context (javascript, preact, react, svelte, typescript, vue)
+  # ──────────────────────────────────────────────────────────────────────────
   e2e-mixed-context:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 20
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Get examples for mixed-context project
+      - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs mixed-context)
+          EXAMPLES=$(node scripts/get-examples-for-project.mjs mixed-context)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
 
-      - name: Build mixed-context examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+      - name: Build (chrome only)
+        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
-      - name: Run mixed-context batch E2E tests
+      - name: Run tests
         env:
           CI: true
           SKIP_BUILD: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:mixed
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-mixed-context
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
 
       - name: Upload build artifacts
         if: github.ref == 'refs/heads/main'
@@ -638,87 +484,204 @@ jobs:
             examples/svelte/dist/
             examples/typescript/dist/
             examples/vue/dist/
-            examples/javascript/build/
-            examples/preact/build/
-            examples/react/build/
-            examples/svelte/build/
-            examples/typescript/build/
-            examples/vue/build/
-            examples/javascript/.extension/
-            examples/preact/.extension/
-            examples/react/.extension/
-            examples/svelte/.extension/
-            examples/typescript/.extension/
-            examples/vue/.extension/
           compression-level: 6
           retention-days: 1
           if-no-files-found: ignore
 
-  e2e-other:
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Small batch (action + special-folders + other + init)
+  # Merged into one job to reduce runner startup overhead.
+  # ──────────────────────────────────────────────────────────────────────────
+  e2e-small:
     needs: setup
     runs-on: ubuntu-latest
-    timeout-minutes: 5
-
+    timeout-minutes: 15
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup PNPM
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
-      - name: Restore node_modules from cache
-        uses: actions/cache@v4
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
         with:
           path: |
             node_modules
             examples/*/node_modules
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Restore Playwright browsers from cache
-        uses: actions/cache@v4
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-playwright-
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - name: Get examples for other project
+      - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node ci-scripts/get-examples-for-project.mjs other)
-          echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
-          echo "Building examples: $EXAMPLES"
+          ACTION=$(node scripts/get-examples-for-project.mjs action)
+          SPECIAL=$(node scripts/get-examples-for-project.mjs special-folders)
+          OTHER=$(node scripts/get-examples-for-project.mjs other)
+          ALL="${ACTION},${SPECIAL},${OTHER}"
+          echo "examples=$ALL" >> $GITHUB_OUTPUT
 
-      - name: Build other examples
-        run: |
-          node ci-scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}"
+      - name: Build (chrome only)
+        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
-      - name: Run other batch E2E tests
+      - name: Run action tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:action
+
+      - name: Run special-folders tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:special
+
+      - name: Run other tests
         env:
           CI: true
           SKIP_BUILD: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:other
 
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-small
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
+
       - name: Upload build artifacts
         if: github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
-          name: built-examples-other
+          name: built-examples-small
           path: |
+            examples/action*/dist/
+            examples/special-folders*/dist/
             examples/init/dist/
-            examples/init/build/
-            examples/init/.extension/
           compression-level: 6
           retention-days: 1
+          if-no-files-found: ignore
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Assets (shadow DOM, CSS pipeline, icons, framework mount, SW)
+  # Fast suite (~35s) that catches broad regressions across all context types.
+  # ──────────────────────────────────────────────────────────────────────────
+  e2e-assets:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Build assets examples (chrome only)
+        run: |
+          node scripts/build-all.mjs \
+            --filter="content,content-css-modules,content-sass,content-less,content-sass-modules,content-less-modules,content-main-world,content-multi-one-entry,content-multi-three-entries,action,new,sidebar,react,vue,svelte,preact,javascript" \
+            --browsers=chrome
+
+      - name: Run assets tests
+        env:
+          CI: true
+          SKIP_BUILD: true
+          HEADLESS: false
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:assets
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-assets
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
+          if-no-files-found: ignore
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # E2E — Firefox runtime (content scripts, addon install, manifest checks)
+  # Builds all examples for Firefox and runs headed Firefox via xvfb + RDP.
+  # ──────────────────────────────────────────────────────────────────────────
+  e2e-firefox:
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - name: Restore node_modules
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            node_modules
+            examples/*/node_modules
+          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Cache Playwright browsers (Firefox)
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-ff-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-ff-
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Firefox
+        run: pnpm test:install firefox
+
+      - name: Build all examples (firefox only)
+        run: node scripts/build-all.mjs --browsers=firefox
+
+      - name: Run Firefox tests
+        env:
+          CI: true
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm test:firefox
+
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-firefox
+          path: |
+            e2e-report/
+            test-results.json
+          retention-days: 7
           if-no-files-found: ignore
 
   # Packaging and publication are handled by publish-artifacts.yml on main

@@ -57,11 +57,9 @@ jobs:
           name: |
             built-examples-content
             built-examples-sidebar
-            built-examples-action
             built-examples-newtab
-            built-examples-special-folders
             built-examples-mixed-context
-            built-examples-other
+            built-examples-small
           github_token: ${{ secrets.GITHUB_TOKEN }}
           workflow: ci.yml
           run_id: ${{ github.event.workflow_run.id }}
@@ -69,7 +67,7 @@ jobs:
 
       - name: Normalize examples (only if rebuilding)
         if: failure() || github.event_name == 'workflow_dispatch'
-        run: node ci-scripts/normalize-examples.mjs
+        run: node scripts/normalize-examples.mjs
 
       - name: Build all examples (only if artifacts not downloaded)
         run: |
@@ -82,7 +80,7 @@ jobs:
           fi
 
       - name: Package distributions
-        run: node ci-scripts/package-artifacts.mjs
+        run: node scripts/package-artifacts.mjs
 
       - name: Generate metadata
         env:
@@ -103,7 +101,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Stage public artifacts
-        run: node ci-scripts/publish-artifacts.mjs
+        run: node scripts/publish-artifacts.mjs
 
       - name: Commit and push if changed
         run: |

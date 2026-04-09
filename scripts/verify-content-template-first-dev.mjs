@@ -187,7 +187,15 @@ async function runDevAndValidate({projectDir, env, template}) {
   return new Promise((resolve, reject) => {
     const child = spawn(
       command,
-      ['run', 'dev', '--', `--browser=${browser}`, '--no-browser', '--port', '0'],
+      [
+        'run',
+        'dev',
+        '--',
+        `--browser=${browser}`,
+        '--no-browser',
+        '--port',
+        '0'
+      ],
       {
         cwd: projectDir,
         env,
@@ -258,7 +266,9 @@ async function runDevAndValidate({projectDir, env, template}) {
     child.on('close', (code) => {
       if (settled) return
       void finish(
-        new Error(`[${template}] dev exited early with code ${code}\n\n${output}`)
+        new Error(
+          `[${template}] dev exited early with code ${code}\n\n${output}`
+        )
       )
     })
   })
@@ -280,7 +290,13 @@ async function runTemplate(template) {
   try {
     await runCollect({
       command: 'npx',
-      commandArgs: ['-y', cliPackage, 'create', projectName, `--template=${template}`],
+      commandArgs: [
+        '-y',
+        cliPackage,
+        'create',
+        projectName,
+        `--template=${template}`
+      ],
       cwd: tempRoot,
       env,
       template,
