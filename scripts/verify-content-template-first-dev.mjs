@@ -22,7 +22,8 @@ function hasFlag(name) {
 
 const cliPackage = parseArg('--package', 'extension@latest')
 const browser = parseArg('--browser', 'chromium')
-const timeoutMs = Number(parseArg('--timeout-ms', '180000'))
+const defaultTimeoutMs = process.platform === 'win32' ? '360000' : '180000'
+const timeoutMs = Number(parseArg('--timeout-ms', defaultTimeoutMs))
 const templateArg = parseArg(
   '--templates',
   'content-react,content-vue,content-svelte'
