@@ -3,15 +3,11 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Playwright Contract-First Example
+# Playwright Sidebar Example
 
-> Deterministic E2E flow with Extension.js and Playwright.
+What you'll see: a browser sidebar (side panel) with a simple TypeScript page.
 
-This example demonstrates the recommended automation pattern:
-
-1. run Extension.js in `--no-browser` mode
-2. run `extension <dev|start> --wait --browser=<browser>` as the readiness gate
-3. launch Playwright using the `distPath` from the ready contract
+How it works: the extension registers a sidebar panel and loads a page you can customize. This template is designed for Playwright-driven E2E automation.
 
 ## Installation
 
@@ -25,96 +21,44 @@ npm install
 
 ### dev
 
-Run normal development mode (browser launch enabled).
+Run the extension in development mode.
 
 ```bash
 npm run dev
 ```
 
-### dev:no-browser
-
-Run watch mode without launching a browser.
-
-```bash
-npm run dev:no-browser
-```
-
-### dev:wait
-
-Wait for readiness contract and exit non-zero on `error` or timeout.
-
-```bash
-npm run dev:wait
-```
-
-### dev:wait:json
-
-Wait for readiness contract and print machine-readable JSON payload to stdout.
-
-```bash
-npm run dev:wait:json
-```
-
-### start:no-browser
-
-Run production startup without launching a browser.
-
-```bash
-npm run start:no-browser
-```
-
-### start:wait
-
-Wait for production readiness contract and exit non-zero on `error` or timeout.
-
-```bash
-npm run start:wait
-```
-
-### start:wait:json
-
-Wait for production readiness contract and print machine-readable JSON payload to stdout.
-
-```bash
-npm run start:wait:json
-```
-
 ### build
 
-Build for production.
+Build the extension for production.
 
 ```bash
 npm run build
 ```
 
-### test:e2e
+### preview
 
-Run Playwright smoke test using no-browser + ready contract flow.
+Preview the extension in the browser.
 
 ```bash
-npm run test:e2e
+npm run preview
 ```
 
-## Canonical automation pattern
+## Browser targets
+
+Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
 
 ```bash
-# Dev friend (watch mode)
-# Terminal A
-npm run dev:no-browser
+# Chromium (default)
+npm run dev
 
-# Terminal B
-npm run dev:wait
-npm run test:e2e
-```
+# Chrome
+npm run dev -- --browser=chrome
 
-```bash
-# Test friend (production-like)
-# Terminal A
-npm run start:no-browser
+# Edge
+npm run dev -- --browser=edge
 
-# Terminal B
-npm run start:wait
-npm run test:e2e
+# Firefox
+npm run dev -- --browser=firefox
 ```
 
 ## Learn more

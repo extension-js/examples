@@ -1,23 +1,14 @@
 {
   "private": true,
   "name": "@extension-js/playwright",
-  "description": "Playwright contract-first example using --no-browser and ready.json readiness gating.",
-  "version": "3.0.0",
+  "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
+  "version": "0.0.1",
   "license": "MIT",
   "type": "module",
   "author": {
     "name": "Cezar Augusto",
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
-  },
-  "scripts": {
-    "dev": "extension dev",
-    "dev:no-browser": "extension dev --no-browser --browser=chromium",
-    "dev:wait": "extension dev --wait --browser=chromium --wait-timeout=60000",
-    "start:no-browser": "extension start --no-browser --browser=chromium",
-    "start:wait": "extension start --wait --browser=chromium --wait-timeout=60000",
-    "build": "extension build --browser=chromium",
-    "test:e2e": "playwright test template.spec.ts"
   },
   "devDependencies": {
     "typescript": "5.3.3"
