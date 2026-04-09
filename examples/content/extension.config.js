@@ -3,14 +3,23 @@
 // Prefer that default? Remove the profile config below.
 const profile = (name) => `./dist/extension-profile-${name}`
 const startingUrl = 'https://example.com'
+const ciFlags = process.env.CI ? ['--no-sandbox', '--disable-gpu'] : []
 
 export default {
   browser: {
-    chrome: {profile: profile('chrome'), startingUrl},
-    chromium: {profile: profile('chromium'), startingUrl},
-    edge: {profile: profile('edge'), startingUrl},
+    chrome: {profile: profile('chrome'), startingUrl, browserFlags: ciFlags},
+    chromium: {
+      profile: profile('chromium'),
+      startingUrl,
+      browserFlags: ciFlags
+    },
+    edge: {profile: profile('edge'), startingUrl, browserFlags: ciFlags},
     firefox: {profile: profile('firefox'), startingUrl},
-    'chromium-based': {profile: profile('chromium-based'), startingUrl},
+    'chromium-based': {
+      profile: profile('chromium-based'),
+      startingUrl,
+      browserFlags: ciFlags
+    },
     'gecko-based': {profile: profile('gecko-based'), startingUrl}
   }
 }

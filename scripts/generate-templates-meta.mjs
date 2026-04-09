@@ -130,7 +130,8 @@ function pickCuratedMeta(meta) {
   if (out.useCases) out.useCases = normalizeStringArray(out.useCases)
   if (typeof out.title !== 'string') delete out.title
   if (typeof out.docsUrl !== 'string') delete out.docsUrl
-  if ('featured' in out && typeof out.featured !== 'boolean') delete out.featured
+  if ('featured' in out && typeof out.featured !== 'boolean')
+    delete out.featured
   if (
     out.difficulty &&
     !['beginner', 'intermediate', 'advanced'].includes(out.difficulty)
