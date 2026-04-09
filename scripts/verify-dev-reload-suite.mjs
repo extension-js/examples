@@ -20,8 +20,7 @@ const reloadTemplates = [
   'content-multi-one-entry',
   'content-multi-three-entries',
   'javascript',
-  'react',
-  'staging-content-main-world'
+  'react'
 ].join(',')
 
 function runCommand(label, command, args, cwd) {

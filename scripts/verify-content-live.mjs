@@ -25,7 +25,6 @@ import {
   resolveContentStyleExpectation,
   resolveReinjectKey,
   runWithRetries,
-  stagingRoot,
   startDevProcess,
   stopChild,
   waitFor
@@ -57,8 +56,7 @@ const templatesArg = parseArg(
     'content-multi-one-entry',
     'content-multi-three-entries',
     'javascript',
-    'react',
-    'staging-content-main-world'
+    'react'
   ].join(',')
 )
 const templatesRequested = templatesArg
@@ -66,26 +64,9 @@ const templatesRequested = templatesArg
   .map((value) => value.trim())
   .filter(Boolean)
 
-/** Main-world content scripts are not exercised on Firefox in this harness. */
-const firefoxSkippedTemplates = new Set(['staging-content-main-world'])
-const templates = templatesRequested.filter((template) => {
-  if (browser !== 'firefox' || !firefoxSkippedTemplates.has(template)) {
-    return true
-  }
-  return false
-})
-const skippedForFirefox = templatesRequested.filter(
-  (template) => browser === 'firefox' && firefoxSkippedTemplates.has(template)
-)
-if (skippedForFirefox.length > 0) {
-  console.warn(
-    `[verify-content-live] skipping on Firefox (main world not supported here): ${skippedForFirefox.join(', ')}`
-  )
-}
+const templates = templatesRequested
 
-const templateDirectoryAliases = {
-  'staging-content-main-world': path.join(stagingRoot, 'content-main-world')
-}
+const templateDirectoryAliases = {}
 
 const templateScenarioMap = {
   javascript: [
@@ -147,14 +128,6 @@ const templateScenarioMap = {
       scriptIndex: 0,
       mutationRelativePath: 'content/script-bottom-right.js'
     }
-  ],
-  'staging-content-main-world': [
-    {
-      id: 'script-primary',
-      type: 'script',
-      mutationRelativePath: 'content/scripts.js'
-    },
-    {id: 'css-style-only', type: 'css'}
   ],
   'content-css-modules': [
     {

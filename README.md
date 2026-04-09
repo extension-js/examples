@@ -1101,4 +1101,4 @@ This repository contains browser extension examples built with Extension.js. Eac
 
 ## License
 
-MIT (c) Cezar Augusto and the Extension.js Authors.
+MIT (c) Cezar Augusto and the Extension.js authors.
