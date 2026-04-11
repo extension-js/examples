@@ -16,8 +16,7 @@ import {execSync} from 'child_process'
 import {getDirname} from './dirname.js'
 
 const __dirname = getDirname(import.meta.url)
-const repoRoot = path.resolve(__dirname, '..', '..', '..')
-const localCliCjs = path.resolve(repoRoot, 'programs', 'cli', 'dist', 'cli.cjs')
+const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 const BROWSERS = ['chrome', 'edge', 'firefox'] as const
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
@@ -37,8 +36,11 @@ const TEMPLATES = [
 // Helpers
 // ---------------------------------------------------------------------------
 
-function hasLocalCli(): boolean {
-  return fs.existsSync(localCliCjs)
+function buildCommand(exampleDir: string, browser: string): string {
+  if (localCliCjs) {
+    return `node ${localCliCjs} build ${exampleDir} --browser=${browser}`
+  }
+  return `pnpm extension build ${exampleDir} --browser=${browser}`
 }
 
 function readJSON(filePath: string): any {
@@ -102,8 +104,6 @@ for (const templateName of TEMPLATES) {
   test.describe(`${templateName}: multi-browser build`, () => {
     test.describe.configure({mode: 'serial', timeout: 180000})
 
-    test.skip(!hasLocalCli(), 'local CLI not compiled — run pnpm compile first')
-
     test.beforeAll(() => {
       cleanOutputs(exampleDir)
     })
@@ -111,23 +111,15 @@ for (const templateName of TEMPLATES) {
     for (const browser of BROWSERS) {
       test(`${browser}: builds and emits valid manifest`, () => {
         try {
-          execSync(
-            `node ${localCliCjs} build ${exampleDir} --browser=${browser}`,
-            {
-              cwd: exampleDir,
-              stdio: 'pipe',
-              timeout: 120000,
-              env: {
-                ...process.env,
-                EXTENSION_ENV: 'test',
-                EXTENSION_DEVELOP_ROOT: path.resolve(
-                  repoRoot,
-                  'programs',
-                  'develop'
-                )
-              }
+          execSync(buildCommand(exampleDir, browser), {
+            cwd: exampleDir,
+            stdio: 'pipe',
+            timeout: 120000,
+            env: {
+              ...process.env,
+              EXTENSION_ENV: 'test'
             }
-          )
+          })
         } catch (error) {
           const msg = (error as any)?.stderr
             ? String((error as any).stderr).slice(0, 500)

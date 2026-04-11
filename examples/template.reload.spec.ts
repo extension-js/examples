@@ -27,27 +27,7 @@ const DEV_ROOTS = ['.extension', 'dist', 'build']
 const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
 const SUPPORTED_BUILD_BROWSERS = ['chrome', 'edge', 'firefox']
 
-const bundledLocalCliCjs = path.resolve(
-  examplesDir,
-  '..',
-  '..',
-  '..',
-  'programs',
-  'cli',
-  'dist',
-  'cli.cjs'
-)
-const localDevelopRoot = path.resolve(
-  examplesDir,
-  '..',
-  '..',
-  '..',
-  'programs',
-  'develop'
-)
-const localCliCjs =
-  process.env.EXTENSION_LOCAL_CLI_CJS ||
-  (fs.existsSync(bundledLocalCliCjs) ? bundledLocalCliCjs : '')
+const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 // ---------------------------------------------------------------------------
 // Dev server helpers
@@ -102,20 +82,27 @@ interface DevServer {
 function startDev(exampleDir: string): DevServer {
   const env = {
     ...process.env,
-    EXTENSION_AUTHOR_MODE: 'true',
-    ...(fs.existsSync(localDevelopRoot)
-      ? {EXTENSION_DEVELOP_ROOT: localDevelopRoot}
-      : {})
+    EXTENSION_AUTHOR_MODE: 'true'
   }
-  const args = [
-    localCliCjs,
-    'dev',
-    exampleDir,
-    '--browser=chromium',
-    '--no-browser',
-    '--install=false'
-  ]
-  const proc = spawn(process.execPath, args, {
+  const command = localCliCjs ? process.execPath : 'pnpm'
+  const args = localCliCjs
+    ? [
+        localCliCjs,
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--no-browser',
+        '--install=false'
+      ]
+    : [
+        'extension',
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--no-browser',
+        '--install=false'
+      ]
+  const proc = spawn(command, args, {
     cwd: exampleDir,
     env,
     stdio: 'pipe' as const
@@ -735,7 +722,7 @@ async function waitForOutputNewerThan(
 const manifestReloadDir = path.join(examplesDir, 'action')
 const manifestReloadManifest = readManifest(manifestReloadDir)
 
-if (manifestReloadManifest && localCliCjs) {
+if (manifestReloadManifest) {
   const manifestDevPath = path.join(manifestReloadDir, 'dist', 'chromium')
   const manifestTest = extensionFixtures(manifestDevPath)
 
@@ -795,7 +782,7 @@ if (manifestReloadManifest && localCliCjs) {
 const localeReloadDir = path.join(examplesDir, 'action-locales')
 const localeReloadManifest = readManifest(localeReloadDir)
 
-if (localeReloadManifest && localCliCjs) {
+if (localeReloadManifest) {
   const localeDevPath = path.join(localeReloadDir, 'dist', 'chromium')
   const localeTest = extensionFixtures(localeDevPath)
 
@@ -887,7 +874,7 @@ if (localeReloadManifest && localCliCjs) {
 const bgReloadDir = path.join(examplesDir, 'content')
 const bgReloadManifest = readManifest(bgReloadDir)
 
-if (bgReloadManifest && localCliCjs) {
+if (bgReloadManifest) {
   const bgDevPath = path.join(bgReloadDir, 'dist', 'chromium')
   const bgTest = extensionFixtures(bgDevPath)
 

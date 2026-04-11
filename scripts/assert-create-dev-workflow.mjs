@@ -44,9 +44,7 @@ function run(command, args, cwd, extraEnv = {}) {
   return new Promise((resolve) => {
     const child = spawn(commandFor(command), args, {
       cwd,
-      ...(process.platform === 'win32'
-        ? {shell: true}
-        : {detached: true}),
+      ...(process.platform === 'win32' ? {shell: true} : {detached: true}),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: buildBaseEnv(extraEnv)
     })
@@ -115,9 +113,7 @@ function runDevUntilReady(
   return new Promise((resolve) => {
     const child = spawn(commandFor(command), args, {
       cwd,
-      ...(process.platform === 'win32'
-        ? {shell: true}
-        : {detached: true}),
+      ...(process.platform === 'win32' ? {shell: true} : {detached: true}),
       stdio: ['ignore', 'pipe', 'pipe'],
       env: buildBaseEnv(extraEnv)
     })

@@ -37,27 +37,7 @@ const examplesDir = __dirname
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
 const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
-const bundledLocalCliCjs = path.resolve(
-  examplesDir,
-  '..',
-  '..',
-  '..',
-  'programs',
-  'cli',
-  'dist',
-  'cli.cjs'
-)
-const localDevelopRoot = path.resolve(
-  examplesDir,
-  '..',
-  '..',
-  '..',
-  'programs',
-  'develop'
-)
-const localCliCjs =
-  process.env.EXTENSION_LOCAL_CLI_CJS ||
-  (fs.existsSync(bundledLocalCliCjs) ? bundledLocalCliCjs : '')
+const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 function listExampleDirs(): string[] {
   return fs
@@ -150,38 +130,28 @@ function getHtmlPageUrl(
 function startDev(exampleDir: string): ChildProcess {
   const env = {
     ...process.env,
-    EXTENSION_AUTHOR_MODE: 'true',
-    ...(fs.existsSync(localDevelopRoot)
-      ? {EXTENSION_DEVELOP_ROOT: localDevelopRoot}
-      : {})
+    EXTENSION_AUTHOR_MODE: 'true'
   }
   const spawnOpts = {cwd: exampleDir, env, stdio: 'pipe' as const}
-  const proc = localCliCjs
-    ? spawn(
-        process.execPath,
-        [
-          localCliCjs,
-          'dev',
-          exampleDir,
-          '--browser=chromium',
-          '--no-browser',
-          '--install=false'
-        ],
-        spawnOpts
-      )
-    : spawn(
-        'pnpm',
-        [
-          'extension',
-          'dev',
-          exampleDir,
-          '--browser=chromium',
-          '--no-browser',
-          '--install=false'
-        ],
-        spawnOpts
-      )
-  return proc
+  const args = localCliCjs
+    ? [
+        localCliCjs,
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--no-browser',
+        '--install=false'
+      ]
+    : [
+        'extension',
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--no-browser',
+        '--install=false'
+      ]
+  const command = localCliCjs ? process.execPath : 'pnpm'
+  return spawn(command, args, spawnOpts)
 }
 
 async function stopDev(proc: ChildProcess) {
