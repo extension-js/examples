@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.13.0
-        version: 3.13.0(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+        specifier: 3.13.5
+        version: 3.13.5(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -2328,9 +2328,19 @@ packages:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
 
+  chrome-location2@4.0.0:
+    resolution: {integrity: sha512-SvZO8N4s3iqUd+x/hRWd+P0RNLChaLtok1UwzI35titKXQhqHVCyTLOW2P85YpCZrsJHzMFDcwRrZk+WM8AJgg==}
+    engines: {node: '>=16'}
+    hasBin: true
+
   chrome-trace-event@1.0.4:
     resolution: {integrity: sha512-rNjApaLzuwaOTjCiT8lSDdGN1APCiqkChLMJxJPWLunPAt5fy8xgU9/jNOchV84wfIxrA0lRQB7oCT8jrn/wrQ==}
     engines: {node: '>=6.0'}
+
+  chromium-location@2.0.0:
+    resolution: {integrity: sha512-ko4EON0FN3CKa5kxp4/5ebufIFda7dd46qQ8oPLNZqPnOeCUeSlulKArhbi043iCIPQypm1k3+5BEseWEeZkcg==}
+    engines: {node: '>=16'}
+    hasBin: true
 
   class-variance-authority@0.7.1:
     resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
@@ -2572,6 +2582,11 @@ packages:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
 
+  edge-location@2.2.0:
+    resolution: {integrity: sha512-BU2OaQcOOaHXNwIAdwSd/dSiZEkG5dWDw/sf3AjNE5fZ/MlBl2RptNbr2MDSLNN2yGbf/b23bhOBJRHd8cGu2A==}
+    engines: {node: '>=16'}
+    hasBin: true
+
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
@@ -2743,12 +2758,12 @@ packages:
     resolution: {integrity: sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==}
     engines: {node: '>= 0.10.0'}
 
-  extension-create@3.13.0:
-    resolution: {integrity: sha512-u2EeTTOZTcA/j+hAFsLEF2pwazsUlWb9giYHMCFWuxDJRyY0mw0hoQiWSBo9gVFoILUVbyHML4oVWA8+eaDejg==}
+  extension-create@3.13.5:
+    resolution: {integrity: sha512-HW5FFBApyXx1U2rX37kBENs1DccdMW6/Vmbq5e2J/GYb1MN/l6ZrSiHgIePQ09kDFPVxSTZXagScXLwN8/wU8Q==}
     engines: {node: '>=18'}
 
-  extension-develop@3.13.0:
-    resolution: {integrity: sha512-BqVSZtLM5C+MZi9oEWexHu/M34l22uC0DCC7/znI4A1JS3jooVSPORRLhLSYZLKzWtaZYFYeS8WwNJO9AtTN3Q==}
+  extension-develop@3.13.5:
+    resolution: {integrity: sha512-Zu/MtnDCgO29y635BM67yVuqKZVgZb8AO2VTUuJPKHBrMl5FdkA+sX7/ELjYK+gku7kN/c23Qi8NJFfVWH1Z0g==}
     engines: {node: '>=18'}
 
   extension-from-store@0.1.1:
@@ -2756,12 +2771,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@3.13.0:
-    resolution: {integrity: sha512-OStkIP7qjCFwMuUJ2S7chCvuZtXBNG6qIjpSZ84AKLI8OZ4W9n2uaOL5cCrUOAc3jnBuwTf1QhLxbUpcaWwCIA==}
+  extension-install@3.13.5:
+    resolution: {integrity: sha512-85M0loEoxHUTgTopMi/gbgBW1MOzvj8o7xIu0/SCST5BachMfdL3qzfMEKbMtgTXHuTTJuAHijBxpNl8wzXVIw==}
     engines: {node: '>=18'}
 
-  extension@3.13.0:
-    resolution: {integrity: sha512-VlwQC5p0jba31nKWrjxkf2LOAuKFEwJfaONVx6zRKcVeiWaakH/4oEMmRHz3wg8FHgD1nkOczQ83d77oaxr+9A==}
+  extension@3.13.5:
+    resolution: {integrity: sha512-pFWRlkYYt7yngVUWi/WRmQtTTUApVyGesmngLXCsRmIQR4mBlv5uo5kEK/mHBkUutBKUOWp24T9veHpKB8k+Cg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -2821,6 +2836,11 @@ packages:
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
+
+  firefox-location2@3.0.0:
+    resolution: {integrity: sha512-9dZ7OevIbHMelZ2UaV+uXLOI6RsJ+0DwIBdni6t4oWL5b2wGhG4LL8neqJkTtLZ/HslDdSVKx1fG8BKpZRgMKQ==}
+    engines: {node: '>=16'}
+    hasBin: true
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -3675,9 +3695,6 @@ packages:
 
   parse5@7.3.0:
     resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
-
-  parse5@8.0.0:
-    resolution: {integrity: sha512-9m4m5GSgXjL4AjumKzq1Fgfp3Z8rsvjRNbnkVwfu2ImRqE5D0LnY2QfDen18FSY9C573YU5XxSapdHZTZ2WolA==}
 
   parseurl@1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
@@ -4607,6 +4624,10 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  userhome@1.0.1:
+    resolution: {integrity: sha512-5cnLm4gseXjAclKowC4IjByaGsjtAoV6PrOQOljplNB54ReUYJP8HdAFq2muHinSDAh09PPX/uXDPfdxRHvuSA==}
+    engines: {node: '>= 0.8.0'}
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -6574,7 +6595,18 @@ snapshots:
 
   chownr@3.0.0: {}
 
+  chrome-location2@4.0.0:
+    dependencies:
+      pintor: 0.3.0
+      userhome: 1.0.1
+      which: 2.0.2
+
   chrome-trace-event@1.0.4: {}
+
+  chromium-location@2.0.0:
+    dependencies:
+      userhome: 1.0.1
+      which: 2.0.2
 
   class-variance-authority@0.7.1:
     dependencies:
@@ -6770,6 +6802,10 @@ snapshots:
       call-bind-apply-helpers: 1.0.2
       es-errors: 1.3.0
       gopd: 1.2.0
+
+  edge-location@2.2.0:
+    dependencies:
+      which: 2.0.2
 
   ee-first@1.1.1: {}
 
@@ -6969,18 +7005,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-create@3.13.0:
+  extension-create@3.13.5:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.15.0
       cross-spawn: 7.0.6
       go-git-it: 5.1.5
       pintor: 0.3.0
-      tiny-glob: 0.2.9
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.13.0(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension-develop@3.13.5(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -7004,7 +7039,6 @@ snapshots:
       less-loader: 12.3.0(@rspack/core@1.7.5(@swc/helpers@0.5.18))(less@4.5.1)(webpack@5.103.0)
       loader-utils: 3.3.1
       magic-string: 0.30.21
-      parse5: 8.0.0
       parse5-utilities: 1.0.0
       pintor: 0.3.0
       postcss: 8.5.6
@@ -7042,24 +7076,30 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@3.13.0:
+  extension-install@3.13.5:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@3.13.0(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension@3.13.5(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.36
       '@types/node': 25.2.0
       '@types/webextension-polyfill': 0.12.4
+      chrome-location2: 4.0.0
+      chromium-location: 2.0.0
       commander: 14.0.3
       cross-spawn: 7.0.6
-      extension-create: 3.13.0
-      extension-develop: 3.13.0(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
-      extension-install: 3.13.0
+      edge-location: 2.2.0
+      extension-create: 3.13.5
+      extension-develop: 3.13.5(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+      extension-install: 3.13.5
+      firefox-location2: 3.0.0
       pintor: 0.3.0
       semver: 7.7.3
+      unique-names-generator: 4.7.1
       update-check: 1.5.4
+      ws: 8.19.0
     transitivePeerDependencies:
       - bufferutil
       - debug
@@ -7144,6 +7184,11 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+
+  firefox-location2@3.0.0:
+    dependencies:
+      userhome: 1.0.1
+      which: 2.0.2
 
   flat-cache@4.0.1:
     dependencies:
@@ -7953,10 +7998,6 @@ snapshots:
       parse5: 7.3.0
 
   parse5@7.3.0:
-    dependencies:
-      entities: 6.0.1
-
-  parse5@8.0.0:
     dependencies:
       entities: 6.0.1
 
@@ -9036,6 +9077,8 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  userhome@1.0.1: {}
 
   util-deprecate@1.0.2: {}
 

@@ -17,11 +17,13 @@ import {getDirname} from './dirname.js'
 import {ALL_TEMPLATES, SUPPORTED_BROWSERS} from './data.js'
 
 const __dirname = getDirname(import.meta.url)
-const repoRoot = path.resolve(__dirname, '..', '..', '..')
-const localCliCjs = path.resolve(repoRoot, 'programs', 'cli', 'dist', 'cli.cjs')
+const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
-function hasLocalCli(): boolean {
-  return fs.existsSync(localCliCjs)
+function buildCommand(projectDir: string): string {
+  if (localCliCjs) {
+    return `node ${localCliCjs} build ${projectDir} --browser=chrome`
+  }
+  return `pnpm extension build ${projectDir} --browser=chrome`
 }
 
 function copyTemplate(templateName: string, dest: string) {
@@ -137,8 +139,6 @@ test.describe('template: create and first build', () => {
       })
 
       test('production build succeeds', () => {
-        test.skip(!hasLocalCli(), 'local CLI not compiled')
-
         const projectDir = path.join(tmpDir, templateName)
         if (!fs.existsSync(path.join(projectDir, 'node_modules'))) {
           test.skip()
@@ -154,18 +154,13 @@ test.describe('template: create and first build', () => {
         }
 
         try {
-          execSync(`node ${localCliCjs} build ${projectDir} --browser=chrome`, {
+          execSync(buildCommand(projectDir), {
             cwd: projectDir,
             stdio: 'pipe',
             timeout: 120000,
             env: {
               ...process.env,
-              EXTENSION_ENV: 'test',
-              EXTENSION_DEVELOP_ROOT: path.resolve(
-                repoRoot,
-                'programs',
-                'develop'
-              )
+              EXTENSION_ENV: 'test'
             }
           })
         } catch (error) {

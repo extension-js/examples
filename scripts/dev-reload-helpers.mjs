@@ -10,28 +10,15 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 /**
- * When nested inside the extension.js monorepo (`_FUTURE/examples/`), the
- * monorepo root lives three directories above this script. In CI the examples
- * repo is checked out standalone, so three levels up has no package.json.
- * `workspaceRoot` always resolves to the examples repo root (one level up from
+ * `workspaceRoot` resolves to the examples repo root (one level up from
  * `scripts/`) and is used as the cwd for `pnpm extension` invocations.
+ *
+ * All CLI invocations use the installed `extension` package — no automatic
+ * monorepo detection. Use `EXTENSION_LOCAL_CLI_CJS` env var for local dev.
  */
 export const workspaceRoot = path.resolve(__dirname, '..')
-const monorepoCandidate = path.resolve(__dirname, '..', '..', '..')
-export const repoRoot = fsSync.existsSync(
-  path.join(monorepoCandidate, 'programs', 'cli')
-)
-  ? monorepoCandidate
-  : workspaceRoot
+export const repoRoot = workspaceRoot
 export const examplesRoot = path.resolve(__dirname, '..', 'examples')
-export const localCliPath = path.join(
-  repoRoot,
-  'programs',
-  'cli',
-  'dist',
-  'cli.cjs'
-)
-const localDevelopRoot = path.join(repoRoot, 'programs', 'develop')
 
 /**
  * Content-script live verify must open this origin so RDP inspection matches the harness.
@@ -645,10 +632,6 @@ export function startDevProcess({
     ...process.env,
     EXTENSION_AUTHOR_MODE: 'true',
     EXTENSION_INSTANCE_ID: instanceId
-  }
-
-  if (fsSync.existsSync(localDevelopRoot)) {
-    env.EXTENSION_DEVELOP_ROOT = localDevelopRoot
   }
 
   const child = spawn(cliInvocation.command, args, {

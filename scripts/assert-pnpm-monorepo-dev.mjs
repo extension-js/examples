@@ -106,9 +106,7 @@ function runDevUntilReady(cwd, extraEnv = {}, timeoutMs = 90_000) {
       ],
       {
         cwd,
-        ...(process.platform === 'win32'
-          ? {shell: true}
-          : {detached: true}),
+        ...(process.platform === 'win32' ? {shell: true} : {detached: true}),
         stdio: ['ignore', 'pipe', 'pipe'],
         env: {
           ...process.env,
