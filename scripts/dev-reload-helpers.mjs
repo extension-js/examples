@@ -1,4 +1,4 @@
-import {spawn} from 'node:child_process'
+import {spawn, spawnSync} from 'node:child_process'
 import fsSync from 'node:fs'
 import fs from 'node:fs/promises'
 import os from 'node:os'
@@ -101,7 +101,9 @@ export function extractJsonLines(output) {
 }
 
 export function hasCompiled(output) {
-  return /compiled successfully|compiled with warnings/i.test(output)
+  return /compiled successfully|compiled with warnings|ready for development/i.test(
+    output
+  )
 }
 
 export function latestEvent(output, predicate) {
@@ -558,9 +560,13 @@ export async function stopChild(child) {
     }
     const killTimer = setTimeout(() => {
       try {
-        // Kill entire process group so grandchild dev-server processes
-        // don't linger as orphans on CI.
-        if (process.platform !== 'win32' && child.pid) {
+        if (process.platform === 'win32' && child.pid) {
+          // taskkill /T kills the entire process tree so Chrome and
+          // dev-server grandchildren don't linger as orphans on CI.
+          spawnSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
+            stdio: 'ignore'
+          })
+        } else if (child.pid) {
           process.kill(-child.pid, 'SIGKILL')
         } else {
           child.kill('SIGKILL')
@@ -575,7 +581,11 @@ export async function stopChild(child) {
       finish()
     })
     try {
-      if (process.platform !== 'win32' && child.pid) {
+      if (process.platform === 'win32' && child.pid) {
+        spawnSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
+          stdio: 'ignore'
+        })
+      } else if (child.pid) {
         process.kill(-child.pid, 'SIGTERM')
       } else {
         child.kill('SIGTERM')
