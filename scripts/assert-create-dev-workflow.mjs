@@ -79,7 +79,7 @@ function parseExamplesArg() {
 
   return arg
     .slice('--examples='.length)
-    .split(',')
+    .split(/[,\s]+/)
     .map((value) => value.trim())
     .filter(Boolean)
 }
