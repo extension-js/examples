@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import {spawn} from 'node:child_process'
+import {spawn, spawnSync} from 'node:child_process'
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
@@ -128,7 +128,15 @@ async function runCollect({
       if (settled) return
       settled = true
       try {
-        child.kill()
+        if (isWindows && child.pid) {
+          spawnSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
+            stdio: 'ignore'
+          })
+        } else if (child.pid) {
+          process.kill(-child.pid, 'SIGKILL')
+        } else {
+          child.kill()
+        }
       } catch {
         // Process may have already exited.
       }
@@ -194,9 +202,13 @@ function terminateChild(child) {
 
     const forceKillTimer = setTimeout(() => {
       try {
-        // Kill the entire process group on non-Windows so grandchild
-        // dev-server processes don't linger as orphans on CI.
-        if (!isWindows && child.pid) {
+        if (isWindows && child.pid) {
+          // taskkill /T kills the entire process tree so Chrome and
+          // webpack-dev-server grandchildren don't linger as orphans.
+          spawnSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
+            stdio: 'ignore'
+          })
+        } else if (child.pid) {
           process.kill(-child.pid, 'SIGKILL')
         } else {
           child.kill('SIGKILL')
@@ -211,9 +223,13 @@ function terminateChild(child) {
     child.once('exit', finalize)
 
     try {
-      // Kill the entire process group on non-Windows so grandchild
-      // dev-server processes don't linger as orphans on CI.
-      if (!isWindows && child.pid) {
+      if (isWindows && child.pid) {
+        // taskkill /T kills the entire process tree so Chrome and
+        // webpack-dev-server grandchildren don't linger as orphans.
+        spawnSync('taskkill', ['/PID', String(child.pid), '/T', '/F'], {
+          stdio: 'ignore'
+        })
+      } else if (child.pid) {
         process.kill(-child.pid, 'SIGTERM')
       } else {
         child.kill('SIGTERM')
@@ -401,6 +417,7 @@ async function main() {
   }
 
   console.log('\nAll content template first-dev regressions passed.')
+  process.exit(0)
 }
 
 main().catch((error) => {
