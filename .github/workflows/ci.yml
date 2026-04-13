@@ -154,10 +154,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
+      # NOTE: no `cache: 'pnpm'` here. This job does not run `pnpm install`
+      # (node_modules is restored from a separate cache below). On Windows the
+      # Windows-specific pnpm cache key is never seeded, so the setup-node
+      # post-step fails with a "Path Validation Error" when it tries to save a
+      # nonexistent D:\.pnpm-store\v10 — failing the whole job even though all
+      # tests pass. Dropping pnpm caching here avoids that false-failure.
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
       - run: corepack enable
 
       - uses: oven-sh/setup-bun@v2
