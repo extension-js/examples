@@ -1,4 +1,5 @@
 import iconUrl from '../images/icon.png'
+import {createBadge} from './utils/create-badge.js'
 const logo = iconUrl
 
 export default function initial() {
@@ -23,6 +24,8 @@ export default function initial() {
   title.className = 'content_title'
   title.textContent = 'Content Template #3'
   contentDiv.appendChild(title)
+
+  contentDiv.appendChild(createBadge())
 
   const description = document.createElement('p')
   description.className = 'content_description'

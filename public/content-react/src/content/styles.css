@@ -2,7 +2,7 @@
 
 .content_script {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 640px;
+  right: 640px;
   z-index: 99999;
 }
