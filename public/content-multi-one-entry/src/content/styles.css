@@ -54,6 +54,16 @@
   margin: 0;
 }
 
+.content_badge {
+  display: inline-block;
+  font-size: 0.75em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+  font-family: monospace;
+}
+
 .content_description a {
   text-decoration: none;
   border-bottom: 2px solid #c9c9c9;

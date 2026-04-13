@@ -3,8 +3,11 @@ import {createBadge} from './utils/create-badge.js'
 const logo = iconUrl
 
 export default function initial() {
+  // Set a window property to prove we're in MAIN world
+  window.__EXTJS_MAIN_WORLD_ACTIVE = true
+
   const rootDiv = document.createElement('div')
-  rootDiv.setAttribute('data-extension-root', 'top-right')
+  rootDiv.setAttribute('data-extension-root', 'true')
   document.body.appendChild(rootDiv)
 
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
@@ -13,7 +16,7 @@ export default function initial() {
   fetchCSS().then((css) => (styleElement.textContent = css))
 
   const contentDiv = document.createElement('div')
-  contentDiv.className = 'content_script content_script_top_right'
+  contentDiv.className = 'content_script'
   shadowRoot.appendChild(contentDiv)
   const img = document.createElement('img')
   img.className = 'content_logo'
@@ -22,7 +25,7 @@ export default function initial() {
 
   const title = document.createElement('h1')
   title.className = 'content_title'
-  title.textContent = 'Content Template #2'
+  title.textContent = 'Main World Content'
   contentDiv.appendChild(title)
 
   contentDiv.appendChild(createBadge())
@@ -30,7 +33,7 @@ export default function initial() {
   const description = document.createElement('p')
   description.className = 'content_description'
   description.innerHTML =
-    'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
+    'This MAIN world content script runs alongside page scripts. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
   return () => {

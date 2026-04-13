@@ -1,6 +1,6 @@
 .content_script {
-  color: #0a0c10;
-  background-color: #ffffff;
+  color: #c9c9c9;
+  background-color: #0a0c10;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -12,6 +12,7 @@
   flex-direction: column;
   gap: 1em;
   border-radius: 6px;
+  z-index: 9999;
 }
 
 .content_logo {
@@ -33,20 +34,19 @@
   margin: 0;
 }
 
+.content_badge {
+  display: inline-block;
+  font-size: 0.75em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #e5e7eb;
+  font-family: monospace;
+}
+
 .content_description a {
   text-decoration: none;
-  border-bottom: 2px solid #0a0c10;
-  color: #0a0c10;
+  border-bottom: 2px solid #c9c9c9;
+  color: #e5e7eb;
   margin: 0;
-}
-
-.logo {
-  width: 72px;
-  background: transparent;
-  border-radius: 6px;
-}
-
-.extjs-live-style-extjs-chromium-css-content-css-modules-css-style-only-1775396308665 {
-  outline: 3px solid #ff4d4f !important;
-  box-shadow: 0 0 0 2px #22c55e !important;
 }

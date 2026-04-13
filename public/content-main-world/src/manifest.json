@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "0.0.1",
+  "name": "Extension.js - Main World Content Example",
+  "description": "Main world content script with multiple groups. ISOLATED entries precede the MAIN world entry so bridge injection exercises canonical-index vs array-position resolution.",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/isolated-one.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/isolated-two.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"],
+      "world": "MAIN"
+    }
+  ]
+}
