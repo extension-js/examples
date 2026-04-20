@@ -122,6 +122,12 @@ const CONTENT_TEMPLATES = [
     expectedTitle: 'Content Template',
     hostSelector: '[data-extension-root]',
     expectedBg: 'rgb(26, 31, 46)'
+  },
+  {
+    name: 'content-typescript',
+    expectedTitle: 'Content Template',
+    hostSelector: '#extension-root, [data-extension-root="true"]',
+    expectedBg: 'rgb(10, 12, 16)'
   }
 ]
 
@@ -209,6 +215,95 @@ for (const tmpl of CONTENT_TEMPLATES) {
       test
         .expect(bg, `${tmpl.name}: background-color should match stylesheet`)
         .toBe(tmpl.expectedBg)
+    })
+  })
+}
+
+// ---------------------------------------------------------------------------
+// Tailwind content templates: stylesheet must be PostCSS-compiled
+// ---------------------------------------------------------------------------
+//
+// Regression guard for the `?url` / `new URL(..., import.meta.url)` class of
+// bugs where the raw stylesheet (with `@import "tailwindcss"`) ships instead
+// of the compiled output. Symptoms when broken:
+//   - h2 with `text-white` falls back to default black
+//   - flex/grid/sizing utilities no-op, collapsing the wrapper to intrinsic
+//     content size — often pushing it off-screen
+// Asserting the computed h2 color and an in-viewport bounding rect catches
+// both failure modes deterministically.
+const TAILWIND_CONTENT_TEMPLATES = [
+  'content-react',
+  'content-preact',
+  'content-vue',
+  'content-svelte'
+]
+
+for (const name of TAILWIND_CONTENT_TEMPLATES) {
+  const exampleDir = path.join(__dirname, name)
+  if (!fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) continue
+
+  const pathToExtension = resolveBuiltExtensionPath(exampleDir)
+  const test = extensionFixtures(pathToExtension)
+  const hostSelector = '#extension-root, [data-extension-root="true"]'
+
+  test.describe(`${name}: tailwind content script assets`, () => {
+    test('h2 computed color is white (tailwind compiled)', async ({page}) => {
+      await page.goto('https://example.com/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      })
+      const h2 = await waitForShadowElement(page, hostSelector, 'h2', 30000)
+      test.expect(h2, `${name}: h2 not found in shadow DOM`).not.toBeNull()
+      await expect
+        .poll(
+          async () =>
+            page.evaluate((sel) => {
+              const host = document.querySelector(sel)
+              const el = host?.shadowRoot?.querySelector('h2')
+              if (!el) return null
+              return window
+                .getComputedStyle(el as HTMLElement)
+                .getPropertyValue('color')
+            }, hostSelector),
+          {
+            timeout: 30000,
+            message: `${name}: h2 text-white resolved to default color — tailwind stylesheet shipped uncompiled`
+          }
+        )
+        .toBe('rgb(255, 255, 255)')
+    })
+
+    test('shadow container renders within viewport', async ({page}) => {
+      await page.goto('https://example.com/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      })
+      const host = await waitForShadowElement(
+        page,
+        hostSelector,
+        'div',
+        30000
+      )
+      test
+        .expect(host, `${name}: content container not found in shadow DOM`)
+        .not.toBeNull()
+      const rect = await host!.evaluate((node) => {
+        const r = (node as HTMLElement).getBoundingClientRect()
+        return {x: r.x, y: r.y, w: r.width, h: r.height}
+      })
+      const vp = page.viewportSize() || {width: 1280, height: 720}
+      test
+        .expect(
+          rect.x + rect.w > 0 && rect.y + rect.h > 0,
+          `${name}: container rendered off-screen: ${JSON.stringify(rect)}`
+        )
+        .toBe(true)
+      test
+        .expect(
+          rect.x < vp.width && rect.y < vp.height,
+          `${name}: container past viewport: ${JSON.stringify(rect)} vs ${vp.width}x${vp.height}`
+        )
+        .toBe(true)
     })
   })
 }
