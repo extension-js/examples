@@ -128,6 +128,12 @@ const CONTENT_TEMPLATES = [
     expectedTitle: 'Content Template',
     hostSelector: '#extension-root, [data-extension-root="true"]',
     expectedBg: 'rgb(10, 12, 16)'
+  },
+  {
+    name: 'content-env',
+    expectedTitle: 'Content Template',
+    hostSelector: '#extension-root, [data-extension-root="true"]',
+    expectedBg: 'rgb(10, 12, 16)'
   }
 ]
 
@@ -238,6 +244,29 @@ const TAILWIND_CONTENT_TEMPLATES = [
   'content-svelte'
 ]
 
+// Extract the compiled CSS that a content script would fetch at runtime.
+// Handles both emission modes that the build may produce:
+//   - A standalone file under content_scripts/*.css (when CSS is large enough)
+//   - An inlined data URI embedded in a content_scripts/*.js bundle (when small)
+// Returns null if no CSS could be located under the built extension dir.
+function readCompiledContentCss(builtExtDir: string): string | null {
+  const csDir = path.join(builtExtDir, 'content_scripts')
+  if (!fs.existsSync(csDir)) return null
+  const entries = fs.readdirSync(csDir, {withFileTypes: true})
+  for (const entry of entries) {
+    if (entry.isFile() && entry.name.endsWith('.css')) {
+      return fs.readFileSync(path.join(csDir, entry.name), 'utf8')
+    }
+  }
+  for (const entry of entries) {
+    if (!entry.isFile() || !entry.name.endsWith('.js')) continue
+    const js = fs.readFileSync(path.join(csDir, entry.name), 'utf8')
+    const m = js.match(/"data:text\/css;base64,([A-Za-z0-9+/=]+)"/)
+    if (m) return Buffer.from(m[1], 'base64').toString('utf8')
+  }
+  return null
+}
+
 for (const name of TAILWIND_CONTENT_TEMPLATES) {
   const exampleDir = path.join(__dirname, name)
   if (!fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) continue
@@ -247,6 +276,39 @@ for (const name of TAILWIND_CONTENT_TEMPLATES) {
   const hostSelector = '#extension-root, [data-extension-root="true"]'
 
   test.describe(`${name}: tailwind content script assets`, () => {
+    test('compiled CSS contains tailwind output (build-time check)', async () => {
+      const css = readCompiledContentCss(pathToExtension)
+      test
+        .expect(
+          css,
+          `${name}: no CSS asset located under content_scripts/ — check build pipeline`
+        )
+        .not.toBeNull()
+      // Source is `@import "tailwindcss"` (~30 bytes). If PostCSS ran, the
+      // compiled output is many KB and carries the tailwindcss header marker
+      // plus actual utility class rules we reference in the components. If
+      // either is missing, the raw source shipped uncompiled — the exact
+      // class of bug that would escape to users as an invisible widget.
+      test
+        .expect(
+          /tailwindcss/i.test(css!),
+          `${name}: emitted CSS missing tailwindcss header — stylesheet shipped uncompiled`
+        )
+        .toBe(true)
+      test
+        .expect(
+          /\.text-white(?:[^a-zA-Z0-9_-]|$)/.test(css!),
+          `${name}: emitted CSS missing .text-white rule — tailwind utility classes were not compiled`
+        )
+        .toBe(true)
+      test
+        .expect(
+          !/@import\s+["']tailwindcss["']/.test(css!),
+          `${name}: emitted CSS still contains raw @import "tailwindcss" directive — PostCSS never ran`
+        )
+        .toBe(true)
+    })
+
     test('h2 computed color is white (tailwind compiled)', async ({page}) => {
       await page.goto('https://example.com/', {
         waitUntil: 'domcontentloaded',
@@ -306,6 +368,232 @@ for (const name of TAILWIND_CONTENT_TEMPLATES) {
         .toBe(true)
     })
   })
+}
+
+// ---------------------------------------------------------------------------
+// Pill-style content templates: javascript / typescript / framework starters
+// ---------------------------------------------------------------------------
+//
+// These templates render a button.content_pill inside a shadow-DOM wrapper.
+// The pill has `background: var(--sidebar-bg, #0a0c10)` — a plain CSS fallback
+// that resolves to rgb(10, 12, 16) when the stylesheet is actually applied.
+// Asserting the pill's computed background catches the same "CSS never
+// applied" class of regression as the tailwind suite above, for templates
+// that don't use tailwind utilities.
+const PILL_CONTENT_TEMPLATES = [
+  'javascript',
+  'typescript',
+  'react',
+  'preact',
+  'vue',
+  'svelte'
+]
+
+for (const name of PILL_CONTENT_TEMPLATES) {
+  const exampleDir = path.join(__dirname, name)
+  if (!fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) continue
+
+  const pathToExtension = resolveBuiltExtensionPath(exampleDir)
+  const test = extensionFixtures(pathToExtension)
+  const hostSelector = '#extension-root, [data-extension-root="true"]'
+
+  test.describe(`${name}: pill content script assets`, () => {
+    test('pill renders with expected background', async ({page}) => {
+      await page.goto('https://example.com/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      })
+      const pill = await waitForShadowElement(
+        page,
+        hostSelector,
+        '.content_pill',
+        30000
+      )
+      test
+        .expect(pill, `${name}: .content_pill not found in shadow DOM`)
+        .not.toBeNull()
+      await expect
+        .poll(
+          async () =>
+            page.evaluate((sel) => {
+              const host = document.querySelector(sel)
+              const el = host?.shadowRoot?.querySelector('.content_pill')
+              if (!el) return null
+              return window
+                .getComputedStyle(el as HTMLElement)
+                .getPropertyValue('background-color')
+            }, hostSelector),
+          {
+            timeout: 30000,
+            message: `${name}: .content_pill background did not resolve to sidebar-bg #0a0c10 — CSS never applied`
+          }
+        )
+        .toBe('rgb(10, 12, 16)')
+    })
+
+    test('pill text "Open sidebar" is visible on screen', async ({page}) => {
+      await page.goto('https://example.com/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      })
+      const textEl = await waitForShadowElement(
+        page,
+        hostSelector,
+        '.content_pill_text',
+        30000
+      )
+      test
+        .expect(textEl, `${name}: .content_pill_text not found`)
+        .not.toBeNull()
+      const info = await textEl!.evaluate((el) => {
+        const r = (el as HTMLElement).getBoundingClientRect()
+        return {text: el.textContent || '', x: r.x, y: r.y, w: r.width, h: r.height}
+      })
+      test
+        .expect(info.text.trim(), `${name}: pill text mismatch`)
+        .toBe('Open sidebar')
+      const vp = page.viewportSize() || {width: 1280, height: 720}
+      test
+        .expect(
+          info.w > 0 && info.h > 0 && info.x < vp.width && info.y < vp.height,
+          `${name}: pill text not visible: ${JSON.stringify(info)}`
+        )
+        .toBe(true)
+    })
+  })
+}
+
+// ---------------------------------------------------------------------------
+// content-custom-font: fonts + plain CSS (via @import "tailwindcss" passthrough)
+// ---------------------------------------------------------------------------
+{
+  const name = 'content-custom-font'
+  const exampleDir = path.join(__dirname, name)
+  if (fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) {
+    const pathToExtension = resolveBuiltExtensionPath(exampleDir)
+    const test = extensionFixtures(pathToExtension)
+    const hostSelector = '#extension-root, [data-extension-root="true"]'
+
+    test.describe(`${name}: content script assets`, () => {
+      test('compiled CSS has no raw @import "tailwindcss"', async () => {
+        const css = readCompiledContentCss(pathToExtension)
+        test.expect(css, `${name}: no CSS asset emitted`).not.toBeNull()
+        test
+          .expect(
+            !/@import\s+["']tailwindcss["']/.test(css!),
+            `${name}: emitted CSS still contains raw @import "tailwindcss" — PostCSS never ran`
+          )
+          .toBe(true)
+      })
+
+      test('container background resolves to #f3f4f6', async ({page}) => {
+        await page.goto('https://example.com/', {
+          waitUntil: 'domcontentloaded',
+          timeout: 60000
+        })
+        const host = await waitForShadowElement(
+          page,
+          hostSelector,
+          '.content_script',
+          30000
+        )
+        test
+          .expect(host, `${name}: .content_script not found`)
+          .not.toBeNull()
+        await expect
+          .poll(
+            async () =>
+              page.evaluate((sel) => {
+                const h = document.querySelector(sel)
+                const el = h?.shadowRoot?.querySelector('.content_script')
+                if (!el) return null
+                return window
+                  .getComputedStyle(el as HTMLElement)
+                  .getPropertyValue('background-color')
+              }, hostSelector),
+            {
+              timeout: 30000,
+              message: `${name}: .content_script background did not resolve — CSS not applied`
+            }
+          )
+          .toBe('rgb(243, 244, 246)')
+      })
+
+      test('custom font glyph text renders on screen', async ({page}) => {
+        await page.goto('https://example.com/', {
+          waitUntil: 'domcontentloaded',
+          timeout: 60000
+        })
+        const demo = await waitForShadowElement(
+          page,
+          hostSelector,
+          '.font_demo.font_momo_signature',
+          30000
+        )
+        test
+          .expect(demo, `${name}: .font_demo.font_momo_signature not found`)
+          .not.toBeNull()
+        const rect = await demo!.evaluate((el) => {
+          const r = (el as HTMLElement).getBoundingClientRect()
+          return {x: r.x, y: r.y, w: r.width, h: r.height}
+        })
+        const vp = page.viewportSize() || {width: 1280, height: 720}
+        test
+          .expect(
+            rect.w > 0 && rect.h > 0 && rect.x < vp.width && rect.y < vp.height,
+            `${name}: font demo block not visible: ${JSON.stringify(rect)}`
+          )
+          .toBe(true)
+      })
+    })
+  }
+}
+
+// ---------------------------------------------------------------------------
+// new-browser-flags: inline-styled indicator (no shadow DOM)
+// ---------------------------------------------------------------------------
+{
+  const name = 'new-browser-flags'
+  const exampleDir = path.join(__dirname, name)
+  if (fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) {
+    const pathToExtension = resolveBuiltExtensionPath(exampleDir)
+    const test = extensionFixtures(pathToExtension)
+
+    test.describe(`${name}: content script indicator`, () => {
+      test('indicator text appears on the page', async ({page}) => {
+        await page.goto('https://example.com/', {
+          waitUntil: 'domcontentloaded',
+          timeout: 60000
+        })
+        // Indicator is created inline and auto-removed after 5s. Poll with a
+        // short window to catch it before teardown.
+        await expect
+          .poll(
+            async () =>
+              page.evaluate(() => {
+                const el = Array.from(document.querySelectorAll('div')).find(
+                  (d) =>
+                    (d.textContent || '').includes(
+                      'Browser Flags Extension Loaded!'
+                    )
+                )
+                if (!el) return null
+                const r = el.getBoundingClientRect()
+                return {
+                  visible: r.width > 0 && r.height > 0,
+                  bg: window.getComputedStyle(el).backgroundColor
+                }
+              }),
+            {
+              timeout: 8000,
+              intervals: [200],
+              message: `${name}: indicator never appeared on page`
+            }
+          )
+          .toMatchObject({visible: true, bg: 'rgb(76, 175, 80)'})
+      })
+    })
+  }
 }
 
 // ---------------------------------------------------------------------------

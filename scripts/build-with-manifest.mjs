@@ -30,6 +30,32 @@ function run(command, args, opts = {}) {
   if (r.status !== 0) process.exit(r.status ?? 1)
 }
 
+// Resolve the CLI we should use.
+// Priority:
+//   1. EXTENSION_CLI_PATH env var (explicit override)
+//   2. Monorepo local CLI at ../../programs/extension/dist/cli.cjs
+//      (when this examples repo sits inside the extension.js monorepo)
+//   3. Published `extension` binary on PATH (via node_modules/.bin)
+function resolveCliInvocation() {
+  const explicit = process.env.EXTENSION_CLI_PATH
+  if (explicit && fs.existsSync(explicit)) {
+    return {kind: 'node', cliPath: explicit}
+  }
+  const monorepoCli = path.resolve(
+    REPO_ROOT,
+    '..',
+    '..',
+    'programs',
+    'extension',
+    'dist',
+    'cli.cjs'
+  )
+  if (fs.existsSync(monorepoCli)) {
+    return {kind: 'node', cliPath: monorepoCli}
+  }
+  return {kind: 'bin'}
+}
+
 function main() {
   const mode = process.argv[2] || 'build' // build | dev | preview
   const extraArgs = process.argv.slice(3)
@@ -47,10 +73,18 @@ function main() {
     env.EXTENSION_SKIP_INSTALL = process.env.EXTENSION_SKIP_INSTALL
   }
 
-  run('extension', [mode, ...extraArgs], {
-    cwd: CWD,
-    env
-  })
+  const invocation = resolveCliInvocation()
+  if (invocation.kind === 'node') {
+    run(process.execPath, [invocation.cliPath, mode, ...extraArgs], {
+      cwd: CWD,
+      env
+    })
+  } else {
+    run('extension', [mode, ...extraArgs], {
+      cwd: CWD,
+      env
+    })
+  }
 }
 
 main()
