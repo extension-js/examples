@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client'
 import ContentApp from './ContentApp'
-import cssHref from './styles.css?url'
 
 export default function initial() {
   const rootDiv = document.createElement('div')
@@ -25,10 +24,8 @@ export default function initial() {
 }
 
 async function fetchCSS() {
-  const href =
-    (cssHref as unknown as {default?: string}).default ||
-    (cssHref as unknown as string)
-  const response = await fetch(href)
+  const cssUrl = new URL('./styles.css', import.meta.url)
+  const response = await fetch(cssUrl)
   const text = await response.text()
   return response.ok ? text : Promise.reject(text)
 }
