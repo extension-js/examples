@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-04-20T15:37:04.248Z",
+  "generatedAt": "2026-04-21T03:32:36.249Z",
   "templates": [
     {
       "slug": "action",
@@ -606,7 +606,6 @@
       "files": [
         "public/content-react/extension.config.js",
         "public/content-react/public/screenshot.png",
-        "public/content-react/src/ambient.css-url.d.ts",
         "public/content-react/src/background.ts",
         "public/content-react/src/content/ContentApp.tsx",
         "public/content-react/src/content/scripts.tsx",
