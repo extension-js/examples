@@ -20,6 +20,14 @@ const isHeadless = process.env.HEADLESS === 'true'
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  // Pre-build every template referenced by the assets suite BEFORE workers
+  // start. resolveBuiltExtensionPath() shells out to the CLI at module-load
+  // time when dist/ is missing, and with 4 parallel workers re-importing the
+  // same spec the concurrent builds race and produce partial dist/ writes
+  // (observed as "manifest missing" chrome errors). Serial prebuild is the
+  // only reliable way to eliminate the race.
+  globalSetup: './scripts/prebuild-assets-templates.mjs',
+
   // Reasonable timeout for CI environments
   timeout: process.env.CI ? 60_000 : 30_000,
   testDir: './examples',
