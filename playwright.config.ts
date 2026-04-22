@@ -126,6 +126,22 @@ export default defineConfig({
       }
     },
 
+    // Content-script hot-reload regression gate. Parameterized over every
+    // example with `content_scripts` in its manifest. Each test launches a
+    // real `extension dev`, connects Playwright to that Chrome via CDP, and
+    // asserts that a source edit propagates to an already-open tab WITHOUT
+    // navigation. This is the only suite that exercises the full dev → CDP
+    // → open-tab reinject chain end-to-end.
+    {
+      name: 'content-reload',
+      testMatch: /examples\/template\.content-reload\.spec\.ts$/,
+      fullyParallel: false,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
     // Scaffold + install + first build per template
     {
       name: 'create',

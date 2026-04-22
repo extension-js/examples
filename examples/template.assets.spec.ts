@@ -340,12 +340,7 @@ for (const name of TAILWIND_CONTENT_TEMPLATES) {
         waitUntil: 'domcontentloaded',
         timeout: 60000
       })
-      const host = await waitForShadowElement(
-        page,
-        hostSelector,
-        'div',
-        30000
-      )
+      const host = await waitForShadowElement(page, hostSelector, 'div', 30000)
       test
         .expect(host, `${name}: content container not found in shadow DOM`)
         .not.toBeNull()
@@ -447,7 +442,13 @@ for (const name of PILL_CONTENT_TEMPLATES) {
         .not.toBeNull()
       const info = await textEl!.evaluate((el) => {
         const r = (el as HTMLElement).getBoundingClientRect()
-        return {text: el.textContent || '', x: r.x, y: r.y, w: r.width, h: r.height}
+        return {
+          text: el.textContent || '',
+          x: r.x,
+          y: r.y,
+          w: r.width,
+          h: r.height
+        }
       })
       test
         .expect(info.text.trim(), `${name}: pill text mismatch`)
@@ -497,9 +498,7 @@ for (const name of PILL_CONTENT_TEMPLATES) {
           '.content_script',
           30000
         )
-        test
-          .expect(host, `${name}: .content_script not found`)
-          .not.toBeNull()
+        test.expect(host, `${name}: .content_script not found`).not.toBeNull()
         await expect
           .poll(
             async () =>
