@@ -77,6 +77,10 @@ TEST_FAILURES.md
  
 # local Playwright user data dirs (avoid committing persistent profiles)
 .pw-user-data/
+
+# local-only fixtures for content-script reload probing; not part of the
+# official examples tree.
+/.local-fixtures/
 **/.pw-user-data*/
  
 # build artifacts produced by packaging script

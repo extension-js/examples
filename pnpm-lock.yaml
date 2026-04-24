@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 3.14.1
-        version: 3.14.1(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0)
+        specifier: 3.14.3
+        version: 3.14.3(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3007,12 +3007,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@3.14.1:
-    resolution: {integrity: sha512-GlOgITdrZpo1UG09JyjFnwOrPFfdQx3gbLO/EqEoGNlxNIJm85EKydbbC0OsJ6rqE0rDGR7bMsz1sSkhzfBDcw==}
+  extension-create@3.14.3:
+    resolution: {integrity: sha512-xHWe/0Ynb5qSyi65R2bvWzAwUN5CZgo+KwfKTBVDtunmBbOZO6ajhNrb5U/bSIsy2s+v8KByn6+wPd7wV8w5pA==}
     engines: {node: '>=18'}
 
-  extension-develop@3.14.1:
-    resolution: {integrity: sha512-JZxLpFIlKK2kLNuOaR6l53AAtjHyKey7MeXMDhdZOA+TMs+ea+v4sGeO+yC99XJGpjHSEiC22WvpVHu/Dev6oQ==}
+  extension-develop@3.14.3:
+    resolution: {integrity: sha512-KpZmxQN/wJGErGQ5Xyp0V6kDUJGM5NoIakIMgCxH1g3XfJE+Zc+pE2NNyfBCFoZ9D+/fppi+dYu6tCuAbihREA==}
     engines: {node: '>=18'}
 
   extension-from-store@0.1.1:
@@ -3020,12 +3020,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@3.14.1:
-    resolution: {integrity: sha512-IpLYj8GBx9wsJpmYtHScNBJCRC7b36iOKYOvais4gPKDzRctd5/pJQMQ9bSK8lnKQw2v9Jap71/3sSTLIVZ5PQ==}
+  extension-install@3.14.3:
+    resolution: {integrity: sha512-WZzE4t7hX8F8YdgxSNuKwX5ihvC1LIO5CVBpNdXjhEGew4ac9X1G+a4MI9PX9gVIvVBJO8vVHcYQQ+6g2T7q1Q==}
     engines: {node: '>=18'}
 
-  extension@3.14.1:
-    resolution: {integrity: sha512-8ZP+89J+IEBbhHMG40hoovxpU+s+Bn2bKP9xnB7AuVAP5LRpzXZdXLGLPVpZJA0rJ/ikP0O2v+5C67ci5cnyuA==}
+  extension@3.14.3:
+    resolution: {integrity: sha512-DXnKQJkTVve5E09W9JQuNF9d2QDPbNKAHk76nTvOfQDuCs0yqN07ROtfUqf3rKuzvnjRGAVnsgjfF5tpUoUV0Q==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -7612,7 +7612,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@3.14.1:
+  extension-create@3.14.3:
     dependencies:
       adm-zip: 0.5.16
       axios: 1.15.0
@@ -7622,7 +7622,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@3.14.1(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0):
+  extension-develop@3.14.3(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -7684,12 +7684,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@3.14.1:
+  extension-install@3.14.3:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@3.14.1(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0):
+  extension@3.14.3(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.36
       '@types/node': 25.2.0
@@ -7699,9 +7699,9 @@ snapshots:
       commander: 14.0.3
       cross-spawn: 7.0.6
       edge-location: 2.2.0
-      extension-create: 3.14.1
-      extension-develop: 3.14.1(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0)
-      extension-install: 3.14.1
+      extension-create: 3.14.3
+      extension-develop: 3.14.3(sass@1.94.1)(svelte@5.43.12)(tslib@2.8.1)(webpack@5.103.0)
+      extension-install: 3.14.3
       firefox-location2: 3.0.0
       pintor: 0.3.0
       semver: 7.7.3
