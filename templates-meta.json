@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-04-21T15:51:55.293Z",
+  "generatedAt": "2026-04-25T19:30:02.755Z",
   "templates": [
     {
       "slug": "action",
@@ -1738,6 +1738,46 @@
       "screenshot": "public/sidebar/screenshot.png",
       "icon": "public/sidebar/src/images/icon.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
+    },
+    {
+      "slug": "sidebar-antd",
+      "name": "@extension-js/sidebar-antd",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
+      "uiContext": ["sidebar", "background"],
+      "surfaces": ["sidebar", "background"],
+      "entrypoints": ["sidebar/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["extension.config.js"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "public/sidebar-antd/extension.config.js",
+        "public/sidebar-antd/src/background.js",
+        "public/sidebar-antd/src/images/icon.png",
+        "public/sidebar-antd/src/manifest.json",
+        "public/sidebar-antd/src/sidebar/SidebarApp.jsx",
+        "public/sidebar-antd/src/sidebar/index.html",
+        "public/sidebar-antd/src/sidebar/scripts.jsx"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/sidebar-antd/screenshot.png",
+      "icon": "public/sidebar-antd/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-antd"
     },
     {
       "slug": "sidebar-claude",
