@@ -58,7 +58,9 @@ const TEMPLATES = [
 
 function hasBuiltDist(exampleDir) {
   for (const channel of ['chrome', 'chromium', 'chrome-mv3']) {
-    if (fs.existsSync(path.join(exampleDir, 'dist', channel, 'manifest.json'))) {
+    if (
+      fs.existsSync(path.join(exampleDir, 'dist', channel, 'manifest.json'))
+    ) {
       return true
     }
   }

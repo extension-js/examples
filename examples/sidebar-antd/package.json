@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "@extension-js/sidebar-antd",
+  "description": "JavaScript-based extension with a sidebar panel. Renders antd, @ant-design/icons and @ant-design/x. Regression coverage for issue #445.",
+  "version": "3.0.0",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Cezar Augusto",
+    "email": "boss@cezaraugusto.net",
+    "url": "https://cezaraugusto.com"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^6.1.1",
+    "@ant-design/x": "^2.6.0",
+    "antd": "^6.3.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
