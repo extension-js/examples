@@ -365,6 +365,24 @@ async function runTemplate(template) {
     })
 
     const projectDir = path.join(tempRoot, projectName)
+
+    // `extension create` does not install project dependencies by default,
+    // and `npm run dev` resolves the `extension` binary via
+    // `node_modules/.bin`. Without an explicit install the dev script fails
+    // on Windows (cmd cannot resolve `extension`) — Linux happens to find
+    // a globally-installed copy on hosted runners, hiding the gap. Install
+    // here so the regression check exercises the same flow on every OS.
+    console.log(`[${template}] installing dependencies`)
+    await runCollect({
+      command: 'npm',
+      commandArgs: ['install', '--no-audit', '--no-fund', '--silent'],
+      cwd: projectDir,
+      env,
+      template,
+      phase: 'install',
+      failurePatterns: createFailurePatterns
+    })
+
     console.log(`[${template}] running first dev`)
     const output = await runDevAndValidate({
       projectDir,
