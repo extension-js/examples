@@ -26,8 +26,8 @@ export async function sendMessage(
 ): Promise<string> {
   const client = new Anthropic({
     apiKey,
-    // Required for browser environments — the SDK detects this
-    // and uses the REST API directly instead of Node.js HTTP.
+    // Required for browser environments — the SDK detects this and uses
+    // the REST API directly instead of Node.js HTTP.
     dangerouslyAllowBrowser: true
   })
 

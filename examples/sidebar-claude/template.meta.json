@@ -7,14 +7,13 @@
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "Click the extension icon to open the sidebar",
-    "Enter your Anthropic API key (from console.anthropic.com)",
+    "Enter your Claude API key (from console.anthropic.com)",
     "Start chatting with Claude"
   ],
   "useCases": [
-    "AI assistant sidebar for any webpage",
-    "Page content summarization with Claude",
-    "Claude-powered research companion",
-    "Starting point for Anthropic SDK browser extensions"
+    "Claude-powered assistant in any browser sidebar",
+    "Quick questions answered by Claude without leaving the page",
+    "Starting point for Claude-powered browser extensions"
   ],
   "docsUrl": "https://docs.anthropic.com/en/api/getting-started"
 }

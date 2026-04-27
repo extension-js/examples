@@ -11,7 +11,7 @@ import {
   removeApiKey,
   sendMessage,
   type Message
-} from '../lib/claude'
+} from '../lib/client'
 
 export default function SidebarApp() {
   const [apiKey, setApiKeyState] = useState<string | null>(null)

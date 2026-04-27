@@ -3,70 +3,92 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Claude AI Sidebar Example
+# AI Sidebar (Claude / Anthropic) Example
 
-What you'll see: a browser sidebar (side panel) with a React chat interface powered by the Anthropic SDK, letting you talk to Claude directly from any page.
+> React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.
 
-How it works: the extension registers a sidebar panel and renders a React chat UI that calls the Claude API. Your API key is stored locally in extension storage.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A browser side panel that loads when you open the sidebar.
+
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, Anthropic SDK.
+
+Conversational sidebar wired to the [Anthropic SDK](https://docs.anthropic.com/). Paste a key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with Claude inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `sidebar-chatgpt`, `sidebar-gemini`, and `sidebar-perplexity` siblings; only the SDK and brand accent change.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template sidebar-claude
-cd <project-name>
+npx extension@latest create my-sidebar-claude --template sidebar-claude
+cd my-sidebar-claude
 npm install
+npm run dev
 ```
 
-## Configuration
+A fresh browser window opens with the extension already loaded.
 
-On first launch the sidebar asks for your Anthropic API key. Get one at [console.anthropic.com/settings/keys](https://console.anthropic.com/settings/keys).
+## Project layout
 
-The key is persisted in `chrome.storage.local` (never leaves your browser except to call the Anthropic API).
+```
+src/
+├── components/
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   └── scroll-area.tsx
+│   ├── ApiKeyForm.tsx
+│   ├── ChatInput.tsx
+│   └── ChatMessage.tsx
+├── images/
+│   └── icon.png
+├── lib/
+│   ├── client.ts
+│   └── utils.ts
+├── sidebar/
+│   ├── index.html
+│   ├── scripts.tsx
+│   ├── SidebarApp.tsx
+│   └── styles.css
+├── background.ts
+└── manifest.json
+```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)
