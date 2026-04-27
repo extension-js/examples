@@ -3,44 +3,84 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Main World Content Example
+# Content Script in MAIN World Example
 
-What you'll see: a small badge injected into web pages from a MAIN world content script.
+> Main world content script with multiple groups. ISOLATED entries precede the MAIN world entry so bridge injection exercises canonical-index vs array-position resolution.
 
-How it works: the extension injects UI in the page MAIN world, mounts into a Shadow DOM, and keeps styles isolated from host page CSS.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+
+**How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+
+Loads the content script in the page's **MAIN world** (Chromium-only). Useful when your script needs direct access to page-side globals or classes that the isolated world cannot reach. Firefox does not support MAIN-world content scripts, so this template is gated to Chromium targets.
+
+## Try it locally
 
 ```bash
-pnpm install
+npx extension@latest create my-content-main-world --template content-main-world
+cd my-content-main-world
+npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── content/
+│   ├── utils/
+│   │   ├── constants.js
+│   │   └── create-badge.js
+│   ├── isolated-one.js
+│   ├── isolated-two.js
+│   ├── scripts.js
+│   └── styles.css
+├── images/
+│   └── icon.png
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
-Run from the monorepo root:
+### dev
+
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-# Development
-pnpm extension dev "./extensions/staging/content-main-world"
-
-# Production build
-pnpm extension build "./extensions/staging/content-main-world"
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
-## Browser targets
+### build
 
-Chromium is the default. You can target specific browsers:
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-pnpm extension dev "./extensions/staging/content-main-world" --browser=chrome
-pnpm extension dev "./extensions/staging/content-main-world" --browser=edge
-pnpm extension dev "./extensions/staging/content-main-world" --browser=firefox
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
-## WASM bundle
+### preview
 
-- This example does not use WebAssembly.
+Preview the production build with the bundled browser:
+
+```bash
+npm run preview
+```
+
+## Tests
+
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

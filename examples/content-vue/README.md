@@ -3,64 +3,85 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Vue Content Example
+# Vue Content Script Example
 
-What you’ll see: a small Vue UI injected into any page, isolated in a Shadow DOM so site styles don’t interfere.
+> Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.
 
-How it works: a content script mounts a Vue component inside a Shadow DOM and applies scoped styles.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+
+**How it works**: A content script mounts a Vue + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template content-vue
-cd <project-name>
+npx extension@latest create my-content-vue --template content-vue
+cd my-content-vue
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── content/
+│   ├── ContentApp.vue
+│   ├── scripts.ts
+│   ├── shims-vue.d.ts
+│   └── styles.css
+├── images/
+│   ├── chromeWindow.png
+│   ├── icon.png
+│   ├── logo.svg
+│   ├── tailwind_bg.png
+│   ├── tailwind.png
+│   ├── typescript.png
+│   └── vue.png
+├── background.ts
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

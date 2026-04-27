@@ -5,62 +5,77 @@
 
 # Svelte New Tab Example
 
-What you’ll see: a custom new tab page rendered with Svelte.
+> New tab page example rendered with Svelte. Loads a small Svelte app you can extend.
 
-How it works: the extension overrides the new tab and loads a small Svelte app you can extend.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A custom new-tab page replacing the browser default.
+
+**How it works**: The manifest overrides the new-tab page and loads a Svelte + TypeScript entry bundled from `src/newtab/`.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template new-svelte
-cd <project-name>
+npx extension@latest create my-new-svelte --template new-svelte
+cd my-new-svelte
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── images/
+│   └── icon.png
+├── newtab/
+│   ├── index.html
+│   ├── NewTabApp.svelte
+│   ├── scripts.ts
+│   └── styles.css
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

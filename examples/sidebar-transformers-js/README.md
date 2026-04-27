@@ -3,64 +3,83 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Transformers.js Sidebar Example
+# React Sidebar (Transformers.js) Example
 
-What you’ll see: a browser sidebar (side panel) that runs a small Transformers.js demo.
+> Sidebar example that runs a small Transformers.js demo inside a side panel.
 
-How it works: the extension registers a sidebar panel and loads a page that initializes a Transformers.js model sample.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A browser side panel that loads when you open the sidebar.
+
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. UI is composed with Transformers.js.
+
+Sidebar that runs [Transformers.js](https://huggingface.co/docs/transformers.js) models in the browser via WebGPU/WASM. No server, no API key — the model and tokenizer are loaded from the Hugging Face Hub on first run.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template transformers-js
-cd <project-name>
+npx extension@latest create my-sidebar-transformers-js --template sidebar-transformers-js
+cd my-sidebar-transformers-js
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── images/
+│   └── icon.png
+├── sidebar/
+│   ├── index.html
+│   ├── sakura.css
+│   ├── scripts.js
+│   ├── SidebarApp.js
+│   └── styles.css
+├── background.js
+├── constants.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)
