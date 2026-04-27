@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@extension-js/sidebar-claude",
-  "description": "React sidebar example with Claude AI chat. Adds a sidebar panel with a conversational AI interface powered by the Anthropic SDK.",
+  "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
   "version": "0.0.1",
   "license": "MIT",
   "type": "module",

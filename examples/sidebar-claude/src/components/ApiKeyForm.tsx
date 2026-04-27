@@ -33,9 +33,9 @@ export default function ApiKeyForm({onSubmit}: ApiKeyFormProps) {
             <CardTitle>Claude API Key</CardTitle>
           </div>
           <CardDescription>
-            Enter your Anthropic API key to start chatting. Your key is stored
-            locally in extension storage and never sent anywhere except
-            Anthropic's API.
+            Enter your Claude API key to start chatting. Your key is stored
+            locally in extension storage and never sent anywhere except Claude's
+            API.
           </CardDescription>
         </CardHeader>
         <CardContent>

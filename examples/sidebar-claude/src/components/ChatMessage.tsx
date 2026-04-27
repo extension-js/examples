@@ -1,6 +1,6 @@
 import {Bot, User} from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
-import type {Message} from '../lib/claude'
+import type {Message} from '../lib/client'
 import {cn} from '../lib/utils'
 
 interface ChatMessageProps {

@@ -3,9 +3,9 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - Claude AI Sidebar",
+  "name": "Extension.js - Claude (Anthropic) Sidebar",
   "author": "Cezar Augusto",
-  "description": "React sidebar example with Claude AI chat. Adds a sidebar panel with a conversational AI interface powered by the Anthropic SDK.",
+  "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -21,7 +21,7 @@
       "64": "images/icon.png",
       "128": "images/icon.png"
     },
-    "default_title": "Open Claude AI Sidebar"
+    "default_title": "Open Claude Sidebar"
   },
   "firefox:browser_action": {
     "default_icon": {
@@ -31,15 +31,15 @@
       "64": "images/icon.png",
       "128": "images/icon.png"
     },
-    "default_title": "Open Claude AI Sidebar"
+    "default_title": "Open Claude Sidebar"
   },
   "chromium:side_panel": {
     "default_path": "sidebar/index.html",
-    "default_title": "Claude AI Sidebar"
+    "default_title": "Claude Sidebar"
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Claude AI Sidebar"
+    "default_title": "Claude Sidebar"
   },
   "chromium:permissions": ["sidePanel", "storage"],
   "firefox:permissions": ["storage"],
