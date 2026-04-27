@@ -72,6 +72,10 @@ Preview the production build with the bundled browser:
 npm run preview
 ```
 
+## Tests
+
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
+
 ## Learn more
 
 - [Extension.js docs](https://extension.js.org)
