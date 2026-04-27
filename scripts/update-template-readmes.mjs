@@ -453,38 +453,38 @@ const OVERRIDES = {
       'library — the components live inside the project under ' +
       '`src/components/ui/`.'
   },
-  'sidebar-claude': {
+  'ai-claude': {
     title: 'AI Sidebar (Claude / Anthropic) Example',
     extra:
       'Conversational sidebar wired to the [Anthropic SDK](https://docs.anthropic.com/). ' +
       'Paste a key the first time you open the panel — it lives in ' +
       '`chrome.storage.local`, never leaves the device — and chat with ' +
       "Claude inline next to whatever page you're on. Shares its layout " +
-      'and shadcn/ui primitives with the `sidebar-chatgpt`, `sidebar-gemini`, ' +
-      'and `sidebar-perplexity` siblings; only the SDK and brand accent change.'
+      'and shadcn/ui primitives with the `ai-chatgpt`, `ai-gemini`, ' +
+      'and `ai-perplexity` siblings; only the SDK and brand accent change.'
   },
-  'sidebar-chatgpt': {
+  'ai-chatgpt': {
     title: 'AI Sidebar (ChatGPT / OpenAI) Example',
     extra:
       'Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). ' +
       'Paste an `sk-...` key the first time you open the panel — it lives ' +
       'in `chrome.storage.local`, never leaves the device — and chat with ' +
       "ChatGPT inline next to whatever page you're on. Shares its layout " +
-      'and shadcn/ui primitives with the `sidebar-claude`, `sidebar-gemini`, ' +
-      'and `sidebar-perplexity` siblings; only the SDK and brand accent change.'
+      'and shadcn/ui primitives with the `ai-claude`, `ai-gemini`, ' +
+      'and `ai-perplexity` siblings; only the SDK and brand accent change.'
   },
-  'sidebar-gemini': {
+  'ai-gemini': {
     title: 'AI Sidebar (Gemini / Google) Example',
     extra:
       'Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). ' +
       'Paste a Google AI Studio key the first time you open the panel — it ' +
       'lives in `chrome.storage.local`, never leaves the device — and chat ' +
       "with Gemini inline next to whatever page you're on. Shares its " +
-      'layout and shadcn/ui primitives with the `sidebar-claude`, ' +
-      '`sidebar-chatgpt`, and `sidebar-perplexity` siblings; only the SDK ' +
+      'layout and shadcn/ui primitives with the `ai-claude`, ' +
+      '`ai-chatgpt`, and `ai-perplexity` siblings; only the SDK ' +
       'and brand accent change.'
   },
-  'sidebar-perplexity': {
+  'ai-perplexity': {
     title: 'AI Sidebar (Perplexity) Example',
     extra:
       'Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/) ' +
@@ -494,7 +494,7 @@ const OVERRIDES = {
       'panel — it lives in `chrome.storage.local`, never leaves the ' +
       'device — and ask Perplexity questions that get answered with live ' +
       'citations. Shares its layout and shadcn/ui primitives with the ' +
-      '`sidebar-claude`, `sidebar-chatgpt`, and `sidebar-gemini` siblings.'
+      '`ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.'
   },
   'sidebar-transformers-js': {
     title: 'React Sidebar (Transformers.js) Example',

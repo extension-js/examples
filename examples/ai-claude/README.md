@@ -3,23 +3,23 @@
 
 ![Powered by Extension.js][powered-image]
 
-# AI Sidebar (Perplexity) Example
+# AI Sidebar (Claude / Anthropic) Example
 
-> React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).
+> React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.
 
 ![screenshot](./public/screenshot.png)
 
 **What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, OpenAI SDK.
+**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, Anthropic SDK.
 
-Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/) — online-search-grounded models served through an OpenAI-compatible endpoint, so the same `openai` SDK is reused with a different `baseURL`. Paste a `pplx-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and ask Perplexity questions that get answered with live citations. Shares its layout and shadcn/ui primitives with the `sidebar-claude`, `sidebar-chatgpt`, and `sidebar-gemini` siblings.
+Conversational sidebar wired to the [Anthropic SDK](https://docs.anthropic.com/). Paste a key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with Claude inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-chatgpt`, `ai-gemini`, and `ai-perplexity` siblings; only the SDK and brand accent change.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-sidebar-perplexity --template sidebar-perplexity
-cd my-sidebar-perplexity
+npx extension@latest create my-ai-claude --template ai-claude
+cd my-ai-claude
 npm install
 npm run dev
 ```
