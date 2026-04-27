@@ -2,8 +2,8 @@
   "version": "2",
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
-  "commit": "d15ec964f5cd508eef3bd20af5b081c8045e42d0",
-  "generatedAt": "2026-04-27T20:57:09.970Z",
+  "commit": "65f0a96ad61429eafb0f8d89d010fc4adf0ad201",
+  "generatedAt": "2026-04-27T20:59:43.402Z",
   "templates": [
     {
       "slug": "action",
@@ -143,6 +143,403 @@
       ],
       "screenshot": "examples/action-locales/public/screenshot.png",
       "icon": "examples/action-locales/src/images/icon.png"
+    },
+    {
+      "slug": "ai-chatgpt",
+      "name": "@extension-js/ai-chatgpt",
+      "title": "ChatGPT AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "chatgpt",
+        "openai",
+        "gpt",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your ChatGPT API key (from platform.openai.com)",
+        "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using ChatGPT",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware ChatGPT extensions"
+      ],
+      "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/ai-chatgpt/public/screenshot.png",
+      "icon": "examples/ai-chatgpt/src/images/icon.png"
+    },
+    {
+      "slug": "ai-claude",
+      "name": "@extension-js/ai-claude",
+      "title": "Claude AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "claude",
+        "anthropic",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Claude API key (from console.anthropic.com)",
+        "Ask Claude about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Claude",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Claude extensions"
+      ],
+      "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/ai-claude/public/screenshot.png",
+      "icon": "examples/ai-claude/src/images/icon.png"
+    },
+    {
+      "slug": "ai-gemini",
+      "name": "@extension-js/ai-gemini",
+      "title": "Gemini AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "gemini",
+        "google",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Gemini API key (from aistudio.google.com)",
+        "Ask Gemini about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Gemini",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Gemini extensions"
+      ],
+      "docsUrl": "https://ai.google.dev/gemini-api/docs",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/ai-gemini/public/screenshot.png",
+      "icon": "examples/ai-gemini/src/images/icon.png"
+    },
+    {
+      "slug": "ai-perplexity",
+      "name": "@extension-js/ai-perplexity",
+      "title": "Perplexity AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "perplexity",
+        "search",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Perplexity API key (from perplexity.ai/settings/api)",
+        "Ask Perplexity about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Perplexity",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Perplexity extensions"
+      ],
+      "docsUrl": "https://docs.perplexity.ai/",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/ai-perplexity/public/screenshot.png",
+      "icon": "examples/ai-perplexity/src/images/icon.png"
     },
     {
       "slug": "content",
@@ -2437,304 +2834,6 @@
       "icon": "examples/sidebar-antd/src/images/icon.png"
     },
     {
-      "slug": "sidebar-chatgpt",
-      "name": "@extension-js/sidebar-chatgpt",
-      "title": "ChatGPT AI Sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.",
-      "uiContext": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "surfaces": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "entrypoints": [
-        "sidebar/index.html",
-        "content/scripts.ts"
-      ],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": [
-        "postcss.config.js",
-        "tsconfig.json",
-        "extension.config.js"
-      ],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [
-        "<all_urls>"
-      ],
-      "optional_permissions": [],
-      "featured": true,
-      "tags": [
-        "ai",
-        "chatgpt",
-        "openai",
-        "gpt",
-        "chat",
-        "sidebar",
-        "content-scripts",
-        "react",
-        "shadcn"
-      ],
-      "difficulty": "beginner",
-      "timeToFirstSuccessMinutes": 3,
-      "firstSteps": [
-        "Run npm run dev to launch the extension",
-        "Open any web page and click the extension icon to open the sidebar",
-        "Enter your ChatGPT API key (from platform.openai.com)",
-        "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
-      ],
-      "useCases": [
-        "Chat with the active tab's content using ChatGPT",
-        "Summarize or question articles, docs, and dashboards in place",
-        "Starting point for page-aware ChatGPT extensions"
-      ],
-      "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
-      "files": [
-        "extension.config.js",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/components/ApiKeyForm.tsx",
-        "src/components/ChatInput.tsx",
-        "src/components/ChatMessage.tsx",
-        "src/components/ui/button.tsx",
-        "src/components/ui/card.tsx",
-        "src/components/ui/scroll-area.tsx",
-        "src/content/ContentApp.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/icon.png",
-        "src/lib/client.ts",
-        "src/lib/page-context.ts",
-        "src/lib/utils.ts",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
-      ],
-      "browsers": [
-        "chrome",
-        "edge",
-        "firefox"
-      ],
-      "screenshot": "examples/sidebar-chatgpt/public/screenshot.png",
-      "icon": "examples/sidebar-chatgpt/src/images/icon.png"
-    },
-    {
-      "slug": "sidebar-claude",
-      "name": "@extension-js/sidebar-claude",
-      "title": "Claude AI Sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
-      "uiContext": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "surfaces": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "entrypoints": [
-        "sidebar/index.html",
-        "content/scripts.ts"
-      ],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": [
-        "postcss.config.js",
-        "tsconfig.json",
-        "extension.config.js"
-      ],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [
-        "<all_urls>"
-      ],
-      "optional_permissions": [],
-      "featured": true,
-      "tags": [
-        "ai",
-        "claude",
-        "anthropic",
-        "chat",
-        "sidebar",
-        "content-scripts",
-        "react",
-        "shadcn"
-      ],
-      "difficulty": "beginner",
-      "timeToFirstSuccessMinutes": 3,
-      "firstSteps": [
-        "Run npm run dev to launch the extension",
-        "Open any web page and click the extension icon to open the sidebar",
-        "Enter your Claude API key (from console.anthropic.com)",
-        "Ask Claude about the active tab — the content script feeds the page text into the conversation"
-      ],
-      "useCases": [
-        "Chat with the active tab's content using Claude",
-        "Summarize or question articles, docs, and dashboards in place",
-        "Starting point for page-aware Claude extensions"
-      ],
-      "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
-      "files": [
-        "extension.config.js",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/components/ApiKeyForm.tsx",
-        "src/components/ChatInput.tsx",
-        "src/components/ChatMessage.tsx",
-        "src/components/ui/button.tsx",
-        "src/components/ui/card.tsx",
-        "src/components/ui/scroll-area.tsx",
-        "src/content/ContentApp.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/icon.png",
-        "src/lib/client.ts",
-        "src/lib/page-context.ts",
-        "src/lib/utils.ts",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
-      ],
-      "browsers": [
-        "chrome",
-        "edge",
-        "firefox"
-      ],
-      "screenshot": "examples/sidebar-claude/public/screenshot.png",
-      "icon": "examples/sidebar-claude/src/images/icon.png"
-    },
-    {
-      "slug": "sidebar-gemini",
-      "name": "@extension-js/sidebar-gemini",
-      "title": "Gemini AI Sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.",
-      "uiContext": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "surfaces": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "entrypoints": [
-        "sidebar/index.html",
-        "content/scripts.ts"
-      ],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": [
-        "postcss.config.js",
-        "tsconfig.json",
-        "extension.config.js"
-      ],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [
-        "<all_urls>"
-      ],
-      "optional_permissions": [],
-      "featured": true,
-      "tags": [
-        "ai",
-        "gemini",
-        "google",
-        "chat",
-        "sidebar",
-        "content-scripts",
-        "react",
-        "shadcn"
-      ],
-      "difficulty": "beginner",
-      "timeToFirstSuccessMinutes": 3,
-      "firstSteps": [
-        "Run npm run dev to launch the extension",
-        "Open any web page and click the extension icon to open the sidebar",
-        "Enter your Gemini API key (from aistudio.google.com)",
-        "Ask Gemini about the active tab — the content script feeds the page text into the conversation"
-      ],
-      "useCases": [
-        "Chat with the active tab's content using Gemini",
-        "Summarize or question articles, docs, and dashboards in place",
-        "Starting point for page-aware Gemini extensions"
-      ],
-      "docsUrl": "https://ai.google.dev/gemini-api/docs",
-      "files": [
-        "extension.config.js",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/components/ApiKeyForm.tsx",
-        "src/components/ChatInput.tsx",
-        "src/components/ChatMessage.tsx",
-        "src/components/ui/button.tsx",
-        "src/components/ui/card.tsx",
-        "src/components/ui/scroll-area.tsx",
-        "src/content/ContentApp.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/icon.png",
-        "src/lib/client.ts",
-        "src/lib/page-context.ts",
-        "src/lib/utils.ts",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
-      ],
-      "browsers": [
-        "chrome",
-        "edge",
-        "firefox"
-      ],
-      "screenshot": "examples/sidebar-gemini/public/screenshot.png",
-      "icon": "examples/sidebar-gemini/src/images/icon.png"
-    },
-    {
       "slug": "sidebar-monorepo-turbopack",
       "name": "@extension-js/sidebar-monorepo-turbopack",
       "version": "0.0.1",
@@ -2797,105 +2896,6 @@
       ],
       "screenshot": "examples/sidebar-monorepo-turbopack/public/screenshot.png",
       "icon": null
-    },
-    {
-      "slug": "sidebar-perplexity",
-      "name": "@extension-js/sidebar-perplexity",
-      "title": "Perplexity AI Sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).",
-      "uiContext": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "surfaces": [
-        "content",
-        "sidebar",
-        "background"
-      ],
-      "entrypoints": [
-        "sidebar/index.html",
-        "content/scripts.ts"
-      ],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": [
-        "postcss.config.js",
-        "tsconfig.json",
-        "extension.config.js"
-      ],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [
-        "<all_urls>"
-      ],
-      "optional_permissions": [],
-      "featured": true,
-      "tags": [
-        "ai",
-        "perplexity",
-        "search",
-        "chat",
-        "sidebar",
-        "content-scripts",
-        "react",
-        "shadcn"
-      ],
-      "difficulty": "beginner",
-      "timeToFirstSuccessMinutes": 3,
-      "firstSteps": [
-        "Run npm run dev to launch the extension",
-        "Open any web page and click the extension icon to open the sidebar",
-        "Enter your Perplexity API key (from perplexity.ai/settings/api)",
-        "Ask Perplexity about the active tab — the content script feeds the page text into the conversation"
-      ],
-      "useCases": [
-        "Chat with the active tab's content using Perplexity",
-        "Summarize or question articles, docs, and dashboards in place",
-        "Starting point for page-aware Perplexity extensions"
-      ],
-      "docsUrl": "https://docs.perplexity.ai/",
-      "files": [
-        "extension.config.js",
-        "public/screenshot.png",
-        "src/background.ts",
-        "src/components/ApiKeyForm.tsx",
-        "src/components/ChatInput.tsx",
-        "src/components/ChatMessage.tsx",
-        "src/components/ui/button.tsx",
-        "src/components/ui/card.tsx",
-        "src/components/ui/scroll-area.tsx",
-        "src/content/ContentApp.ts",
-        "src/content/scripts.ts",
-        "src/content/styles.css",
-        "src/images/icon.png",
-        "src/lib/client.ts",
-        "src/lib/page-context.ts",
-        "src/lib/utils.ts",
-        "src/manifest.json",
-        "src/sidebar/SidebarApp.tsx",
-        "src/sidebar/index.html",
-        "src/sidebar/scripts.tsx",
-        "src/sidebar/styles.css"
-      ],
-      "browsers": [
-        "chrome",
-        "edge",
-        "firefox"
-      ],
-      "screenshot": "examples/sidebar-perplexity/public/screenshot.png",
-      "icon": "examples/sidebar-perplexity/src/images/icon.png"
     },
     {
       "slug": "sidebar-shadcn",

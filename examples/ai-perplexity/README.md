@@ -3,9 +3,9 @@
 
 ![Powered by Extension.js][powered-image]
 
-# AI Sidebar (ChatGPT / OpenAI) Example
+# AI Sidebar (Perplexity) Example
 
-> React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.
+> React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).
 
 ![screenshot](./public/screenshot.png)
 
@@ -13,13 +13,13 @@
 
 **How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, OpenAI SDK.
 
-Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). Paste an `sk-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with ChatGPT inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `sidebar-claude`, `sidebar-gemini`, and `sidebar-perplexity` siblings; only the SDK and brand accent change.
+Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/) — online-search-grounded models served through an OpenAI-compatible endpoint, so the same `openai` SDK is reused with a different `baseURL`. Paste a `pplx-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and ask Perplexity questions that get answered with live citations. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-sidebar-chatgpt --template sidebar-chatgpt
-cd my-sidebar-chatgpt
+npx extension@latest create my-ai-perplexity --template ai-perplexity
+cd my-ai-perplexity
 npm install
 npm run dev
 ```

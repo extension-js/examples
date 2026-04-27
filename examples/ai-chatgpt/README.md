@@ -3,23 +3,23 @@
 
 ![Powered by Extension.js][powered-image]
 
-# AI Sidebar (Gemini / Google) Example
+# AI Sidebar (ChatGPT / OpenAI) Example
 
-> React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.
+> React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.
 
 ![screenshot](./public/screenshot.png)
 
 **What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
+**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, OpenAI SDK.
 
-Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). Paste a Google AI Studio key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with Gemini inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `sidebar-claude`, `sidebar-chatgpt`, and `sidebar-perplexity` siblings; only the SDK and brand accent change.
+Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). Paste an `sk-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with ChatGPT inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-gemini`, and `ai-perplexity` siblings; only the SDK and brand accent change.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-sidebar-gemini --template sidebar-gemini
-cd my-sidebar-gemini
+npx extension@latest create my-ai-chatgpt --template ai-chatgpt
+cd my-ai-chatgpt
 npm install
 npm run dev
 ```
