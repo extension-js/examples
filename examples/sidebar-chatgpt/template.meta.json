@@ -1,0 +1,28 @@
+{
+  "title": "ChatGPT AI Sidebar",
+  "featured": true,
+  "tags": [
+    "ai",
+    "chatgpt",
+    "openai",
+    "gpt",
+    "chat",
+    "sidebar",
+    "react",
+    "shadcn"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar",
+    "Enter your ChatGPT API key (from platform.openai.com)",
+    "Start chatting with ChatGPT"
+  ],
+  "useCases": [
+    "ChatGPT-powered assistant in any browser sidebar",
+    "Quick questions answered by ChatGPT without leaving the page",
+    "Starting point for ChatGPT-powered browser extensions"
+  ],
+  "docsUrl": "https://platform.openai.com/docs/api-reference/chat"
+}

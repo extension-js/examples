@@ -1,0 +1,19 @@
+{
+  "title": "Perplexity AI Sidebar",
+  "featured": true,
+  "tags": ["ai", "perplexity", "search", "chat", "sidebar", "react", "shadcn"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar",
+    "Enter your Perplexity API key (from perplexity.ai/settings/api)",
+    "Start chatting with Perplexity"
+  ],
+  "useCases": [
+    "Perplexity-powered assistant in any browser sidebar",
+    "Quick questions answered by Perplexity without leaving the page",
+    "Starting point for Perplexity-powered browser extensions"
+  ],
+  "docsUrl": "https://docs.perplexity.ai/"
+}
