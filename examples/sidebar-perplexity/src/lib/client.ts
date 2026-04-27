@@ -22,7 +22,8 @@ export async function removeApiKey(): Promise<void> {
 
 export async function sendMessage(
   apiKey: string,
-  messages: Message[]
+  messages: Message[],
+  systemPrompt?: string
 ): Promise<string> {
   const client = new OpenAI({
     apiKey,
@@ -31,12 +32,17 @@ export async function sendMessage(
     dangerouslyAllowBrowser: true
   })
 
+  const payload: {role: 'system' | 'user' | 'assistant'; content: string}[] = []
+  if (systemPrompt) {
+    payload.push({role: 'system', content: systemPrompt})
+  }
+  for (const m of messages) {
+    payload.push({role: m.role, content: m.content})
+  }
+
   const response = await client.chat.completions.create({
     model: 'llama-3.1-sonar-small-128k-online',
-    messages: messages.map((m) => ({
-      role: m.role,
-      content: m.content
-    }))
+    messages: payload
   })
 
   return response.choices[0]?.message?.content ?? ''

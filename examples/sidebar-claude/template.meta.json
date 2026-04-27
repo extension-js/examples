@@ -1,19 +1,28 @@
 {
   "title": "Claude AI Sidebar",
   "featured": true,
-  "tags": ["ai", "claude", "anthropic", "chat", "sidebar", "react", "shadcn"],
+  "tags": [
+    "ai",
+    "claude",
+    "anthropic",
+    "chat",
+    "sidebar",
+    "content-scripts",
+    "react",
+    "shadcn"
+  ],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
     "Run npm run dev to launch the extension",
-    "Click the extension icon to open the sidebar",
+    "Open any web page and click the extension icon to open the sidebar",
     "Enter your Claude API key (from console.anthropic.com)",
-    "Start chatting with Claude"
+    "Ask Claude about the active tab — the content script feeds the page text into the conversation"
   ],
   "useCases": [
-    "Claude-powered assistant in any browser sidebar",
-    "Quick questions answered by Claude without leaving the page",
-    "Starting point for Claude-powered browser extensions"
+    "Chat with the active tab's content using Claude",
+    "Summarize or question articles, docs, and dashboards in place",
+    "Starting point for page-aware Claude extensions"
   ],
   "docsUrl": "https://docs.anthropic.com/en/api/getting-started"
 }

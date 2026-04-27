@@ -1,0 +1,18 @@
+{
+  "title": "Special Folders: pages/",
+  "featured": true,
+  "tags": ["special-folders", "pages", "welcome-page", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "A welcome page from src/pages/ opens automatically on install",
+    "Add another HTML file under src/pages/ — it ships as a separate page"
+  ],
+  "useCases": [
+    "Onboarding, help, and welcome pages that ship with the extension",
+    "Standalone HTML routes without manifest plumbing",
+    "Reference for Extension.js's pages/ special folder convention"
+  ],
+  "docsUrl": "https://extension.js.org/docs/features/special-folders"
+}

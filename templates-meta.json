@@ -2,21 +2,32 @@
   "version": "2",
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
-  "commit": "main",
-  "generatedAt": "2026-04-25T19:30:02.755Z",
+  "commit": "d15ec964f5cd508eef3bd20af5b081c8045e42d0",
+  "generatedAt": "2026-04-27T20:57:09.970Z",
   "templates": [
     {
       "slug": "action",
       "name": "@extension-js/action",
+      "title": "Action (Popup)",
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Action popup example. Opens a toolbar popup with a simple page.",
-      "uiContext": ["action", "background"],
-      "surfaces": ["action", "background"],
-      "entrypoints": ["./action/index.html"],
+      "uiContext": [
+        "action",
+        "background"
+      ],
+      "surfaces": [
+        "action",
+        "background"
+      ],
+      "entrypoints": [
+        "./action/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -27,70 +38,50 @@
           "hasEnv": false
         }
       },
-      "permissions": ["storage", "tabs", "activeTab", "scripting"],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/action/extension.config.js",
-        "public/action/public/screenshot.png",
-        "public/action/src/action/index.html",
-        "public/action/src/action/scripts.js",
-        "public/action/src/action/styles.css",
-        "public/action/src/background.js",
-        "public/action/src/images/icon.png",
-        "public/action/src/manifest.json"
+      "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "scripting"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/action/screenshot.png",
-      "icon": "public/action/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action"
-    },
-    {
-      "slug": "action-chatgpt",
-      "name": "@extension-js/action-chatgpt",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React action popup example. Opens a toolbar popup and renders a basic React UI.",
-      "uiContext": ["action", "background"],
-      "surfaces": ["action", "background"],
-      "entrypoints": ["./action/index.html"],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": [
-        "postcss.config.js",
-        "tsconfig.json",
-        "extension.config.js"
-      ],
-      "hasBackground": true,
-      "hasEnv": true,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": true,
-          "hasEnv": true
-        }
-      },
-      "permissions": ["storage", "tabs", "activeTab", "scripting"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
-      "files": [
-        "public/action-chatgpt/extension.config.js",
-        "public/action-chatgpt/public/screenshot.png",
-        "public/action-chatgpt/src/action/ActionApp.tsx",
-        "public/action-chatgpt/src/action/index.html",
-        "public/action-chatgpt/src/action/scripts.tsx",
-        "public/action-chatgpt/src/action/styles.css",
-        "public/action-chatgpt/src/background.ts",
-        "public/action-chatgpt/src/images/icon.png",
-        "public/action-chatgpt/src/manifest.json"
+      "tags": [
+        "action",
+        "popup",
+        "javascript"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/action-chatgpt/screenshot.png",
-      "icon": "public/action-chatgpt/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-chatgpt"
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the toolbar icon to open the action popup",
+        "Edit src/action/index.html and watch HMR update the popup"
+      ],
+      "useCases": [
+        "Toolbar popup as the primary UI surface",
+        "Quick actions that don't need a full sidebar or page",
+        "Starting point for popup-based browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/action/index.html",
+        "src/action/scripts.js",
+        "src/action/styles.css",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/action/public/screenshot.png",
+      "icon": "examples/action/src/images/icon.png"
     },
     {
       "slug": "action-locales",
@@ -98,12 +89,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
-      "uiContext": ["action", "background"],
-      "surfaces": ["action", "background"],
-      "entrypoints": ["./action/index.html"],
+      "uiContext": [
+        "action",
+        "background"
+      ],
+      "surfaces": [
+        "action",
+        "background"
+      ],
+      "entrypoints": [
+        "./action/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -114,26 +115,34 @@
           "hasEnv": false
         }
       },
-      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "permissions": [
+        "storage",
+        "tabs",
+        "activeTab",
+        "scripting"
+      ],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/action-locales/extension.config.js",
-        "public/action-locales/public/screenshot.png",
-        "public/action-locales/src/_locales/en/messages.json",
-        "public/action-locales/src/_locales/pt_BR/messages.json",
-        "public/action-locales/src/action/index.html",
-        "public/action-locales/src/action/scripts.js",
-        "public/action-locales/src/action/styles.css",
-        "public/action-locales/src/background.js",
-        "public/action-locales/src/images/icon.png",
-        "public/action-locales/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/_locales/en/messages.json",
+        "src/_locales/pt_BR/messages.json",
+        "src/action/index.html",
+        "src/action/scripts.js",
+        "src/action/styles.css",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/action-locales/screenshot.png",
-      "icon": "public/action-locales/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-locales"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/action-locales/public/screenshot.png",
+      "icon": "examples/action-locales/src/images/icon.png"
     },
     {
       "slug": "content",
@@ -141,12 +150,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -157,23 +176,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content/extension.config.js",
-        "public/content/public/screenshot.png",
-        "public/content/src/background.js",
-        "public/content/src/content/scripts.js",
-        "public/content/src/content/styles.css",
-        "public/content/src/images/icon.png",
-        "public/content/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content/screenshot.png",
-      "icon": "public/content/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content/public/screenshot.png",
+      "icon": "examples/content/src/images/icon.png"
     },
     {
       "slug": "content-css-modules",
@@ -181,12 +208,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -197,23 +234,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-css-modules/extension.config.js",
-        "public/content-css-modules/public/screenshot.png",
-        "public/content-css-modules/src/background.js",
-        "public/content-css-modules/src/content/scripts.js",
-        "public/content-css-modules/src/content/styles.module.css",
-        "public/content-css-modules/src/images/icon.png",
-        "public/content-css-modules/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.css",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-css-modules/screenshot.png",
-      "icon": "public/content-css-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-css-modules"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-css-modules/public/screenshot.png",
+      "icon": "examples/content-css-modules/src/images/icon.png"
     },
     {
       "slug": "content-custom-font",
@@ -221,12 +266,23 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["postcss.config.js", "extension.config.js"],
+      "configFiles": [
+        "postcss.config.js",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -237,23 +293,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-custom-font/extension.config.js",
-        "public/content-custom-font/public/screenshot.png",
-        "public/content-custom-font/src/background.js",
-        "public/content-custom-font/src/content/scripts.js",
-        "public/content-custom-font/src/content/styles.css",
-        "public/content-custom-font/src/images/icon.png",
-        "public/content-custom-font/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-custom-font/screenshot.png",
-      "icon": "public/content-custom-font/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-custom-font"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-custom-font/public/screenshot.png",
+      "icon": "examples/content-custom-font/src/images/icon.png"
     },
     {
       "slug": "content-env",
@@ -261,12 +325,23 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example that reads environment variables (.env) and renders a small UI.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.ts"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -277,23 +352,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-env/extension.config.js",
-        "public/content-env/public/screenshot.png",
-        "public/content-env/src/background.ts",
-        "public/content-env/src/content/scripts.ts",
-        "public/content-env/src/content/styles.css",
-        "public/content-env/src/images/icon.png",
-        "public/content-env/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-env/screenshot.png",
-      "icon": "public/content-env/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-env"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-env/public/screenshot.png",
+      "icon": "examples/content-env/src/images/icon.png"
     },
     {
       "slug": "content-less",
@@ -301,12 +384,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "less",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -317,23 +410,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/content-less/extension.config.js",
-        "public/content-less/public/screenshot.png",
-        "public/content-less/src/background.js",
-        "public/content-less/src/content/scripts.js",
-        "public/content-less/src/content/styles.less",
-        "public/content-less/src/images/icon.png",
-        "public/content-less/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.less",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-less/screenshot.png",
-      "icon": "public/content-less/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-less/public/screenshot.png",
+      "icon": "examples/content-less/src/images/icon.png"
     },
     {
       "slug": "content-less-modules",
@@ -341,12 +442,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "less",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -357,32 +468,47 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-less-modules/extension.config.js",
-        "public/content-less-modules/public/screenshot.png",
-        "public/content-less-modules/src/background.js",
-        "public/content-less-modules/src/content/scripts.js",
-        "public/content-less-modules/src/content/styles.module.less",
-        "public/content-less-modules/src/images/icon.png",
-        "public/content-less-modules/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.less",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-less-modules/screenshot.png",
-      "icon": "public/content-less-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less-modules"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-less-modules/public/screenshot.png",
+      "icon": "examples/content-less-modules/src/images/icon.png"
     },
     {
       "slug": "content-main-world",
       "name": "@extension-js/content-main-world",
+      "title": "Main-world Content Script",
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Main world content script with multiple groups. ISOLATED entries precede the MAIN world entry so bridge injection exercises canonical-index vs array-position resolution.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
       "entrypoints": [
         "content/isolated-one.js",
         "content/isolated-two.js",
@@ -390,7 +516,9 @@
       ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -401,27 +529,54 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/content-main-world/extension.config.js",
-        "public/content-main-world/public/screenshot.png",
-        "public/content-main-world/src/background.js",
-        "public/content-main-world/src/content/isolated-one.js",
-        "public/content-main-world/src/content/isolated-two.js",
-        "public/content-main-world/src/content/scripts.js",
-        "public/content-main-world/src/content/styles.css",
-        "public/content-main-world/src/content/utils/constants.js",
-        "public/content-main-world/src/content/utils/create-badge.js",
-        "public/content-main-world/src/images/icon.png",
-        "public/content-main-world/src/manifest.json"
+      "permissions": [
+        "activeTab",
+        "scripting"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-main-world/screenshot.png",
-      "icon": "public/content-main-world/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-main-world"
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "content-scripts",
+        "main-world",
+        "isolated-world",
+        "javascript"
+      ],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any page and watch the main-world script run alongside isolated entries",
+        "Inspect window.postMessage bridges between isolated and main worlds"
+      ],
+      "useCases": [
+        "Hook into page-level globals that isolated content scripts cannot reach",
+        "Bridge isolated and main-world execution contexts cleanly",
+        "Reference for multi-group content_scripts in MV3"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/isolated-one.js",
+        "src/content/isolated-two.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/content/utils/constants.js",
+        "src/content/utils/create-badge.js",
+        "src/images/icon.png",
+        "src/manifest.json"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-main-world/public/screenshot.png",
+      "icon": "examples/content-main-world/src/images/icon.png"
     },
     {
       "slug": "content-multi-one-entry",
@@ -429,8 +584,14 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
       "entrypoints": [
         "content/script-top-left.js",
         "content/script-top-right.js",
@@ -439,7 +600,9 @@
       ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -450,37 +613,52 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-multi-one-entry/extension.config.js",
-        "public/content-multi-one-entry/public/screenshot.png",
-        "public/content-multi-one-entry/src/background.js",
-        "public/content-multi-one-entry/src/content/script-bottom-left.js",
-        "public/content-multi-one-entry/src/content/script-bottom-right.js",
-        "public/content-multi-one-entry/src/content/script-top-left.js",
-        "public/content-multi-one-entry/src/content/script-top-right.js",
-        "public/content-multi-one-entry/src/content/styles.css",
-        "public/content-multi-one-entry/src/content/utils/constants.js",
-        "public/content-multi-one-entry/src/content/utils/create-badge.js",
-        "public/content-multi-one-entry/src/images/icon.png",
-        "public/content-multi-one-entry/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/script-bottom-left.js",
+        "src/content/script-bottom-right.js",
+        "src/content/script-top-left.js",
+        "src/content/script-top-right.js",
+        "src/content/styles.css",
+        "src/content/utils/constants.js",
+        "src/content/utils/create-badge.js",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-multi-one-entry/screenshot.png",
-      "icon": "public/content-multi-one-entry/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-multi-one-entry/public/screenshot.png",
+      "icon": "examples/content-multi-one-entry/src/images/icon.png"
     },
     {
       "slug": "content-multi-three-entries",
       "name": "@extension-js/content-multi-three-entries",
+      "title": "Multi-entry Content Scripts",
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example split across three entries (2 + 1 + 1). Each script injects a small element.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
       "entrypoints": [
         "content/script-top-left.js",
         "content/script-top-right.js",
@@ -489,7 +667,9 @@
       ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -500,28 +680,55 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/content-multi-three-entries/extension.config.js",
-        "public/content-multi-three-entries/src/background.js",
-        "public/content-multi-three-entries/src/content/script-bottom-left.js",
-        "public/content-multi-three-entries/src/content/script-bottom-right.js",
-        "public/content-multi-three-entries/src/content/script-top-left.js",
-        "public/content-multi-three-entries/src/content/script-top-right.js",
-        "public/content-multi-three-entries/src/content/styles.css",
-        "public/content-multi-three-entries/src/content/utils/constants.js",
-        "public/content-multi-three-entries/src/content/utils/create-badge.js",
-        "public/content-multi-three-entries/src/images/icon.png",
-        "public/content-multi-three-entries/src/manifest.json",
-        "public/content-multi-three-entries/src/screenshot.png"
+      "permissions": [
+        "activeTab",
+        "scripting"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-multi-three-entries/screenshot.png",
-      "icon": "public/content-multi-three-entries/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries"
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "content-scripts",
+        "multi-entry",
+        "javascript"
+      ],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any page — three separate content scripts inject small elements",
+        "Edit any of the entries in src/content/ to see HMR update independently"
+      ],
+      "useCases": [
+        "Split content-script logic across multiple entries with different match rules",
+        "Target different page contexts with focused, independent bundles",
+        "Reference for the multi-entry content_scripts pattern in MV3"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/script-bottom-left.js",
+        "src/content/script-bottom-right.js",
+        "src/content/script-top-left.js",
+        "src/content/script-top-right.js",
+        "src/content/styles.css",
+        "src/content/utils/constants.js",
+        "src/content/utils/create-badge.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/screenshot.png"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-multi-three-entries/public/screenshot.png",
+      "icon": "examples/content-multi-three-entries/src/images/icon.png"
     },
     {
       "slug": "content-preact",
@@ -529,9 +736,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example rendered with Preact. Mounts a small UI inside a Shadow DOM on any page.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["./content/scripts.tsx"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "./content/scripts.tsx"
+      ],
       "uiFramework": "preact",
       "css": "css",
       "configFiles": [
@@ -554,24 +769,27 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-preact/extension.config.js",
-        "public/content-preact/public/screenshot.png",
-        "public/content-preact/src/background.ts",
-        "public/content-preact/src/content/ContentApp.tsx",
-        "public/content-preact/src/content/scripts.tsx",
-        "public/content-preact/src/content/styles.css",
-        "public/content-preact/src/images/chromeWindow.png",
-        "public/content-preact/src/images/icon.png",
-        "public/content-preact/src/images/preact.png",
-        "public/content-preact/src/images/tailwind.png",
-        "public/content-preact/src/images/tailwind_bg.png",
-        "public/content-preact/src/images/typescript.png",
-        "public/content-preact/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/icon.png",
+        "src/images/preact.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-preact/screenshot.png",
-      "icon": "public/content-preact/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-preact/public/screenshot.png",
+      "icon": "examples/content-preact/src/images/icon.png"
     },
     {
       "slug": "content-react",
@@ -579,9 +797,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["./content/scripts.tsx"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "./content/scripts.tsx"
+      ],
       "uiFramework": "react",
       "css": "css",
       "configFiles": [
@@ -604,24 +830,27 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-react/extension.config.js",
-        "public/content-react/public/screenshot.png",
-        "public/content-react/src/background.ts",
-        "public/content-react/src/content/ContentApp.tsx",
-        "public/content-react/src/content/scripts.tsx",
-        "public/content-react/src/content/styles.css",
-        "public/content-react/src/images/chromeWindow.png",
-        "public/content-react/src/images/icon.png",
-        "public/content-react/src/images/react.png",
-        "public/content-react/src/images/tailwind.png",
-        "public/content-react/src/images/tailwind_bg.png",
-        "public/content-react/src/images/typescript.png",
-        "public/content-react/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/icon.png",
+        "src/images/react.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-react/screenshot.png",
-      "icon": "public/content-react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-react"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-react/public/screenshot.png",
+      "icon": "examples/content-react/src/images/icon.png"
     },
     {
       "slug": "content-sass",
@@ -629,12 +858,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "sass",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -645,23 +884,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/content-sass/extension.config.js",
-        "public/content-sass/public/screenshot.png",
-        "public/content-sass/src/background.js",
-        "public/content-sass/src/content/scripts.js",
-        "public/content-sass/src/content/styles.scss",
-        "public/content-sass/src/images/icon.png",
-        "public/content-sass/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.scss",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-sass/screenshot.png",
-      "icon": "public/content-sass/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-sass/public/screenshot.png",
+      "icon": "examples/content-sass/src/images/icon.png"
     },
     {
       "slug": "content-sass-modules",
@@ -669,12 +916,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.js"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "sass",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -687,23 +944,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-sass-modules/extension.config.js",
-        "public/content-sass-modules/public/screenshot.png",
-        "public/content-sass-modules/src/background.js",
-        "public/content-sass-modules/src/content/scripts.js",
-        "public/content-sass-modules/src/content/styles.module.scss",
-        "public/content-sass-modules/src/images/icon.png",
-        "public/content-sass-modules/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/scripts.js",
+        "src/content/styles.module.scss",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-sass-modules/screenshot.png",
-      "icon": "public/content-sass-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass-modules"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-sass-modules/public/screenshot.png",
+      "icon": "examples/content-sass-modules/src/images/icon.png"
     },
     {
       "slug": "content-svelte",
@@ -711,9 +976,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["./content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "./content/scripts.ts"
+      ],
       "uiFramework": "svelte",
       "css": "css",
       "configFiles": [
@@ -736,25 +1009,28 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-svelte/extension.config.js",
-        "public/content-svelte/public/screenshot.png",
-        "public/content-svelte/src/background.ts",
-        "public/content-svelte/src/content/ContentApp.svelte",
-        "public/content-svelte/src/content/scripts.ts",
-        "public/content-svelte/src/content/styles.css",
-        "public/content-svelte/src/content/svelte.d.ts",
-        "public/content-svelte/src/images/chromeWindow.png",
-        "public/content-svelte/src/images/icon.png",
-        "public/content-svelte/src/images/svelte.png",
-        "public/content-svelte/src/images/tailwind.png",
-        "public/content-svelte/src/images/tailwind_bg.png",
-        "public/content-svelte/src/images/typescript.png",
-        "public/content-svelte/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.svelte",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/svelte.d.ts",
+        "src/images/chromeWindow.png",
+        "src/images/icon.png",
+        "src/images/svelte.png",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-svelte/screenshot.png",
-      "icon": "public/content-svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-svelte"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-svelte/public/screenshot.png",
+      "icon": "examples/content-svelte/src/images/icon.png"
     },
     {
       "slug": "content-typescript",
@@ -762,12 +1038,23 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "content/scripts.ts"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -778,23 +1065,31 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-typescript/extension.config.js",
-        "public/content-typescript/public/screenshot.png",
-        "public/content-typescript/src/background.ts",
-        "public/content-typescript/src/content/scripts.ts",
-        "public/content-typescript/src/content/styles.css",
-        "public/content-typescript/src/images/icon.png",
-        "public/content-typescript/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-typescript/screenshot.png",
-      "icon": "public/content-typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-typescript"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-typescript/public/screenshot.png",
+      "icon": "examples/content-typescript/src/images/icon.png"
     },
     {
       "slug": "content-vue",
@@ -802,9 +1097,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["./content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "background"
+      ],
+      "entrypoints": [
+        "./content/scripts.ts"
+      ],
       "uiFramework": "vue",
       "css": "css",
       "configFiles": [
@@ -827,26 +1130,29 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/content-vue/extension.config.js",
-        "public/content-vue/public/screenshot.png",
-        "public/content-vue/src/background.ts",
-        "public/content-vue/src/content/ContentApp.vue",
-        "public/content-vue/src/content/scripts.ts",
-        "public/content-vue/src/content/shims-vue.d.ts",
-        "public/content-vue/src/content/styles.css",
-        "public/content-vue/src/images/chromeWindow.png",
-        "public/content-vue/src/images/icon.png",
-        "public/content-vue/src/images/logo.svg",
-        "public/content-vue/src/images/tailwind.png",
-        "public/content-vue/src/images/tailwind_bg.png",
-        "public/content-vue/src/images/typescript.png",
-        "public/content-vue/src/images/vue.png",
-        "public/content-vue/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.vue",
+        "src/content/scripts.ts",
+        "src/content/shims-vue.d.ts",
+        "src/content/styles.css",
+        "src/images/chromeWindow.png",
+        "src/images/icon.png",
+        "src/images/logo.svg",
+        "src/images/tailwind.png",
+        "src/images/tailwind_bg.png",
+        "src/images/typescript.png",
+        "src/images/vue.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/content-vue/screenshot.png",
-      "icon": "public/content-vue/src/images/logo.svg",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/content-vue/public/screenshot.png",
+      "icon": "examples/content-vue/src/images/logo.svg"
     },
     {
       "slug": "init",
@@ -859,7 +1165,9 @@
       "entrypoints": [],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": false,
       "hasEnv": false,
       "setup": {
@@ -875,17 +1183,20 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/init/extension.config.js",
-        "public/init/public/screenshot.png",
-        "public/init/src/images/icon.png",
-        "public/init/src/images/javascript.png",
-        "public/init/src/index.js",
-        "public/init/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/images/icon.png",
+        "src/images/javascript.png",
+        "src/index.js",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/init/screenshot.png",
-      "icon": "public/init/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/init"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/init/public/screenshot.png",
+      "icon": "examples/init/src/images/icon.png"
     },
     {
       "slug": "javascript",
@@ -893,12 +1204,25 @@
       "version": "3.0.0",
       "manifest_version": 3,
       "description": "JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.js"],
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -914,23 +1238,26 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/javascript/extension.config.js",
-        "public/javascript/public/screenshot.png",
-        "public/javascript/src/background.js",
-        "public/javascript/src/content/ContentApp.js",
-        "public/javascript/src/content/scripts.js",
-        "public/javascript/src/content/styles.css",
-        "public/javascript/src/images/icon.png",
-        "public/javascript/src/manifest.json",
-        "public/javascript/src/sidebar/SidebarApp.js",
-        "public/javascript/src/sidebar/index.html",
-        "public/javascript/src/sidebar/scripts.js",
-        "public/javascript/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/ContentApp.js",
+        "src/content/scripts.js",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.js",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/javascript/screenshot.png",
-      "icon": "public/javascript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/javascript"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/javascript/screenshot.png",
+      "icon": "examples/javascript/src/images/icon.png"
     },
     {
       "slug": "new",
@@ -938,12 +1265,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example using plain JavaScript. Renders a simple page you can customize.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -959,19 +1296,22 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new/extension.config.js",
-        "public/new/public/screenshot.png",
-        "public/new/src/background.js",
-        "public/new/src/images/icon.png",
-        "public/new/src/manifest.json",
-        "public/new/src/newtab/index.html",
-        "public/new/src/newtab/scripts.js",
-        "public/new/src/newtab/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new/screenshot.png",
-      "icon": "public/new/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new/public/screenshot.png",
+      "icon": "examples/new/src/images/icon.png"
     },
     {
       "slug": "new-browser-flags",
@@ -979,8 +1319,18 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
-      "uiContext": ["content", "newtab", "sidebar", "background"],
-      "surfaces": ["content", "newtab", "sidebar", "background"],
+      "uiContext": [
+        "content",
+        "newtab",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "newtab",
+        "sidebar",
+        "background"
+      ],
       "entrypoints": [
         "newtab/index.html",
         "sidebar/index.html",
@@ -988,7 +1338,9 @@
       ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1001,27 +1353,36 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting", "notifications"],
-      "host_permissions": ["<all_urls>"],
+      "permissions": [
+        "activeTab",
+        "scripting",
+        "notifications"
+      ],
+      "host_permissions": [
+        "<all_urls>"
+      ],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new-browser-flags/extension.config.js",
-        "public/new-browser-flags/public/screenshot.png",
-        "public/new-browser-flags/src/background.js",
-        "public/new-browser-flags/src/content/content.js",
-        "public/new-browser-flags/src/images/icon.png",
-        "public/new-browser-flags/src/manifest.json",
-        "public/new-browser-flags/src/newtab/index.html",
-        "public/new-browser-flags/src/newtab/newtab.css",
-        "public/new-browser-flags/src/newtab/newtab.js",
-        "public/new-browser-flags/src/sidebar/index.html",
-        "public/new-browser-flags/src/sidebar/sidebar.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/content/content.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/newtab.css",
+        "src/newtab/newtab.js",
+        "src/sidebar/index.html",
+        "src/sidebar/sidebar.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-browser-flags/screenshot.png",
-      "icon": "public/new-browser-flags/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-browser-flags"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-browser-flags/public/screenshot.png",
+      "icon": "examples/new-browser-flags/src/images/icon.png"
     },
     {
       "slug": "new-config-eslint",
@@ -1029,9 +1390,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": [
@@ -1054,19 +1423,22 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new-config-eslint/extension.config.js",
-        "public/new-config-eslint/public/screenshot.png",
-        "public/new-config-eslint/src/background.js",
-        "public/new-config-eslint/src/images/icon.png",
-        "public/new-config-eslint/src/manifest.json",
-        "public/new-config-eslint/src/newtab/index.html",
-        "public/new-config-eslint/src/newtab/scripts.ts",
-        "public/new-config-eslint/src/newtab/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-config-eslint/screenshot.png",
-      "icon": "public/new-config-eslint/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-eslint"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-config-eslint/public/screenshot.png",
+      "icon": "examples/new-config-eslint/src/images/icon.png"
     },
     {
       "slug": "new-config-prettier",
@@ -1074,12 +1446,24 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js", ".prettierrc"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js",
+        ".prettierrc"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1095,19 +1479,22 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new-config-prettier/extension.config.js",
-        "public/new-config-prettier/public/screenshot.png",
-        "public/new-config-prettier/src/background.js",
-        "public/new-config-prettier/src/images/icon.png",
-        "public/new-config-prettier/src/manifest.json",
-        "public/new-config-prettier/src/newtab/index.html",
-        "public/new-config-prettier/src/newtab/scripts.ts",
-        "public/new-config-prettier/src/newtab/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-config-prettier/screenshot.png",
-      "icon": "public/new-config-prettier/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-prettier"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-config-prettier/public/screenshot.png",
+      "icon": "examples/new-config-prettier/src/images/icon.png"
     },
     {
       "slug": "new-config-stylelint",
@@ -1115,12 +1502,23 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
       "css": "sass",
-      "configFiles": [".stylelintrc.json", "extension.config.js"],
+      "configFiles": [
+        ".stylelintrc.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1136,19 +1534,22 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new-config-stylelint/extension.config.js",
-        "public/new-config-stylelint/public/screenshot.png",
-        "public/new-config-stylelint/src/background.js",
-        "public/new-config-stylelint/src/images/icon.png",
-        "public/new-config-stylelint/src/manifest.json",
-        "public/new-config-stylelint/src/newtab/index.html",
-        "public/new-config-stylelint/src/newtab/scripts.js",
-        "public/new-config-stylelint/src/newtab/styles.scss"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.scss"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-config-stylelint/screenshot.png",
-      "icon": "public/new-config-stylelint/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-config-stylelint"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-config-stylelint/public/screenshot.png",
+      "icon": "examples/new-config-stylelint/src/images/icon.png"
     },
     {
       "slug": "new-crypto",
@@ -1156,12 +1557,23 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example demonstrating basic crypto operations inside an extension.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1177,622 +1589,44 @@
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/new-crypto/extension.config.js",
-        "public/new-crypto/public/screenshot.png",
-        "public/new-crypto/src/background.js",
-        "public/new-crypto/src/images/icon.png",
-        "public/new-crypto/src/manifest.json",
-        "public/new-crypto/src/newtab/index.html",
-        "public/new-crypto/src/newtab/scripts.ts",
-        "public/new-crypto/src/newtab/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-crypto/screenshot.png",
-      "icon": "public/new-crypto/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-crypto"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-crypto/public/screenshot.png",
+      "icon": "examples/new-crypto/src/images/icon.png"
     },
     {
       "slug": "new-env",
       "name": "@extension-js/new-env",
+      "title": "Environment Variables",
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
       "uiFramework": "",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-env/extension.config.js",
-        "public/new-env/public/screenshot.png",
-        "public/new-env/src/background.js",
-        "public/new-env/src/images/icon.png",
-        "public/new-env/src/manifest.json",
-        "public/new-env/src/newtab/index.html",
-        "public/new-env/src/newtab/scripts.ts",
-        "public/new-env/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-env/screenshot.png",
-      "icon": "public/new-env/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-env"
-    },
-    {
-      "slug": "new-less",
-      "name": "@extension-js/new-less",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "",
-      "css": "less",
-      "configFiles": ["extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-less/extension.config.js",
-        "public/new-less/public/screenshot.png",
-        "public/new-less/src/background.js",
-        "public/new-less/src/images/icon.png",
-        "public/new-less/src/manifest.json",
-        "public/new-less/src/newtab/index.html",
-        "public/new-less/src/newtab/scripts.js",
-        "public/new-less/src/newtab/styles.less"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-less/screenshot.png",
-      "icon": "public/new-less/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-less"
-    },
-    {
-      "slug": "new-preact",
-      "name": "@extension-js/new-preact",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "preact",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-preact/extension.config.js",
-        "public/new-preact/public/screenshot.png",
-        "public/new-preact/src/background.js",
-        "public/new-preact/src/images/icon.png",
-        "public/new-preact/src/manifest.json",
-        "public/new-preact/src/newtab/NewTabApp.tsx",
-        "public/new-preact/src/newtab/index.html",
-        "public/new-preact/src/newtab/scripts.tsx",
-        "public/new-preact/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-preact/screenshot.png",
-      "icon": "public/new-preact/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-preact"
-    },
-    {
-      "slug": "new-react",
-      "name": "@extension-js/new-react",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-react/extension.config.js",
-        "public/new-react/public/screenshot.png",
-        "public/new-react/src/background.js",
-        "public/new-react/src/images/icon.png",
-        "public/new-react/src/manifest.json",
-        "public/new-react/src/newtab/NewTabApp.tsx",
-        "public/new-react/src/newtab/index.html",
-        "public/new-react/src/newtab/scripts.tsx",
-        "public/new-react/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-react/screenshot.png",
-      "icon": "public/new-react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react"
-    },
-    {
-      "slug": "new-react-router",
-      "name": "@extension-js/new-react-router",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-react-router/extension.config.js",
-        "public/new-react-router/public/screenshot.png",
-        "public/new-react-router/src/background.js",
-        "public/new-react-router/src/images/icon.png",
-        "public/new-react-router/src/manifest.json",
-        "public/new-react-router/src/newtab/NewTabApp.tsx",
-        "public/new-react-router/src/newtab/index.html",
-        "public/new-react-router/src/newtab/scripts.tsx",
-        "public/new-react-router/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-react-router/screenshot.png",
-      "icon": "public/new-react-router/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-react-router"
-    },
-    {
-      "slug": "new-sass",
-      "name": "@extension-js/new-sass",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "",
-      "css": "sass",
-      "configFiles": ["extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-sass/extension.config.js",
-        "public/new-sass/public/screenshot.png",
-        "public/new-sass/src/background.js",
-        "public/new-sass/src/images/icon.png",
-        "public/new-sass/src/manifest.json",
-        "public/new-sass/src/newtab/index.html",
-        "public/new-sass/src/newtab/scripts.js",
-        "public/new-sass/src/newtab/styles.scss"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-sass/screenshot.png",
-      "icon": "public/new-sass/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-sass"
-    },
-    {
-      "slug": "new-svelte",
-      "name": "@extension-js/new-svelte",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "svelte",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-svelte/extension.config.js",
-        "public/new-svelte/public/screenshot.png",
-        "public/new-svelte/src/background.js",
-        "public/new-svelte/src/images/icon.png",
-        "public/new-svelte/src/manifest.json",
-        "public/new-svelte/src/newtab/NewTabApp.svelte",
-        "public/new-svelte/src/newtab/index.html",
-        "public/new-svelte/src/newtab/scripts.ts",
-        "public/new-svelte/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-svelte/screenshot.png",
-      "icon": "public/new-svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-svelte"
-    },
-    {
-      "slug": "new-typescript",
-      "name": "@extension-js/new-typescript",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-typescript/extension.config.js",
-        "public/new-typescript/public/screenshot.png",
-        "public/new-typescript/src/background.js",
-        "public/new-typescript/src/images/icon.png",
-        "public/new-typescript/src/manifest.json",
-        "public/new-typescript/src/newtab/index.html",
-        "public/new-typescript/src/newtab/scripts.ts",
-        "public/new-typescript/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-typescript/screenshot.png",
-      "icon": "public/new-typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-typescript"
-    },
-    {
-      "slug": "new-vue",
-      "name": "@extension-js/new-vue",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
-      "uiContext": ["newtab", "background"],
-      "surfaces": ["newtab", "background"],
-      "entrypoints": ["newtab/index.html"],
-      "uiFramework": "vue",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/new-vue/extension.config.js",
-        "public/new-vue/public/screenshot.png",
-        "public/new-vue/src/background.js",
-        "public/new-vue/src/images/icon.png",
-        "public/new-vue/src/manifest.json",
-        "public/new-vue/src/newtab/NewTabApp.vue",
-        "public/new-vue/src/newtab/index.html",
-        "public/new-vue/src/newtab/scripts.ts",
-        "public/new-vue/src/newtab/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/new-vue/screenshot.png",
-      "icon": "public/new-vue/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/new-vue"
-    },
-    {
-      "slug": "playwright",
-      "name": "@extension-js/playwright",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
-      "uiFramework": "",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/playwright/extension.config.js",
-        "public/playwright/src/background.ts",
-        "public/playwright/src/images/icon.png",
-        "public/playwright/src/manifest.json",
-        "public/playwright/src/sidebar/SidebarApp.ts",
-        "public/playwright/src/sidebar/index.html",
-        "public/playwright/src/sidebar/scripts.ts",
-        "public/playwright/src/sidebar/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/playwright/screenshot.png",
-      "icon": "public/playwright/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/playwright"
-    },
-    {
-      "slug": "preact",
-      "name": "@extension-js/preact",
-      "version": "3.0.0",
-      "manifest_version": 3,
-      "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.tsx"],
-      "uiFramework": "preact",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": true,
-      "files": [
-        "public/preact/extension.config.js",
-        "public/preact/public/screenshot.png",
-        "public/preact/src/background.ts",
-        "public/preact/src/content/ContentApp.tsx",
-        "public/preact/src/content/scripts.tsx",
-        "public/preact/src/content/styles.css",
-        "public/preact/src/images/icon.png",
-        "public/preact/src/manifest.json",
-        "public/preact/src/public/extension.svg",
-        "public/preact/src/public/logo.svg",
-        "public/preact/src/sidebar/SidebarApp.tsx",
-        "public/preact/src/sidebar/index.html",
-        "public/preact/src/sidebar/scripts.tsx",
-        "public/preact/src/sidebar/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/preact/screenshot.png",
-      "icon": "public/preact/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/preact"
-    },
-    {
-      "slug": "react",
-      "name": "@extension-js/react",
-      "version": "3.0.0",
-      "manifest_version": 3,
-      "description": "React-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.tsx"],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": true,
-      "files": [
-        "public/react/extension.config.js",
-        "public/react/public/screenshot.png",
-        "public/react/src/background.ts",
-        "public/react/src/content/ContentApp.tsx",
-        "public/react/src/content/scripts.tsx",
-        "public/react/src/content/styles.css",
-        "public/react/src/images/icon.png",
-        "public/react/src/manifest.json",
-        "public/react/src/sidebar/SidebarApp.tsx",
-        "public/react/src/sidebar/index.html",
-        "public/react/src/sidebar/scripts.tsx",
-        "public/react/src/sidebar/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/react/screenshot.png",
-      "icon": "public/react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/react"
-    },
-    {
-      "slug": "sidebar",
-      "name": "@extension-js/sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
-      "uiFramework": "",
-      "css": "css",
-      "configFiles": ["extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": true,
-      "files": [
-        "public/sidebar/extension.config.js",
-        "public/sidebar/public/screenshot.png",
-        "public/sidebar/src/background.js",
-        "public/sidebar/src/images/icon.png",
-        "public/sidebar/src/manifest.json",
-        "public/sidebar/src/sidebar/index.html",
-        "public/sidebar/src/sidebar/scripts.js",
-        "public/sidebar/src/sidebar/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar/screenshot.png",
-      "icon": "public/sidebar/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
-    },
-    {
-      "slug": "sidebar-antd",
-      "name": "@extension-js/sidebar-antd",
-      "version": "3.0.0",
-      "manifest_version": 3,
-      "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
-      "uiFramework": "react",
-      "css": "css",
-      "configFiles": ["extension.config.js"],
-      "hasBackground": true,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": [],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/sidebar-antd/extension.config.js",
-        "public/sidebar-antd/src/background.js",
-        "public/sidebar-antd/src/images/icon.png",
-        "public/sidebar-antd/src/manifest.json",
-        "public/sidebar-antd/src/sidebar/SidebarApp.jsx",
-        "public/sidebar-antd/src/sidebar/index.html",
-        "public/sidebar-antd/src/sidebar/scripts.jsx"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-antd/screenshot.png",
-      "icon": "public/sidebar-antd/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-antd"
-    },
-    {
-      "slug": "sidebar-claude",
-      "name": "@extension-js/sidebar-claude",
-      "title": "Claude AI Sidebar",
-      "version": "0.0.1",
-      "manifest_version": 3,
-      "description": "React sidebar example with Claude AI chat. Adds a sidebar panel with a conversational AI interface powered by the Anthropic SDK.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
-      "uiFramework": "react",
       "css": "css",
       "configFiles": [
-        "postcss.config.js",
         "tsconfig.json",
         "extension.config.js"
       ],
@@ -1811,11 +1645,849 @@
       "optional_permissions": [],
       "featured": true,
       "tags": [
+        "env",
+        "configuration",
+        "new-tab",
+        "javascript"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Copy .env.example to .env and edit the values",
+        "Run npm run dev to launch the extension",
+        "Open a new tab — the page reads injected EXTENSION_PUBLIC_* values"
+      ],
+      "useCases": [
+        "Inject build-time configuration without leaking secrets",
+        "Switch behavior per browser, mode, or deployment target",
+        "Reference for safe env-var usage across JS, JSON, and HTML"
+      ],
+      "docsUrl": "https://extension.js.org/docs/features/environment-variables",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-env/public/screenshot.png",
+      "icon": "examples/new-env/src/images/icon.png"
+    },
+    {
+      "slug": "new-less",
+      "name": "@extension-js/new-less",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "",
+      "css": "less",
+      "configFiles": [
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.less"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-less/public/screenshot.png",
+      "icon": "examples/new-less/src/images/icon.png"
+    },
+    {
+      "slug": "new-preact",
+      "name": "@extension-js/new-preact",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-preact/public/screenshot.png",
+      "icon": "examples/new-preact/src/images/icon.png"
+    },
+    {
+      "slug": "new-react",
+      "name": "@extension-js/new-react",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-react/public/screenshot.png",
+      "icon": "examples/new-react/src/images/icon.png"
+    },
+    {
+      "slug": "new-react-router",
+      "name": "@extension-js/new-react-router",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.tsx",
+        "src/newtab/index.html",
+        "src/newtab/scripts.tsx",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-react-router/public/screenshot.png",
+      "icon": "examples/new-react-router/src/images/icon.png"
+    },
+    {
+      "slug": "new-sass",
+      "name": "@extension-js/new-sass",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "",
+      "css": "sass",
+      "configFiles": [
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.js",
+        "src/newtab/styles.scss"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-sass/public/screenshot.png",
+      "icon": "examples/new-sass/src/images/icon.png"
+    },
+    {
+      "slug": "new-svelte",
+      "name": "@extension-js/new-svelte",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "svelte",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.svelte",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-svelte/public/screenshot.png",
+      "icon": "examples/new-svelte/src/images/icon.png"
+    },
+    {
+      "slug": "new-typescript",
+      "name": "@extension-js/new-typescript",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-typescript/public/screenshot.png",
+      "icon": "examples/new-typescript/src/images/icon.png"
+    },
+    {
+      "slug": "new-vue",
+      "name": "@extension-js/new-vue",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
+      "uiContext": [
+        "newtab",
+        "background"
+      ],
+      "surfaces": [
+        "newtab",
+        "background"
+      ],
+      "entrypoints": [
+        "newtab/index.html"
+      ],
+      "uiFramework": "vue",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/newtab/NewTabApp.vue",
+        "src/newtab/index.html",
+        "src/newtab/scripts.ts",
+        "src/newtab/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/new-vue/public/screenshot.png",
+      "icon": "examples/new-vue/src/images/icon.png"
+    },
+    {
+      "slug": "playwright",
+      "name": "@extension-js/playwright",
+      "title": "Playwright E2E Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
+      "uiContext": [
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "testing",
+        "playwright",
+        "e2e",
+        "sidebar",
+        "typescript"
+      ],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 4,
+      "firstSteps": [
+        "Run npm install to set up Playwright deps",
+        "Run npm run dev to launch the extension",
+        "Run npm test to execute the Playwright spec against the loaded extension"
+      ],
+      "useCases": [
+        "End-to-end testing for browser-extension surfaces (popup, sidebar, content)",
+        "CI-ready Playwright setup wired to Extension.js builds",
+        "Reference for automating extension flows in headed and headless modes"
+      ],
+      "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.ts",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/playwright/public/screenshot.png",
+      "icon": "examples/playwright/src/images/icon.png"
+    },
+    {
+      "slug": "preact",
+      "name": "@extension-js/preact",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.tsx"
+      ],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": true,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/public/extension.svg",
+        "src/public/logo.svg",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/preact/public/screenshot.png",
+      "icon": "examples/preact/src/images/icon.png"
+    },
+    {
+      "slug": "react",
+      "name": "@extension-js/react",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "React-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.tsx"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": true,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.tsx",
+        "src/content/scripts.tsx",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/react/public/screenshot.png",
+      "icon": "examples/react/src/images/icon.png"
+    },
+    {
+      "slug": "sidebar",
+      "name": "@extension-js/sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
+      "uiContext": [
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": [
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": true,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar/public/screenshot.png",
+      "icon": "examples/sidebar/src/images/icon.png"
+    },
+    {
+      "slug": "sidebar-antd",
+      "name": "@extension-js/sidebar-antd",
+      "version": "3.0.0",
+      "manifest_version": 3,
+      "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
+      "uiContext": [
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.jsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.jsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-antd/public/screenshot.png",
+      "icon": "examples/sidebar-antd/src/images/icon.png"
+    },
+    {
+      "slug": "sidebar-chatgpt",
+      "name": "@extension-js/sidebar-chatgpt",
+      "title": "ChatGPT AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
         "ai",
-        "claude",
-        "anthropic",
+        "chatgpt",
+        "openai",
+        "gpt",
         "chat",
         "sidebar",
+        "content-scripts",
         "react",
         "shadcn"
       ],
@@ -1823,39 +2495,244 @@
       "timeToFirstSuccessMinutes": 3,
       "firstSteps": [
         "Run npm run dev to launch the extension",
-        "Click the extension icon to open the sidebar",
-        "Enter your Anthropic API key (from console.anthropic.com)",
-        "Start chatting with Claude"
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your ChatGPT API key (from platform.openai.com)",
+        "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
       ],
       "useCases": [
-        "AI assistant sidebar for any webpage",
-        "Page content summarization with Claude",
-        "Claude-powered research companion",
-        "Starting point for Anthropic SDK browser extensions"
+        "Chat with the active tab's content using ChatGPT",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware ChatGPT extensions"
+      ],
+      "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-chatgpt/public/screenshot.png",
+      "icon": "examples/sidebar-chatgpt/src/images/icon.png"
+    },
+    {
+      "slug": "sidebar-claude",
+      "name": "@extension-js/sidebar-claude",
+      "title": "Claude AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "claude",
+        "anthropic",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Claude API key (from console.anthropic.com)",
+        "Ask Claude about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Claude",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Claude extensions"
       ],
       "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
       "files": [
-        "public/sidebar-claude/extension.config.js",
-        "public/sidebar-claude/src/background.ts",
-        "public/sidebar-claude/src/components/ApiKeyForm.tsx",
-        "public/sidebar-claude/src/components/ChatInput.tsx",
-        "public/sidebar-claude/src/components/ChatMessage.tsx",
-        "public/sidebar-claude/src/components/ui/button.tsx",
-        "public/sidebar-claude/src/components/ui/card.tsx",
-        "public/sidebar-claude/src/components/ui/scroll-area.tsx",
-        "public/sidebar-claude/src/images/icon.png",
-        "public/sidebar-claude/src/lib/claude.ts",
-        "public/sidebar-claude/src/lib/utils.ts",
-        "public/sidebar-claude/src/manifest.json",
-        "public/sidebar-claude/src/sidebar/SidebarApp.tsx",
-        "public/sidebar-claude/src/sidebar/index.html",
-        "public/sidebar-claude/src/sidebar/scripts.tsx",
-        "public/sidebar-claude/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-claude/screenshot.png",
-      "icon": "public/sidebar-claude/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-claude"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-claude/public/screenshot.png",
+      "icon": "examples/sidebar-claude/src/images/icon.png"
+    },
+    {
+      "slug": "sidebar-gemini",
+      "name": "@extension-js/sidebar-gemini",
+      "title": "Gemini AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "gemini",
+        "google",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Gemini API key (from aistudio.google.com)",
+        "Ask Gemini about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Gemini",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Gemini extensions"
+      ],
+      "docsUrl": "https://ai.google.dev/gemini-api/docs",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-gemini/public/screenshot.png",
+      "icon": "examples/sidebar-gemini/src/images/icon.png"
     },
     {
       "slug": "sidebar-monorepo-turbopack",
@@ -1863,12 +2740,25 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Monorepo example with content script and sidebar.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.js"],
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1887,23 +2777,125 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/sidebar-monorepo-turbopack/extension.config.js",
-        "public/sidebar-monorepo-turbopack/packages/analytics/src/index.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/background.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/content/scripts.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/content/styles.css",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/images/icon.png",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/manifest.json",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/SidebarApp.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/index.html",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/scripts.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/styles.css",
-        "public/sidebar-monorepo-turbopack/public/screenshot.png"
+        "extension.config.js",
+        "packages/analytics/src/index.js",
+        "packages/extension/src/background.js",
+        "packages/extension/src/content/scripts.js",
+        "packages/extension/src/content/styles.css",
+        "packages/extension/src/images/icon.png",
+        "packages/extension/src/manifest.json",
+        "packages/extension/src/sidebar/SidebarApp.js",
+        "packages/extension/src/sidebar/index.html",
+        "packages/extension/src/sidebar/scripts.js",
+        "packages/extension/src/sidebar/styles.css",
+        "public/screenshot.png"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-monorepo-turbopack/screenshot.png",
-      "icon": null,
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turbopack"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-monorepo-turbopack/public/screenshot.png",
+      "icon": null
+    },
+    {
+      "slug": "sidebar-perplexity",
+      "name": "@extension-js/sidebar-perplexity",
+      "title": "Perplexity AI Sidebar",
+      "version": "0.0.1",
+      "manifest_version": 3,
+      "description": "React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).",
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": [
+        "postcss.config.js",
+        "tsconfig.json",
+        "extension.config.js"
+      ],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [
+        "<all_urls>"
+      ],
+      "optional_permissions": [],
+      "featured": true,
+      "tags": [
+        "ai",
+        "perplexity",
+        "search",
+        "chat",
+        "sidebar",
+        "content-scripts",
+        "react",
+        "shadcn"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and click the extension icon to open the sidebar",
+        "Enter your Perplexity API key (from perplexity.ai/settings/api)",
+        "Ask Perplexity about the active tab — the content script feeds the page text into the conversation"
+      ],
+      "useCases": [
+        "Chat with the active tab's content using Perplexity",
+        "Summarize or question articles, docs, and dashboards in place",
+        "Starting point for page-aware Perplexity extensions"
+      ],
+      "docsUrl": "https://docs.perplexity.ai/",
+      "files": [
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ApiKeyForm.tsx",
+        "src/components/ChatInput.tsx",
+        "src/components/ChatMessage.tsx",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/scroll-area.tsx",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/lib/client.ts",
+        "src/lib/page-context.ts",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-perplexity/public/screenshot.png",
+      "icon": "examples/sidebar-perplexity/src/images/icon.png"
     },
     {
       "slug": "sidebar-shadcn",
@@ -1911,9 +2903,17 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
+      "uiContext": [
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html"
+      ],
       "uiFramework": "react",
       "css": "css",
       "configFiles": [
@@ -1936,25 +2936,28 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/sidebar-shadcn/extension.config.js",
-        "public/sidebar-shadcn/public/screenshot.png",
-        "public/sidebar-shadcn/src/background.ts",
-        "public/sidebar-shadcn/src/components/ui/button.tsx",
-        "public/sidebar-shadcn/src/components/ui/card.tsx",
-        "public/sidebar-shadcn/src/components/ui/label.tsx",
-        "public/sidebar-shadcn/src/components/ui/switch.tsx",
-        "public/sidebar-shadcn/src/images/icon.png",
-        "public/sidebar-shadcn/src/lib/utils.ts",
-        "public/sidebar-shadcn/src/manifest.json",
-        "public/sidebar-shadcn/src/sidebar/SidebarApp.tsx",
-        "public/sidebar-shadcn/src/sidebar/index.html",
-        "public/sidebar-shadcn/src/sidebar/scripts.tsx",
-        "public/sidebar-shadcn/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/components/ui/button.tsx",
+        "src/components/ui/card.tsx",
+        "src/components/ui/label.tsx",
+        "src/components/ui/switch.tsx",
+        "src/images/icon.png",
+        "src/lib/utils.ts",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.tsx",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.tsx",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-shadcn/screenshot.png",
-      "icon": "public/sidebar-shadcn/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-shadcn/public/screenshot.png",
+      "icon": "examples/sidebar-shadcn/src/images/icon.png"
     },
     {
       "slug": "sidebar-transformers-js",
@@ -1962,12 +2965,22 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
-      "entrypoints": ["sidebar/index.html"],
+      "uiContext": [
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -1983,35 +2996,45 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/sidebar-transformers-js/extension.config.js",
-        "public/sidebar-transformers-js/public/screenshot.png",
-        "public/sidebar-transformers-js/src/background.js",
-        "public/sidebar-transformers-js/src/constants.js",
-        "public/sidebar-transformers-js/src/images/icon.png",
-        "public/sidebar-transformers-js/src/manifest.json",
-        "public/sidebar-transformers-js/src/sidebar/SidebarApp.js",
-        "public/sidebar-transformers-js/src/sidebar/index.html",
-        "public/sidebar-transformers-js/src/sidebar/sakura.css",
-        "public/sidebar-transformers-js/src/sidebar/scripts.js",
-        "public/sidebar-transformers-js/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/constants.js",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.js",
+        "src/sidebar/index.html",
+        "src/sidebar/sakura.css",
+        "src/sidebar/scripts.js",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-transformers-js/screenshot.png",
-      "icon": "public/sidebar-transformers-js/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-transformers-js"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/sidebar-transformers-js/public/screenshot.png",
+      "icon": "examples/sidebar-transformers-js/src/images/icon.png"
     },
     {
       "slug": "special-folders-pages",
       "name": "@extension-js/special-folders-pages",
+      "title": "Special Folders: pages/",
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
-      "uiContext": ["background"],
-      "surfaces": ["background"],
+      "uiContext": [
+        "background"
+      ],
+      "surfaces": [
+        "background"
+      ],
       "entrypoints": [],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -2025,25 +3048,47 @@
       "permissions": [],
       "host_permissions": [],
       "optional_permissions": [],
-      "featured": false,
-      "files": [
-        "public/special-folders-pages/extension.config.js",
-        "public/special-folders-pages/public/css/file.css",
-        "public/special-folders-pages/public/html/file.html",
-        "public/special-folders-pages/public/js/file.js",
-        "public/special-folders-pages/public/screenshot.png",
-        "public/special-folders-pages/src/background.js",
-        "public/special-folders-pages/src/images/icon.png",
-        "public/special-folders-pages/src/images/javascript.png",
-        "public/special-folders-pages/src/manifest.json",
-        "public/special-folders-pages/src/sandbox/index.html",
-        "public/special-folders-pages/src/sandbox/scripts.js",
-        "public/special-folders-pages/src/sandbox/styles.css"
+      "featured": true,
+      "tags": [
+        "special-folders",
+        "pages",
+        "welcome-page",
+        "javascript"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/special-folders-pages/screenshot.png",
-      "icon": "public/special-folders-pages/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-pages"
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "A welcome page from src/pages/ opens automatically on install",
+        "Add another HTML file under src/pages/ — it ships as a separate page"
+      ],
+      "useCases": [
+        "Onboarding, help, and welcome pages that ship with the extension",
+        "Standalone HTML routes without manifest plumbing",
+        "Reference for Extension.js's pages/ special folder convention"
+      ],
+      "docsUrl": "https://extension.js.org/docs/features/special-folders",
+      "files": [
+        "extension.config.js",
+        "public/css/file.css",
+        "public/html/file.html",
+        "public/js/file.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/images/javascript.png",
+        "src/manifest.json",
+        "src/sandbox/index.html",
+        "src/sandbox/scripts.js",
+        "src/sandbox/styles.css"
+      ],
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/special-folders-pages/public/screenshot.png",
+      "icon": "examples/special-folders-pages/src/images/icon.png"
     },
     {
       "slug": "special-folders-scripts",
@@ -2051,12 +3096,18 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
-      "uiContext": ["background"],
-      "surfaces": ["background"],
+      "uiContext": [
+        "background"
+      ],
+      "surfaces": [
+        "background"
+      ],
       "entrypoints": [],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["extension.config.js"],
+      "configFiles": [
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -2067,22 +3118,28 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": [
+        "activeTab",
+        "scripting"
+      ],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
       "files": [
-        "public/special-folders-scripts/extension.config.js",
-        "public/special-folders-scripts/public/screenshot.png",
-        "public/special-folders-scripts/src/background.js",
-        "public/special-folders-scripts/src/images/icon.png",
-        "public/special-folders-scripts/src/images/javascript.png",
-        "public/special-folders-scripts/src/manifest.json"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.js",
+        "src/images/icon.png",
+        "src/images/javascript.png",
+        "src/manifest.json"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/special-folders-scripts/screenshot.png",
-      "icon": "public/special-folders-scripts/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-scripts"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/special-folders-scripts/public/screenshot.png",
+      "icon": "examples/special-folders-scripts/src/images/icon.png"
     },
     {
       "slug": "svelte",
@@ -2090,12 +3147,26 @@
       "version": "3.0.0",
       "manifest_version": 3,
       "description": "Svelte-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
       "uiFramework": "svelte",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -2111,24 +3182,27 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/svelte/extension.config.js",
-        "public/svelte/public/screenshot.png",
-        "public/svelte/src/background.ts",
-        "public/svelte/src/content/ContentApp.svelte",
-        "public/svelte/src/content/scripts.ts",
-        "public/svelte/src/content/styles.css",
-        "public/svelte/src/images/icon.png",
-        "public/svelte/src/manifest.json",
-        "public/svelte/src/public/extension.svg",
-        "public/svelte/src/sidebar/SidebarApp.svelte",
-        "public/svelte/src/sidebar/index.html",
-        "public/svelte/src/sidebar/scripts.ts",
-        "public/svelte/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.svelte",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/public/extension.svg",
+        "src/sidebar/SidebarApp.svelte",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/svelte/screenshot.png",
-      "icon": "public/svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/svelte"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/svelte/public/screenshot.png",
+      "icon": "examples/svelte/src/images/icon.png"
     },
     {
       "slug": "typescript",
@@ -2136,12 +3210,26 @@
       "version": "3.0.0",
       "manifest_version": 3,
       "description": "TypeScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
       "uiFramework": "",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -2157,24 +3245,27 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/typescript/extension.config.js",
-        "public/typescript/public/screenshot.png",
-        "public/typescript/src/background.ts",
-        "public/typescript/src/content/ContentApp.ts",
-        "public/typescript/src/content/scripts.ts",
-        "public/typescript/src/content/styles.css",
-        "public/typescript/src/content/types.d.ts",
-        "public/typescript/src/images/icon.png",
-        "public/typescript/src/manifest.json",
-        "public/typescript/src/sidebar/SidebarApp.ts",
-        "public/typescript/src/sidebar/index.html",
-        "public/typescript/src/sidebar/scripts.ts",
-        "public/typescript/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.ts",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/types.d.ts",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.ts",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/typescript/screenshot.png",
-      "icon": "public/typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/typescript"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/typescript/screenshot.png",
+      "icon": "examples/typescript/src/images/icon.png"
     },
     {
       "slug": "vue",
@@ -2182,12 +3273,26 @@
       "version": "3.0.0",
       "manifest_version": 3,
       "description": "Vue.js-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-      "uiContext": ["content", "sidebar", "background"],
-      "surfaces": ["content", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "content/scripts.ts"],
+      "uiContext": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "surfaces": [
+        "content",
+        "sidebar",
+        "background"
+      ],
+      "entrypoints": [
+        "sidebar/index.html",
+        "content/scripts.ts"
+      ],
       "uiFramework": "vue",
       "css": "css",
-      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "configFiles": [
+        "tsconfig.json",
+        "extension.config.js"
+      ],
       "hasBackground": true,
       "hasEnv": false,
       "setup": {
@@ -2203,24 +3308,27 @@
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/vue/extension.config.js",
-        "public/vue/public/screenshot.png",
-        "public/vue/src/background.ts",
-        "public/vue/src/content/ContentApp.vue",
-        "public/vue/src/content/scripts.ts",
-        "public/vue/src/content/styles.css",
-        "public/vue/src/content/types.d.ts",
-        "public/vue/src/images/icon.png",
-        "public/vue/src/manifest.json",
-        "public/vue/src/sidebar/SidebarApp.vue",
-        "public/vue/src/sidebar/index.html",
-        "public/vue/src/sidebar/scripts.ts",
-        "public/vue/src/sidebar/styles.css"
+        "extension.config.js",
+        "public/screenshot.png",
+        "src/background.ts",
+        "src/content/ContentApp.vue",
+        "src/content/scripts.ts",
+        "src/content/styles.css",
+        "src/content/types.d.ts",
+        "src/images/icon.png",
+        "src/manifest.json",
+        "src/sidebar/SidebarApp.vue",
+        "src/sidebar/index.html",
+        "src/sidebar/scripts.ts",
+        "src/sidebar/styles.css"
       ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/vue/screenshot.png",
-      "icon": "public/vue/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/vue"
+      "browsers": [
+        "chrome",
+        "edge",
+        "firefox"
+      ],
+      "screenshot": "examples/vue/public/screenshot.png",
+      "icon": "examples/vue/src/images/icon.png"
     }
   ]
 }

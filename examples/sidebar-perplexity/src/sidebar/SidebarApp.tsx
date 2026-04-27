@@ -1,5 +1,5 @@
 import {useState, useEffect, useRef} from 'react'
-import {Settings, Trash2, Loader2} from 'lucide-react'
+import {Settings, Trash2, Loader2, Globe} from 'lucide-react'
 import {Button} from '../components/ui/button'
 import {ScrollArea} from '../components/ui/scroll-area'
 import ApiKeyForm from '../components/ApiKeyForm'
@@ -12,6 +12,13 @@ import {
   sendMessage,
   type Message
 } from '../lib/client'
+import {
+  getActiveTabContext,
+  buildSystemPrompt,
+  type PageContext
+} from '../lib/page-context'
+
+const PRODUCT_NAME = 'Perplexity'
 
 export default function SidebarApp() {
   const [apiKey, setApiKeyState] = useState<string | null>(null)
@@ -19,6 +26,7 @@ export default function SidebarApp() {
   const [messages, setMessages] = useState<Message[]>([])
   const [isStreaming, setIsStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [pageContext, setPageContext] = useState<PageContext | null>(null)
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -26,6 +34,10 @@ export default function SidebarApp() {
       setApiKeyState(key)
       setLoading(false)
     })
+  }, [])
+
+  useEffect(() => {
+    getActiveTabContext().then(setPageContext)
   }, [])
 
   useEffect(() => {
@@ -59,7 +71,12 @@ export default function SidebarApp() {
     setIsStreaming(true)
 
     try {
-      const response = await sendMessage(apiKey, updatedMessages)
+      const fresh = await getActiveTabContext()
+      if (fresh) setPageContext(fresh)
+      const systemPrompt = fresh
+        ? buildSystemPrompt(fresh, PRODUCT_NAME)
+        : undefined
+      const response = await sendMessage(apiKey, updatedMessages, systemPrompt)
       setMessages([...updatedMessages, {role: 'assistant', content: response}])
     } catch (err) {
       const message =
@@ -78,15 +95,33 @@ export default function SidebarApp() {
     )
   }
 
+  const pageContextChip = (
+    <div className="flex items-center gap-2 border-b bg-muted/30 px-4 py-1.5 text-xs text-muted-foreground">
+      <Globe className="size-3.5 shrink-0" />
+      <span className="truncate">
+        {pageContext
+          ? `Chatting about: ${pageContext.title || pageContext.url}`
+          : 'No page context (open a regular web page)'}
+      </span>
+    </div>
+  )
+
   if (!apiKey) {
-    return <ApiKeyForm onSubmit={handleApiKeySubmit} />
+    return (
+      <div className="flex h-screen flex-col">
+        {pageContextChip}
+        <div className="flex-1 overflow-auto">
+          <ApiKeyForm onSubmit={handleApiKeySubmit} />
+        </div>
+      </div>
+    )
   }
 
   return (
     <div className="flex h-screen flex-col">
       {/* Header */}
       <div className="flex items-center justify-between border-b px-4 py-2">
-        <h1 className="text-sm font-semibold">Perplexity</h1>
+        <h1 className="text-sm font-semibold">{PRODUCT_NAME}</h1>
         <div className="flex gap-1">
           <Button
             variant="ghost"
@@ -111,12 +146,15 @@ export default function SidebarApp() {
         </div>
       </div>
 
+      {pageContextChip}
+
       {/* Messages */}
       <ScrollArea className="flex-1">
         {messages.length === 0 ? (
           <div className="flex h-full items-center justify-center p-8 text-center">
             <p className="text-sm text-muted-foreground">
-              Ask Perplexity anything. Your conversation stays in this sidebar.
+              Ask {PRODUCT_NAME} about the active tab. Your conversation stays
+              in this sidebar.
             </p>
           </div>
         ) : (

@@ -7,6 +7,8 @@
 
 > Sidebar extension example demonstrating Playwright-driven E2E automation.
 
+![screenshot](./public/screenshot.png)
+
 **What you'll see**: A browser side panel that loads when you open the sidebar.
 
 **How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a TypeScript page bundled from `src/sidebar/`.

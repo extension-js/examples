@@ -7,6 +7,8 @@
 
 > Content script example split across three entries (2 + 1 + 1). Each script injects a small element.
 
+![screenshot](./public/screenshot.png)
+
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.

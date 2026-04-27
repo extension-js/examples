@@ -1,0 +1,18 @@
+{
+  "title": "Action (Popup)",
+  "featured": true,
+  "tags": ["action", "popup", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the toolbar icon to open the action popup",
+    "Edit src/action/index.html and watch HMR update the popup"
+  ],
+  "useCases": [
+    "Toolbar popup as the primary UI surface",
+    "Quick actions that don't need a full sidebar or page",
+    "Starting point for popup-based browser extensions"
+  ],
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+}
