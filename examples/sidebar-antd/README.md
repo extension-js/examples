@@ -7,6 +7,8 @@
 
 > React sidebar using antd and @ant-design/x. Regression coverage for issue #445.
 
+![screenshot](./public/screenshot.png)
+
 **What you'll see**: A browser side panel that loads when you open the sidebar.
 
 **How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React page bundled from `src/sidebar/`. UI is composed with Ant Design.
@@ -33,7 +35,8 @@ src/
 ├── sidebar/
 │   ├── index.html
 │   ├── scripts.jsx
-│   └── SidebarApp.jsx
+│   ├── SidebarApp.jsx
+│   └── styles.css
 ├── background.js
 └── manifest.json
 ```

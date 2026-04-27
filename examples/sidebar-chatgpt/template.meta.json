@@ -8,6 +8,7 @@
     "gpt",
     "chat",
     "sidebar",
+    "content-scripts",
     "react",
     "shadcn"
   ],
@@ -15,14 +16,14 @@
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
     "Run npm run dev to launch the extension",
-    "Click the extension icon to open the sidebar",
+    "Open any web page and click the extension icon to open the sidebar",
     "Enter your ChatGPT API key (from platform.openai.com)",
-    "Start chatting with ChatGPT"
+    "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
   ],
   "useCases": [
-    "ChatGPT-powered assistant in any browser sidebar",
-    "Quick questions answered by ChatGPT without leaving the page",
-    "Starting point for ChatGPT-powered browser extensions"
+    "Chat with the active tab's content using ChatGPT",
+    "Summarize or question articles, docs, and dashboards in place",
+    "Starting point for page-aware ChatGPT extensions"
   ],
   "docsUrl": "https://platform.openai.com/docs/api-reference/chat"
 }

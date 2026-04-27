@@ -1,0 +1,18 @@
+{
+  "title": "Playwright E2E Sidebar",
+  "featured": true,
+  "tags": ["testing", "playwright", "e2e", "sidebar", "typescript"],
+  "difficulty": "intermediate",
+  "timeToFirstSuccessMinutes": 4,
+  "firstSteps": [
+    "Run npm install to set up Playwright deps",
+    "Run npm run dev to launch the extension",
+    "Run npm test to execute the Playwright spec against the loaded extension"
+  ],
+  "useCases": [
+    "End-to-end testing for browser-extension surfaces (popup, sidebar, content)",
+    "CI-ready Playwright setup wired to Extension.js builds",
+    "Reference for automating extension flows in headed and headless modes"
+  ],
+  "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e"
+}

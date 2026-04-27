@@ -41,10 +41,24 @@
     "default_panel": "sidebar/index.html",
     "default_title": "Perplexity Sidebar"
   },
-  "chromium:permissions": ["sidePanel", "storage"],
-  "firefox:permissions": ["storage"],
+  "chromium:permissions": [
+    "sidePanel",
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "firefox:permissions": ["storage", "activeTab", "tabs"],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.ts",
     "firefox:scripts": ["background.ts"]
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.ts"],
+      "run_at": "document_idle"
+    }
+  ]
 }

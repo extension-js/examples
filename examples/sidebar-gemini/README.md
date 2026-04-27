@@ -9,9 +9,9 @@
 
 ![screenshot](./public/screenshot.png)
 
-**What you'll see**: A browser side panel that loads when you open the sidebar.
+**What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
+**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
 
 Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). Paste a Google AI Studio key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with Gemini inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `sidebar-claude`, `sidebar-chatgpt`, and `sidebar-perplexity` siblings; only the SDK and brand accent change.
 
@@ -38,10 +38,15 @@ src/
 │   ├── ApiKeyForm.tsx
 │   ├── ChatInput.tsx
 │   └── ChatMessage.tsx
+├── content/
+│   ├── ContentApp.ts
+│   ├── scripts.ts
+│   └── styles.css
 ├── images/
 │   └── icon.png
 ├── lib/
 │   ├── client.ts
+│   ├── page-context.ts
 │   └── utils.ts
 ├── sidebar/
 │   ├── index.html

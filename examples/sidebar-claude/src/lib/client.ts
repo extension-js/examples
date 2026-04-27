@@ -22,7 +22,8 @@ export async function removeApiKey(): Promise<void> {
 
 export async function sendMessage(
   apiKey: string,
-  messages: Message[]
+  messages: Message[],
+  systemPrompt?: string
 ): Promise<string> {
   const client = new Anthropic({
     apiKey,
@@ -34,6 +35,7 @@ export async function sendMessage(
   const response = await client.messages.create({
     model: 'claude-sonnet-4-20250514',
     max_tokens: 1024,
+    system: systemPrompt,
     messages: messages.map((m) => ({
       role: m.role,
       content: m.content

@@ -1,0 +1,18 @@
+{
+  "title": "Environment Variables",
+  "featured": true,
+  "tags": ["env", "configuration", "new-tab", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Copy .env.example to .env and edit the values",
+    "Run npm run dev to launch the extension",
+    "Open a new tab — the page reads injected EXTENSION_PUBLIC_* values"
+  ],
+  "useCases": [
+    "Inject build-time configuration without leaking secrets",
+    "Switch behavior per browser, mode, or deployment target",
+    "Reference for safe env-var usage across JS, JSON, and HTML"
+  ],
+  "docsUrl": "https://extension.js.org/docs/features/environment-variables"
+}
