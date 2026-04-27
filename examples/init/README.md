@@ -3,66 +3,77 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Init Example
+# Starter Extension (init)
 
-What you’ll see: a minimal working extension with a basic page.
+> A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.
 
-How it works: shows the smallest set of files to run an extension, useful as a clean starting point.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A minimal extension wired with dev / build / preview scripts.
+
+**How it works**: A JavaScript extension scaffold ready for `extension dev` / `extension build`.
+
+The default starter — what `npx extension@latest create <name>` produces when no `--template` is passed. A small sidebar panel wired with dev / build / preview scripts.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name>
-cd <project-name>
+npx extension@latest create my-init --template init
+cd my-init
 npm install
+npm run dev
 ```
 
-The default starter is the JavaScript template. You can pass `--template init` or `--template javascript` explicitly if you prefer; both resolve to the same example.
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── images/
+│   ├── icon.png
+│   └── javascript.png
+├── index.js
+└── manifest.json
+```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

@@ -3,64 +3,85 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Content (Multiple Scripts, Single Entry) Example
+# JavaScript Content Script Example
 
-What you’ll see: four small boxes injected into the page corners, each isolated in a Shadow DOM to avoid style conflicts. Demonstrates multiple content scripts in one entry.
+> Content script example with four scripts listed in one entry. Each script injects a small element.
 
-How it works: a single `content_scripts` entry lists four JS files. Each script mounts a simple UI in a different corner.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+
+**How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+
+A single content-script entry that targets multiple URL patterns declared in `manifest.json#content_scripts`.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template content-multi-one-entry
-cd <project-name>
+npx extension@latest create my-content-multi-one-entry --template content-multi-one-entry
+cd my-content-multi-one-entry
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── content/
+│   ├── utils/
+│   │   ├── constants.js
+│   │   └── create-badge.js
+│   ├── script-bottom-left.js
+│   ├── script-bottom-right.js
+│   ├── script-top-left.js
+│   ├── script-top-right.js
+│   └── styles.css
+├── images/
+│   └── icon.png
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

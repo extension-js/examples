@@ -3,74 +3,82 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Special Folders Scripts Example
+# Special Folders (Scripts) Example
 
-What you’ll see: background code that imports and runs scripts from `src/scripts/`.
+> Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.
 
-How it works: files in `src/scripts/` are regular entry files that you import from the background to execute standalone logic.
+![screenshot](./public/screenshot.png)
 
-## How scripts/ works
+**What you'll see**: Standalone scripts auto-bundled from `scripts/`, runnable via the action popup.
 
-- Any JS-like file placed under `src/scripts/` is considered an entrypoint by Extension.js.
-- The example’s background imports three files from `src/scripts/`:
-  - `src/scripts/script-one.js`
-  - `src/scripts/script-two.js`
-  - `src/scripts/script-three.js`
-- Importing them in `src/background.js` ensures they are executed when the background starts.
-- Treat files inside `scripts/` just like any file referenced in `manifest.json`—they are compiled and available to be imported.
+**How it works**: Files inside `scripts/` are bundled as standalone script entries, ready to be referenced from `manifest.json` or executed at runtime via `chrome.scripting.*`.
 
-## Installation
+Demonstrates the **`scripts/`** convention: standalone scripts inside the project-root `scripts/` directory are bundled as separate entries, ready to be referenced from `manifest.json` (e.g. as `chrome_settings_overrides`) or executed at runtime via `chrome.scripting.*`.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template special-folders-scripts
-cd <project-name>
+npx extension@latest create my-special-folders-scripts --template special-folders-scripts
+cd my-special-folders-scripts
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+.
+├── src/
+│   ├── images/
+│   │   ├── icon.png
+│   │   └── javascript.png
+│   ├── background.js
+│   └── manifest.json
+└── scripts/
+    ├── script-one.js
+    ├── script-three.js
+    └── script-two.js
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

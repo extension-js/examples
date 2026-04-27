@@ -3,66 +3,87 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Special Folders Pages Example
+# Special Folders (Pages) Example
 
-What you’ll see: a welcome page from `pages/welcome.html` that opens when the extension loads.
+> Opens a welcome page on extension load, showcasing the pages/ folder.
 
-How it works: files in `pages/` are treated as entrypoints. The background opens the welcome page on install/startup.
+![screenshot](./public/screenshot.png)
 
-Note: files inside `pages/` are entrypoints. They work just like any HTML you declare in `manifest.json`.
+**What you'll see**: A welcome page that opens on install / startup, served from `pages/`.
 
-## Installation
+**How it works**: Files inside `pages/` are treated as auto-discovered entrypoints — no `manifest.json` wiring required. The background script opens one of them on install / startup.
+
+Demonstrates Extension.js's **`pages/`** convention: every HTML file inside the project-root `pages/` directory becomes an entrypoint without manifest wiring. The background script opens `pages/welcome.html` on install / startup.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template special-folders-pages
-cd <project-name>
+npx extension@latest create my-special-folders-pages --template special-folders-pages
+cd my-special-folders-pages
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+.
+├── src/
+│   ├── images/
+│   │   ├── icon.png
+│   │   └── javascript.png
+│   ├── sandbox/
+│   │   ├── index.html
+│   │   ├── scripts.js
+│   │   └── styles.css
+│   ├── background.js
+│   └── manifest.json
+└── pages/
+    ├── custom.html
+    ├── main.html
+    ├── main.js
+    └── welcome.html
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

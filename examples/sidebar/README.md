@@ -5,62 +5,76 @@
 
 # JavaScript Sidebar Example
 
-What you’ll see: a browser sidebar (side panel) with a simple page.
+> Sidebar panel example. Adds a sidebar to the browser with a simple page.
 
-How it works: the extension registers a sidebar panel and loads a static page you can customize.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A browser side panel that loads when you open the sidebar.
+
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template sidebar
-cd <project-name>
+npx extension@latest create my-sidebar --template sidebar
+cd my-sidebar
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── images/
+│   └── icon.png
+├── sidebar/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

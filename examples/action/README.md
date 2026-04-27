@@ -3,64 +3,78 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Action Example
+# JavaScript Action Popup Example
 
-What you’ll see: a toolbar popup with a simple page.
+> Action popup example. Opens a toolbar popup with a simple page.
 
-How it works: the extension registers an action and loads `action/index.html` as the popup.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A toolbar popup that opens when you click the extension's icon.
+
+**How it works**: The manifest registers an `action` and points `default_popup` at a JavaScript page bundled from `src/action/`.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template action
-cd <project-name>
+npx extension@latest create my-action --template action
+cd my-action
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── action/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
+├── images/
+│   └── icon.png
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

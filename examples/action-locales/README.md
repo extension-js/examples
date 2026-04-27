@@ -3,64 +3,85 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Action (i18n) Example
+# Action Popup (i18n / Locales) Example
 
-What you’ll see: a toolbar popup whose title and strings change by locale.
+> Action popup example demonstrating i18n with \_locales and message placeholders.
 
-How it works: the extension uses `_locales/` and `__MSG_...__` placeholders in the manifest and HTML to localize text.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A toolbar popup that opens when you click the extension's icon.
+
+**How it works**: The manifest registers an `action` and points `default_popup` at a JavaScript page bundled from `src/action/`.
+
+Demonstrates the `_locales/` directory and `chrome.i18n.*` APIs. The popup pulls strings from the user's active locale; add another `_locales/<lang>/messages.json` to localize.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name> --template action-locales
-cd <project-name>
+npx extension@latest create my-action-locales --template action-locales
+cd my-action-locales
 npm install
+npm run dev
+```
+
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── _locales/
+│   ├── en/
+│   │   └── messages.json
+│   └── pt_BR/
+│       └── messages.json
+├── action/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
+├── images/
+│   └── icon.png
+├── background.js
+└── manifest.json
 ```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)

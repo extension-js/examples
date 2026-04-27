@@ -3,66 +3,85 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Sidebar Example
+# JavaScript Starter Extension
 
-> JavaScript-based extension with a sidebar panel.
+> JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
-Starter extension with a sidebar panel. Includes dev, build, and preview scripts.
+![screenshot](./public/screenshot.png)
 
-## Installation
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+
+**How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+
+Plain JavaScript starter. Useful as a baseline when you want to add framework or tooling support yourself, layer by layer.
+
+## Try it locally
 
 ```bash
-npx extension@latest create <project-name>
-cd <project-name>
+npx extension@latest create my-javascript --template javascript
+cd my-javascript
 npm install
+npm run dev
 ```
 
-This template is also the CLI default, so `--template` is optional. Use `--template javascript` (or `init`) if you want to name it explicitly.
+A fresh browser window opens with the extension already loaded.
+
+## Project layout
+
+```
+src/
+├── content/
+│   ├── ContentApp.js
+│   ├── scripts.js
+│   └── styles.css
+├── images/
+│   └── icon.png
+├── sidebar/
+│   ├── index.html
+│   ├── scripts.js
+│   ├── SidebarApp.js
+│   └── styles.css
+├── background.js
+└── manifest.json
+```
 
 ## Commands
 
 ### dev
 
-Run the extension in development mode.
+Run the extension in development mode. Target a browser with `--browser`:
 
 ```bash
-npm run dev
+npm run dev                 # Chromium (default)
+npm run dev -- --browser=chrome
+npm run dev -- --browser=edge
+npm run dev -- --browser=firefox
 ```
 
 ### build
 
-Build the extension for production.
+Build for production. Convenience scripts cover each browser:
 
 ```bash
-npm run build
+npm run build           # Chrome (default)
+npm run build:firefox
+npm run build:edge
 ```
 
 ### preview
 
-Preview the extension in the browser.
+Preview the production build with the bundled browser:
 
 ```bash
 npm run preview
 ```
 
-## Browser targets
+## Tests
 
-Chromium is the default. You can explicitly target Chrome, Edge, or Firefox:
-
-```bash
-# Chromium (default)
-npm run dev
-
-# Chrome
-npm run dev -- --browser=chrome
-
-# Edge
-npm run dev -- --browser=edge
-
-# Firefox
-npm run dev -- --browser=firefox
-```
+This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
 
 ## Learn more
 
-Learn more in the [Extension.js docs](https://extension.js.org).
+- [Extension.js docs](https://extension.js.org)
+- [Templates index](https://extension.js.org/docs/getting-started/templates)
+- [GitHub: extension-js/extension.js](https://github.com/extension-js/extension.js)
