@@ -1,0 +1,19 @@
+{
+  "title": "Gemini AI Sidebar",
+  "featured": true,
+  "tags": ["ai", "gemini", "google", "chat", "sidebar", "react", "shadcn"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar",
+    "Enter your Gemini API key (from aistudio.google.com)",
+    "Start chatting with Gemini"
+  ],
+  "useCases": [
+    "Gemini-powered assistant in any browser sidebar",
+    "Quick questions answered by Gemini without leaving the page",
+    "Starting point for Gemini-powered browser extensions"
+  ],
+  "docsUrl": "https://ai.google.dev/gemini-api/docs"
+}
