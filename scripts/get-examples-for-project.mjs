@@ -43,6 +43,12 @@ function getExamplesForProject(projectName) {
     .readdirSync(examplesDir, {withFileTypes: true})
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name)
+    // Skip ghost dirs left behind by renames or partial cache restores
+    // (e.g. only `node_modules/` remains). A real example must ship a
+    // `package.json`.
+    .filter((name) =>
+      fs.existsSync(path.join(examplesDir, name, 'package.json'))
+    )
 
   const matchingExamples = allExamples.filter((example) =>
     pattern.test(example)
