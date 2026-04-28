@@ -569,12 +569,6 @@ const OVERRIDES = {
 // Title + headline
 // ──────────────────────────────────────────────────────────────────────────
 
-function titleCaseFromSlug(slug) {
-  return slug
-    .split('-')
-    .map((part) => part[0].toUpperCase() + part.slice(1))
-    .join(' ')
-}
 
 function frameworkLabel(framework) {
   switch (framework) {
@@ -652,7 +646,7 @@ function deriveHowItWorks(detected) {
   } else if (detected.surfaces.has('content')) {
     sentences.push(
       `A content script mounts ${langPrefix} UI inside a Shadow DOM and ` +
-        `applies scoped styles so the host page can\'t bleed through.`
+        `applies scoped styles so the host page can't bleed through.`
     )
   } else if (detected.surfaces.has('sidebar')) {
     sentences.push(
@@ -852,7 +846,9 @@ function processSlug(slug) {
   let prev = ''
   try {
     prev = fs.readFileSync(readmePath, 'utf8')
-  } catch {}
+  } catch {
+    // README doesn't exist yet — treat as empty so we always (re)write.
+  }
   const changed = prev !== readme
 
   const notes = []

@@ -83,6 +83,12 @@ function listExamples(filter = null) {
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name)
     .filter((name) => !SKIPPED_EXAMPLES.has(name))
+    // Skip ghost dirs left behind by renames or partial cache restores
+    // (e.g. only `node_modules/` remains). A real example must ship a
+    // `package.json`.
+    .filter((name) =>
+      fs.existsSync(path.join(examplesDir, name, 'package.json'))
+    )
     .sort()
 
   if (!filter) {
