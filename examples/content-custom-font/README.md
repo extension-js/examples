@@ -3,7 +3,7 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Content Script Example
+# Custom Fonts Content Script Example
 
 > Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.
 
@@ -12,6 +12,8 @@
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
+
+Loads custom web fonts inside the injected Shadow DOM via `web_accessible_resources`, so the UI ships its own typography without depending on the host page's stylesheet.
 
 ## Try it locally
 

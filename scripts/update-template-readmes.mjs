@@ -401,6 +401,13 @@ const OVERRIDES = {
       'support MAIN-world content scripts, so this template is gated to ' +
       'Chromium targets.'
   },
+  'content-custom-font': {
+    title: 'Custom Fonts Content Script Example',
+    extra:
+      'Loads custom web fonts inside the injected Shadow DOM via ' +
+      '`web_accessible_resources`, so the UI ships its own typography ' +
+      "without depending on the host page's stylesheet."
+  },
   'content-css-modules': {
     extra:
       'CSS Modules pipeline with locally-scoped class names. Imported ' +
