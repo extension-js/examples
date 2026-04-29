@@ -49,6 +49,7 @@
     "test:install": "playwright install",
     "test:banner": "node scripts/test-browser-banner.mjs",
     "test:canary-one-run": "node scripts/assert-canary-one-run-builds.mjs",
+    "test:canary-runtime-installed": "node scripts/assert-canary-runtime-installed.mjs",
     "test:optional-deps-contract": "node scripts/assert-optional-deps-canary-matrix.mjs",
     "test:stable-install-modes": "node scripts/assert-stable-install-modes.mjs",
     "test:create-dev-workflow": "node scripts/assert-create-dev-workflow.mjs",
