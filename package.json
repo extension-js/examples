@@ -11,7 +11,7 @@
   "workspaces": [
     "programs/*"
   ],
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.28.0",
   "name": "extension-examples-workspace",
   "version": "1.0.0",
   "type": "module",
@@ -89,7 +89,7 @@
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "3.15.0-canary.290.4621cf8",
+    "extension": "3.15.0-canary.292.a1b35ec",
     "globals": "^15.13.0",
     "knip": "^5.33.0",
     "lint-staged": "16.1.0",
