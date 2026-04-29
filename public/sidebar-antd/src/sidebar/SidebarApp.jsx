@@ -1,29 +1,57 @@
 import React from 'react'
-import {Button, ConfigProvider} from 'antd'
+import {ConfigProvider, theme, Typography, Button, Space} from 'antd'
 import {SmileOutlined} from '@ant-design/icons'
 import {XProvider, ThoughtChain} from '@ant-design/x'
+import iconUrl from '../images/icon.png'
+
+const {Title, Paragraph} = Typography
 
 export default function SidebarApp() {
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+        token: {
+          colorPrimary: '#1677ff',
+          colorBgBase: '#0a0c10',
+          colorTextBase: '#c9c9c9',
+          borderRadius: 6
+        }
+      }}
+    >
       <XProvider>
-        <div data-testid="antd-root" style={{padding: 24}}>
-          <h1>Extension.js + Ant Design</h1>
-          <p>
-            Regression coverage for{' '}
-            <a href="https://github.com/extension-js/extension.js/issues/445">
-              issue #445
+        <div className="sidebar_app" data-testid="antd-root">
+          <img className="sidebar_logo" src={iconUrl} alt="Ant Design" />
+          <Title level={2} className="sidebar_title">
+            Sidebar Panel
+          </Title>
+          <Paragraph className="sidebar_description">
+            Built with{' '}
+            <a
+              href="https://ant.design"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ant Design
             </a>
-            . Renders antd, @ant-design/icons and @ant-design/x components.
-            These packages publish CJS code that consumes
-            <code>@babel/runtime</code> helpers; if the bundler picks the ESM
-            condition for those CJS requires, the page crashes with
-            "_interopRequireDefault is not a function".
-          </p>
-          <Button type="primary" icon={<SmileOutlined />}>
-            antd button
-          </Button>
-          <ThoughtChain items={[]} />
+            . Learn more in the{' '}
+            <a
+              href="https://extension.js.org"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Extension.js docs
+            </a>
+            .
+          </Paragraph>
+          <Space size="small" className="sidebar_actions">
+            <Button type="primary" icon={<SmileOutlined />}>
+              antd button
+            </Button>
+          </Space>
+          <div className="sidebar_thoughts">
+            <ThoughtChain items={[]} />
+          </div>
         </div>
       </XProvider>
     </ConfigProvider>
