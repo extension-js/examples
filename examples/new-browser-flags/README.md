@@ -7,7 +7,7 @@
 
 > A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 

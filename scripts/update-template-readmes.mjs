@@ -576,7 +576,6 @@ const OVERRIDES = {
 // Title + headline
 // ──────────────────────────────────────────────────────────────────────────
 
-
 function frameworkLabel(framework) {
   switch (framework) {
     case 'react':

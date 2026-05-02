@@ -7,7 +7,7 @@
 
 > Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 

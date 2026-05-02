@@ -66,7 +66,14 @@ test('should exist a default color value', async ({page}) => {
 // the background script. The build replaces import.meta.env.* at compile time.
 // .env.chrome sets it to "Chrome Extension example".
 baseTest('env variable is compiled into built background script', async () => {
-  const bgPath = path.join(pathToExtension, 'background', 'service_worker.js')
+  // MV3 emits `background/service_worker.js`; MV2 (Firefox) emits
+  // `background/scripts.js`. Try both so the fixture stays portable
+  // regardless of which dist is mounted at `pathToExtension`.
+  const bgCandidates = [
+    path.join(pathToExtension, 'background', 'service_worker.js'),
+    path.join(pathToExtension, 'background', 'scripts.js')
+  ]
+  const bgPath = bgCandidates.find((p) => fs.existsSync(p)) || bgCandidates[0]
   const bgCode = fs.readFileSync(bgPath, 'utf8')
   const envValues = [
     'Chrome Extension example',

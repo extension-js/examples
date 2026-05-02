@@ -1,7 +1,12 @@
+import {lazy, Suspense} from 'react'
 import {Bot, User} from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
 import type {Message} from '../lib/client'
 import {cn} from '../lib/utils'
+
+// react-markdown + the remark/rehype tree it pulls in is ~80–100 KB. Defer
+// it to a separate chunk so the sidebar's first paint (login form, empty
+// state, user-message echoing) doesn't pay for it.
+const ReactMarkdown = lazy(() => import('react-markdown'))
 
 interface ChatMessageProps {
   message: Message
@@ -32,7 +37,13 @@ export default function ChatMessage({message}: ChatMessageProps) {
           <p className="whitespace-pre-wrap">{message.content}</p>
         ) : (
           <div className="prose prose-sm dark:prose-invert max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
-            <ReactMarkdown>{message.content}</ReactMarkdown>
+            <Suspense
+              fallback={
+                <p className="whitespace-pre-wrap">{message.content}</p>
+              }
+            >
+              <ReactMarkdown>{message.content}</ReactMarkdown>
+            </Suspense>
           </div>
         )}
       </div>
