@@ -48,11 +48,36 @@ function listExampleDirs(): string[] {
 }
 
 function cleanDevRoots(exampleDir: string) {
+  // Wipe ONLY the dev-mode channel directories. Preserving `dist/chrome`
+  // is load-bearing: scripts/prebuild-assets-templates.mjs writes the
+  // production-clean dist there at globalSetup time, and many static
+  // specs (template.assets.spec.ts, content-env/template.spec.ts,
+  // sidebar-antd/template.spec.ts, …) resolve their `pathToExtension`
+  // via resolveBuiltExtensionPath which prefers `dist/chrome` first.
+  // If we wiped dist/ wholesale, the dev test below leaves only
+  // `dist/chromium` (dev-flavored: reload runtime, dev-mode bundle
+  // artifacts), and the next static spec reads that dirty dist —
+  // producing Firefox-only "WebSocket connection refused" errors,
+  // `(void 0).EXTENSION_PUBLIC_*` env-injection mismatches, etc.
+  const DEV_ONLY_CHANNELS = [
+    'chromium',
+    'chrome-mv3',
+    'firefox',
+    'gecko-based',
+    'chromium-based',
+    'firefox-based',
+    'edge'
+  ]
   for (const root of DEV_ROOTS) {
-    try {
-      fs.rmSync(path.join(exampleDir, root), {recursive: true, force: true})
-    } catch {
-      // Best-effort cleanup for deterministic retries.
+    for (const channel of DEV_ONLY_CHANNELS) {
+      try {
+        fs.rmSync(path.join(exampleDir, root, channel), {
+          recursive: true,
+          force: true
+        })
+      } catch {
+        // Best-effort cleanup for deterministic retries.
+      }
     }
   }
 }

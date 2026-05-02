@@ -35,7 +35,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   if (message?.type !== 'getActiveTabContext') return
-
   ;(async () => {
     try {
       const [tab] = await chrome.tabs.query({

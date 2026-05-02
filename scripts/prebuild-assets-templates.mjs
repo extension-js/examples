@@ -53,7 +53,19 @@ const TEMPLATES = [
   // HTML_TEMPLATES
   'action',
   'new',
-  'sidebar'
+  'sidebar',
+  // Templates whose STATIC spec asserts on a clean production dist.
+  // Without prebuilding these, their first dist is created by a dev-mode
+  // sibling spec (template.dev.spec.ts / template.reload.spec.ts), which
+  // bakes the dev reload runtime + dev-mode bundle artifacts into the
+  // build. The static test (e.g. sidebar-antd interop assertion,
+  // content-env env-injection assertion, action-locales locale rebuild
+  // verifier) then reads that dev-flavored dist and trips on artifacts
+  // that wouldn't appear in a real prod build (e.g. WebSocket reload
+  // connection attempts, `(void 0).EXTENSION_PUBLIC_*` substitutions).
+  'sidebar-antd',
+  'content-env',
+  'action-locales'
 ]
 
 function hasBuiltDist(exampleDir) {

@@ -53,9 +53,22 @@ function readManifest(dir: string): Manifest | null {
   }
 }
 
+// Channels written by `extension dev` / `extension build --browser=*`
+// that this test owns and is free to wipe between runs. Deliberately
+// excludes `chrome` — that channel is the production target written by
+// scripts/prebuild-assets-templates.mjs at globalSetup time, and many
+// downstream static specs (template.assets.spec.ts, content-env's,
+// sidebar-antd's, …) resolve `pathToExtension` to `dist/chrome` first.
+// If we wiped it, the dev test below leaves only `dist/chromium`
+// (dev-flavored — reload runtime, dev-mode bundle artifacts), and the
+// next static spec reads that dirty dist — producing Firefox-only
+// "WebSocket connection refused" errors, `(void 0).EXTENSION_PUBLIC_*`
+// env-injection mismatches, etc.
+const CLEAN_CHANNELS = DEV_CHANNELS.filter((ch) => ch !== 'chrome')
+
 function cleanDevRoots(dir: string) {
   for (const root of DEV_ROOTS)
-    for (const ch of DEV_CHANNELS)
+    for (const ch of CLEAN_CHANNELS)
       try {
         fs.rmSync(path.join(dir, root, ch), {recursive: true, force: true})
       } catch {}
@@ -792,13 +805,21 @@ if (localeReloadManifest) {
       localeTest.describe.configure({mode: 'serial', timeout: 120000})
 
       let lServer: DevServer | null = null
-      const localeFile = path.join(
-        localeReloadDir,
-        'src',
-        '_locales',
-        'en',
-        'messages.json'
-      )
+      // Resolve the locale messages.json against the canonical project-root
+      // `_locales/` layout first (matches what `extension dev`/`build` now
+      // emit and watch), falling back to the legacy next-to-manifest
+      // `src/_locales/` shape for templates that haven't been migrated yet.
+      // Without this fallback, the resolver in feature-locales picks the
+      // project-root file for emit while this test edits the src copy —
+      // the two locations diverge silently and rebuilds never reflect the
+      // edit in dist.
+      const candidateLocaleFiles = [
+        path.join(localeReloadDir, '_locales', 'en', 'messages.json'),
+        path.join(localeReloadDir, 'src', '_locales', 'en', 'messages.json')
+      ]
+      const localeFile =
+        candidateLocaleFiles.find((f) => fs.existsSync(f)) ||
+        candidateLocaleFiles[0]
       const localeOriginal = fs.readFileSync(localeFile, 'utf8')
 
       localeTest.beforeAll(async ({}, testInfo) => {

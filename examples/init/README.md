@@ -7,7 +7,7 @@
 
 > A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A minimal extension wired with dev / build / preview scripts.
 

@@ -38,7 +38,9 @@ if (!fs.existsSync(installedExtensionBin)) {
 }
 
 if (!fs.existsSync(installedExtensionDevelopRoot)) {
-  console.error(`✖ Missing installed runtime: ${installedExtensionDevelopRoot}`)
+  console.error(
+    `✖ Missing installed runtime: ${installedExtensionDevelopRoot}`
+  )
   process.exit(1)
 }
 
