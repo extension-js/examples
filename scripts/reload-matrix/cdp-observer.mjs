@@ -281,7 +281,9 @@ export async function connectObserver({
     async closeTarget(targetId) {
       try {
         await send('Target.closeTarget', {targetId})
-      } catch {}
+      } catch {
+        // best-effort: tab may already be gone
+      }
     },
     /** Block until at least `count` events of `category` are recorded, or timeout. */
     async waitForCategory(category, count, timeoutMs) {
@@ -313,7 +315,9 @@ export async function connectObserver({
       if (closed) return
       try {
         ws.close()
-      } catch {}
+      } catch {
+        // socket may already be closed by the remote end
+      }
       await new Promise((resolve) => {
         if (closed) return resolve()
         closeWaiters.push(resolve)

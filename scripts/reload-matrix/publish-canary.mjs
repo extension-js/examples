@@ -295,7 +295,9 @@ async function main() {
     if (npmrc) {
       try {
         npmrc.cleanup()
-      } catch {}
+      } catch {
+        // best-effort
+      }
     }
     restoreVersions()
   }
