@@ -36,7 +36,6 @@ const __dirname = getDirname(import.meta.url)
 const examplesDir = __dirname
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
-const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 function listExampleDirs(): string[] {
@@ -108,21 +107,38 @@ function getHtmlEntryPath(manifest: Manifest): string | null {
   )
 }
 
+// Wait for the dev-mode `dist/chromium/manifest.json` specifically. This must
+// NOT match `dist/chrome` (the production channel preserved by cleanDevRoots
+// for use by static specs via prebuild-assets-templates.mjs). Matching
+// `dist/chrome` would return immediately before the dev server has rebuilt
+// `dist/chromium`, and Chrome's launchPersistentContext then loads an empty
+// directory and hangs with "Manifest file is missing or unreadable".
 async function waitForDevManifest(
   exampleDir: string,
   timeoutMs = 60000
 ): Promise<string> {
   const start = Date.now()
+  const DEV_ONLY_CHANNELS = ['chromium', 'chrome-mv3']
   while (Date.now() - start < timeoutMs) {
     for (const root of DEV_ROOTS) {
-      for (const channel of DEV_CHANNELS) {
+      for (const channel of DEV_ONLY_CHANNELS) {
         const candidate = path.join(exampleDir, root, channel)
-        if (fs.existsSync(path.join(candidate, 'manifest.json'))) {
-          return candidate
+        const manifestPath = path.join(candidate, 'manifest.json')
+        // existsSync alone is not enough: rspack creates the file before the
+        // build finishes writing dependent assets. Require a non-empty,
+        // parseable manifest before unblocking the test.
+        try {
+          const stat = fs.statSync(manifestPath)
+          if (stat.size > 0) {
+            JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+            return candidate
+          }
+        } catch {
+          // File missing, partial, or invalid — keep polling.
         }
       }
     }
-    await new Promise((resolve) => setTimeout(resolve, 500))
+    await new Promise((resolve) => setTimeout(resolve, 250))
   }
   throw new Error(`Dev manifest not found for ${exampleDir}`)
 }
@@ -157,21 +173,7 @@ function startDev(exampleDir: string): ChildProcess {
     ...process.env,
     EXTENSION_AUTHOR_MODE: 'true'
   }
-  // Spawn detached so the dev process gets its own process group. When this
-  // wrapper goes through `pnpm extension dev` (the default in CI when
-  // EXTENSION_LOCAL_CLI_CJS is unset), SIGTERM to the pnpm parent does NOT
-  // propagate to the rspack workers, watchers, and chromium readiness
-  // probes that pnpm forks. Without process-group ownership the previous
-  // test's children survive into the next one, accumulating until
-  // chromium.launchPersistentContext starts timing out under resource
-  // pressure (observed as "Test timeout exceeded while setting up
-  // 'context'" once 4-5 templates have run sequentially).
-  const spawnOpts = {
-    cwd: exampleDir,
-    env,
-    stdio: 'pipe' as const,
-    detached: true
-  }
+  const spawnOpts = {cwd: exampleDir, env, stdio: 'pipe' as const}
   const args = localCliCjs
     ? [
         localCliCjs,
@@ -195,97 +197,36 @@ function startDev(exampleDir: string): ChildProcess {
 
 async function stopDev(proc: ChildProcess) {
   if (proc.killed) return
-  // Signal the whole process group (negative PID) so pnpm's children get
-  // the message too. Fall back to direct kill if the process is already
-  // detached from the group.
-  const killGroup = (signal: NodeJS.Signals) => {
-    try {
-      if (proc.pid != null) process.kill(-proc.pid, signal)
-    } catch {
-      try {
-        proc.kill(signal)
-      } catch {
-        // Already gone
-      }
-    }
-  }
-  killGroup('SIGTERM')
-  await new Promise<void>((resolve) => {
-    let resolved = false
-    const done = () => {
-      if (resolved) return
-      resolved = true
-      resolve()
-    }
-    const graceTimeout = setTimeout(() => {
-      // SIGTERM was ignored or a child stayed alive past the grace period.
-      // Force the whole group down so the next test's chromium launch is
-      // not racing zombies for fds and chrome-process slots.
-      killGroup('SIGKILL')
-      // Allow the kernel a beat to reap before we continue.
-      setTimeout(done, 500)
-    }, 5000)
+  proc.kill('SIGTERM')
+  await new Promise((resolve) => {
+    const timeout = setTimeout(resolve, 5000)
     proc.on('close', () => {
-      clearTimeout(graceTimeout)
-      done()
+      clearTimeout(timeout)
+      resolve(null)
     })
   })
 }
 
-// Wait for `text` to appear in the page body. The dev pipeline rebuilds the
-// HTML asset on disk after a source edit; whether the open page picks the
-// change up via livereload broadcast vs. an explicit page.reload() depends
-// on timing and the host's WS connectivity (CI runners under xvfb are
-// slower than local headed runs and occasionally miss the broadcast). To
-// keep the test deterministic without coupling to livereload's exact
-// schedule, we poll the body and periodically issue a page.reload(); both
-// paths land on the same rebuilt HTML.
 async function expectHtmlText(page: any, text: string) {
-  const start = Date.now()
-  let lastReload = start
-  while (Date.now() - start < 60000) {
-    try {
-      const body = ((await page.locator('body').textContent()) || '').trim()
-      if (body.includes(text)) return
-    } catch {
-      // Page may be mid-reload; ignore and retry
-    }
-    if (Date.now() - lastReload > 4000) {
-      try {
-        await page.reload({waitUntil: 'domcontentloaded', timeout: 5000})
-      } catch {
-        // Reload may race with livereload-driven navigation
+  await expect
+    .poll(
+      async () => ((await page.locator('body').textContent()) || '').trim(),
+      {
+        timeout: 60000
       }
-      lastReload = Date.now()
-    }
-    await new Promise((resolve) => setTimeout(resolve, 250))
-  }
-  const body = ((await page.locator('body').textContent()) || '').trim()
-  expect(body).toContain(text)
+    )
+    .toContain(text)
 }
 
 async function expectHtmlTextAbsent(page: any, text: string) {
-  const start = Date.now()
-  let lastReload = start
-  while (Date.now() - start < 60000) {
-    try {
-      const body = ((await page.locator('body').textContent()) || '').trim()
-      if (!body.includes(text)) return
-    } catch {
-      // Page may be mid-reload; ignore and retry
-    }
-    if (Date.now() - lastReload > 4000) {
-      try {
-        await page.reload({waitUntil: 'domcontentloaded', timeout: 5000})
-      } catch {
-        // Reload may race with livereload-driven navigation
+  await expect
+    .poll(
+      async () => ((await page.locator('body').textContent()) || '').trim(),
+      {
+        timeout: 60000
       }
-      lastReload = Date.now()
-    }
-    await new Promise((resolve) => setTimeout(resolve, 250))
-  }
-  const body = ((await page.locator('body').textContent()) || '').trim()
-  expect(body).not.toContain(text)
+    )
+    .not.toContain(text)
 }
 
 const examples = listExampleDirs()
