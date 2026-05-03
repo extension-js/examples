@@ -1,1 +1,1 @@
-console.log('Action extension background script running')
+console.log('[From the background context] Hello from the background!')
