@@ -87,12 +87,7 @@ function copyFixture(sourceDir) {
  * mode. The same args/cwd/env shape works for both modes so the harness
  * downstream of this point doesn't care which one is in play.
  */
-function buildDevSpawn({
-  projectDir,
-  env,
-  mode = 'local',
-  remoteTag = 'canary'
-}) {
+function buildDevSpawn({mode = 'local', remoteTag = 'canary'}) {
   if (mode === 'local') {
     if (!existsSync(LOCAL_CLI_PATH)) {
       throw new Error(
@@ -124,7 +119,7 @@ function buildDevSpawn({
 }
 
 function spawnDev({projectDir, env, mode, remoteTag}) {
-  const {command, args} = buildDevSpawn({projectDir, env, mode, remoteTag})
+  const {command, args} = buildDevSpawn({mode, remoteTag})
   const child = spawn(command, args, {
     cwd: projectDir,
     env: {
@@ -186,13 +181,17 @@ async function killTree(child) {
   if (!child || child.killed) return
   try {
     child.kill('SIGTERM')
-  } catch {}
+  } catch {
+    // best-effort
+  }
   await new Promise((resolve) => {
     if (child.exitCode != null) return resolve()
     const timer = setTimeout(() => {
       try {
         child.kill('SIGKILL')
-      } catch {}
+      } catch {
+      // best-effort
+    }
       resolve()
     }, 4_000)
     child.once('exit', () => {
@@ -225,7 +224,7 @@ function classifyEvents(events) {
   return Array.from(buckets.values())
 }
 
-function findUserExtensionOrigin(buckets, devManifestName) {
+function findUserExtensionOrigin(buckets) {
   // Companion extensions are well-known by name in their manifests; the user
   // extension is the one that doesn't match those. The harness only needs to
   // pick out the user origin so the matrix can assert against it.
@@ -249,7 +248,9 @@ function readManifestName(projectDir) {
     try {
       const json = JSON.parse(readFileSync(path, 'utf-8'))
       if (typeof json.name === 'string') return json.name
-    } catch {}
+    } catch {
+      // best-effort
+    }
   }
   return undefined
 }
@@ -353,7 +354,7 @@ export async function runScenario(scenario) {
     const editEvents = observer.events.slice(baselineEventCount)
     const buckets = classifyEvents(editEvents)
     const userOrigin =
-      userExtensionId || findUserExtensionOrigin(buckets, userManifestName)
+      userExtensionId || findUserExtensionOrigin(buckets)
 
     // Best-effort close on the way out so the next scenario starts clean.
     for (const targetId of openedTargets) {
@@ -378,12 +379,16 @@ export async function runScenario(scenario) {
     if (observer) {
       try {
         await observer.close()
-      } catch {}
+      } catch {
+      // best-effort
+    }
     }
     await killTree(dev.child)
     try {
       rmSync(tempRoot, {recursive: true, force: true})
-    } catch {}
+    } catch {
+      // best-effort
+    }
   }
 }
 
