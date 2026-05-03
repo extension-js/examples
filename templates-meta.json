@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-04-29T14:41:59.783Z",
+  "generatedAt": "2026-05-03T21:02:05.318Z",
   "templates": [
     {
       "slug": "action",
@@ -12,9 +12,9 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Action popup example. Opens a toolbar popup with a simple page.",
-      "uiContext": ["action", "background"],
-      "surfaces": ["action", "background"],
-      "entrypoints": ["./action/index.html"],
+      "uiContext": ["background"],
+      "surfaces": ["background"],
+      "entrypoints": [],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -28,7 +28,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "permissions": [],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -67,9 +67,9 @@
       "version": "0.0.1",
       "manifest_version": 3,
       "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
-      "uiContext": ["action", "background"],
-      "surfaces": ["action", "background"],
-      "entrypoints": ["./action/index.html"],
+      "uiContext": ["background"],
+      "surfaces": ["background"],
+      "entrypoints": [],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -83,15 +83,13 @@
           "hasEnv": false
         }
       },
-      "permissions": ["storage", "tabs", "activeTab", "scripting"],
+      "permissions": [],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
       "files": [
         "public/action-locales/extension.config.js",
         "public/action-locales/public/screenshot.png",
-        "public/action-locales/src/_locales/en/messages.json",
-        "public/action-locales/src/_locales/pt_BR/messages.json",
         "public/action-locales/src/action/index.html",
         "public/action-locales/src/action/scripts.js",
         "public/action-locales/src/action/styles.css",
@@ -888,7 +886,6 @@
       "featured": false,
       "files": [
         "public/content-preact/extension.config.js",
-        "public/content-preact/public/screenshot.png",
         "public/content-preact/src/background.ts",
         "public/content-preact/src/content/ContentApp.tsx",
         "public/content-preact/src/content/scripts.tsx",
@@ -938,7 +935,6 @@
       "featured": false,
       "files": [
         "public/content-react/extension.config.js",
-        "public/content-react/public/screenshot.png",
         "public/content-react/src/background.ts",
         "public/content-react/src/content/ContentApp.tsx",
         "public/content-react/src/content/scripts.tsx",
@@ -1070,7 +1066,6 @@
       "featured": false,
       "files": [
         "public/content-svelte/extension.config.js",
-        "public/content-svelte/public/screenshot.png",
         "public/content-svelte/src/background.ts",
         "public/content-svelte/src/content/ContentApp.svelte",
         "public/content-svelte/src/content/scripts.ts",
@@ -1161,7 +1156,6 @@
       "featured": false,
       "files": [
         "public/content-vue/extension.config.js",
-        "public/content-vue/public/screenshot.png",
         "public/content-vue/src/background.ts",
         "public/content-vue/src/content/ContentApp.vue",
         "public/content-vue/src/content/scripts.ts",
@@ -1209,7 +1203,6 @@
       "featured": false,
       "files": [
         "public/init/extension.config.js",
-        "public/init/public/screenshot.png",
         "public/init/src/images/icon.png",
         "public/init/src/images/javascript.png",
         "public/init/src/index.js",
@@ -1340,7 +1333,6 @@
       "featured": false,
       "files": [
         "public/new-browser-flags/extension.config.js",
-        "public/new-browser-flags/public/screenshot.png",
         "public/new-browser-flags/src/background.js",
         "public/new-browser-flags/src/content/content.js",
         "public/new-browser-flags/src/images/icon.png",
