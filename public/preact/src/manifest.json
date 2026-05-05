@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
-  "name": "Extension.js - Preact Sidebar Example",
+  "name": "Preact Sidebar Example",
   "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
   "icons": {
     "16": "images/icon.png",

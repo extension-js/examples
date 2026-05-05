@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - JavaScript Content Example",
+  "name": "JavaScript Content Example",
   "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
   "icons": {
     "16": "images/icon.png",

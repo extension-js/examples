@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-env",
+  "name": "content-env",
   "description": "Content script example that reads environment variables (.env) and renders a small UI.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

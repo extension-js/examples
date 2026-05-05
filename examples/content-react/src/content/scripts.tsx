@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 import ReactDOM from 'react-dom/client'
 import ContentApp from './ContentApp'
 

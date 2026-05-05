@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-less",
+  "name": "new-less",
   "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

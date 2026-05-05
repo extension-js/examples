@@ -1,1 +1,1 @@
-console.log('Hello from the browser action page')
+console.log('[From the action popup context] Hello regular page!')

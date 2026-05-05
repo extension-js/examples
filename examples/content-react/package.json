@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-react",
+  "name": "content-react",
   "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

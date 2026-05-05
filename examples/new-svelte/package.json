@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-svelte",
+  "name": "new-svelte",
   "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

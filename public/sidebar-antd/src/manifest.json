@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - Ant Design Sidebar Example",
+  "name": "Ant Design Sidebar Example",
   "author": "Cezar Augusto",
   "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
   "icons": {

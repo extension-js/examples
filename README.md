@@ -23,7 +23,7 @@ This repository contains browser extension examples built with Extension.js. Eac
 
 | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/a9e2541a-96f0-4caa-9fc9-5fc5c3e901c8" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/b42c5330-9e2a-4045-99c3-1f7d264dfaf4" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/f19edff3-9005-4f50-b05c-fba615896a7f" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/ff64721d-d145-4213-930d-e70193f8d57e" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/15f1314a-aa65-4ce2-a3f3-cf53c4f730cf" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/de1082fd-7cf6-4202-8c12-a5c3cd3e5b42" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/8807efd9-93e5-4db5-a1d2-9ac524f7ecc2" width="70"> |
 | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-|                             ESNext<br>[Try out](https://templates.extension.dev/javascript)                             |                           TypeScript<br>[Try out](https://templates.extension.dev/typescript)                           |                       WASM<br>[Try out](https://templates.extension.dev/sidebar-transformers-js)                        |                                React<br>[Try out](https://templates.extension.dev/react)                                |                                  Vue<br>[Try out](https://templates.extension.dev/vue)                                  |                               Svelte<br>[Try out](https://templates.extension.dev/svelte)                               |                               Preact<br>[Try out](https://templates.extension.dev/preact)                               |
+|                             ESNext<br>[Try out](https://templates.extension.dev/javascript)                             |                           TypeScript<br>[Try out](https://templates.extension.dev/typescript)                           |                           WASM<br>[Try out](https://templates.extension.dev/transformers-js)                            |                                React<br>[Try out](https://templates.extension.dev/react)                                |                                  Vue<br>[Try out](https://templates.extension.dev/vue)                                  |                               Svelte<br>[Try out](https://templates.extension.dev/svelte)                               |                               Preact<br>[Try out](https://templates.extension.dev/preact)                               |
 
 </div>
 
@@ -216,24 +216,24 @@ This repository contains browser extension examples built with Extension.js. Eac
 </details>
 
 <details>
-  <summary><img src="./public/sidebar-transformers-js/src/images/icon.png" alt="sidebar-transformers-js example icon" width="22" /> Sidebar Transformers JS Example</summary>
+  <summary><img src="./public/transformers-js/src/images/icon.png" alt="transformers-js example icon" width="22" /> Transformers JS Example</summary>
 
-> Sidebar example that runs a small Transformers.js demo inside a side panel.
+> Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-transformers-js/README.md">examples/sidebar-transformers-js</a></td>
-      <td rowspan="5"><img src="./examples/sidebar-transformers-js/public/screenshot.png" alt="sidebar-transformers-js screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/transformers-js/README.md">examples/transformers-js</a></td>
+      <td rowspan="5"><img src="./examples/transformers-js/public/screenshot.png" alt="transformers-js screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
-    <tr><td>Context</td><td align="right">Sidebar, Background</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-transformers-js">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/transformers-js">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>

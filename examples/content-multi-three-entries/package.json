@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-multi-three-entries",
+  "name": "content-multi-three-entries",
   "description": "Content script example split across three entries (2 + 1 + 1). Each script injects a small element.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

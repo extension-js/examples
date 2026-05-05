@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-config-stylelint",
+  "name": "new-config-stylelint",
   "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

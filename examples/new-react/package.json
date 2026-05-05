@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-react",
+  "name": "new-react",
   "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

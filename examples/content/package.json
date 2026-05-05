@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content",
+  "name": "content",
   "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

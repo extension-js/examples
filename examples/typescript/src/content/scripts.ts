@@ -2,7 +2,7 @@ import createContentApp from './ContentApp'
 import './styles.css'
 
 export default function initial() {
-  console.log('hello from content_scripts')
+  console.log('[From the page context] Hello from content_scripts!')
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')
   document.body.appendChild(rootDiv)

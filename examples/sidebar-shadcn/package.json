@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/sidebar-shadcn",
+  "name": "sidebar-shadcn",
   "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

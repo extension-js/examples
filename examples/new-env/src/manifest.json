@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "0.0.1",
-  "name": "Extension.js - .env New Tab Example",
+  "version": "1.0.0",
+  "name": ".env New Tab Example",
   "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
   "icons": {
     "16": "images/icon.png",

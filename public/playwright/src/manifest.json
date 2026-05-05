@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - Playwright Sidebar Example",
+  "name": "Playwright Sidebar Example",
   "author": "Cezar Augusto",
   "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
   "icons": {

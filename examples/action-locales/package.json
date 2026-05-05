@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/action-locales",
+  "name": "action-locales",
   "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/sidebar",
+  "name": "sidebar",
   "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - ChatGPT (OpenAI) Sidebar",
+  "name": "ChatGPT (OpenAI) Sidebar",
   "author": "Cezar Augusto",
   "description": "React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.",
   "icons": {

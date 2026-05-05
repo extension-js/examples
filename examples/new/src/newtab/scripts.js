@@ -1,1 +1,1 @@
-console.log('Hello from the new tab page!')
+console.log('[From the newtab override context] Hello regular page!')

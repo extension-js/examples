@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - Special Folders Scripts Example",
+  "name": "Special Folders Scripts Example",
   "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
   "icons": {
     "16": "images/icon.png",

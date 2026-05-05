@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-vue",
+  "name": "new-vue",
   "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

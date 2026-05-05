@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "0.0.1",
-  "name": "Extension.js - TypeScript Content Example",
+  "version": "1.0.0",
+  "name": "TypeScript Content Example",
   "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
   "icons": {
     "16": "images/icon.png",

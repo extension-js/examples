@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/ai-gemini",
+  "name": "ai-gemini",
   "description": "React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

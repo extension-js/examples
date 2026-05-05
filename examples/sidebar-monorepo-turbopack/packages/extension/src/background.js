@@ -1,3 +1,6 @@
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 console.log('Monorepo Turbopack: background ready')
 
 const isFirefoxLike =

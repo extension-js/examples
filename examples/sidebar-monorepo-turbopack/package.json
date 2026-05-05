@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/sidebar-monorepo-turbopack",
+  "name": "sidebar-monorepo-turbopack",
   "description": "Sidebar + content_script monorepo example using Extension.js with Turbopack.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

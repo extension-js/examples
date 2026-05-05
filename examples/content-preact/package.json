@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-preact",
+  "name": "content-preact",
   "description": "Content script example rendered with Preact. Mounts a small UI inside a Shadow DOM on any page.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

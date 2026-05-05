@@ -190,8 +190,8 @@ async function killTree(child) {
       try {
         child.kill('SIGKILL')
       } catch {
-      // best-effort
-    }
+        // best-effort
+      }
       resolve()
     }, 4_000)
     child.once('exit', () => {
@@ -353,8 +353,7 @@ export async function runScenario(scenario) {
 
     const editEvents = observer.events.slice(baselineEventCount)
     const buckets = classifyEvents(editEvents)
-    const userOrigin =
-      userExtensionId || findUserExtensionOrigin(buckets)
+    const userOrigin = userExtensionId || findUserExtensionOrigin(buckets)
 
     // Best-effort close on the way out so the next scenario starts clean.
     for (const targetId of openedTargets) {
@@ -380,8 +379,8 @@ export async function runScenario(scenario) {
       try {
         await observer.close()
       } catch {
-      // best-effort
-    }
+        // best-effort
+      }
     }
     await killTree(dev.child)
     try {

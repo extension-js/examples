@@ -503,12 +503,15 @@ const OVERRIDES = {
       'citations. Shares its layout and shadcn/ui primitives with the ' +
       '`ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.'
   },
-  'sidebar-transformers-js': {
-    title: 'React Sidebar (Transformers.js) Example',
+  'transformers-js': {
+    title: 'Transformers.js Example',
     extra:
-      'Sidebar that runs [Transformers.js](https://huggingface.co/docs/transformers.js) ' +
-      'models in the browser via WebGPU/WASM. No server, no API key — the ' +
-      'model and tokenizer are loaded from the Hugging Face Hub on first run.'
+      'Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) ' +
+      'pipelines on the active page or the current selection. No server, no ' +
+      'API key — the model and tokenizer are loaded from the Hugging Face ' +
+      'Hub on first run, and inference happens locally via WebGPU/WASM. A ' +
+      'right-click context menu (`Classify selection with Transformers.js`) ' +
+      'mirrors the in-sidebar flow for ad-hoc text on any page.'
   },
   'sidebar-monorepo-turbopack': {
     title: 'React Sidebar (Monorepo + Turborepo) Example',

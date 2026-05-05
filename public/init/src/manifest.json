@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "0.0.1",
-  "name": "Extension.js - Init Example",
+  "name": "Init Example",
   "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
   "icons": {
     "16": "images/icon.png",

@@ -2237,13 +2237,13 @@
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
     },
     {
-      "slug": "sidebar-transformers-js",
-      "name": "@extension-js/sidebar-transformers-js",
-      "version": "0.0.1",
+      "slug": "transformers-js",
+      "name": "@extension-js/transformers-js",
+      "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
-      "uiContext": ["sidebar", "background"],
-      "surfaces": ["sidebar", "background"],
+      "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
+      "uiContext": ["content", "sidebar", "background"],
+      "surfaces": ["content", "sidebar", "background"],
       "entrypoints": ["sidebar/index.html"],
       "uiFramework": "",
       "css": "css",
@@ -2258,27 +2258,36 @@
           "hasEnv": false
         }
       },
-      "permissions": [],
-      "host_permissions": [],
+      "permissions": [
+        "sidePanel",
+        "storage",
+        "unlimitedStorage",
+        "activeTab",
+        "scripting",
+        "tabs",
+        "contextMenus"
+      ],
+      "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
       "files": [
-        "public/sidebar-transformers-js/extension.config.js",
-        "public/sidebar-transformers-js/public/screenshot.png",
-        "public/sidebar-transformers-js/src/background.js",
-        "public/sidebar-transformers-js/src/constants.js",
-        "public/sidebar-transformers-js/src/images/icon.png",
-        "public/sidebar-transformers-js/src/manifest.json",
-        "public/sidebar-transformers-js/src/sidebar/SidebarApp.js",
-        "public/sidebar-transformers-js/src/sidebar/index.html",
-        "public/sidebar-transformers-js/src/sidebar/sakura.css",
-        "public/sidebar-transformers-js/src/sidebar/scripts.js",
-        "public/sidebar-transformers-js/src/sidebar/styles.css"
+        "public/transformers-js/extension.config.js",
+        "public/transformers-js/public/screenshot.png",
+        "public/transformers-js/src/background.js",
+        "public/transformers-js/src/constants.js",
+        "public/transformers-js/src/content/scripts.js",
+        "public/transformers-js/src/images/icon.png",
+        "public/transformers-js/src/manifest.json",
+        "public/transformers-js/src/sidebar/SidebarApp.js",
+        "public/transformers-js/src/sidebar/index.html",
+        "public/transformers-js/src/sidebar/sakura.css",
+        "public/transformers-js/src/sidebar/scripts.js",
+        "public/transformers-js/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-transformers-js/screenshot.png",
-      "icon": "public/sidebar-transformers-js/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-transformers-js"
+      "screenshot": "public/transformers-js/screenshot.png",
+      "icon": "public/transformers-js/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/transformers-js"
     },
     {
       "slug": "special-folders-pages",
