@@ -1,3 +1,6 @@
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 // This extension doesn't need to do much in the background
 // It's primarily designed to demonstrate browser flag customization
 console.log('Browser Flags Example background script running')

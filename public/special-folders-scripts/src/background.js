@@ -1,3 +1,6 @@
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 // Special Folders (scripts/) demo
 // Any JS-like file inside src/scripts/ is treated as an entrypoint.
 // Click the extension action to inject and execute all scripts/* in the page.

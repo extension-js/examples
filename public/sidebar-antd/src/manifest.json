@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "0.0.1",
+  "version": "1.0.0",
   "name": "Ant Design Sidebar Example",
   "author": "Cezar Augusto",
   "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",

@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 // Extension.js content script template (JavaScript)
 // - Export a default function (required in v3) that mounts your UI
 // - Wrapper handles Shadow DOM isolation, CSS injection, HMR and cleanup

@@ -1,3 +1,4 @@
+console.log('[From the sidebar page context] Hello regular page!')
 import {mount} from 'svelte'
 import SidebarApp from './SidebarApp.svelte'
 import './styles.css'

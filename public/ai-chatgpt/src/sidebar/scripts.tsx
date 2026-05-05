@@ -1,3 +1,4 @@
+console.log('[From the sidebar page context] Hello regular page!')
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import SidebarApp from './SidebarApp'

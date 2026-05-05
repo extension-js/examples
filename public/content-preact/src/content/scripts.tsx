@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 import {render} from 'preact'
 import ContentApp from './ContentApp'
 
