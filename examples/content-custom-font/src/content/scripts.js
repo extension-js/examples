@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 export default function initial() {
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')

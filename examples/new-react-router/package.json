@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-react-router",
+  "name": "new-react-router",
   "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

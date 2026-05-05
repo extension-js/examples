@@ -3,8 +3,8 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
-  "name": "Extension.js - Transformers.js Sidebar Example",
-  "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
+  "name": "Transformers.js Example",
+  "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
   "author": "Your Name",
   "icons": {
     "16": "images/icon.png",
@@ -41,13 +41,35 @@
     "default_panel": "sidebar/index.html",
     "default_title": "Transformers.js Side Panel"
   },
-  "chromium:permissions": ["sidePanel", "storage", "unlimitedStorage"],
-  "firefox:permissions": ["storage", "unlimitedStorage"],
+  "chromium:permissions": [
+    "sidePanel",
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "contextMenus"
+  ],
+  "firefox:permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "tabs",
+    "contextMenus"
+  ],
+  "host_permissions": ["<all_urls>"],
   "minimum_chrome_version": "92",
   "background": {
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"],
+      "run_at": "document_idle"
+    }
+  ],
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
   },

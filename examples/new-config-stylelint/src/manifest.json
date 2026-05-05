@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "0.0.1",
-  "name": "Extension.js - Stylelint Config New Tab Example",
+  "version": "1.0.0",
+  "name": "Stylelint Config New Tab Example",
   "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
   "icons": {
     "16": "images/icon.png",

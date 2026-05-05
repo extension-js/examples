@@ -1,6 +1,6 @@
 {
-  "name": "@extension-js/sidebar-monorepo-turbopack-packages-extension",
-  "version": "0.0.1",
+  "name": "sidebar-monorepo-turbopack-packages-extension",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {

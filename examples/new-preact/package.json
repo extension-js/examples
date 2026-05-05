@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-preact",
+  "name": "new-preact",
   "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

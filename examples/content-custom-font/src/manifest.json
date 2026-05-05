@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/chrome-manifest.json",
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
-  "version": "0.0.1",
-  "name": "Extension.js - Custom Fonts Content Example",
+  "version": "1.0.0",
+  "name": "Custom Fonts Content Example",
   "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
   "icons": {
     "16": "images/icon.png",

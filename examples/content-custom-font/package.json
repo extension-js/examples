@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-custom-font",
+  "name": "content-custom-font",
   "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

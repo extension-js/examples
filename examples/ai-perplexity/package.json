@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/ai-perplexity",
+  "name": "ai-perplexity",
   "description": "React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

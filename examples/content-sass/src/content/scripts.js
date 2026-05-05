@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 import iconUrl from '../images/icon.png'
 const logo = iconUrl
 export default function initial() {

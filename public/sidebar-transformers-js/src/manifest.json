@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
-  "name": "Extension.js - Transformers.js Sidebar Example",
+  "name": "Transformers.js Sidebar Example",
   "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
   "author": "Your Name",
   "icons": {

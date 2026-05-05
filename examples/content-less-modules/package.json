@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-less-modules",
+  "name": "content-less-modules",
   "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

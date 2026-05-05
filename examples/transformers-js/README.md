@@ -3,23 +3,23 @@
 
 ![Powered by Extension.js][powered-image]
 
-# React Sidebar (Transformers.js) Example
+# Transformers.js Example
 
-> Sidebar example that runs a small Transformers.js demo inside a side panel.
+> Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.
 
 ![screenshot](./public/screenshot.png)
 
-**What you'll see**: A browser side panel that loads when you open the sidebar.
+**What you'll see**: A side panel where you can type text, pull the active page's text, or use your current selection — and run a Transformers.js pipeline on it. A right-click context menu also exposes "Classify selection with Transformers.js".
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. UI is composed with Transformers.js.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) and a content script that listens for `getPageContext` / `getSelection` messages. The background service worker relays those requests to the active tab and runs the pipeline; results stream back to the sidebar.
 
-Sidebar that runs [Transformers.js](https://huggingface.co/docs/transformers.js) models in the browser via WebGPU/WASM. No server, no API key — the model and tokenizer are loaded from the Hugging Face Hub on first run.
+Runs [Transformers.js](https://huggingface.co/docs/transformers.js) models in the browser via WebGPU/WASM. No server, no API key — the model and tokenizer are loaded from the Hugging Face Hub on first run.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-sidebar-transformers-js --template sidebar-transformers-js
-cd my-sidebar-transformers-js
+npx extension@latest create my-transformers-js --template transformers-js
+cd my-transformers-js
 npm install
 npm run dev
 ```
@@ -32,6 +32,8 @@ A fresh browser window opens with the extension already loaded.
 src/
 ├── images/
 │   └── icon.png
+├── content/
+│   └── scripts.js
 ├── sidebar/
 │   ├── index.html
 │   ├── sakura.css

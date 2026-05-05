@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 import {mount} from 'svelte'
 import ContentApp from './ContentApp.svelte'
 import './styles.css'

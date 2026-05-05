@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-sass-modules",
+  "name": "content-sass-modules",
   "description": "A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

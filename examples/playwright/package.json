@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/playwright",
+  "name": "playwright",
   "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

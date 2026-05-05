@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/typescript",
+  "name": "typescript",
   "description": "TypeScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

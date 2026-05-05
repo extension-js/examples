@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/special-folders-pages",
+  "name": "special-folders-pages",
   "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

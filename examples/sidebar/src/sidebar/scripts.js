@@ -1,1 +1,1 @@
-console.log('Hello from the sidebar!')
+console.log('[From the sidebar page context] Hello regular page!')

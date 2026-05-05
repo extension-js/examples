@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/ai-chatgpt",
+  "name": "ai-chatgpt",
   "description": "React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

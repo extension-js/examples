@@ -1,3 +1,6 @@
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'

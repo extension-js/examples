@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/react",
+  "name": "react",
   "description": "React-based extension with sidebar panel",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

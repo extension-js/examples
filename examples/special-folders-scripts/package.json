@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/special-folders-scripts",
+  "name": "special-folders-scripts",
   "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

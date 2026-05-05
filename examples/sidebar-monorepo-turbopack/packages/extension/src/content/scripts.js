@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 export default function initMonorepoContent() {
   const root = document.createElement('div')
   root.setAttribute('data-extension-root', 'true')

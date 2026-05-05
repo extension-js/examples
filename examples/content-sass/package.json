@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/content-sass",
+  "name": "content-sass",
   "description": "Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

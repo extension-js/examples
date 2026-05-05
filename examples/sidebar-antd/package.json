@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/sidebar-antd",
+  "name": "sidebar-antd",
   "description": "JavaScript-based extension with a sidebar panel. Renders antd, @ant-design/icons and @ant-design/x. Regression coverage for issue #445.",
-  "version": "3.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

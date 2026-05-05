@@ -1,5 +1,5 @@
 {
-  "name": "@extension-js/sidebar-monorepo-turbopack-packages-analytics",
+  "name": "sidebar-monorepo-turbopack-packages-analytics",
   "version": "0.0.1",
   "private": true,
   "type": "module",

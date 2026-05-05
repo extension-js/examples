@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/sidebar-transformers-js",
-  "description": "Sidebar example that runs a small Transformers.js demo inside a side panel.",
-  "version": "0.0.1",
+  "name": "transformers-js",
+  "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {

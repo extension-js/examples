@@ -1,8 +1,8 @@
 {
   "private": true,
-  "name": "@extension-js/new-config-eslint",
+  "name": "new-config-eslint",
   "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "author": {
