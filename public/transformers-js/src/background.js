@@ -1,6 +1,10 @@
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 // background.js - Handles requests from the UI, runs the model, then sends back a response
 
 import {env, pipeline} from '@huggingface/transformers'
+import {ACTION_NAME, CONTEXT_MENU_ITEM_ID} from './constants.js'
 
 console.log('Transformers.js background script loaded!')
 
@@ -97,11 +101,68 @@ const classify = async (text) => {
   return runner(text)
 }
 
+// Ask the active tab's content script for either the full page context or
+// the current selection. Mirrors the ai-* templates' relay pattern.
+async function relayActiveTabRequest(messageType) {
+  const [tab] = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true
+  })
+  if (!tab?.id) {
+    return {ok: false, error: 'No active tab'}
+  }
+  try {
+    const context = await chrome.tabs.sendMessage(tab.id, {type: messageType})
+    if (!context) {
+      return {ok: false, error: 'No context received from page'}
+    }
+    return {ok: true, context}
+  } catch (err) {
+    const error = err instanceof Error ? err.message : String(err)
+    return {ok: false, error}
+  }
+}
+
+// Right-click → "Classify selection" runs the pipeline directly and
+// broadcasts the result so an open sidebar can pick it up.
+chrome.runtime.onInstalled.addListener(() => {
+  try {
+    chrome.contextMenus.create({
+      id: CONTEXT_MENU_ITEM_ID,
+      title: 'Classify selection with Transformers.js',
+      contexts: ['selection']
+    })
+  } catch (error) {
+    console.warn('[transformers-js] contextMenus.create failed', error)
+  }
+})
+
+chrome.contextMenus?.onClicked.addListener(async (info) => {
+  if (info.menuItemId !== CONTEXT_MENU_ITEM_ID) return
+  const text = info.selectionText?.trim()
+  if (!text) return
+  try {
+    const result = await classify(text)
+    chrome.runtime.sendMessage({
+      action: 'classification-broadcast',
+      ok: true,
+      text,
+      result
+    })
+  } catch (e) {
+    chrome.runtime.sendMessage({
+      action: 'classification-broadcast',
+      ok: false,
+      error: e?.message || 'classification failed'
+    })
+  }
+})
+
 ////////////////////// Message Events /////////////////////
 //
 // Listen for messages from the UI, process it, and send the result back.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'classify') {
+  if (message.action === ACTION_NAME) {
     ;(async function () {
       try {
         const result = await classify(message.text)
@@ -110,6 +171,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({error: e?.message || 'classification failed'})
       }
     })()
+    return true
+  }
+
+  if (
+    message.action === 'getActiveTabContext' ||
+    message.action === 'getActiveTabSelection'
+  ) {
+    const messageType =
+      message.action === 'getActiveTabSelection'
+        ? 'getSelection'
+        : 'getPageContext'
+    ;(async () => sendResponse(await relayActiveTabRequest(messageType)))()
     return true
   }
 

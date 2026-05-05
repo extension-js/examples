@@ -1,1 +1,3 @@
-console.log('Hello from the background script!')
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)

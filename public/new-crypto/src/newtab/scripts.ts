@@ -1,3 +1,4 @@
+console.log('[From the newtab override context] Hello regular page!')
 // Use browser's native crypto API instead of Node.js crypto module
 async function hashString(input: string): Promise<string> {
   // Convert string to Uint8Array

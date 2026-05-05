@@ -80,7 +80,11 @@ function SidebarApp() {
           Enter text for sentiment analysis:
         </label>
         <textarea id="text-input" placeholder="Type or paste your text here..." rows="4"></textarea>
-        <div class="actions"><button id="run-analysis">Run Analysis</button></div>
+        <div class="actions">
+          <button id="use-page" type="button" title="Pull text from the active page">Use page text</button>
+          <button id="use-selection" type="button" title="Pull the active selection from the page">Use selection</button>
+          <button id="run-analysis">Run Analysis</button>
+        </div>
       </div>
       
       <div class="sidebar_output_section">
@@ -97,6 +101,8 @@ function SidebarApp() {
   const outputElement = root.querySelector('#output')
   const titleElement = root.querySelector('#title')
   const runBtn = root.querySelector('#run-analysis')
+  const usePageBtn = root.querySelector('#use-page')
+  const useSelectionBtn = root.querySelector('#use-selection')
   const taskEl = root.querySelector('#task')
   const modelEl = root.querySelector('#model')
   const customEl = root.querySelector('#customModel')
@@ -187,6 +193,52 @@ function SidebarApp() {
       await classifyText(text, outputElement)
     } catch (error) {
       showError(error, outputElement)
+    }
+  })
+
+  // Pull text from the active page (relayed through the background SW
+  // because the sidebar can't message tabs directly in MV3).
+  async function fillFromActiveTab(action, fallback) {
+    try {
+      const response = await chrome.runtime.sendMessage({action})
+      if (!response?.ok) {
+        showError(
+          new Error(response?.error || `Could not read ${fallback}`),
+          outputElement
+        )
+        return
+      }
+      const text = response.context?.text || ''
+      if (!text) {
+        showError(
+          new Error(`No ${fallback} found on the active tab`),
+          outputElement
+        )
+        return
+      }
+      inputElement.value = text
+      outputElement.textContent = `Loaded ${fallback} from the active tab. Click "Run Analysis" to classify it.`
+      outputElement.className = 'sidebar_output'
+    } catch (error) {
+      showError(error, outputElement)
+    }
+  }
+
+  usePageBtn.addEventListener('click', () =>
+    fillFromActiveTab('getActiveTabContext', 'page text')
+  )
+  useSelectionBtn.addEventListener('click', () =>
+    fillFromActiveTab('getActiveTabSelection', 'selection')
+  )
+
+  // Pick up classifications triggered from the right-click context menu.
+  chrome.runtime.onMessage.addListener((message) => {
+    if (message?.action !== 'classification-broadcast') return
+    if (message.ok) {
+      inputElement.value = message.text
+      showResults(message.result, outputElement)
+    } else {
+      showError(new Error(message.error), outputElement)
     }
   })
 }

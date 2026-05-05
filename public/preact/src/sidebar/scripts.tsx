@@ -1,3 +1,4 @@
+console.log('[From the sidebar page context] Hello regular page!')
 import {render} from 'preact'
 import SidebarApp from './SidebarApp'
 import './styles.css'

@@ -1,3 +1,4 @@
+console.log('[From the page context] Hello from content_scripts!')
 import createContentApp from './ContentApp'
 import './styles.css'
 
