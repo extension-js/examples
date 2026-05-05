@@ -8,7 +8,10 @@ import {
 } from 'node:fs'
 import {join} from 'node:path'
 import {tmpdir} from 'node:os'
-import {chromium} from 'playwright'
+// `playwright` is a transitive dependency via `@playwright/test`; importing it
+// directly only resolves when pnpm hoists it (default locally, off in CI).
+// The runner package re-exports the same browser launchers, so use it.
+import {chromium} from '@playwright/test'
 
 function runUntilMatch(
   command,
