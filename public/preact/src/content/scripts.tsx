@@ -2,6 +2,11 @@ import {render} from 'preact'
 import ContentApp from './ContentApp'
 import './styles.css'
 
+/**
+ * Extension.js content_script entrypoint. The framework calls this on
+ * injection and calls the returned function on HMR/teardown to clean up.
+ * Do not invoke it yourself.
+ */
 export default function initial() {
   console.log('[From the page context] Hello from content_scripts!')
   // Create a new div element and append it to the document's body
