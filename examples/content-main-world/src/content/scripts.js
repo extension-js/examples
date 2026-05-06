@@ -3,6 +3,11 @@ import iconUrl from '../images/icon.png'
 import {createBadge} from './utils/create-badge.js'
 const logo = iconUrl
 
+/**
+ * Extension.js content_script entrypoint. The framework calls this on
+ * injection and calls the returned function on HMR/teardown to clean up.
+ * Do not invoke it yourself.
+ */
 export default function initial() {
   // Set a window property to prove we're in MAIN world
   window.__EXTJS_MAIN_WORLD_ACTIVE = true

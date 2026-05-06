@@ -1,6 +1,11 @@
 console.log('[From the page context] Hello from content_scripts!')
 import iconUrl from '../images/icon.png'
 const logo = iconUrl
+/**
+ * Extension.js content_script entrypoint. The framework calls this on
+ * injection and calls the returned function on HMR/teardown to clean up.
+ * Do not invoke it yourself.
+ */
 export default function initial() {
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')
