@@ -11,12 +11,19 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import {spawn} from 'node:child_process'
-import {fileURLToPath} from 'node:url'
+import {fileURLToPath, pathToFileURL} from 'node:url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
-const probePath = path.join(__dirname, 'probe-extension-develop-resolve.cjs')
+const probePathCjs = path.join(__dirname, 'probe-extension-develop-resolve.cjs')
+const probePathEsm = path.join(
+  __dirname,
+  'probe-extension-develop-resolve-esm.mjs'
+)
+// `--import` requires a URL form for absolute paths so the loader thread can
+// resolve the registration module the same way on POSIX and Windows.
+const probeEsmImportArg = pathToFileURL(probePathEsm).href
 
 const installedExtensionBin = path.join(
   repoRoot,
@@ -65,7 +72,7 @@ const result = await new Promise((resolve) => {
       env: {
         ...process.env,
         NODE_OPTIONS:
-          `${process.env.NODE_OPTIONS ?? ''} --require ${probePath}`.trim(),
+          `${process.env.NODE_OPTIONS ?? ''} --require ${probePathCjs} --import ${probeEsmImportArg}`.trim(),
         // Strip any stale env override that could mask resolver behavior.
         EXTENSION_DEVELOP_ROOT: ''
       },
@@ -75,8 +82,19 @@ const result = await new Promise((resolve) => {
 
   let stdout = ''
   let stderr = ''
+  let killedOnMarker = false
   child.stdout.on('data', (d) => (stdout += d.toString()))
-  child.stderr.on('data', (d) => (stderr += d.toString()))
+  child.stderr.on('data', (d) => {
+    stderr += d.toString()
+    // The ESM resolve hook lives in the loader worker thread and cannot
+    // exit the main process directly, so kill from the parent as soon as
+    // the marker line shows up. Avoids waiting for `extension dev` to
+    // crash on the fake project (no package.json).
+    if (!killedOnMarker && /__EXT_DEV_RESOLVED__::/.test(stderr)) {
+      killedOnMarker = true
+      child.kill('SIGKILL')
+    }
+  })
 
   const killTimer = setTimeout(() => {
     child.kill('SIGKILL')
@@ -84,11 +102,16 @@ const result = await new Promise((resolve) => {
 
   child.on('close', (code) => {
     clearTimeout(killTimer)
-    resolve({code: code ?? 1, stdout, stderr})
+    resolve({code: code ?? 1, stdout, stderr, killedOnMarker})
   })
   child.on('error', (err) => {
     clearTimeout(killTimer)
-    resolve({code: 1, stdout, stderr: String(err?.message || err)})
+    resolve({
+      code: 1,
+      stdout,
+      stderr: String(err?.message || err),
+      killedOnMarker
+    })
   })
 })
 
@@ -121,16 +144,21 @@ if (!match) {
   process.exit(1)
 }
 
-const resolved = match[1].trim()
+const resolvedRaw = match[1].trim()
+// CJS hook emits a filesystem path; ESM hook emits a `file://` URL. Normalize
+// both to a filesystem path before checking the local-install prefix.
+const resolvedPath = resolvedRaw.startsWith('file://')
+  ? fileURLToPath(resolvedRaw)
+  : resolvedRaw
 const expectedPrefix = installedExtensionDevelopRoot + path.sep
 
-if (!resolved.startsWith(expectedPrefix)) {
+if (!resolvedPath.startsWith(expectedPrefix)) {
   console.error(
     '✖ extension-develop resolved outside the local install:\n' +
       `  expected prefix: ${expectedPrefix}\n` +
-      `  resolved:        ${resolved}`
+      `  resolved:        ${resolvedPath}`
   )
   process.exit(1)
 }
 
-console.log(`✔ extension-develop resolved to ${resolved}`)
+console.log(`✔ extension-develop resolved to ${resolvedPath}`)
