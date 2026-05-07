@@ -85,6 +85,14 @@ function run(command, args, cwd, env = {}) {
         COREPACK_ENABLE_AUTO_PIN: '0',
         PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
         npm_config_frozen_lockfile: 'false',
+        // pnpm 11.0.7+ promoted "ignored build scripts" from a warning to a
+        // fatal `ERR_PNPM_IGNORED_BUILDS`. Temp fixtures created here pull in
+        // `@parcel/watcher` (transitive of `@rspack/dev-server@^2`) which has
+        // an unapproved build script, so a fresh pnpm install in the fixture
+        // dies before the canary even runs. Restore the pnpm 10 behaviour
+        // (warn-only) so this guard exercises canary install paths, not
+        // pnpm's policy-of-the-week.
+        PNPM_CONFIG_STRICT_DEP_BUILDS: 'false',
         ...env
       }
     })
