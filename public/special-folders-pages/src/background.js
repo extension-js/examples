@@ -1,5 +1,5 @@
 console.log(
-  '[From the background context] Hello from the background worker/script!'
+  '!!![From the background context] Hello from the background worker/script!'
 )
 chrome.runtime.onInstalled.addListener((details) => {
   // Only open the welcome tab on a real first install. Chrome also fires
