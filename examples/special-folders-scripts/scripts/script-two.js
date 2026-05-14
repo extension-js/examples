@@ -23,7 +23,9 @@ export default function injectScriptTwo() {
     return () => {
       try {
         el.remove()
-      } catch {}
+      } catch {
+        // ignore
+      }
     }
   } catch (error) {
     console.log('[special-folders-scripts] script-two error', error)
