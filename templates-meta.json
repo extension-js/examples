@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-05-07T16:57:08.343Z",
+  "generatedAt": "2026-05-14T14:48:34.357Z",
   "templates": [
     {
       "slug": "action",
@@ -2302,9 +2302,9 @@
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
-      "uiContext": ["background"],
-      "surfaces": ["background"],
-      "entrypoints": [],
+      "uiContext": ["content", "background"],
+      "surfaces": ["content", "background"],
+      "entrypoints": ["content/scripts.js"],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -2319,13 +2319,15 @@
         }
       },
       "permissions": ["activeTab", "scripting"],
-      "host_permissions": [],
+      "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
       "files": [
         "public/special-folders-scripts/extension.config.js",
         "public/special-folders-scripts/public/screenshot.png",
         "public/special-folders-scripts/src/background.js",
+        "public/special-folders-scripts/src/content/scripts.js",
+        "public/special-folders-scripts/src/content/styles.css",
         "public/special-folders-scripts/src/images/icon.png",
         "public/special-folders-scripts/src/images/javascript.png",
         "public/special-folders-scripts/src/manifest.json"
