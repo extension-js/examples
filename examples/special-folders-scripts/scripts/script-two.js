@@ -19,6 +19,12 @@ export default function injectScriptTwo() {
     el.textContent = 'scripts/script-two.js injected ✔'
 
     document.body.appendChild(el)
+
+    return () => {
+      try {
+        el.remove()
+      } catch {}
+    }
   } catch (error) {
     console.log('[special-folders-scripts] script-two error', error)
   }

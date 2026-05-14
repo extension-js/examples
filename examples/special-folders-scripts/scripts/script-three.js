@@ -19,6 +19,12 @@ export default function injectScriptThree() {
     el.textContent = 'scripts/script-three.js injected ✔'
 
     document.body.appendChild(el)
+
+    return () => {
+      try {
+        el.remove()
+      } catch {}
+    }
   } catch (error) {
     console.log('[special-folders-scripts] script-three error', error)
   }
