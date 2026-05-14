@@ -20,14 +20,12 @@ export default function injectScriptOne() {
 
     document.body.appendChild(el)
 
-    // Return a cleanup function so that when Extension.js re-executes this
-    // script on edit (HMR for scripts/), the previous badge gets removed
-    // before the new one mounts — same lifecycle contract content_scripts
-    // use. Without this the badges stack up on every reload.
     return () => {
       try {
         el.remove()
-      } catch {}
+      } catch {
+        // ignore
+      }
     }
   } catch (error) {
     console.log('[special-folders-scripts] script-one error', error)
