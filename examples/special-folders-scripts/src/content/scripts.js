@@ -8,16 +8,6 @@ const logo = iconUrl
  * Do not invoke it yourself.
  */
 export default function initial() {
-  // Defensive cleanup: on HMR/dev reload the previous mount's cleanup may not
-  // have run (or may have raced), leaving a stale root in the page. Without
-  // this, every reload appends a new `data-extension-root="true"` host and
-  // the card stacks up. Same pattern the devtools content script uses.
-  for (const stale of document.querySelectorAll(
-    '[data-extension-root="true"]'
-  )) {
-    stale.remove()
-  }
-
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')
   document.body.appendChild(rootDiv)

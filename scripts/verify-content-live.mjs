@@ -371,7 +371,7 @@ async function waitForInitialInjection({
         ((rootMeta &&
           rootMeta.generation >= 1 &&
           (rootMeta.status === undefined || rootMeta.status === 'mounted') &&
-          rootMeta.rootCount >= 1) ||
+          rootMeta.rootCount === 1) ||
           hasVisibleMount)
       )
     },
@@ -451,7 +451,7 @@ async function runScriptMutationScenario({
                 rootMeta.buildToken !== initialRootMeta.buildToken) ||
               hasBuildChange(initialRootMeta, rootMeta)) &&
             (rootMeta.status === undefined || rootMeta.status === 'mounted') &&
-            rootMeta.rootCount >= 1))
+            rootMeta.rootCount === 1))
       )
     },
     timeoutMs,
