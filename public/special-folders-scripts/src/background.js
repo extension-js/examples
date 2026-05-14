@@ -8,12 +8,16 @@ chrome.action.onClicked.addListener(async (tab) => {
   try {
     if (!tab?.id) return
 
+    // chrome.scripting.executeScript expects paths relative to the extension
+    // root, not the authoring source tree. The scripts/ folder is emitted to
+    // dist/<browser>/scripts/, so /scripts/<name>.js (or "scripts/<name>.js")
+    // resolves to chrome-extension://<id>/scripts/<name>.js at runtime.
     await chrome.scripting.executeScript({
       target: {tabId: tab.id},
       files: [
-        '../scripts/script-one.js',
-        '../scripts/script-two.js',
-        '../scripts/script-three.js'
+        '/scripts/script-one.js',
+        '/scripts/script-two.js',
+        '/scripts/script-three.js'
       ]
     })
   } catch (error) {
