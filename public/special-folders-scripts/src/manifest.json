@@ -32,7 +32,14 @@
     },
     "default_title": "Run Special Folders Scripts"
   },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"]
+    }
+  ],
   "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
