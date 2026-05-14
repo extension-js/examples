@@ -532,6 +532,13 @@ function domDiagnosticExpr(): string {
   })()`
 }
 
+// Count user-extension roots in the page (excluding the devtools companion).
+// We assert "exactly one" after each reinject — duplicate hosts from stale
+// mounts that this test used to miss are now a hard fail.
+function userRootCountExpr(): string {
+  return `document.querySelectorAll('[data-extension-root]:not([data-extension-root="extension-js-devtools"])').length`
+}
+
 // -----------------------------------------------------------------------------
 // Parameterized tests
 // -----------------------------------------------------------------------------
@@ -655,6 +662,27 @@ for (const example of EXAMPLES) {
             )
           }
 
+          // Steady-state must be exactly one user-extension root after the
+          // reinject settles. Two roots means the cleanup chain leaked a
+          // stale mount — the failure mode `template.content-reload` used to
+          // miss because `domContainsNeedleExpr` finds the marker as long as
+          // ANY root has it, regardless of whether the old root also exists.
+          try {
+            await expect
+              .poll(() => tab.evaluate<number>(userRootCountExpr()), {
+                timeout: 15000,
+                intervals: [250, 500, 1000]
+              })
+              .toBe(1)
+          } catch (err) {
+            const state = await tab.evaluate<any>(domDiagnosticExpr())
+            throw new Error(
+              `Duplicate \`data-extension-root\` hosts after JS reinject — ` +
+                `expected exactly one user root.\n` +
+                `Page state: ${JSON.stringify(state, null, 2)}`
+            )
+          }
+
           // ------- CSS edit: computed style must change in the SAME tab ----
           // Only examples with a plain (non-modules) stylesheet — CSS/SASS
           // modules hash class names at build time, making a static appended
@@ -710,6 +738,23 @@ for (const example of EXAMPLES) {
                 {timeout: 30000, intervals: [250, 500, 1000]}
               )
               .toBe(cssMarker)
+
+            // Same one-root invariant after the CSS-driven reinject.
+            try {
+              await expect
+                .poll(() => tab.evaluate<number>(userRootCountExpr()), {
+                  timeout: 15000,
+                  intervals: [250, 500, 1000]
+                })
+                .toBe(1)
+            } catch (err) {
+              const state = await tab.evaluate<any>(domDiagnosticExpr())
+              throw new Error(
+                `Duplicate \`data-extension-root\` hosts after CSS reinject — ` +
+                  `expected exactly one user root.\n` +
+                  `Page state: ${JSON.stringify(state, null, 2)}`
+              )
+            }
           }
         } finally {
           try {
