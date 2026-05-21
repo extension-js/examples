@@ -142,6 +142,22 @@ export default defineConfig({
       }
     },
 
+    // Same nine-scenario sequence as `content-reload` but driven against
+    // real Firefox via the dev process's RDP socket. Spawns
+    // `extension dev --browser=firefox`, opens a tab via Firefox RDP
+    // `addTab` against example.com, queries shadow-DOM/computed-style via
+    // a parallel `evaluateJSAsync`. Covers the same revert + JS/CSS
+    // syntax-error preservation + post-fix recovery cases as Chromium.
+    {
+      name: 'firefox-content-reload',
+      testMatch: /examples\/template\.firefox-content-reload\.spec\.ts$/,
+      fullyParallel: false,
+      use: {
+        ...devices['Desktop Firefox'],
+        headless: isHeadless
+      }
+    },
+
     // Scaffold + install + first build per template
     {
       name: 'create',
