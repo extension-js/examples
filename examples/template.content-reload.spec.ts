@@ -683,6 +683,95 @@ for (const example of EXAMPLES) {
             )
           }
 
+          // ------- JS revert: original source restores the page text -------
+          // Asserts the reload pipeline propagates *both* directions, not
+          // just edits-add-new-text. Previously this was only a cleanup
+          // step in afterAll, which silently masked one-way reload bugs
+          // (e.g. "marker text appended but never cleared on revert").
+          {
+            const revertBaseline = getLatestContentScriptMtime(example.dir)
+            fs.writeFileSync(example.jsAnchor.file, originalJsSource!, 'utf8')
+            await waitForBundleNewerThan(example.dir, revertBaseline, 45000)
+            await expect
+              .poll(
+                async () => {
+                  const hasMarker = await tab.evaluate<boolean>(
+                    domContainsNeedleExpr(jsMarker)
+                  )
+                  const hasAnchor = await tab.evaluate<boolean>(
+                    domContainsNeedleExpr(example.jsAnchor.anchor)
+                  )
+                  return hasAnchor && !hasMarker
+                },
+                {timeout: 30000, intervals: [250, 500, 1000]}
+              )
+              .toBe(true)
+          }
+
+          // ------- JS syntax error: previous good state must be preserved --
+          // Writing a parse error makes rspack fail the compile. The dev
+          // pipeline must NOT crash, and the already-rendered tab must keep
+          // showing the last successful build. This is the regression that
+          // caught the BuildEmitter ERR_UNHANDLED_ERROR crash.
+          {
+            const broken =
+              originalJsSource +
+              '\n// __EXTJS_PROBE_SYNTAX_ERROR__\nconst x = ;\n'
+            fs.writeFileSync(example.jsAnchor.file, broken, 'utf8')
+            // No bundle re-emit on a failed compile — wait a fixed window
+            // long enough for rspack to attempt + log the error, then probe.
+            await new Promise((r) => setTimeout(r, 8000))
+            const stillThere = await tab.evaluate<boolean>(
+              domContainsNeedleExpr(example.jsAnchor.anchor)
+            )
+            if (!stillThere) {
+              const tail = server!.output.slice(-3000)
+              throw new Error(
+                `Anchor "${example.jsAnchor.anchor}" disappeared while ` +
+                  `JS source had a parse error — recoverability broken.\n` +
+                  `Dev server output tail:\n${tail}`
+              )
+            }
+          }
+
+          // ------- JS post-fix recovery: fix + a new marker must land -----
+          // Confirms the dev watcher is still alive after the failed compile
+          // and the reload pipeline picks the next successful build.
+          {
+            const recoveryMarker = `RECOVERED_${Date.now()}_${Math.floor(
+              Math.random() * 1e6
+            )}`
+            const recoveryBaseline = getLatestContentScriptMtime(example.dir)
+            const recoveredJs = originalJsSource!
+              .split(example.jsAnchor.anchor)
+              .join(`${example.jsAnchor.anchor} ${recoveryMarker}`)
+            fs.writeFileSync(example.jsAnchor.file, recoveredJs, 'utf8')
+            await waitForBundleNewerThan(example.dir, recoveryBaseline, 45000)
+            await expect
+              .poll(
+                () =>
+                  tab.evaluate<boolean>(
+                    domContainsNeedleExpr(recoveryMarker)
+                  ),
+                {timeout: 30000, intervals: [250, 500, 1000]}
+              )
+              .toBe(true)
+
+            // Restore source so the CSS phase below has a clean baseline.
+            const cleanupBaseline = getLatestContentScriptMtime(example.dir)
+            fs.writeFileSync(example.jsAnchor.file, originalJsSource!, 'utf8')
+            await waitForBundleNewerThan(example.dir, cleanupBaseline, 45000)
+            await expect
+              .poll(
+                () =>
+                  tab.evaluate<boolean>(
+                    domContainsNeedleExpr(recoveryMarker)
+                  ),
+                {timeout: 30000, intervals: [250, 500, 1000]}
+              )
+              .toBe(false)
+          }
+
           // ------- CSS edit: computed style must change in the SAME tab ----
           // Only examples with a plain (non-modules) stylesheet — CSS/SASS
           // modules hash class names at build time, making a static appended
@@ -722,22 +811,71 @@ for (const example of EXAMPLES) {
             fs.writeFileSync(example.styleTarget.file, appended, 'utf8')
             await waitForBundleNewerThan(example.dir, cssBaseline, 45000)
 
+            const readProbe = async () => {
+              const value = await tab.evaluate<string | null>(
+                readStylePropertyExpr({
+                  className: 'content_script',
+                  prop: cssProbe
+                })
+              )
+              // Browsers return custom-property values wrapped in
+              // whitespace and quotes; normalize for the compare.
+              return (value || '').replace(/['"\s]/g, '')
+            }
+
+            await expect
+              .poll(readProbe, {
+                timeout: 30000,
+                intervals: [250, 500, 1000]
+              })
+              .toBe(cssMarker)
+
+            // ------- CSS syntax error: previous good state preserved ------
+            // Append a broken rule to the original source. The rebuild
+            // fails and the existing stylesheet stays in effect.
+            const cssSyntaxBroken =
+              `${originalCssSource}\n\n` +
+              `.content_script { ${cssProbe}: "${cssMarker}"; }\n` +
+              `.content_script { color: \n`
+            fs.writeFileSync(example.styleTarget.file, cssSyntaxBroken, 'utf8')
+            await new Promise((r) => setTimeout(r, 8000))
+            const heldValue = await readProbe()
+            if (heldValue !== cssMarker) {
+              const tail = server!.output.slice(-3000)
+              throw new Error(
+                `CSS custom prop ${cssProbe} (= ${cssMarker}) was lost ` +
+                  `while CSS had a parse error — got ${JSON.stringify(
+                    heldValue
+                  )}.\n` +
+                  `Dev server output tail:\n${tail}`
+              )
+            }
+
+            // ------- CSS post-fix recovery: fix + new value must land ----
+            const recoveryProbe = `--reload-recovery-${Date.now()}-${Math.floor(
+              Math.random() * 1e6
+            )}`
+            const recoveryValue = `${Date.now().toString(36)}r`
+            const recoveryCss =
+              `${originalCssSource}\n\n` +
+              `.content_script { ${recoveryProbe}: "${recoveryValue}"; }\n`
+            const recoveryBaseline = getLatestContentScriptMtime(example.dir)
+            fs.writeFileSync(example.styleTarget.file, recoveryCss, 'utf8')
+            await waitForBundleNewerThan(example.dir, recoveryBaseline, 45000)
             await expect
               .poll(
                 async () => {
                   const value = await tab.evaluate<string | null>(
                     readStylePropertyExpr({
                       className: 'content_script',
-                      prop: cssProbe
+                      prop: recoveryProbe
                     })
                   )
-                  // Browsers return custom-property values wrapped in
-                  // whitespace and quotes; normalize for the compare.
                   return (value || '').replace(/['"\s]/g, '')
                 },
                 {timeout: 30000, intervals: [250, 500, 1000]}
               )
-              .toBe(cssMarker)
+              .toBe(recoveryValue)
 
             // Same one-root invariant after the CSS-driven reinject.
             try {
@@ -755,6 +893,25 @@ for (const example of EXAMPLES) {
                   `Page state: ${JSON.stringify(state, null, 2)}`
               )
             }
+
+            // ------- CSS revert: original source restores the style ------
+            const revertBaseline = getLatestContentScriptMtime(example.dir)
+            fs.writeFileSync(example.styleTarget.file, originalCssSource!, 'utf8')
+            await waitForBundleNewerThan(example.dir, revertBaseline, 45000)
+            await expect
+              .poll(
+                async () => {
+                  const value = await tab.evaluate<string | null>(
+                    readStylePropertyExpr({
+                      className: 'content_script',
+                      prop: recoveryProbe
+                    })
+                  )
+                  return (value || '').replace(/['"\s]/g, '')
+                },
+                {timeout: 30000, intervals: [250, 500, 1000]}
+              )
+              .toBe('')
           }
         } finally {
           try {
