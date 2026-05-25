@@ -173,7 +173,15 @@ function startDev(exampleDir: string): ChildProcess {
     ...process.env,
     EXTENSION_AUTHOR_MODE: 'true'
   }
-  const spawnOpts = {cwd: exampleDir, env, stdio: 'pipe' as const}
+  // `detached` makes the child a process-group leader on POSIX so stopDev can
+  // signal the whole tree (pnpm + the node CLI it spawns) at once. Without it,
+  // killing `proc` only reaps the pnpm wrapper and orphans `extension dev`.
+  const spawnOpts = {
+    cwd: exampleDir,
+    env,
+    stdio: 'pipe' as const,
+    detached: process.platform !== 'win32'
+  }
   const args = localCliCjs
     ? [
         localCliCjs,
@@ -196,15 +204,35 @@ function startDev(exampleDir: string): ChildProcess {
 }
 
 async function stopDev(proc: ChildProcess) {
-  if (proc.killed) return
-  proc.kill('SIGTERM')
-  await new Promise((resolve) => {
-    const timeout = setTimeout(resolve, 5000)
-    proc.on('close', () => {
-      clearTimeout(timeout)
-      resolve(null)
-    })
-  })
+  if (proc.killed || proc.exitCode !== null) return
+  const pid = proc.pid
+
+  // pnpm does not forward signals to the `node` CLI child it spawns, so
+  // killing only `proc` orphans the real `extension dev` process (file
+  // watchers + HMR websocket server). Across the serial dev-live suite these
+  // orphans accumulate until a later `launchPersistentContext` starves and the
+  // worker teardown times out — failing an otherwise-green run. Kill the whole
+  // process group (negative pid) on POSIX, escalating to SIGKILL if SIGTERM
+  // doesn't bring it down.
+  const signalTree = (signal: NodeJS.Signals) => {
+    try {
+      if (process.platform !== 'win32' && pid) process.kill(-pid, signal)
+      else proc.kill(signal)
+    } catch {
+      // Process group already gone — nothing to do.
+    }
+  }
+
+  const closed = new Promise<void>((resolve) => proc.on('close', () => resolve()))
+  const waitMs = (ms: number) =>
+    new Promise<'timeout'>((resolve) => setTimeout(() => resolve('timeout'), ms))
+
+  signalTree('SIGTERM')
+  const outcome = await Promise.race([closed.then(() => 'closed' as const), waitMs(5000)])
+  if (outcome === 'timeout') {
+    signalTree('SIGKILL')
+    await Promise.race([closed, waitMs(5000)])
+  }
 }
 
 async function expectHtmlText(page: any, text: string) {
