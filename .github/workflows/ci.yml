@@ -189,6 +189,19 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # Shard the dev-live project across 3 jobs. Run unsharded, all ~64 headed
+    # Chrome context launches pile into one --workers=1 worker; on the
+    # constrained xvfb runner the late launches starve (60s context-setup
+    # timeout) and the discarded worker can't reap Chrome within the 60s
+    # teardown window, failing the run as "1 error not part of any test" even
+    # though every test passes on retry. Locally (fast Mac) the same suite is
+    # green, so this only bites in CI. ~20 launches/shard keeps each worker far
+    # below the starve threshold. Verified locally: shards split 24/22/20 = 66.
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    name: dev-reload-chromium (shard ${{ matrix.shard }}/3)
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -222,7 +235,7 @@ jobs:
         env:
           CI: true
           HEADLESS: false
-        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm playwright test --workers=1 --project=dev-live
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm playwright test --workers=1 --project=dev-live --shard=${{ matrix.shard }}/3
 
   # ──────────────────────────────────────────────────────────────────────────
   # Dev reload regression — Firefox
