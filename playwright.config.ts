@@ -108,15 +108,6 @@ export default defineConfig({
     {
       name: 'dev-live',
       testMatch: /examples\/template\.dev\.spec\.ts$/,
-      // CI forces --workers=1, so all ~64 context launches for this project
-      // pile into one long-lived worker. The last/heaviest template (vue) then
-      // occasionally needs >60s for its persistent-context launch under that
-      // accumulated load — it succeeds instantly in a fresh worker on retry.
-      // Hitting the 60s test-timeout discards the worker, whose teardown then
-      // also times out and fails the whole run as "1 error not part of any
-      // test", even though every test passed. A larger ceiling lets the slow
-      // launch complete, breaking that cascade. Local runs keep the 30s default.
-      timeout: process.env.CI ? 120_000 : 30_000,
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless
