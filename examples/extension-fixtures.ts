@@ -10,6 +10,92 @@ import {execSync} from 'child_process'
 import fs from 'fs'
 import {getDirname} from './dirname.js'
 
+// Wait for `pathToExtension` to be a complete, loadable extension before
+// launching Chromium. The dev-html specs in `template.dev.spec.ts` write to
+// the source tree to exercise live reload; between tests the dev server may
+// still be rewriting `dist/chromium`. If `launchPersistentContext` runs while
+// the manifest is parseable but the referenced background/content scripts are
+// mid-write, Chrome blocks on the extension load and the fixture trips the
+// 60s "setting up context" timeout, then orphans a chromium child that hangs
+// playwright's worker teardown (CI exit 1, observed on heavy templates such
+// as `vue`, `ai-chatgpt`). This helper closes the race by requiring every
+// asset the manifest references to exist non-empty, plus a short quiescence
+// window so we don't catch the dev server mid-truncate-and-rewrite.
+async function waitForExtensionReady(
+  pathToExtension: string,
+  {
+    quietMs = 250,
+    timeoutMs = 30000
+  }: {quietMs?: number; timeoutMs?: number} = {}
+): Promise<void> {
+  const manifestPath = path.join(pathToExtension, 'manifest.json')
+  const start = Date.now()
+  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
+
+  // 1. Manifest must exist, be non-empty, and parse.
+  let manifest: any = null
+  while (Date.now() - start < timeoutMs) {
+    try {
+      if (fs.statSync(manifestPath).size > 0) {
+        manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+        break
+      }
+    } catch {
+      // Missing/partial — keep polling.
+    }
+    await sleep(100)
+  }
+  if (!manifest) {
+    // Don't escalate to a thrown error: the fixture's existing path-validation
+    // gives a clearer message and matches the pre-fix behavior on truly-bad
+    // builds. Just return so Chrome can fail in the normal way.
+    return
+  }
+
+  // 2. Every file referenced by the manifest must exist non-empty. We only
+  // need to cover entries Chrome blocks on during extension load — service
+  // worker + content scripts. Popups/HTML pages are fetched on demand and
+  // don't gate the load handshake.
+  const refs: string[] = []
+  const sw = manifest.background?.service_worker
+  if (typeof sw === 'string') refs.push(sw)
+  if (Array.isArray(manifest.content_scripts)) {
+    for (const cs of manifest.content_scripts) {
+      if (Array.isArray(cs?.js)) refs.push(...cs.js)
+      if (Array.isArray(cs?.css)) refs.push(...cs.css)
+    }
+  }
+
+  const referencedFilesReady = () =>
+    refs.every((rel) => {
+      try {
+        return fs.statSync(path.join(pathToExtension, rel)).size > 0
+      } catch {
+        return false
+      }
+    })
+
+  while (Date.now() - start < timeoutMs && !referencedFilesReady()) {
+    await sleep(100)
+  }
+
+  // 3. Short quiescence on the manifest file itself — if a rebuild is in
+  // flight, mtime keeps moving. Once it stops moving for `quietMs` we trust
+  // Chrome won't read a half-written tree.
+  while (Date.now() - start < timeoutMs) {
+    let mtimeMs = 0
+    try {
+      mtimeMs = fs.statSync(manifestPath).mtimeMs
+    } catch {
+      // Manifest disappeared mid-rebuild — restart the loop.
+      await sleep(100)
+      continue
+    }
+    if (Date.now() - mtimeMs >= quietMs) break
+    await sleep(100)
+  }
+}
+
 export const extensionFixtures = (
   pathToExtension: string,
   headless?: boolean
@@ -33,6 +119,10 @@ export const extensionFixtures = (
       const userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
       let context: BrowserContext | null = null
       try {
+        // Wait for the extension tree to be complete before Chrome reads it.
+        // Cheap on static builds (manifest hasn't been touched), critical on
+        // the dev-html suite where a prior test's write may still be flushing.
+        await waitForExtensionReady(pathToExtension)
         context = await chromium.launchPersistentContext(userDataDir, {
           headless: isHeadless,
           args: [

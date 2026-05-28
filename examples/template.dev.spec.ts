@@ -235,6 +235,25 @@ async function stopDev(proc: ChildProcess) {
   }
 }
 
+// Restore `filePath` to `original` only if its on-disk contents differ.
+// The happy paths in these tests already write `original` back at the end
+// of the `try` block and then wait for the dev server to propagate the
+// revert before resolving. A second unconditional write in `finally` would
+// touch the source file again and queue a redundant rebuild that may still
+// be in flight when the next test's `launchPersistentContext` starts
+// loading `dist/chromium` — observed as the "setting up context" 60s hang
+// on heavy templates (vue, ai-chatgpt) cascading into a worker teardown
+// timeout. Reading first keeps the safety net for tests that throw
+// mid-`try` while removing the rebuild in the steady case.
+function restoreIfChanged(filePath: string, original: string) {
+  try {
+    if (fs.readFileSync(filePath, 'utf8') === original) return
+  } catch {
+    // Source file vanished — fall through and rewrite.
+  }
+  fs.writeFileSync(filePath, original, 'utf8')
+}
+
 async function expectHtmlText(page: any, text: string) {
   await expect
     .poll(
@@ -305,7 +324,7 @@ for (const example of examples) {
           fs.writeFileSync(filePath, original, 'utf8')
           await expectHtmlTextAbsent(page, updatedText)
         } finally {
-          fs.writeFileSync(filePath, original, 'utf8')
+          restoreIfChanged(filePath, original)
         }
       })
 
@@ -333,7 +352,7 @@ for (const example of examples) {
           fs.writeFileSync(filePath, original, 'utf8')
           await expectHtmlTextAbsent(page, recoveredText)
         } finally {
-          fs.writeFileSync(filePath, original, 'utf8')
+          restoreIfChanged(filePath, original)
         }
       })
     })
