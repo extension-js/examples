@@ -1,10 +1,8 @@
 import {HashRouter as Router, Switch, Route, Link} from 'react-router-dom'
 import './styles.css'
-import iconUrl from '../images/icon.png'
+import reactLogo from '../images/icon.png'
 
-const reactLogo = iconUrl
-
-function Home() {
+function Page({heading}: {heading: string}) {
   return (
     <main>
       <h1>
@@ -15,47 +13,7 @@ function Home() {
           width="120px"
         />
         <br />
-        Welcome to your React Router Extension.
-      </h1>
-      <pre>
-        <code>{window.location.href}</code>
-      </pre>
-    </main>
-  )
-}
-
-function About() {
-  return (
-    <main>
-      <h1>
-        <img
-          className="react"
-          src={reactLogo}
-          alt="The React logo"
-          width="120px"
-        />
-        <br />
-        Learn more about your React Router DOM Extension.
-      </h1>
-      <pre>
-        <code>{window.location.href}</code>
-      </pre>
-    </main>
-  )
-}
-
-function Users() {
-  return (
-    <main>
-      <h1>
-        <img
-          className="react"
-          src={reactLogo}
-          alt="The React logo"
-          width="120px"
-        />
-        <br />
-        List of users of your React Router DOM Extension.
+        {heading}
       </h1>
       <pre>
         <code>{window.location.href}</code>
@@ -75,13 +33,13 @@ export default function NewTabApp() {
 
         <Switch>
           <Route path="/about">
-            <About />
+            <Page heading="Learn more about your React Router DOM Extension." />
           </Route>
           <Route path="/users">
-            <Users />
+            <Page heading="List of users of your React Router DOM Extension." />
           </Route>
           <Route path="/">
-            <Home />
+            <Page heading="Welcome to your React Router Extension." />
           </Route>
         </Switch>
       </div>

@@ -1,6 +1,7 @@
-console.log('[From the page context] Hello from content_scripts!')
 import createContentApp from './ContentApp.js'
 import './styles.css'
+
+console.log('[From the page context] Hello from content_scripts!')
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -19,6 +20,7 @@ export default function initial() {
 
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((response) => (styleElement.textContent = response))
 
   // Render ContentApp inside shadow root

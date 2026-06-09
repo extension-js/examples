@@ -1,8 +1,6 @@
 import {ACTION_NAME} from '../constants.js'
 import './styles.css'
-import iconUrl from '../images/icon.png'
-
-const transformersLogo = iconUrl
+import transformersLogo from '../images/icon.png'
 
 const DEFAULTS = {
   task: 'text-classification',
@@ -21,15 +19,12 @@ const MODELS = {
   'text-generation': ['Xenova/tiny-stories-1M']
 }
 
-function SidebarApp() {
-  const root = document.getElementById('root')
-  if (!root) return
-
-  root.innerHTML = `
+function createSidebarHTML(logoSrc) {
+  return `
     <div class="sidebar_app">
       <img
         class="sidebar_logo"
-        src="${transformersLogo}"
+        src="${logoSrc}"
         alt="The Transformers.js logo"
       />
       <h1 class="sidebar_title" id="title">Transformers.js Sidebar Panel</h1>
@@ -42,21 +37,25 @@ function SidebarApp() {
           target="_blank" rel="noopener noreferrer"
         >Extension.js docs</a>
       </p>
-      
+
       <div class="sidebar_config_section">
         <h3 class="sidebar_output_title">Model Settings</h3>
+
         <div class="sidebar_input_section">
           <label class="sidebar_label" for="task">Task</label>
           <select id="task"></select>
         </div>
+
         <div class="sidebar_input_section">
           <label class="sidebar_label" for="model">Model</label>
           <select id="model"></select>
         </div>
+
         <div class="sidebar_input_section">
           <label class="sidebar_label" for="customModel">Custom model (optional)</label>
           <input id="customModel" placeholder="org/model-id" />
         </div>
+
         <div class="sidebar_input_section">
           <label class="sidebar_label" for="device">Device</label>
           <select id="device">
@@ -65,6 +64,7 @@ function SidebarApp() {
             <option value="cpu">cpu</option>
           </select>
         </div>
+
         <div class="sidebar_input_section">
           <label class="sidebar_label" for="dtype">Precision</label>
           <select id="dtype">
@@ -74,7 +74,7 @@ function SidebarApp() {
           </select>
         </div>
       </div>
-      
+
       <div class="sidebar_input_section">
         <label for="text-input" class="sidebar_label">
           Enter text for sentiment analysis:
@@ -86,7 +86,7 @@ function SidebarApp() {
           <button id="run-analysis">Run Analysis</button>
         </div>
       </div>
-      
+
       <div class="sidebar_output_section">
         <h3 class="sidebar_output_title">Analysis Results</h3>
         <div id="output" class="sidebar_output">
@@ -95,8 +95,15 @@ function SidebarApp() {
       </div>
     </div>
   `
+}
 
-  // Get elements after rendering
+function SidebarApp() {
+  const root = document.getElementById('root')
+  if (!root) return
+
+  root.innerHTML = createSidebarHTML(transformersLogo)
+
+  // Cache elements after rendering
   const inputElement = root.querySelector('#text-input')
   const outputElement = root.querySelector('#output')
   const titleElement = root.querySelector('#title')
@@ -143,13 +150,10 @@ function SidebarApp() {
   }
 
   function currentConfig() {
-    const task = taskEl.value
-    const curated = modelEl.value
     const customModel = customEl.value.trim()
-    const model = customModel || curated
     return {
-      task,
-      model,
+      task: taskEl.value,
+      model: customModel || modelEl.value,
       customModel: customModel || undefined,
       device: deviceEl.value,
       dtype: dtypeEl.value
@@ -166,15 +170,14 @@ function SidebarApp() {
     chrome.runtime.sendMessage({action: 'model-config-updated', config: cfg})
   }
 
-  // Save on change
+  // Changing the task re-populates the model list; every change persists config.
   taskEl.addEventListener('change', async () => {
     populateModels(taskEl.value)
     await saveConfig()
   })
-  modelEl.addEventListener('change', saveConfig)
-  customEl.addEventListener('change', saveConfig)
-  deviceEl.addEventListener('change', saveConfig)
-  dtypeEl.addEventListener('change', saveConfig)
+  ;[modelEl, customEl, deviceEl, dtypeEl].forEach((el) =>
+    el.addEventListener('change', saveConfig)
+  )
 
   loadConfig()
 

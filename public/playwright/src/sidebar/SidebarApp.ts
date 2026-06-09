@@ -1,5 +1,4 @@
-import iconUrl from '../images/icon.png'
-const logo = iconUrl
+import logo from '../images/icon.png'
 
 function SidebarApp() {
   const root = document.getElementById('root')

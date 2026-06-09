@@ -1,7 +1,8 @@
+import type {PageContext} from './content/scripts'
+
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
-import type {PageContext} from './content/scripts'
 
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||

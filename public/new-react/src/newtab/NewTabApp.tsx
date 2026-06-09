@@ -1,7 +1,5 @@
 import './styles.css'
-import iconUrl from '../images/icon.png'
-
-const reactLogo = iconUrl
+import reactLogo from '../images/icon.png'
 
 export default function NewTabApp() {
   return (
