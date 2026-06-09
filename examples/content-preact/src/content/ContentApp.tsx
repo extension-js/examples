@@ -5,26 +5,20 @@ import typescriptLogo from '../images/typescript.png'
 import tailwindLogo from '../images/tailwind.png'
 import chromeWindowBg from '../images/chromeWindow.png'
 
-export default function ContentApp() {
-  const isdialogOpen = useSignal(true)
+function ClosedHint({onOpen}: {onOpen: () => void}) {
+  return (
+    <div className="mx-auto p-6">
+      <button
+        onClick={onOpen}
+        className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      >
+        Open content script hint <span aria-hidden="true">+</span>
+      </button>
+    </div>
+  )
+}
 
-  const setIsDialogOpen = (bool: boolean) => {
-    isdialogOpen.value = bool
-  }
-
-  if (!isdialogOpen.value) {
-    return (
-      <div className="mx-auto p-6">
-        <button
-          onClick={() => setIsDialogOpen(true)}
-          className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          Open content script hint <span aria-hidden="true">+</span>
-        </button>
-      </div>
-    )
-  }
-
+function OpenHint({onClose}: {onClose: () => void}) {
   return (
     <div className="mx-auto max-w-7xl md:px-0 lg:p-6">
       <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
@@ -40,6 +34,7 @@ export default function ContentApp() {
             </picture>
           </div>
         </div>
+
         <div className="mx-auto max-w-md text-center lg:py-12 lg:mx-0 lg:flex-auto lg:text-left">
           <div className="flex items-center justify-center space-x-4 my-4 mx-auto">
             <img
@@ -67,7 +62,7 @@ export default function ContentApp() {
           <p className="mt-6 text-lg leading-8 text-gray-300">
             Learn more about creating cross-browser extensions by{' '}
             <button
-              onClick={() => setIsDialogOpen(false)}
+              onClick={onClose}
               className="underline hover:no-underline
             "
             >
@@ -76,6 +71,7 @@ export default function ContentApp() {
             .
           </p>
         </div>
+
         <div className="relative mt-16 h-80 lg:mt-8">
           <img
             className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
@@ -88,4 +84,14 @@ export default function ContentApp() {
       </div>
     </div>
   )
+}
+
+export default function ContentApp() {
+  const isdialogOpen = useSignal(true)
+
+  if (!isdialogOpen.value) {
+    return <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
+  }
+
+  return <OpenHint onClose={() => (isdialogOpen.value = false)} />
 }

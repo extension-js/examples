@@ -1,6 +1,7 @@
-console.log('[From the page context] Hello from content_scripts!')
 import createContentApp from './ContentApp'
 import './styles.css'
+
+console.log('[From the page context] Hello from content_scripts!')
 
 export interface PageContext {
   title: string
@@ -47,6 +48,7 @@ export default function initial() {
 
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((css) => (styleElement.textContent = css))
 
   shadowRoot.appendChild(createContentApp())

@@ -1,4 +1,3 @@
-console.log('[From the page context] Hello from content_scripts!')
 // Extension.js content script template (JavaScript)
 // - Export a default function (required in v3) that mounts your UI
 // - Wrapper handles Shadow DOM isolation, CSS injection, HMR and cleanup
@@ -7,6 +6,8 @@ console.log('[From the page context] Hello from content_scripts!')
 import {mount} from 'svelte'
 import ContentApp from './ContentApp.svelte'
 import './styles.css'
+
+console.log('[From the page context] Hello from content_scripts!')
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -25,6 +26,7 @@ export default function initial() {
 
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((response) => (styleElement.textContent = response))
 
   // Create container for Svelte app

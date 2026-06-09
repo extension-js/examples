@@ -1,8 +1,9 @@
-console.log('[From the sidebar page context] Hello regular page!')
 import React from 'react'
 import {createRoot} from 'react-dom/client'
 import SidebarApp from './SidebarApp.jsx'
 import './styles.css'
+
+console.log('[From the sidebar page context] Hello regular page!')
 
 const root = createRoot(document.getElementById('root'))
 

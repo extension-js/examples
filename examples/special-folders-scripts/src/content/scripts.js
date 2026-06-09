@@ -1,6 +1,6 @@
+import logo from '../images/icon.png'
+
 console.log('[From the page context] Hello from content_scripts!')
-import iconUrl from '../images/icon.png'
-const logo = iconUrl
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -15,11 +15,13 @@ export default function initial() {
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((css) => (styleElement.textContent = css))
 
   const contentDiv = document.createElement('div')
   contentDiv.className = 'content_script'
   shadowRoot.appendChild(contentDiv)
+
   const img = document.createElement('img')
   img.className = 'content_logo'
   img.src = logo
@@ -36,45 +38,57 @@ export default function initial() {
     'Click below to inject the three <code>scripts/script-*.js</code> files into this page — same effect as clicking the extension toolbar icon. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
-  // "Run scripts/" button. Clicking it sends a runtime message to the
-  // background service worker, which issues the SAME
-  // chrome.scripting.executeScript({files: ['/scripts/...']}) call that the
-  // toolbar action's onClicked handler runs — so the visible effect is
-  // identical: the three badge divs appear in the page.
+  contentDiv.appendChild(createRunButton())
+
+  return () => {
+    rootDiv.remove()
+  }
+}
+
+// "Run scripts/" button. Clicking it sends a runtime message to the background
+// service worker, which issues the SAME
+// chrome.scripting.executeScript({files: ['/scripts/...']}) call that the
+// toolbar action's onClicked handler runs — so the visible effect is identical:
+// the three badge divs appear in the page.
+function createRunButton() {
   const button = document.createElement('button')
   button.type = 'button'
   button.className = 'content_run_button'
   button.textContent = 'Run scripts/'
+
   button.addEventListener('click', () => {
     button.disabled = true
     button.textContent = 'Injecting…'
+
     chrome.runtime.sendMessage(
       {type: 'special-folders-scripts:run'},
       (response) => {
         button.disabled = false
+
         if (chrome.runtime.lastError) {
           button.textContent = 'Run failed'
           console.warn(
             '[special-folders-scripts] message failed',
             chrome.runtime.lastError.message
           )
-        } else if (response && response.ok === false) {
+          return
+        }
+
+        if (response && response.ok === false) {
           button.textContent = 'Run failed'
           console.warn(
             '[special-folders-scripts] background returned error',
             response.error
           )
-        } else {
-          button.textContent = 'Run scripts/'
+          return
         }
+
+        button.textContent = 'Run scripts/'
       }
     )
   })
-  contentDiv.appendChild(button)
 
-  return () => {
-    rootDiv.remove()
-  }
+  return button
 }
 
 async function fetchCSS() {

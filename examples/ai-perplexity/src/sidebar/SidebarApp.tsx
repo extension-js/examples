@@ -20,6 +20,53 @@ import {
 
 const PRODUCT_NAME = 'Perplexity'
 
+function Header({
+  onClearChat,
+  onChangeKey
+}: {
+  onClearChat: () => void
+  onChangeKey: () => void
+}) {
+  return (
+    <div className="flex items-center justify-between border-b px-4 py-2">
+      <h1 className="text-sm font-semibold">{PRODUCT_NAME}</h1>
+      <div className="flex gap-1">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onClearChat}
+          aria-label="Clear chat"
+          title="Clear chat"
+          className="size-7"
+        >
+          <Trash2 className="size-3.5" />
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onChangeKey}
+          aria-label="Change API key"
+          title="Change API key"
+          className="size-7"
+        >
+          <Settings className="size-3.5" />
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+function ThinkingIndicator() {
+  return (
+    <div className="flex items-center gap-3 px-4 py-3 bg-muted/50">
+      <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300">
+        <Loader2 className="size-4 animate-spin" />
+      </div>
+      <p className="text-sm text-muted-foreground">Thinking...</p>
+    </div>
+  )
+}
+
 export default function SidebarApp() {
   const [apiKey, setApiKeyState] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -119,32 +166,7 @@ export default function SidebarApp() {
 
   return (
     <div className="flex h-screen flex-col">
-      {/* Header */}
-      <div className="flex items-center justify-between border-b px-4 py-2">
-        <h1 className="text-sm font-semibold">{PRODUCT_NAME}</h1>
-        <div className="flex gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleClearChat}
-            aria-label="Clear chat"
-            title="Clear chat"
-            className="size-7"
-          >
-            <Trash2 className="size-3.5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleReset}
-            aria-label="Change API key"
-            title="Change API key"
-            className="size-7"
-          >
-            <Settings className="size-3.5" />
-          </Button>
-        </div>
-      </div>
+      <Header onClearChat={handleClearChat} onChangeKey={handleReset} />
 
       {pageContextChip}
 
@@ -162,14 +184,7 @@ export default function SidebarApp() {
             {messages.map((msg, i) => (
               <ChatMessage key={i} message={msg} />
             ))}
-            {isStreaming && (
-              <div className="flex items-center gap-3 px-4 py-3 bg-muted/50">
-                <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-teal-100 text-teal-700 dark:bg-teal-900 dark:text-teal-300">
-                  <Loader2 className="size-4 animate-spin" />
-                </div>
-                <p className="text-sm text-muted-foreground">Thinking...</p>
-              </div>
-            )}
+            {isStreaming && <ThinkingIndicator />}
             <div ref={bottomRef} />
           </div>
         )}

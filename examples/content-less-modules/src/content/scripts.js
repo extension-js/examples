@@ -1,12 +1,13 @@
-console.log('[From the page context] Hello from content_scripts!')
-import iconUrl from '../images/icon.png'
+import logo from '../images/icon.png'
 import {
   content_script,
   content_logo,
   content_title,
   content_description
 } from './styles.module.less'
-const logo = iconUrl
+
+console.log('[From the page context] Hello from content_scripts!')
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -22,6 +23,7 @@ export default function initial() {
   const contentDiv = document.createElement('div')
   contentDiv.className = content_script
   shadowRoot.appendChild(contentDiv)
+
   const img = document.createElement('img')
   img.className = content_logo
   img.src = logo
