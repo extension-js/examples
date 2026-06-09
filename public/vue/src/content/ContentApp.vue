@@ -1,8 +1,6 @@
 <script>
-import iconUrl from '../images/icon.png'
+import vueLogo from '../images/icon.png'
 import {defineComponent} from 'vue'
-
-const vueLogo = iconUrl
 
 export default defineComponent({
   name: 'ContentApp',

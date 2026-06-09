@@ -1,6 +1,5 @@
 <script>
-import iconUrl from '../images/icon.png'
-const logo = iconUrl
+import logo from '../images/icon.png'
 
 function openSidebar() {
   if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {

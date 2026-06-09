@@ -1,6 +1,7 @@
+import logo from '../images/icon.png'
+
 console.log('[From the page context] Hello from content_scripts!')
-import iconUrl from '../images/icon.png'
-const logo = iconUrl
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -14,11 +15,13 @@ export default function initial() {
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((css) => (styleElement.textContent = css))
 
   const contentDiv = document.createElement('div')
   contentDiv.className = 'content_script'
   shadowRoot.appendChild(contentDiv)
+
   const img = document.createElement('img')
   img.className = 'content_logo'
   img.src = logo

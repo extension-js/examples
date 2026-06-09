@@ -2,13 +2,14 @@ import {createApp} from 'vue'
 import ContentApp from './ContentApp.vue'
 import './styles.css'
 
+console.log('[From the page context] Hello from content_scripts!')
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
  * Do not invoke it yourself.
  */
 export default function initial() {
-  console.log('[From the page context] Hello from content_scripts!')
   const rootDiv = document.createElement('div')
   rootDiv.setAttribute('data-extension-root', 'true')
   document.body.appendChild(rootDiv)
@@ -20,6 +21,7 @@ export default function initial() {
 
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((response) => (styleElement.textContent = response))
 
   // Create container for Vue app

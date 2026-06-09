@@ -1,6 +1,5 @@
 <script lang="ts">
-import iconUrl from '../images/icon.png'
-const logo = iconUrl
+import logo from '../images/icon.png'
 </script>
 
 <div class="sidebar_app">
