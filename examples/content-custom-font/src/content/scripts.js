@@ -12,6 +12,7 @@ export default function initial() {
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
   const styleElement = document.createElement('style')
   shadowRoot.appendChild(styleElement)
+
   fetchCSS().then((css) => (styleElement.textContent = css))
 
   const contentDiv = document.createElement('div')

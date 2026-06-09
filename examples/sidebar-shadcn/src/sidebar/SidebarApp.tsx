@@ -1,4 +1,4 @@
-import iconUrl from '../images/icon.png'
+import shadcnLogo from '../images/icon.png'
 import {
   Card,
   CardContent,
@@ -9,8 +9,6 @@ import {
 } from '../components/ui/card'
 import {Label} from '../components/ui/label'
 import {Switch} from '../components/ui/switch'
-
-const shadcnLogo = iconUrl
 
 export default function SidebarApp() {
   return (

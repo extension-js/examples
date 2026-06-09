@@ -1,11 +1,10 @@
-console.log(
-  '[From the background context] Hello from the background worker/script!'
-)
 // background.js - Handles requests from the UI, runs the model, then sends back a response
-
 import {env, pipeline} from '@huggingface/transformers'
 import {ACTION_NAME, CONTEXT_MENU_ITEM_ID} from './constants.js'
 
+console.log(
+  '[From the background context] Hello from the background worker/script!'
+)
 console.log('Transformers.js background script loaded!')
 
 // Browser compatibility handling for sidebar functionality
@@ -38,6 +37,27 @@ function configKey(cfg) {
   return JSON.stringify(safe)
 }
 
+// Build a cache entry whose `fn` lazily instantiates the pipeline on first use
+// and serializes calls through a single promise chain.
+function createCachedRunner(cfg, progress_callback) {
+  const entry = {}
+  entry.fn = async (...args) => {
+    entry.instance ||= pipeline(cfg.task, cfg.model, {
+      progress_callback,
+      device: cfg.device,
+      dtype: cfg.dtype
+    })
+    entry.promise_chain = (entry.promise_chain || Promise.resolve()).then(
+      async () => {
+        const runner = await entry.instance
+        return runner(...args)
+      }
+    )
+    return entry.promise_chain
+  }
+  return entry
+}
+
 class ModelManager {
   constructor() {
     this.cache = new Map()
@@ -68,24 +88,12 @@ class ModelManager {
   async getRunner(progress_callback) {
     await this.ready
     const key = this.currentKey
-    const cfg = this.currentConfig
 
     if (!this.cache.has(key)) {
-      const entry = {}
-      entry.fn = async (...args) => {
-        entry.instance ||= pipeline(cfg.task, cfg.model, {
-          progress_callback,
-          device: cfg.device,
-          dtype: cfg.dtype
-        })
-        return (entry.promise_chain = (
-          entry.promise_chain || Promise.resolve()
-        ).then(async () => {
-          const runner = await entry.instance
-          return runner(...args)
-        }))
-      }
-      this.cache.set(key, entry)
+      this.cache.set(
+        key,
+        createCachedRunner(this.currentConfig, progress_callback)
+      )
     }
     return this.cache.get(key).fn
   }

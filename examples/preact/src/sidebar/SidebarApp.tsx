@@ -1,7 +1,5 @@
 import './styles.css'
-import iconUrl from '../images/icon.png'
-
-const logo = iconUrl
+import logo from '../images/icon.png'
 
 export default function SidebarApp() {
   return (
