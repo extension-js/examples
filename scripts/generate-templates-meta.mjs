@@ -48,6 +48,44 @@ const CURATED_ALLOWED_KEYS = [
   'docsUrl'
 ]
 
+/**
+ * Display-title casing for slug tokens that are acronyms or brand names. Any
+ * token not listed here is Title-cased. Used to derive a human `title` for
+ * templates that don't ship a curated `template.meta.json` title, so consumer
+ * UIs can show "React" instead of the raw "react" slug.
+ */
+const TITLE_TOKEN_MAP = {
+  ai: 'AI',
+  // "new" is the new-tab surface (chrome_url_overrides.newtab); render it as a
+  // single recognizable word so "new-react" reads "Newtab React", not "New React".
+  new: 'Newtab',
+  css: 'CSS',
+  js: 'JS',
+  ts: 'TS',
+  ui: 'UI',
+  api: 'API',
+  url: 'URL',
+  chatgpt: 'ChatGPT',
+  eslint: 'ESLint',
+  stylelint: 'Stylelint',
+  typescript: 'TypeScript',
+  javascript: 'JavaScript',
+  antd: 'Ant Design',
+  shadcn: 'shadcn'
+}
+
+function prettifyTitle(slug) {
+  return String(slug || '')
+    .split('-')
+    .filter(Boolean)
+    .map((token) => {
+      const lower = token.toLowerCase()
+      if (TITLE_TOKEN_MAP[lower]) return TITLE_TOKEN_MAP[lower]
+      return lower.charAt(0).toUpperCase() + lower.slice(1)
+    })
+    .join(' ')
+}
+
 const FALLBACK_ICON_CANDIDATES = [
   ['public', 'logo.png'],
   ['public', 'logo.svg'],
@@ -612,7 +650,9 @@ function buildTemplateEntry(exampleDirectory) {
   const templateEntry = {
     slug,
     name: packageJson.name || slug,
-    title: curated?.title,
+    // Curated title wins; otherwise derive a human display title from the slug
+    // (e.g. "react" -> "React") so consumer UIs never headline the raw slug.
+    title: curated?.title || prettifyTitle(slug),
     version: packageJson.version || '0.0.1',
     manifest_version: Number(manifest.manifest_version || 3),
     description: manifest.description || packageJson.description || '',
