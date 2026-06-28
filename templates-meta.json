@@ -64,6 +64,7 @@
     {
       "slug": "action-locales",
       "name": "action-locales",
+      "title": "Action Locales",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
@@ -438,6 +439,7 @@
     {
       "slug": "content",
       "name": "content",
+      "title": "Content scripts",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
@@ -478,6 +480,7 @@
     {
       "slug": "content-css-modules",
       "name": "content-css-modules",
+      "title": "Content CSS Modules",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.",
@@ -518,6 +521,7 @@
     {
       "slug": "content-custom-font",
       "name": "content-custom-font",
+      "title": "Content Custom Font",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
@@ -558,6 +562,7 @@
     {
       "slug": "content-env",
       "name": "content-env",
+      "title": "Content Env",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example that reads environment variables (.env) and renders a small UI.",
@@ -598,6 +603,7 @@
     {
       "slug": "content-less",
       "name": "content-less",
+      "title": "Content Less",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
@@ -638,6 +644,7 @@
     {
       "slug": "content-less-modules",
       "name": "content-less-modules",
+      "title": "Content Less Modules",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
@@ -741,6 +748,7 @@
     {
       "slug": "content-multi-one-entry",
       "name": "content-multi-one-entry",
+      "title": "Content Multi One Entry",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
@@ -857,6 +865,7 @@
     {
       "slug": "content-preact",
       "name": "content-preact",
+      "title": "Content Preact",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example rendered with Preact. Mounts a small UI inside a Shadow DOM on any page.",
@@ -906,6 +915,7 @@
     {
       "slug": "content-react",
       "name": "content-react",
+      "title": "Content React",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
@@ -955,6 +965,7 @@
     {
       "slug": "content-sass",
       "name": "content-sass",
+      "title": "Content Sass",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.",
@@ -995,6 +1006,7 @@
     {
       "slug": "content-sass-modules",
       "name": "content-sass-modules",
+      "title": "Content Sass Modules",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.",
@@ -1037,6 +1049,7 @@
     {
       "slug": "content-svelte",
       "name": "content-svelte",
+      "title": "Content Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.",
@@ -1087,6 +1100,7 @@
     {
       "slug": "content-typescript",
       "name": "content-typescript",
+      "title": "Content TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
@@ -1127,6 +1141,7 @@
     {
       "slug": "content-vue",
       "name": "content-vue",
+      "title": "Content Vue",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.",
@@ -1178,6 +1193,7 @@
     {
       "slug": "init",
       "name": "init",
+      "title": "Initial",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
@@ -1216,6 +1232,7 @@
     {
       "slug": "javascript",
       "name": "javascript",
+      "title": "JavaScript",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
@@ -1261,6 +1278,7 @@
     {
       "slug": "new",
       "name": "new",
+      "title": "Newtab",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example using plain JavaScript. Renders a simple page you can customize.",
@@ -1302,6 +1320,7 @@
     {
       "slug": "new-browser-flags",
       "name": "new-browser-flags",
+      "title": "Newtab Browser Flags",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
@@ -1351,6 +1370,7 @@
     {
       "slug": "new-config-eslint",
       "name": "new-config-eslint",
+      "title": "Newtab Config ESLint",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
@@ -1396,6 +1416,7 @@
     {
       "slug": "new-config-prettier",
       "name": "new-config-prettier",
+      "title": "Newtab Config Prettier",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
@@ -1437,6 +1458,7 @@
     {
       "slug": "new-config-stylelint",
       "name": "new-config-stylelint",
+      "title": "Newtab Config Stylelint",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.",
@@ -1478,6 +1500,7 @@
     {
       "slug": "new-crypto",
       "name": "new-crypto",
+      "title": "Newtab Crypto",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example demonstrating basic crypto operations inside an extension.",
@@ -1575,6 +1598,7 @@
     {
       "slug": "new-less",
       "name": "new-less",
+      "title": "Newtab Less",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
@@ -1616,6 +1640,7 @@
     {
       "slug": "new-preact",
       "name": "new-preact",
+      "title": "Newtab Preact",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example rendered with Preact. Loads a small Preact app you can extend.",
@@ -1658,6 +1683,7 @@
     {
       "slug": "new-react",
       "name": "new-react",
+      "title": "Newtab React",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.",
@@ -1700,6 +1726,7 @@
     {
       "slug": "new-react-router",
       "name": "new-react-router",
+      "title": "Newtab React Router",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
@@ -1742,6 +1769,7 @@
     {
       "slug": "new-sass",
       "name": "new-sass",
+      "title": "Newtab Sass",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
@@ -1783,6 +1811,7 @@
     {
       "slug": "new-svelte",
       "name": "new-svelte",
+      "title": "Newtab Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example rendered with Svelte. Loads a small Svelte app you can extend.",
@@ -1825,6 +1854,7 @@
     {
       "slug": "new-typescript",
       "name": "new-typescript",
+      "title": "Newtab TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
@@ -1866,6 +1896,7 @@
     {
       "slug": "new-vue",
       "name": "new-vue",
+      "title": "Newtab Vue",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
@@ -1965,6 +1996,7 @@
     {
       "slug": "preact",
       "name": "preact",
+      "title": "Preact",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
@@ -2012,6 +2044,7 @@
     {
       "slug": "react",
       "name": "react",
+      "title": "React",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "React-based extension with a sidebar panel. Adds a sidebar with a simple page.",
@@ -2057,6 +2090,7 @@
     {
       "slug": "sidebar",
       "name": "sidebar",
+      "title": "Sidebar page",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
@@ -2098,6 +2132,7 @@
     {
       "slug": "sidebar-antd",
       "name": "sidebar-antd",
+      "title": "Sidebar Ant Design",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
@@ -2140,6 +2175,7 @@
     {
       "slug": "sidebar-monorepo-turbopack",
       "name": "sidebar-monorepo-turbopack",
+      "title": "Sidebar Turbopack",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Monorepo example with content script and sidebar.",
@@ -2188,6 +2224,7 @@
     {
       "slug": "sidebar-shadcn",
       "name": "sidebar-shadcn",
+      "title": "Sidebar shadcn",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
@@ -2299,6 +2336,7 @@
     {
       "slug": "special-folders-scripts",
       "name": "special-folders-scripts",
+      "title": "Special Folders Scripts",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
@@ -2340,6 +2378,7 @@
     {
       "slug": "svelte",
       "name": "svelte",
+      "title": "Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Svelte-based extension with a sidebar panel. Adds a sidebar with a simple page.",
@@ -2386,6 +2425,7 @@
     {
       "slug": "transformers-js",
       "name": "transformers-js",
+      "title": "Transformers.js",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
@@ -2431,6 +2471,7 @@
     {
       "slug": "typescript",
       "name": "typescript",
+      "title": "TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "TypeScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
@@ -2477,6 +2518,7 @@
     {
       "slug": "vue",
       "name": "vue",
+      "title": "Vue",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Vue.js-based extension with a sidebar panel. Adds a sidebar with a simple page.",
