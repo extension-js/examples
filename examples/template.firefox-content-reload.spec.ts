@@ -179,6 +179,12 @@ interface DevServer {
 function startDev(exampleDir: string): DevServer {
   const env = {...process.env, EXTENSION_AUTHOR_MODE: 'true'}
   const command = localCliCjs ? process.execPath : 'pnpm'
+  // Optional binary override (EXTENSION_GECKO_BINARY) so this gate can target a
+  // specific Firefox in headless/CI/sandbox environments where the default
+  // (e.g. Nightly) crashes its GPU helper. Combine with MOZ_HEADLESS=1 (inherited
+  // via process.env above) to run headless. Empty -> system default Firefox.
+  const geckoBinary = (process.env.EXTENSION_GECKO_BINARY || '').trim()
+  const geckoArgs = geckoBinary ? ['--gecko-binary', geckoBinary] : []
   const args = localCliCjs
     ? [
         localCliCjs,
@@ -188,7 +194,8 @@ function startDev(exampleDir: string): DevServer {
         '--starting-url',
         'https://example.com',
         '--install=false',
-        '--author-mode'
+        '--author-mode',
+        ...geckoArgs
       ]
     : [
         'extension',
@@ -198,7 +205,8 @@ function startDev(exampleDir: string): DevServer {
         '--starting-url',
         'https://example.com',
         '--install=false',
-        '--author-mode'
+        '--author-mode',
+        ...geckoArgs
       ]
   const proc = spawn(command, args, {cwd: exampleDir, env, stdio: 'pipe'})
   const server: DevServer = {proc, output: ''}
@@ -207,7 +215,12 @@ function startDev(exampleDir: string): DevServer {
     const text = stripAnsi(chunk.toString())
     server.output += text
     if (server.rdpPort === undefined) {
-      const m = text.match(/Firefox debug port:\s*(\d{3,5})/i)
+      // Accept either extension.js's author-mode line OR Firefox's own
+      // "Started devtools server on N" (the latter is the reliable signal in
+      // headless runs, where the author-mode debug-port line may not fire).
+      const m =
+        text.match(/Firefox debug port:\s*(\d{3,5})/i) ||
+        text.match(/Started devtools server on\s*(\d{3,5})/i)
       if (m) server.rdpPort = Number(m[1])
     }
     if (
@@ -464,6 +477,22 @@ function readStylePropertyExpr(className: string, prop: string): string {
   })())`
 }
 
+// Reload the at-launch example.com tab once, post-readiness. The launched tab
+// finished loading example.com BEFORE extension.js installed the unpacked add-on
+// over RDP; WebExtensions do not retroactively inject a declarative content
+// script into a tab that already loaded, so the starting tab never mounts the
+// script. A single reload after the add-on is ready makes the script inject on
+// that navigation — after which every edit must land IN PLACE with no further
+// navigation. location.reload() tears the page (and the console actor) down
+// mid-eval, so the evaluationResult usually never returns; that rejection is
+// expected and swallowed — the mount poll in Step 1 is the real signal. See
+// docs/followups/firefox-launcher-at-launch-injection-race.md.
+async function rdpReloadExampleTab(port: number): Promise<void> {
+  try {
+    await rdpEvalAgainstExample(port, 'location.reload()')
+  } catch {}
+}
+
 async function probeContains(port: number, needle: string): Promise<boolean> {
   try {
     const raw = await rdpEvalAgainstExample(port, domContainsNeedleExpr(needle))
@@ -514,7 +543,7 @@ for (const example of EXAMPLES) {
         originalCssSource = fs.readFileSync(example.styleTarget.file, 'utf8')
       }
       server = startDev(example.dir)
-      await waitForRdpReady(server, 90000)
+      const port = await waitForRdpReady(server, 90000)
       // Wait for the first manifest to land on disk.
       const deadline = Date.now() + 60000
       while (Date.now() < deadline) {
@@ -524,6 +553,12 @@ for (const example of EXAMPLES) {
         if (hit) break
         await new Promise((r) => setTimeout(r, 300))
       }
+      // Now that the add-on is installed and the build has landed, reload the
+      // starting tab once so the content script injects (see
+      // rdpReloadExampleTab). Without this the at-launch tab never mounts in
+      // slow/headless hosts where the add-on install loses the race against the
+      // initial page load, and Step 1 fails spuriously.
+      await rdpReloadExampleTab(port)
     })
 
     baseTest.afterAll(async () => {
@@ -550,7 +585,9 @@ for (const example of EXAMPLES) {
         const port = server.rdpPort
 
         // Step 1 — initial mount: poll for the original anchor in the
-        // page that the dev process opened (--starting-url=example.com).
+        // starting tab (--starting-url=example.com), which beforeAll reloaded
+        // once post-readiness so the content script injected. From here on the
+        // tab is never navigated again — every edit must land IN PLACE.
         await expect
           .poll(() => probeContains(port, example.jsAnchor.anchor), {
             timeout: 30000,

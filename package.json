@@ -30,6 +30,7 @@
     "test:content-live:firefox": "node scripts/verify-content-live.mjs --browser=firefox",
     "test:full-reload:chromium": "node scripts/verify-full-extension-reload.mjs --browser=chromium",
     "test:full-reload:firefox": "node scripts/verify-full-extension-reload.mjs --browser=firefox",
+    "test:firefox-reload:rdp": "node scripts/verify-firefox-reload-rdp.mjs",
     "test:html-context-regression": "playwright test --project=sidebar --project=action --project=newtab --project=special-folders",
     "test:dev-reload-suite": "node scripts/verify-dev-reload-suite.mjs",
     "test:reload-matrix": "node scripts/reload-matrix/run-matrix.mjs",
