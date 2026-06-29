@@ -142,6 +142,22 @@ export default defineConfig({
       }
     },
 
+    // `extension dev --no-browser` content-script reload gate. The controller-
+    // less counterpart to `content-reload`: loads the built dist into an
+    // independent Playwright Chrome and asserts an edit re-injects into the open
+    // tab IN PLACE via the control bridge (dev server -> SW producer ->
+    // chrome.scripting.executeScript) — no CDP controller, no manual page reload.
+    // Also live-proves the content script self-mounts under --no-browser.
+    {
+      name: 'no-browser-content-reload',
+      testMatch: /examples\/template\.no-browser-content-reload\.spec\.ts$/,
+      fullyParallel: false,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
     // Same nine-scenario sequence as `content-reload` but driven against
     // real Firefox via the dev process's RDP socket. Spawns
     // `extension dev --browser=firefox`, opens a tab via Firefox RDP
