@@ -158,6 +158,22 @@ export default defineConfig({
       }
     },
 
+    // Deterministic launched-Chromium content reload gate. Launches a real
+    // Chrome via `extension dev`, attaches Playwright over CDP (connectOverCDP),
+    // and asserts a JS edit AND a CSS edit propagate into the already-open page
+    // with no navigation. Unlike `content-reload` (raw CDP tab, flaky CSS), the
+    // Playwright page is a first-class SW-producer reinject target, so the CSS
+    // axis is deterministic. Scoped to the canonical `content` example.
+    {
+      name: 'launched-content-reload',
+      testMatch: /examples\/template\.launched-content-reload\.spec\.ts$/,
+      fullyParallel: false,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
     // Same nine-scenario sequence as `content-reload` but driven against
     // real Firefox via the dev process's RDP socket. Spawns
     // `extension dev --browser=firefox`, opens a tab via Firefox RDP
