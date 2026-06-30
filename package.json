@@ -80,7 +80,9 @@
     "lint": "eslint .",
     "lint-staged": "lint-staged",
     "install:all": "pnpm install && pnpm -r install",
-    "clean": "pnpm -r exec rm -rf dist build .extension node_modules/.cache"
+    "clean": "pnpm -r exec rm -rf dist build .extension node_modules/.cache",
+    "test:safari-manifest": "node scripts/assert-safari-manifest-integrity.mjs",
+    "test:safari-manifest:all": "node scripts/assert-safari-manifest-integrity.mjs --all"
   },
   "files": [
     "public/**",
@@ -93,7 +95,7 @@
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "3.18.5-canary.local-34c11c8f",
+    "extension": "3.18.5-canary.local-b4fd0431",
     "globals": "^15.13.0",
     "knip": "^5.33.0",
     "lint-staged": "16.1.0",
