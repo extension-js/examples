@@ -81,8 +81,9 @@
     "lint-staged": "lint-staged",
     "install:all": "pnpm install && pnpm -r install",
     "clean": "pnpm -r exec rm -rf dist build .extension node_modules/.cache",
-    "test:safari-manifest": "node scripts/assert-safari-manifest-integrity.mjs",
-    "test:safari-manifest:all": "node scripts/assert-safari-manifest-integrity.mjs --all"
+    "test:browser-manifest": "node scripts/assert-browser-manifest-integrity.mjs",
+    "test:browser-manifest:all": "node scripts/assert-browser-manifest-integrity.mjs --all",
+    "test:safari-manifest": "node scripts/assert-browser-manifest-integrity.mjs --targets=safari"
   },
   "files": [
     "public/**",
