@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.0.3-canary.local-4f6380cc
-        version: 4.0.3-canary.local-4f6380cc(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+        specifier: 4.0.3
+        version: 4.0.3(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3525,12 +3525,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.0.3-canary.local-4f6380cc:
-    resolution: {integrity: sha512-vJ6cY4XkcetCTsFF/fA22cOvE3RxIUqSQg70JhvpOyIIHutVQQbTrbCADnPGdUkDkpQ5y+gaQnRm5xdiSlebjw==}
+  extension-create@4.0.3:
+    resolution: {integrity: sha512-Lia7II40RdKwV3+qRTvijIjAJYnOYu6W2xE/6z7LtuDMDDOZiFFR6OJtkXQrhVPn82FdoDr5pTuxkN292U8uyw==}
     engines: {node: '>=22'}
 
-  extension-develop@4.0.3-canary.local-4f6380cc:
-    resolution: {integrity: sha512-c+4QhS7CoHlIQw+E2cJrkqwgrjwO7girEArQUl81232vWzktImXQGXBz35JwewZi0jFT6MKQb8+SBhc1MnT6fw==}
+  extension-develop@4.0.3:
+    resolution: {integrity: sha512-Zo9RUYxNaI5Yl/ld+jojyd4gWbosBaqZiSVWnAFbukbu+S3MDDUlG73MqWkac90Z36Gfqb2Cw5B9E3AqTLgERQ==}
     engines: {node: '>=22'}
 
   extension-from-store@0.1.1:
@@ -3538,12 +3538,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.0.3-canary.local-4f6380cc:
-    resolution: {integrity: sha512-GLIsyVUgK+3ac44gVQaOb3t55E0z0O3mywIfWjzL2bHk9rTYUu88vc4XQ3ycnBpnBQcwm8DdjdVsx1Lia6AnXg==}
+  extension-install@4.0.3:
+    resolution: {integrity: sha512-oMB1eMQ+Sbz17bGQw9JVyn2AvDUZOtZ1bwTiyaybmMU7a6biiUr5cZDkCamJhJA2is8HrVcRvEUB5Z+lcouYBQ==}
     engines: {node: '>=22'}
 
-  extension@4.0.3-canary.local-4f6380cc:
-    resolution: {integrity: sha512-ni3gh9IywuV5PaOGhFZ4jJao8bk8tL/3i5YnwiWpr7B+UO3VSfJzi/c+9391zo+StBth1NBVhFcns4rWJRP8Dg==}
+  extension@4.0.3:
+    resolution: {integrity: sha512-pC9Vggenz9B28NDEnDAFwWkohInTWCtlM4+7VUmksYrnAncCMdJaTrRQtA/nU7L1gFN8gkGBHkiAVrswmbSMcQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -8442,7 +8442,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.0.3-canary.local-4f6380cc:
+  extension-create@4.0.3:
     dependencies:
       adm-zip: 0.5.17
       axios: 1.16.0
@@ -8453,7 +8453,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@4.0.3-canary.local-4f6380cc(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension-develop@4.0.3(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -8511,12 +8511,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@4.0.3-canary.local-4f6380cc:
+  extension-install@4.0.3:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.0.3-canary.local-4f6380cc(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension@4.0.3(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.40
       '@types/node': 26.1.0
@@ -8527,9 +8527,9 @@ snapshots:
       commander: 15.0.0
       cross-spawn: 7.0.6
       edge-location: 2.2.0
-      extension-create: 4.0.3-canary.local-4f6380cc
-      extension-develop: 4.0.3-canary.local-4f6380cc(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
-      extension-install: 4.0.3-canary.local-4f6380cc
+      extension-create: 4.0.3
+      extension-develop: 4.0.3(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+      extension-install: 4.0.3
       firefox-location2: 3.0.0
       librewolf-location: 1.1.2
       opera-location2: 2.0.2
