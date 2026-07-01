@@ -65,7 +65,9 @@ function discoverFirefox() {
       const bin = path.join(cacheDir, b, 'Firefox.app/Contents/MacOS/firefox')
       if (fs.existsSync(bin)) return bin
     }
-  } catch {}
+  } catch {
+    // best-effort; ignore
+  }
   const sys = '/Applications/Firefox.app/Contents/MacOS/firefox'
   if (fs.existsSync(sys)) return sys
   throw new Error('No Firefox binary found (set EXTENSION_GECKO_BINARY)')
@@ -119,7 +121,9 @@ function session(port) {
     close: () => {
       try {
         sock.end()
-      } catch {}
+      } catch {
+        // best-effort; ignore
+      }
     }
   }
 }
@@ -188,7 +192,9 @@ function latestBundleMtime() {
           const mt = fs.statSync(path.join(csDir, f)).mtimeMs
           if (mt > latest) latest = mt
         }
-      } catch {}
+      } catch {
+        // best-effort; ignore
+      }
     }
   }
   return latest
@@ -379,19 +385,29 @@ async function main() {
   } finally {
     try {
       fs.writeFileSync(scriptPath, ORIGINAL_JS, 'utf8')
-    } catch {}
+    } catch {
+      // best-effort; ignore
+    }
     try {
       fs.writeFileSync(stylePath, ORIGINAL_CSS, 'utf8')
-    } catch {}
+    } catch {
+      // best-effort; ignore
+    }
     try {
       if (rdp) rdp.close()
-    } catch {}
+    } catch {
+      // best-effort; ignore
+    }
     try {
       if (ff) ff.kill('SIGKILL')
-    } catch {}
+    } catch {
+      // best-effort; ignore
+    }
     try {
       dev.kill('SIGKILL')
-    } catch {}
+    } catch {
+      // best-effort; ignore
+    }
   }
 
   if (failures.length) {
