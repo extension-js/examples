@@ -84,6 +84,7 @@ baseTest('env variable is compiled into built newtab script', async () => {
   const jsCode = fs.readFileSync(jsPath, 'utf8')
   const envValues = [
     'Chrome Extension',
+    'Chromium Extension',
     'Chromium-based Extension',
     'Edge Extension',
     'Firefox Add-on'

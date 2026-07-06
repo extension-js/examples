@@ -13,7 +13,7 @@
 
 **How it works**: The manifest overrides the new-tab page and loads a TypeScript entry bundled from `src/newtab/`.
 
-Reads variables from `.env` at build time. Variables prefixed with `EXTENSION_PUBLIC_` are inlined into the bundle as `import.meta.env.*`.
+Reads variables from `.env` at build time. Variables prefixed with `EXTENSION_PUBLIC_` are inlined into the bundle as `import.meta.env.*`. Browser-suffixed files (`.env.chromium`, `.env.chrome`, `.env.firefox`, …) resolve family-wide: the exact browser name wins, then family siblings apply (e.g. `.env.chrome` also matches `chromium` and `edge` targets).
 
 ## Try it locally
 
