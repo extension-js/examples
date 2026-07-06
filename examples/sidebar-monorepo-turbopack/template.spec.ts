@@ -177,8 +177,19 @@ test.describe('Monorepo Build Artifacts', () => {
   })
 
   test('icons are present in build output', () => {
-    const iconPath = path.join(expectedDist, 'icons', 'icon.png')
-    expect(fs.existsSync(iconPath)).toBe(true)
+    // Icons keep their in-project paths in the build output (extension
+    // >= 4.0.4), so verify every icon the built manifest declares exists.
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(expectedDist, 'manifest.json'), 'utf8')
+    )
+    const iconPaths = Object.values(manifest.icons ?? {}) as string[]
+    expect(iconPaths.length, 'manifest should declare icons').toBeGreaterThan(0)
+    for (const iconPath of iconPaths) {
+      expect(
+        fs.existsSync(path.join(expectedDist, iconPath)),
+        `icon ${iconPath} should exist in build output`
+      ).toBe(true)
+    }
   })
 
   test('no dev-only artifacts in production build', () => {
