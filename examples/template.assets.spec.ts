@@ -680,7 +680,14 @@ for (const tmpl of HTML_TEMPLATES) {
     })
 
     test('icon image is accessible', async ({page, extensionId}) => {
-      const iconUrl = `chrome-extension://${extensionId}/icons/icon.png`
+      // Icons keep their in-project paths in the build output (extension
+      // >= 4.0.4), so the manifest declaration is the source of truth.
+      const iconPath = Object.values(manifest?.icons ?? {})[0] as
+        | string
+        | undefined
+      test.skip(!iconPath, `${tmpl.name}: manifest declares no icons`)
+
+      const iconUrl = `chrome-extension://${extensionId}/${normalize(iconPath!)}`
       const resp = await page.goto(iconUrl, {timeout: 10000})
       test
         .expect(resp?.status(), `${tmpl.name}: icon returned non-200`)
