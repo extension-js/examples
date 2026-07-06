@@ -77,6 +77,7 @@ baseTest('env variable is compiled into built background script', async () => {
   const bgCode = fs.readFileSync(bgPath, 'utf8')
   const envValues = [
     'Chrome Extension example',
+    'Chromium Extension example',
     'Chromium-based example',
     'Edge Extension example',
     'Firefox Add-on example'
