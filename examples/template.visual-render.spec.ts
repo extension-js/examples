@@ -73,6 +73,120 @@ interface PanelInfo {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Host-integrity guard for every template that injects a shadow host.
+// The host div lives in the page DOM, so page CSS applies to it (only the
+// shadow *descendants* are isolated) — example.com ships `div{opacity:.8}`,
+// which faded every un-hardened widget to 80% while all shadow-internal
+// assertions stayed green. Templates harden the host with an inline
+// `all: initial !important`; this test asserts that hardening is present and
+// effective (host opacity exactly 1, no page filter/transform, and the widget
+// actually paints a non-zero box).
+// ---------------------------------------------------------------------------
+
+const HOST_TEMPLATES = [
+  'content',
+  'content-css-modules',
+  'content-sass',
+  'content-sass-modules',
+  'content-less',
+  'content-less-modules',
+  'content-typescript',
+  'content-env',
+  'content-main-world',
+  'content-custom-font',
+  'content-multi-one-entry',
+  'content-multi-three-entries',
+  'content-react',
+  'content-preact',
+  'content-vue',
+  'content-svelte',
+  'javascript',
+  'typescript',
+  'react',
+  'preact',
+  'vue',
+  'svelte',
+  'special-folders-scripts'
+]
+
+for (const name of HOST_TEMPLATES) {
+  const exampleDir = path.join(__dirname, name)
+  if (!fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) continue
+
+  const pathToExtension = resolveBuiltExtensionPath(exampleDir)
+  const test = extensionFixtures(pathToExtension)
+
+  test.describe(`${name}: host integrity`, () => {
+    test('shadow hosts are hardened against page CSS', async ({page}) => {
+      await page.goto('https://example.com/', {
+        waitUntil: 'domcontentloaded',
+        timeout: 60000
+      })
+
+      await expect
+        .poll(
+          async () =>
+            page.evaluate(() => {
+              const hosts = document.querySelectorAll(
+                '#extension-root, [data-extension-root]'
+              )
+              return hosts.length > 0 ? hosts.length : null
+            }),
+          {timeout: 30000, message: `${name}: no shadow host mounted`}
+        )
+        .not.toBeNull()
+
+      const hosts = await page.evaluate(() => {
+        return Array.from(
+          document.querySelectorAll('#extension-root, [data-extension-root]')
+        ).map((host) => {
+          const cs = window.getComputedStyle(host as HTMLElement)
+          const inner = (host as HTMLElement).shadowRoot?.querySelector('div')
+          const r = inner?.getBoundingClientRect()
+          return {
+            key:
+              (host as HTMLElement).getAttribute('data-extension-root') ||
+              (host as HTMLElement).id,
+            opacity: cs.opacity,
+            filter: cs.filter,
+            transform: cs.transform,
+            innerW: r?.width ?? 0,
+            innerH: r?.height ?? 0
+          }
+        })
+      })
+
+      for (const h of hosts) {
+        test
+          .expect(
+            h.opacity,
+            `${name} host "${h.key}": page CSS leaked opacity=${h.opacity} onto the shadow host — widget renders faded on screen`
+          )
+          .toBe('1')
+        test
+          .expect(
+            h.filter,
+            `${name} host "${h.key}": page CSS leaked a filter onto the host`
+          )
+          .toBe('none')
+        test
+          .expect(
+            h.transform,
+            `${name} host "${h.key}": page CSS leaked a transform onto the host`
+          )
+          .toBe('none')
+        test
+          .expect(
+            h.innerW > 0 && h.innerH > 0,
+            `${name} host "${h.key}": widget paints a zero-size box (${h.innerW}x${h.innerH})`
+          )
+          .toBe(true)
+      }
+    })
+  })
+}
+
 for (const tmpl of TEMPLATES) {
   const exampleDir = path.join(__dirname, tmpl.name)
   if (!fs.existsSync(path.join(exampleDir, 'src', 'manifest.json'))) continue
