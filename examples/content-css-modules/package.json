@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "content-css-modules",
+  "name": "@extension-js/content-css-modules",
   "description": "Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.",
   "version": "1.0.0",
   "license": "MIT",

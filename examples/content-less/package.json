@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "content-less",
+  "name": "@extension-js/content-less",
   "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
   "version": "1.0.0",
   "license": "MIT",

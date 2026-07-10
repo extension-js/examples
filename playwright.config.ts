@@ -210,6 +210,17 @@ export default defineConfig({
       }
     },
 
+    // On-screen render verification for CSS-pipeline content templates
+    // (real pixels + geometry, catches "tests green but widget not visible")
+    {
+      name: 'visual-render',
+      testMatch: /examples\/template\.visual-render\.spec\.ts$/,
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: isHeadless
+      }
+    },
+
     // Production build × chrome/edge/firefox with manifest validation
     // Includes Firefox-specific manifest key checks and CSS presence assertions
     {

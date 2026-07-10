@@ -125,6 +125,12 @@ export const extensionFixtures = (
         await waitForExtensionReady(pathToExtension)
         context = await chromium.launchPersistentContext(userDataDir, {
           headless: isHeadless,
+          // headless:true alone selects the chromium_headless_shell build,
+          // which silently ignores --load-extension (tests then fail on
+          // extensionId, or worse, pass vacuously if they never need the
+          // extension). The full chromium build's new headless supports
+          // extensions — opt into it whenever we run headless.
+          ...(isHeadless ? {channel: 'chromium' as const} : {}),
           args: [
             `--disable-extensions-except=${pathToExtension}`,
             `--load-extension=${pathToExtension}`,
@@ -154,6 +160,7 @@ export const extensionFixtures = (
             '--disable-features=OptimizationHints', // Used for turning on Breakpad crash reporting in a debug environment where crash reporting is typically compiled but disabled. Disable the Chrome Optimization Guide and networking with its service API
             '--disable-features=DialMediaRouteProvider', // A weaker form of disabling the MediaRouter feature. See that flag's details.
             '--no-pings', // Don't send hyperlink auditing pings
+            '--force-color-profile=srgb', // Deterministic colors in screenshots — without this, macOS (esp. headless) composites through the display profile and captured pixels shift uniformly (~+46/channel observed), breaking pixel assertions
             '--enable-features=SidePanelUpdates' // Ensure the side panel is visible. This is used for testing the side panel feature.
           ].filter((arg) => !!arg)
         })
@@ -502,6 +509,8 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
   const isHeadless = process.env.HEADLESS === 'true'
   const context = await chromium.launchPersistentContext(userDataDir, {
     headless: isHeadless,
+    // See context fixture above: headless shell drops extensions.
+    ...(isHeadless ? {channel: 'chromium' as const} : {}),
     args: [
       `--disable-extensions-except=${pathToExtension}`,
       `--load-extension=${pathToExtension}`,
