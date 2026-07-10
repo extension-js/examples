@@ -1,4 +1,5 @@
 .content_script {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #0a0c10;
   background-color: #ffffff;
   position: fixed;
