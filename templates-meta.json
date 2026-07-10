@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-07-07T19:19:25.716Z",
+  "generatedAt": "2026-07-10T18:51:42.835Z",
   "templates": [
     {
       "slug": "action",
@@ -438,7 +438,7 @@
     },
     {
       "slug": "content",
-      "name": "content",
+      "name": "@extension-js/content",
       "title": "Content scripts",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -479,7 +479,7 @@
     },
     {
       "slug": "content-css-modules",
-      "name": "content-css-modules",
+      "name": "@extension-js/content-css-modules",
       "title": "Content CSS Modules",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -602,7 +602,7 @@
     },
     {
       "slug": "content-less",
-      "name": "content-less",
+      "name": "@extension-js/content-less",
       "title": "Content Less",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -643,7 +643,7 @@
     },
     {
       "slug": "content-less-modules",
-      "name": "content-less-modules",
+      "name": "@extension-js/content-less-modules",
       "title": "Content Less Modules",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -964,7 +964,7 @@
     },
     {
       "slug": "content-sass",
-      "name": "content-sass",
+      "name": "@extension-js/content-sass",
       "title": "Content Sass",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1005,7 +1005,7 @@
     },
     {
       "slug": "content-sass-modules",
-      "name": "content-sass-modules",
+      "name": "@extension-js/content-sass-modules",
       "title": "Content Sass Modules",
       "version": "1.0.0",
       "manifest_version": 3,
