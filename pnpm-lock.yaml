@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.0.6-canary.1783703196.912cf595
-        version: 4.0.6-canary.1783703196.912cf595(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+        specifier: 4.0.6-canary.1783807656.b62b33b8
+        version: 4.0.6-canary.1783807656.b62b33b8(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3525,12 +3525,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.0.6-canary.1783703196.912cf595:
-    resolution: {integrity: sha512-KtqWy5GSctSuepokbV3ZttvOAUnUI9wRmx5nndrqWnVfXEtg3VwPkIB6bpB15D2RqiWwAOY4HLFsvTCY4Yz0VQ==}
+  extension-create@4.0.6-canary.1783807656.b62b33b8:
+    resolution: {integrity: sha512-Q6lYnA/dodny7CZmHIge1gPpLS6mjmH5lRc24C/AlXOWXVsmcbarKymSOjuvDLubfTlKZHhuCkQNHeDtdQz+Uw==}
     engines: {node: '>=22'}
 
-  extension-develop@4.0.6-canary.1783703196.912cf595:
-    resolution: {integrity: sha512-8eYoz6vVG4/Lyjf+OUNEGTMRgl8BdNMYZFLn2WEAuBvKd//MuWpxv5upIT7D+I7nyh+g1G3k4vZE/OMcPiGHSg==}
+  extension-develop@4.0.6-canary.1783807656.b62b33b8:
+    resolution: {integrity: sha512-vCu7bfVWIv5e2oJCECeZbIqz0tgm9sLqrNjFyjWzf+Fosc1WiKc3EoB5yshvwHfC58mJAQNX5NishmoyuM6pnw==}
     engines: {node: '>=22'}
 
   extension-from-store@0.1.1:
@@ -3538,12 +3538,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.0.6-canary.1783703196.912cf595:
-    resolution: {integrity: sha512-TSPGvX4K1480cI+aSUHZm8eqUnwzM61vpXeDaNnLKAYYdxzG0CLrPjnLMJzS05Dw80rlYKg9jOO8B1mRN1rgPQ==}
+  extension-install@4.0.6-canary.1783807656.b62b33b8:
+    resolution: {integrity: sha512-JZzO1jAsYuUQKv7sXGiFdITrfA+tjT1819I747j+vB9q2YWsru8aOVn92qV/1z6a8RwZpo+fW/+Ifyje/RpcEw==}
     engines: {node: '>=22'}
 
-  extension@4.0.6-canary.1783703196.912cf595:
-    resolution: {integrity: sha512-RDy3ub+uzW9OWN8QQPIJzL31vVMRwYSxohYymybvDn6iML266fAxi0nxVlwxm5DNHi37NsVYUyWsYl8xkH3yOA==}
+  extension@4.0.6-canary.1783807656.b62b33b8:
+    resolution: {integrity: sha512-NRs3nXDbvPBSvN0kAcs5uTJH10YIi8eNQIRsYZfVgEKqXu+vQ9Ut/waBRK1L++zbe+c19xkklj3i2tUnnf36SQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -7545,11 +7545,11 @@ snapshots:
       '@vue/shared': 3.5.26
       vue: 3.5.26(typescript@5.3.3)
 
-  '@vue/server-renderer@3.5.26(vue@3.5.26(typescript@5.9.3))':
+  '@vue/server-renderer@3.5.26(vue@3.5.26(typescript@5.7.2))':
     dependencies:
       '@vue/compiler-ssr': 3.5.26
       '@vue/shared': 3.5.26
-      vue: 3.5.26(typescript@5.9.3)
+      vue: 3.5.26(typescript@5.7.2)
 
   '@vue/shared@3.5.26': {}
 
@@ -8441,7 +8441,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.0.6-canary.1783703196.912cf595:
+  extension-create@4.0.6-canary.1783807656.b62b33b8:
     dependencies:
       adm-zip: 0.5.17
       axios: 1.16.0
@@ -8452,7 +8452,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@4.0.6-canary.1783703196.912cf595(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension-develop@4.0.6-canary.1783807656.b62b33b8(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -8487,7 +8487,7 @@ snapshots:
       tiny-glob: 0.2.9
       typescript: 5.9.3
       vue: 3.5.26(typescript@5.9.3)
-      vue-loader: 17.4.2(@vue/compiler-sfc@3.5.26)(vue@3.5.26(typescript@5.9.3))(webpack@5.103.0)
+      vue-loader: 17.4.2(@vue/compiler-sfc@3.5.26)(vue@3.5.26(typescript@5.7.2))(webpack@5.103.0)
       webextension-polyfill: 0.12.0
       webpack-merge: 6.0.1
       webpack-target-webextension: 2.1.3(webpack@5.103.0)
@@ -8510,12 +8510,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@4.0.6-canary.1783703196.912cf595:
+  extension-install@4.0.6-canary.1783807656.b62b33b8:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.0.6-canary.1783703196.912cf595(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension@4.0.6-canary.1783807656.b62b33b8(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.40
       '@types/node': 26.1.0
@@ -8526,9 +8526,9 @@ snapshots:
       commander: 15.0.0
       cross-spawn: 7.0.6
       edge-location: 2.3.0
-      extension-create: 4.0.6-canary.1783703196.912cf595
-      extension-develop: 4.0.6-canary.1783703196.912cf595(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
-      extension-install: 4.0.6-canary.1783703196.912cf595
+      extension-create: 4.0.6-canary.1783807656.b62b33b8
+      extension-develop: 4.0.6-canary.1783807656.b62b33b8(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+      extension-install: 4.0.6-canary.1783807656.b62b33b8
       firefox-location2: 3.1.0
       librewolf-location: 1.2.0
       opera-location2: 2.1.0
@@ -10718,7 +10718,7 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue-loader@17.4.2(@vue/compiler-sfc@3.5.26)(vue@3.5.26(typescript@5.9.3))(webpack@5.103.0):
+  vue-loader@17.4.2(@vue/compiler-sfc@3.5.26)(vue@3.5.26(typescript@5.7.2))(webpack@5.103.0):
     dependencies:
       chalk: 4.1.2
       hash-sum: 2.0.0
@@ -10726,7 +10726,7 @@ snapshots:
       webpack: 5.103.0
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.26
-      vue: 3.5.26(typescript@5.9.3)
+      vue: 3.5.26(typescript@5.7.2)
 
   vue@3.5.26(typescript@5.3.3):
     dependencies:
@@ -10738,12 +10738,22 @@ snapshots:
     optionalDependencies:
       typescript: 5.3.3
 
+  vue@3.5.26(typescript@5.7.2):
+    dependencies:
+      '@vue/compiler-dom': 3.5.26
+      '@vue/compiler-sfc': 3.5.26
+      '@vue/runtime-dom': 3.5.26
+      '@vue/server-renderer': 3.5.26(vue@3.5.26(typescript@5.7.2))
+      '@vue/shared': 3.5.26
+    optionalDependencies:
+      typescript: 5.7.2
+
   vue@3.5.26(typescript@5.9.3):
     dependencies:
       '@vue/compiler-dom': 3.5.26
       '@vue/compiler-sfc': 3.5.26
       '@vue/runtime-dom': 3.5.26
-      '@vue/server-renderer': 3.5.26(vue@3.5.26(typescript@5.9.3))
+      '@vue/server-renderer': 3.5.26(vue@3.5.26(typescript@5.7.2))
       '@vue/shared': 3.5.26
     optionalDependencies:
       typescript: 5.9.3
