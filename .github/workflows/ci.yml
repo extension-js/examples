@@ -79,6 +79,7 @@ jobs:
 
       - run: node scripts/normalize-examples.mjs
       - run: pnpm lint
+      - run: pnpm run test:strict-json
       - run: pnpm run test:banner
       - run: pnpm run test:canary-one-run
 

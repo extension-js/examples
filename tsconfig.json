@@ -2,8 +2,6 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
   "compilerOptions": {
-    // "types": ["chrome", "firefox-webext-browser", "node"],
-    // "jsx": "react-jsx",
     "target": "ES2021",
     "lib": ["ES2021"],
     "module": "ESNext",
