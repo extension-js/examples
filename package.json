@@ -97,7 +97,7 @@
     "@types/chrome": "^0.0.287",
     "@types/node": "^22.10.1",
     "eslint": "^9.16.0",
-    "extension": "4.0.6-canary.1783807656.b62b33b8",
+    "extension": "4.0.7-canary.1783876137.c72f3d30",
     "globals": "^15.13.0",
     "knip": "^5.33.0",
     "lint-staged": "16.1.0",
