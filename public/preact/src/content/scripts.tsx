@@ -15,7 +15,7 @@ export default function initial() {
   rootDiv.setAttribute('data-extension-root', 'true')
   // Isolate the host from page styles (e.g. example.com ships div{opacity:.8},
   // which would otherwise fade the whole widget): the shadow DOM only protects
-  // descendants — the host element itself still takes page CSS.
+  // descendants; the host element itself still takes page CSS.
   rootDiv.style.cssText = 'all: initial !important'
   document.body.appendChild(rootDiv)
 
