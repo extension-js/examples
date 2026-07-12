@@ -35,7 +35,7 @@ function walk(dir) {
       checked++
       // Strip a UTF-8 BOM: Chrome tolerates it in manifests, JSON.parse does
       // not, and the reload-harness corpus showed wild files ship it.
-      const raw = fs.readFileSync(p, 'utf8').replace(/^﻿/, '')
+      const raw = fs.readFileSync(p, 'utf8').replace(/^\uFEFF/, '')
       try {
         JSON.parse(raw)
       } catch (err) {
