@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.0.7-canary.1783876137.c72f3d30
-        version: 4.0.7-canary.1783876137.c72f3d30(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+        specifier: 4.0.8-canary.1783955851.8f7bd584
+        version: 4.0.8-canary.1783955851.8f7bd584(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3525,12 +3525,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.0.7-canary.1783876137.c72f3d30:
-    resolution: {integrity: sha512-I3uU+VRkLGt67cYkplsfEln61TiJ2oifrVHuGPsb2rFHPHUI4d76MiFII38k6z0COMlwbemsf3V0KSBKFBTVoA==}
+  extension-create@4.0.8-canary.1783955851.8f7bd584:
+    resolution: {integrity: sha512-pW0MFaEBZHE0f95yaptZuAaVNK7fbBwD0Ce6fXpRvN7kgBKfuduP3UPcNp3qa/iku6+2OGhTiBvERxB53FNnNg==}
     engines: {node: '>=22'}
 
-  extension-develop@4.0.7-canary.1783876137.c72f3d30:
-    resolution: {integrity: sha512-QE01CckQS8VGcgphaurXiLHeaZkxQqZ271T1OYJKiI8CZwUuM9AcTPqVDV5VK2f70u0+XQwa7vbhrd2Casbs+A==}
+  extension-develop@4.0.8-canary.1783955851.8f7bd584:
+    resolution: {integrity: sha512-/KZnNM6XxS76ym/mlFjvfYjCH+Uw0Xv/LdZKBpRzUw/2D5utUK/gzdp9+zZ51dJudEdbIg0H+QmmQrQi6yvQvg==}
     engines: {node: '>=22'}
 
   extension-from-store@0.1.1:
@@ -3538,12 +3538,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.0.7-canary.1783876137.c72f3d30:
-    resolution: {integrity: sha512-qwHh2zJEKNz2CmKrKD8/zrVC6/Tw6JaZ8jKIaEhvWSkHaSAVFrvT297S4QBXCMIUNQdBvBwvmrU1Q1RRp5Kmyw==}
+  extension-install@4.0.8-canary.1783955851.8f7bd584:
+    resolution: {integrity: sha512-po54yUonM7Ey839C+opvgIGAqGE/zkvEPwPQuzQ5ezD8+lgMu4DnUZJNhFOp6N0faCRxdoxkaBFLMM/5Ujuw0w==}
     engines: {node: '>=22'}
 
-  extension@4.0.7-canary.1783876137.c72f3d30:
-    resolution: {integrity: sha512-FfHLtIiHUgNqW27W+E7QHyFxjkkFvgj6tBjCQNhbjSM7zZpzw1g/oYIZ2BMUff3e5Prwh0yx2JVMVwnBXJ3jHw==}
+  extension@4.0.8-canary.1783955851.8f7bd584:
+    resolution: {integrity: sha512-+IZ9xl2qN03cRfRALrTdBGMEt6W7sYbCFQCaXbxZxkel0pGD2HEkAOFJznDDKpzAG4pGdHsoTZPProx0Kyq3kQ==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -8441,7 +8441,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.0.7-canary.1783876137.c72f3d30:
+  extension-create@4.0.8-canary.1783955851.8f7bd584:
     dependencies:
       adm-zip: 0.5.17
       axios: 1.16.0
@@ -8452,7 +8452,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  extension-develop@4.0.7-canary.1783876137.c72f3d30(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension-develop@4.0.8-canary.1783955851.8f7bd584(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -8510,12 +8510,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  extension-install@4.0.7-canary.1783876137.c72f3d30:
+  extension-install@4.0.8-canary.1783955851.8f7bd584:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.0.7-canary.1783876137.c72f3d30(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
+  extension@4.0.8-canary.1783955851.8f7bd584(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.1.40
       '@types/node': 26.1.0
@@ -8526,9 +8526,9 @@ snapshots:
       commander: 15.0.0
       cross-spawn: 7.0.6
       edge-location: 2.3.0
-      extension-create: 4.0.7-canary.1783876137.c72f3d30
-      extension-develop: 4.0.7-canary.1783876137.c72f3d30(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
-      extension-install: 4.0.7-canary.1783876137.c72f3d30
+      extension-create: 4.0.8-canary.1783955851.8f7bd584
+      extension-develop: 4.0.8-canary.1783955851.8f7bd584(sass@1.94.1)(svelte@5.43.12)(webpack@5.103.0)
+      extension-install: 4.0.8-canary.1783955851.8f7bd584
       firefox-location2: 3.1.0
       librewolf-location: 1.2.0
       opera-location2: 2.1.0
