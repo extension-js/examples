@@ -17,7 +17,6 @@ export type CssTech =
   | 'sass-modules'
   | 'less'
   | 'less-modules'
-  | 'stylus'
 
 export interface Template {
   name: string
