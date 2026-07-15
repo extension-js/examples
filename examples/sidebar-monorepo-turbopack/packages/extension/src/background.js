@@ -21,9 +21,9 @@ if (isFirefoxLike) {
   }
 } else {
   try {
-    chrome.action?.onClicked.addListener(() => {
-      chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
-    })
+    // setPanelBehavior only affects FUTURE action clicks — registering it
+    // inside onClicked would swallow the first toolbar click.
+    chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
   } catch {
     // Ignore errors - best effort
   }
