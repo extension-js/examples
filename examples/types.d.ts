@@ -12,7 +12,7 @@ export interface Template {
   name: string
   uiContext: UIContext[] | undefined
   uiFramework: 'react' | 'preact' | 'vue' | 'svelte' | undefined
-  css: 'css' | 'sass' | 'less' | 'stylus'
+  css: 'css' | 'css-modules' | 'sass' | 'sass-modules' | 'less' | 'less-modules'
   hasBackground: boolean
   hasEnv: boolean
   configFiles: ConfigFiles[] | undefined
