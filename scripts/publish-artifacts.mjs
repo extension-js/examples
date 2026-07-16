@@ -66,6 +66,24 @@ function main() {
   templatesMetadata.commit = 'main'
   const slugs = listSlugs(EXAMPLES_DIR)
 
+  // public/<slug> mirrors are copies, not sources: when an example is
+  // renamed or removed, its mirror must be pruned too, or stale code lingers
+  // in the committed gallery (public/sidebar-claude and
+  // public/sidebar-transformers-js survived the ai-* rename for weeks,
+  // still carrying a since-fixed bug). Prune any mirror whose example
+  // directory no longer exists.
+  if (fs.existsSync(OUT_PUBLIC)) {
+    for (const dirent of fs.readdirSync(OUT_PUBLIC, {withFileTypes: true})) {
+      if (!dirent.isDirectory()) continue
+      if (fs.existsSync(path.join(EXAMPLES_DIR, dirent.name))) continue
+      fs.rmSync(path.join(OUT_PUBLIC, dirent.name), {
+        recursive: true,
+        force: true
+      })
+      console.log(`►►► Pruned orphaned public/${dirent.name}`)
+    }
+  }
+
   for (const slug of slugs) {
     const templateDirectory = path.join(EXAMPLES_DIR, slug)
     const packageJsonPath = path.join(templateDirectory, 'package.json')
