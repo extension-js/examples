@@ -287,29 +287,6 @@ This repository contains browser extension examples built with Extension.js. Eac
 </details>
 
 <details>
-  <summary><img src="./public/action-chatgpt/src/images/icon.png" alt="action-chatgpt example icon" width="22" /> Action ChatGPT Example</summary>
-
-> React action popup example. Opens a toolbar popup and renders a basic React UI.
-
-  <table>
-    <tr>
-      <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/action-chatgpt/README.md">examples/action-chatgpt</a></td>
-      <td rowspan="5"><img src="./examples/action-chatgpt/public/screenshot.png" alt="action-chatgpt screenshot" width="360" /></td>
-    </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
-    <tr><td>Context</td><td align="right">Action, Background</td></tr>
-    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
-    <tr><td>CSS</td><td align="right">CSS</td></tr>
-    <tr>
-      <td>Background included</td>
-      <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/action-chatgpt">Start with this template &#8599;</a></td>
-    </tr>
-  </table>
-</details>
-
-<details>
   <summary><img src="./public/action-locales/src/images/icon.png" alt="action-locales example icon" width="22" /> Action Locales Example</summary>
 
 > Action popup example demonstrating i18n with \_locales and message placeholders.
