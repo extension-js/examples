@@ -60,6 +60,7 @@
     "test:create-dev-workflow:all-templates": "node scripts/assert-create-dev-workflow-all-templates.mjs",
     "test:stable-pnpm-postcss-repro": "node scripts/assert-stable-pnpm-postcss-repro.mjs",
     "test:pnpm-monorepo-dev": "node scripts/assert-pnpm-monorepo-dev.mjs",
+    "test:yarn-pnp-dev": "node scripts/assert-yarn-pnp-dev.mjs",
     "test:optional-deps-contract-all": "pnpm run test:canary-one-run && pnpm run test:stable-install-modes -- --pm all && pnpm run test:create-dev-workflow && pnpm run test:stable-pnpm-postcss-repro",
     "test:coverage": "playwright test --reporter=html --reporter=json --reporter=junit",
     "test:content": "playwright test --project=content",
