@@ -209,6 +209,84 @@ function readCuratedTemplateMeta(exampleDirectory) {
   return pickCuratedMeta(meta)
 }
 
+// Extension.js manifests declare browser-specific fields with a `browser:` key
+// prefix (e.g. `chromium:action`, `firefox:browser_action`,
+// `chromium:manifest_version`). The catalog is browser-agnostic — it describes
+// what a template ships across every target — so before inferring surfaces,
+// UI contexts, entrypoints, and permissions we fold every prefixed key onto its
+// base key. Without this, `inferSurfaces` reads plain `manifest.action` (which
+// is `undefined` when the template only declares `chromium:action`) and the
+// `action`/`options`/`devtools` surfaces are never tagged — the `action`
+// starter itself came out tagged `["background"]` only.
+const BROWSER_KEY_PREFIXES = new Set([
+  'chromium',
+  'chrome',
+  'edge',
+  'gecko',
+  'firefox',
+  'safari',
+  'webkit',
+  'opera',
+  'brave'
+])
+// When one base key is declared under multiple prefixes, prefer the chromium
+// family (the toolchain's default target) for a deterministic winner. A plain
+// (unprefixed) key always wins over any prefixed variant.
+const BROWSER_KEY_PREFIX_PRIORITY = [
+  'chromium',
+  'chrome',
+  'edge',
+  'gecko',
+  'firefox',
+  'safari',
+  'webkit',
+  'opera',
+  'brave'
+]
+
+function normalizeBrowserPrefixes(node) {
+  if (Array.isArray(node)) {
+    return node.map((item) => normalizeBrowserPrefixes(item))
+  }
+
+  if (!node || typeof node !== 'object') {
+    return node
+  }
+
+  /** @type {Record<string, any>} */
+  const plain = {}
+  /** @type {Record<string, Record<string, any>>} */
+  const prefixed = {}
+
+  for (const [key, value] of Object.entries(node)) {
+    const colon = key.indexOf(':')
+    const prefix = colon === -1 ? '' : key.slice(0, colon)
+
+    if (colon === -1 || !BROWSER_KEY_PREFIXES.has(prefix)) {
+      // Plain key, or a colon key that isn't a known browser prefix ($schema,
+      // etc.) — keep it verbatim.
+      plain[key] = normalizeBrowserPrefixes(value)
+      continue
+    }
+
+    const baseKey = key.slice(colon + 1)
+    if (!prefixed[baseKey]) prefixed[baseKey] = {}
+    prefixed[baseKey][prefix] = normalizeBrowserPrefixes(value)
+  }
+
+  const result = {...plain}
+  for (const [baseKey, byPrefix] of Object.entries(prefixed)) {
+    // A plain key present in the source always wins.
+    if (Object.prototype.hasOwnProperty.call(result, baseKey)) continue
+    const chosenPrefix =
+      BROWSER_KEY_PREFIX_PRIORITY.find((p) => p in byPrefix) ||
+      Object.keys(byPrefix)[0]
+    result[baseKey] = byPrefix[chosenPrefix]
+  }
+
+  return result
+}
+
 function inferUIContext(manifest) {
   /** @type {string[]} */
   const context = []
@@ -641,7 +719,10 @@ function buildTemplateEntry(exampleDirectory) {
     console.warn(`[templates-meta] Missing manifest.json for ${slug}, skipping`)
     return null
   }
-  const manifest = readJsonSafe(manifestPath) || {}
+  // Fold browser-prefixed keys (chromium:action, firefox:browser_action, …)
+  // onto their base keys so surface/context/entrypoint/permission inference
+  // sees a browser-agnostic manifest.
+  const manifest = normalizeBrowserPrefixes(readJsonSafe(manifestPath) || {})
 
   const curated = readCuratedTemplateMeta(exampleDirectory)
   const {permissions, host_permissions, optional_permissions} =
@@ -708,6 +789,51 @@ function buildTemplateEntry(exampleDirectory) {
   return templateEntry
 }
 
+// Catalog invariant: every surface a template advertises must be inferrable, so
+// a consumer that filters by that surface never gets a silent empty set. This
+// guards against the browser-prefix regression that once left the `action`
+// starter tagged `["background"]` (chromium:action was never read). Hard-fails
+// in CI, warns locally.
+function assertSurfaceCoverage(templates) {
+  const problems = []
+
+  // The `action` starter is the canonical popup template — it MUST carry the
+  // `action` surface or popup discovery by surface breaks.
+  const action = templates.find((t) => t.slug === 'action')
+  if (action && !action.surfaces?.includes('action')) {
+    problems.push(
+      `the "action" template is missing the "action" surface (got ${JSON.stringify(
+        action.surfaces
+      )}) — browser-prefixed manifest keys are likely not being normalized`
+    )
+  }
+
+  // Any surface the catalog advertises anywhere must be backed by >= 1 template.
+  const histogram = {}
+  for (const t of templates) {
+    for (const surface of t.surfaces || []) {
+      histogram[surface] = (histogram[surface] || 0) + 1
+    }
+  }
+  for (const [surface, count] of Object.entries(histogram)) {
+    if (count < 1) {
+      problems.push(`surface "${surface}" is advertised but backed by 0 templates`)
+    }
+  }
+
+  if (problems.length) {
+    const msg = `[templates-meta] Surface coverage check failed:\n  - ${problems.join(
+      '\n  - '
+    )}`
+    if (process.env.CI) {
+      console.error(msg)
+      process.exit(1)
+    } else {
+      console.warn(msg)
+    }
+  }
+}
+
 function main() {
   if (!exists(examplesDir)) {
     console.error(`►►► Examples directory not found: ${examplesDir}`)
@@ -718,6 +844,8 @@ function main() {
     exists(path.join(directory, 'package.json'))
   )
   const templates = exampleDirectories.map(buildTemplateEntry).filter(Boolean)
+
+  assertSurfaceCoverage(templates)
 
   const templatesMetadata = {
     version: '2',
