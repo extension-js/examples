@@ -30,6 +30,6 @@
     "tailwind-merge": "^2.6.0",
     "tailwindcss": "^4.1.3",
     "tw-animate-css": "1.2.5",
-    "typescript": "5.3.3"
+    "typescript": "7.0.2"
   }
 }
