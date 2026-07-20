@@ -3,6 +3,13 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "ESLint Config New Tab Example",
   "description": "New tab page example with ESLint configured. Shows how linting is set up in an extension project.",
   "icons": {
