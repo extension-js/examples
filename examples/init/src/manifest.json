@@ -3,6 +3,13 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "Init Example",
   "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
   "icons": {

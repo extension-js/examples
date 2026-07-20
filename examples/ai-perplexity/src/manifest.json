@@ -3,6 +3,17 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": [
+          "authenticationInfo",
+          "personalCommunications",
+          "websiteContent"
+        ]
+      }
+    }
+  },
   "name": "Perplexity Sidebar",
   "author": "Cezar Augusto",
   "description": "React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).",

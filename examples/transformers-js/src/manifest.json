@@ -3,6 +3,13 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "Transformers.js Example",
   "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
   "author": "Your Name",
