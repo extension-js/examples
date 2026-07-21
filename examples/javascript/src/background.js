@@ -19,7 +19,7 @@ if (isFirefoxLike) {
 }
 
 if (!isFirefoxLike) {
-  // setPanelBehavior only affects FUTURE action clicks — registering it
+  // setPanelBehavior only affects FUTURE action clicks, registering it
   // inside onClicked would swallow the first toolbar click.
   chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
 }
@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener((message) => {
   if (!chrome.sidePanel.open) return
 
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-    const activeTabId = tabs && tabs[0] && tabs[0].id
+    const activeTabId = tabs?.[0]?.id
     if (!activeTabId) return
 
     try {
