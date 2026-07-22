@@ -3,6 +3,13 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "JavaScript Content Example",
   "description": "Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.",
   "icons": {
