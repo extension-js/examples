@@ -3,6 +3,13 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "JavaScript Action Locales Example",
   "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
   "default_locale": "en",
