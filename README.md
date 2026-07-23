@@ -1,5 +1,3 @@
-<a href="https://extension.js.org"><img alt="Extension.js — the cross-browser extension framework" src="https://media.extension.land/brand/extension-js/social/github-banner.png" /></a>
-
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe?logo=extension.js&logoColor=white&style=flat
 [powered-url]: https://extension.js.org
 [action-image]: https://img.shields.io/github/actions/workflow/status/extension-js/examples/ci.yml?branch=main&label=CI&logo=github&color=2ecc40&style=flat
