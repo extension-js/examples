@@ -13,7 +13,7 @@
 
 **How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React page bundled from `src/sidebar/`. UI is composed with Ant Design.
 
-React sidebar rendering [Ant Design](https://ant.design/) and [Ant Design X](https://x.ant.design/) components. Doubles as regression coverage for [issue #445](https://github.com/extension-js/extension.js/issues/445) — the bundler's exports-condition resolution must route CJS requires through `require` so `@babel/runtime` helpers don't crash with `_interopRequireDefault is not a function`.
+React sidebar rendering [Ant Design](https://ant.design/) and [Ant Design X](https://x.ant.design/) components. Doubles as regression coverage for [issue #445](https://github.com/extension-js/extension.js/issues/445): the bundler's exports-condition resolution must route CJS requires through `require` so `@babel/runtime` helpers don't crash with `_interopRequireDefault is not a function`.
 
 ## Try it locally
 

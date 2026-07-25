@@ -13,7 +13,7 @@
 
 **How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, OpenAI SDK.
 
-Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). Paste an `sk-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with ChatGPT inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-gemini`, and `ai-perplexity` siblings; only the SDK and brand accent change.
+Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). Paste an `sk-...` key the first time you open the panel (it lives in `chrome.storage.local`, never leaves the device) and chat with ChatGPT inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-gemini`, and `ai-perplexity` siblings; only the SDK and brand accent change.
 
 ## Try it locally
 

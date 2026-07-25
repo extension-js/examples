@@ -11,7 +11,7 @@
 
 **What you'll see**: A welcome page that opens on install / startup, served from `pages/`.
 
-**How it works**: Files inside `pages/` are treated as auto-discovered entrypoints — no `manifest.json` wiring required. The background script opens one of them on install / startup.
+**How it works**: Files inside `pages/` are treated as auto-discovered entrypoints: no `manifest.json` wiring required. The background script opens one of them on install / startup.
 
 Demonstrates Extension.js's **`pages/`** convention: every HTML file inside the project-root `pages/` directory becomes an entrypoint without manifest wiring. The background script opens `pages/welcome.html` on install / startup.
 

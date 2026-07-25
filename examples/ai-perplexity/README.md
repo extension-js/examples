@@ -13,7 +13,7 @@
 
 **How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react, OpenAI SDK.
 
-Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/) — online-search-grounded models served through an OpenAI-compatible endpoint, so the same `openai` SDK is reused with a different `baseURL`. Paste a `pplx-...` key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and ask Perplexity questions that get answered with live citations. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.
+Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/): online-search-grounded models served through an OpenAI-compatible endpoint, so the same `openai` SDK is reused with a different `baseURL`. Paste a `pplx-...` key the first time you open the panel (it lives in `chrome.storage.local`, never leaves the device) and ask Perplexity questions that get answered with live citations. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.
 
 ## Try it locally
 

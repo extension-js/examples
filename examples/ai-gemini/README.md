@@ -13,7 +13,7 @@
 
 **How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
 
-Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). Paste a Google AI Studio key the first time you open the panel — it lives in `chrome.storage.local`, never leaves the device — and chat with Gemini inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-chatgpt`, and `ai-perplexity` siblings; only the SDK and brand accent change.
+Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). Paste a Google AI Studio key the first time you open the panel (it lives in `chrome.storage.local`, never leaves the device) and chat with Gemini inline next to whatever page you're on. Shares its layout and shadcn/ui primitives with the `ai-claude`, `ai-chatgpt`, and `ai-perplexity` siblings; only the SDK and brand accent change.
 
 ## Try it locally
 

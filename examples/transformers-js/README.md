@@ -9,11 +9,11 @@
 
 ![screenshot](./public/screenshot.png)
 
-**What you'll see**: A side panel where you can type text, pull the active page's text, or use your current selection — and run a Transformers.js pipeline on it. A right-click context menu also exposes "Classify selection with Transformers.js".
+**What you'll see**: A side panel where you can type text, pull the active page's text, or use your current selection, and run a Transformers.js pipeline on it. A right-click context menu also exposes "Classify selection with Transformers.js".
 
 **How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) and a content script that listens for `getPageContext` / `getSelection` messages. The background service worker relays those requests to the active tab and runs the pipeline; results stream back to the sidebar.
 
-Runs [Transformers.js](https://huggingface.co/docs/transformers.js) models in the browser via WebGPU/WASM. No server, no API key — the model and tokenizer are loaded from the Hugging Face Hub on first run.
+Runs [Transformers.js](https://huggingface.co/docs/transformers.js) models in the browser via WebGPU/WASM. No server, no API key: the model and tokenizer are loaded from the Hugging Face Hub on first run.
 
 ## Try it locally
 

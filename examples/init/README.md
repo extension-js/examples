@@ -13,7 +13,7 @@
 
 **How it works**: A JavaScript extension scaffold ready for `extension dev` / `extension build`.
 
-The default starter — what `npx extension@latest create <name>` produces when no `--template` is passed. A small sidebar panel wired with dev / build / preview scripts.
+The default starter: what `npx extension@latest create <name>` produces when no `--template` is passed. A small sidebar panel wired with dev / build / preview scripts.
 
 ## Try it locally
 
