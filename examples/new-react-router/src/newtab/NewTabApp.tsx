@@ -42,6 +42,11 @@ export default function NewTabApp() {
             <Page heading="Welcome to your React Router Extension." />
           </Route>
         </Switch>
+
+        <p className="edit-hint">
+          Edit <code>src/newtab/NewTabApp.tsx</code> and save to see your
+          changes.
+        </p>
       </div>
     </Router>
   )

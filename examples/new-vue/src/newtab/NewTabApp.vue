@@ -20,5 +20,8 @@ const message = 'Welcome to your Vue Extension.'
       <a href="https://extension.js.org" target="_blank" rel="noopener noreferrer">Extension.js docs</a>
       .
     </p>
+    <p class="edit-hint">
+      Edit <code>src/newtab/NewTabApp.vue</code> and save to see your changes.
+    </p>
   </header>
 </template>
