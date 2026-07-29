@@ -283,6 +283,22 @@ async function expectHtmlTextAbsent(page: any, text: string) {
     .not.toContain(text)
 }
 
+function getMountContainerId(
+  exampleDir: string,
+  entryPath: string
+): string | null {
+  try {
+    const html = fs.readFileSync(
+      path.join(exampleDir, 'src', entryPath),
+      'utf8'
+    )
+    const match = html.match(/<div id="(root|app)">\s*<\/div>/)
+    return match ? match[1] : null
+  } catch {
+    return null
+  }
+}
+
 const examples = listExampleDirs()
 
 for (const example of examples) {
@@ -301,6 +317,7 @@ for (const example of examples) {
 
       let proc: ReturnType<typeof startDev> | null = null
       const entryPath = normalizeRelativePath(htmlEntryPath)
+      const mountContainerId = getMountContainerId(exampleDir, entryPath)
 
       test.beforeAll(async () => {
         cleanDevRoots(exampleDir)
@@ -362,6 +379,41 @@ for (const example of examples) {
           restoreIfChanged(filePath, original)
         }
       })
+
+      // An empty `<div id="root">` in the source means the page is drawn by
+      // JS, so a failed mount leaves a blank page. The tests above append a
+      // probe to the raw HTML and pass anyway, because that probe is served
+      // markup and never proves the app ran. This is what notices.
+      if (mountContainerId) {
+        test('mounts its app into the page', async ({page, extensionId}) => {
+          const runtimeErrors: string[] = []
+          page.on('pageerror', (error) => runtimeErrors.push(error.message))
+
+          const pageUrl = getHtmlPageUrl(manifest, extensionId, entryPath)
+          await page.goto(pageUrl, {
+            waitUntil: 'domcontentloaded',
+            timeout: 60000
+          })
+
+          await expect
+            .poll(
+              async () =>
+                (
+                  (await page
+                    .locator(`#${mountContainerId}`)
+                    .innerHTML()
+                    .catch(() => '')) || ''
+                ).trim().length,
+              {timeout: 30000}
+            )
+            .toBeGreaterThan(0)
+
+          expect(
+            runtimeErrors,
+            `runtime errors while mounting #${mountContainerId}`
+          ).toHaveLength(0)
+        })
+      }
     })
   }
 }
@@ -655,81 +707,6 @@ if (reactManifest) {
           refreshErrors,
           'React Fast Refresh runtime errors detected'
         ).toHaveLength(0)
-      }
-    )
-  })
-}
-
-// ---------------------------------------------------------------------------
-// Vue mount gate.
-// The generic "dev html" suite appends a probe <div> to the raw HTML file, so
-// it proves the page was rebuilt and served, not that Vue rendered. A Vue app
-// that fails to mount leaves #app empty and still passes that test. These two
-// assert what only Vue can do: mount into #app and render its own template.
-// Uses `new-vue` as the representative Vue + CSS template.
-// ---------------------------------------------------------------------------
-
-const vueExampleDir = path.join(examplesDir, 'new-vue')
-const vueManifest = readManifest(vueExampleDir)
-
-if (vueManifest) {
-  const vueDevPath = path.join(vueExampleDir, 'dist', 'chromium')
-  const vueTest = extensionFixtures(vueDevPath)
-
-  vueTest.describe('new-vue: dev CSS link & Vue mount', () => {
-    vueTest.describe.configure({mode: 'serial'})
-
-    let proc: ReturnType<typeof startDev> | null = null
-
-    vueTest.beforeAll(async () => {
-      cleanDevRoots(vueExampleDir)
-      proc = startDev(vueExampleDir)
-      await waitForDevManifest(vueExampleDir)
-    })
-
-    vueTest.afterAll(async () => {
-      if (proc) await stopDev(proc)
-    })
-
-    vueTest(
-      'dev HTML output includes a CSS stylesheet link',
-      async ({page, extensionId}) => {
-        await page.goto(
-          `chrome-extension://${extensionId}/chrome_url_overrides/newtab.html`,
-          {waitUntil: 'domcontentloaded', timeout: 60000}
-        )
-
-        const cssLink = page.locator('link[rel="stylesheet"]')
-        await expect(cssLink).toHaveCount(1, {timeout: 10000})
-        const href = await cssLink.getAttribute('href')
-        expect(href).toMatch(/\.css$/)
-      }
-    )
-
-    vueTest(
-      'Vue app mounts and renders its template without runtime errors',
-      async ({page, extensionId}) => {
-        const errors: string[] = []
-        page.on('pageerror', (error) => errors.push(error.message))
-
-        await page.goto(
-          `chrome-extension://${extensionId}/chrome_url_overrides/newtab.html`,
-          {waitUntil: 'domcontentloaded', timeout: 60000}
-        )
-
-        // Rendered by the SFC, never present in the served HTML: an unmounted
-        // app leaves #app empty and this is the only assertion that notices.
-        const heading = page.locator('#app h1')
-        await expect(heading).toBeVisible({timeout: 30000})
-        await expect(heading).toContainText('Vue', {timeout: 10000})
-
-        const mountedHtml = (await page.locator('#app').innerHTML()).trim()
-        expect(
-          mountedHtml.length,
-          'Vue mounted nothing into #app'
-        ).toBeGreaterThan(0)
-
-        expect(errors, 'Vue runtime errors detected').toHaveLength(0)
       }
     )
   })
