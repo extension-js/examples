@@ -1,7 +1,7 @@
 import './styles.css'
 import preactLogo from '../images/icon.png'
 
-export default function ContentApp() {
+export default function NewTabApp() {
   return (
     <header>
       <h1>
