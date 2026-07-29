@@ -99,3 +99,5 @@ examples/**/manifest.json
 *.log
 *.tmp
 .cache/
+# Per-session runtime state written by `extension dev` (control port file).
+.extension-js/
