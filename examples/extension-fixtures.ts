@@ -96,6 +96,33 @@ async function waitForExtensionReady(
   }
 }
 
+const CLOSE_TIMEOUT_MS = 10_000
+const LAUNCH_TIMEOUT_MS = 20_000
+
+function killBrowserByUserDataDir(userDataDir: string) {
+  if (process.platform === 'win32') return
+  try {
+    execSync(`pkill -9 -f ${JSON.stringify(userDataDir)}`, {stdio: 'ignore'})
+  } catch {
+    // No process matched, which is the healthy case.
+  }
+}
+
+async function closeContextBounded(
+  context: BrowserContext,
+  userDataDir: string
+) {
+  const closed = context.close().then(
+    () => true,
+    () => true
+  )
+  const timedOut = new Promise<false>((resolve) =>
+    setTimeout(() => resolve(false), CLOSE_TIMEOUT_MS)
+  )
+  const finished = await Promise.race([closed, timedOut])
+  if (!finished) killBrowserByUserDataDir(userDataDir)
+}
+
 export const extensionFixtures = (
   pathToExtension: string,
   headless?: boolean
@@ -116,54 +143,72 @@ export const extensionFixtures = (
     context: async ({}, use) => {
       const os = await import('os')
       const tmpRoot = os.tmpdir()
-      const userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
+      let userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
       let context: BrowserContext | null = null
       try {
         // Wait for the extension tree to be complete before Chrome reads it.
         // Cheap on static builds (manifest hasn't been touched), critical on
         // the dev-html suite where a prior test's write may still be flushing.
         await waitForExtensionReady(pathToExtension)
-        context = await chromium.launchPersistentContext(userDataDir, {
-          headless: isHeadless,
-          // headless:true alone selects the chromium_headless_shell build,
-          // which silently ignores --load-extension (tests then fail on
-          // extensionId, or worse, pass vacuously if they never need the
-          // extension). The full chromium build's new headless supports
-          // extensions — opt into it whenever we run headless.
-          ...(isHeadless ? {channel: 'chromium' as const} : {}),
-          args: [
-            `--disable-extensions-except=${pathToExtension}`,
-            `--load-extension=${pathToExtension}`,
-            '--no-first-run', // Disable Chrome's native first run experience.
-            // Ensure extensions are loaded before page navigation
-            '--disable-extensions-file-access-check', // Allow extension file access
-            '--disable-client-side-phishing-detection', // Disables client-side phishing detection
-            '--disable-component-extensions-with-background-pages', // Disable some built-in extensions that aren't affected by '--disable-extensions'
-            '--disable-default-apps', // Disable installation of default apps
-            '--disable-features=InterestFeedContentSuggestions', // Disables the Discover feed on NTP
-            '--disable-features=Translate', // Disables Chrome translation, both the manual option and the popup prompt when a page with differing language is detected.
-            '--hide-scrollbars', // Hide scrollbars from screenshots.
-            '--mute-audio', // Mute any audio
-            '--no-default-browser-check', // Disable the default browser check, do not prompt to set it as such
-            '--no-first-run', // Skip first run wizards
-            '--ash-no-nudges', // Avoids blue bubble "user education" nudges (eg., "... give your browser a new look", Memory Saver)
-            '--disable-search-engine-choice-screen', // Disable the 2023+ search engine choice screen
-            '--disable-features=MediaRoute', // Avoid the startup dialog for `Do you want the application "Chromium.app" to accept incoming network connections?`.  Also disables the Chrome Media Router which creates background networking activity to discover cast targets. A superset of disabling DialMediaRouteProvider.
-            '--use-mock-keychain', // Use mock keychain on Mac to prevent the blocking permissions dialog about "Chrome wants to use your confidential information stored in your keychain"
-            '--disable-background-networking', // Disable various background network services, including extension updating, safe browsing service, upgrade detector, translate, UMA
-            '--disable-breakpad', // Disable crashdump collection (reporting is already disabled in Chromium)
-            '--disable-component-update', // Don't update the browser 'components' listed at chrome://components/
-            '--disable-domain-reliability', // Disables Domain Reliability Monitoring, which tracks whether the browser has difficulty contacting Google-owned sites and uploads reports to Google.
-            '--disable-features=AutofillServerCommunicatio', // Disables autofill server communication. This feature isn't disabled via other 'parent' flags.
-            '--disable-features=CertificateTransparencyComponentUpdate',
-            '--disable-sync', // Disable syncing to a Google account
-            '--disable-features=OptimizationHints', // Used for turning on Breakpad crash reporting in a debug environment where crash reporting is typically compiled but disabled. Disable the Chrome Optimization Guide and networking with its service API
-            '--disable-features=DialMediaRouteProvider', // A weaker form of disabling the MediaRouter feature. See that flag's details.
-            '--no-pings', // Don't send hyperlink auditing pings
-            '--force-color-profile=srgb', // Deterministic colors in screenshots — without this, macOS (esp. headless) composites through the display profile and captured pixels shift uniformly (~+46/channel observed), breaking pixel assertions
-            '--enable-features=SidePanelUpdates' // Ensure the side panel is visible. This is used for testing the side panel feature.
-          ].filter((arg) => !!arg)
-        })
+        const launchOnce = (dir: string) =>
+          chromium.launchPersistentContext(dir, {
+            timeout: LAUNCH_TIMEOUT_MS,
+            headless: isHeadless,
+            // headless:true alone selects the chromium_headless_shell build,
+            // which silently ignores --load-extension (tests then fail on
+            // extensionId, or worse, pass vacuously if they never need the
+            // extension). The full chromium build's new headless supports
+            // extensions — opt into it whenever we run headless.
+            ...(isHeadless ? {channel: 'chromium' as const} : {}),
+            args: [
+              `--disable-extensions-except=${pathToExtension}`,
+              `--load-extension=${pathToExtension}`,
+              '--no-first-run', // Disable Chrome's native first run experience.
+              // Ensure extensions are loaded before page navigation
+              '--disable-extensions-file-access-check', // Allow extension file access
+              '--disable-client-side-phishing-detection', // Disables client-side phishing detection
+              '--disable-component-extensions-with-background-pages', // Disable some built-in extensions that aren't affected by '--disable-extensions'
+              '--disable-default-apps', // Disable installation of default apps
+              '--disable-features=InterestFeedContentSuggestions', // Disables the Discover feed on NTP
+              '--disable-features=Translate', // Disables Chrome translation, both the manual option and the popup prompt when a page with differing language is detected.
+              '--hide-scrollbars', // Hide scrollbars from screenshots.
+              '--mute-audio', // Mute any audio
+              '--no-default-browser-check', // Disable the default browser check, do not prompt to set it as such
+              '--no-first-run', // Skip first run wizards
+              '--ash-no-nudges', // Avoids blue bubble "user education" nudges (eg., "... give your browser a new look", Memory Saver)
+              '--disable-search-engine-choice-screen', // Disable the 2023+ search engine choice screen
+              '--disable-features=MediaRoute', // Avoid the startup dialog for `Do you want the application "Chromium.app" to accept incoming network connections?`.  Also disables the Chrome Media Router which creates background networking activity to discover cast targets. A superset of disabling DialMediaRouteProvider.
+              '--use-mock-keychain', // Use mock keychain on Mac to prevent the blocking permissions dialog about "Chrome wants to use your confidential information stored in your keychain"
+              '--disable-background-networking', // Disable various background network services, including extension updating, safe browsing service, upgrade detector, translate, UMA
+              '--disable-breakpad', // Disable crashdump collection (reporting is already disabled in Chromium)
+              '--disable-component-update', // Don't update the browser 'components' listed at chrome://components/
+              '--disable-domain-reliability', // Disables Domain Reliability Monitoring, which tracks whether the browser has difficulty contacting Google-owned sites and uploads reports to Google.
+              '--disable-features=AutofillServerCommunicatio', // Disables autofill server communication. This feature isn't disabled via other 'parent' flags.
+              '--disable-features=CertificateTransparencyComponentUpdate',
+              '--disable-sync', // Disable syncing to a Google account
+              '--disable-features=OptimizationHints', // Used for turning on Breakpad crash reporting in a debug environment where crash reporting is typically compiled but disabled. Disable the Chrome Optimization Guide and networking with its service API
+              '--disable-features=DialMediaRouteProvider', // A weaker form of disabling the MediaRouter feature. See that flag's details.
+              '--no-pings', // Don't send hyperlink auditing pings
+              '--force-color-profile=srgb', // Deterministic colors in screenshots — without this, macOS (esp. headless) composites through the display profile and captured pixels shift uniformly (~+46/channel observed), breaking pixel assertions
+              '--enable-features=SidePanelUpdates' // Ensure the side panel is visible. This is used for testing the side panel feature.
+            ].filter((arg) => !!arg)
+          })
+
+        // A starved launch (leaked browser from an earlier template holding
+        // resources) recovers once its corpse is reaped and a fresh profile
+        // is used, so one bounded retry beats a 60s test-setup timeout.
+        try {
+          context = await launchOnce(userDataDir)
+        } catch {
+          killBrowserByUserDataDir(userDataDir)
+          try {
+            fs.rmSync(userDataDir, {recursive: true, force: true})
+          } catch {
+            // Ignore
+          }
+          userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
+          context = await launchOnce(userDataDir)
+        }
         // Store userDataDir for this context instance
         userDataDirMap.set(context, userDataDir)
 
@@ -195,13 +240,11 @@ export const extensionFixtures = (
 
         await use(context)
       } finally {
-        // Ensure context is closed even if test fails or times out
+        // Ensure context is closed even if test fails or times out. A wedged
+        // browser must not eat the worker teardown budget, so the close is
+        // bounded and a survivor is reaped by its profile path.
         if (context) {
-          try {
-            await context.close()
-          } catch (error) {
-            // Ignore errors during close (context may already be closed)
-          }
+          await closeContextBounded(context, userDataDir)
         }
         // Clean up temp directory
         try {
