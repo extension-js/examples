@@ -14,4 +14,7 @@ let message = 'Welcome to your Svelte Extension.'
       Extension.js docs
     </a>.
   </p>
+  <p class="edit-hint">
+    Edit <code>src/newtab/NewTabApp.svelte</code> and save to see your changes.
+  </p>
 </header>

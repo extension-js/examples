@@ -1,7 +1,7 @@
 import './styles.css'
 import preactLogo from '../images/icon.png'
 
-export default function ContentApp() {
+export default function NewTabApp() {
   return (
     <header>
       <h1>
@@ -24,6 +24,9 @@ export default function ContentApp() {
           Extension.js docs
         </a>
         .
+      </p>
+      <p className="edit-hint">
+        Edit <code>src/newtab/NewTabApp.tsx</code> and save to see your changes.
       </p>
     </header>
   )
