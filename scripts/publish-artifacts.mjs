@@ -34,6 +34,14 @@ function cp(sourcePath, destinationPath) {
   fs.cpSync(sourcePath, destinationPath, {recursive: true})
 }
 
+// cpSync merges, so a file deleted or renamed in an example survives forever
+// inside its mirror. Clear the destination first, the same reason whole
+// orphaned mirrors are pruned below.
+function replaceDir(sourcePath, destinationPath) {
+  fs.rmSync(destinationPath, {recursive: true, force: true})
+  cp(sourcePath, destinationPath)
+}
+
 function readJSON(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'))
 }
@@ -100,12 +108,12 @@ function main() {
     const sourceDirectory = path.join(templateDirectory, 'src')
 
     if (fs.existsSync(sourceDirectory)) {
-      cp(sourceDirectory, path.join(destinationBase, 'src'))
+      replaceDir(sourceDirectory, path.join(destinationBase, 'src'))
     }
     const publicDirectory = path.join(templateDirectory, 'public')
 
     if (fs.existsSync(publicDirectory)) {
-      cp(publicDirectory, path.join(destinationBase, 'public'))
+      replaceDir(publicDirectory, path.join(destinationBase, 'public'))
     }
 
     // Normalize screenshot to public/<slug>/screenshot.png if available
