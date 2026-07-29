@@ -6,6 +6,11 @@ on:
     types:
       - completed
     branches: [ main ]
+  # A failing test lane skips the run above, which silently freezes the
+  # committed gallery the website serves. This nightly pass refreshes it from
+  # main regardless, so a flaky test costs a day of staleness, never weeks.
+  schedule:
+    - cron: '0 6 * * *'
   workflow_dispatch: {}
 
 env:
@@ -16,10 +21,11 @@ permissions:
 
 jobs:
   build-and-commit:
-    # Prevent loops on bot commits and only run if CI succeeded (or manual dispatch)
+    # Prevent loops on bot commits and only run if CI succeeded (or manual
+    # dispatch, or the nightly refresh that does not depend on the test lane)
     if: |
-      github.actor != 'github-actions[bot]' && 
-      (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+      github.actor != 'github-actions[bot]' &&
+      (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

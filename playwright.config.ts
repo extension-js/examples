@@ -108,6 +108,11 @@ export default defineConfig({
     {
       name: 'dev-live',
       testMatch: /examples\/template\.dev\.spec\.ts$/,
+      // Same reason as `reload` below: every describe here starts its own
+      // `extension dev`, so running two at once leaves file watchers and
+      // browsers competing until a later context launch starves and the
+      // worker teardown times out. Retries do not help once that happens.
+      fullyParallel: false,
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless
