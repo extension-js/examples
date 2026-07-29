@@ -50,7 +50,14 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 1,
 
   // CI: 2 workers to avoid OOM with headed browsers. Local: 4 for speed.
-  workers: process.env.CI ? 2 : 4,
+  // repeat-each forces 1: Playwright's worker hash includes repeatEachIndex,
+  // so repeats of one suite run concurrently and clobber the shared template
+  // sources that the dev-live tests edit in place.
+  workers: process.argv.some((arg) => arg.startsWith('--repeat-each'))
+    ? 1
+    : process.env.CI
+      ? 2
+      : 4,
 
   // CI gets machine-readable JSON; locally just list + HTML report.
   reporter: process.env.CI
