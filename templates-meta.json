@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-07-30T11:54:33.436Z",
+  "generatedAt": "2026-07-30T15:52:04.873Z",
   "templates": [
     {
       "slug": "action",
@@ -1977,7 +1977,9 @@
       "hasEnv": false,
       "setup": {
         "packageManager": "pnpm",
-        "scripts": {},
+        "scripts": {
+          "test": "playwright test"
+        },
         "env": {
           "hasEnvExample": false,
           "hasEnv": false
