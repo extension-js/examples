@@ -74,7 +74,8 @@ const FAMILY_RULES = {
 // ── CLI resolution (mirrors scripts/build-with-manifest.mjs) ────────────────
 function resolveCli() {
   const explicit = process.env.EXTENSION_CLI_PATH
-  if (explicit && fs.existsSync(explicit)) return {kind: 'node', cliPath: explicit}
+  if (explicit && fs.existsSync(explicit))
+    return {kind: 'node', cliPath: explicit}
   const monorepoCli = path.resolve(
     REPO_ROOT,
     '..',
@@ -127,7 +128,13 @@ function selectTargets() {
 
 function runDev(cli, exampleDir, browser) {
   return new Promise((resolve) => {
-    const args = [exampleDir, '--browser', browser, '--no-browser', '--logs=info']
+    const args = [
+      exampleDir,
+      '--browser',
+      browser,
+      '--no-browser',
+      '--logs=info'
+    ]
     const env = {
       ...process.env,
       EXTENSION_AUTHOR_MODE: 'development',
@@ -139,13 +146,16 @@ function runDev(cli, exampleDir, browser) {
     env.PATH = env.PATH ? `${binDir}${path.delimiter}${env.PATH}` : binDir
 
     const command = cli.kind === 'node' ? process.execPath : 'extension'
-    const fullArgs = cli.kind === 'node' ? [cli.cliPath, 'dev', ...args] : ['dev', ...args]
+    const fullArgs =
+      cli.kind === 'node' ? [cli.cliPath, 'dev', ...args] : ['dev', ...args]
 
     const child = spawn(command, fullArgs, {cwd: exampleDir, env})
     let out = ''
     child.stdout.on('data', (d) => (out += d.toString()))
     child.stderr.on('data', (d) => (out += d.toString()))
-    child.on('error', (err) => resolve({out: `${out}\nspawn error: ${err.message}`, code: 1}))
+    child.on('error', (err) =>
+      resolve({out: `${out}\nspawn error: ${err.message}`, code: 1})
+    )
     child.on('close', (code) => resolve({out, code}))
     setTimeout(() => child.kill('SIGKILL'), 45000).unref()
   })
@@ -165,7 +175,8 @@ function collectReferencedFiles(manifest) {
 
   add(manifest?.background?.service_worker)
   add(manifest?.background?.page)
-  if (Array.isArray(manifest?.background?.scripts)) manifest.background.scripts.forEach(add)
+  if (Array.isArray(manifest?.background?.scripts))
+    manifest.background.scripts.forEach(add)
 
   if (Array.isArray(manifest?.content_scripts)) {
     for (const cs of manifest.content_scripts) {
@@ -202,7 +213,7 @@ function validate(slug, target, result) {
     problems.push('build reported "compiled with errors"')
   }
   const compiledOk =
-    lower.includes('compiled successfully') ||
+    lower.includes('compiled (successfully|in \d+\s*ms)') ||
     lower.includes('extension ready for development')
   if (!compiledOk) problems.push('build did not report a successful compile')
 
@@ -217,7 +228,9 @@ function validate(slug, target, result) {
   try {
     manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
   } catch (err) {
-    problems.push(`dist/${target.browser}/manifest.json is not valid JSON: ${err.message}`)
+    problems.push(
+      `dist/${target.browser}/manifest.json is not valid JSON: ${err.message}`
+    )
     return problems
   }
 
@@ -243,7 +256,9 @@ function validate(slug, target, result) {
 
   for (const ref of collectReferencedFiles(manifest)) {
     if (!fs.existsSync(path.join(distDir, ref))) {
-      problems.push(`manifest references "${ref}" but it was not emitted to disk`)
+      problems.push(
+        `manifest references "${ref}" but it was not emitted to disk`
+      )
     }
   }
 
@@ -268,7 +283,11 @@ async function main() {
       totalChecks++
       const exampleDir = path.join(EXAMPLES_DIR, slug)
       if (!fs.existsSync(path.join(exampleDir, 'package.json'))) {
-        failures.push({slug, target: target.browser, problems: ['example not found']})
+        failures.push({
+          slug,
+          target: target.browser,
+          problems: ['example not found']
+        })
         console.log(`  ✗ ${slug} — not found`)
         continue
       }

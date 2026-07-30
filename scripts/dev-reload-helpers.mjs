@@ -101,7 +101,7 @@ export function extractJsonLines(output) {
 }
 
 export function hasCompiled(output) {
-  return /compiled successfully|compiled with warnings|ready for development/i.test(
+  return /compiled (successfully|in \d+\s*ms)|compiled with warnings|ready for development/i.test(
     output
   )
 }

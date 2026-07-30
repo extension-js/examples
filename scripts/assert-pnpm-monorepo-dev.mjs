@@ -26,7 +26,10 @@ const exampleSource = path.join(
   'sidebar-monorepo-turbopack'
 )
 
-const compileSuccessHints = ['compiled successfully', 'compiled with warnings']
+const compileSuccessHints = [
+  'compiled (successfully|in \d+\s*ms)',
+  'compiled with warnings'
+]
 const readyHint = 'Extension ready for development'
 const failureHints = [
   'compiled with errors',

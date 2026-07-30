@@ -9,7 +9,10 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const secondRunHint = 'Run the command again to proceed'
-const compileSuccessHints = ['compiled successfully', 'compiled with warnings']
+const compileSuccessHints = [
+  'compiled (successfully|in \d+\s*ms)',
+  'compiled with warnings'
+]
 const readyHint = 'Extension ready for development'
 const failureHints = [
   'Module parse failed',

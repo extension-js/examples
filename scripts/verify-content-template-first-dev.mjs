@@ -51,7 +51,8 @@ const devFailurePatterns = [
   /JavaScript parse error/i
 ]
 
-const compileSuccessPattern = /compiled successfully|compiled with warnings/i
+const compileSuccessPattern =
+  /compiled (successfully|in \d+\s*ms)|compiled with warnings/i
 const readyPattern = /Extension ready for development/i
 const POST_READY_STABILIZATION_MS = 2500
 
