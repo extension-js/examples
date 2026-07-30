@@ -10,7 +10,8 @@ const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const secondRunHint = 'Run the command again to proceed'
 const compileSuccessHints = [
-  'compiled (successfully|in \d+\s*ms)',
+  'compiled successfully',
+  'compiled in ',
   'compiled with warnings'
 ]
 const readyHint = 'Extension ready for development'

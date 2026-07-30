@@ -27,7 +27,8 @@ const exampleSource = path.join(
 )
 
 const compileSuccessHints = [
-  'compiled (successfully|in \d+\s*ms)',
+  'compiled successfully',
+  'compiled in ',
   'compiled with warnings'
 ]
 const readyHint = 'Extension ready for development'

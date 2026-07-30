@@ -143,7 +143,7 @@ async function waitForCompile(
 ): Promise<void> {
   const start = Date.now()
   // Track manifest mtime as filesystem-based fallback for when
-  // stdio capture misses the "compiled (successfully|in \d+\s*ms)" message.
+  // stdio capture misses the compile receipt line.
   let initialMtime = 0
   for (const root of DEV_ROOTS)
     for (const ch of DEV_CHANNELS) {
@@ -778,7 +778,7 @@ if (manifestReloadManifest) {
 
           // The output mtime increased — the manifest change was detected and
           // triggered a rebuild. The dev server may or may not log
-          // "compiled (successfully|in \d+\s*ms)" depending on how the manifest watcher
+          // a compile receipt depending on how the manifest watcher
           // handles the change (it may require a restart for critical fields).
           const newMtime = getLatestOutputMtime(manifestReloadDir)
           manifestTest.expect(newMtime).toBeGreaterThan(baseline)

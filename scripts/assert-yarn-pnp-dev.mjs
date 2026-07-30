@@ -32,7 +32,8 @@ const repoRoot = path.resolve(__dirname, '..')
 const exampleSource = path.join(repoRoot, 'examples', 'typescript')
 
 const compileSuccessHints = [
-  'compiled (successfully|in \d+\s*ms)',
+  'compiled successfully',
+  'compiled in ',
   'compiled with warnings'
 ]
 const readyHint = 'Extension ready for development'

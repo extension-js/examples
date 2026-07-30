@@ -213,7 +213,8 @@ function validate(slug, target, result) {
     problems.push('build reported "compiled with errors"')
   }
   const compiledOk =
-    lower.includes('compiled (successfully|in \d+\s*ms)') ||
+    lower.includes('compiled successfully') ||
+    lower.includes('compiled in ') ||
     lower.includes('extension ready for development')
   if (!compiledOk) problems.push('build did not report a successful compile')
 
