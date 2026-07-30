@@ -74,7 +74,17 @@ npm run preview
 
 ## Tests
 
-This template ships an end-to-end check (`template.spec.ts`) validated by the examples-repo CI on every commit.
+This template ships a Playwright suite in `e2e/`. Run it with:
+
+```bash
+npm test
+```
+
+The run installs the Chromium build Playwright needs, builds the extension into
+`dist/chrome`, loads that build in a fresh browser profile, and asserts the
+sidebar page renders. Add your own specs next to `e2e/sidebar.spec.ts` and reuse
+the `test`, `expect`, and `pagePath` helpers from `e2e/fixtures.ts`. Set
+`HEADED=true` to watch the browser while the tests run.
 
 ## Learn more
 

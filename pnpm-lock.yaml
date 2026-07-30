@@ -591,6 +591,9 @@ importers:
 
   examples/playwright:
     devDependencies:
+      '@playwright/test':
+        specifier: ^1.56.1
+        version: 1.56.1
       typescript:
         specifier: 7.0.2
         version: 7.0.2

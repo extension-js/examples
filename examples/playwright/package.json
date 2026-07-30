@@ -10,7 +10,12 @@
     "email": "boss@cezaraugusto.net",
     "url": "https://cezaraugusto.com"
   },
+  "scripts": {
+    "pretest": "playwright install chromium",
+    "test": "playwright test"
+  },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "typescript": "7.0.2"
   }
 }
