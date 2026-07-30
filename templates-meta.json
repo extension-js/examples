@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-07-30T15:52:04.873Z",
+  "generatedAt": "2026-07-30T22:24:44.931Z",
   "templates": [
     {
       "slug": "action",
@@ -1254,7 +1254,7 @@
       "title": "JavaScript",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+      "description": "Adds a sidebar panel to the browser with a simple page.",
       "uiContext": ["content", "sidebar", "action", "background"],
       "surfaces": ["content", "action", "sidebar", "background"],
       "entrypoints": [
