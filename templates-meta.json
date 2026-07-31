@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-07-31T08:39:52.552Z",
+  "generatedAt": "2026-07-31T10:50:38.978Z",
   "templates": [
     {
       "slug": "action",
@@ -88,6 +88,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
       "files": [
         "public/action-locales/extension.config.js",
         "public/action-locales/public/screenshot.png",
@@ -155,7 +156,7 @@
         "Run npm run dev to launch the extension",
         "Open any web page and click the extension icon to open the sidebar",
         "Enter your ChatGPT API key (from platform.openai.com)",
-        "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
+        "Ask ChatGPT about the active tab, and the content script feeds the page text into the conversation"
       ],
       "useCases": [
         "Chat with the active tab's content using ChatGPT",
@@ -242,7 +243,7 @@
         "Run npm run dev to launch the extension",
         "Open any web page and click the extension icon to open the sidebar",
         "Enter your Claude API key (from console.anthropic.com)",
-        "Ask Claude about the active tab — the content script feeds the page text into the conversation"
+        "Ask Claude about the active tab, and the content script feeds the page text into the conversation"
       ],
       "useCases": [
         "Chat with the active tab's content using Claude",
@@ -329,7 +330,7 @@
         "Run npm run dev to launch the extension",
         "Open any web page and click the extension icon to open the sidebar",
         "Enter your Gemini API key (from aistudio.google.com)",
-        "Ask Gemini about the active tab — the content script feeds the page text into the conversation"
+        "Ask Gemini about the active tab, and the content script feeds the page text into the conversation"
       ],
       "useCases": [
         "Chat with the active tab's content using Gemini",
@@ -416,7 +417,7 @@
         "Run npm run dev to launch the extension",
         "Open any web page and click the extension icon to open the sidebar",
         "Enter your Perplexity API key (from perplexity.ai/settings/api)",
-        "Ask Perplexity about the active tab — the content script feeds the page text into the conversation"
+        "Ask Perplexity about the active tab, and the content script feeds the page text into the conversation"
       ],
       "useCases": [
         "Chat with the active tab's content using Perplexity",
@@ -479,6 +480,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content/extension.config.js",
         "public/content/public/screenshot.png",
@@ -520,6 +522,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
       "files": [
         "public/content-css-modules/extension.config.js",
         "public/content-css-modules/public/screenshot.png",
@@ -561,6 +564,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "files": [
         "public/content-custom-font/extension.config.js",
         "public/content-custom-font/public/screenshot.png",
@@ -602,6 +606,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/features/environment-variables",
       "files": [
         "public/content-env/extension.config.js",
         "public/content-env/public/screenshot.png",
@@ -643,6 +648,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/content-less/extension.config.js",
         "public/content-less/public/screenshot.png",
@@ -684,6 +690,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/content-less-modules/extension.config.js",
         "public/content-less-modules/public/screenshot.png",
@@ -795,6 +802,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content-multi-one-entry/extension.config.js",
         "public/content-multi-one-entry/public/screenshot.png",
@@ -852,7 +860,7 @@
       "timeToFirstSuccessMinutes": 3,
       "firstSteps": [
         "Run npm run dev to launch the extension",
-        "Open any page — three separate content scripts inject small elements",
+        "Open any page and three separate content scripts inject small elements",
         "Edit any of the entries in src/content/ to see HMR update independently"
       ],
       "useCases": [
@@ -912,6 +920,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
       "files": [
         "public/content-preact/extension.config.js",
         "public/content-preact/src/background.ts",
@@ -962,6 +971,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "files": [
         "public/content-react/extension.config.js",
         "public/content-react/src/background.ts",
@@ -1008,6 +1018,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "files": [
         "public/content-sass/extension.config.js",
         "public/content-sass/public/screenshot.png",
@@ -1051,6 +1062,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "files": [
         "public/content-sass-modules/extension.config.js",
         "public/content-sass-modules/public/screenshot.png",
@@ -1096,6 +1108,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
       "files": [
         "public/content-svelte/extension.config.js",
         "public/content-svelte/src/background.ts",
@@ -1143,6 +1156,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "files": [
         "public/content-typescript/extension.config.js",
         "public/content-typescript/public/screenshot.png",
@@ -1188,6 +1202,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
       "files": [
         "public/content-vue/extension.config.js",
         "public/content-vue/src/background.ts",
@@ -1236,6 +1251,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/getting-started/immediately",
       "files": [
         "public/init/extension.config.js",
         "public/init/src/images/icon.png",
@@ -1279,6 +1295,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
       "files": [
         "public/javascript/extension.config.js",
         "public/javascript/public/screenshot.png",
@@ -1325,6 +1342,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "files": [
         "public/new/extension.config.js",
         "public/new/public/screenshot.png",
@@ -1374,6 +1392,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/browsers/browser-flags",
       "files": [
         "public/new-browser-flags/extension.config.js",
         "public/new-browser-flags/src/background.js",
@@ -1422,6 +1441,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/integrations/eslint",
       "files": [
         "public/new-config-eslint/extension.config.js",
         "public/new-config-eslint/public/screenshot.png",
@@ -1464,6 +1484,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/integrations/prettier",
       "files": [
         "public/new-config-prettier/extension.config.js",
         "public/new-config-prettier/public/screenshot.png",
@@ -1506,6 +1527,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
       "files": [
         "public/new-config-stylelint/extension.config.js",
         "public/new-config-stylelint/public/screenshot.png",
@@ -1548,6 +1570,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
       "files": [
         "public/new-crypto/extension.config.js",
         "public/new-crypto/public/screenshot.png",
@@ -1596,7 +1619,7 @@
       "firstSteps": [
         "Copy .env.example to .env and edit the values",
         "Run npm run dev to launch the extension",
-        "Open a new tab — the page reads injected EXTENSION_PUBLIC_* values"
+        "Open a new tab and the page reads injected EXTENSION_PUBLIC_* values"
       ],
       "useCases": [
         "Inject build-time configuration without leaking secrets",
@@ -1646,6 +1669,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/new-less/extension.config.js",
         "public/new-less/public/screenshot.png",
@@ -1688,6 +1712,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
       "files": [
         "public/new-preact/extension.config.js",
         "public/new-preact/public/screenshot.png",
@@ -1731,6 +1756,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "files": [
         "public/new-react/extension.config.js",
         "public/new-react/public/screenshot.png",
@@ -1774,6 +1800,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "files": [
         "public/new-react-router/extension.config.js",
         "public/new-react-router/public/screenshot.png",
@@ -1817,6 +1844,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "files": [
         "public/new-sass/extension.config.js",
         "public/new-sass/public/screenshot.png",
@@ -1859,6 +1887,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
       "files": [
         "public/new-svelte/extension.config.js",
         "public/new-svelte/public/screenshot.png",
@@ -1902,6 +1931,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "files": [
         "public/new-typescript/extension.config.js",
         "public/new-typescript/public/screenshot.png",
@@ -1944,6 +1974,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
       "files": [
         "public/new-vue/extension.config.js",
         "public/new-vue/public/screenshot.png",
@@ -2050,6 +2081,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
       "files": [
         "public/preact/extension.config.js",
         "public/preact/public/screenshot.png",
@@ -2102,6 +2134,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
       "files": [
         "public/react/extension.config.js",
         "public/react/public/screenshot.png",
@@ -2148,6 +2181,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "files": [
         "public/sidebar/extension.config.js",
         "public/sidebar/public/screenshot.png",
@@ -2290,6 +2324,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
       "files": [
         "public/sidebar-shadcn/extension.config.js",
         "public/sidebar-shadcn/public/screenshot.png",
@@ -2344,7 +2379,7 @@
       "firstSteps": [
         "Run npm run dev to launch the extension",
         "A welcome page from src/pages/ opens automatically on install",
-        "Add another HTML file under src/pages/ — it ships as a separate page"
+        "Add another HTML file under src/pages/ and it ships as a separate page"
       ],
       "useCases": [
         "Onboarding, help, and welcome pages that ship with the extension",
@@ -2398,6 +2433,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://extension.js.org/docs/features/special-folders",
       "files": [
         "public/special-folders-scripts/extension.config.js",
         "public/special-folders-scripts/public/screenshot.png",
@@ -2444,6 +2480,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
       "files": [
         "public/svelte/extension.config.js",
         "public/svelte/public/screenshot.png",
@@ -2503,6 +2540,7 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
       "files": [
         "public/transformers-js/extension.config.js",
         "public/transformers-js/public/screenshot.png",
@@ -2553,6 +2591,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
       "files": [
         "public/typescript/extension.config.js",
         "public/typescript/public/screenshot.png",
@@ -2604,6 +2643,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
       "files": [
         "public/vue/extension.config.js",
         "public/vue/public/screenshot.png",
