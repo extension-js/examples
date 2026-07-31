@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

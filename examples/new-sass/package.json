@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-sass",
-  "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
+  "description": "Replaces your new tab page with a simple styled page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

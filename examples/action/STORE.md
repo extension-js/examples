@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: JavaScript Action Example
-- Summary: Action popup example.
+- Summary: Adds a toolbar popup to the browser.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Action popup example.
+Adds a toolbar popup to the browser.
 
 ### Permissions justification
 

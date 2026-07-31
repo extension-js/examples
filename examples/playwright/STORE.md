@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Playwright Sidebar Example
-- Summary: Sidebar extension example demonstrating Playwright-driven E2E automation.
+- Summary: Adds a sidebar panel covered by Playwright tests.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Sidebar extension example demonstrating Playwright-driven E2E automation.
+Adds a sidebar panel covered by Playwright tests.
 
 ### Permissions justification
 

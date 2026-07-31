@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: ChatGPT (OpenAI) Sidebar
-- Summary: React sidebar with ChatGPT chat.
+- Summary: Adds a sidebar panel for chatting with ChatGPT.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -40,7 +40,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-React sidebar with ChatGPT chat.
+Adds a sidebar panel for chatting with ChatGPT.
 
 ### Permissions justification
 

@@ -5,7 +5,7 @@
 
 # TypeScript New Tab Example
 
-> New tab page example demonstrating environment variables (.env) in an extension project.
+> Replaces your new tab page with a page showing the extension's environment values.
 
 ![screenshot](./public/screenshot.png)
 

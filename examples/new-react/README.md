@@ -5,7 +5,7 @@
 
 # React New Tab Example
 
-> A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.
+> Replaces your new tab page with a simple React page.
 
 ![screenshot](./public/screenshot.png)
 

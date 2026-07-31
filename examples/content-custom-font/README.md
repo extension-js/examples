@@ -5,7 +5,7 @@
 
 # Custom Fonts Content Script Example
 
-> Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.
+> Injects a badge rendered in a custom font into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: New Browser Flags Example
-- Summary: A browser extension example built with Extension.
+- Summary: Replaces your new tab page and adds a sidebar panel.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-A browser extension example built with Extension.
+Replaces your new tab page and adds a sidebar panel.
 
 ### Permissions justification
 

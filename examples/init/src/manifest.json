@@ -11,7 +11,7 @@
     }
   },
   "name": "Init Example",
-  "description": "A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.",
+  "description": "A minimal extension that loads in your browser, ready to build on.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

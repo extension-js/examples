@@ -5,7 +5,7 @@
 
 # AI Sidebar (Gemini / Google) Example
 
-> React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.
+> Adds a sidebar panel where you can chat with Gemini about the page you are viewing.
 
 ![screenshot](./public/screenshot.png)
 

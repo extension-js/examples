@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "sidebar",
-  "description": "Sidebar panel example. Adds a sidebar to the browser with a simple page.",
+  "description": "Adds a sidebar panel to the browser with a simple page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

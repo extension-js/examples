@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-typescript",
-  "description": "A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.",
+  "description": "Replaces your new tab page with a simple page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

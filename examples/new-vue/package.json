@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-vue",
-  "description": "New tab page example rendered with Vue. Loads a small Vue app you can extend.",
+  "description": "Replaces your new tab page with a simple Vue page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

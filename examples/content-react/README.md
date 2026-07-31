@@ -5,7 +5,7 @@
 
 # React Content Script Example
 
-> Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.
+> Shows a small overlay UI on every web page you visit.
 
 ![screenshot](./screenshot.png)
 

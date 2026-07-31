@@ -5,7 +5,7 @@
 
 # Content Script in MAIN World Example
 
-> Main world content script with multiple groups. ISOLATED entries precede the MAIN world entry so bridge injection exercises canonical-index vs array-position resolution.
+> Injects a small UI into every web page from both the extension and the page's own JavaScript world.
 
 ![screenshot](./public/screenshot.png)
 

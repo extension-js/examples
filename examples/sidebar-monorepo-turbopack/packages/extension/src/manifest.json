@@ -4,7 +4,7 @@
   "firefox:manifest_version": 2,
   "version": "1.0.0",
   "name": "Monorepo Turbopack Example",
-  "description": "Monorepo example with content script and sidebar.",
+  "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "48": "images/icon.png",

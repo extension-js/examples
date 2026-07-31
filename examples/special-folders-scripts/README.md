@@ -5,7 +5,7 @@
 
 # Special Folders (Scripts) Example
 
-> Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.
+> Shows a small overlay on web pages and a toolbar popup that runs the extension's bundled scripts.
 
 ![screenshot](./public/screenshot.png)
 

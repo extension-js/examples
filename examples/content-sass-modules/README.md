@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

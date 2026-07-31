@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-less",
-  "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
+  "description": "Replaces your new tab page with a simple styled page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "svelte",
-  "description": "Svelte-based extension with sidebar panel",
+  "description": "Adds a sidebar panel to the browser with a simple Svelte page.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

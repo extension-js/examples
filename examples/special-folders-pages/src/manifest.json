@@ -11,7 +11,7 @@
     }
   },
   "name": "Special Folders Pages Example",
-  "description": "Opens a welcome page on extension load, showcasing the pages/ folder.",
+  "description": "Opens a welcome page in a new tab when the extension loads.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

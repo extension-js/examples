@@ -5,7 +5,7 @@
 
 # Action Popup (i18n / Locales) Example
 
-> Action popup example demonstrating i18n with \_locales and message placeholders.
+> Adds a toolbar popup whose text follows your browser's language.
 
 ![screenshot](./public/screenshot.png)
 

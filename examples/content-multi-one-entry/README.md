@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> Content script example with four scripts listed in one entry. Each script injects a small element.
+> Injects four small elements into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

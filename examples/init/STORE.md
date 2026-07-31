@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Init Example
-- Summary: A basic browser extension example built with Extension.
+- Summary: A minimal extension ready to build on.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-A basic browser extension example built with Extension.
+A minimal extension ready to build on.
 
 ### Permissions justification
 

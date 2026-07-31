@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.
+> Replaces your new tab page with a launcher that opens the extension's sidebar panel.
 
 ![screenshot](./screenshot.png)
 

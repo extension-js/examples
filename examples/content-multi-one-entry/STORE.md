@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: JavaScript Content (Multiple Scripts) Example
-- Summary: Content script example with four scripts listed in one entry.
+- Summary: Injects four small elements into web pages.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Content script example with four scripts listed in one entry.
+Injects four small elements into web pages.
 
 ### Permissions justification
 

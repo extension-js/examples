@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Action Example",
-  "description": "Action popup example. Opens a toolbar popup with a simple page.",
+  "description": "Adds a toolbar popup to the browser with a simple page.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

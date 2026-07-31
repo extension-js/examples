@@ -5,7 +5,7 @@
 
 # Vue New Tab Example
 
-> New tab page example rendered with Vue. Loads a small Vue app you can extend.
+> Replaces your new tab page with a simple Vue page.
 
 ![screenshot](./public/screenshot.png)
 

@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.
+> Injects a small badge into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

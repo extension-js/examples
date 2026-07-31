@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Monorepo Turbopack Example
-- Summary: Monorepo example with content script and sidebar.
+- Summary: Adds a sidebar panel and a small page overlay.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Monorepo example with content script and sidebar.
+Adds a sidebar panel and a small page overlay.
 
 ### Permissions justification
 

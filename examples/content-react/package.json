@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-react",
-  "description": "Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.",
+  "description": "Shows a small overlay UI on every web page you visit.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

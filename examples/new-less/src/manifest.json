@@ -11,7 +11,7 @@
     }
   },
   "name": "Less New Tab Example",
-  "description": "New tab page example styled with Less. Renders a simple page and organizes styles with Less.",
+  "description": "Replaces your new tab page with a simple styled page.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

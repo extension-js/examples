@@ -11,7 +11,7 @@
     }
   },
   "name": ".env New Tab Example",
-  "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
+  "description": "Replaces your new tab page with a page showing the extension's environment values.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: .env Content Example
-- Summary: Content script example that reads environment variables (.
+- Summary: Injects a panel with the extension's environment values.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Content script example that reads environment variables (.
+Injects a panel with the extension's environment values.
 
 ### Permissions justification
 

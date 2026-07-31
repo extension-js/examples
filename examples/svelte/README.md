@@ -5,7 +5,7 @@
 
 # Svelte Content Script Example
 
-> Svelte-based extension with a sidebar panel. Adds a sidebar with a simple page.
+> Adds a sidebar panel to the browser with a simple Svelte page.
 
 ![screenshot](./public/screenshot.png)
 

@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: JavaScript Sidebar Example
-- Summary: Sidebar panel example.
+- Summary: Adds a sidebar panel to the browser.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Sidebar panel example.
+Adds a sidebar panel to the browser.
 
 ### Permissions justification
 

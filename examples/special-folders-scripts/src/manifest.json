@@ -11,7 +11,7 @@
     }
   },
   "name": "Special Folders Scripts Example",
-  "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
+  "description": "Shows a small overlay on web pages and a toolbar popup that runs the extension's bundled scripts.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

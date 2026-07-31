@@ -11,7 +11,7 @@
     }
   },
   "name": "Less Content Example",
-  "description": "Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.",
+  "description": "Injects a small styled badge into every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

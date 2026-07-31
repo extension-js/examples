@@ -5,7 +5,7 @@
 
 # React Sidebar (shadcn/ui) Example
 
-> React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.
+> Adds a sidebar panel to the browser built with shadcn/ui components.
 
 ![screenshot](./public/screenshot.png)
 

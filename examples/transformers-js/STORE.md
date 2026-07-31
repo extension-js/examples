@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Transformers.js Example
-- Summary: Transformers.
+- Summary: Classifies pages and selections with on-device AI.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -36,7 +36,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Transformers.
+Classifies pages and selections with on-device AI.
 
 ### Permissions justification
 

@@ -5,7 +5,7 @@
 
 # AI Sidebar (Claude / Anthropic) Example
 
-> React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.
+> Adds a sidebar panel where you can chat with Claude about the page you are viewing.
 
 ![screenshot](./public/screenshot.png)
 

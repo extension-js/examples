@@ -5,7 +5,7 @@
 
 # Playwright E2E Starter
 
-> Sidebar extension example demonstrating Playwright-driven E2E automation.
+> Adds a sidebar panel to the browser, covered end to end by Playwright tests.
 
 ![screenshot](./public/screenshot.png)
 

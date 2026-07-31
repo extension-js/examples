@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: JavaScript Action Locales Example
-- Summary: Action popup example demonstrating i18n with _locales and message placeholders.
+- Summary: Adds a toolbar popup in your browser's language.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Action popup example demonstrating i18n with _locales and message placeholders.
+Adds a toolbar popup in your browser's language.
 
 ### Permissions justification
 

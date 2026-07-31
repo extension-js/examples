@@ -5,7 +5,7 @@
 
 # AI Sidebar (Perplexity) Example
 
-> React sidebar with Perplexity chat. Adds a side panel with a conversational interface powered by the Perplexity API (OpenAI-compatible).
+> Adds a sidebar panel where you can chat with Perplexity about the page you are viewing.
 
 ![screenshot](./public/screenshot.png)
 

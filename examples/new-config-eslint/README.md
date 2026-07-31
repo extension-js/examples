@@ -5,7 +5,7 @@
 
 # TypeScript New Tab Example
 
-> New tab page example with ESLint configured. Shows how linting is set up in an extension project.
+> Replaces your new tab page with a simple page.
 
 ![screenshot](./public/screenshot.png)
 

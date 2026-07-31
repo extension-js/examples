@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Action Locales Example",
-  "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
+  "description": "Adds a toolbar popup whose text follows your browser's language.",
   "default_locale": "en",
   "icons": {
     "16": "images/icon.png",

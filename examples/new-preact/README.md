@@ -5,7 +5,7 @@
 
 # Preact New Tab Example
 
-> New tab page example rendered with Preact. Loads a small Preact app you can extend.
+> Replaces your new tab page with a simple Preact page.
 
 ![screenshot](./public/screenshot.png)
 

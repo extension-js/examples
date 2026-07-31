@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Main World Content Example
-- Summary: Main world content script with multiple groups.
+- Summary: Injects a small UI from the page's own JavaScript world.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Main world content script with multiple groups.
+Injects a small UI from the page's own JavaScript world.
 
 ### Permissions justification
 

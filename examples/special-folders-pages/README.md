@@ -5,7 +5,7 @@
 
 # Special Folders (Pages) Example
 
-> Opens a welcome page on extension load, showcasing the pages/ folder.
+> Opens a welcome page in a new tab when the extension loads.
 
 ![screenshot](./public/screenshot.png)
 

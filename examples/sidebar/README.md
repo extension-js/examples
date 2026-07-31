@@ -5,7 +5,7 @@
 
 # JavaScript Sidebar Example
 
-> Sidebar panel example. Adds a sidebar to the browser with a simple page.
+> Adds a sidebar panel to the browser with a simple page.
 
 ![screenshot](./public/screenshot.png)
 

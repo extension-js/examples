@@ -5,7 +5,7 @@
 
 # AI Sidebar (ChatGPT / OpenAI) Example
 
-> React sidebar with ChatGPT chat. Adds a side panel with a conversational interface powered by the OpenAI SDK.
+> Adds a sidebar panel where you can chat with ChatGPT about the page you are viewing.
 
 ![screenshot](./public/screenshot.png)
 

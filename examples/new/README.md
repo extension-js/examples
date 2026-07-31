@@ -5,7 +5,7 @@
 
 # JavaScript New Tab Example
 
-> New tab page example using plain JavaScript. Renders a simple page you can customize.
+> Replaces your new tab page with a simple page you can customize.
 
 ![screenshot](./public/screenshot.png)
 

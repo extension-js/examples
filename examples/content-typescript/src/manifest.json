@@ -11,7 +11,7 @@
     }
   },
   "name": "TypeScript Content Example",
-  "description": "Content script example built with TypeScript. Mounts a small UI and uses typed modules.",
+  "description": "Shows a small overlay UI on every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

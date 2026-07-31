@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-browser-flags",
-  "description": "A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.",
+  "description": "Replaces your new tab page with a launcher that opens the extension's sidebar panel.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

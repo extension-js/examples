@@ -5,7 +5,7 @@
 
 # React Sidebar (Ant Design) Example
 
-> React sidebar using antd and @ant-design/x. Regression coverage for issue #445.
+> Adds a sidebar panel to the browser showing Ant Design components.
 
 ![screenshot](./public/screenshot.png)
 

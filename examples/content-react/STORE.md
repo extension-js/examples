@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: React Content Example
-- Summary: Content script example rendered with React.
+- Summary: Shows a small overlay UI on web pages.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Content script example rendered with React.
+Shows a small overlay UI on web pages.
 
 ### Permissions justification
 

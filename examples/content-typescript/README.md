@@ -5,7 +5,7 @@
 
 # TypeScript Content Script Example
 
-> Content script example built with TypeScript. Mounts a small UI and uses typed modules.
+> Shows a small overlay UI on every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

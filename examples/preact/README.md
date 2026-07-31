@@ -5,7 +5,7 @@
 
 # Preact Content Script Example
 
-> Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.
+> Adds a sidebar panel to the browser with a simple Preact page.
 
 ![screenshot](./public/screenshot.png)
 

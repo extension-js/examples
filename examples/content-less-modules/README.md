@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

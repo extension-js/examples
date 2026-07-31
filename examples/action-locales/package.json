@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "action-locales",
-  "description": "Action popup example demonstrating i18n with _locales and message placeholders.",
+  "description": "Adds a toolbar popup whose text follows your browser's language.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

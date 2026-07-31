@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-multi-one-entry",
-  "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
+  "description": "Injects four small elements into every web page you visit.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

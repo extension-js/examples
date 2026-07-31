@@ -12,7 +12,7 @@
   },
   "name": "Ant Design Sidebar Example",
   "author": "Cezar Augusto",
-  "description": "React sidebar using antd and @ant-design/x. Regression coverage for issue #445.",
+  "description": "Adds a sidebar panel to the browser showing Ant Design components.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

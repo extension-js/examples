@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "special-folders-scripts",
-  "description": "Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.",
+  "description": "Shows a small overlay on web pages and a toolbar popup that runs the extension's bundled scripts.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

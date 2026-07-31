@@ -11,7 +11,7 @@
     }
   },
   "name": "Sass New Tab Example",
-  "description": "New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.",
+  "description": "Replaces your new tab page with a simple styled page.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

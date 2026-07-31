@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-env",
-  "description": "New tab page example demonstrating environment variables (.env) in an extension project.",
+  "description": "Replaces your new tab page with a page showing the extension's environment values.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

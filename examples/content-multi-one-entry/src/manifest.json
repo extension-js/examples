@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Content (Multiple Scripts) Example",
-  "description": "Content script example with four scripts listed in one entry. Each script injects a small element.",
+  "description": "Injects four small elements into every web page you visit.",
   "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {

@@ -11,7 +11,7 @@
     }
   },
   "name": "React Router New Tab Example",
-  "description": "New tab page example using React Router. Shows multiple routes inside the new tab app.",
+  "description": "Replaces your new tab page with a small React app you can navigate across routes.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

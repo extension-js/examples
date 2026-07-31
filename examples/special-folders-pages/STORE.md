@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Special Folders Pages Example
-- Summary: Opens a welcome page on extension load, showcasing the pages/ folder.
+- Summary: Opens a welcome page when the extension loads.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Opens a welcome page on extension load, showcasing the pages/ folder.
+Opens a welcome page when the extension loads.
 
 ### Permissions justification
 

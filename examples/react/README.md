@@ -5,7 +5,7 @@
 
 # React Content Script Example
 
-> React-based extension with a sidebar panel. Adds a sidebar with a simple page.
+> Adds a sidebar panel to the browser with a simple React page.
 
 ![screenshot](./public/screenshot.png)
 

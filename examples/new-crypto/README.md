@@ -5,7 +5,7 @@
 
 # TypeScript New Tab Example
 
-> New tab page example demonstrating basic crypto operations inside an extension.
+> Replaces your new tab page with a page that hashes any text you type using SHA-256.
 
 ![screenshot](./public/screenshot.png)
 

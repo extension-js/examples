@@ -12,7 +12,7 @@
   },
   "name": "React Sidebar Example",
   "author": "Cezar Augusto",
-  "description": "React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.",
+  "description": "Adds a sidebar panel to the browser built with shadcn/ui components.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Sass New Tab Example
-- Summary: New tab page example styled with Sass.
+- Summary: Replaces your new tab page with a simple styled page.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-New tab page example styled with Sass.
+Replaces your new tab page with a simple styled page.
 
 ### Permissions justification
 

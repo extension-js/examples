@@ -11,7 +11,7 @@
     }
   },
   "name": "Less Modules Content Example",
-  "description": "Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.",
+  "description": "Injects a small styled badge into every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

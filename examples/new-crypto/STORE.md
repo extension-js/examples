@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Crypto New Tab Example
-- Summary: New tab page example demonstrating basic crypto operations inside an extension.
+- Summary: Replaces your new tab page with a text-hashing page.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-New tab page example demonstrating basic crypto operations inside an extension.
+Replaces your new tab page with a text-hashing page.
 
 ### Permissions justification
 

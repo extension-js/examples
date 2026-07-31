@@ -5,7 +5,7 @@
 
 # JavaScript Action Popup Example
 
-> Action popup example. Opens a toolbar popup with a simple page.
+> Adds a toolbar popup to the browser with a simple page.
 
 ![screenshot](./public/screenshot.png)
 

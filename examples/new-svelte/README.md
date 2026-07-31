@@ -5,7 +5,7 @@
 
 # Svelte New Tab Example
 
-> New tab page example rendered with Svelte. Loads a small Svelte app you can extend.
+> Replaces your new tab page with a simple Svelte page.
 
 ![screenshot](./public/screenshot.png)
 

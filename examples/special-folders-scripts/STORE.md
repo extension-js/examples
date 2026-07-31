@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Special Folders Scripts Example
-- Summary: Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.
+- Summary: Runs bundled scripts from a toolbar popup.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.
+Runs bundled scripts from a toolbar popup.
 
 ### Permissions justification
 

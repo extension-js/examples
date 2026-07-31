@@ -5,7 +5,7 @@
 
 # TypeScript Content Script Example
 
-> Content script example that reads environment variables (.env) and renders a small UI.
+> Injects a small panel showing the extension's environment values into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

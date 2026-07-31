@@ -5,7 +5,7 @@
 
 # JavaScript New Tab Example
 
-> New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.
+> Replaces your new tab page with a simple styled page.
 
 ![screenshot](./public/screenshot.png)
 

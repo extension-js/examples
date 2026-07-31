@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "transformers-js",
-  "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
+  "description": "Adds a sidebar panel that classifies the active page or your selected text with on-device AI models.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

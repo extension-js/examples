@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript New Tab Example",
-  "description": "New tab page example using plain JavaScript. Renders a simple page you can customize.",
+  "description": "Replaces your new tab page with a simple page you can customize.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

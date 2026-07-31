@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: Claude (Anthropic) Sidebar
-- Summary: React sidebar with Claude AI chat.
+- Summary: Adds a sidebar panel for chatting with Claude.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -40,7 +40,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-React sidebar with Claude AI chat.
+Adds a sidebar panel for chatting with Claude.
 
 ### Permissions justification
 

@@ -5,7 +5,7 @@
 
 # JavaScript Content Script Example
 
-> Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

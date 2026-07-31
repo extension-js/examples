@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: React Sidebar Example
-- Summary: React sidebar example using shadcn/ui components.
+- Summary: Adds a sidebar panel built with shadcn/ui.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-React sidebar example using shadcn/ui components.
+Adds a sidebar panel built with shadcn/ui.
 
 ### Permissions justification
 

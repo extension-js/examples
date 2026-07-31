@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: JavaScript Content Example
-- Summary: Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.
+- Summary: Injects a small badge into web pages.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.
+Injects a small badge into web pages.
 
 ### Permissions justification
 

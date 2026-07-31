@@ -14,7 +14,7 @@ Last updated: 2026-07-30
 ## Listing
 
 - Name: TypeScript New Tab Example
-- Summary: A browser extension new tab page example built with Extension.
+- Summary: Replaces your new tab page with a simple page.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -35,7 +35,7 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-A browser extension new tab page example built with Extension.
+Replaces your new tab page with a simple page.
 
 ### Permissions justification
 

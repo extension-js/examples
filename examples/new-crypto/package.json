@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "new-crypto",
-  "description": "New tab page example demonstrating basic crypto operations inside an extension.",
+  "description": "Replaces your new tab page with a page that hashes any text you type using SHA-256.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

@@ -5,7 +5,7 @@
 
 # TypeScript New Tab Example
 
-> A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.
+> Replaces your new tab page with a simple page.
 
 ![screenshot](./public/screenshot.png)
 

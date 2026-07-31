@@ -11,7 +11,7 @@
     }
   },
   "name": "Content Sass Modules Example",
-  "description": "A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.",
+  "description": "Injects a small styled badge into every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

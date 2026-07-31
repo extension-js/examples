@@ -5,7 +5,7 @@
 
 # React New Tab Example
 
-> New tab page example using React Router. Shows multiple routes inside the new tab app.
+> Replaces your new tab page with a small React app you can navigate across routes.
 
 ![screenshot](./public/screenshot.png)
 

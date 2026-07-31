@@ -5,7 +5,7 @@
 
 # React Sidebar (Monorepo + Turborepo) Example
 
-> Monorepo example with content script and sidebar.
+> Adds a sidebar panel and shows a small overlay UI on every web page you visit.
 
 ![screenshot](./public/screenshot.png)
 

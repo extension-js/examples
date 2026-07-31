@@ -5,7 +5,7 @@
 
 # Starter Extension (init)
 
-> A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.
+> A minimal extension that loads in your browser, ready to build on.
 
 ![screenshot](./screenshot.png)
 

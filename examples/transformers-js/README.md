@@ -5,7 +5,7 @@
 
 # Transformers.js Example
 
-> Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.
+> Adds a sidebar panel that classifies the active page or your selected text with on-device AI models.
 
 ![screenshot](./public/screenshot.png)
 
