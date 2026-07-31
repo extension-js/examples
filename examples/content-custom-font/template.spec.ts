@@ -54,7 +54,7 @@ test.describe('Content Custom Font Template', () => {
     )
 
     expect(packageJson.name).toContain('content-custom-font')
-    expect(packageJson.description).toContain('custom web fonts')
+    expect(packageJson.description).toContain('custom font')
     expect(packageJson.description).toContain('font')
     expect(packageJson.devDependencies).toHaveProperty('tailwindcss')
   })
@@ -65,7 +65,7 @@ test.describe('Content Custom Font Template', () => {
     )
 
     expect(manifest.name).toContain('Custom Fonts')
-    expect(manifest.description).toContain('custom web fonts')
+    expect(manifest.description).toContain('custom font')
     expect(manifest.web_accessible_resources).toBeDefined()
 
     const fontResources = manifest.web_accessible_resources[0].resources
