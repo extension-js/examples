@@ -7,7 +7,7 @@
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "A welcome page from src/pages/ opens automatically on install",
-    "Add another HTML file under src/pages/ — it ships as a separate page"
+    "Add another HTML file under src/pages/ and it ships as a separate page"
   ],
   "useCases": [
     "Onboarding, help, and welcome pages that ship with the extension",

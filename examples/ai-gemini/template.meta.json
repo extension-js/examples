@@ -17,7 +17,7 @@
     "Run npm run dev to launch the extension",
     "Open any web page and click the extension icon to open the sidebar",
     "Enter your Gemini API key (from aistudio.google.com)",
-    "Ask Gemini about the active tab — the content script feeds the page text into the conversation"
+    "Ask Gemini about the active tab, and the content script feeds the page text into the conversation"
   ],
   "useCases": [
     "Chat with the active tab's content using Gemini",

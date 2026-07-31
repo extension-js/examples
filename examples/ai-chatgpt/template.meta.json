@@ -18,7 +18,7 @@
     "Run npm run dev to launch the extension",
     "Open any web page and click the extension icon to open the sidebar",
     "Enter your ChatGPT API key (from platform.openai.com)",
-    "Ask ChatGPT about the active tab — the content script feeds the page text into the conversation"
+    "Ask ChatGPT about the active tab, and the content script feeds the page text into the conversation"
   ],
   "useCases": [
     "Chat with the active tab's content using ChatGPT",

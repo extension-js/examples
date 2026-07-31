@@ -6,7 +6,7 @@
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
     "Run npm run dev to launch the extension",
-    "Open any page — three separate content scripts inject small elements",
+    "Open any page and three separate content scripts inject small elements",
     "Edit any of the entries in src/content/ to see HMR update independently"
   ],
   "useCases": [

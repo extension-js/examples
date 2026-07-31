@@ -17,7 +17,7 @@
     "Run npm run dev to launch the extension",
     "Open any web page and click the extension icon to open the sidebar",
     "Enter your Claude API key (from console.anthropic.com)",
-    "Ask Claude about the active tab — the content script feeds the page text into the conversation"
+    "Ask Claude about the active tab, and the content script feeds the page text into the conversation"
   ],
   "useCases": [
     "Chat with the active tab's content using Claude",
