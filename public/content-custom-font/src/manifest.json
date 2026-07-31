@@ -11,7 +11,7 @@
     }
   },
   "name": "Custom Fonts Content Example",
-  "description": "Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.",
+  "description": "Injects a badge rendered in a custom font into every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

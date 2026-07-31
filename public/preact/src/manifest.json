@@ -11,7 +11,7 @@
     }
   },
   "name": "Preact Sidebar Example",
-  "description": "Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.",
+  "description": "Adds a sidebar panel to the browser with a simple Preact page.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

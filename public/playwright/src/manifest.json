@@ -12,7 +12,7 @@
   },
   "name": "Playwright Sidebar Example",
   "author": "Cezar Augusto",
-  "description": "Sidebar extension example demonstrating Playwright-driven E2E automation.",
+  "description": "Adds a sidebar panel to the browser, covered end to end by Playwright tests.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

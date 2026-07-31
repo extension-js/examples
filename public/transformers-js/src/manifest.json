@@ -11,7 +11,7 @@
     }
   },
   "name": "Transformers.js Example",
-  "description": "Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.",
+  "description": "Adds a sidebar panel that classifies the active page or your selected text with on-device AI models.",
   "author": "Your Name",
   "icons": {
     "16": "images/icon.png",

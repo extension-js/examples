@@ -16,7 +16,7 @@
   },
   "name": "Gemini (Google) Sidebar",
   "author": "Cezar Augusto",
-  "description": "React sidebar with Gemini chat. Adds a side panel with a conversational interface powered by the Google Generative AI SDK.",
+  "description": "Adds a sidebar panel where you can chat with Gemini about the page you are viewing.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

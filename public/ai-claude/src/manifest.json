@@ -16,7 +16,7 @@
   },
   "name": "Claude (Anthropic) Sidebar",
   "author": "Cezar Augusto",
-  "description": "React sidebar with Claude AI chat. Adds a side panel with a conversational interface powered by the Anthropic SDK.",
+  "description": "Adds a sidebar panel where you can chat with Claude about the page you are viewing.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

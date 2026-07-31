@@ -11,7 +11,7 @@
     }
   },
   "name": "Prettier Config New Tab Example",
-  "description": "New tab page example with Prettier configured. Shows how formatting is set up in an extension project.",
+  "description": "Replaces your new tab page with a simple page.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

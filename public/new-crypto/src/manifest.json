@@ -11,7 +11,7 @@
     }
   },
   "name": "Crypto New Tab Example",
-  "description": "New tab page example demonstrating basic crypto operations inside an extension.",
+  "description": "Replaces your new tab page with a page that hashes any text you type using SHA-256.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
