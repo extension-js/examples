@@ -17,6 +17,23 @@
 
 This repository contains browser extension examples built with Extension.js. Each example demonstrates different patterns, frameworks, and use cases for building cross-browser extensions.
 
+## Run an example from a clone
+
+The examples ship without npm scripts, so run Extension.js directly from the example directory. Run `npm install` first when the example declares dependencies:
+
+```bash
+git clone https://github.com/extension-js/examples.git
+cd examples/examples/javascript
+npm install
+npx extension@latest dev .
+```
+
+Prefer a fresh project instead? Every example doubles as a create template:
+
+```bash
+npx extension@latest create my-extension --template javascript
+```
+
 ## Web standards and framework support
 
 <div align="center">

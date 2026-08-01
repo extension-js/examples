@@ -156,7 +156,7 @@ function renderTree(files, root) {
 }
 
 // ──────────────────────────────────────────────────────────────────────────
-// Detection — extract per-template facts from real files
+// Detection: extract per-template facts from real files
 // ──────────────────────────────────────────────────────────────────────────
 
 function detectTemplate(templateDir, slug) {
@@ -225,7 +225,7 @@ function detectTemplate(templateDir, slug) {
   if (manifest.options_ui || manifest.options_page) surfaces.add('options')
   if (isDir(path.join(templateDir, 'src', 'pages'))) surfaces.add('pages')
   if (isDir(path.join(templateDir, 'src', 'scripts'))) surfaces.add('scripts')
-  // Top-level special folders (project root, sibling to src/) — these are
+  // Top-level special folders (project root, sibling to src/), these are
   // auto-discovered entrypoints in the bundler, not declared in manifest.
   const topLevelPagesDir = isDir(path.join(templateDir, 'pages'))
     ? path.join(templateDir, 'pages')
@@ -368,7 +368,7 @@ const OVERRIDES = {
   init: {
     title: 'Starter Extension (init)',
     extra:
-      'The default starter — what `npx extension@latest create <name>` ' +
+      'The default starter: what `npx extension@latest create <name>` ' +
       'produces when no `--template` is passed. A small sidebar panel ' +
       'wired with dev / build / preview scripts.'
   },
@@ -457,15 +457,15 @@ const OVERRIDES = {
       'A React sidebar built with [shadcn/ui](https://ui.shadcn.com/) ' +
       'primitives over Radix UI and Tailwind v4. Cards, switches, and ' +
       'labels are composed from the registry, not pulled from a UI ' +
-      'library — the components live inside the project under ' +
+      'library; the components live inside the project under ' +
       '`src/components/ui/`.'
   },
   'ai-claude': {
     title: 'AI Sidebar (Claude / Anthropic) Example',
     extra:
       'Conversational sidebar wired to the [Anthropic SDK](https://docs.anthropic.com/). ' +
-      'Paste a key the first time you open the panel — it lives in ' +
-      '`chrome.storage.local`, never leaves the device — and chat with ' +
+      'Paste a key the first time you open the panel (it lives in ' +
+      '`chrome.storage.local` and never leaves the device) and chat with ' +
       "Claude inline next to whatever page you're on. Shares its layout " +
       'and shadcn/ui primitives with the `ai-chatgpt`, `ai-gemini`, ' +
       'and `ai-perplexity` siblings; only the SDK and brand accent change.'
@@ -474,8 +474,8 @@ const OVERRIDES = {
     title: 'AI Sidebar (ChatGPT / OpenAI) Example',
     extra:
       'Conversational sidebar wired to the [OpenAI SDK](https://platform.openai.com/docs/api-reference/chat). ' +
-      'Paste an `sk-...` key the first time you open the panel — it lives ' +
-      'in `chrome.storage.local`, never leaves the device — and chat with ' +
+      'Paste an `sk-...` key the first time you open the panel (it lives ' +
+      'in `chrome.storage.local` and never leaves the device) and chat with ' +
       "ChatGPT inline next to whatever page you're on. Shares its layout " +
       'and shadcn/ui primitives with the `ai-claude`, `ai-gemini`, ' +
       'and `ai-perplexity` siblings; only the SDK and brand accent change.'
@@ -484,8 +484,8 @@ const OVERRIDES = {
     title: 'AI Sidebar (Gemini / Google) Example',
     extra:
       'Conversational sidebar wired to the [Google Generative AI SDK](https://ai.google.dev/gemini-api/docs). ' +
-      'Paste a Google AI Studio key the first time you open the panel — it ' +
-      'lives in `chrome.storage.local`, never leaves the device — and chat ' +
+      'Paste a Google AI Studio key the first time you open the panel (it ' +
+      'lives in `chrome.storage.local` and never leaves the device) and chat ' +
       "with Gemini inline next to whatever page you're on. Shares its " +
       'layout and shadcn/ui primitives with the `ai-claude`, ' +
       '`ai-chatgpt`, and `ai-perplexity` siblings; only the SDK ' +
@@ -495,11 +495,11 @@ const OVERRIDES = {
     title: 'AI Sidebar (Perplexity) Example',
     extra:
       'Conversational sidebar wired to the [Perplexity API](https://docs.perplexity.ai/) ' +
-      '— online-search-grounded models served through an OpenAI-compatible ' +
+      ': online-search-grounded models served through an OpenAI-compatible ' +
       'endpoint, so the same `openai` SDK is reused with a different ' +
       '`baseURL`. Paste a `pplx-...` key the first time you open the ' +
-      'panel — it lives in `chrome.storage.local`, never leaves the ' +
-      'device — and ask Perplexity questions that get answered with live ' +
+      'panel (it lives in `chrome.storage.local` and never leaves the ' +
+      'device) and ask Perplexity questions that get answered with live ' +
       'citations. Shares its layout and shadcn/ui primitives with the ' +
       '`ai-claude`, `ai-chatgpt`, and `ai-gemini` siblings.'
   },
@@ -508,7 +508,7 @@ const OVERRIDES = {
     extra:
       'Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) ' +
       'pipelines on the active page or the current selection. No server, no ' +
-      'API key — the model and tokenizer are loaded from the Hugging Face ' +
+      'API key: the model and tokenizer are loaded from the Hugging Face ' +
       'Hub on first run, and inference happens locally via WebGPU/WASM. A ' +
       'right-click context menu (`Classify selection with Transformers.js`) ' +
       'mirrors the in-sidebar flow for ad-hoc text on any page.'
@@ -527,7 +527,7 @@ const OVERRIDES = {
       'React sidebar rendering [Ant Design](https://ant.design/) and ' +
       '[Ant Design X](https://x.ant.design/) components. Doubles as ' +
       'regression coverage for [issue #445](https://github.com/extension-js/extension.js/issues/445) ' +
-      "— the bundler's exports-condition resolution must route CJS " +
+      ": the bundler's exports-condition resolution must route CJS " +
       "requires through `require` so `@babel/runtime` helpers don't " +
       'crash with `_interopRequireDefault is not a function`.'
   },
@@ -637,13 +637,13 @@ function deriveHowItWorks(detected) {
 
   // Special-folder templates exist primarily to demonstrate the
   // pages/ / scripts/ conventions, not the manifest surfaces underneath
-  // them — surface those first when relevant.
+  // them, surface those first when relevant.
   const isSpecialFolders = detected.slug.startsWith('special-folders-')
 
   if (isSpecialFolders && detected.surfaces.has('pages')) {
     sentences.push(
       `Files inside \`pages/\` are treated as auto-discovered entrypoints ` +
-        `— no \`manifest.json\` wiring required. The background script ` +
+        `, with no \`manifest.json\` wiring required. The background script ` +
         `opens one of them on install / startup.`
     )
   } else if (isSpecialFolders && detected.surfaces.has('scripts')) {
@@ -676,7 +676,7 @@ function deriveHowItWorks(detected) {
   } else if (detected.surfaces.has('pages')) {
     sentences.push(
       `Files inside \`src/pages/\` are treated as auto-discovered entrypoints ` +
-        `— no \`manifest.json\` wiring required.`
+        `, with no \`manifest.json\` wiring required.`
     )
   } else if (detected.surfaces.has('scripts')) {
     sentences.push(
@@ -707,7 +707,7 @@ function deriveHowItWorks(detected) {
 
 function deriveWhatYoullSee(detected) {
   // The description goes in the blockquote tagline. "What you'll see" is
-  // a user-facing line about what shows up on screen — keep it surface-
+  // a user-facing line about what shows up on screen, keep it surface-
   // focused so the description doesn't get repeated verbatim.
   const isSpecialFolders = detected.slug.startsWith('special-folders-')
   if (isSpecialFolders && detected.surfaces.has('pages')) {
@@ -796,25 +796,29 @@ function renderReadme(detected) {
     projectLayout +
     `## Commands\n` +
     `\n` +
+    `Cloned this repo instead? The examples ship without npm scripts, so run ` +
+    `Extension.js directly from the example directory. Run \`npm install\` ` +
+    `first when the example declares dependencies.\n` +
+    `\n` +
     `### dev\n` +
     `\n` +
     `Run the extension in development mode. Target a browser with \`--browser\`:\n` +
     `\n` +
     `\`\`\`bash\n` +
-    `npm run dev                 # Chromium (default)\n` +
-    `npm run dev -- --browser=chrome\n` +
-    `npm run dev -- --browser=edge\n` +
-    `npm run dev -- --browser=firefox\n` +
+    `npx extension@latest dev .                  # Chromium (default)\n` +
+    `npx extension@latest dev . --browser=chrome\n` +
+    `npx extension@latest dev . --browser=edge\n` +
+    `npx extension@latest dev . --browser=firefox\n` +
     `\`\`\`\n` +
     `\n` +
     `### build\n` +
     `\n` +
-    `Build for production. Convenience scripts cover each browser:\n` +
+    `Build for production:\n` +
     `\n` +
     `\`\`\`bash\n` +
-    `npm run build           # Chrome (default)\n` +
-    `npm run build:firefox\n` +
-    `npm run build:edge\n` +
+    `npx extension@latest build .                # Chromium (default)\n` +
+    `npx extension@latest build . --browser=firefox\n` +
+    `npx extension@latest build . --browser=edge\n` +
     `\`\`\`\n` +
     `\n` +
     `### preview\n` +
@@ -822,7 +826,7 @@ function renderReadme(detected) {
     `Preview the production build with the bundled browser:\n` +
     `\n` +
     `\`\`\`bash\n` +
-    `npm run preview\n` +
+    `npx extension@latest preview .\n` +
     `\`\`\`\n` +
     `\n` +
     testsBlock +
@@ -856,15 +860,15 @@ function processSlug(slug) {
   try {
     prev = fs.readFileSync(readmePath, 'utf8')
   } catch {
-    // README doesn't exist yet — treat as empty so we always (re)write.
+    // README doesn't exist yet, treat as empty so we always (re)write.
   }
   const changed = prev !== readme
 
   const notes = []
-  if (!detected.hasScreenshot) notes.push('no screenshot — embed skipped')
+  if (!detected.hasScreenshot) notes.push('no screenshot, embed skipped')
   if (!detected.description) notes.push('manifest has no description')
   if (!detected.hasTemplateSpec) notes.push('no template.spec.ts')
-  if (!detected.srcDir) notes.push('no src/ — project layout skipped')
+  if (!detected.srcDir) notes.push('no src/, project layout skipped')
 
   if (!opts.dryRun && changed) {
     fs.writeFileSync(readmePath, readme)
@@ -887,7 +891,7 @@ const withNotes = results.filter((r) => r.notes.length > 0)
 console.log(`scanned ${results.length} template(s) under ${examplesDir}`)
 console.log(`  changed:   ${changed.length}`)
 console.log(`  unchanged: ${unchanged.length}`)
-if (opts.dryRun) console.log('  (dry-run — no files were written)')
+if (opts.dryRun) console.log('  (dry-run, no files were written)')
 
 if (withNotes.length > 0) {
   console.log('\nnotes:')
