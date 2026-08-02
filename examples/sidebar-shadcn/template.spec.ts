@@ -1,7 +1,7 @@
 import path from 'path'
 import {
   extensionFixtures,
-  getSidebarPath,
+  gotoExtensionPage,
   resolveBuiltExtensionPath
 } from '../extension-fixtures.js'
 import {getDirname} from '../dirname.js'
@@ -11,7 +11,12 @@ const pathToExtension = resolveBuiltExtensionPath(__dirname)
 const test = extensionFixtures(pathToExtension)
 
 test('sidebar page renders', async ({page, extensionId}) => {
-  await page.goto(getSidebarPath(extensionId))
+  await gotoExtensionPage(
+    page,
+    pathToExtension,
+    extensionId,
+    'sidebar/index.html'
+  )
   const root = await page.locator('body').first()
   await test.expect(root).toBeVisible()
 })

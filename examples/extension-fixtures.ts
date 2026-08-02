@@ -591,6 +591,93 @@ export function getSidebarPath(extensionId: string): string {
   return `chrome-extension://${extensionId}/sidebar/index.html`
 }
 
+// Navigate to a page inside the loaded extension. On failure, name the
+// artifact instead of surfacing Chrome's bare net error: report whether the
+// dist ships the file the URL points at, and list the dist contents.
+export async function gotoExtensionPage(
+  page: Page,
+  pathToExtension: string,
+  extensionId: string,
+  relPath: string
+): Promise<void> {
+  const url = `chrome-extension://${extensionId}/${relPath.replace(/^\//, '')}`
+  try {
+    await page.goto(url)
+  } catch (error) {
+    const diskPath = path.join(pathToExtension, relPath)
+    const shipped = fs.existsSync(diskPath)
+    let listing = '(unreadable)'
+    try {
+      listing = fs
+        .readdirSync(pathToExtension, {recursive: true})
+        .map(String)
+        .filter((entry) => !entry.includes('node_modules'))
+        .sort()
+        .join(', ')
+    } catch {
+      /* keep placeholder */
+    }
+    const reason = shipped
+      ? `the dist DOES ship ${relPath}, so the loaded extension and the ` +
+        `on-disk dist disagree (dist rewritten after load, or wrong id)`
+      : `the dist does NOT ship ${relPath}`
+    throw new Error(
+      `Navigation to ${url} failed: ${(error as Error).message.split('\n')[0]}. ` +
+        `Checked ${diskPath}: ${reason}. Dist contents: ${listing}`,
+      {cause: error}
+    )
+  }
+}
+
+// Collect the dist-relative files this manifest makes Chrome (or a spec)
+// read: entry pages, background, content scripts. Unpacked extensions are
+// served from disk at request time, so a dist missing any of these either
+// refuses to load or 404s the spec's page.goto with a bare net error.
+function manifestEntryRefs(manifest: any): string[] {
+  const refs: string[] = []
+  const push = (value: unknown) => {
+    if (typeof value === 'string' && value.trim().length > 0) {
+      refs.push(value.replace(/^\.?\//, ''))
+    }
+  }
+  push(manifest?.background?.service_worker)
+  for (const script of manifest?.background?.scripts ?? []) push(script)
+  if (Array.isArray(manifest?.content_scripts)) {
+    for (const cs of manifest.content_scripts) {
+      for (const file of cs?.js ?? []) push(file)
+      for (const file of cs?.css ?? []) push(file)
+    }
+  }
+  push(manifest?.action?.default_popup)
+  push(manifest?.browser_action?.default_popup)
+  push(manifest?.side_panel?.default_path)
+  push(manifest?.sidebar_action?.default_panel)
+  push(manifest?.chrome_url_overrides?.newtab)
+  push(manifest?.options_ui?.page)
+  push(manifest?.devtools_page)
+  return refs
+}
+
+// Returns the manifest-referenced files missing from `dir`, or null when the
+// dir has no parseable manifest at all.
+export function missingManifestRefs(dir: string): string[] | null {
+  let manifest: any
+  try {
+    manifest = JSON.parse(
+      fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')
+    )
+  } catch {
+    return null
+  }
+  return manifestEntryRefs(manifest).filter((rel) => {
+    try {
+      return fs.statSync(path.join(dir, rel)).size === 0
+    } catch {
+      return true
+    }
+  })
+}
+
 export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
   const roots = ['dist', 'build', '.extension']
   const channels = ['chrome', 'chromium', 'chrome-mv3']
@@ -600,16 +687,21 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       candidateDirs.push(path.join(exampleDirAbsolute, root, ch))
     }
   }
-  const hasManifest = (dir: string) => {
-    try {
-      return fs.existsSync(path.join(dir, 'manifest.json'))
-    } catch {
-      return false
-    }
+  // A dist qualifies only when the manifest parses AND every file it
+  // references exists non-empty. Manifest presence alone is not enough: an
+  // interrupted or failed build can leave manifest.json without its pages
+  // (seen as sidebar-shadcn failing 13/13 with net::ERR_FILE_NOT_FOUND on a
+  // warm tree), and gating on the manifest alone would trust that poisoned
+  // dist forever.
+  const isCompleteDist = (dir: string) => {
+    const missing = missingManifestRefs(dir)
+    return missing !== null && missing.length === 0
   }
-  for (const dir of candidateDirs) if (hasManifest(dir)) return dir
-  // Try building if not present. Some Extension.js versions install deps first
-  // and require a second invocation to actually build.
+  for (const dir of candidateDirs) if (isCompleteDist(dir)) return dir
+  // Try building when no complete dist exists. This also self-heals a
+  // partial dist left behind by an interrupted earlier run. Some
+  // Extension.js versions install deps first and require a second
+  // invocation to actually build.
   const runBuild = () => {
     execSync(
       `node ../../scripts/build-with-manifest.mjs build --browser=chrome`,
@@ -624,15 +716,15 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
   } catch {
     /* noop */
   }
-  if (!candidateDirs.some((dir) => hasManifest(dir))) {
+  if (!candidateDirs.some((dir) => isCompleteDist(dir))) {
     try {
       runBuild()
     } catch {
       /* noop */
     }
   }
-  for (const dir of candidateDirs) if (hasManifest(dir)) return dir
-  // As a last attempt, search shallowly under known roots for any manifest.json
+  for (const dir of candidateDirs) if (isCompleteDist(dir)) return dir
+  // As a last attempt, search shallowly under known roots for any complete dist
   for (const root of roots) {
     const rootPath = path.join(exampleDirAbsolute, root)
     try {
@@ -640,10 +732,23 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       for (const entry of entries) {
         if (!entry.isDirectory()) continue
         const dir = path.join(rootPath, entry.name)
-        if (hasManifest(dir)) return dir
+        if (isCompleteDist(dir)) return dir
       }
     } catch {
       /* noop */
+    }
+  }
+  // A manifest-bearing but incomplete dist that the rebuild could not repair
+  // must fail loudly, naming the missing artifacts instead of letting Chrome
+  // surface a bare net::ERR_FILE_NOT_FOUND later.
+  for (const dir of candidateDirs) {
+    const missing = missingManifestRefs(dir)
+    if (missing !== null && missing.length > 0) {
+      throw new Error(
+        `Built extension at ${dir} is missing manifest-referenced files ` +
+          `after rebuild: ${missing.join(', ')}. The dist is stale or ` +
+          `partial. Delete it and rebuild.`
+      )
     }
   }
   // Last resort: return default expected path (will fail loudly in Playwright if missing)
