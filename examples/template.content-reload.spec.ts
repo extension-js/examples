@@ -72,6 +72,7 @@ interface ContentExample {
   dir: string
   jsAnchor: AnchorHit // file + literal string to replace
   styleTarget: StyleTarget | null // editable stylesheet, if present
+  expectedRootCount: number // steady-state `data-extension-root` hosts
 }
 
 function candidateJsFiles(exampleDir: string): string[] {
@@ -135,6 +136,24 @@ function findStyleTarget(exampleDir: string): StyleTarget | null {
   return null
 }
 
+// Steady-state user-root count for an example. Every declared content
+// script in these templates mounts exactly one `data-extension-root`
+// host (the content-multi templates mount four, one per corner), so the
+// healthy post-reinject count equals the number of declared js files,
+// not the hard-coded 1 this spec used to assert. Asserting the exact
+// per-template count keeps the leak check strict: a stale mount still
+// fails as count + 1, and a swallowed sibling mount fails as count - 1.
+function expectedRootCountFor(manifest: any): number {
+  const blocks = Array.isArray(manifest?.content_scripts)
+    ? manifest.content_scripts
+    : []
+  let count = 0
+  for (const block of blocks) {
+    if (block && Array.isArray(block.js)) count += block.js.length
+  }
+  return Math.max(1, count)
+}
+
 function discoverContentExamples(): ContentExample[] {
   const out: ContentExample[] = []
   for (const name of fs.readdirSync(examplesDir)) {
@@ -152,7 +171,13 @@ function discoverContentExamples(): ContentExample[] {
     const jsAnchor = findJsAnchor(dir)
     if (!jsAnchor) continue // no known visible anchor — handled below
     const styleTarget = findStyleTarget(dir)
-    out.push({name, dir, jsAnchor, styleTarget})
+    out.push({
+      name,
+      dir,
+      jsAnchor,
+      styleTarget,
+      expectedRootCount: expectedRootCountFor(manifest)
+    })
   }
   return out
 }
@@ -526,6 +551,12 @@ function domContainsNeedleExpr(needle: string): string {
 // given class name in the light DOM or any open shadow root, returns the
 // getComputedStyle().getPropertyValue(prop) for the first match. Returned
 // as a string for CDP.evaluate.
+//
+// The devtools companion extension mounts its own shadow host with a
+// \`.content_script\` element inside. Reinjects re-append the user root to
+// the END of body, so after the first reinject the companion host can
+// precede the user root in document order and its unstyled element would
+// win this first-match probe forever. Skip the companion subtree.
 function readStylePropertyExpr(params: {
   className: string
   prop: string
@@ -533,6 +564,12 @@ function readStylePropertyExpr(params: {
   const selector = JSON.stringify('.' + params.className)
   const prop = JSON.stringify(params.prop)
   return `(function(){
+    function isCompanionHost(el){
+      try {
+        return typeof el.getAttribute === 'function' &&
+          el.getAttribute('data-extension-root') === 'extension-js-devtools';
+      } catch (e) { return false; }
+    }
     function find(root){
       if (!root) return null;
       try {
@@ -545,7 +582,7 @@ function readStylePropertyExpr(params: {
         ? Array.from(root.querySelectorAll('*'))
         : [];
       for (var i = 0; i < all.length; i++) {
-        if (all[i].shadowRoot) {
+        if (all[i].shadowRoot && !isCompanionHost(all[i])) {
           var hit = find(all[i].shadowRoot);
           if (hit) return hit;
         }
@@ -558,6 +595,47 @@ function readStylePropertyExpr(params: {
       var cs = ((el.ownerDocument && el.ownerDocument.defaultView) || window).getComputedStyle(el);
       return cs.getPropertyValue(${prop}).trim();
     } catch (e) { return null; }
+  })()`
+}
+
+// Style-focused diagnostic: every element matching the class name across
+// light DOM and open shadow roots, with its host chain and the probed
+// property value. Names WHICH element a failed style poll actually read.
+function styleDiagnosticExpr(params: {
+  className: string
+  prop: string
+}): string {
+  const selector = JSON.stringify('.' + params.className)
+  const prop = JSON.stringify(params.prop)
+  return `(function(){
+    var out = [];
+    function describeHost(el){
+      try {
+        var rootNode = el.getRootNode ? el.getRootNode() : null;
+        var host = rootNode && rootNode.host ? rootNode.host : null;
+        if (!host) return 'light-dom';
+        return (host.tagName || '').toLowerCase() +
+          '[data-extension-root=' + String(host.getAttribute && host.getAttribute('data-extension-root')) + ']';
+      } catch (e) { return 'unknown'; }
+    }
+    function collect(root){
+      try {
+        if (typeof root.querySelectorAll !== 'function') return;
+        Array.from(root.querySelectorAll(${selector})).forEach(function(el){
+          var value = '';
+          try {
+            value = ((el.ownerDocument && el.ownerDocument.defaultView) || window)
+              .getComputedStyle(el).getPropertyValue(${prop}).trim();
+          } catch (e) {}
+          out.push({host: describeHost(el), value: value, text: String(el.textContent || '').slice(0, 80)});
+        });
+        Array.from(root.querySelectorAll('*')).forEach(function(el){
+          if (el.shadowRoot) collect(el.shadowRoot);
+        });
+      } catch (e) {}
+    }
+    collect(document);
+    return out;
   })()`
 }
 
@@ -578,8 +656,9 @@ function domDiagnosticExpr(): string {
 }
 
 // Count user-extension roots in the page (excluding the devtools companion).
-// We assert "exactly one" after each reinject — duplicate hosts from stale
-// mounts that this test used to miss are now a hard fail.
+// We assert the template's exact steady-state count after each reinject,
+// duplicate hosts from stale mounts that this test used to miss are now a
+// hard fail. See expectedRootCountFor for why the count is per-template.
 function userRootCountExpr(): string {
   return `document.querySelectorAll('[data-extension-root]:not([data-extension-root="extension-js-devtools"])').length`
 }
@@ -673,6 +752,17 @@ for (const example of EXAMPLES) {
             )
             .toBe(true)
 
+          // Wait for EVERY declared script to finish its initial mount
+          // before editing. The multi templates mount one host per script
+          // at document_idle, and an edit racing a late sibling mount would
+          // make the post-reinject count assertions ambiguous.
+          await expect
+            .poll(() => tab.evaluate<number>(userRootCountExpr()), {
+              timeout: 30000,
+              intervals: [250, 500, 1000]
+            })
+            .toBe(example.expectedRootCount)
+
           // ------- JS edit: visible text must change in the SAME tab -------
           // Replace EVERY occurrence of the anchor, not just the first.
           // Anchors like "Open sidebar" appear in multiple spots inside a
@@ -707,23 +797,26 @@ for (const example of EXAMPLES) {
             )
           }
 
-          // Steady-state must be exactly one user-extension root after the
-          // reinject settles. Two roots means the cleanup chain leaked a
-          // stale mount — the failure mode `template.content-reload` used to
-          // miss because `domContainsNeedleExpr` finds the marker as long as
-          // ANY root has it, regardless of whether the old root also exists.
+          // Steady-state must be exactly the template's designed root count
+          // after the reinject settles (one per declared content script).
+          // One more means the cleanup chain leaked a stale mount, the
+          // failure mode `template.content-reload` used to miss because
+          // `domContainsNeedleExpr` finds the marker as long as ANY root
+          // has it, regardless of whether the old root also exists. One
+          // fewer means the reinject swallowed a sibling script's mount.
           try {
             await expect
               .poll(() => tab.evaluate<number>(userRootCountExpr()), {
                 timeout: 15000,
                 intervals: [250, 500, 1000]
               })
-              .toBe(1)
+              .toBe(example.expectedRootCount)
           } catch (err) {
             const state = await tab.evaluate<any>(domDiagnosticExpr())
             throw new Error(
-              `Duplicate \`data-extension-root\` hosts after JS reinject — ` +
-                `expected exactly one user root.\n` +
+              `Wrong \`data-extension-root\` host count after JS reinject, ` +
+                `expected exactly ${example.expectedRootCount} user root(s), ` +
+                `one per declared content script.\n` +
                 `Page state: ${JSON.stringify(state, null, 2)}`
             )
           }
@@ -795,9 +888,7 @@ for (const example of EXAMPLES) {
             await expect
               .poll(
                 () =>
-                  tab.evaluate<boolean>(
-                    domContainsNeedleExpr(recoveryMarker)
-                  ),
+                  tab.evaluate<boolean>(domContainsNeedleExpr(recoveryMarker)),
                 {timeout: 30000, intervals: [250, 500, 1000]}
               )
               .toBe(true)
@@ -809,9 +900,7 @@ for (const example of EXAMPLES) {
             await expect
               .poll(
                 () =>
-                  tab.evaluate<boolean>(
-                    domContainsNeedleExpr(recoveryMarker)
-                  ),
+                  tab.evaluate<boolean>(domContainsNeedleExpr(recoveryMarker)),
                 {timeout: 30000, intervals: [250, 500, 1000]}
               )
               .toBe(false)
@@ -868,12 +957,29 @@ for (const example of EXAMPLES) {
               return (value || '').replace(/['"\s]/g, '')
             }
 
-            await expect
-              .poll(readProbe, {
-                timeout: 30000,
-                intervals: [250, 500, 1000]
-              })
-              .toBe(cssMarker)
+            try {
+              await expect
+                .poll(readProbe, {
+                  timeout: 30000,
+                  intervals: [250, 500, 1000]
+                })
+                .toBe(cssMarker)
+            } catch (err) {
+              const matches = await tab.evaluate<any>(
+                styleDiagnosticExpr({
+                  className: 'content_script',
+                  prop: cssProbe
+                })
+              )
+              const state = await tab.evaluate<any>(domDiagnosticExpr())
+              const tail = server!.output.slice(-3000)
+              throw new Error(
+                `CSS probe ${cssProbe} never became "${cssMarker}".\n` +
+                  `Class matches: ${JSON.stringify(matches, null, 2)}\n` +
+                  `Page state: ${JSON.stringify(state, null, 2)}\n\n` +
+                  `Dev server output tail:\n${tail}`
+              )
+            }
 
             // ------- CSS syntax error: previous good state preserved ------
             // Append a broken rule to the original source. The rebuild
@@ -922,26 +1028,31 @@ for (const example of EXAMPLES) {
               )
               .toBe(recoveryValue)
 
-            // Same one-root invariant after the CSS-driven reinject.
+            // Same exact-count invariant after the CSS-driven reinject.
             try {
               await expect
                 .poll(() => tab.evaluate<number>(userRootCountExpr()), {
                   timeout: 15000,
                   intervals: [250, 500, 1000]
                 })
-                .toBe(1)
+                .toBe(example.expectedRootCount)
             } catch (err) {
               const state = await tab.evaluate<any>(domDiagnosticExpr())
               throw new Error(
-                `Duplicate \`data-extension-root\` hosts after CSS reinject — ` +
-                  `expected exactly one user root.\n` +
+                `Wrong \`data-extension-root\` host count after CSS reinject, ` +
+                  `expected exactly ${example.expectedRootCount} user root(s), ` +
+                  `one per declared content script.\n` +
                   `Page state: ${JSON.stringify(state, null, 2)}`
               )
             }
 
             // ------- CSS revert: original source restores the style ------
             const revertBaseline = getLatestContentScriptMtime(example.dir)
-            fs.writeFileSync(example.styleTarget.file, originalCssSource!, 'utf8')
+            fs.writeFileSync(
+              example.styleTarget.file,
+              originalCssSource!,
+              'utf8'
+            )
             await waitForBundleNewerThan(example.dir, revertBaseline, 45000)
             await expect
               .poll(
