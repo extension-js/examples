@@ -91,7 +91,7 @@ jobs:
       - name: Generate metadata
         env:
           RELEASE_TAG: nightly
-        run: pnpm run generate
+        run: pnpm run generate:raw
 
       - name: Publish GitHub release assets
         uses: softprops/action-gh-release@v2

@@ -10,7 +10,7 @@
  * Run after:
  * - pnpm run build:examples
  * - node scripts/package-artifacts.mjs
- * - pnpm run generate  (writes templates-meta.json)
+ * - pnpm run generate:raw  (writes the pre-stage templates-meta.json)
  */
 import fs from 'node:fs'
 import path from 'node:path'

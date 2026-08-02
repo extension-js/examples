@@ -76,6 +76,25 @@ pnpm -r build     # build every example
 pnpm test         # run E2E (Playwright) across examples
 ```
 
+## Artifact pipeline (templates-meta.json and public/)
+
+The committed `templates-meta.json` and the `public/<slug>/` mirrors are
+post-stage artifacts. CI produces them in four steps: `build:examples`, then
+`artifacts:package`, then `generate:raw`, then `artifacts:stage`. The stage
+step rewrites the raw generator output (commit becomes `main`, file paths gain
+the `public/<slug>/` prefix, `repositoryUrl` is added) and refreshes the
+mirrors.
+
+- To regenerate the committed artifacts locally, run `pnpm artifacts:prepare`.
+  Never run `pnpm generate` alone for this: the raw generator writes the
+  pre-stage shape, and committing that regresses the paths that
+  templates.extension.dev and other consumers read.
+- `pnpm generate` refuses to overwrite a staged `templates-meta.json` and
+  points at the commands above. `pnpm generate:raw` bypasses the guard and is
+  meant for the pipeline only.
+- Never hand-edit anything under `public/<slug>/`. Those are generated
+  mirrors, edit `examples/<slug>/` and re-stage instead.
+
 ## Editing guidance for agents
 
 - When asked to add behavior to a content script, modify the body of the default-exported function. Don't introduce a new top-level call.

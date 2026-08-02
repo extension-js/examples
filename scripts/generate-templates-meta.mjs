@@ -834,11 +834,49 @@ function assertSurfaceCoverage(templates) {
   }
 }
 
+// The committed templates-meta.json is the POST-stage artifact: after the raw
+// generator runs, publish-artifacts.mjs rewrites commit to "main", prefixes
+// files/screenshot/icon with public/<slug>/, and adds repositoryUrl. Running
+// the raw generator alone over that file is a silent downgrade (a 1,300+ line
+// diff) that breaks every consumer reading the staged paths. Refuse unless the
+// caller explicitly asks for the pre-stage shape, which only the artifact
+// pipeline (artifacts:prepare and the publish workflow) should do.
+const OVERWRITE_STAGED_FLAG = '--overwrite-staged'
+
+function isStagedMeta(meta) {
+  if (!meta || typeof meta !== 'object') return false
+  if (meta.commit === 'main') return true
+  return (
+    Array.isArray(meta.templates) &&
+    meta.templates.some(
+      (template) => template && typeof template.repositoryUrl === 'string'
+    )
+  )
+}
+
+function refuseToClobberStagedMeta() {
+  if (process.argv.includes(OVERWRITE_STAGED_FLAG)) return
+  if (!isStagedMeta(readJsonSafe(outFile))) return
+  console.error(
+    [
+      `►►► Refusing to overwrite ${outFile}.`,
+      'The committed templates-meta.json is the post-stage artifact',
+      '(commit "main", public/<slug>/ paths, repositoryUrl). Writing the raw',
+      'generator output over it would regress the file consumers read.',
+      'Run "pnpm run artifacts:prepare" to rebuild the full artifact, or',
+      `"pnpm run generate:raw" if you really want the pre-stage shape.`
+    ].join('\n')
+  )
+  process.exit(1)
+}
+
 function main() {
   if (!exists(examplesDir)) {
     console.error(`►►► Examples directory not found: ${examplesDir}`)
     process.exit(1)
   }
+
+  refuseToClobberStagedMeta()
 
   const exampleDirectories = listDirs(examplesDir).filter((directory) =>
     exists(path.join(directory, 'package.json'))
