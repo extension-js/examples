@@ -11,6 +11,7 @@
 
 import fs from 'fs'
 import path from 'path'
+import {test as baseTest} from '@playwright/test'
 import {getDirname} from './dirname.js'
 import {
   firefoxExtensionFixtures,
@@ -63,6 +64,20 @@ for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
     }
   }
 }
+
+const FIREFOX_SWEEP_MINIMUM = 15
+
+baseTest(
+  'firefox: parity sweep positive control discovers built content templates',
+  async () => {
+    baseTest
+      .expect(
+        contentExamples.length,
+        `the Firefox parity sweep discovered ${contentExamples.length} built content templates but covers at least ${FIREFOX_SWEEP_MINIMUM}; build the content-* templates for Firefox (dist/firefox) before running this suite`
+      )
+      .toBeGreaterThanOrEqual(FIREFOX_SWEEP_MINIMUM)
+  }
+)
 
 for (const {name, extPath} of contentExamples) {
   const test = firefoxExtensionFixtures(extPath)
@@ -168,8 +183,6 @@ if (
 // built HTML/CSS/JS files contain expected content, which combined with
 // successful addon installation gives strong parity confidence.
 // ---------------------------------------------------------------------------
-
-import {test as baseTest} from '@playwright/test'
 
 // Action popup HTML verification
 if (
