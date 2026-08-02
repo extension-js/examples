@@ -14,6 +14,7 @@
 // Usage: node scripts/assert-spec-coverage.mjs
 // Exits non-zero listing every spec file no project collects.
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import {spawnSync} from 'node:child_process'
 
@@ -59,18 +60,34 @@ function isTemplateInternal(absPath) {
 
 // Ask Playwright itself what it collects. The JSON report lists one suite
 // per collected file, with paths relative to the configured testDir.
+// The report goes to a file, never stdout: global setup and the CLI it
+// shells out to write banners there, which corrupted JSON.parse on CI.
+// SKIP_PREBUILD=1 keeps that global setup from building templates at all.
 function specsCollected() {
+  const reportPath = path.join(
+    fs.mkdtempSync(path.join(os.tmpdir(), 'spec-coverage-')),
+    'report.json'
+  )
   const result = spawnSync(
     'npx',
     ['playwright', 'test', '--list', '--reporter=json'],
-    {cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024}
+    {
+      cwd: ROOT,
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024,
+      env: {
+        ...process.env,
+        SKIP_PREBUILD: '1',
+        PLAYWRIGHT_JSON_OUTPUT_NAME: reportPath
+      }
+    }
   )
-  if (result.status !== 0) {
+  if (result.status !== 0 || !fs.existsSync(reportPath)) {
     console.error('►►► playwright test --list failed')
     console.error(result.stderr || result.stdout)
     process.exit(1)
   }
-  const report = JSON.parse(result.stdout)
+  const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'))
   const files = new Set()
   for (const suite of report.suites ?? []) {
     files.add(path.resolve(EXAMPLES, suite.file))

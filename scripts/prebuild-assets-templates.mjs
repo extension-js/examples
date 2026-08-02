@@ -143,6 +143,13 @@ function buildOne(name) {
 }
 
 export default async function globalSetup() {
+  // List-only callers (scripts/assert-spec-coverage.mjs) need Playwright to
+  // collect specs, not to run them. Building templates there wastes minutes
+  // and pollutes stdout while a JSON report is being captured.
+  if (process.env.SKIP_PREBUILD === '1') {
+    console.log('[prebuild-assets-templates] skipped (SKIP_PREBUILD=1)')
+    return
+  }
   const only = process.env.PREBUILD_ONLY
   const targets = only ? only.split(',').map((s) => s.trim()) : TEMPLATES
   const results = []
