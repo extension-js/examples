@@ -147,30 +147,27 @@ function spawnDev({projectDir, env, mode, remoteTag}) {
 
 async function waitForCdpPort(getStdout, deadlineMs) {
   const start = Date.now()
-  // The CLI logs `Chromium debug port: NNNN (requested ...)`. We grab the
-  // assigned port (first number) so a port-conflict shift is honored.
+  // The CLI logs the structured `browser  cdpPort=NNNN requested=MMMM` line.
+  // We grab the assigned port so a port-conflict shift is honored.
   while (Date.now() - start < deadlineMs) {
     const out = getStdout()
-    const match = out.match(/Chromium debug port:\s*(\d+)/)
+    const match = out.match(/\bcdpPort=(\d+)/)
     if (match) return Number(match[1])
     await new Promise((r) => setTimeout(r, 100))
   }
-  throw new Error('Timed out waiting for CDP debug port in dev stdout')
+  throw new Error(
+    'Timed out waiting for the "cdpPort=N" line in dev stdout'
+  )
 }
 
 async function waitForDevReady(getStdout, getStderr, deadlineMs) {
   const start = Date.now()
   while (Date.now() - start < deadlineMs) {
-    if (
-      /(Chrome|Chromium|Edge|Firefox) Extension ready for development/.test(
-        getStdout()
-      )
-    )
-      return
+    if (/(Extension|Add-on) ready for development/.test(getStdout())) return
     await new Promise((r) => setTimeout(r, 100))
   }
   const error = new Error(
-    'Timed out waiting for "Chrome Extension ready" banner'
+    'Timed out waiting for the "ready for development" line'
   )
   error.stdoutTail = getStdout().split('\n').slice(-40).join('\n')
   error.stderrTail = getStderr().split('\n').slice(-40).join('\n')

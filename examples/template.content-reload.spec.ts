@@ -208,7 +208,9 @@ function startDev(exampleDir: string): DevServer {
     const text = stripAnsi(chunk.toString())
     server.output += text
     if (server.cdpPort === undefined) {
-      const m = text.match(/Chromium debug port:\s*(\d+)/)
+      // Current grammar is the structured "browser  cdpPort=N requested=M"
+      // line. The old "Chromium debug port: N" was removed in the redesign.
+      const m = text.match(/\bcdpPort=(\d+)/)
       if (m) server.cdpPort = Number(m[1])
     }
   }
@@ -218,31 +220,74 @@ function startDev(exampleDir: string): DevServer {
   return server
 }
 
+interface ReadyContract {
+  status?: string
+  pid?: number
+  cdpPort?: number
+  rdpPort?: number
+  extensionId?: string
+}
+
+// Read the ready.json contract the dev server writes under
+// <root>/extension-js/<browser>/ready.json. Only trust a file stamped with
+// our own dev process pid, a leftover contract from a prior run satisfies
+// every other field check.
+function readReadyContract(
+  dir: string,
+  browser: string,
+  expectedPid?: number
+): ReadyContract | null {
+  for (const root of DEV_ROOTS) {
+    const p = path.join(dir, root, 'extension-js', browser, 'ready.json')
+    try {
+      const ready = JSON.parse(fs.readFileSync(p, 'utf8')) as ReadyContract
+      if (expectedPid !== undefined && ready?.pid !== expectedPid) continue
+      return ready
+    } catch {}
+  }
+  return null
+}
+
 async function waitForCdpReady(
   server: DevServer,
+  exampleDir: string,
   timeoutMs = 90000
 ): Promise<number> {
-  // Three-phase wait:
-  //   1. "Chromium debug port: N" — parse the port Chrome picked
-  //   2. "Chrome CDP Client connected" — the dev server's own CDP handshake
-  //   3. "Extension ID" — logged after the extension is fully registered in
-  //      the browser. Without this, the first tab we open may race the
-  //      extension's own first content-script registration and subsequent
-  //      reinjects mis-target the tab.
+  // Primary signal: ready.json, the supported dev contract. It flips status
+  // to "ready" and gains a browser-confirmed cdpPort plus extensionId once
+  // the extension is registered in the launched browser.
+  // Fallback: structured stdout, the "cdpPort=N" line plus "cdp connected"
+  // plus the "Extension ID" banner card.
   const start = Date.now()
   while (Date.now() - start < timeoutMs) {
+    const ready = readReadyContract(exampleDir, 'chromium', server.proc.pid)
+    if (
+      ready?.status === 'ready' &&
+      typeof ready.cdpPort === 'number' &&
+      ready.extensionId
+    ) {
+      server.cdpPort = ready.cdpPort
+      return ready.cdpPort
+    }
     if (
       server.cdpPort !== undefined &&
-      /Chrome CDP Client connected/i.test(server.output) &&
+      /cdp\s+connected/i.test(server.output) &&
       /Extension ID\s+[a-z0-9]/i.test(server.output)
     ) {
       return server.cdpPort
     }
     await new Promise((r) => setTimeout(r, 250))
   }
+  const anyReady = readReadyContract(exampleDir, 'chromium')
   throw new Error(
     `CDP did not become ready within ${timeoutMs}ms.\n` +
-      `Last output:\n${server.output.slice(-2000)}`
+      `Awaited: ready.json under <root>/extension-js/chromium with ` +
+      `status=ready, numeric cdpPort, extensionId and pid=${server.proc.pid}, ` +
+      `or stdout lines "cdpPort=N" + "cdp connected" + "Extension ID".\n` +
+      `ready.json seen (any pid): ${
+        anyReady ? JSON.stringify(anyReady) : 'none'
+      }\n` +
+      `Last dev output:\n${server.output.slice(-2000)}`
   )
 }
 
@@ -563,7 +608,7 @@ for (const example of EXAMPLES) {
         originalCssSource = fs.readFileSync(example.styleTarget.file, 'utf8')
       }
       server = startDev(example.dir)
-      await waitForCdpReady(server, 90000)
+      await waitForCdpReady(server, example.dir, 90000)
       // Wait for the first manifest to land on disk.
       const deadline = Date.now() + 60000
       while (Date.now() < deadline) {

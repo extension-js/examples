@@ -215,20 +215,16 @@ function startDev(exampleDir: string): DevServer {
     const text = stripAnsi(chunk.toString())
     server.output += text
     if (server.rdpPort === undefined) {
-      // Accept either extension.js's author-mode line OR Firefox's own
-      // "Started devtools server on N" (the latter is the reliable signal in
-      // headless runs, where the author-mode debug-port line may not fire).
+      // Accept the engine's structured "browser  rdpPort=N requested=M" line
+      // OR Firefox's own "Started devtools server on N" (the latter is the
+      // reliable signal in headless runs where the engine line can lag). The
+      // old "Firefox debug port: N" grammar was removed in the redesign.
       const m =
-        text.match(/Firefox debug port:\s*(\d{3,5})/i) ||
+        text.match(/\brdpPort=(\d{3,5})/) ||
         text.match(/Started devtools server on\s*(\d{3,5})/i)
       if (m) server.rdpPort = Number(m[1])
     }
-    if (
-      !server.addonReady &&
-      /Firefox Add-on ready for development|Add-on ready for development/i.test(
-        text
-      )
-    ) {
+    if (!server.addonReady && /Add-on ready for development/i.test(text)) {
       server.addonReady = true
     }
   }
@@ -237,18 +233,68 @@ function startDev(exampleDir: string): DevServer {
   return server
 }
 
+interface ReadyContract {
+  status?: string
+  pid?: number
+  rdpPort?: number
+  extensionId?: string
+}
+
+// Read the ready.json contract the dev server writes under
+// <root>/extension-js/firefox/ready.json. Only trust a file stamped with
+// our own dev process pid, a leftover contract from a prior run satisfies
+// every other field check.
+function readReadyContract(
+  dir: string,
+  expectedPid?: number
+): ReadyContract | null {
+  for (const root of DEV_ROOTS) {
+    const p = path.join(dir, root, 'extension-js', 'firefox', 'ready.json')
+    try {
+      const ready = JSON.parse(fs.readFileSync(p, 'utf8')) as ReadyContract
+      if (expectedPid !== undefined && ready?.pid !== expectedPid) continue
+      return ready
+    } catch {}
+  }
+  return null
+}
+
 async function waitForRdpReady(
   server: DevServer,
+  exampleDir: string,
   timeoutMs = 90000
 ): Promise<number> {
+  // Primary signal: ready.json, the supported dev contract. It flips status
+  // to "ready" and gains a browser-confirmed rdpPort plus extensionId once
+  // the add-on is installed in the launched Firefox.
+  // Fallback: structured stdout, the "rdpPort=N" or "Started devtools server
+  // on N" line plus the "Add-on ready for development" line.
   const start = Date.now()
   while (Date.now() - start < timeoutMs) {
+    const ready = readReadyContract(exampleDir, server.proc.pid)
+    if (
+      ready?.status === 'ready' &&
+      typeof ready.rdpPort === 'number' &&
+      ready.extensionId
+    ) {
+      server.rdpPort = ready.rdpPort
+      server.addonReady = true
+      return ready.rdpPort
+    }
     if (server.rdpPort !== undefined && server.addonReady) return server.rdpPort
     await new Promise((r) => setTimeout(r, 250))
   }
+  const anyReady = readReadyContract(exampleDir)
   throw new Error(
     `Firefox RDP not ready within ${timeoutMs}ms.\n` +
-      `Last output:\n${server.output.slice(-2000)}`
+      `Awaited: ready.json under <root>/extension-js/firefox with ` +
+      `status=ready, numeric rdpPort, extensionId and pid=${server.proc.pid}, ` +
+      `or stdout lines "rdpPort=N" (or "Started devtools server on N") + ` +
+      `"Add-on ready for development".\n` +
+      `ready.json seen (any pid): ${
+        anyReady ? JSON.stringify(anyReady) : 'none'
+      }\n` +
+      `Last dev output:\n${server.output.slice(-2000)}`
   )
 }
 
@@ -543,7 +589,7 @@ for (const example of EXAMPLES) {
         originalCssSource = fs.readFileSync(example.styleTarget.file, 'utf8')
       }
       server = startDev(example.dir)
-      const port = await waitForRdpReady(server, 90000)
+      const port = await waitForRdpReady(server, example.dir, 90000)
       // Wait for the first manifest to land on disk.
       const deadline = Date.now() + 60000
       while (Date.now() < deadline) {
