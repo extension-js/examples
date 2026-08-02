@@ -86,7 +86,8 @@
     "test:browser-manifest": "node scripts/assert-browser-manifest-integrity.mjs",
     "test:browser-manifest:all": "node scripts/assert-browser-manifest-integrity.mjs --all",
     "test:safari-manifest": "node scripts/assert-browser-manifest-integrity.mjs --targets=safari",
-    "test:strict-json": "node scripts/assert-strict-json.mjs"
+    "test:strict-json": "node scripts/assert-strict-json.mjs",
+    "test:spec-coverage": "node scripts/assert-spec-coverage.mjs"
   },
   "files": [
     "public/**",

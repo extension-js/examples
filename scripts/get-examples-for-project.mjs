@@ -23,7 +23,11 @@ const PROJECT_TO_EXAMPLES = {
   newtab: /^(new|new-.*)$/,
   'special-folders': /^special-folders-.*$/,
   'mixed-context': /^(javascript|preact|react|svelte|typescript|vue)$/,
-  other: /^(init)$/,
+  // Catch-all, mirrors the `other` project in playwright.config.ts: every
+  // example whose slug no context-scoped project claims. Keep the prefix
+  // list in sync with claimedSlugPrefixes in playwright.config.ts.
+  other:
+    /^(?!(?:content|sidebar|action|new|special-folders|javascript|preact|react|svelte|typescript|vue)(?:-.*)?$).+$/,
   // Assets project tests a cross-section of all context types
   assets:
     /^(content|content-css-modules|content-sass|content-less|content-sass-modules|content-less-modules|content-main-world|content-multi-one-entry|content-multi-three-entries|action|new|sidebar|react|vue|svelte|preact|javascript)$/

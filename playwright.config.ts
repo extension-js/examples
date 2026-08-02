@@ -9,6 +9,32 @@ import {defineConfig, devices} from '@playwright/test'
 
 const isHeadless = process.env.HEADLESS === 'true'
 
+// Slug prefixes claimed by the context-scoped projects below. Each prefix
+// claims the exact slug and any `<prefix>-*` variant. The `other` project
+// collects every template.spec.ts whose slug no prefix claims, so a new
+// template is tested by default instead of silently skipped.
+// scripts/get-examples-for-project.mjs derives the CI build list from the
+// same rule and scripts/assert-spec-coverage.mjs fails the build when a
+// spec file still ends up matched by no project.
+const claimedSlugPrefixes = [
+  'content',
+  'sidebar',
+  'action',
+  'new',
+  'special-folders',
+  'javascript',
+  'preact',
+  'react',
+  'svelte',
+  'typescript',
+  'vue'
+]
+
+const unclaimedTemplateSpec = new RegExp(
+  `examples/(?!(?:${claimedSlugPrefixes.join('|')})(?:-[^/]*)?/)` +
+    `[^/]+/template\\.spec\\.ts$`
+)
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -295,10 +321,12 @@ export default defineConfig({
       }
     },
 
-    // Other Tests - Tests that don't fit other categories (e.g., init)
+    // Other Tests - catch-all for template specs no slug-scoped project
+    // above claims (init, playwright, transformers-js, ai-*, and any new
+    // template until it earns a dedicated project)
     {
       name: 'other',
-      testMatch: /examples\/(init)\/.*\.spec\.ts$/,
+      testMatch: unclaimedTemplateSpec,
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless
