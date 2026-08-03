@@ -13,7 +13,7 @@
 
 **How it works**: The manifest overrides the new-tab page and loads a TypeScript entry bundled from `src/newtab/`.
 
-Demonstrates the bundler's automatic Web Crypto polyfill for extension contexts where Node-style `crypto` modules are referenced.
+Demonstrates hashing with the browser's native Web Crypto API (`window.crypto.subtle`) directly, no Node `crypto` module and no polyfill involved.
 
 ## Try it locally
 
