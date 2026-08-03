@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-03T19:45:29.660Z",
+  "generatedAt": "2026-08-03T21:01:30.379Z",
   "templates": [
     {
       "slug": "action",
@@ -1301,7 +1301,7 @@
     {
       "slug": "new",
       "name": "new",
-      "title": "Newtab",
+      "title": "New Tab",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Replaces your new tab page with a simple page you can customize.",
@@ -2189,6 +2189,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "docsUrl": "https://ant.design/docs/react/introduce",
       "files": [
         "public/sidebar-antd/extension.config.js",
         "public/sidebar-antd/src/background.js",
@@ -2207,7 +2208,7 @@
     {
       "slug": "sidebar-monorepo-turbopack",
       "name": "sidebar-monorepo-turbopack",
-      "title": "Sidebar Turbopack",
+      "title": "Sidebar Turborepo",
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
@@ -2238,6 +2239,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "docsUrl": "https://turborepo.dev/docs",
       "files": [
         "public/sidebar-monorepo-turbopack/extension.config.js",
         "public/sidebar-monorepo-turbopack/packages/analytics/src/index.js",
