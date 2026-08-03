@@ -5,11 +5,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
-  "author": {
-    "name": "Cezar Augusto",
-    "email": "boss@cezaraugusto.net",
-    "url": "https://cezaraugusto.com"
-  },
   "dependencies": {
     "@ant-design/icons": "^6.1.1",
     "@ant-design/x": "^2.6.0",

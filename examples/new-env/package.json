@@ -4,10 +4,5 @@
   "description": "Replaces your new tab page with a page showing the extension's environment values.",
   "version": "1.0.0",
   "license": "MIT",
-  "type": "module",
-  "author": {
-    "name": "Cezar Augusto",
-    "email": "boss@cezaraugusto.net",
-    "url": "https://cezaraugusto.com"
-  }
+  "type": "module"
 }

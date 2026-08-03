@@ -5,11 +5,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
-  "author": {
-    "name": "Cezar Augusto",
-    "email": "boss@cezaraugusto.net",
-    "url": "https://cezaraugusto.com"
-  },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
