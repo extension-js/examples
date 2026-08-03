@@ -59,7 +59,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/javascript/README.md">examples/javascript</a></td>
       <td rowspan="5"><img src="./examples/javascript/screenshot.png" alt="javascript screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -82,7 +82,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/react/README.md">examples/react</a></td>
       <td rowspan="5"><img src="./examples/react/screenshot.png" alt="react screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -105,7 +105,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/preact/README.md">examples/preact</a></td>
       <td rowspan="5"><img src="./examples/preact/screenshot.png" alt="preact screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -128,7 +128,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/svelte/README.md">examples/svelte</a></td>
       <td rowspan="5"><img src="./examples/svelte/screenshot.png" alt="svelte screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -151,7 +151,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/vue/README.md">examples/vue</a></td>
       <td rowspan="5"><img src="./examples/vue/screenshot.png" alt="vue screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -174,7 +174,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/typescript/README.md">examples/typescript</a></td>
       <td rowspan="5"><img src="./examples/typescript/screenshot.png" alt="typescript screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">3.0.0</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -197,7 +197,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar/README.md">examples/sidebar</a></td>
       <td rowspan="5"><img src="./examples/sidebar/screenshot.png" alt="sidebar screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -220,7 +220,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-shadcn/README.md">examples/sidebar-shadcn</a></td>
       <td rowspan="5"><img src="./examples/sidebar-shadcn/screenshot.png" alt="sidebar-shadcn screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -266,7 +266,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-turbopack/README.md">examples/sidebar-monorepo-turbopack</a></td>
       <td rowspan="5"><img src="./examples/sidebar-monorepo-turbopack/screenshot.png" alt="sidebar-monorepo-turbopack screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -291,7 +291,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/action/README.md">examples/action</a></td>
       <td rowspan="5"><img src="./examples/action/screenshot.png" alt="action screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Action, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -314,7 +314,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/action-locales/README.md">examples/action-locales</a></td>
       <td rowspan="5"><img src="./examples/action-locales/screenshot.png" alt="action-locales screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Action, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -339,7 +339,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content/README.md">examples/content</a></td>
       <td rowspan="5"><img src="./examples/content/screenshot.png" alt="content screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -362,7 +362,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-css-modules/README.md">examples/content-css-modules</a></td>
       <td rowspan="5"><img src="./examples/content-css-modules/screenshot.png" alt="content-css-modules screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -385,7 +385,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-custom-font/README.md">examples/content-custom-font</a></td>
       <td rowspan="5"><img src="./examples/content-custom-font/screenshot.png" alt="content-custom-font screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -408,7 +408,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-env/README.md">examples/content-env</a></td>
       <td rowspan="5"><img src="./examples/content-env/screenshot.png" alt="content-env screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -431,7 +431,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-less/README.md">examples/content-less</a></td>
       <td rowspan="5"><img src="./examples/content-less/screenshot.png" alt="content-less screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
@@ -454,7 +454,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-less-modules/README.md">examples/content-less-modules</a></td>
       <td rowspan="5"><img src="./examples/content-less-modules/screenshot.png" alt="content-less-modules screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
@@ -477,7 +477,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-multi-one-entry/README.md">examples/content-multi-one-entry</a></td>
       <td rowspan="5"><img src="./examples/content-multi-one-entry/screenshot.png" alt="content-multi-one-entry screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -500,7 +500,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-multi-three-entries/README.md">examples/content-multi-three-entries</a></td>
       <td rowspan="5"><img src="./examples/content-multi-three-entries/screenshot.png" alt="content-multi-three-entries screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -523,7 +523,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-preact/README.md">examples/content-preact</a></td>
       <td rowspan="5"><img src="./examples/content-preact/screenshot.png" alt="content-preact screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -546,7 +546,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-react/README.md">examples/content-react</a></td>
       <td rowspan="5"><img src="./examples/content-react/screenshot.png" alt="content-react screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -569,7 +569,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-sass/README.md">examples/content-sass</a></td>
       <td rowspan="5"><img src="./examples/content-sass/screenshot.png" alt="content-sass screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
@@ -592,7 +592,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-sass-modules/README.md">examples/content-sass-modules</a></td>
       <td rowspan="5"><img src="./examples/content-sass-modules/screenshot.png" alt="content-sass-modules screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
@@ -615,7 +615,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-svelte/README.md">examples/content-svelte</a></td>
       <td rowspan="5"><img src="./examples/content-svelte/screenshot.png" alt="content-svelte screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -638,7 +638,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-typescript/README.md">examples/content-typescript</a></td>
       <td rowspan="5"><img src="./examples/content-typescript/screenshot.png" alt="content-typescript screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -661,7 +661,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-vue/README.md">examples/content-vue</a></td>
       <td rowspan="5"><img src="./examples/content-vue/screenshot.png" alt="content-vue screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -686,7 +686,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new/README.md">examples/new</a></td>
       <td rowspan="5"><img src="./examples/new/screenshot.png" alt="new screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -709,7 +709,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-browser-flags/README.md">examples/new-browser-flags</a></td>
       <td rowspan="5"><img src="./examples/new-browser-flags/screenshot.png" alt="new-browser-flags screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, New Tab, Sidebar, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -732,7 +732,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-eslint/README.md">examples/new-config-eslint</a></td>
       <td rowspan="5"><img src="./examples/new-config-eslint/screenshot.png" alt="new-config-eslint screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -755,7 +755,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-prettier/README.md">examples/new-config-prettier</a></td>
       <td rowspan="5"><img src="./examples/new-config-prettier/screenshot.png" alt="new-config-prettier screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -778,7 +778,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-stylelint/README.md">examples/new-config-stylelint</a></td>
       <td rowspan="5"><img src="./examples/new-config-stylelint/screenshot.png" alt="new-config-stylelint screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
@@ -801,7 +801,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-crypto/README.md">examples/new-crypto</a></td>
       <td rowspan="5"><img src="./examples/new-crypto/screenshot.png" alt="new-crypto screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -824,7 +824,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-env/README.md">examples/new-env</a></td>
       <td rowspan="5"><img src="./examples/new-env/screenshot.png" alt="new-env screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -847,7 +847,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-less/README.md">examples/new-less</a></td>
       <td rowspan="5"><img src="./examples/new-less/screenshot.png" alt="new-less screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
@@ -870,7 +870,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-preact/README.md">examples/new-preact</a></td>
       <td rowspan="5"><img src="./examples/new-preact/screenshot.png" alt="new-preact screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -893,7 +893,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-react/README.md">examples/new-react</a></td>
       <td rowspan="5"><img src="./examples/new-react/screenshot.png" alt="new-react screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -916,7 +916,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-react-router/README.md">examples/new-react-router</a></td>
       <td rowspan="5"><img src="./examples/new-react-router/screenshot.png" alt="new-react-router screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -939,7 +939,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-sass/README.md">examples/new-sass</a></td>
       <td rowspan="5"><img src="./examples/new-sass/screenshot.png" alt="new-sass screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
@@ -962,7 +962,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-svelte/README.md">examples/new-svelte</a></td>
       <td rowspan="5"><img src="./examples/new-svelte/screenshot.png" alt="new-svelte screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -985,7 +985,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-typescript/README.md">examples/new-typescript</a></td>
       <td rowspan="5"><img src="./examples/new-typescript/screenshot.png" alt="new-typescript screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -1008,7 +1008,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-vue/README.md">examples/new-vue</a></td>
       <td rowspan="5"><img src="./examples/new-vue/screenshot.png" alt="new-vue screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -1033,7 +1033,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/special-folders-pages/README.md">examples/special-folders-pages</a></td>
       <td rowspan="5"><img src="./examples/special-folders-pages/screenshot.png" alt="special-folders-pages screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -1056,7 +1056,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/special-folders-scripts/README.md">examples/special-folders-scripts</a></td>
       <td rowspan="5"><img src="./examples/special-folders-scripts/screenshot.png" alt="special-folders-scripts screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
@@ -1081,7 +1081,7 @@ npx extension@latest create my-extension --template javascript
       <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/init/README.md">examples/init</a></td>
       <td rowspan="5"><img src="./examples/init/screenshot.png" alt="init screenshot" width="360" /></td>
     </tr>
-    <tr><td>Version</td><td align="right">0.0.1</td></tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right"></td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
