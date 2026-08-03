@@ -7,7 +7,7 @@
 
 > Adds a sidebar panel to the browser with a simple React page.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 

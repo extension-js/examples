@@ -7,7 +7,7 @@
 
 > Replaces your new tab page with a simple Vue page.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A custom new-tab page replacing the browser default.
 

@@ -7,7 +7,7 @@
 
 > Adds a toolbar popup to the browser with a simple page.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A toolbar popup that opens when you click the extension's icon.
 

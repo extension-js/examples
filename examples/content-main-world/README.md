@@ -7,7 +7,7 @@
 
 > Injects a small UI into every web page from both the extension and the page's own JavaScript world.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 

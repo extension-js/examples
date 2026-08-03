@@ -181,8 +181,14 @@ function detectTemplate(templateDir, slug) {
   const description = String(
     manifest.description || packageJson.description || ''
   ).trim()
-  const screenshotPath = path.join(templateDir, 'public', 'screenshot.png')
-  const hasScreenshot = exists(screenshotPath)
+  // Screenshots live at the template root (catalog asset, kept out of the
+  // compiled build). Accept the legacy public/ location as a fallback.
+  const screenshotHref = exists(path.join(templateDir, 'screenshot.png'))
+    ? './screenshot.png'
+    : exists(path.join(templateDir, 'public', 'screenshot.png'))
+      ? './public/screenshot.png'
+      : null
+  const hasScreenshot = Boolean(screenshotHref)
   const hasTemplateSpec = exists(path.join(templateDir, 'template.spec.ts'))
   const isMonorepo =
     exists(path.join(templateDir, 'pnpm-workspace.yaml')) ||
@@ -346,6 +352,7 @@ function detectTemplate(templateDir, slug) {
     meta,
     description,
     hasScreenshot,
+    screenshotHref,
     hasTemplateSpec,
     isMonorepo,
     surfaces,
@@ -747,8 +754,8 @@ function deriveWhatYoullSee(detected) {
 function renderReadme(detected) {
   const title = deriveTitle(detected)
   const blockquote = detected.description ? `> ${detected.description}\n\n` : ''
-  const screenshotEmbed = detected.hasScreenshot
-    ? `![screenshot](./public/screenshot.png)\n\n`
+  const screenshotEmbed = detected.screenshotHref
+    ? `![screenshot](${detected.screenshotHref})\n\n`
     : ''
 
   const tree = renderTree(detected.srcFiles, detected.layoutLabel || 'src')

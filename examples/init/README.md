@@ -7,6 +7,8 @@
 
 > A minimal extension that loads in your browser, ready to build on.
 
+![screenshot](./screenshot.png)
+
 **What you'll see**: A minimal extension wired with dev / build / preview scripts.
 
 **How it works**: A JavaScript extension scaffold ready for `extension dev` / `extension build`.

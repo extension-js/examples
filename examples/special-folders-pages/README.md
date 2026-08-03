@@ -7,7 +7,7 @@
 
 > Opens a welcome page in a new tab when the extension loads.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A welcome page that opens on install / startup, served from `pages/`.
 

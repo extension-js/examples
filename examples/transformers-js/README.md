@@ -7,7 +7,7 @@
 
 > Adds a sidebar panel that classifies the active page or your selected text with on-device AI models.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 

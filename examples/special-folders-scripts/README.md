@@ -7,7 +7,7 @@
 
 > Shows a small overlay on web pages and a toolbar popup that runs the extension's bundled scripts.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: Standalone scripts auto-bundled from `scripts/`, runnable via the action popup.
 

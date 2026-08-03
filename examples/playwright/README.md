@@ -7,7 +7,7 @@
 
 > Adds a sidebar panel to the browser, covered end to end by Playwright tests.
 
-![screenshot](./public/screenshot.png)
+![screenshot](./screenshot.png)
 
 **What you'll see**: A browser side panel that loads when you open the sidebar.
 
