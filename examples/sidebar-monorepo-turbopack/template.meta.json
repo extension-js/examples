@@ -1,4 +1,5 @@
 {
-  "title": "Sidebar Turbopack",
-  "featured": true
+  "title": "Sidebar Turborepo",
+  "featured": true,
+  "docsUrl": "https://turborepo.dev/docs"
 }
