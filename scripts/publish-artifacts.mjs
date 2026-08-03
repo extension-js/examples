@@ -104,16 +104,43 @@ function main() {
 
     const destinationBase = path.join(OUT_PUBLIC, slug)
 
-    // Copy sources and public assets
-    const sourceDirectory = path.join(templateDirectory, 'src')
+    // Copy sources, public assets, and root-level special folders. When a
+    // source directory no longer exists (e.g. a template's public/ went away
+    // after its screenshot moved to the template root), prune the mirror copy
+    // too, or the stale directory lingers in the committed gallery forever.
+    const mirroredDirectories = [
+      'src',
+      'public',
+      'pages',
+      'scripts',
+      'locales',
+      '_locales'
+    ]
 
-    if (fs.existsSync(sourceDirectory)) {
-      replaceDir(sourceDirectory, path.join(destinationBase, 'src'))
+    for (const directoryName of mirroredDirectories) {
+      const sourceDirectory = path.join(templateDirectory, directoryName)
+      const destinationDirectory = path.join(destinationBase, directoryName)
+
+      if (fs.existsSync(sourceDirectory)) {
+        replaceDir(sourceDirectory, destinationDirectory)
+      } else {
+        fs.rmSync(destinationDirectory, {recursive: true, force: true})
+      }
     }
-    const publicDirectory = path.join(templateDirectory, 'public')
 
-    if (fs.existsSync(publicDirectory)) {
-      replaceDir(publicDirectory, path.join(destinationBase, 'public'))
+    // Root-level files templates-meta.json lists in `files` (templates with a
+    // root layout keep manifest.json outside src/).
+    const mirroredRootFiles = ['manifest.json', 'extension.config.js']
+
+    for (const fileName of mirroredRootFiles) {
+      const sourceFile = path.join(templateDirectory, fileName)
+      const destinationFile = path.join(destinationBase, fileName)
+
+      if (fs.existsSync(sourceFile)) {
+        cp(sourceFile, destinationFile)
+      } else {
+        fs.rmSync(destinationFile, {force: true})
+      }
     }
 
     // Normalize screenshot to public/<slug>/screenshot.png if available

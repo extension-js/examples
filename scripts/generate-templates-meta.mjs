@@ -691,6 +691,14 @@ function getGitCommit() {
   return 'local'
 }
 
+// Extension.js special folders that live at the template ROOT (not under
+// src/). They are part of the compiled extension, so a consumer rebuilding a
+// template from `files` needs them (special-folders-pages ships pages/**).
+// Kept as an explicit allowlist (not "all tracked files minus a deny list") so
+// repo scaffolding (lockfiles, template.spec.ts, STORE.md, monorepo configs)
+// never leaks into the catalog and the 500-file cap stays comfortable.
+const ROOT_SPECIAL_FOLDERS_PATTERN = /^(pages|scripts|locales|_locales)\//
+
 function collectFiles(exampleDirectory) {
   const relativePath = (filePath) =>
     path.relative(exampleDirectory, filePath).replace(/\\/g, '/')
@@ -704,7 +712,8 @@ function collectFiles(exampleDirectory) {
         /(^|\/)src\//.test(filePath) ||
         filePath.endsWith('/manifest.json') ||
         filePath.endsWith('extension.config.js') ||
-        /(^|\/)public\//.test(filePath)
+        /(^|\/)public\//.test(filePath) ||
+        ROOT_SPECIAL_FOLDERS_PATTERN.test(relativePath(filePath))
     )
     .map(relativePath)
     .slice(0, 500)
