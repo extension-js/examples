@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-03T09:30:43.288Z",
+  "generatedAt": "2026-08-03T14:12:54.867Z",
   "templates": [
     {
       "slug": "action",
@@ -48,7 +48,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
       "files": [
         "public/action/extension.config.js",
-        "public/action/public/screenshot.png",
         "public/action/src/action/index.html",
         "public/action/src/action/scripts.js",
         "public/action/src/action/styles.css",
@@ -90,8 +89,9 @@
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
       "files": [
+        "public/action-locales/_locales/en/messages.json",
+        "public/action-locales/_locales/pt_BR/messages.json",
         "public/action-locales/extension.config.js",
-        "public/action-locales/public/screenshot.png",
         "public/action-locales/src/action/index.html",
         "public/action-locales/src/action/scripts.js",
         "public/action-locales/src/action/styles.css",
@@ -166,7 +166,6 @@
       "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
       "files": [
         "public/ai-chatgpt/extension.config.js",
-        "public/ai-chatgpt/public/screenshot.png",
         "public/ai-chatgpt/src/background.ts",
         "public/ai-chatgpt/src/components/ApiKeyForm.tsx",
         "public/ai-chatgpt/src/components/ChatInput.tsx",
@@ -253,7 +252,6 @@
       "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
       "files": [
         "public/ai-claude/extension.config.js",
-        "public/ai-claude/public/screenshot.png",
         "public/ai-claude/src/background.ts",
         "public/ai-claude/src/components/ApiKeyForm.tsx",
         "public/ai-claude/src/components/ChatInput.tsx",
@@ -340,7 +338,6 @@
       "docsUrl": "https://ai.google.dev/gemini-api/docs",
       "files": [
         "public/ai-gemini/extension.config.js",
-        "public/ai-gemini/public/screenshot.png",
         "public/ai-gemini/src/background.ts",
         "public/ai-gemini/src/components/ApiKeyForm.tsx",
         "public/ai-gemini/src/components/ChatInput.tsx",
@@ -427,7 +424,6 @@
       "docsUrl": "https://docs.perplexity.ai/",
       "files": [
         "public/ai-perplexity/extension.config.js",
-        "public/ai-perplexity/public/screenshot.png",
         "public/ai-perplexity/src/background.ts",
         "public/ai-perplexity/src/components/ApiKeyForm.tsx",
         "public/ai-perplexity/src/components/ChatInput.tsx",
@@ -483,7 +479,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content/extension.config.js",
-        "public/content/public/screenshot.png",
         "public/content/src/background.js",
         "public/content/src/content/scripts.js",
         "public/content/src/content/styles.css",
@@ -525,7 +520,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
       "files": [
         "public/content-css-modules/extension.config.js",
-        "public/content-css-modules/public/screenshot.png",
         "public/content-css-modules/src/background.js",
         "public/content-css-modules/src/content/scripts.js",
         "public/content-css-modules/src/content/styles.module.css",
@@ -567,7 +561,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "files": [
         "public/content-custom-font/extension.config.js",
-        "public/content-custom-font/public/screenshot.png",
         "public/content-custom-font/src/background.js",
         "public/content-custom-font/src/content/scripts.js",
         "public/content-custom-font/src/content/styles.css",
@@ -609,7 +602,6 @@
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
       "files": [
         "public/content-env/extension.config.js",
-        "public/content-env/public/screenshot.png",
         "public/content-env/src/background.ts",
         "public/content-env/src/content/scripts.ts",
         "public/content-env/src/content/styles.css",
@@ -651,7 +643,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/content-less/extension.config.js",
-        "public/content-less/public/screenshot.png",
         "public/content-less/src/background.js",
         "public/content-less/src/content/scripts.js",
         "public/content-less/src/content/styles.less",
@@ -693,7 +684,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/content-less-modules/extension.config.js",
-        "public/content-less-modules/public/screenshot.png",
         "public/content-less-modules/src/background.js",
         "public/content-less-modules/src/content/scripts.js",
         "public/content-less-modules/src/content/styles.module.less",
@@ -753,7 +743,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content-main-world/extension.config.js",
-        "public/content-main-world/public/screenshot.png",
         "public/content-main-world/src/background.js",
         "public/content-main-world/src/content/isolated-one.js",
         "public/content-main-world/src/content/isolated-two.js",
@@ -805,7 +794,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content-multi-one-entry/extension.config.js",
-        "public/content-multi-one-entry/public/screenshot.png",
         "public/content-multi-one-entry/src/background.js",
         "public/content-multi-one-entry/src/content/script-bottom-left.js",
         "public/content-multi-one-entry/src/content/script-bottom-right.js",
@@ -871,7 +859,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "files": [
         "public/content-multi-three-entries/extension.config.js",
-        "public/content-multi-three-entries/public/screenshot.png",
         "public/content-multi-three-entries/src/background.js",
         "public/content-multi-three-entries/src/content/script-bottom-left.js",
         "public/content-multi-three-entries/src/content/script-bottom-right.js",
@@ -1021,7 +1008,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "files": [
         "public/content-sass/extension.config.js",
-        "public/content-sass/public/screenshot.png",
         "public/content-sass/src/background.js",
         "public/content-sass/src/content/scripts.js",
         "public/content-sass/src/content/styles.scss",
@@ -1065,7 +1051,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "files": [
         "public/content-sass-modules/extension.config.js",
-        "public/content-sass-modules/public/screenshot.png",
         "public/content-sass-modules/src/background.js",
         "public/content-sass-modules/src/content/scripts.js",
         "public/content-sass-modules/src/content/styles.module.scss",
@@ -1159,7 +1144,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "files": [
         "public/content-typescript/extension.config.js",
-        "public/content-typescript/public/screenshot.png",
         "public/content-typescript/src/background.ts",
         "public/content-typescript/src/content/scripts.ts",
         "public/content-typescript/src/content/styles.css",
@@ -1298,7 +1282,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
       "files": [
         "public/javascript/extension.config.js",
-        "public/javascript/public/screenshot.png",
         "public/javascript/src/background.js",
         "public/javascript/src/content/ContentApp.js",
         "public/javascript/src/content/scripts.js",
@@ -1345,7 +1328,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "files": [
         "public/new/extension.config.js",
-        "public/new/public/screenshot.png",
         "public/new/src/background.js",
         "public/new/src/images/icon.png",
         "public/new/src/manifest.json",
@@ -1444,7 +1426,6 @@
       "docsUrl": "https://extension.js.org/docs/integrations/eslint",
       "files": [
         "public/new-config-eslint/extension.config.js",
-        "public/new-config-eslint/public/screenshot.png",
         "public/new-config-eslint/src/background.js",
         "public/new-config-eslint/src/images/icon.png",
         "public/new-config-eslint/src/manifest.json",
@@ -1487,7 +1468,6 @@
       "docsUrl": "https://extension.js.org/docs/integrations/prettier",
       "files": [
         "public/new-config-prettier/extension.config.js",
-        "public/new-config-prettier/public/screenshot.png",
         "public/new-config-prettier/src/background.js",
         "public/new-config-prettier/src/images/icon.png",
         "public/new-config-prettier/src/manifest.json",
@@ -1530,7 +1510,6 @@
       "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
       "files": [
         "public/new-config-stylelint/extension.config.js",
-        "public/new-config-stylelint/public/screenshot.png",
         "public/new-config-stylelint/src/background.js",
         "public/new-config-stylelint/src/images/icon.png",
         "public/new-config-stylelint/src/manifest.json",
@@ -1573,7 +1552,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
       "files": [
         "public/new-crypto/extension.config.js",
-        "public/new-crypto/public/screenshot.png",
         "public/new-crypto/src/background.js",
         "public/new-crypto/src/images/icon.png",
         "public/new-crypto/src/manifest.json",
@@ -1629,7 +1607,6 @@
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
       "files": [
         "public/new-env/extension.config.js",
-        "public/new-env/public/screenshot.png",
         "public/new-env/src/background.js",
         "public/new-env/src/images/icon.png",
         "public/new-env/src/manifest.json",
@@ -1672,7 +1649,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "files": [
         "public/new-less/extension.config.js",
-        "public/new-less/public/screenshot.png",
         "public/new-less/src/background.js",
         "public/new-less/src/images/icon.png",
         "public/new-less/src/manifest.json",
@@ -1715,7 +1691,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
       "files": [
         "public/new-preact/extension.config.js",
-        "public/new-preact/public/screenshot.png",
         "public/new-preact/src/background.js",
         "public/new-preact/src/images/icon.png",
         "public/new-preact/src/manifest.json",
@@ -1759,7 +1734,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "files": [
         "public/new-react/extension.config.js",
-        "public/new-react/public/screenshot.png",
         "public/new-react/src/background.js",
         "public/new-react/src/images/icon.png",
         "public/new-react/src/manifest.json",
@@ -1803,7 +1777,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "files": [
         "public/new-react-router/extension.config.js",
-        "public/new-react-router/public/screenshot.png",
         "public/new-react-router/src/background.js",
         "public/new-react-router/src/images/icon.png",
         "public/new-react-router/src/manifest.json",
@@ -1847,7 +1820,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "files": [
         "public/new-sass/extension.config.js",
-        "public/new-sass/public/screenshot.png",
         "public/new-sass/src/background.js",
         "public/new-sass/src/images/icon.png",
         "public/new-sass/src/manifest.json",
@@ -1890,7 +1862,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
       "files": [
         "public/new-svelte/extension.config.js",
-        "public/new-svelte/public/screenshot.png",
         "public/new-svelte/src/background.js",
         "public/new-svelte/src/images/icon.png",
         "public/new-svelte/src/manifest.json",
@@ -1934,7 +1905,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "files": [
         "public/new-typescript/extension.config.js",
-        "public/new-typescript/public/screenshot.png",
         "public/new-typescript/src/background.js",
         "public/new-typescript/src/images/icon.png",
         "public/new-typescript/src/manifest.json",
@@ -1977,7 +1947,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
       "files": [
         "public/new-vue/extension.config.js",
-        "public/new-vue/public/screenshot.png",
         "public/new-vue/src/background.js",
         "public/new-vue/src/images/icon.png",
         "public/new-vue/src/manifest.json",
@@ -2036,7 +2005,6 @@
       "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
       "files": [
         "public/playwright/extension.config.js",
-        "public/playwright/public/screenshot.png",
         "public/playwright/src/background.ts",
         "public/playwright/src/images/icon.png",
         "public/playwright/src/manifest.json",
@@ -2084,7 +2052,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
       "files": [
         "public/preact/extension.config.js",
-        "public/preact/public/screenshot.png",
         "public/preact/src/background.ts",
         "public/preact/src/content/ContentApp.tsx",
         "public/preact/src/content/scripts.tsx",
@@ -2137,7 +2104,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
       "files": [
         "public/react/extension.config.js",
-        "public/react/public/screenshot.png",
         "public/react/src/background.ts",
         "public/react/src/content/ContentApp.tsx",
         "public/react/src/content/scripts.tsx",
@@ -2184,7 +2150,6 @@
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "files": [
         "public/sidebar/extension.config.js",
-        "public/sidebar/public/screenshot.png",
         "public/sidebar/src/background.js",
         "public/sidebar/src/images/icon.png",
         "public/sidebar/src/manifest.json",
@@ -2226,7 +2191,6 @@
       "featured": false,
       "files": [
         "public/sidebar-antd/extension.config.js",
-        "public/sidebar-antd/public/screenshot.png",
         "public/sidebar-antd/src/background.js",
         "public/sidebar-antd/src/images/icon.png",
         "public/sidebar-antd/src/manifest.json",
@@ -2285,8 +2249,7 @@
         "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/SidebarApp.js",
         "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/index.html",
         "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/scripts.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/styles.css",
-        "public/sidebar-monorepo-turbopack/public/screenshot.png"
+        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/sidebar-monorepo-turbopack/screenshot.png",
@@ -2327,7 +2290,6 @@
       "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
       "files": [
         "public/sidebar-shadcn/extension.config.js",
-        "public/sidebar-shadcn/public/screenshot.png",
         "public/sidebar-shadcn/src/background.ts",
         "public/sidebar-shadcn/src/components/ui/button.tsx",
         "public/sidebar-shadcn/src/components/ui/card.tsx",
@@ -2389,10 +2351,13 @@
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
       "files": [
         "public/special-folders-pages/extension.config.js",
+        "public/special-folders-pages/pages/custom.html",
+        "public/special-folders-pages/pages/main.html",
+        "public/special-folders-pages/pages/main.js",
+        "public/special-folders-pages/pages/welcome.html",
         "public/special-folders-pages/public/css/file.css",
         "public/special-folders-pages/public/html/file.html",
         "public/special-folders-pages/public/js/file.js",
-        "public/special-folders-pages/public/screenshot.png",
         "public/special-folders-pages/src/background.js",
         "public/special-folders-pages/src/images/icon.png",
         "public/special-folders-pages/src/images/javascript.png",
@@ -2436,7 +2401,9 @@
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
       "files": [
         "public/special-folders-scripts/extension.config.js",
-        "public/special-folders-scripts/public/screenshot.png",
+        "public/special-folders-scripts/scripts/script-one.js",
+        "public/special-folders-scripts/scripts/script-three.js",
+        "public/special-folders-scripts/scripts/script-two.js",
         "public/special-folders-scripts/src/background.js",
         "public/special-folders-scripts/src/content/scripts.js",
         "public/special-folders-scripts/src/content/styles.css",
@@ -2483,7 +2450,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
       "files": [
         "public/svelte/extension.config.js",
-        "public/svelte/public/screenshot.png",
         "public/svelte/src/background.ts",
         "public/svelte/src/content/ContentApp.svelte",
         "public/svelte/src/content/scripts.ts",
@@ -2543,7 +2509,6 @@
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
       "files": [
         "public/transformers-js/extension.config.js",
-        "public/transformers-js/public/screenshot.png",
         "public/transformers-js/src/background.js",
         "public/transformers-js/src/constants.js",
         "public/transformers-js/src/content/scripts.js",
@@ -2594,7 +2559,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
       "files": [
         "public/typescript/extension.config.js",
-        "public/typescript/public/screenshot.png",
         "public/typescript/src/background.ts",
         "public/typescript/src/content/ContentApp.ts",
         "public/typescript/src/content/scripts.ts",
@@ -2646,7 +2610,6 @@
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
       "files": [
         "public/vue/extension.config.js",
-        "public/vue/public/screenshot.png",
         "public/vue/src/background.ts",
         "public/vue/src/content/ContentApp.vue",
         "public/vue/src/content/scripts.ts",
