@@ -128,6 +128,26 @@ function main() {
       }
     }
 
+    // Monorepo templates keep their sources under packages/, so none of the
+    // directories above exist and the mirror ships nothing the catalog lists.
+    // Mirror packages/ too, minus installs and build output.
+    const packagesSource = path.join(templateDirectory, 'packages')
+    const packagesDestination = path.join(destinationBase, 'packages')
+
+    if (fs.existsSync(packagesSource)) {
+      fs.rmSync(packagesDestination, {recursive: true, force: true})
+      ensureDir(path.dirname(packagesDestination))
+      fs.cpSync(packagesSource, packagesDestination, {
+        recursive: true,
+        filter: (sourcePath) =>
+          !/(^|\/)(node_modules|dist|\.turbo|\.extension-js)(\/|$)/.test(
+            sourcePath
+          )
+      })
+    } else {
+      fs.rmSync(packagesDestination, {recursive: true, force: true})
+    }
+
     // Root-level files templates-meta.json lists in `files` (templates with a
     // root layout keep manifest.json outside src/).
     const mirroredRootFiles = ['manifest.json', 'extension.config.js']
