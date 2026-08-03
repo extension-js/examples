@@ -3,15 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Vue Content Script Example
+# Vue Sidebar Example
 
 > Adds a sidebar panel to the browser with a simple Vue page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A sidebar panel with a Vue page, plus a small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a Vue + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The side panel loads a Vue + TypeScript page. A content script also mounts a Vue UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
 
 ## Try it locally
 

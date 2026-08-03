@@ -3,15 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Svelte Content Script Example
+# Svelte Sidebar Example
 
 > Adds a sidebar panel to the browser with a simple Svelte page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A sidebar panel with a Svelte page, plus a small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a Svelte + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The side panel loads a Svelte + TypeScript page. A content script also mounts a Svelte UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
 
 ## Try it locally
 

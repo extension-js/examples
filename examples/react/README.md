@@ -3,15 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# React Content Script Example
+# React Sidebar Example
 
 > Adds a sidebar panel to the browser with a simple React page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A sidebar panel with a React page, plus a small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The side panel loads a React + TypeScript page. A content script also mounts a React UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
 
 ## Try it locally
 
