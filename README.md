@@ -263,8 +263,8 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-turbopack/README.md">examples/sidebar-monorepo-turbopack</a></td>
-      <td rowspan="5"><img src="./examples/sidebar-monorepo-turbopack/screenshot.png" alt="sidebar-monorepo-turbopack screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-turborepo/README.md">examples/sidebar-monorepo-turborepo</a></td>
+      <td rowspan="5"><img src="./examples/sidebar-monorepo-turborepo/screenshot.png" alt="sidebar-monorepo-turborepo screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
@@ -273,7 +273,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-monorepo-turbopack">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/sidebar-monorepo-turborepo">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>

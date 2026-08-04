@@ -31,7 +31,7 @@ const MAX_CONCURRENT = Number(
 const STRICT_ONE_RUN = process.env.EXTENSION_STRICT_ONE_RUN !== 'false'
 
 const OUTPUT_ROOTS = ['dist', 'build', '.extension']
-const ISOLATED_BUILD_SLUGS = new Set(['sidebar-monorepo-turbopack'])
+const ISOLATED_BUILD_SLUGS = new Set(['sidebar-monorepo-turborepo'])
 const SKIPPED_EXAMPLES = new Set(['playwright'])
 
 function run(command, args, workingDirectory) {
@@ -541,7 +541,7 @@ if (parallelTasks.length > 0) {
   exampleResults.push(...(await runParallel(parallelTasks, MAX_CONCURRENT)))
 }
 if (isolatedTasks.length > 0) {
-  // Some examples (e.g. monorepo/turbopack) are sensitive to parallel builds.
+  // Some examples (e.g. monorepo/turborepo) are sensitive to parallel builds.
   exampleResults.push(...(await runParallel(isolatedTasks, 1)))
 }
 

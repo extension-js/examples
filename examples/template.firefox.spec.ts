@@ -329,7 +329,7 @@ if (
 
 const monorepoFirefoxDist = path.join(
   __dirname,
-  'sidebar-monorepo-turbopack',
+  'sidebar-monorepo-turborepo',
   'packages',
   'extension',
   'dist',

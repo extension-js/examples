@@ -178,14 +178,14 @@ function main() {
   // Special-case the monorepo nested package
   const monorepoExt = path.join(
     examplesDir,
-    'sidebar-monorepo-turbopack',
+    'sidebar-monorepo-turborepo',
     'packages',
     'extension'
   )
   if (fs.existsSync(monorepoExt)) {
     processTemplate(
       monorepoExt,
-      'sidebar-monorepo-turbopack/packages/extension'
+      'sidebar-monorepo-turborepo/packages/extension'
     )
   }
 }

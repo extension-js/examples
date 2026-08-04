@@ -520,7 +520,7 @@ const OVERRIDES = {
       'right-click context menu (`Classify selection with Transformers.js`) ' +
       'mirrors the in-sidebar flow for ad-hoc text on any page.'
   },
-  'sidebar-monorepo-turbopack': {
+  'sidebar-monorepo-turborepo': {
     title: 'React Sidebar (Monorepo + Turborepo) Example',
     extra:
       'A pnpm workspace + Turborepo setup. The extension lives under ' +

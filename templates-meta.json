@@ -2206,8 +2206,8 @@
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-antd"
     },
     {
-      "slug": "sidebar-monorepo-turbopack",
-      "name": "sidebar-monorepo-turbopack",
+      "slug": "sidebar-monorepo-turborepo",
+      "name": "sidebar-monorepo-turborepo",
       "title": "Sidebar Turborepo",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2241,22 +2241,22 @@
       "featured": true,
       "docsUrl": "https://turborepo.dev/docs",
       "files": [
-        "public/sidebar-monorepo-turbopack/extension.config.js",
-        "public/sidebar-monorepo-turbopack/packages/analytics/src/index.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/background.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/content/scripts.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/content/styles.css",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/images/icon.png",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/manifest.json",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/SidebarApp.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/index.html",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/scripts.js",
-        "public/sidebar-monorepo-turbopack/packages/extension/src/sidebar/styles.css"
+        "public/sidebar-monorepo-turborepo/extension.config.js",
+        "public/sidebar-monorepo-turborepo/packages/analytics/src/index.js",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/background.js",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/content/scripts.js",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/content/styles.css",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/images/icon.png",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/manifest.json",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/sidebar/SidebarApp.js",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/sidebar/index.html",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/sidebar/scripts.js",
+        "public/sidebar-monorepo-turborepo/packages/extension/src/sidebar/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/sidebar-monorepo-turbopack/screenshot.png",
+      "screenshot": "public/sidebar-monorepo-turborepo/screenshot.png",
       "icon": null,
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turbopack"
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turborepo"
     },
     {
       "slug": "sidebar-shadcn",

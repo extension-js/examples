@@ -7,7 +7,7 @@
  * If the HMR entry injection relies on bare module IDs instead of absolute
  * paths, dev mode fails with "Module not found" on the first compilation.
  *
- * This script copies the sidebar-monorepo-turbopack example to a temp dir,
+ * This script copies the sidebar-monorepo-turborepo example to a temp dir,
  * installs `extension` via pnpm, runs `extension dev`, and asserts the first
  * compilation succeeds without resolution errors.
  */
@@ -23,7 +23,7 @@ const repoRoot = path.resolve(__dirname, '..')
 const exampleSource = path.join(
   repoRoot,
   'examples',
-  'sidebar-monorepo-turbopack'
+  'sidebar-monorepo-turborepo'
 )
 
 const compileSuccessHints = [
@@ -230,7 +230,7 @@ async function main() {
   const tempRoot = fs.mkdtempSync(
     path.join(os.tmpdir(), 'extjs-pnpm-monorepo-')
   )
-  const workDir = path.join(tempRoot, 'sidebar-monorepo-turbopack')
+  const workDir = path.join(tempRoot, 'sidebar-monorepo-turborepo')
 
   try {
     console.log(`\n══ pnpm monorepo dev regression check ══`)

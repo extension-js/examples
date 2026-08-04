@@ -18,8 +18,8 @@ A pnpm workspace + Turborepo setup. The extension lives under `packages/extensio
 ## Try it locally
 
 ```bash
-npx extension@latest create my-sidebar-monorepo-turbopack --template sidebar-monorepo-turbopack
-cd my-sidebar-monorepo-turbopack
+npx extension@latest create my-sidebar-monorepo-turborepo --template sidebar-monorepo-turborepo
+cd my-sidebar-monorepo-turborepo
 npm install
 npm run dev
 ```

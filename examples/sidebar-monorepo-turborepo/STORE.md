@@ -65,5 +65,5 @@ notes in most cases.
 
 ## Version history
 
-- 1.0.0 (unreleased): initial version from the sidebar-monorepo-turbopack template.
+- 1.0.0 (unreleased): initial version from the sidebar-monorepo-turborepo template.
   Not yet submitted to any store.
