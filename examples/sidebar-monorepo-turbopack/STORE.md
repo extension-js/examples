@@ -13,7 +13,7 @@ Last updated: 2026-07-30
 
 ## Listing
 
-- Name: Monorepo Turbopack Example
+- Name: Monorepo Turborepo Example
 - Summary: Adds a sidebar panel and a small page overlay.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code

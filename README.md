@@ -256,7 +256,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="https://avatars.githubusercontent.com/u/172809806?s=44" alt="extension.js icon" width="22" /> Sidebar Monorepo Turbopack Example</summary>
+  <summary><img src="https://avatars.githubusercontent.com/u/172809806?s=44" alt="extension.js icon" width="22" /> Sidebar Monorepo Turborepo Example</summary>
 
 > Monorepo example with content script and sidebar.
 

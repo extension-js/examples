@@ -3,7 +3,7 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
-  "name": "Monorepo Turbopack Example",
+  "name": "Monorepo Turborepo Example",
   "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
   "icons": {
     "16": "images/icon.png",

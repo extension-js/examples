@@ -26,13 +26,13 @@ export default function initMonorepoContent() {
 
   const badge = document.createElement('div')
   badge.className = 'monorepo_badge'
-  badge.textContent = 'Turbopack Monorepo Content Script Active'
+  badge.textContent = 'Turborepo Monorepo Content Script Active'
   container.appendChild(badge)
 
   const info = document.createElement('div')
   info.className = 'monorepo_info'
   info.innerHTML =
-    'Built with <strong>Extension.js</strong> · Monorepo + Turbopack'
+    'Built with <strong>Extension.js</strong> · Monorepo + Turborepo'
   container.appendChild(info)
 
   return () => {

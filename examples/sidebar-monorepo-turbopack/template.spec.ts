@@ -314,7 +314,7 @@ runtimeTest(
     )
     runtimeTest.expect(badge).not.toBeNull()
     const text = await badge!.evaluate((el) => el.textContent)
-    runtimeTest.expect(text).toContain('Turbopack Monorepo')
+    runtimeTest.expect(text).toContain('Turborepo Monorepo')
   }
 )
 
