@@ -39,7 +39,7 @@ function run(command, args, workingDirectory) {
     const child = spawn(command, args, {
       cwd: workingDirectory,
       stdio: 'inherit',
-      env: {...process.env, XDG_CONFIG_HOME},
+      env: {...process.env, XDG_CONFIG_HOME, EXTENSION_TELEMETRY_DISABLED: '1'},
       shell: false
     })
 
@@ -159,6 +159,8 @@ async function buildExample(slug, browser) {
             env: {
               ...process.env,
               XDG_CONFIG_HOME,
+              // Example builds are harness traffic, never a real developer.
+              EXTENSION_TELEMETRY_DISABLED: '1',
               PNPM_CONFIG_FROZEN_LOCKFILE: 'false',
               npm_config_frozen_lockfile: 'false',
               // Dependencies are installed explicitly before build; skipping

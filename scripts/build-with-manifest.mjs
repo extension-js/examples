@@ -63,7 +63,12 @@ function main() {
   // No manifest rewriting.
   // Extension.js resolves manifest.json recursively (e.g. src/manifest.json),
   // so this script must never create a temporary root manifest.json.
-  const env = {...process.env, XDG_CONFIG_HOME}
+  const env = {
+    ...process.env,
+    XDG_CONFIG_HOME,
+    // Example builds are harness traffic, not a developer using the tool.
+    EXTENSION_TELEMETRY_DISABLED: '1'
+  }
 
   // Ensure the root workspace binary is available from any example dir.
   const binDir = path.join(REPO_ROOT, 'node_modules', '.bin')
