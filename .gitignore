@@ -101,3 +101,8 @@ examples/**/manifest.json
 .cache/
 # Per-session runtime state written by `extension dev` (control port file).
 .extension-js/
+
+# Build-time telemetry redirect target (build-all.mjs points XDG_CONFIG_HOME here).
+# Committing it shipped consent, one shared identity and a 6 MB event log to a
+# public repo, so every clone built with telemetry enabled as the same person.
+.xdg-config/
