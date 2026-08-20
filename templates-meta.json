@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-19T06:31:51.989Z",
+  "generatedAt": "2026-08-20T02:46:19.886Z",
   "templates": [
     {
       "slug": "action",
@@ -2204,6 +2204,59 @@
       "screenshot": "public/sidebar-antd/screenshot.png",
       "icon": "public/sidebar-antd/src/images/icon.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-antd"
+    },
+    {
+      "slug": "sidebar-monorepo-nx",
+      "name": "sidebar-monorepo-nx",
+      "title": "Sidebar Nx",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
+      "uiContext": ["content", "sidebar", "action", "background"],
+      "surfaces": ["content", "action", "sidebar", "background"],
+      "entrypoints": [
+        "sidebar/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["extension.config.js"],
+      "hasBackground": true,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {
+          "dev": "nx dev sidebar-monorepo-nx-packages-extension",
+          "build": "nx build sidebar-monorepo-nx-packages-extension"
+        },
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": ["sidePanel"],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": true,
+      "docsUrl": "https://nx.dev/docs",
+      "files": [
+        "public/sidebar-monorepo-nx/extension.config.js",
+        "public/sidebar-monorepo-nx/packages/analytics/src/index.js",
+        "public/sidebar-monorepo-nx/packages/extension/src/background.js",
+        "public/sidebar-monorepo-nx/packages/extension/src/content/scripts.js",
+        "public/sidebar-monorepo-nx/packages/extension/src/content/styles.css",
+        "public/sidebar-monorepo-nx/packages/extension/src/images/icon.png",
+        "public/sidebar-monorepo-nx/packages/extension/src/manifest.json",
+        "public/sidebar-monorepo-nx/packages/extension/src/sidebar/SidebarApp.js",
+        "public/sidebar-monorepo-nx/packages/extension/src/sidebar/index.html",
+        "public/sidebar-monorepo-nx/packages/extension/src/sidebar/scripts.js",
+        "public/sidebar-monorepo-nx/packages/extension/src/sidebar/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/sidebar-monorepo-nx/screenshot.png",
+      "icon": null,
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-nx"
     },
     {
       "slug": "sidebar-monorepo-turborepo",
