@@ -175,18 +175,20 @@ function main() {
     processTemplate(dir, name)
   }
 
-  // Special-case the monorepo nested package
-  const monorepoExt = path.join(
-    examplesDir,
+  // Special-case the monorepo nested packages
+  for (const monorepoSlug of [
     'sidebar-monorepo-turborepo',
-    'packages',
-    'extension'
-  )
-  if (fs.existsSync(monorepoExt)) {
-    processTemplate(
-      monorepoExt,
-      'sidebar-monorepo-turborepo/packages/extension'
+    'sidebar-monorepo-nx'
+  ]) {
+    const monorepoExt = path.join(
+      examplesDir,
+      monorepoSlug,
+      'packages',
+      'extension'
     )
+    if (fs.existsSync(monorepoExt)) {
+      processTemplate(monorepoExt, `${monorepoSlug}/packages/extension`)
+    }
   }
 }
 

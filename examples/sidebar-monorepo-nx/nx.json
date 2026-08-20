@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nrwl/nx/master/packages/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [
+      "{workspaceRoot}/extension.config.js",
+      "{workspaceRoot}/pnpm-lock.yaml"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^default"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "continuous": true
+    },
+    "start": {
+      "cache": false,
+      "continuous": true
+    },
+    "preview": {
+      "cache": false
+    }
+  },
+  "defaultBase": "main"
+}

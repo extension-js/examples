@@ -1,0 +1,12 @@
+{
+  "name": "sidebar-monorepo-nx-packages-extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "extension dev",
+    "start": "extension start",
+    "build": "extension build",
+    "preview": "extension preview"
+  }
+}

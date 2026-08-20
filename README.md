@@ -278,6 +278,29 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+<details>
+  <summary><img src="https://avatars.githubusercontent.com/u/172809806?s=44" alt="extension.js icon" width="22" /> Sidebar Monorepo Nx Example</summary>
+
+> Monorepo example with content script and sidebar.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-nx/README.md">examples/sidebar-monorepo-nx</a></td>
+      <td rowspan="5"><img src="./examples/sidebar-monorepo-nx/screenshot.png" alt="sidebar-monorepo-nx screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/sidebar-monorepo-nx">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Action
 
 <details>

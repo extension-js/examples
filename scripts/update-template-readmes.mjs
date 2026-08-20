@@ -528,6 +528,14 @@ const OVERRIDES = {
       'packages/extension`. Useful as a starting point when an extension ' +
       'shares code with web / mobile apps in the same monorepo.'
   },
+  'sidebar-monorepo-nx': {
+    title: 'React Sidebar (Monorepo + Nx) Example',
+    extra:
+      'A pnpm workspace + Nx setup, no Nx plugin required. The extension ' +
+      'lives under `packages/extension` with plain `extension <command>` ' +
+      'scripts, and Nx infers them as targets: builds are cached with ' +
+      '`dist` as the declared output, `dev` runs as a continuous task.'
+  },
   'sidebar-antd': {
     title: 'React Sidebar (Ant Design) Example',
     extra:

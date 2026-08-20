@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "sidebar-monorepo-nx",
+  "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "clients/*"
+  ],
+  "scripts": {
+    "dev": "nx dev sidebar-monorepo-nx-packages-extension",
+    "start": "nx start sidebar-monorepo-nx-packages-extension",
+    "build": "nx build sidebar-monorepo-nx-packages-extension",
+    "preview": "nx preview sidebar-monorepo-nx-packages-extension",
+    "build:chrome": "nx build sidebar-monorepo-nx-packages-extension -- --browser=chrome",
+    "build:edge": "nx build sidebar-monorepo-nx-packages-extension -- --browser=edge",
+    "build:firefox": "nx build sidebar-monorepo-nx-packages-extension -- --browser=firefox"
+  },
+  "devDependencies": {
+    "nx": "^21.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}

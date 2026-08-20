@@ -327,18 +327,25 @@ if (
 // Monorepo content script + addon install
 // ---------------------------------------------------------------------------
 
-const monorepoFirefoxDist = path.join(
-  __dirname,
+for (const monorepoSlug of [
   'sidebar-monorepo-turborepo',
-  'packages',
-  'extension',
-  'dist',
-  'firefox'
-)
-if (
-  fs.existsSync(monorepoFirefoxDist) &&
-  fs.existsSync(path.join(monorepoFirefoxDist, 'manifest.json'))
-) {
+  'sidebar-monorepo-nx'
+]) {
+  const monorepoFirefoxDist = path.join(
+    __dirname,
+    monorepoSlug,
+    'packages',
+    'extension',
+    'dist',
+    'firefox'
+  )
+  if (
+    !fs.existsSync(monorepoFirefoxDist) ||
+    !fs.existsSync(path.join(monorepoFirefoxDist, 'manifest.json'))
+  ) {
+    continue
+  }
+  {
   const monorepoManifest = readManifest(monorepoFirefoxDist)
 
   // Content script runtime test
@@ -346,7 +353,7 @@ if (
     const monorepoTest = firefoxExtensionFixtures(monorepoFirefoxDist)
 
     monorepoTest(
-      'firefox: monorepo content script injects in Firefox',
+      `firefox: ${monorepoSlug} content script injects in Firefox`,
       async ({page}) => {
         await page.goto('https://example.com/', {
           waitUntil: 'domcontentloaded',
@@ -367,7 +374,7 @@ if (
   const monorepoSidebar = monorepoManifest.sidebar_action?.default_panel
   if (monorepoSidebar) {
     baseTest(
-      'firefox: monorepo sidebar HTML is valid and references JS',
+      `firefox: ${monorepoSlug} sidebar HTML is valid and references JS`,
       async () => {
         const htmlPath = path.join(monorepoFirefoxDist, monorepoSidebar)
         const html = readFileIfExists(htmlPath)
@@ -379,7 +386,7 @@ if (
 
     // Verify Firefox MV2 manifest keys
     baseTest(
-      'firefox: monorepo manifest has sidebar_action and MV2 background',
+      `firefox: ${monorepoSlug} manifest has sidebar_action and MV2 background`,
       async () => {
         baseTest.expect(monorepoManifest.sidebar_action).toBeDefined()
         baseTest.expect(monorepoManifest.manifest_version).toBe(2)
@@ -402,9 +409,10 @@ if (
   // Monorepo addon install test
   const monorepoInstallTest = firefoxExtensionFixtures(monorepoFirefoxDist)
   monorepoInstallTest(
-    'firefox: monorepo addon installs and gets UUID',
+    `firefox: ${monorepoSlug} addon installs and gets UUID`,
     async ({extensionId}) => {
       monorepoInstallTest.expect(extensionId.length).toBeGreaterThan(0)
     }
   )
+  }
 }
