@@ -22,6 +22,16 @@ const failureHints = [
   'Unhandled rejection'
 ]
 
+// Task runners that allocate a pseudo-terminal (Nx) make the CLI believe it
+// writes to a TTY, so its banners arrive wrapped in ANSI color escapes.
+const ANSI_PATTERN =
+  // eslint-disable-next-line no-control-regex
+  /[\u001B\u009B][[\]()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-PR-TZcf-ntqry=><]/g
+
+function stripAnsi(value) {
+  return value.replace(ANSI_PATTERN, '')
+}
+
 function commandFor(tool) {
   if (process.platform !== 'win32') return tool
   if (tool === 'npm') return 'npm.cmd'
@@ -183,7 +193,7 @@ function runDevUntilReady(
     }
 
     const maybeFinishFromOutput = () => {
-      const output = `${stdout}\n${stderr}`
+      const output = stripAnsi(`${stdout}\n${stderr}`)
 
       if (failureHints.some((hint) => output.includes(hint))) {
         void finish({
