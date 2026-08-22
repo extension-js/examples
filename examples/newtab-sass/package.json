@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "newtab-sass",
+  "description": "Replaces your new tab page with a simple styled page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "sass": "^1.89.2"
+  }
+}

@@ -57,9 +57,11 @@ const CURATED_ALLOWED_KEYS = [
  */
 const TITLE_TOKEN_MAP = {
   ai: 'AI',
-  // "new" is the new-tab surface (chrome_url_overrides.newtab); render it as a
-  // single recognizable word so "new-react" reads "Newtab React", not "New React".
-  new: 'Newtab',
+  // The slug token for the new-tab surface (chrome_url_overrides.newtab).
+  // Rendered as the two words the browser itself uses, so "newtab-react" reads
+  // "New Tab React". The slug used to be "new", which read as the English word
+  // and made "New React" look like a template for new React projects.
+  newtab: 'New Tab',
   css: 'CSS',
   js: 'JS',
   ts: 'TS',

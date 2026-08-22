@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "newtab-config-eslint",
+  "description": "Replaces your new tab page with a simple page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "@eslint/js": "^9.6.0",
+    "eslint": "^9.6.0",
+    "globals": "^15.9.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "^8.5.0"
+  }
+}

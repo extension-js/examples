@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "newtab-config-prettier",
+  "description": "Replaces your new tab page with a simple page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.3.2"
+  }
+}

@@ -20,7 +20,7 @@ const claimedSlugPrefixes = [
   'content',
   'sidebar',
   'action',
-  'new',
+  'newtab',
   'special-folders',
   'javascript',
   'preact',
@@ -293,7 +293,7 @@ export default defineConfig({
     // New Tab Batch - Tests for new tab overrides
     {
       name: 'newtab',
-      testMatch: /examples\/(new|new-.*)\/.*\.spec\.ts$/,
+      testMatch: /examples\/(newtab|newtab-.*)\/.*\.spec\.ts$/,
       use: {
         ...devices['Desktop Chrome'],
         headless: isHeadless

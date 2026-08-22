@@ -49,10 +49,10 @@ const TEMPLATES = [
   'svelte',
   // Standalone templates with bespoke suites
   'content-custom-font',
-  'new-browser-flags',
+  'newtab-browser-flags',
   // HTML_TEMPLATES
   'action',
-  'new',
+  'newtab',
   'sidebar',
   // Templates whose STATIC spec asserts on a clean production dist.
   // Without prebuilding these, their first dist is created by a dev-mode

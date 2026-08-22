@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "newtab-svelte",
+  "description": "Replaces your new tab page with a simple Svelte page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "svelte": "^5.15.0"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "5.0.4",
+    "typescript": "7.0.2"
+  }
+}

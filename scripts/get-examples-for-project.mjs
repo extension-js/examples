@@ -20,7 +20,7 @@ const PROJECT_TO_EXAMPLES = {
   content: /^(content|content-.*)$/,
   sidebar: /^(sidebar|sidebar-.*)$/,
   action: /^(action|action-.*)$/,
-  newtab: /^(new|new-.*)$/,
+  newtab: /^(newtab|newtab-.*)$/,
   'special-folders': /^special-folders-.*$/,
   'mixed-context': /^(javascript|preact|react|svelte|typescript|vue)$/,
   // Catch-all, mirrors the `other` project in playwright.config.ts: every

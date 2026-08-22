@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "newtab-crypto",
+  "description": "Replaces your new tab page with a page that hashes any text you type using SHA-256.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

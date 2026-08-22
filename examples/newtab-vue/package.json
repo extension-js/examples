@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "newtab-vue",
+  "description": "Replaces your new tab page with a simple Vue page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

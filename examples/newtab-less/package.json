@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "newtab-less",
+  "description": "Replaces your new tab page with a simple styled page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "less": "^4.4.0"
+  }
+}

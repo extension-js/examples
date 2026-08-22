@@ -553,37 +553,37 @@ const OVERRIDES = {
       "The popup pulls strings from the user's active locale; add another " +
       '`_locales/<lang>/messages.json` to localize.'
   },
-  'new-config-eslint': {
+  'newtab-config-eslint': {
     extra:
       'Includes a working ESLint config alongside the extension. Lint your ' +
       'sources with `npx eslint .`.'
   },
-  'new-config-prettier': {
+  'newtab-config-prettier': {
     extra:
       'Includes a Prettier config so formatting stays consistent across ' +
       'editors and CI.'
   },
-  'new-config-stylelint': {
+  'newtab-config-stylelint': {
     extra:
       'Includes a Stylelint config so CSS / SCSS / LESS files stay ' +
       'consistent across editors and CI.'
   },
-  'new-crypto': {
+  'newtab-crypto': {
     extra:
       "Demonstrates the bundler's automatic Web Crypto polyfill for " +
       'extension contexts where Node-style `crypto` modules are referenced.'
   },
-  'new-env': {
+  'newtab-env': {
     extra:
       'Reads variables from `.env` at build time. Variables prefixed with ' +
       '`EXTENSION_PUBLIC_` are inlined into the bundle as `import.meta.env.*`.'
   },
-  'new-react-router': {
+  'newtab-react-router': {
     extra:
       'A new-tab page driven by [React Router](https://reactrouter.com/). ' +
       'Useful for extension UIs that span multiple in-app routes.'
   },
-  'new-browser-flags': {
+  'newtab-browser-flags': {
     extra:
       'Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) ' +
       'so a single `manifest.json` ships clean to multiple targets.'

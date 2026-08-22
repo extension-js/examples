@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "newtab-react",
+  "description": "Replaces your new tab page with a simple React page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "typescript": "7.0.2"
+  }
+}

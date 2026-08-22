@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "newtab",
+  "description": "Replaces your new tab page with a simple page you can customize.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {}
+}

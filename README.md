@@ -699,15 +699,15 @@ npx extension@latest create my-extension --template javascript
 ### New
 
 <details>
-  <summary><img src="./public/new/src/images/icon.png" alt="new example icon" width="22" /> New Example</summary>
+  <summary><img src="./public/newtab/src/images/icon.png" alt="newtab example icon" width="22" /> New Example</summary>
 
 > New tab page example using plain JavaScript. Renders a simple page you can customize.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new/README.md">examples/new</a></td>
-      <td rowspan="5"><img src="./examples/new/screenshot.png" alt="new screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab/README.md">examples/newtab</a></td>
+      <td rowspan="5"><img src="./examples/newtab/screenshot.png" alt="newtab screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -716,21 +716,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-browser-flags/src/images/icon.png" alt="new-browser-flags example icon" width="22" /> New Browser Flags Example</summary>
+  <summary><img src="./public/newtab-browser-flags/src/images/icon.png" alt="newtab-browser-flags example icon" width="22" /> New Browser Flags Example</summary>
 
 > A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-browser-flags/README.md">examples/new-browser-flags</a></td>
-      <td rowspan="5"><img src="./examples/new-browser-flags/screenshot.png" alt="new-browser-flags screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-browser-flags/README.md">examples/newtab-browser-flags</a></td>
+      <td rowspan="5"><img src="./examples/newtab-browser-flags/screenshot.png" alt="newtab-browser-flags screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">Content Script, New Tab, Sidebar, Background</td></tr>
@@ -739,21 +739,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-browser-flags">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-browser-flags">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-config-eslint/src/images/icon.png" alt="new-config-eslint example icon" width="22" /> New Config ESLint Example</summary>
+  <summary><img src="./public/newtab-config-eslint/src/images/icon.png" alt="newtab-config-eslint example icon" width="22" /> New Config ESLint Example</summary>
 
 > New tab page example with ESLint configured. Shows how linting is set up in an extension project.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-eslint/README.md">examples/new-config-eslint</a></td>
-      <td rowspan="5"><img src="./examples/new-config-eslint/screenshot.png" alt="new-config-eslint screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-eslint/README.md">examples/newtab-config-eslint</a></td>
+      <td rowspan="5"><img src="./examples/newtab-config-eslint/screenshot.png" alt="newtab-config-eslint screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -762,21 +762,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-config-eslint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-config-eslint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-config-prettier/src/images/icon.png" alt="new-config-prettier example icon" width="22" /> New Config Prettier Example</summary>
+  <summary><img src="./public/newtab-config-prettier/src/images/icon.png" alt="newtab-config-prettier example icon" width="22" /> New Config Prettier Example</summary>
 
 > New tab page example with Prettier configured. Shows how formatting is set up in an extension project.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-prettier/README.md">examples/new-config-prettier</a></td>
-      <td rowspan="5"><img src="./examples/new-config-prettier/screenshot.png" alt="new-config-prettier screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-prettier/README.md">examples/newtab-config-prettier</a></td>
+      <td rowspan="5"><img src="./examples/newtab-config-prettier/screenshot.png" alt="newtab-config-prettier screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -785,21 +785,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-config-prettier">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-config-prettier">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-config-stylelint/src/images/icon.png" alt="new-config-stylelint example icon" width="22" /> New Config Stylelint Example</summary>
+  <summary><img src="./public/newtab-config-stylelint/src/images/icon.png" alt="newtab-config-stylelint example icon" width="22" /> New Config Stylelint Example</summary>
 
 > New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-config-stylelint/README.md">examples/new-config-stylelint</a></td>
-      <td rowspan="5"><img src="./examples/new-config-stylelint/screenshot.png" alt="new-config-stylelint screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-stylelint/README.md">examples/newtab-config-stylelint</a></td>
+      <td rowspan="5"><img src="./examples/newtab-config-stylelint/screenshot.png" alt="newtab-config-stylelint screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -808,21 +808,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-config-stylelint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-config-stylelint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-crypto/src/images/icon.png" alt="new-crypto example icon" width="22" /> New Crypto Example</summary>
+  <summary><img src="./public/newtab-crypto/src/images/icon.png" alt="newtab-crypto example icon" width="22" /> New Crypto Example</summary>
 
 > New tab page example demonstrating basic crypto operations inside an extension.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-crypto/README.md">examples/new-crypto</a></td>
-      <td rowspan="5"><img src="./examples/new-crypto/screenshot.png" alt="new-crypto screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-crypto/README.md">examples/newtab-crypto</a></td>
+      <td rowspan="5"><img src="./examples/newtab-crypto/screenshot.png" alt="newtab-crypto screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -831,21 +831,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-crypto">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-crypto">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-env/src/images/icon.png" alt="new-env example icon" width="22" /> New Env Example</summary>
+  <summary><img src="./public/newtab-env/src/images/icon.png" alt="newtab-env example icon" width="22" /> New Env Example</summary>
 
 > New tab page example demonstrating environment variables (.env) in an extension project.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-env/README.md">examples/new-env</a></td>
-      <td rowspan="5"><img src="./examples/new-env/screenshot.png" alt="new-env screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-env/README.md">examples/newtab-env</a></td>
+      <td rowspan="5"><img src="./examples/newtab-env/screenshot.png" alt="newtab-env screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -854,21 +854,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-env">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-env">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-less/src/images/icon.png" alt="new-less example icon" width="22" /> New Less Example</summary>
+  <summary><img src="./public/newtab-less/src/images/icon.png" alt="newtab-less example icon" width="22" /> New Less Example</summary>
 
 > New tab page example styled with Less. Renders a simple page and organizes styles with Less.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-less/README.md">examples/new-less</a></td>
-      <td rowspan="5"><img src="./examples/new-less/screenshot.png" alt="new-less screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-less/README.md">examples/newtab-less</a></td>
+      <td rowspan="5"><img src="./examples/newtab-less/screenshot.png" alt="newtab-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -877,21 +877,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-less">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-less">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-preact/src/images/icon.png" alt="new-preact example icon" width="22" /> New Preact Example</summary>
+  <summary><img src="./public/newtab-preact/src/images/icon.png" alt="newtab-preact example icon" width="22" /> New Preact Example</summary>
 
 > New tab page example rendered with Preact. Loads a small Preact app you can extend.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-preact/README.md">examples/new-preact</a></td>
-      <td rowspan="5"><img src="./examples/new-preact/screenshot.png" alt="new-preact screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-preact/README.md">examples/newtab-preact</a></td>
+      <td rowspan="5"><img src="./examples/newtab-preact/screenshot.png" alt="newtab-preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -900,21 +900,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-react/src/images/icon.png" alt="new-react example icon" width="22" /> New React Example</summary>
+  <summary><img src="./public/newtab-react/src/images/icon.png" alt="newtab-react example icon" width="22" /> New React Example</summary>
 
 > A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-react/README.md">examples/new-react</a></td>
-      <td rowspan="5"><img src="./examples/new-react/screenshot.png" alt="new-react screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-react/README.md">examples/newtab-react</a></td>
+      <td rowspan="5"><img src="./examples/newtab-react/screenshot.png" alt="newtab-react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -923,21 +923,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-react-router/src/images/icon.png" alt="new-react-router example icon" width="22" /> New React Router Example</summary>
+  <summary><img src="./public/newtab-react-router/src/images/icon.png" alt="newtab-react-router example icon" width="22" /> New React Router Example</summary>
 
 > New tab page example using React Router. Shows multiple routes inside the new tab app.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-react-router/README.md">examples/new-react-router</a></td>
-      <td rowspan="5"><img src="./examples/new-react-router/screenshot.png" alt="new-react-router screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-react-router/README.md">examples/newtab-react-router</a></td>
+      <td rowspan="5"><img src="./examples/newtab-react-router/screenshot.png" alt="newtab-react-router screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -946,21 +946,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-react-router">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-react-router">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-sass/src/images/icon.png" alt="new-sass example icon" width="22" /> New Sass Example</summary>
+  <summary><img src="./public/newtab-sass/src/images/icon.png" alt="newtab-sass example icon" width="22" /> New Sass Example</summary>
 
 > New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-sass/README.md">examples/new-sass</a></td>
-      <td rowspan="5"><img src="./examples/new-sass/screenshot.png" alt="new-sass screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-sass/README.md">examples/newtab-sass</a></td>
+      <td rowspan="5"><img src="./examples/newtab-sass/screenshot.png" alt="newtab-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -969,21 +969,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-sass">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-sass">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-svelte/src/images/icon.png" alt="new-svelte example icon" width="22" /> New Svelte Example</summary>
+  <summary><img src="./public/newtab-svelte/src/images/icon.png" alt="newtab-svelte example icon" width="22" /> New Svelte Example</summary>
 
 > New tab page example rendered with Svelte. Loads a small Svelte app you can extend.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-svelte/README.md">examples/new-svelte</a></td>
-      <td rowspan="5"><img src="./examples/new-svelte/screenshot.png" alt="new-svelte screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-svelte/README.md">examples/newtab-svelte</a></td>
+      <td rowspan="5"><img src="./examples/newtab-svelte/screenshot.png" alt="newtab-svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -992,21 +992,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-typescript/src/images/icon.png" alt="new-typescript example icon" width="22" /> New TypeScript Example</summary>
+  <summary><img src="./public/newtab-typescript/src/images/icon.png" alt="newtab-typescript example icon" width="22" /> New TypeScript Example</summary>
 
 > A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-typescript/README.md">examples/new-typescript</a></td>
-      <td rowspan="5"><img src="./examples/new-typescript/screenshot.png" alt="new-typescript screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-typescript/README.md">examples/newtab-typescript</a></td>
+      <td rowspan="5"><img src="./examples/newtab-typescript/screenshot.png" alt="newtab-typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -1015,21 +1015,21 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
 
 <details>
-  <summary><img src="./public/new-vue/src/images/icon.png" alt="new-vue example icon" width="22" /> New Vue Example</summary>
+  <summary><img src="./public/newtab-vue/src/images/icon.png" alt="newtab-vue example icon" width="22" /> New Vue Example</summary>
 
 > New tab page example rendered with Vue. Loads a small Vue app you can extend.
 
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/new-vue/README.md">examples/new-vue</a></td>
-      <td rowspan="5"><img src="./examples/new-vue/screenshot.png" alt="new-vue screenshot" width="360" /></td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-vue/README.md">examples/newtab-vue</a></td>
+      <td rowspan="5"><img src="./examples/newtab-vue/screenshot.png" alt="newtab-vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
     <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
@@ -1038,7 +1038,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/new-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
