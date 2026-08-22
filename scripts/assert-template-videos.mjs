@@ -79,10 +79,17 @@ const AWAITING_FIRST_SHOOT = new Set([
 
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/
 
+// A directory is not a template. CI restores a node_modules cache keyed from
+// before the new-tab templates were renamed, which recreates `examples/
+// new-react/` containing nothing but `node_modules` -- and this check then
+// reported fifteen templates that do not exist, on a tree where they had all
+// been renamed. A template is a directory that declares itself with a
+// package.json; a cache husk does not.
 const slugs = fs
   .readdirSync(EXAMPLES, {withFileTypes: true})
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
+  .filter((name) => fs.existsSync(path.join(EXAMPLES, name, 'package.json')))
   .sort()
 
 const missing = []
