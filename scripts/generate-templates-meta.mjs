@@ -45,7 +45,8 @@ const CURATED_ALLOWED_KEYS = [
   'timeToFirstSuccessMinutes',
   'firstSteps',
   'useCases',
-  'docsUrl'
+  'docsUrl',
+  'video'
 ]
 
 /**
@@ -168,6 +169,11 @@ function pickCuratedMeta(meta) {
   if (out.useCases) out.useCases = normalizeStringArray(out.useCases)
   if (typeof out.title !== 'string') delete out.title
   if (typeof out.docsUrl !== 'string') delete out.docsUrl
+  // A YouTube video id, not a URL and not an embed: the site builds the embed
+  // itself, and storing a full URL here is how one consumer ends up with a
+  // watch link inside an iframe. 11 chars from YouTube's own alphabet.
+  if (typeof out.video !== 'string' || !/^[A-Za-z0-9_-]{11}$/.test(out.video))
+    delete out.video
   if ('featured' in out && typeof out.featured !== 'boolean')
     delete out.featured
   if (
@@ -767,6 +773,7 @@ function buildTemplateEntry(exampleDirectory) {
     firstSteps: curated?.firstSteps,
     useCases: curated?.useCases,
     docsUrl: curated?.docsUrl,
+    video: curated?.video,
     files: collectFiles(exampleDirectory),
     browsers: ['chrome', 'edge', 'firefox'],
     screenshot: detectScreenshot(exampleDirectory),

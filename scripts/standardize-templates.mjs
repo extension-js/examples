@@ -156,6 +156,33 @@ function processTemplate(templateDir, templateLabel) {
     audits.push('missing template.spec.ts')
   }
 
+  // 8) "What to expect" video audit. The templates site gives every template a
+  // video tab, so a template without one renders an empty player rather than
+  // no tab. Two templates are exempt on purpose: nothing they do is visible on
+  // screen, so a clip would have to invent a payoff.
+  const VIDEO_EXEMPT = new Set(['init', 'special-folders-pages'])
+  // Only a top-level slug is a template on the site. A monorepo template is
+  // processed again for its inner `packages/extension`, which has no page, no
+  // meta file of its own, and so nothing to attach a video to. The label is
+  // what distinguishes them: a nested pass carries a path, not a slug.
+  const isNestedPackage = templateLabel.includes('/')
+  if (!isNestedPackage && !VIDEO_EXEMPT.has(path.basename(templateDir))) {
+    let curatedVideo = null
+    try {
+      const curated = JSON.parse(
+        fs.readFileSync(path.join(templateDir, 'template.meta.json'), 'utf8')
+      )
+      curatedVideo = curated?.video ?? null
+    } catch {
+      // Ignore
+    }
+    if (typeof curatedVideo !== 'string' || !curatedVideo) {
+      audits.push('missing video in template.meta.json')
+    } else if (!/^[A-Za-z0-9_-]{11}$/.test(curatedVideo)) {
+      audits.push(`video is not a YouTube id: ${curatedVideo}`)
+    }
+  }
+
   if (changes.length || audits.length) {
     console.log(`\n[${templateLabel}]`)
     for (const c of changes) log('CHANGE  ' + c)

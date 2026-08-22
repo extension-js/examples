@@ -82,6 +82,7 @@ jobs:
       - run: pnpm run test:strict-json
       - run: pnpm run test:catalog-readme
       - run: pnpm run test:spec-coverage
+      - run: pnpm run test:template-videos
       - run: pnpm run test:banner
       - run: pnpm run test:canary-one-run
 

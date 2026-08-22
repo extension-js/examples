@@ -88,7 +88,8 @@
     "test:safari-manifest": "node scripts/assert-browser-manifest-integrity.mjs --targets=safari",
     "test:strict-json": "node scripts/assert-strict-json.mjs",
     "test:catalog-readme": "node scripts/assert-catalog-readme.mjs",
-    "test:spec-coverage": "node scripts/assert-spec-coverage.mjs"
+    "test:spec-coverage": "node scripts/assert-spec-coverage.mjs",
+    "test:template-videos": "node scripts/assert-template-videos.mjs"
   },
   "files": [
     "public/**",
