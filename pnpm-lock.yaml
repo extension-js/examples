@@ -434,11 +434,11 @@ importers:
 
   examples/javascript: {}
 
-  examples/new: {}
+  examples/newtab: {}
 
-  examples/new-browser-flags: {}
+  examples/newtab-browser-flags: {}
 
-  examples/new-config-eslint:
+  examples/newtab-config-eslint:
     devDependencies:
       '@eslint/js':
         specifier: ^9.6.0
@@ -456,13 +456,13 @@ importers:
         specifier: ^8.5.0
         version: 8.47.0(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
 
-  examples/new-config-prettier:
+  examples/newtab-config-prettier:
     devDependencies:
       prettier:
         specifier: ^3.3.2
         version: 3.6.2
 
-  examples/new-config-stylelint:
+  examples/newtab-config-stylelint:
     devDependencies:
       sass:
         specifier: ^1.77.8
@@ -474,21 +474,21 @@ importers:
         specifier: ^13.1.0
         version: 13.1.0(postcss@8.5.23)(stylelint@16.25.0(typescript@7.0.2))
 
-  examples/new-crypto:
+  examples/newtab-crypto:
     devDependencies:
       typescript:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-env: {}
+  examples/newtab-env: {}
 
-  examples/new-less:
+  examples/newtab-less:
     devDependencies:
       less:
         specifier: ^4.4.0
-        version: 4.5.1
+        version: 4.6.7
 
-  examples/new-preact:
+  examples/newtab-preact:
     dependencies:
       '@preact/signals':
         specifier: ^1.3.0
@@ -510,7 +510,7 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-react:
+  examples/newtab-react:
     dependencies:
       react:
         specifier: ^18.1.0
@@ -529,7 +529,7 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-react-router:
+  examples/newtab-react-router:
     dependencies:
       react:
         specifier: ^18.1.0
@@ -554,13 +554,13 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-sass:
+  examples/newtab-sass:
     devDependencies:
       sass:
         specifier: ^1.89.2
         version: 1.94.1
 
-  examples/new-svelte:
+  examples/newtab-svelte:
     dependencies:
       svelte:
         specifier: ^5.15.0
@@ -573,13 +573,13 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-typescript:
+  examples/newtab-typescript:
     devDependencies:
       typescript:
         specifier: 7.0.2
         version: 7.0.2
 
-  examples/new-vue:
+  examples/newtab-vue:
     dependencies:
       vue:
         specifier: ^3.4.27
@@ -1215,10 +1215,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
-
-  '@eslint-community/regexpp@4.12.1':
-    resolution: {integrity: sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==}
-    engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
   '@eslint-community/regexpp@4.12.2':
     resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
@@ -2932,11 +2928,6 @@ packages:
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  acorn@8.15.0:
-    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
   acorn@8.16.0:
     resolution: {integrity: sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==}
     engines: {node: '>=0.4.0'}
@@ -2965,9 +2956,6 @@ packages:
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
-
-  ajv@8.17.1:
-    resolution: {integrity: sha512-B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==}
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
@@ -3279,15 +3267,6 @@ packages:
 
   cose-base@2.2.0:
     resolution: {integrity: sha512-AzlgcsCbUMymkADOJtQm3wO9S3ltPfYOFD5033keQn9NJzIbtnZj+UdBJe7DYml/8TdbtHJW3j58SOnKhWY/5g==}
-
-  cosmiconfig@9.0.0:
-    resolution: {integrity: sha512-itvL5h8RETACmOTFc4UfIyB2RfEHi71Ax6E/PivVxq9NseKbOWpeyHEOIbmAw1rs8Ak0VursQNww7lf7YtUwzg==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      typescript: '>=4.9.5'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
 
   cosmiconfig@9.0.1:
     resolution: {integrity: sha512-hr4ihw+DBqcvrsEDioRO31Z17x71pUYoNe/4h6Z0wB72p7MU7/9gH8Q3s12NFhHPfYBBOV3qyfUxmr/Yn3shnQ==}
@@ -3800,9 +3779,6 @@ packages:
   fast-levenshtein@2.0.6:
     resolution: {integrity: sha512-DCXu6Ifhqcks7TZKY3Hxp3y6qphY5SJZmrWMDrKcERSOXWQdMhU9Ig/PYrzyw/ul9jOIyh0N4M0tbC5hodg8dw==}
 
-  fast-uri@3.0.6:
-    resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
-
   fast-uri@3.1.2:
     resolution: {integrity: sha512-rVjf7ArG3LTk+FS6Yw81V1DLuZl1bRbNrev6Tmd/9RaroeeRRJhAt7jg/6YFxbvAQXUCavSoZhPPj6oOx+5KjQ==}
 
@@ -4219,10 +4195,6 @@ packages:
 
   js-yaml@3.15.1:
     resolution: {integrity: sha512-S99WuO3HlhO3XN41EtYUNl9zzXjoJx7QvmipxsJVxtCBT0YHEFy+iOJhjSvrmV12nYhWpZaM8lPHkJm0yUMbag==}
-    hasBin: true
-
-  js-yaml@4.1.0:
-    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
   js-yaml@4.1.1:
@@ -5087,10 +5059,6 @@ packages:
 
   postcss-selector-parser@6.0.10:
     resolution: {integrity: sha512-IQ7TZdoaqbT+LCpShg46jnZVlhWD2w6iQYAcYXfHARZ7X1t/UGhhceQDs5X0cGqKvYlHNOuv7Oa1xmb0oQuA3w==}
-    engines: {node: '>=4'}
-
-  postcss-selector-parser@7.1.0:
-    resolution: {integrity: sha512-8sLjZwK0R+JlxlYcTuVnyT2v+htpdrjDOKuMcOVdYjt52Lh8hWRYpxBPoKx/Zg+bcjc3wx6fmQevMmUztS/ccA==}
     engines: {node: '>=4'}
 
   postcss-selector-parser@7.1.1:
@@ -5993,14 +5961,14 @@ snapshots:
   '@ant-design/cssinjs-utils@2.1.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@ant-design/cssinjs': 2.1.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.29.2
       '@rc-component/util': 1.10.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
 
   '@ant-design/cssinjs@2.1.2(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.29.2
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       '@rc-component/util': 1.10.1(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
@@ -6426,9 +6394,9 @@ snapshots:
     dependencies:
       postcss-selector-parser: 7.1.1
 
-  '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.1.0)':
+  '@csstools/selector-specificity@5.0.0(postcss-selector-parser@7.1.1)':
     dependencies:
-      postcss-selector-parser: 7.1.0
+      postcss-selector-parser: 7.1.1
 
   '@csstools/selector-specificity@6.0.0(postcss-selector-parser@7.1.1)':
     dependencies:
@@ -6462,14 +6430,12 @@ snapshots:
       eslint: 9.39.1(jiti@2.6.1)
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/regexpp@4.12.1': {}
-
   '@eslint-community/regexpp@4.12.2': {}
 
   '@eslint/config-array@0.21.1':
     dependencies:
       '@eslint/object-schema': 2.1.7
-      debug: 4.4.1
+      debug: 4.4.3
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -6485,12 +6451,12 @@ snapshots:
   '@eslint/eslintrc@3.3.1':
     dependencies:
       ajv: 6.12.6
-      debug: 4.4.1
+      debug: 4.4.3
       espree: 10.4.0
       globals: 14.0.0
       ignore: 5.3.2
       import-fresh: 3.3.1
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       minimatch: 3.1.2
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -8095,11 +8061,9 @@ snapshots:
     dependencies:
       acorn: 8.16.0
 
-  acorn-jsx@5.3.2(acorn@8.15.0):
+  acorn-jsx@5.3.2(acorn@8.16.0):
     dependencies:
-      acorn: 8.15.0
-
-  acorn@8.15.0: {}
+      acorn: 8.16.0
 
   acorn@8.16.0: {}
 
@@ -8128,13 +8092,6 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
-
-  ajv@8.17.1:
-    dependencies:
-      fast-deep-equal: 3.1.3
-      fast-uri: 3.0.6
-      json-schema-traverse: 1.0.0
-      require-from-string: 2.0.2
 
   ajv@8.20.0:
     dependencies:
@@ -8470,15 +8427,6 @@ snapshots:
   cose-base@2.2.0:
     dependencies:
       layout-base: 2.0.1
-
-  cosmiconfig@9.0.0(typescript@7.0.2):
-    dependencies:
-      env-paths: 2.2.1
-      import-fresh: 3.3.1
-      js-yaml: 4.1.1
-      parse-json: 5.2.0
-    optionalDependencies:
-      typescript: 7.0.2
 
   cosmiconfig@9.0.1(typescript@7.0.2):
     dependencies:
@@ -8876,7 +8824,7 @@ snapshots:
   eslint@9.39.1(jiti@2.6.1):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.0(eslint@9.39.1(jiti@2.6.1))
-      '@eslint-community/regexpp': 4.12.1
+      '@eslint-community/regexpp': 4.12.2
       '@eslint/config-array': 0.21.1
       '@eslint/config-helpers': 0.4.2
       '@eslint/core': 0.17.0
@@ -8890,7 +8838,7 @@ snapshots:
       ajv: 6.12.6
       chalk: 4.1.2
       cross-spawn: 7.0.6
-      debug: 4.4.1
+      debug: 4.4.3
       escape-string-regexp: 4.0.0
       eslint-scope: 8.4.0
       eslint-visitor-keys: 4.2.1
@@ -8918,8 +8866,8 @@ snapshots:
 
   espree@10.4.0:
     dependencies:
-      acorn: 8.15.0
-      acorn-jsx: 5.3.2(acorn@8.15.0)
+      acorn: 8.16.0
+      acorn-jsx: 5.3.2(acorn@8.16.0)
       eslint-visitor-keys: 4.2.1
 
   esprima@4.0.1: {}
@@ -9077,8 +9025,6 @@ snapshots:
   fast-json-stable-stringify@2.1.0: {}
 
   fast-levenshtein@2.0.6: {}
-
-  fast-uri@3.0.6: {}
 
   fast-uri@3.1.2: {}
 
@@ -9330,7 +9276,7 @@ snapshots:
 
   history@4.10.1:
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.29.2
       loose-envify: 1.4.0
       resolve-pathname: 3.0.0
       tiny-invariant: 1.3.3
@@ -9476,10 +9422,6 @@ snapshots:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
-
-  js-yaml@4.1.0:
-    dependencies:
-      argparse: 2.0.1
 
   js-yaml@4.1.1:
     dependencies:
@@ -10577,9 +10519,9 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.6: {}
 
-  postcss-safe-parser@7.0.1(postcss@8.5.10):
+  postcss-safe-parser@7.0.1(postcss@8.5.23):
     dependencies:
-      postcss: 8.5.10
+      postcss: 8.5.23
 
   postcss-scss@4.0.9(postcss@8.5.23):
     dependencies:
@@ -10591,11 +10533,6 @@ snapshots:
       postcss-selector-parser: 7.1.1
 
   postcss-selector-parser@6.0.10:
-    dependencies:
-      cssesc: 3.0.0
-      util-deprecate: 1.0.2
-
-  postcss-selector-parser@7.1.0:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
@@ -10726,7 +10663,7 @@ snapshots:
 
   react-router-dom@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.29.2
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -10737,7 +10674,7 @@ snapshots:
 
   react-router@5.3.4(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.27.6
+      '@babel/runtime': 7.29.2
       history: 4.10.1
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
@@ -11082,11 +11019,11 @@ snapshots:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
       '@csstools/media-query-list-parser': 4.0.3(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
-      '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.0)
+      '@csstools/selector-specificity': 5.0.0(postcss-selector-parser@7.1.1)
       '@dual-bundle/import-meta-resolve': 4.2.1
       balanced-match: 2.0.0
       colord: 2.9.3
-      cosmiconfig: 9.0.0(typescript@7.0.2)
+      cosmiconfig: 9.0.1(typescript@7.0.2)
       css-functions-list: 3.2.3
       css-tree: 3.1.0
       debug: 4.4.3
@@ -11106,10 +11043,10 @@ snapshots:
       micromatch: 4.0.8
       normalize-path: 3.0.0
       picocolors: 1.1.1
-      postcss: 8.5.10
+      postcss: 8.5.23
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.1(postcss@8.5.10)
-      postcss-selector-parser: 7.1.0
+      postcss-safe-parser: 7.0.1(postcss@8.5.23)
+      postcss-selector-parser: 7.1.1
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       string-width: 4.2.3
@@ -11170,7 +11107,7 @@ snapshots:
 
   table@6.9.0:
     dependencies:
-      ajv: 8.17.1
+      ajv: 8.20.0
       lodash.truncate: 4.4.2
       slice-ansi: 4.0.0
       string-width: 4.2.3
