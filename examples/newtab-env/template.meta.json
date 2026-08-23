@@ -1,7 +1,12 @@
 {
   "title": "Environment Variables",
   "featured": true,
-  "tags": ["env", "configuration", "new-tab", "javascript"],
+  "tags": [
+    "env",
+    "configuration",
+    "new-tab",
+    "javascript"
+  ],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -14,5 +19,6 @@
     "Switch behavior per browser, mode, or deployment target",
     "Reference for safe env-var usage across JS, JSON, and HTML"
   ],
-  "docsUrl": "https://extension.js.org/docs/features/environment-variables"
+  "docsUrl": "https://extension.js.org/docs/features/environment-variables",
+  "video": "BjewlscKWBc"
 }

@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-23T02:27:48.760Z",
+  "generatedAt": "2026-08-23T04:05:23.545Z",
   "templates": [
     {
       "slug": "action",
@@ -1342,6 +1342,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
+      "video": "lVW4GVTjiIY",
       "files": [
         "public/newtab/extension.config.js",
         "public/newtab/src/background.js",
@@ -1440,6 +1441,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/eslint",
+      "video": "IO9A39ktO8A",
       "files": [
         "public/newtab-config-eslint/extension.config.js",
         "public/newtab-config-eslint/src/background.js",
@@ -1482,6 +1484,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/prettier",
+      "video": "fRtYN0t_l08",
       "files": [
         "public/newtab-config-prettier/extension.config.js",
         "public/newtab-config-prettier/src/background.js",
@@ -1524,6 +1527,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
+      "video": "bKDYOJDvVLM",
       "files": [
         "public/newtab-config-stylelint/extension.config.js",
         "public/newtab-config-stylelint/src/background.js",
@@ -1566,6 +1570,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
+      "video": "ErGEKmDQ5wA",
       "files": [
         "public/newtab-crypto/extension.config.js",
         "public/newtab-crypto/src/background.js",
@@ -1621,6 +1626,7 @@
         "Reference for safe env-var usage across JS, JSON, and HTML"
       ],
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
+      "video": "BjewlscKWBc",
       "files": [
         "public/newtab-env/extension.config.js",
         "public/newtab-env/src/background.js",
@@ -1663,6 +1669,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
+      "video": "5ETd_3ElBtk",
       "files": [
         "public/newtab-less/extension.config.js",
         "public/newtab-less/src/background.js",
@@ -1705,6 +1712,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
+      "video": "qrw_eojr420",
       "files": [
         "public/newtab-preact/extension.config.js",
         "public/newtab-preact/src/background.js",
@@ -1748,6 +1756,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
+      "video": "DnZ0PgPXZBg",
       "files": [
         "public/newtab-react/extension.config.js",
         "public/newtab-react/src/background.js",
@@ -1791,6 +1800,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
+      "video": "morc2JMTJsQ",
       "files": [
         "public/newtab-react-router/extension.config.js",
         "public/newtab-react-router/src/background.js",
@@ -1834,6 +1844,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
+      "video": "HUtrh8T5kfU",
       "files": [
         "public/newtab-sass/extension.config.js",
         "public/newtab-sass/src/background.js",
@@ -1876,6 +1887,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
+      "video": "S5qq7PeRbuQ",
       "files": [
         "public/newtab-svelte/extension.config.js",
         "public/newtab-svelte/src/background.js",
@@ -1919,6 +1931,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
+      "video": "bpI_dBAlvPc",
       "files": [
         "public/newtab-typescript/extension.config.js",
         "public/newtab-typescript/src/background.js",
@@ -1961,6 +1974,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
+      "video": "m5ZDTVo008U",
       "files": [
         "public/newtab-vue/extension.config.js",
         "public/newtab-vue/src/background.js",

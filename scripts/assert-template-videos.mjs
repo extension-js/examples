@@ -15,9 +15,21 @@ import {fileURLToPath} from 'node:url'
 const HERE = path.dirname(fileURLToPath(import.meta.url))
 const EXAMPLES = path.join(HERE, '..', 'examples')
 
-// Nothing these two do is visible on screen, so a clip would have to invent a
-// payoff. They keep their screenshot and no video.
-const EXEMPT = new Set(['init', 'special-folders-pages'])
+// Templates a clip cannot honestly show. They keep their screenshot.
+//
+// init and special-folders-pages do nothing visible on screen, so a clip would
+// have to invent a payoff.
+//
+// newtab-browser-flags exists to demonstrate custom browser flags and its own
+// config sets `--kiosk`. Chromium launches fullscreen over everything, so every
+// beat of a take is the same picture: there is no cut to film, and the recorder
+// says so by failing "beats show the actor the scene declares". A still frame
+// is what that template looks like, and it already has one.
+const EXEMPT = new Set([
+  'init',
+  'special-folders-pages',
+  'newtab-browser-flags'
+])
 
 // Templates that predate the video requirement. They are owed a video and are
 // being shot; until then they are not allowed to block CI. Delete a slug from
@@ -31,21 +43,6 @@ const AWAITING_FIRST_SHOOT = new Set([
   'ai-gemini',
   'ai-perplexity',
   'javascript',
-  'newtab',
-  'newtab-browser-flags',
-  'newtab-config-eslint',
-  'newtab-config-prettier',
-  'newtab-config-stylelint',
-  'newtab-crypto',
-  'newtab-env',
-  'newtab-less',
-  'newtab-preact',
-  'newtab-react',
-  'newtab-react-router',
-  'newtab-sass',
-  'newtab-svelte',
-  'newtab-typescript',
-  'newtab-vue',
   'playwright',
   'preact',
   'react',
