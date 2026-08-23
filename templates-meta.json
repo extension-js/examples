@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-22T23:56:20.342Z",
+  "generatedAt": "2026-08-23T02:12:20.295Z",
   "templates": [
     {
       "slug": "action",
@@ -477,6 +477,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "video": "7mTnLUCs3i0",
       "files": [
         "public/content/extension.config.js",
         "public/content/src/background.js",
@@ -518,6 +519,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
+      "video": "qdEGRy1JXCU",
       "files": [
         "public/content-css-modules/extension.config.js",
         "public/content-css-modules/src/background.js",
@@ -559,6 +561,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
+      "video": "ZjLlNQ-z81I",
       "files": [
         "public/content-custom-font/extension.config.js",
         "public/content-custom-font/src/background.js",
@@ -600,6 +603,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
+      "video": "fko_R23LXUU",
       "files": [
         "public/content-env/extension.config.js",
         "public/content-env/src/background.ts",
@@ -641,6 +645,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
+      "video": "_-e1WfL80pU",
       "files": [
         "public/content-less/extension.config.js",
         "public/content-less/src/background.js",
@@ -682,6 +687,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
+      "video": "zd43w44AeSA",
       "files": [
         "public/content-less-modules/extension.config.js",
         "public/content-less-modules/src/background.js",
@@ -741,6 +747,7 @@
         "Reference for multi-group content_scripts in MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "video": "2MPjBfm9Y2g",
       "files": [
         "public/content-main-world/extension.config.js",
         "public/content-main-world/src/background.js",
@@ -792,6 +799,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "video": "VD4BveNj53E",
       "files": [
         "public/content-multi-one-entry/extension.config.js",
         "public/content-multi-one-entry/src/background.js",
@@ -857,6 +865,7 @@
         "Reference for the multi-entry content_scripts pattern in MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+      "video": "O_jYxm4miBU",
       "files": [
         "public/content-multi-three-entries/extension.config.js",
         "public/content-multi-three-entries/src/background.js",
@@ -908,6 +917,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
+      "video": "iz9OojQfV8Q",
       "files": [
         "public/content-preact/extension.config.js",
         "public/content-preact/src/background.ts",
@@ -959,6 +969,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
+      "video": "01eAh8MYC1E",
       "files": [
         "public/content-react/extension.config.js",
         "public/content-react/src/background.ts",
@@ -1006,6 +1017,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
+      "video": "5v335BPb2KY",
       "files": [
         "public/content-sass/extension.config.js",
         "public/content-sass/src/background.js",
@@ -1049,6 +1061,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
+      "video": "4RgNs3oFB2s",
       "files": [
         "public/content-sass-modules/extension.config.js",
         "public/content-sass-modules/src/background.js",
@@ -1094,6 +1107,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
+      "video": "Vxe265iGZZI",
       "files": [
         "public/content-svelte/extension.config.js",
         "public/content-svelte/src/background.ts",
@@ -1142,6 +1156,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
+      "video": "n8IrGmO9C-M",
       "files": [
         "public/content-typescript/extension.config.js",
         "public/content-typescript/src/background.ts",
@@ -1187,6 +1202,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
+      "video": "AKjihhS1k4U",
       "files": [
         "public/content-vue/extension.config.js",
         "public/content-vue/src/background.ts",

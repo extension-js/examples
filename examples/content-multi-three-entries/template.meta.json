@@ -1,7 +1,11 @@
 {
   "title": "Multi-entry Content Scripts",
   "featured": true,
-  "tags": ["content-scripts", "multi-entry", "javascript"],
+  "tags": [
+    "content-scripts",
+    "multi-entry",
+    "javascript"
+  ],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -14,5 +18,6 @@
     "Target different page contexts with focused, independent bundles",
     "Reference for the multi-entry content_scripts pattern in MV3"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+  "video": "O_jYxm4miBU"
 }

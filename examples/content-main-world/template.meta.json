@@ -1,7 +1,12 @@
 {
   "title": "Main-world Content Script",
   "featured": true,
-  "tags": ["content-scripts", "main-world", "isolated-world", "javascript"],
+  "tags": [
+    "content-scripts",
+    "main-world",
+    "isolated-world",
+    "javascript"
+  ],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -14,5 +19,6 @@
     "Bridge isolated and main-world execution contexts cleanly",
     "Reference for multi-group content_scripts in MV3"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
+  "video": "2MPjBfm9Y2g"
 }
