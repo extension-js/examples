@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-23T06:29:12.315Z",
+  "generatedAt": "2026-08-23T13:32:25.928Z",
   "templates": [
     {
       "slug": "action",
@@ -164,6 +164,7 @@
         "Starting point for page-aware ChatGPT extensions"
       ],
       "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
+      "video": "IkdNS7djI6A",
       "files": [
         "public/ai-chatgpt/extension.config.js",
         "public/ai-chatgpt/src/background.ts",
@@ -250,6 +251,7 @@
         "Starting point for page-aware Claude extensions"
       ],
       "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
+      "video": "srJRKrPssGk",
       "files": [
         "public/ai-claude/extension.config.js",
         "public/ai-claude/src/background.ts",
@@ -336,6 +338,7 @@
         "Starting point for page-aware Gemini extensions"
       ],
       "docsUrl": "https://ai.google.dev/gemini-api/docs",
+      "video": "xbRGM5WA3Ms",
       "files": [
         "public/ai-gemini/extension.config.js",
         "public/ai-gemini/src/background.ts",
@@ -422,6 +425,7 @@
         "Starting point for page-aware Perplexity extensions"
       ],
       "docsUrl": "https://docs.perplexity.ai/",
+      "video": "tV2CYeKbDgQ",
       "files": [
         "public/ai-perplexity/extension.config.js",
         "public/ai-perplexity/src/background.ts",
@@ -1296,6 +1300,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
+      "video": "YTxsFK6uHwc",
       "files": [
         "public/javascript/extension.config.js",
         "public/javascript/src/background.js",
@@ -2080,6 +2085,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
+      "video": "5OOGRvmqhAE",
       "files": [
         "public/preact/extension.config.js",
         "public/preact/src/background.ts",
@@ -2132,6 +2138,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
+      "video": "Zai_7t2Y4bU",
       "files": [
         "public/react/extension.config.js",
         "public/react/src/background.ts",
@@ -2533,6 +2540,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
+      "video": "RKMghHzwmm0",
       "files": [
         "public/svelte/extension.config.js",
         "public/svelte/src/background.ts",
@@ -2642,6 +2650,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
+      "video": "EE-lhKWqGyQ",
       "files": [
         "public/typescript/extension.config.js",
         "public/typescript/src/background.ts",
@@ -2693,6 +2702,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
+      "video": "QtLkBvGZM0o",
       "files": [
         "public/vue/extension.config.js",
         "public/vue/src/background.ts",

@@ -24,5 +24,6 @@
     "Summarize or question articles, docs, and dashboards in place",
     "Starting point for page-aware Gemini extensions"
   ],
-  "docsUrl": "https://ai.google.dev/gemini-api/docs"
+  "docsUrl": "https://ai.google.dev/gemini-api/docs",
+  "video": "xbRGM5WA3Ms"
 }

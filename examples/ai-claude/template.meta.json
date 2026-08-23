@@ -24,5 +24,6 @@
     "Summarize or question articles, docs, and dashboards in place",
     "Starting point for page-aware Claude extensions"
   ],
-  "docsUrl": "https://docs.anthropic.com/en/api/getting-started"
+  "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
+  "video": "srJRKrPssGk"
 }

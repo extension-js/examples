@@ -38,24 +38,14 @@ const EXEMPT = new Set([
 const AWAITING_FIRST_SHOOT = new Set([
   'action',
   'action-locales',
-  'ai-chatgpt',
-  'ai-claude',
-  'ai-gemini',
-  'ai-perplexity',
-  'javascript',
   'playwright',
-  'preact',
-  'react',
   'sidebar',
   'sidebar-antd',
   'sidebar-monorepo-nx',
   'sidebar-monorepo-turborepo',
   'sidebar-shadcn',
   'special-folders-scripts',
-  'svelte',
   'transformers-js',
-  'typescript',
-  'vue'
 ])
 
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/

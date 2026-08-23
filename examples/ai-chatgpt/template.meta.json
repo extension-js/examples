@@ -25,5 +25,6 @@
     "Summarize or question articles, docs, and dashboards in place",
     "Starting point for page-aware ChatGPT extensions"
   ],
-  "docsUrl": "https://platform.openai.com/docs/api-reference/chat"
+  "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
+  "video": "IkdNS7djI6A"
 }
