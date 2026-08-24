@@ -90,13 +90,25 @@ for (const slug of fs.readdirSync(examplesDir)) {
         `►►► Invalid built manifest.json for ${slug} (${browser}).`
       )
     }
-    if (
-      sourceManifest.name !== builtManifest.name ||
-      sourceManifest.description !== builtManifest.description
-    ) {
+    // Name the field that actually differs and print both of its values. The
+    // old message checked name AND description but only ever printed name, so a
+    // description mismatch reported two identical strings as proof of a
+    // difference and read as an invisible-character bug.
+    const mismatched = ['name', 'description'].filter(
+      (field) => sourceManifest[field] !== builtManifest[field]
+    )
+    if (mismatched.length > 0) {
+      const detail = mismatched
+        .map(
+          (field) =>
+            `${field}: source ${JSON.stringify(sourceManifest[field])}, ` +
+            `built ${JSON.stringify(builtManifest[field])}`
+        )
+        .join('\n  ')
       throw new Error(
-        `►►► Build manifest mismatch for ${slug} (${browser}). ` +
-          `Expected "${sourceManifest.name}" but got "${builtManifest.name}".`
+        `►►► Build manifest mismatch for ${slug} (${browser}).\n  ${detail}\n` +
+          `  A stale build is the usual cause. Delete ` +
+          `examples/${slug}/dist and rebuild.`
       )
     }
 
