@@ -35,18 +35,7 @@ const EXEMPT = new Set([
 // being shot; until then they are not allowed to block CI. Delete a slug from
 // this list the moment its video lands, and never add one: a NEW template with
 // no video is exactly what this file exists to stop.
-const AWAITING_FIRST_SHOOT = new Set([
-  'action',
-  'action-locales',
-  'playwright',
-  'sidebar',
-  'sidebar-antd',
-  'sidebar-monorepo-nx',
-  'sidebar-monorepo-turborepo',
-  'sidebar-shadcn',
-  'special-folders-scripts',
-  'transformers-js',
-])
+const AWAITING_FIRST_SHOOT = new Set([])
 
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/
 

@@ -14,5 +14,6 @@
     "CI-ready Playwright setup wired to Extension.js builds",
     "Reference for automating extension flows in headed and headless modes"
   ],
-  "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e"
+  "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
+  "video": "zKiU3mOJQSs"
 }

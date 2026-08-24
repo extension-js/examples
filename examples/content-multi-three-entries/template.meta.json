@@ -1,11 +1,7 @@
 {
   "title": "Multi-entry Content Scripts",
   "featured": true,
-  "tags": [
-    "content-scripts",
-    "multi-entry",
-    "javascript"
-  ],
+  "tags": ["content-scripts", "multi-entry", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [

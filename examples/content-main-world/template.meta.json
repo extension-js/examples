@@ -1,12 +1,7 @@
 {
   "title": "Main-world Content Script",
   "featured": true,
-  "tags": [
-    "content-scripts",
-    "main-world",
-    "isolated-world",
-    "javascript"
-  ],
+  "tags": ["content-scripts", "main-world", "isolated-world", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [

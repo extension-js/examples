@@ -14,5 +14,6 @@
     "Quick actions that don't need a full sidebar or page",
     "Starting point for popup-based browser extensions"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+  "video": "YV76E35pRjI"
 }

@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-23T13:51:38.071Z",
+  "generatedAt": "2026-08-24T02:23:01.761Z",
   "templates": [
     {
       "slug": "action",
@@ -46,6 +46,7 @@
         "Starting point for popup-based browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "YV76E35pRjI",
       "files": [
         "public/action/extension.config.js",
         "public/action/src/action/index.html",
@@ -88,6 +89,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
+      "video": "bSSvGvTXF_s",
       "files": [
         "public/action-locales/_locales/en/messages.json",
         "public/action-locales/_locales/pt_BR/messages.json",
@@ -2038,6 +2040,7 @@
         "Reference for automating extension flows in headed and headless modes"
       ],
       "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
+      "video": "zKiU3mOJQSs",
       "files": [
         "public/playwright/extension.config.js",
         "public/playwright/src/background.ts",
@@ -2185,6 +2188,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
+      "video": "ArbAtOLsiKc",
       "files": [
         "public/sidebar/extension.config.js",
         "public/sidebar/src/background.js",
@@ -2227,6 +2231,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://ant.design/docs/react/introduce",
+      "video": "7EUeb1vzn6k",
       "files": [
         "public/sidebar-antd/extension.config.js",
         "public/sidebar-antd/src/background.js",
@@ -2277,6 +2282,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://nx.dev/docs",
+      "video": "E2icZvYCAaE",
       "files": [
         "public/sidebar-monorepo-nx/extension.config.js",
         "public/sidebar-monorepo-nx/packages/analytics/src/index.js",
@@ -2330,6 +2336,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://turborepo.dev/docs",
+      "video": "uvslnElG2A8",
       "files": [
         "public/sidebar-monorepo-turborepo/extension.config.js",
         "public/sidebar-monorepo-turborepo/packages/analytics/src/index.js",
@@ -2380,6 +2387,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
+      "video": "w_n04Oo93Bk",
       "files": [
         "public/sidebar-shadcn/extension.config.js",
         "public/sidebar-shadcn/src/background.ts",
@@ -2491,6 +2499,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
+      "video": "Kc5NHZ8Wdek",
       "files": [
         "public/special-folders-scripts/extension.config.js",
         "public/special-folders-scripts/scripts/script-one.js",
@@ -2600,6 +2609,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
+      "video": "GJOGyOGqawA",
       "files": [
         "public/transformers-js/extension.config.js",
         "public/transformers-js/src/background.js",
