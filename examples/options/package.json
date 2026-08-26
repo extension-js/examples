@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "options",
-  "description": "Adds an options page that saves a single setting with chrome.storage.sync.",
+  "description": "Adds an options page a content script can open, sharing one saved setting.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

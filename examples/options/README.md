@@ -5,15 +5,19 @@
 
 # JavaScript Options Page Example
 
-> Adds an options page that saves a single setting with chrome.storage.sync.
+> Adds an options page a content script can open, sharing one saved setting.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: An options page with one checkbox. Toggle it, close the page, open it again, and the value is still there.
+**What you'll see**: A badge on every page you visit, carrying an Open options button. The options page has one checkbox, and unticking it hides the badge straight away.
 
-**How it works**: The manifest registers an `options_ui` page bundled from `src/options/`. The page reads the setting with `chrome.storage.sync.get` on load, writes it with `chrome.storage.sync.set` on change, and prints the saved state on screen. There is no background service worker, the page owns its own state.
+**How it works**: Three surfaces share one setting. The manifest registers an `options_ui` page bundled from `src/options/`, a content script that injects the badge, and a background service worker.
 
-The manifest asks for the `storage` permission and nothing else, no host permissions. That is the whole point of this template: request the least your feature needs.
+The options page reads the setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key and subscribes to `chrome.storage.onChanged`, so the badge follows the setting live rather than waiting for the next page load. It removes that listener in the cleanup function Extension.js calls on teardown.
+
+A content script cannot open the options page itself, because `openOptionsPage` lives on the extension side. So the badge's button posts a message and the background worker opens the page. That relay is the part worth copying.
+
+The manifest asks for the `storage` permission and nothing else, no host permissions. Request the least your feature needs.
 
 ## Try it locally
 
@@ -30,6 +34,10 @@ A fresh browser window opens with the extension already loaded.
 
 ```
 src/
+├── background.js
+├── content/
+│   ├── scripts.js
+│   └── styles.css
 ├── images/
 │   └── icon.png
 ├── options/

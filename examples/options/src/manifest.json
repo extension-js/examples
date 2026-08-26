@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Options Example",
-  "description": "Adds an options page that saves a single setting with chrome.storage.sync.",
+  "description": "Adds an options page a content script can open, sharing one saved setting.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -23,5 +23,15 @@
     "page": "options/index.html",
     "open_in_tab": false
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.js"]
+    }
+  ]
 }

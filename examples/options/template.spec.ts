@@ -33,10 +33,25 @@ test('options page shows the setting control', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
-  const checkbox = page.locator('#show-banner')
+  const checkbox = page.locator('#show-badge')
   await test.expect(checkbox).toBeVisible({timeout: 60000})
   const statusLine = page.locator('#status')
   await test.expect(statusLine).toContainText('chrome.storage.sync', {
     timeout: 60000
   })
+})
+
+test('content script injects the badge and its options button', async ({
+  page
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const host = page.locator('[data-extension-root]')
+  await test.expect(host).toHaveCount(1, {timeout: 60000})
+  // The badge lives in a shadow root, so reach through the host rather than
+  // querying the page for a selector the page itself never has.
+  const button = host.locator('css=.content_button')
+  await test.expect(button).toHaveText('Open options', {timeout: 60000})
 })

@@ -14,7 +14,7 @@ Last updated: 2026-08-26
 ## Listing
 
 - Name: JavaScript Options Example
-- Summary: Adds an options page that saves a single setting.
+- Summary: Adds an options page a content script can open, sharing one saved setting.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,8 +23,9 @@ Last updated: 2026-08-26
 
 ## Privacy and data use
 
-- This template stores one setting in the browser's own sync storage.
-  It collects and transmits no user data.
+- This template stores one setting in the browser's own sync storage,
+  read by both the options page and the content script. It collects and
+  transmits no user data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -36,16 +37,18 @@ Last updated: 2026-08-26
 
 ### Single purpose
 
-Adds an options page that saves a single setting.
+Adds an options page a content script can open, sharing one saved setting.
 
 ### Permissions justification
 
-- storage: keeps the one setting on the options page so it survives
-  closing the page and restarting the browser. Nothing leaves the
-  browser.
+- storage: keeps the one setting so it survives closing the page and
+  restarting the browser, and so the content script can read the same
+  value the options page wrote. Nothing leaves the browser.
 
-This template requests no host access. If you add a permission, add a
-specific, plain-English reason here in the same change.
+The content script is declared against all sites so the badge can show
+the setting anywhere. It reads and writes nothing but that one key. If
+you add a permission, add a specific, plain-English reason here in the
+same change.
 
 ## Firefox Add-ons
 

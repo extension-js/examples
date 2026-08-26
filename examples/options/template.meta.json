@@ -1,18 +1,23 @@
 {
   "title": "Options Page",
   "featured": false,
-  "tags": ["options", "storage", "javascript"],
+  "tags": [
+    "options",
+    "content",
+    "storage",
+    "javascript"
+  ],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
     "Run npm run dev to launch the extension",
-    "Open the extension's options from the browser extensions page",
-    "Toggle the setting, reopen the page, and see the value persist"
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge disappear live"
   ],
   "useCases": [
-    "A settings surface for user preferences",
-    "Persisting a preference with chrome.storage.sync",
-    "A least-privilege extension that only asks for storage"
+    "Settings a person can change without leaving the browser",
+    "One setting shared between an options page and a content script",
+    "Starting point for extensions that need preferences"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
 }
