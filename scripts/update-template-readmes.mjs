@@ -372,6 +372,23 @@ function detectTemplate(templateDir, slug) {
 // ──────────────────────────────────────────────────────────────────────────
 
 const OVERRIDES = {
+  options: {
+    title: 'Options Page Example',
+    extra:
+      'The smallest honest options page: one setting, stored with ' +
+      '`chrome.storage.sync` and read back on load. The manifest asks for ' +
+      'the `storage` permission and nothing else, and there is no background ' +
+      'worker, because a page that owns its own state does not need one.'
+  },
+  devtools: {
+    title: 'DevTools Panel Example',
+    extra:
+      'A DevTools panel in two pages. The `devtools_page` is a registrar ' +
+      'with no UI, and the panel it creates is where the UI lives. The panel ' +
+      'reads the inspected page through `chrome.devtools.inspectedWindow.eval`, ' +
+      'which works in every host, rather than through `chrome.devtools.network`, ' +
+      'which an emulated or embedded host is unlikely to relay.'
+  },
   init: {
     title: 'Starter Extension (init)',
     extra:
@@ -688,6 +705,18 @@ function deriveHowItWorks(detected) {
       `The manifest overrides the new-tab page and loads ${langPrefix} entry ` +
         `bundled from \`src/newtab/\`.`
     )
+  } else if (detected.surfaces.has('options')) {
+    sentences.push(
+      `The manifest registers \`options_ui\` and points \`page\` at ` +
+        `${langPrefix} page bundled from \`src/options/\`. The page owns its ` +
+        `own state and reads and writes it through \`chrome.storage\`.`
+    )
+  } else if (detected.surfaces.has('devtools')) {
+    sentences.push(
+      `The manifest registers a \`devtools_page\`, which has no UI of its ` +
+        `own: its only job is to call \`chrome.devtools.panels.create\`. The ` +
+        `panel it registers is ${langPrefix} page bundled from \`src/panel/\`.`
+    )
   } else if (detected.surfaces.has('pages')) {
     sentences.push(
       `Files inside \`src/pages/\` are treated as auto-discovered entrypoints ` +
@@ -745,6 +774,12 @@ function deriveWhatYoullSee(detected) {
   }
   if (detected.surfaces.has('newtab-or-overrides')) {
     return 'A custom new-tab page replacing the browser default.'
+  }
+  if (detected.surfaces.has('options')) {
+    return 'An options page with one setting that persists across restarts.'
+  }
+  if (detected.surfaces.has('devtools')) {
+    return 'A panel inside the browser DevTools, reading the inspected page.'
   }
   if (detected.surfaces.has('pages')) {
     return 'A welcome page that opens on install / startup.'

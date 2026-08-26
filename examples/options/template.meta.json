@@ -1,0 +1,18 @@
+{
+  "title": "Options Page",
+  "featured": false,
+  "tags": ["options", "storage", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open the extension's options from the browser extensions page",
+    "Toggle the setting, reopen the page, and see the value persist"
+  ],
+  "useCases": [
+    "A settings surface for user preferences",
+    "Persisting a preference with chrome.storage.sync",
+    "A least-privilege extension that only asks for storage"
+  ],
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+}

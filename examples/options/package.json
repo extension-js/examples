@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "options",
+  "description": "Adds an options page that saves a single setting with chrome.storage.sync.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {}
+}

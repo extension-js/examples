@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "name": "JavaScript Options Example",
+  "description": "Adds an options page that saves a single setting with chrome.storage.sync.",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": false
+  },
+  "permissions": ["storage"]
+}

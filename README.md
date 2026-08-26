@@ -349,6 +349,56 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+### Options
+
+<details>
+  <summary><img src="./public/options/src/images/icon.png" alt="options example icon" width="22" /> Options Page Example</summary>
+
+> Adds an options page that saves a single setting with chrome.storage.sync.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/options/README.md">examples/options</a></td>
+      <td rowspan="5"><img src="./examples/options/screenshot.png" alt="options screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Options</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/options">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+### DevTools
+
+<details>
+  <summary><img src="./public/devtools/src/images/icon.png" alt="devtools example icon" width="22" /> DevTools Panel Example</summary>
+
+> Adds a devtools panel to the browser that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools/README.md">examples/devtools</a></td>
+      <td rowspan="5"><img src="./examples/devtools/screenshot.png" alt="devtools screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Content
 
 <details>

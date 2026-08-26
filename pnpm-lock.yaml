@@ -430,6 +430,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
+  examples/devtools: {}
+
   examples/init: {}
 
   examples/javascript: {}
@@ -588,6 +590,8 @@ importers:
       typescript:
         specifier: 7.0.2
         version: 7.0.2
+
+  examples/options: {}
 
   examples/playwright:
     devDependencies:
