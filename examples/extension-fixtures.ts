@@ -8,6 +8,7 @@ import {
 import path from 'path'
 import {execSync} from 'child_process'
 import fs from 'fs'
+import crypto from 'crypto'
 import {getDirname} from './dirname.js'
 
 // Wait for `pathToExtension` to be a complete, loadable extension before
@@ -281,6 +282,32 @@ export const extensionFixtures = (
       let extensionId: string | undefined
 
       // Helper function to read extension ID from Preferences
+      // Chromium derives an unpacked extension's id from its absolute path:
+      // sha256(path), first 16 bytes as hex, each hex digit mapped onto a-p.
+      // This is exact and needs no polling, which matters for extensions with
+      // no service worker: Chrome writes Preferences on shutdown, not during
+      // the run, so the Preferences fallback below has nothing to read yet.
+      const readExtensionIdFromPath = (): string | undefined => {
+        try {
+          // A manifest "key" overrides path derivation, so do not guess then.
+          const manifestPath = path.join(pathToExtension, 'manifest.json')
+          if (fs.existsSync(manifestPath)) {
+            const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
+            if (manifest?.key) return undefined
+          }
+          const hash = crypto
+            .createHash('sha256')
+            .update(path.resolve(pathToExtension), 'utf8')
+            .digest('hex')
+            .slice(0, 32)
+          return [...hash]
+            .map((c) => String.fromCharCode(parseInt(c, 16) + 97))
+            .join('')
+        } catch {
+          return undefined
+        }
+      }
+
       const readExtensionIdFromPreferences = (
         userDataDir: string
       ): string | undefined => {
@@ -427,6 +454,14 @@ export const extensionFixtures = (
             await new Promise((resolve) => setTimeout(resolve, retryDelay))
           }
         }
+      }
+
+      // Fallback 3: derive the id from the unpacked path. Extensions with no
+      // background service worker (an options page or a devtools panel that
+      // owns its own state) reach here, because fallbacks 1 and 2 both depend
+      // on state Chrome has not produced yet.
+      if (!extensionId) {
+        extensionId = readExtensionIdFromPath()
       }
 
       if (!extensionId) {
