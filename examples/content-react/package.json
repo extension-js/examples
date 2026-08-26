@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-react",
-  "description": "Shows a small overlay UI on every web page you visit.",
+  "description": "Shows a small overlay UI on every web page, with a React options page that turns it off.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

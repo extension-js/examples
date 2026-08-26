@@ -5,13 +5,17 @@
 
 # Svelte Content Script Example
 
-> Shows a small overlay UI on every web page you visit.
+> Shows a Svelte overlay on every web page you visit, with an options page that saves one setting.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay carries an **Open options** button, and the options page it opens has one checkbox that hides or shows the overlay live.
 
 **How it works**: A content script mounts a Svelte + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
+
+The options page is a second Svelte app, bundled from `src/options/` and registered as `options_ui` in the manifest. It reads the `showBadge` setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key on injection and subscribes to `chrome.storage.onChanged`, so the overlay disappears the moment you untick the box, with no page reload. Its cleanup function drops that subscription and unmounts the Svelte app, which is what the framework calls on reload and on hot updates.
+
+A content script cannot open the options page on its own, so the **Open options** button posts `{type: 'open-options'}` to the background script, which calls `chrome.runtime.openOptionsPage()`. The manifest asks for the `storage` permission and nothing else beyond the content script match.
 
 ## Try it locally
 
@@ -40,6 +44,11 @@ src/
 │   ├── tailwind_bg.png
 │   ├── tailwind.png
 │   └── typescript.png
+├── options/
+│   ├── OptionsApp.svelte
+│   ├── index.html
+│   ├── scripts.ts
+│   └── styles.css
 ├── background.ts
 └── manifest.json
 ```

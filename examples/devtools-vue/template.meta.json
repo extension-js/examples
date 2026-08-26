@@ -1,0 +1,18 @@
+{
+  "title": "Devtools panel with Vue",
+  "featured": false,
+  "tags": ["devtools", "panel", "vue", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+    "Edit src/panel/PanelApp.vue and reopen devtools to see the change"
+  ],
+  "useCases": [
+    "A devtools panel as the primary UI surface",
+    "Inspecting the current page from inside the developer tools",
+    "Starting point for debugging tools built as browser extensions"
+  ],
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+}

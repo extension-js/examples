@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "devtools-react",
+  "description": "Adds a React devtools panel to the browser that reads the inspected page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.5",
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,37 @@
+import {execSync} from 'child_process'
+import {
+  extensionFixtures,
+  resolveBuiltExtensionPath
+} from '../extension-fixtures.js'
+import {getDirname} from '../dirname.js'
+
+const __dirname = getDirname(import.meta.url)
+const pathToExtension = resolveBuiltExtensionPath(__dirname)
+const test = extensionFixtures(pathToExtension)
+
+test.beforeAll(async () => {
+  execSync(`node ../../scripts/build-with-manifest.mjs build`, {
+    cwd: __dirname,
+    stdio: 'inherit'
+  })
+})
+
+test('devtools panel page renders', async ({page, extensionId}) => {
+  // Loaded as a plain extension page, chrome.devtools is absent, so this
+  // exercises the panel shell and its fallback message.
+  await page.goto(`chrome-extension://${extensionId}/panel/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  // Wait for React to mount - use condition-based wait instead of fixed timeout
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Devtools Panel')
+
+  const inspectedTitle = page.locator('#inspected-title')
+  await test.expect(inspectedTitle).toContainText('devtools', {
+    ignoreCase: true,
+    timeout: 60000
+  })
+})

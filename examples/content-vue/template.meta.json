@@ -1,4 +1,22 @@
 {
+  "tags": [
+    "content",
+    "options",
+    "storage",
+    "vue",
+    "typescript",
+    "tailwind"
+  ],
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the overlay injected into the page",
+    "Untick the setting and watch the overlay disappear live"
+  ],
+  "useCases": [
+    "A Vue overlay injected into every page, isolated in a Shadow DOM",
+    "One setting shared between a Vue options page and a content script",
+    "Starting point for Vue extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
   "video": "AKjihhS1k4U"
 }

@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "devtools-typescript",
+  "description": "Adds a devtools panel to the browser that reads the inspected page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

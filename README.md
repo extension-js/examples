@@ -399,6 +399,121 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+<details>
+  <summary><img src="./public/devtools-react/src/images/icon.png" alt="devtools-react example icon" width="22" /> React DevTools Panel Example</summary>
+
+> Adds a React devtools panel to the browser that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-react/README.md">examples/devtools-react</a></td>
+      <td rowspan="5"><img src="./examples/devtools-react/screenshot.png" alt="devtools-react screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-react">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/devtools-preact/src/images/icon.png" alt="devtools-preact example icon" width="22" /> Preact DevTools Panel Example</summary>
+
+> Adds a devtools panel written in Preact that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-preact/README.md">examples/devtools-preact</a></td>
+      <td rowspan="5"><img src="./examples/devtools-preact/screenshot.png" alt="devtools-preact screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-preact">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/devtools-typescript/src/images/icon.png" alt="devtools-typescript example icon" width="22" /> TypeScript DevTools Panel Example</summary>
+
+> Adds a devtools panel to the browser that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-typescript/README.md">examples/devtools-typescript</a></td>
+      <td rowspan="5"><img src="./examples/devtools-typescript/screenshot.png" alt="devtools-typescript screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">TypeScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-typescript">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/devtools-svelte/src/images/icon.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
+
+> Adds a Svelte devtools panel to the browser that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-svelte/README.md">examples/devtools-svelte</a></td>
+      <td rowspan="5"><img src="./examples/devtools-svelte/screenshot.png" alt="devtools-svelte screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-svelte">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./public/devtools-vue/src/images/icon.png" alt="devtools-vue example icon" width="22" /> Vue DevTools Panel Example</summary>
+
+> Adds a devtools panel built with Vue that reads the inspected page.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-vue/README.md">examples/devtools-vue</a></td>
+      <td rowspan="5"><img src="./examples/devtools-vue/screenshot.png" alt="devtools-vue screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-vue">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Content
 
 <details>
@@ -588,7 +703,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-preact/src/images/icon.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
 
-> Content script example rendered with Preact. Mounts a small UI inside a Shadow DOM on any page.
+> Shows an overlay UI on web pages and an options page that saves one setting.
 
   <table>
     <tr>
@@ -611,7 +726,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-react/src/images/icon.png" alt="content-react example icon" width="22" /> Content React Example</summary>
 
-> Content script example rendered with React. Mounts a small UI inside a Shadow DOM on any page.
+> Shows a small overlay UI on every web page, with a React options page that turns it off.
 
   <table>
     <tr>
@@ -680,7 +795,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-svelte/src/images/icon.png" alt="content-svelte example icon" width="22" /> Content Svelte Example</summary>
 
-> Content script example rendered with Svelte. Mounts a small UI inside a Shadow DOM on any page.
+> Shows a Svelte overlay on every web page you visit, with an options page that saves one setting.
 
   <table>
     <tr>
@@ -703,7 +818,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-typescript/src/images/icon.png" alt="content-typescript example icon" width="22" /> Content TypeScript Example</summary>
 
-> Content script example built with TypeScript. Mounts a small UI and uses typed modules.
+> Shows a small overlay UI on every web page, with an options page that turns it off.
 
   <table>
     <tr>
@@ -726,7 +841,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-vue/src/images/icon.png" alt="content-vue example icon" width="22" /> Content Vue Example</summary>
 
-> Content script example rendered with Vue. Mounts a small UI inside a Shadow DOM on any page.
+> Shows a small overlay UI on every web page, with an options page for one saved setting.
 
   <table>
     <tr>

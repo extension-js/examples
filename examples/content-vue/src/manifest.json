@@ -11,7 +11,7 @@
     }
   },
   "name": "Vue Content Example",
-  "description": "Shows a small overlay UI on every web page you visit.",
+  "description": "Shows a small overlay UI on every web page, with an options page for one saved setting.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -19,6 +19,11 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": false
+  },
+  "permissions": ["storage"],
   "background": {
     "chromium:service_worker": "background.ts",
     "firefox:scripts": ["background.ts"]

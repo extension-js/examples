@@ -1,4 +1,14 @@
 {
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the overlay injected into the page",
+    "Untick the setting and watch the overlay disappear live"
+  ],
+  "useCases": [
+    "An on-page UI written in Preact and isolated in a Shadow DOM",
+    "One setting shared between an options page and a content script",
+    "Starting point for Preact extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
   "video": "iz9OojQfV8Q"
 }

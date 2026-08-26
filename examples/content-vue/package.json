@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-vue",
-  "description": "Shows a small overlay UI on every web page you visit.",
+  "description": "Shows a small overlay UI on every web page, with an options page for one saved setting.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

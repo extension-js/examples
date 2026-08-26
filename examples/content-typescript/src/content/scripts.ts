@@ -1,6 +1,9 @@
 import logo from '../images/icon.png'
+import type {OpenOptionsMessage, Settings} from '../types'
 
 console.log('[From the page context] Hello from content_scripts!')
+
+const DEFAULT_SETTINGS: Settings = {showBadge: true}
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -42,7 +45,40 @@ export default function initial() {
     'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  const button = document.createElement('button')
+  button.className = 'content_button'
+  button.type = 'button'
+  button.textContent = 'Open options'
+  button.addEventListener('click', () => {
+    const message: OpenOptionsMessage = {type: 'open-options'}
+    chrome.runtime.sendMessage(message)
+  })
+  contentDiv.appendChild(button)
+
+  function render(showBadge: boolean) {
+    rootDiv.style.display = showBadge ? '' : 'none'
+  }
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get(DEFAULT_SETTINGS, (items) => {
+    render(Boolean(items.showBadge))
+  })
+
+  // The options page writes the same key, so this UI follows it live rather
+  // than waiting for the next page load.
+  const onSettingChanged = (
+    changes: {[key: string]: chrome.storage.StorageChange},
+    areaName: string
+  ) => {
+    const change = changes.showBadge
+    if (areaName === 'sync' && change) {
+      render(Boolean(change.newValue))
+    }
+  }
+  chrome.storage.onChanged.addListener(onSettingChanged)
+
   return () => {
+    chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
 }

@@ -2,6 +2,12 @@
 import {ref} from 'vue'
 
 const isdialogOpen = ref(true)
+
+// A content script cannot open the options page, so the background script
+// relays the click for us.
+function openOptions() {
+  chrome.runtime.sendMessage({type: 'open-options'})
+}
 </script>
 <template>
   <div v-if="isdialogOpen">
@@ -64,6 +70,14 @@ const isdialogOpen = ref(true)
             </button>
             .
           </p>
+          <div class="mt-8 flex justify-center lg:justify-start">
+            <button
+              @click="openOptions"
+              class="bg-white rounded-md px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Open options
+            </button>
+          </div>
         </div>
 
         <div class="relative mt-16 h-80 lg:mt-8">

@@ -3,6 +3,9 @@ import ContentApp from './ContentApp'
 
 console.log('[From the page context] Hello from content_scripts!')
 
+const SETTING_KEY = 'showBadge'
+const DEFAULT_VALUE = true
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -29,7 +32,30 @@ export default function initial() {
       <ContentApp />
     </div>
   )
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    render(Boolean(settings[SETTING_KEY]))
+  })
+
+  // The options page writes the same key, so the overlay follows it live rather
+  // than waiting for the next page load.
+  const onChanged = (
+    changes: {[key: string]: chrome.storage.StorageChange},
+    area: string
+  ) => {
+    if (area === 'sync' && changes[SETTING_KEY]) {
+      render(Boolean(changes[SETTING_KEY].newValue))
+    }
+  }
+  chrome.storage.onChanged.addListener(onChanged)
+
+  function render(showBadge: boolean) {
+    rootDiv.style.display = showBadge ? '' : 'none'
+  }
+
   return () => {
+    chrome.storage.onChanged.removeListener(onChanged)
     mountingPoint.unmount()
     rootDiv.remove()
   }

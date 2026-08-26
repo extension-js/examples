@@ -123,3 +123,52 @@ test('should load all images successfully', async ({page}) => {
 
   test.expect(results.every((result) => result)).toBeTruthy()
 })
+
+test('injected UI offers the Open options button', async ({page}) => {
+  await page.goto('https://example.com/')
+  const button = await waitForShadowElement(
+    page,
+    '#extension-root, [data-extension-root="true"]',
+    'button'
+  )
+  if (!button) {
+    throw new Error('button not found in Shadow DOM')
+  }
+
+  const shadowRootHandle = await page
+    .locator('#extension-root, [data-extension-root="true"]')
+    .evaluateHandle((host: HTMLElement) => host.shadowRoot)
+  const labels = await shadowRootHandle.evaluate((shadowRoot: ShadowRoot) =>
+    Array.from(shadowRoot.querySelectorAll('button')).map(
+      (node) => node.textContent || ''
+    )
+  )
+  test
+    .expect(labels.some((label) => label.includes('Open options')))
+    .toBe(true)
+})
+
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('React Content Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toHaveAttribute('type', 'checkbox')
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})

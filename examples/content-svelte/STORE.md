@@ -9,12 +9,13 @@ Packaging your extension is local and free. Submitting the result to a
 store is what [extension.dev](https://docs.extension.dev/publish/overview?utm_source=store-md)
 does, and it sponsors Extension.js.
 
-Last updated: 2026-07-30
+Last updated: 2026-08-26
 
 ## Listing
 
 - Name: Svelte Content Example
-- Summary: Shows a small overlay UI on web pages.
+- Summary: Shows a Svelte overlay on web pages, with an options page
+  that turns it off.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,7 +24,9 @@ Last updated: 2026-07-30
 
 ## Privacy and data use
 
-- This template collects, stores, and transmits no user data.
+- This template stores one setting, the overlay on or off switch, in
+  the browser's own sync storage. It collects and transmits no user
+  data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -35,20 +38,27 @@ Last updated: 2026-07-30
 
 ### Single purpose
 
-Shows a small overlay UI on web pages.
+Shows a Svelte overlay on web pages, with an options page that turns
+it off.
 
 ### Permissions justification
 
 - Content script match <all_urls>: The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.
+- storage: keeps the one setting the options page writes, so the
+  choice survives closing the page and restarting the browser. The
+  content script reads the same key to decide whether to show the
+  overlay. Nothing leaves the browser.
 
 ## Firefox Add-ons
 
 ### Reviewer notes
 
 TODO steps a reviewer needs to exercise the extension, plus test
-credentials if sign-in is required. The build is bundled, so AMO
-requires a source zip; include build-from-source instructions:
-npm install, then npm run build. The dist output matches the upload.
+credentials if sign-in is required. Start by opening any page, then
+click Open options on the overlay and untick the setting to watch the
+overlay disappear. The build is bundled, so AMO requires a source zip;
+include build-from-source instructions: npm install, then npm run
+build. The dist output matches the upload.
 
 ### Release notes
 

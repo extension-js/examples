@@ -10,6 +10,12 @@ let isDialogOpen = true
 function toggleDialog() {
   isDialogOpen = !isDialogOpen
 }
+
+// The page context cannot call openOptionsPage, so the background script
+// receives this message and opens the options page for us.
+function openOptions() {
+  chrome.runtime.sendMessage({type: 'open-options'})
+}
 </script>
 
 {#if !isDialogOpen}
@@ -46,6 +52,12 @@ function toggleDialog() {
           Learn more about creating cross-browser extensions by
           <button on:click={toggleDialog} class="underline hover:no-underline">closing this hint</button>.
         </p>
+        <button
+          on:click={openOptions}
+          class="mt-6 rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Open options
+        </button>
       </div>
       <div class="relative mt-16 h-80 lg:mt-8">
         <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src={chromeWindowBg} alt="Chrome window screenshot" width="1824" height="1080" />

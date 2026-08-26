@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "devtools-vue",
+  "description": "Adds a devtools panel built with Vue that reads the inspected page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

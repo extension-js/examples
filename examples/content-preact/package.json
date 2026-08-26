@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-preact",
-  "description": "Shows a small overlay UI on every web page you visit.",
+  "description": "Shows an overlay UI on web pages and an options page that saves one setting.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

@@ -1,0 +1,18 @@
+{
+  "title": "React devtools panel",
+  "featured": false,
+  "tags": ["devtools", "panel", "react", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+    "Edit src/panel/PanelApp.tsx and save to see the panel update"
+  ],
+  "useCases": [
+    "A React devtools panel as the primary UI surface",
+    "Inspecting the current page from inside the developer tools",
+    "Starting point for debugging tools built as browser extensions"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react"
+}

@@ -1,4 +1,17 @@
 {
+  "tags": ["content", "options", "storage", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the overlay injected into the page",
+    "Untick the setting and watch the overlay disappear live"
+  ],
+  "useCases": [
+    "A typed overlay injected into every page",
+    "One setting shared between an options page and a content script",
+    "Starting point for TypeScript extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
   "video": "n8IrGmO9C-M"
 }

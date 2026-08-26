@@ -1,4 +1,22 @@
 {
+  "tags": [
+    "content",
+    "options",
+    "storage",
+    "react",
+    "typescript",
+    "tailwind"
+  ],
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the overlay injected into the page",
+    "Untick the setting and watch the overlay disappear live"
+  ],
+  "useCases": [
+    "A React UI injected into any page, isolated in a Shadow DOM",
+    "One setting shared between a React options page and a content script",
+    "Starting point for content-script extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
   "video": "01eAh8MYC1E"
 }

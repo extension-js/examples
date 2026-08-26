@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "devtools-svelte",
+  "description": "Adds a Svelte devtools panel to the browser that reads the inspected page.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "svelte": "^5.15.0"
+  },
+  "devDependencies": {
+    "@tsconfig/svelte": "5.0.4",
+    "typescript": "7.0.2"
+  }
+}

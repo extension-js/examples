@@ -1,4 +1,4 @@
-import {useSignal} from '@preact/signals'
+import {useSignal, type Signal} from '@preact/signals'
 import preactLogo from '../images/preact.png'
 import tailwindBg from '../images/tailwind_bg.png'
 import typescriptLogo from '../images/typescript.png'
@@ -18,7 +18,13 @@ function ClosedHint({onOpen}: {onOpen: () => void}) {
   )
 }
 
-function OpenHint({onClose}: {onClose: () => void}) {
+function OpenHint({
+  onClose,
+  onOpenOptions
+}: {
+  onClose: () => void
+  onOpenOptions: () => void
+}) {
   return (
     <div className="mx-auto max-w-7xl md:px-0 lg:p-6">
       <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
@@ -70,6 +76,14 @@ function OpenHint({onClose}: {onClose: () => void}) {
             </button>
             .
           </p>
+          <div className="mt-6">
+            <button
+              onClick={onOpenOptions}
+              className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Open options
+            </button>
+          </div>
         </div>
 
         <div className="relative mt-16 h-80 lg:mt-8">
@@ -86,12 +100,29 @@ function OpenHint({onClose}: {onClose: () => void}) {
   )
 }
 
-export default function ContentApp() {
+export default function ContentApp({showBadge}: {showBadge: Signal<boolean>}) {
   const isdialogOpen = useSignal(true)
+
+  // The options page owns this setting. Reading the signal here subscribes the
+  // component to it, so the UI leaves and comes back as the checkbox changes.
+  if (!showBadge.value) {
+    return null
+  }
 
   if (!isdialogOpen.value) {
     return <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
   }
 
-  return <OpenHint onClose={() => (isdialogOpen.value = false)} />
+  return (
+    <OpenHint
+      onClose={() => (isdialogOpen.value = false)}
+      onOpenOptions={openOptions}
+    />
+  )
+}
+
+// openOptionsPage is not available to a content script, so the background
+// worker gets the message and opens the page from the extension side.
+function openOptions() {
+  chrome.runtime.sendMessage({type: 'open-options'})
 }
