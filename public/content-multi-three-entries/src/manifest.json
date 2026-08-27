@@ -12,7 +12,6 @@
   },
   "name": "JavaScript Content (Multiple Entries) Example",
   "description": "Injects four small elements into every web page you visit.",
-  "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",

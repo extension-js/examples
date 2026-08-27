@@ -19,7 +19,6 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
-  "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.ts",

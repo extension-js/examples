@@ -12,7 +12,7 @@
   },
   "name": "Browser Flags New Tab Example",
   "description": "Replaces your new tab page with a launcher that opens the extension's sidebar panel.",
-  "permissions": ["activeTab", "scripting", "notifications"],
+  "permissions": ["activeTab"],
   "chromium:permissions": ["sidePanel"],
   "host_permissions": ["<all_urls>"],
   "background": {
