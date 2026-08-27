@@ -34,7 +34,8 @@ src/
 │   ├── index.html
 │   └── scripts.ts
 ├── images/
-│   └── icon.png
+│   ├── icon.png
+│   └── svelte.png
 ├── panel/
 │   ├── PanelApp.svelte
 │   ├── index.html

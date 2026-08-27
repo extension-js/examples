@@ -1,5 +1,5 @@
 import React from 'react'
-import extensionLogo from '../images/icon.png'
+import reactLogo from '../images/react.png'
 
 const FALLBACK_MESSAGE =
   'Open this page from the Example tab of the browser devtools to read the inspected page.'
@@ -35,9 +35,9 @@ export default function PanelApp() {
         <h1>
           <img
             className="logo"
-            src={extensionLogo}
-            alt="Extension icon"
-            width="72px"
+            src={reactLogo}
+            alt="React logo"
+            width="40px"
           />
           <br />
           Welcome to your React Devtools Panel

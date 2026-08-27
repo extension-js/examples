@@ -34,7 +34,8 @@ src/
 │   ├── index.html
 │   └── scripts.ts
 ├── images/
-│   └── icon.png
+│   ├── icon.png
+│   └── preact.png
 ├── panel/
 │   ├── PanelApp.tsx
 │   ├── index.html

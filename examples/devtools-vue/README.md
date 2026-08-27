@@ -34,7 +34,8 @@ src/
 │   ├── index.html
 │   └── scripts.ts
 ├── images/
-│   └── icon.png
+│   ├── icon.png
+│   └── vue.png
 ├── panel/
 │   ├── PanelApp.vue
 │   ├── index.html

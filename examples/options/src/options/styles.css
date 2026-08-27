@@ -9,7 +9,7 @@ body {
   min-width: 480px;
   max-width: 38em;
   margin: auto;
-  padding: 2rem;
+  padding: 1.6rem 2rem;
   font-size: 1.6rem;
   line-height: 1.618;
   color: #c9c9c9;
@@ -19,13 +19,13 @@ body {
 h1 {
   line-height: 1.1;
   font-weight: 700;
-  font-size: 3.2em;
-  margin-bottom: 1.5rem;
+  font-size: 2.1em;
+  margin-bottom: 1rem;
 }
 
 p {
   margin-top: 0px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.2rem;
 }
 
 a {
@@ -37,8 +37,8 @@ a {
 img {
   height: auto;
   max-width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
 }
 
 .banner {

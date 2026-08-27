@@ -1,6 +1,6 @@
 import {useSignal} from '@preact/signals'
 import {useEffect} from 'preact/hooks'
-import preactLogo from '../images/icon.png'
+import preactLogo from '../images/preact.png'
 
 const FALLBACK_MESSAGE =
   'Open this page from the Example tab of the browser devtools to read the inspected page.'
@@ -36,8 +36,8 @@ export default function PanelApp() {
           <img
             className="logo"
             src={preactLogo}
-            alt="Extension icon"
-            width="72px"
+            alt="Preact logo"
+            width="40px"
           />
           <br />
           Welcome to your Preact Devtools Panel

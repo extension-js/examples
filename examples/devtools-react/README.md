@@ -36,7 +36,8 @@ src/
 │   ├── index.html
 │   └── scripts.js
 ├── images/
-│   └── icon.png
+│   ├── icon.png
+│   └── react.png
 ├── panel/
 │   ├── PanelApp.tsx
 │   ├── index.html

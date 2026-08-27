@@ -1,5 +1,5 @@
 <script lang="ts">
-import iconUrl from '../images/icon.png'
+import svelteLogo from '../images/svelte.png'
 
 let inspectedTitle = 'Reading the inspected page...'
 
@@ -24,7 +24,7 @@ if (chrome?.devtools?.inspectedWindow) {
 
 <header>
   <h1>
-    <img class="logo" src={iconUrl} alt="Extension icon" width="72px" />
+    <img class="logo" src={svelteLogo} alt="Svelte logo" width="40px" />
     <br />
     Welcome to your Svelte Devtools Panel
   </h1>

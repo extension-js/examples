@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {onMounted, ref} from 'vue'
-import iconUrl from '../images/icon.png'
+import vueLogo from '../images/vue.png'
 
 const inspectedTitle = ref('Reading the inspected page...')
 
@@ -28,7 +28,7 @@ onMounted(() => {
 <template>
   <header>
     <h1>
-      <img class="logo" :src="iconUrl" alt="Extension icon" width="72px" />
+      <img class="logo" :src="vueLogo" alt="Vue logo" width="40px" />
       <br />
       Welcome to your Vue Devtools Panel
     </h1>
