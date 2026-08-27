@@ -23,7 +23,7 @@
     "page": "options/index.html",
     "open_in_tab": false
   },
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",
