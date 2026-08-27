@@ -50,7 +50,14 @@ export default function initial() {
   chrome.storage.onChanged.addListener(onChanged)
 
   function render(showBadge: boolean) {
-    rootDiv.style.display = showBadge ? '' : 'none'
+    // The host carries `all: initial !important`, and a plain assignment
+    // cannot overwrite an important declaration: the CSSOM drops it and
+    // the badge never hides. setProperty with the flag is what sticks.
+    rootDiv.style.setProperty(
+      'display',
+      showBadge ? 'initial' : 'none',
+      'important'
+    )
   }
 
   return () => {
