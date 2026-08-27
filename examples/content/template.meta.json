@@ -1,5 +1,18 @@
 {
   "title": "Content scripts",
+  "tags": ["content", "options", "storage", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge disappear live"
+  ],
+  "useCases": [
+    "A plain JavaScript UI injected into every page",
+    "One setting shared between an options page and a content script",
+    "Starting point for content scripts that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
   "video": "7mTnLUCs3i0"
 }

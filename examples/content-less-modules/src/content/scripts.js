@@ -3,10 +3,14 @@ import {
   content_script,
   content_logo,
   content_title,
-  content_description
+  content_description,
+  content_button
 } from './styles.module.less'
 
 console.log('[From the page context] Hello from content_scripts!')
+
+const SETTING_KEY = 'showBadge'
+const DEFAULT_VALUE = true
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -44,7 +48,44 @@ export default function initial() {
     'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  const button = document.createElement('button')
+  button.className = content_button
+  button.type = 'button'
+  button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button.
+  button.setAttribute('aria-label', 'Open options')
+  button.addEventListener('click', () => {
+    chrome.runtime.sendMessage({type: 'open-options'})
+  })
+  contentDiv.appendChild(button)
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    render(settings[SETTING_KEY])
+  })
+
+  // The options page writes the same key, so this UI follows it live rather
+  // than waiting for the next page load.
+  const onSettingChanged = (changes, areaName) => {
+    if (areaName === 'sync' && changes[SETTING_KEY]) {
+      render(changes[SETTING_KEY].newValue)
+    }
+  }
+  chrome.storage.onChanged.addListener(onSettingChanged)
+
+  function render(showBadge) {
+    // The host carries all: initial !important, and the CSSOM drops a plain
+    // assignment over an important one, so this has to match that importance.
+    rootDiv.style.setProperty(
+      'display',
+      showBadge ? 'initial' : 'none',
+      'important'
+    )
+  }
+
   return () => {
+    chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
 }

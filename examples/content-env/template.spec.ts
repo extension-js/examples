@@ -90,3 +90,58 @@ baseTest('env variable is compiled into built background script', async () => {
     )
     .toBe(true)
 })
+
+test('content script injects the options button', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const button = await waitForShadowElement(
+    page,
+    '#extension-root, [data-extension-root="true"]',
+    'div.content_script > button.content_button',
+    60000
+  )
+  if (!button) {
+    throw new Error('options button not found in Shadow DOM')
+  }
+  const label = await button.evaluate((node) => node.getAttribute('aria-label'))
+  test.expect(label).toEqual('Open options')
+})
+
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})
+
+test('options page shows the compiled env value', async ({
+  page,
+  extensionId
+}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const buildLine = page.locator('#build')
+  await test.expect(buildLine).toContainText('example', {timeout: 60000})
+})

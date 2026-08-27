@@ -519,7 +519,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content/src/images/icon.png" alt="content example icon" width="22" /> Content Example</summary>
 
-> Content script example that injects a small badge into web pages to demonstrate DOM injection and styling in an extension.
+> Injects a small badge into every web page you visit, with an options page that turns it off.
 
   <table>
     <tr>
@@ -528,7 +528,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content/screenshot.png" alt="content screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -542,7 +542,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-css-modules/src/images/icon.png" alt="content-css-modules example icon" width="22" /> Content CSS Modules Example</summary>
 
-> Content script example styled with CSS Modules. Injects a small badge and shows how to scope styles in content scripts.
+> Injects a small styled badge into every web page you visit, with an options page that turns it off.
 
   <table>
     <tr>
@@ -551,7 +551,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-css-modules/screenshot.png" alt="content-css-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -565,7 +565,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-custom-font/src/images/icon.png" alt="content-custom-font example icon" width="22" /> Content Custom Font Example</summary>
 
-> Content script example that loads custom web fonts. Demonstrates font files and web_accessible_resources setup.
+> Injects a badge rendered in a custom font into every web page you visit, with an options page that turns it off.
 
   <table>
     <tr>
@@ -574,7 +574,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-custom-font/screenshot.png" alt="content-custom-font screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -588,7 +588,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-env/src/images/icon.png" alt="content-env example icon" width="22" /> Content Env Example</summary>
 
-> Content script example that reads environment variables (.env) and renders a small UI.
+> Injects a small panel showing the extension's environment values into every web page you visit, with an options page that turns it off.
 
   <table>
     <tr>
@@ -597,7 +597,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-env/screenshot.png" alt="content-env screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -611,7 +611,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less/src/images/icon.png" alt="content-less example icon" width="22" /> Content Less Example</summary>
 
-> Content script example styled with Less. Injects a small badge and shows how to organize styles with Less in content scripts.
+> Injects a small styled badge into every web page, with a Less options page that turns it off.
 
   <table>
     <tr>
@@ -620,7 +620,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less/screenshot.png" alt="content-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -634,7 +634,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less-modules/src/images/icon.png" alt="content-less-modules example icon" width="22" /> Content Less Modules Example</summary>
 
-> Content script example using Less with CSS Modules. Injects a small badge and shows how to scope Less styles in content scripts.
+> Injects a small styled badge into every web page, with a Less modules options page that turns it off.
 
   <table>
     <tr>
@@ -643,7 +643,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less-modules/screenshot.png" alt="content-less-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -657,7 +657,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-multi-one-entry/src/images/icon.png" alt="content-multi-one-entry example icon" width="22" /> Content Multi One Entry Example</summary>
 
-> Content script example with four scripts listed in one entry. Each script injects a small element.
+> Injects four small elements into every web page you visit, with an options page that hides the first one.
 
   <table>
     <tr>
@@ -666,7 +666,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-multi-one-entry/screenshot.png" alt="content-multi-one-entry screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -680,7 +680,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-multi-three-entries/src/images/icon.png" alt="content-multi-three-entries example icon" width="22" /> Content Multi Three Entries Example</summary>
 
-> Content script example split across three entries (2 + 1 + 1). Each script injects a small element.
+> Injects four small elements into every web page you visit, with an options page that hides the first one.
 
   <table>
     <tr>
@@ -689,7 +689,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-multi-three-entries/screenshot.png" alt="content-multi-three-entries screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -712,7 +712,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-preact/screenshot.png" alt="content-preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Preact</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -735,7 +735,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-react/screenshot.png" alt="content-react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">React</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -749,7 +749,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass/src/images/icon.png" alt="content-sass example icon" width="22" /> Content Sass Example</summary>
 
-> Content script example styled with Sass. Injects a small badge and shows how to organize styles with Sass in content scripts.
+> Injects a small styled badge into every web page, with a Sass options page that turns it off.
 
   <table>
     <tr>
@@ -758,7 +758,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass/screenshot.png" alt="content-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>
@@ -772,7 +772,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass-modules/src/images/icon.png" alt="content-sass-modules example icon" width="22" /> Content Sass Modules Example</summary>
 
-> A browser extension content script example built with Extension.js using Sass CSS Modules. Demonstrates scoped styles for content scripts with Sass preprocessing.
+> Injects a small styled badge into every web page you visit, with an options page that turns it off.
 
   <table>
     <tr>
@@ -781,7 +781,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass-modules/screenshot.png" alt="content-sass-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>
@@ -804,7 +804,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-svelte/screenshot.png" alt="content-svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Svelte</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -827,7 +827,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-typescript/screenshot.png" alt="content-typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -850,7 +850,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-vue/screenshot.png" alt="content-vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">Vue</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>

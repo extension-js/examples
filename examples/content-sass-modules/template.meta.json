@@ -1,4 +1,15 @@
 {
+  "tags": ["content-scripts", "sass", "css-modules", "options", "storage"],
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge disappear live"
+  ],
+  "useCases": [
+    "Sass-flavored CSS Modules with hashed class names",
+    "One setting shared between an options page and a content script",
+    "Starting point for Sass extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
   "video": "4RgNs3oFB2s"
 }

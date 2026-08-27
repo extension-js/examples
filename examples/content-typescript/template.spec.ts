@@ -59,6 +59,35 @@ test('should exist a default color value', async ({page}) => {
   test.expect(color).toEqual('rgb(201, 201, 201)')
 })
 
+test('injected UI offers the Open options button by default', async ({
+  page
+}) => {
+  await page.goto('https://example.com/')
+  // No click first: the button has to be on screen the moment the content
+  // script injects, because that is the state the docs recorder films.
+  await waitForShadowElement(
+    page,
+    '#extension-root, [data-extension-root="true"]',
+    'button'
+  )
+  const buttons = await page
+    .locator('#extension-root, [data-extension-root="true"]')
+    .evaluate((host: HTMLElement) =>
+      Array.from(host.shadowRoot?.querySelectorAll('button') ?? []).map(
+        (button) => ({
+          text: button.textContent?.trim(),
+          accessibleName: button.getAttribute('aria-label')
+        })
+      )
+    )
+  test
+    .expect(buttons.some((button) => button.text === 'Open options'))
+    .toBe(true)
+  test
+    .expect(buttons.some((button) => button.accessibleName === 'Open options'))
+    .toBe(true)
+})
+
 test('options page renders', async ({page, extensionId}) => {
   await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
     waitUntil: 'domcontentloaded',

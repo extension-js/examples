@@ -5,15 +5,21 @@
 
 # JavaScript Content Script Example
 
-> Injects four small elements into every web page you visit.
+> Injects four small elements into every web page you visit, with an options page that hides the first one.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: Four small UIs injected into any web page, one per corner, each isolated in a Shadow DOM so site styles don't bleed through. The top-left one carries an **Open options** button, and the options page behind it has one checkbox that hides or shows that element live.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
 
 Three independent content-script entries, each scoped to its own URL match. Demonstrates that multiple `content_scripts` blocks each get their own bundle.
+
+The template also registers an `options_ui` page bundled from `src/options/`. The page reads the `showBadge` setting with `chrome.storage.sync.get` on load and writes it back with `chrome.storage.sync.set` on change. Only `script-top-left.js` reads that key and subscribes to `chrome.storage.onChanged`, so ticking the box hides or shows Content Template #1 without a reload. It removes the listener in the cleanup function Extension.js calls on teardown.
+
+The button lives in the top-left element alone, in the first of the three entries. Four copies of the same button would say nothing about what this template demonstrates, which is how the three entries bundle separately.
+
+A content script cannot open the options page itself, because `chrome.runtime.openOptionsPage` lives on the extension side. The button sends `{type: 'open-options'}` to the background script, and the background script opens the page.
 
 ## Try it locally
 
@@ -41,6 +47,10 @@ src/
 │   └── styles.css
 ├── images/
 │   └── icon.png
+├── options/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
 ├── background.js
 ├── manifest.json
 └── screenshot.png

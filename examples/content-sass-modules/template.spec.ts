@@ -99,3 +99,45 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
   })
   test.expect(fw, 'title should be bold (700)').toBe('700')
 })
+
+// The options page is a second surface next to the injected badge. It is
+// styled by the same .module.scss pipeline, so the class names it applies are
+// hashed and attached from scripts.js rather than written in the markup.
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})
+
+test('content script shows the Open options button', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 30000
+  })
+  const host = page.locator('#extension-root, [data-extension-root="true"]')
+  await test.expect(host.first()).toBeAttached({timeout: 15000})
+  const label = await host.first().evaluate((el: HTMLElement) => {
+    const button = el.shadowRoot?.querySelector('[aria-label="Open options"]')
+    return button?.textContent || ''
+  })
+  test.expect(label, 'the badge should carry the button').toBe('Open options')
+})

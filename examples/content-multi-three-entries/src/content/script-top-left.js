@@ -1,6 +1,9 @@
 import logo from '../images/icon.png'
 import {createBadge} from './utils/create-badge.js'
 
+const SETTING_KEY = 'showBadge'
+const DEFAULT_VALUE = true
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -43,7 +46,40 @@ export default function initial() {
     'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  // Only this script carries the button, so the template still shows what it is
+  // about: how many entries the manifest declares, not four copies of one UI.
+  const button = document.createElement('button')
+  button.className = 'content_button'
+  button.type = 'button'
+  button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  button.setAttribute('aria-label', 'Open options')
+  button.addEventListener('click', () => {
+    chrome.runtime.sendMessage({type: 'open-options'})
+  })
+  contentDiv.appendChild(button)
+
+  function render(showBadge) {
+    rootDiv.style.display = showBadge ? '' : 'none'
+  }
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    render(settings[SETTING_KEY])
+  })
+
+  // The options page writes the same key, so this UI follows it live rather
+  // than waiting for the next page load.
+  const onSettingChanged = (changes, areaName) => {
+    if (areaName === 'sync' && changes[SETTING_KEY]) {
+      render(changes[SETTING_KEY].newValue)
+    }
+  }
+  chrome.storage.onChanged.addListener(onSettingChanged)
+
   return () => {
+    chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
 }

@@ -129,3 +129,77 @@ baseTest('built manifest has world MAIN and bridge script', async () => {
     )
     .toBeGreaterThanOrEqual(1)
 })
+
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})
+
+// The button is drawn by the MAIN world script, which has no chrome.runtime.
+// Its click travels to the ISOLATED world companion over window.postMessage.
+test('main world UI carries an always-visible Open options button', async ({
+  page
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const host = page.locator('#extension-root, [data-extension-root="true"]')
+  await test.expect(host.first()).toBeAttached({timeout: 15000})
+  await test.expect
+    .poll(
+      async () => {
+        return host.first().evaluate((el: HTMLElement) => {
+          const button = el.shadowRoot?.querySelector(
+            'button[aria-label="Open options"]'
+          )
+          return button ? button.textContent : null
+        })
+      },
+      {timeout: 15000, message: 'Open options button never rendered'}
+    )
+    .toBeTruthy()
+})
+
+// The companion answers with the stored setting, and the MAIN world UI stays
+// visible by default, so a visible host proves the bridge round-trip ran.
+test('isolated world companion keeps the UI visible by default', async ({
+  page
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const host = page.locator('#extension-root, [data-extension-root="true"]')
+  await test.expect(host.first()).toBeAttached({timeout: 15000})
+  await test.expect
+    .poll(
+      async () => {
+        return host
+          .first()
+          .evaluate((el: HTMLElement) => window.getComputedStyle(el).display)
+      },
+      {timeout: 15000, message: 'host display never resolved'}
+    )
+    .not.toBe('none')
+})

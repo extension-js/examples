@@ -1,5 +1,23 @@
 {
   "featured": true,
+  "tags": [
+    "content",
+    "options",
+    "storage",
+    "less"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge disappear live"
+  ],
+  "useCases": [
+    "A Less-styled badge injected into every page",
+    "One setting shared between an options page and a content script",
+    "Starting point for Less extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
   "video": "_-e1WfL80pU"
 }

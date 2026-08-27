@@ -127,3 +127,51 @@ baseTest(
       .toEqual(['content_scripts/content-0.js'])
   }
 )
+
+// The options page is a second surface on top of the four injected elements.
+// Only the top-left script carries the Open options button, so the template
+// keeps showing what it is about: one manifest entry, four scripts.
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})
+
+test('only the top-left element carries the Open options button', async ({
+  page
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 30000
+  })
+  for (const pos of POSITIONS) {
+    const host = page.locator(`[data-extension-root="${pos}"]`)
+    await test.expect(host).toBeAttached({timeout: 15000})
+    const label = await host.evaluate((el: HTMLElement) => {
+      const button = el.shadowRoot?.querySelector('[aria-label="Open options"]')
+      return button?.textContent || ''
+    })
+    test
+      .expect(label, `${pos}: only top-left should own the button`)
+      .toBe(pos === 'top-left' ? 'Open options' : '')
+  }
+})

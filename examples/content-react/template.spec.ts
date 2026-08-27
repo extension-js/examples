@@ -146,6 +146,16 @@ test('injected UI offers the Open options button', async ({page}) => {
   test
     .expect(labels.some((label) => label.includes('Open options')))
     .toBe(true)
+
+  // The docs recorder finds page controls by accessible name, so the label
+  // is part of the contract and not only a courtesy to screen readers.
+  const accessibleNames = await shadowRootHandle.evaluate(
+    (shadowRoot: ShadowRoot) =>
+      Array.from(shadowRoot.querySelectorAll('button')).map((node) =>
+        node.getAttribute('aria-label')
+      )
+  )
+  test.expect(accessibleNames).toContain('Open options')
 })
 
 test('options page renders', async ({page, extensionId}) => {

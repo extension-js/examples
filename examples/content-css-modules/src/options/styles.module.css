@@ -1,0 +1,74 @@
+/* Page-level rules cannot be hashed, so they opt out with :global. Everything
+   a class touches below stays local and arrives through the JS import. */
+:global(html) {
+  font-size: 62.5%;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+}
+
+:global(body) {
+  min-width: 480px;
+  max-width: 38em;
+  margin: auto;
+  padding: 1.6rem 2rem;
+  font-size: 1.6rem;
+  line-height: 1.618;
+  color: #0a0c10;
+  background-color: #ffffff;
+}
+
+.options_title {
+  line-height: 1.1;
+  font-weight: 700;
+  font-size: 2.1em;
+  margin-bottom: 1rem;
+}
+
+.options_logo {
+  height: auto;
+  max-width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.options_intro {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+}
+
+.options_intro a {
+  text-decoration: none;
+  border-bottom: 2px solid #0a0c10;
+  color: #0a0c10;
+}
+
+.options_banner {
+  margin-top: 0;
+  margin-bottom: 1.2rem;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #0971fe;
+  background-color: #f3f4f6;
+  color: #0a0c10;
+}
+
+.options_setting {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.options_setting input {
+  width: 1.8rem;
+  height: 1.8rem;
+  accent-color: #0971fe;
+}
+
+.options_status {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.4rem;
+  color: #4b5563;
+}

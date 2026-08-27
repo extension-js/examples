@@ -73,6 +73,7 @@ function openOptions() {
           <div class="mt-8 flex justify-center lg:justify-start">
             <button
               @click="openOptions"
+              aria-label="Open options"
               class="bg-white rounded-md px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Open options

@@ -66,3 +66,19 @@
 .font_momo_signature {
   font-family: "Momo Signature", cursive;
 }
+
+.content_button {
+  font-family: "Momo Signature", cursive;
+  font-size: 1rem;
+  color: #1f2937;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.content_button:hover {
+  background-color: #eef2ff;
+}

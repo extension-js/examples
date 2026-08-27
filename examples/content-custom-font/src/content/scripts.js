@@ -1,4 +1,8 @@
 console.log('[From the page context] Hello from content_scripts!')
+
+const SETTING_KEY = 'showBadge'
+const DEFAULT_VALUE = true
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -32,9 +36,41 @@ export default function initial() {
   bold.style.fontWeight = '700'
   bold.textContent = 'Click, grant, delight — little scripts take flight!'
   demo.appendChild(bold)
+
+  const button = document.createElement('button')
+  button.className = 'content_button'
+  button.type = 'button'
+  button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  button.setAttribute('aria-label', 'Open options')
+  button.addEventListener('click', () => {
+    chrome.runtime.sendMessage({type: 'open-options'})
+  })
+  demo.appendChild(button)
+
   contentDiv.appendChild(demo)
 
+  function render(showBadge) {
+    rootDiv.style.display = showBadge ? '' : 'none'
+  }
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    render(Boolean(settings[SETTING_KEY]))
+  })
+
+  // The options page writes the same key, so this UI follows it live rather
+  // than waiting for the next page load.
+  const onSettingChanged = (changes, areaName) => {
+    if (areaName === 'sync' && changes[SETTING_KEY]) {
+      render(Boolean(changes[SETTING_KEY].newValue))
+    }
+  }
+  chrome.storage.onChanged.addListener(onSettingChanged)
+
   return () => {
+    chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
 }

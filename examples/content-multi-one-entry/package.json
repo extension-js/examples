@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-multi-one-entry",
-  "description": "Injects four small elements into every web page you visit.",
+  "description": "Injects four small elements into every web page you visit, with an options page that hides the first one.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

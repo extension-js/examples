@@ -49,6 +49,9 @@ export default function initial() {
   button.className = 'content_button'
   button.type = 'button'
   button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  button.setAttribute('aria-label', 'Open options')
   button.addEventListener('click', () => {
     const message: OpenOptionsMessage = {type: 'open-options'}
     chrome.runtime.sendMessage(message)

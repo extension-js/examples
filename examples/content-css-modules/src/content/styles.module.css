@@ -41,6 +41,21 @@
   margin: 0;
 }
 
+.content_button {
+  font: inherit;
+  font-size: small;
+  color: #0a0c10;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.6em 1em;
+  cursor: pointer;
+}
+
+.content_button:hover {
+  background-color: #e5e7eb;
+}
+
 .logo {
   width: 72px;
   background: transparent;

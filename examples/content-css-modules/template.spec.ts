@@ -99,3 +99,69 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
   })
   test.expect(fw, 'title should be bold (700)').toBe('700')
 })
+
+test('content script injects the options button', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 30000
+  })
+  const host = page.locator('#extension-root, [data-extension-root="true"]')
+  await test.expect(host.first()).toBeAttached({timeout: 15000})
+
+  // The class name is hashed by CSS Modules, so the button is found by its
+  // accessible label rather than by a selector the build rewrites.
+  await test.expect
+    .poll(
+      async () => {
+        return host.first().evaluate((el: HTMLElement) => {
+          const button = el.shadowRoot?.querySelector(
+            'button[aria-label="Open options"]'
+          )
+          return button ? button.textContent : null
+        })
+      },
+      {timeout: 15000, message: 'options button never appeared in shadow DOM'}
+    )
+    .toBe('Open options')
+})
+
+test('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await test.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  test.expect(textContent).toContain('Options')
+})
+
+test('options page shows the setting checkbox', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const checkbox = page.locator('#show-badge')
+  await test.expect(checkbox).toBeVisible({timeout: 60000})
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  const statusLine = page.locator('#status')
+  await test.expect(statusLine).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+})
+
+test('options page class names come from the CSS module', async ({
+  page,
+  extensionId
+}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const status = page.locator('#status')
+  await test.expect(status).toBeVisible({timeout: 60000})
+  // A hashed name proves the module pipeline ran instead of a plain stylesheet
+  const className = await status.evaluate((el: HTMLElement) => el.className)
+  test.expect(className).not.toBe('')
+  test.expect(className).not.toBe('options_status')
+})

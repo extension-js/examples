@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@extension-js/content-less",
-  "description": "Injects a small styled badge into every web page you visit.",
+  "description": "Injects a small styled badge into every web page, with a Less options page that turns it off.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

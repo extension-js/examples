@@ -79,6 +79,7 @@ function OpenHint({
           <div className="mt-6">
             <button
               onClick={onOpenOptions}
+              aria-label="Open options"
               className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Open options

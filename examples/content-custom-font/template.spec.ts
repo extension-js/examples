@@ -22,6 +22,9 @@ test.describe('Content Custom Font Template', () => {
       'src/background.js',
       'src/content/scripts.js',
       'src/content/styles.css',
+      'src/options/index.html',
+      'src/options/scripts.js',
+      'src/options/styles.css',
       'postcss.config.js',
       'README.md'
     ]
@@ -83,6 +86,13 @@ test.describe('Content Custom Font Template', () => {
     expect(css).toContain('font-display: swap')
   })
 
+  test('should reuse the custom font on the options page', async () => {
+    const css = readFileSync(join(srcDir, 'options/styles.css'), 'utf8')
+
+    expect(css).toContain('@font-face')
+    expect(css).toContain('font-family: "Momo Signature"')
+  })
+
   test('should have content script with font demo', async () => {
     const script = readFileSync(join(srcDir, 'content/scripts.js'), 'utf8')
 
@@ -116,3 +126,52 @@ runtimeTest('custom font is applied in shadow DOM', async ({page}) => {
   )
   runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
 })
+
+runtimeTest('content script shows the options button', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const button = await getShadowRootElement(
+    page,
+    '[data-extension-root="true"]',
+    'button[aria-label="Open options"]',
+    30000
+  )
+  runtimeTest.expect(button).not.toBeNull()
+  const text = await button!.evaluate((el) => el.textContent)
+  runtimeTest.expect(text).toBe('Open options')
+})
+
+runtimeTest('options page renders', async ({page, extensionId}) => {
+  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const h1 = page.locator('h1').first()
+  await runtimeTest.expect(h1).toBeVisible({timeout: 60000})
+  const textContent = await h1.textContent()
+  runtimeTest.expect(textContent).toContain('Options')
+  // The page is set in the same face the injected badge uses
+  const fontFamily = await h1.evaluate((el) =>
+    window.getComputedStyle(el).getPropertyValue('font-family')
+  )
+  runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
+})
+
+runtimeTest(
+  'options page shows the setting checkbox',
+  async ({page, extensionId}) => {
+    await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    })
+    const checkbox = page.locator('#show-badge')
+    await runtimeTest.expect(checkbox).toBeVisible({timeout: 60000})
+    await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
+    const statusLine = page.locator('#status')
+    await runtimeTest.expect(statusLine).toContainText('chrome.storage.sync', {
+      timeout: 60000
+    })
+  }
+)

@@ -5,15 +5,21 @@
 
 # JavaScript Content Script Example
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with an options page that turns it off.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The badge carries an **Open options** button, and the options page behind it has one checkbox that hides or shows the badge live.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Sass + CSS Modules.
 
 Sass-flavored CSS Modules. Combines `.module.scss` files with class-name hashing for fully isolated, nested styles.
+
+The options page is styled the same way, from `src/options/styles.module.scss`. Because CSS Modules hash every class name at build time, the markup in `index.html` carries ids and `scripts.js` attaches the hashed names it imports, the same way the content script does.
+
+That page reads the `showBadge` setting with `chrome.storage.sync.get` on load and writes it back with `chrome.storage.sync.set` on change. The content script reads the same key on injection and subscribes to `chrome.storage.onChanged`, so ticking the box updates every open page without a reload. It removes the listener in the cleanup function Extension.js calls on teardown.
+
+A content script cannot open the options page itself, because `chrome.runtime.openOptionsPage` lives on the extension side. The button sends `{type: 'open-options'}` to the background script, and the background script opens the page.
 
 ## Try it locally
 
@@ -35,6 +41,10 @@ src/
 │   └── styles.module.scss
 ├── images/
 │   └── icon.png
+├── options/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.module.scss
 ├── background.js
 └── manifest.json
 ```

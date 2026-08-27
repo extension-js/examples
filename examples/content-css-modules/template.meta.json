@@ -1,4 +1,17 @@
 {
+  "tags": ["content", "options", "storage", "css-modules"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge disappear live"
+  ],
+  "useCases": [
+    "Locally scoped class names for an injected UI and an options page",
+    "One setting shared between an options page and a content script",
+    "Starting point for CSS Modules extensions that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
   "video": "qdEGRy1JXCU"
 }

@@ -5,13 +5,17 @@
 
 # JavaScript Content Script Example
 
-> Injects a small badge into every web page you visit.
+> Injects a small badge into every web page you visit, with an options page that turns it off.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through, carrying an Open options button. The options page has one checkbox, and unticking it hides the badge straight away.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+
+The manifest also registers an `options_ui` page bundled from `src/options/`. The options page reads the setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key and subscribes to `chrome.storage.onChanged`, so the badge follows the setting live rather than waiting for the next page load. It removes that listener in the cleanup function Extension.js calls on teardown.
+
+A content script cannot open the options page itself, because `openOptionsPage` lives on the extension side. So the badge's button posts a message and the background worker opens the page. That relay is the part worth copying.
 
 ## Try it locally
 
@@ -33,6 +37,10 @@ src/
 │   └── styles.css
 ├── images/
 │   └── icon.png
+├── options/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.css
 ├── background.js
 └── manifest.json
 ```
