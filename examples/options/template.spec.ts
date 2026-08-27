@@ -55,3 +55,67 @@ test('content script injects the badge and its options button', async ({
   const button = host.locator('css=.content_button')
   await test.expect(button).toHaveText('Open options', {timeout: 60000})
 })
+
+// The options page advertises that unticking the setting takes the injected UI
+// off the page, so this asserts the rendered result and not the stored value.
+// An earlier version hid the host with a plain `style.display` assignment,
+// which the CSSOM drops over the host's own `all: initial !important`: the
+// checkbox round-tripped through storage and the badge stayed on screen, and
+// every other assertion in this file still passed.
+test('unticking the setting actually hides the injected UI', async ({
+  page,
+  context,
+  extensionId
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const host = page
+    .locator('#extension-root, [data-extension-root="true"]')
+    .first()
+  await test.expect(host).toBeAttached({timeout: 30000})
+  // The UI lives in a shadow root, so reach through the host for the button
+  // the page itself never has.
+  const injectedUi = host.locator('css=[aria-label="Open options"]')
+  await test.expect(injectedUi).toBeVisible({timeout: 30000})
+
+  const optionsPage = await context.newPage()
+  await optionsPage.goto(
+    `chrome-extension://${extensionId}/options/index.html`,
+    {waitUntil: 'domcontentloaded', timeout: 60000}
+  )
+  const status = optionsPage.locator('#status')
+  // The checkbox starts unchecked in markup and is filled in from storage, so
+  // wait for that read before toggling or the load can undo the click.
+  await test.expect(status).toContainText('chrome.storage.sync', {
+    timeout: 60000
+  })
+  const checkbox = optionsPage.locator('#show-badge')
+  await test.expect(checkbox).toBeChecked({timeout: 60000})
+  await checkbox.uncheck()
+  await test.expect(status).toContainText('Saved', {timeout: 60000})
+  await page.bringToFront()
+
+  await test.expect
+    .poll(
+      async () =>
+        host.evaluate((el: HTMLElement) => window.getComputedStyle(el).display),
+      {timeout: 20000, message: 'the host never reached display none'}
+    )
+    .toBe('none')
+  await test.expect(injectedUi).toBeHidden({timeout: 20000})
+
+  await optionsPage.bringToFront()
+  await checkbox.check()
+  await page.bringToFront()
+  await test.expect(injectedUi).toBeVisible({timeout: 20000})
+  await test.expect
+    .poll(
+      async () =>
+        host.evaluate((el: HTMLElement) => window.getComputedStyle(el).display),
+      {timeout: 20000, message: 'the host never came back'}
+    )
+    .not.toBe('none')
+  await optionsPage.close()
+})
