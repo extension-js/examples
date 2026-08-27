@@ -11,7 +11,7 @@
     }
   },
   "name": "Main World Content Example",
-  "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world.",
+  "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world, with an options page that moves it to the left or right edge.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -19,7 +19,11 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
-  "permissions": ["activeTab", "scripting"],
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": false
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",
@@ -38,6 +42,10 @@
       "matches": ["<all_urls>"],
       "js": ["content/scripts.js"],
       "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/isolated-options.js"]
     }
   ]
 }

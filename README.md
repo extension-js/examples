@@ -540,7 +540,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-custom-font/src/images/icon.png" alt="content-custom-font example icon" width="22" /> Content Custom Font Example</summary>
 
-> Injects a badge rendered in a custom font into every web page you visit.
+> Injects a badge rendered in a custom font into every web page you visit, with an options page that turns the custom font on and off.
 
   <table>
     <tr>
@@ -549,7 +549,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-custom-font/screenshot.png" alt="content-custom-font screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -586,7 +586,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less/src/images/icon.png" alt="content-less example icon" width="22" /> Content Less Example</summary>
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with a Less options page that moves it to the left or right edge.
 
   <table>
     <tr>
@@ -595,7 +595,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less/screenshot.png" alt="content-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -609,7 +609,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less-modules/src/images/icon.png" alt="content-less-modules example icon" width="22" /> Content Less Modules Example</summary>
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with a Less modules options page that moves it to the left or right edge.
 
   <table>
     <tr>
@@ -618,7 +618,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less-modules/screenshot.png" alt="content-less-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -724,7 +724,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass/src/images/icon.png" alt="content-sass example icon" width="22" /> Content Sass Example</summary>
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with a Sass options page that moves it to the left or right edge.
 
   <table>
     <tr>
@@ -733,7 +733,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass/screenshot.png" alt="content-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>
@@ -747,7 +747,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass-modules/src/images/icon.png" alt="content-sass-modules example icon" width="22" /> Content Sass Modules Example</summary>
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with a Sass modules options page that moves it to the left or right edge.
 
   <table>
     <tr>
@@ -756,7 +756,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass-modules/screenshot.png" alt="content-sass-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>

@@ -1,5 +1,19 @@
 {
   "featured": true,
+  "title": "Content scripts with Sass",
+  "tags": ["content", "sass", "options", "storage"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Tick the setting and watch the badge move to the left edge"
+  ],
+  "useCases": [
+    "A badge injected into every page and styled with Sass",
+    "One position setting shared between an options page and a content script",
+    "Starting point for Sass content scripts that need preferences"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
   "video": "5v335BPb2KY"
 }

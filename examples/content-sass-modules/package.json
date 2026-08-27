@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@extension-js/content-sass-modules",
-  "description": "Injects a small styled badge into every web page you visit.",
+  "description": "Injects a small styled badge into every web page you visit, with a Sass modules options page that moves it to the left or right edge.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

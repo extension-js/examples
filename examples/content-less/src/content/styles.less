@@ -39,3 +39,26 @@
   color: #e5e7eb;
   margin: 0;
 }
+
+.content_button {
+  font: inherit;
+  font-size: small;
+  color: #e5e7eb;
+  background-color: #11151c;
+  border: 1px solid #2a3140;
+  border-radius: 6px;
+  padding: 0.6em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #182030;
+  }
+}
+
+// The options page flips this class on. It comes last so it outranks the
+// `right` anchor above at the same specificity, and it clears that anchor
+// because a fixed box with a width honors one side only.
+.content_script_left {
+  left: 0;
+  right: auto;
+}

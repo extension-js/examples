@@ -1,12 +1,17 @@
 import logo from '../images/icon.png'
 import {
   content_script,
+  content_script_left,
   content_logo,
   content_title,
-  content_description
+  content_description,
+  content_button
 } from './styles.module.scss'
 
 console.log('[From the page context] Hello from content_scripts!')
+
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE = 'right'
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -44,7 +49,42 @@ export default function initial() {
     'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  const button = document.createElement('button')
+  button.className = content_button
+  button.type = 'button'
+  button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  button.setAttribute('aria-label', 'Open options')
+  button.addEventListener('click', () => {
+    chrome.runtime.sendMessage({type: 'open-options'})
+  })
+  contentDiv.appendChild(button)
+
+  function render(position) {
+    // The move lands on the badge inside the shadow root, not on the host:
+    // the host carries `all: initial !important`, which a plain write loses to.
+    // The modifier is the imported name, never the name as authored: CSS
+    // Modules hashes it at build time, so a literal string matches nothing.
+    contentDiv.classList.toggle(content_script_left, position === 'left')
+  }
+
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    render(settings[SETTING_KEY])
+  })
+
+  // The options page writes the same key, so this UI follows it live rather
+  // than waiting for the next page load.
+  const onSettingChanged = (changes, areaName) => {
+    if (areaName === 'sync' && changes[SETTING_KEY]) {
+      render(changes[SETTING_KEY].newValue)
+    }
+  }
+  chrome.storage.onChanged.addListener(onSettingChanged)
+
   return () => {
+    chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
 }

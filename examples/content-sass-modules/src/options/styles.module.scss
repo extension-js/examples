@@ -1,0 +1,77 @@
+$page-surface: #0a0c10;
+$panel-surface: #11151c;
+$page-text: #c9c9c9;
+$page-bright: #e5e7eb;
+$page-muted: #9aa4b2;
+$accent: #0971fe;
+
+// Element selectors are global even in a module, so the base typography is
+// written once here and the hashed classes below carry the rest.
+html {
+  font-size: 62.5%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+}
+
+h1 {
+  line-height: 1.1;
+  font-weight: 700;
+  font-size: 2.1em;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 1.2rem;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 2px solid $page-text;
+  color: $page-bright;
+}
+
+.options_page {
+  min-width: 480px;
+  max-width: 38em;
+  margin: auto;
+  padding: 1.6rem 2rem;
+  font-size: 1.6rem;
+  line-height: 1.618;
+  color: $page-text;
+  background-color: $page-surface;
+}
+
+.options_logo {
+  height: auto;
+  max-width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.options_banner {
+  padding: 1rem 1.5rem;
+  border-left: 4px solid $accent;
+  background-color: $panel-surface;
+  color: $page-bright;
+}
+
+.options_setting {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+
+  input {
+    width: 1.8rem;
+    height: 1.8rem;
+    accent-color: $accent;
+  }
+}
+
+.options_status {
+  margin-bottom: 0px;
+  font-size: 1.4rem;
+  color: $page-muted;
+}

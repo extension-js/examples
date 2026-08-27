@@ -1,4 +1,18 @@
 {
+  "title": "Custom fonts in a content script",
+  "tags": ["content", "fonts", "options", "storage", "javascript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click Open options on the badge injected into the page",
+    "Untick the setting and watch the badge fall back to the system font"
+  ],
+  "useCases": [
+    "A content script that ships its own typeface",
+    "One font setting shared between an options page and a content script",
+    "Starting point for injected UI that must not inherit host page type"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
   "video": "ZjLlNQ-z81I"
 }

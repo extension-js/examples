@@ -5,13 +5,19 @@
 
 # JavaScript Content Script Example
 
-> Injects a small styled badge into every web page you visit.
+> Injects a small styled badge into every web page you visit, with a Sass options page that moves it to the left or right edge.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through, carrying an Open options button. The options page has one checkbox, and ticking it sends the badge to the left edge of the page straight away.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Sass.
+
+The manifest also registers an `options_ui` page bundled from `src/options/`. The options page reads the setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key and subscribes to `chrome.storage.onChanged`, so the badge slides to the other edge live rather than waiting for the next page load. It removes that listener in the cleanup function Extension.js calls on teardown.
+
+A content script cannot open the options page itself, because `openOptionsPage` lives on the extension side. So the badge's button posts a message and the background worker opens the page. That relay is the part worth copying.
+
+The options page is styled by the same Sass pipeline, from `src/options/styles.scss`, and the edge the badge sits on is a modifier class compiled next to the base rule.
 
 ## Try it locally
 
@@ -33,6 +39,10 @@ src/
 │   └── styles.scss
 ├── images/
 │   └── icon.png
+├── options/
+│   ├── index.html
+│   ├── scripts.js
+│   └── styles.scss
 ├── background.js
 └── manifest.json
 ```

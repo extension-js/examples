@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-main-world",
-  "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world.",
+  "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world, with an options page that moves it to the left or right edge.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

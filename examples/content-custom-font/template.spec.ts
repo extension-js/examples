@@ -116,3 +116,108 @@ runtimeTest('custom font is applied in shadow DOM', async ({page}) => {
   )
   runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
 })
+
+runtimeTest('content script injects the options button', async ({page}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const button = await getShadowRootElement(
+    page,
+    '[data-extension-root="true"]',
+    'div.content_script > button.content_button',
+    30000
+  )
+  runtimeTest.expect(button).not.toBeNull()
+  const label = await button!.evaluate((el) => el.getAttribute('aria-label'))
+  runtimeTest.expect(label).toEqual('Open options')
+})
+
+runtimeTest(
+  'options page shows the font checkbox',
+  async ({page, extensionId}) => {
+    await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    })
+    const checkbox = page.locator('#custom-font')
+    await runtimeTest.expect(checkbox).toBeVisible({timeout: 60000})
+    await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
+    const statusLine = page.locator('#status')
+    await runtimeTest
+      .expect(statusLine)
+      .toContainText('chrome.storage.sync', {timeout: 60000})
+  }
+)
+
+// The typeface is the whole subject of this template, so the setting turns it
+// on and off. The witness is the computed font-family of the text the reader
+// actually sees, never a class name and never a style string: a class can flip
+// while the text keeps rendering in exactly the same face, and a suite that
+// asserts on the class stays green through that.
+runtimeTest(
+  'the setting toggles the custom font',
+  async ({page, context, extensionId}) => {
+    await page.goto('https://example.com/', {
+      waitUntil: 'domcontentloaded',
+      timeout: 60000
+    })
+
+    const readFontFamily = () =>
+      page.evaluate(() => {
+        const host = document.querySelector('[data-extension-root="true"]')
+        const text = host?.shadowRoot?.querySelector('.font_demo p')
+        if (!text) return null
+        return window
+          .getComputedStyle(text as HTMLElement)
+          .getPropertyValue('font-family')
+      })
+
+    await runtimeTest.expect
+      .poll(readFontFamily, {
+        timeout: 30000,
+        message: 'the badge text never picked up the custom face'
+      })
+      .toContain('Momo Signature')
+
+    const optionsPage = await context.newPage()
+    await optionsPage.goto(
+      `chrome-extension://${extensionId}/options/index.html`,
+      {waitUntil: 'domcontentloaded', timeout: 60000}
+    )
+    const status = optionsPage.locator('#status')
+    // The checkbox is filled in from storage after the page loads, so wait for
+    // that read before toggling or the load can undo the click.
+    await runtimeTest
+      .expect(status)
+      .toContainText('chrome.storage.sync', {timeout: 60000})
+    const checkbox = optionsPage.locator('#custom-font')
+    await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
+
+    await checkbox.uncheck()
+    await runtimeTest.expect(status).toContainText('Saved', {timeout: 60000})
+    await page.bringToFront()
+
+    await runtimeTest.expect
+      .poll(readFontFamily, {
+        timeout: 20000,
+        message: 'the badge text never left the custom face'
+      })
+      .not.toContain('Momo Signature')
+    const systemFamily = await readFontFamily()
+    runtimeTest.expect(systemFamily).toContain('sans-serif')
+
+    await optionsPage.bringToFront()
+    await checkbox.check()
+    await runtimeTest.expect(status).toContainText('Saved', {timeout: 60000})
+    await page.bringToFront()
+
+    await runtimeTest.expect
+      .poll(readFontFamily, {
+        timeout: 20000,
+        message: 'the badge text never came back to the custom face'
+      })
+      .toContain('Momo Signature')
+    await optionsPage.close()
+  }
+)
