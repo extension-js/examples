@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-27T22:53:51.264Z",
+  "generatedAt": "2026-08-27T23:56:01.703Z",
   "templates": [
     {
       "slug": "action",
@@ -137,7 +137,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs"],
+      "permissions": ["sidePanel", "storage", "tabs"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
@@ -225,7 +225,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs"],
+      "permissions": ["sidePanel", "storage", "tabs"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
@@ -312,7 +312,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs"],
+      "permissions": ["sidePanel", "storage", "tabs"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
@@ -399,7 +399,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel", "storage", "activeTab", "scripting", "tabs"],
+      "permissions": ["sidePanel", "storage", "tabs"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
@@ -3203,15 +3203,7 @@
           "hasEnv": false
         }
       },
-      "permissions": [
-        "sidePanel",
-        "storage",
-        "unlimitedStorage",
-        "activeTab",
-        "scripting",
-        "tabs",
-        "contextMenus"
-      ],
+      "permissions": ["sidePanel", "storage", "tabs", "contextMenus"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
