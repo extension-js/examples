@@ -5,17 +5,17 @@
 
 # Preact Content Script Example
 
-> Shows an overlay UI on web pages and an options page that saves one setting.
+> Shows an overlay UI on web pages and an options page that moves it from right to left.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Preact UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. It carries an **Open options** button, and the options page behind it has one checkbox that hides and shows the overlay live.
+**What you'll see**: A small Preact UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. It carries an **Open options** button, and the options page behind it has one checkbox that moves the overlay between the right and left edge of the page, live.
 
 **How it works**: A content script mounts a Preact + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
 
-The manifest also registers an `options_ui` page bundled from `src/options/`, a second Preact app. It reads and writes one setting, `showBadge`, through `chrome.storage.sync`, which is why the manifest asks for the `storage` permission. The content script reads the same key on load and subscribes to `chrome.storage.onChanged`, so unticking the checkbox removes the overlay from every open page without a reload. That listener is removed in the cleanup function the framework calls on teardown.
+The manifest also registers an `options_ui` page bundled from `src/options/`, a second Preact app. It reads and writes one setting, `badgePosition`, through `chrome.storage.sync`, which is why the manifest asks for the `storage` permission. The value is `right` by default and `left` when the box is ticked. The content script reads the same key on load and subscribes to `chrome.storage.onChanged`, so ticking the checkbox slides the overlay to the other edge on every open page without a reload. That listener is removed in the cleanup function the framework calls on teardown.
 
-A content script cannot open the options page on its own, because `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends a message to the background worker, and the worker opens the page. With the overlay hidden, the options page is still reachable from the extension's entry in the browser's extensions page.
+A content script cannot open the options page on its own, because `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends a message to the background worker, and the worker opens the page. The options page is also reachable from the extension's entry in the browser's extensions page.
 
 ## Try it locally
 

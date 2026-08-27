@@ -1,25 +1,18 @@
 {
   "title": "Main-world Content Script",
   "featured": true,
-  "tags": [
-    "content-scripts",
-    "main-world",
-    "isolated-world",
-    "options",
-    "storage",
-    "javascript"
-  ],
+  "tags": ["content-scripts", "main-world", "isolated-world", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
     "Run npm run dev to launch the extension",
-    "Click Open options on the UI injected into the page",
-    "Untick the setting and watch the UI disappear live"
+    "Open any page and watch the main-world script run alongside isolated entries",
+    "Inspect window.postMessage bridges between isolated and main worlds"
   ],
   "useCases": [
     "Hook into page-level globals that isolated content scripts cannot reach",
     "Bridge isolated and main-world execution contexts cleanly",
-    "Give a main-world UI a setting only the isolated world can read"
+    "Reference for multi-group content_scripts in MV3"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
   "video": "2MPjBfm9Y2g"

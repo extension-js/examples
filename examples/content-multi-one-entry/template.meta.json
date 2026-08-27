@@ -1,21 +1,4 @@
 {
-  "tags": [
-    "content-scripts",
-    "single-entry",
-    "options",
-    "storage",
-    "javascript"
-  ],
-  "firstSteps": [
-    "Run npm run dev to launch the extension",
-    "Click Open options on the top-left element injected into the page",
-    "Untick the setting and watch that element disappear live"
-  ],
-  "useCases": [
-    "Four content scripts bundled from a single content_scripts entry",
-    "One setting shared between an options page and a content script",
-    "Reference for the single-entry content_scripts pattern in MV3"
-  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
   "video": "VD4BveNj53E"
 }

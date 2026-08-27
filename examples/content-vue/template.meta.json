@@ -10,7 +10,7 @@
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "Click Open options on the overlay injected into the page",
-    "Untick the setting and watch the overlay disappear live"
+    "Tick the setting and watch the overlay move to the left edge"
   ],
   "useCases": [
     "A Vue overlay injected into every page, isolated in a Shadow DOM",

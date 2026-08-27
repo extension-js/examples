@@ -11,7 +11,7 @@
     }
   },
   "name": "Preact Content Example",
-  "description": "Shows an overlay UI on web pages and an options page that saves one setting.",
+  "description": "Shows an overlay UI on web pages and an options page that moves it from right to left.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

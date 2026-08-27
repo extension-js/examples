@@ -22,9 +22,6 @@ test.describe('Content Custom Font Template', () => {
       'src/background.js',
       'src/content/scripts.js',
       'src/content/styles.css',
-      'src/options/index.html',
-      'src/options/scripts.js',
-      'src/options/styles.css',
       'postcss.config.js',
       'README.md'
     ]
@@ -86,13 +83,6 @@ test.describe('Content Custom Font Template', () => {
     expect(css).toContain('font-display: swap')
   })
 
-  test('should reuse the custom font on the options page', async () => {
-    const css = readFileSync(join(srcDir, 'options/styles.css'), 'utf8')
-
-    expect(css).toContain('@font-face')
-    expect(css).toContain('font-family: "Momo Signature"')
-  })
-
   test('should have content script with font demo', async () => {
     const script = readFileSync(join(srcDir, 'content/scripts.js'), 'utf8')
 
@@ -126,119 +116,3 @@ runtimeTest('custom font is applied in shadow DOM', async ({page}) => {
   )
   runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
 })
-
-runtimeTest('content script shows the options button', async ({page}) => {
-  await page.goto('https://example.com/', {
-    waitUntil: 'domcontentloaded',
-    timeout: 60000
-  })
-  const button = await getShadowRootElement(
-    page,
-    '[data-extension-root="true"]',
-    'button[aria-label="Open options"]',
-    30000
-  )
-  runtimeTest.expect(button).not.toBeNull()
-  const text = await button!.evaluate((el) => el.textContent)
-  runtimeTest.expect(text).toBe('Open options')
-})
-
-runtimeTest('options page renders', async ({page, extensionId}) => {
-  await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
-    waitUntil: 'domcontentloaded',
-    timeout: 60000
-  })
-  const h1 = page.locator('h1').first()
-  await runtimeTest.expect(h1).toBeVisible({timeout: 60000})
-  const textContent = await h1.textContent()
-  runtimeTest.expect(textContent).toContain('Options')
-  // The page is set in the same face the injected badge uses
-  const fontFamily = await h1.evaluate((el) =>
-    window.getComputedStyle(el).getPropertyValue('font-family')
-  )
-  runtimeTest.expect(fontFamily.toLowerCase()).toContain('momo signature')
-})
-
-runtimeTest(
-  'options page shows the setting checkbox',
-  async ({page, extensionId}) => {
-    await page.goto(`chrome-extension://${extensionId}/options/index.html`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 60000
-    })
-    const checkbox = page.locator('#show-badge')
-    await runtimeTest.expect(checkbox).toBeVisible({timeout: 60000})
-    await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
-    const statusLine = page.locator('#status')
-    await runtimeTest.expect(statusLine).toContainText('chrome.storage.sync', {
-      timeout: 60000
-    })
-  }
-)
-
-// The options page advertises that unticking the setting takes the injected UI
-// off the page, so this asserts the rendered result and not the stored value.
-// An earlier version hid the host with a plain `style.display` assignment,
-// which the CSSOM drops over the host's own `all: initial !important`: the
-// checkbox round-tripped through storage and the badge stayed on screen, and
-// every other assertion in this file still passed.
-runtimeTest(
-  'unticking the setting actually hides the injected UI',
-  async ({page, context, extensionId}) => {
-    await page.goto('https://example.com/', {
-      waitUntil: 'domcontentloaded',
-      timeout: 60000
-    })
-    const host = page
-      .locator('#extension-root, [data-extension-root="true"]')
-      .first()
-    await runtimeTest.expect(host).toBeAttached({timeout: 30000})
-    // The UI lives in a shadow root, so reach through the host for the button
-    // the page itself never has.
-    const injectedUi = host.locator('css=[aria-label="Open options"]')
-    await runtimeTest.expect(injectedUi).toBeVisible({timeout: 30000})
-
-    const optionsPage = await context.newPage()
-    await optionsPage.goto(
-      `chrome-extension://${extensionId}/options/index.html`,
-      {waitUntil: 'domcontentloaded', timeout: 60000}
-    )
-    const status = optionsPage.locator('#status')
-    // The checkbox starts unchecked in markup and is filled in from storage, so
-    // wait for that read before toggling or the load can undo the click.
-    await runtimeTest.expect(status).toContainText('chrome.storage.sync', {
-      timeout: 60000
-    })
-    const checkbox = optionsPage.locator('#show-badge')
-    await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
-    await checkbox.uncheck()
-    await runtimeTest.expect(status).toContainText('Saved', {timeout: 60000})
-    await page.bringToFront()
-
-    await runtimeTest.expect
-      .poll(
-        async () =>
-          host.evaluate(
-            (el: HTMLElement) => window.getComputedStyle(el).display
-          ),
-        {timeout: 20000, message: 'the host never reached display none'}
-      )
-      .toBe('none')
-    await runtimeTest.expect(injectedUi).toBeHidden({timeout: 20000})
-
-    await optionsPage.bringToFront()
-    await checkbox.check()
-    await page.bringToFront()
-    await runtimeTest.expect(injectedUi).toBeVisible({timeout: 20000})
-    await runtimeTest.expect
-      .poll(
-        async () =>
-          host.evaluate(
-            (el: HTMLElement) => window.getComputedStyle(el).display
-          ),
-        {timeout: 20000, message: 'the host never came back'}
-      )
-      .not.toBe('none')
-    await optionsPage.close()
-  }
-)

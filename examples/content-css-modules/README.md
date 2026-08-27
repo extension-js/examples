@@ -5,21 +5,15 @@
 
 # JavaScript Content Script Example
 
-> Injects a small styled badge into every web page you visit, with an options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through, carrying an Open options button. The options page has one checkbox, and unticking it hides the badge straight away.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through CSS Modules.
 
 CSS Modules pipeline with locally-scoped class names. Imported styles are hashed at build time so the injected UI is immune to host-page CSS bleed.
-
-The options page uses the same pipeline. Because the class names are hashed, the HTML cannot spell them out, so `src/options/scripts.js` imports `styles.module.css` and applies the names to elements it picks by id. Page-level rules that no class can carry, on `html` and `body`, opt out of hashing with `:global`.
-
-The options page reads the setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key and subscribes to `chrome.storage.onChanged`, so the badge follows the setting live rather than waiting for the next page load. It removes that listener in the cleanup function Extension.js calls on teardown.
-
-A content script cannot open the options page itself, because `openOptionsPage` lives on the extension side. So the badge's button posts a message and the background worker opens the page. That relay is the part worth copying.
 
 ## Try it locally
 
@@ -41,10 +35,6 @@ src/
 │   └── styles.module.css
 ├── images/
 │   └── icon.png
-├── options/
-│   ├── index.html
-│   ├── scripts.js
-│   └── styles.module.css
 ├── background.js
 └── manifest.json
 ```

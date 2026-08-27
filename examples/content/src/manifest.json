@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Content Example",
-  "description": "Injects a small badge into every web page you visit, with an options page that turns it off.",
+  "description": "Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

@@ -14,7 +14,7 @@ Last updated: 2026-08-26
 ## Listing
 
 - Name: Preact Content Example
-- Summary: Shows an overlay UI on web pages, with an options page for one setting.
+- Summary: Shows an overlay UI on web pages, with an options page that moves it from right to left.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,8 +23,9 @@ Last updated: 2026-08-26
 
 ## Privacy and data use
 
-- This template stores one setting in the browser's own sync storage.
-  It collects and transmits no user data.
+- This template stores one setting, which edge the overlay sits on,
+  in the browser's own sync storage. It collects and transmits no user
+  data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -36,15 +37,16 @@ Last updated: 2026-08-26
 
 ### Single purpose
 
-Shows an overlay UI on web pages, with an options page for one setting.
+Shows an overlay UI on web pages, with an options page that moves it
+from right to left.
 
 ### Permissions justification
 
 - Content script match <all_urls>: The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.
 - storage: keeps the one setting from the options page so it survives
   closing the page and restarting the browser. The content script reads
-  the same setting to decide whether to show the overlay. Nothing leaves
-  the browser.
+  the same setting to decide which edge the overlay sits on. Nothing
+  leaves the browser.
 
 ## Firefox Add-ons
 
@@ -52,7 +54,7 @@ Shows an overlay UI on web pages, with an options page for one setting.
 
 TODO steps a reviewer needs to exercise the extension, plus test
 credentials if sign-in is required. The build is bundled, so AMO
-requires a source zip; include build-from-source instructions:
+requires a source zip. Include build-from-source instructions:
 npm install, then npm run build. The dist output matches the upload.
 
 ### Release notes

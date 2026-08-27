@@ -5,15 +5,15 @@
 
 # React Content Script Example
 
-> Shows a small overlay UI on every web page, with a React options page that turns it off.
+> Shows a small overlay UI on every web page, with a React options page that moves it from right to left.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay carries an **Open options** button, and the options page behind it has one checkbox that hides or shows the overlay live.
+**What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay carries an **Open options** button, and the options page behind it has one checkbox that moves the overlay between the right and left edge of the page, live.
 
 **How it works**: A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
 
-The options page is the same stack, a React component mounted into an `options_ui` page bundled from `src/options/`. It reads the `showBadge` setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads that same key on injection and subscribes to `chrome.storage.onChanged`, so ticking the checkbox hides or shows the overlay without a page reload. The subscription is removed in the cleanup function Extension.js calls on teardown.
+The options page is the same stack, a React component mounted into an `options_ui` page bundled from `src/options/`. It reads the `badgePosition` setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The value is `right` by default and `left` when the box is ticked. The content script reads that same key on injection and subscribes to `chrome.storage.onChanged`, so ticking the checkbox slides the overlay to the other edge without a page reload. The subscription is removed in the cleanup function Extension.js calls on teardown.
 
 A content script cannot open the options page itself, `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends `{type: 'open-options'}` to the background script, which makes the call. The manifest asks for the `storage` permission for the setting and nothing else.
 

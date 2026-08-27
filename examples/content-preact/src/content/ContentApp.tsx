@@ -5,6 +5,15 @@ import typescriptLogo from '../images/typescript.png'
 import tailwindLogo from '../images/tailwind.png'
 import chromeWindowBg from '../images/chromeWindow.png'
 
+export type BadgePosition = 'left' | 'right'
+
+// Both strings are spelled out so Tailwind sees `left-0` and `right-0` in the
+// source and compiles them into the stylesheet the shadow root loads.
+const POSITION_CLASS: Record<BadgePosition, string> = {
+  left: 'content_script left-0',
+  right: 'content_script right-0'
+}
+
 function ClosedHint({onOpen}: {onOpen: () => void}) {
   return (
     <div className="mx-auto p-6">
@@ -101,24 +110,27 @@ function OpenHint({
   )
 }
 
-export default function ContentApp({showBadge}: {showBadge: Signal<boolean>}) {
+export default function ContentApp({
+  badgePosition
+}: {
+  badgePosition: Signal<BadgePosition>
+}) {
   const isdialogOpen = useSignal(true)
 
-  // The options page owns this setting. Reading the signal here subscribes the
-  // component to it, so the UI leaves and comes back as the checkbox changes.
-  if (!showBadge.value) {
-    return null
-  }
-
-  if (!isdialogOpen.value) {
-    return <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
-  }
-
+  // Reading the signal subscribes the component to it, so the UI changes edge
+  // as the checkbox does. The class lands on the element the stylesheet
+  // positions, never on the shadow host that ignores a plain style write.
   return (
-    <OpenHint
-      onClose={() => (isdialogOpen.value = false)}
-      onOpenOptions={openOptions}
-    />
+    <div className={POSITION_CLASS[badgePosition.value]}>
+      {isdialogOpen.value ? (
+        <OpenHint
+          onClose={() => (isdialogOpen.value = false)}
+          onOpenOptions={openOptions}
+        />
+      ) : (
+        <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
+      )}
+    </div>
   )
 }
 

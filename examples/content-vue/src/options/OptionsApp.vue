@@ -2,16 +2,18 @@
 import {onMounted, ref} from 'vue'
 import iconUrl from '../images/icon.png'
 
-const SETTING_KEY = 'showBadge'
-const DEFAULT_VALUE = true
+type BadgePosition = 'left' | 'right'
 
-const showBadge = ref(DEFAULT_VALUE)
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE: BadgePosition = 'right'
+
+const badgePosition = ref<BadgePosition>(DEFAULT_VALUE)
 const status = ref('Loading your setting...')
 
 onMounted(() => {
   // The key is absent until the first write, so ask storage for the default too.
   chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
-    showBadge.value = settings[SETTING_KEY]
+    badgePosition.value = settings[SETTING_KEY] === 'left' ? 'left' : 'right'
     status.value = 'Setting loaded from chrome.storage.sync'
   })
 })
@@ -20,9 +22,10 @@ onMounted(() => {
 // source of truth, and it only moves once storage accepts the write.
 function onToggle(event: Event) {
   const checked = (event.target as HTMLInputElement).checked
-  chrome.storage.sync.set({[SETTING_KEY]: checked}, () => {
-    showBadge.value = checked
-    status.value = `Saved: the overlay is ${checked ? 'on' : 'off'}`
+  const nextValue: BadgePosition = checked ? 'left' : 'right'
+  chrome.storage.sync.set({[SETTING_KEY]: nextValue}, () => {
+    badgePosition.value = nextValue
+    status.value = `Saved: the overlay sits on the ${nextValue}`
   })
 }
 </script>
@@ -51,22 +54,22 @@ function onToggle(event: Event) {
     </header>
 
     <p class="mt-8 border-l-4 border-blue-500 bg-gray-800 px-6 py-4 text-white">
-      The overlay this extension injects into every page is the setting below,
-      saved here and read back by the content script.
+      The overlay this extension injects into every page sits on the edge
+      picked below, saved here and read back by the content script.
     </p>
 
     <label
       class="mt-6 flex cursor-pointer items-center gap-3 text-base"
-      for="show-badge"
+      for="badge-left"
     >
       <input
-        id="show-badge"
+        id="badge-left"
         type="checkbox"
         class="h-5 w-5 accent-blue-500"
-        :checked="showBadge"
+        :checked="badgePosition === 'left'"
         @change="onToggle"
       />
-      Show the overlay on web pages
+      Show the badge on the left
     </label>
 
     <p id="status" class="mt-4 text-sm text-gray-400" role="status">

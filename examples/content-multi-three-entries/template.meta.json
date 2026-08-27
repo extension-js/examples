@@ -1,24 +1,18 @@
 {
   "title": "Multi-entry Content Scripts",
   "featured": true,
-  "tags": [
-    "content-scripts",
-    "multi-entry",
-    "options",
-    "storage",
-    "javascript"
-  ],
+  "tags": ["content-scripts", "multi-entry", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "Open any page and three separate content scripts inject small elements",
-    "Click Open options on the top-left element and untick the setting"
+    "Edit any of the entries in src/content/ to see HMR update independently"
   ],
   "useCases": [
     "Split content-script logic across multiple entries with different match rules",
     "Target different page contexts with focused, independent bundles",
-    "One setting shared between an options page and one of those entries"
+    "Reference for the multi-entry content_scripts pattern in MV3"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
   "video": "O_jYxm4miBU"

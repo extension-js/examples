@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-typescript",
-  "description": "Shows a small overlay UI on every web page, with an options page that turns it off.",
+  "description": "Shows a small overlay UI on every web page, with an options page that moves it from right to left.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

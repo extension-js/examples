@@ -5,17 +5,13 @@
 
 # JavaScript Content Script Example
 
-> Injects a small styled badge into every web page, with a Sass options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The badge carries an **Open options** button, and the options page behind it has one checkbox that hides or shows the badge live.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Sass.
-
-The template ships two more surfaces on top of that badge. The manifest registers an `options_ui` page bundled from `src/options/`, styled with Sass as well, so both surfaces run through the same pipeline. The page reads the `showBadge` setting with `chrome.storage.sync.get` on load and writes it back with `chrome.storage.sync.set` on change. The content script reads the same key on injection and subscribes to `chrome.storage.onChanged`, so ticking the box updates every open page without a reload. The subscription is removed in the cleanup function the framework calls, next to the badge teardown.
-
-A content script cannot open the options page itself, because `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends `{type: 'open-options'}` to the background script, and the background script opens the page.
 
 ## Try it locally
 
@@ -37,10 +33,6 @@ src/
 │   └── styles.scss
 ├── images/
 │   └── icon.png
-├── options/
-│   ├── index.html
-│   ├── scripts.js
-│   └── styles.scss
 ├── background.js
 └── manifest.json
 ```

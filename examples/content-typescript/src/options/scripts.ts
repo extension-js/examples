@@ -1,24 +1,22 @@
-import type {Settings} from '../types'
+import type {BadgePosition, Settings} from '../types'
 
-const DEFAULT_SETTINGS: Settings = {showBadge: true}
+const DEFAULT_SETTINGS: Settings = {badgePosition: 'right'}
 
-const checkbox = document.querySelector<HTMLInputElement>('#show-badge')
+const checkbox = document.querySelector<HTMLInputElement>('#badge-left')
 const statusLine = document.querySelector<HTMLParagraphElement>('#status')
 
 if (checkbox && statusLine) {
   // The key is absent until the first write, so ask storage for the default too.
   chrome.storage.sync.get(DEFAULT_SETTINGS, (items) => {
-    const settings: Settings = {showBadge: Boolean(items.showBadge)}
-    checkbox.checked = settings.showBadge
+    checkbox.checked = items.badgePosition === 'left'
     statusLine.textContent = 'Setting loaded from chrome.storage.sync'
   })
 
   checkbox.addEventListener('change', () => {
-    const settings: Settings = {showBadge: checkbox.checked}
+    const position: BadgePosition = checkbox.checked ? 'left' : 'right'
+    const settings: Settings = {badgePosition: position}
     chrome.storage.sync.set(settings, () => {
-      statusLine.textContent = `Saved: the overlay is ${
-        settings.showBadge ? 'on' : 'off'
-      }`
+      statusLine.textContent = `Saved: the overlay sits on the ${position}`
     })
   })
 }

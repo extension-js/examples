@@ -1,23 +1,5 @@
 {
   "featured": true,
-  "tags": [
-    "content",
-    "options",
-    "storage",
-    "sass"
-  ],
-  "difficulty": "beginner",
-  "timeToFirstSuccessMinutes": 2,
-  "firstSteps": [
-    "Run npm run dev to launch the extension",
-    "Click Open options on the badge injected into the page",
-    "Untick the setting and watch the badge disappear live"
-  ],
-  "useCases": [
-    "A Sass-styled badge injected into every page",
-    "One setting shared between an options page and a content script",
-    "Starting point for Sass extensions that need preferences"
-  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
   "video": "5v335BPb2KY"
 }

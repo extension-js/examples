@@ -11,7 +11,7 @@
     }
   },
   "name": "Main World Content Example",
-  "description": "Injects a small UI from the page's own JavaScript world, with an options page that turns it off.",
+  "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -19,11 +19,7 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
-  "options_ui": {
-    "page": "options/index.html",
-    "open_in_tab": false
-  },
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",
@@ -42,10 +38,6 @@
       "matches": ["<all_urls>"],
       "js": ["content/scripts.js"],
       "world": "MAIN"
-    },
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content/isolated-options.js"]
     }
   ]
 }

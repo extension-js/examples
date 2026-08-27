@@ -372,14 +372,6 @@ function detectTemplate(templateDir, slug) {
 // ──────────────────────────────────────────────────────────────────────────
 
 const OVERRIDES = {
-  options: {
-    title: 'Options Page Example',
-    extra:
-      'The smallest honest options page: one setting, stored with ' +
-      '`chrome.storage.sync` and read back on load. The manifest asks for ' +
-      'the `storage` permission and nothing else, and there is no background ' +
-      'worker, because a page that owns its own state does not need one.'
-  },
   devtools: {
     title: 'DevTools Panel Example',
     extra:

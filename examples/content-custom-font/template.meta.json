@@ -1,17 +1,4 @@
 {
-  "tags": ["content", "options", "storage", "fonts"],
-  "difficulty": "beginner",
-  "timeToFirstSuccessMinutes": 2,
-  "firstSteps": [
-    "Run npm run dev to launch the extension",
-    "Click Open options on the badge injected into the page",
-    "Untick the setting and watch the badge disappear live"
-  ],
-  "useCases": [
-    "An injected UI and an options page that ship their own typography",
-    "One setting shared between an options page and a content script",
-    "Starting point for extensions with a brand font and preferences"
-  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
   "video": "ZjLlNQ-z81I"
 }

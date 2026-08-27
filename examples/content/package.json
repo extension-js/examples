@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@extension-js/content",
-  "description": "Injects a small badge into every web page you visit, with an options page that turns it off.",
+  "description": "Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

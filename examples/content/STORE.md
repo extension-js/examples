@@ -14,7 +14,7 @@ Last updated: 2026-08-27
 ## Listing
 
 - Name: JavaScript Content Example
-- Summary: Injects a small badge into web pages, with an options page that turns it off.
+- Summary: Injects a small badge into web pages, with an options page that moves it to either edge.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,9 +23,9 @@ Last updated: 2026-08-27
 
 ## Privacy and data use
 
-- This template stores one setting in the browser's own sync storage,
-  read by both the options page and the content script. It collects and
-  transmits no user data.
+- This template stores one setting, which edge the badge sits on, in
+  the browser's own sync storage, read by both the options page and the
+  content script. It collects and transmits no user data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -37,7 +37,7 @@ Last updated: 2026-08-27
 
 ### Single purpose
 
-Injects a small badge into web pages, with an options page that turns it off.
+Injects a small badge into web pages, with an options page that moves it to either edge.
 
 ### Permissions justification
 

@@ -2,8 +2,8 @@ import logo from '../images/icon.png'
 
 console.log('[From the page context] Hello from content_scripts!')
 
-const SETTING_KEY = 'showBadge'
-const DEFAULT_VALUE = true
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE = 'right'
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -57,27 +57,25 @@ export default function initial() {
   })
   contentDiv.appendChild(button)
 
-  function render(showBadge) {
-    // The host carries `all: initial !important`, and a plain assignment
-    // cannot overwrite an important declaration: the CSSOM drops it and
-    // the badge never hides. setProperty with the flag is what sticks.
-    rootDiv.style.setProperty(
-      'display',
-      showBadge ? 'initial' : 'none',
-      'important'
-    )
+  function render(position) {
+    // The move lands on the badge inside the shadow root, not on the host:
+    // the host carries `all: initial !important`, which a plain write loses to.
+    const onLeft = position === 'left'
+    // A fixed box with a width honors one anchor only, so the other is cleared.
+    contentDiv.style.left = onLeft ? '0' : 'auto'
+    contentDiv.style.right = onLeft ? 'auto' : '0'
   }
 
   // The key is absent until the first write, so ask storage for the default too.
   chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
-    render(Boolean(settings[SETTING_KEY]))
+    render(settings[SETTING_KEY])
   })
 
   // The options page writes the same key, so this UI follows it live rather
   // than waiting for the next page load.
   const onSettingChanged = (changes, areaName) => {
     if (areaName === 'sync' && changes[SETTING_KEY]) {
-      render(Boolean(changes[SETTING_KEY].newValue))
+      render(changes[SETTING_KEY].newValue)
     }
   }
   chrome.storage.onChanged.addListener(onSettingChanged)

@@ -5,15 +5,15 @@
 
 # Vue Content Script Example
 
-> Shows a small overlay UI on every web page, with an options page for one saved setting.
+> Shows a small overlay UI on every web page, with a Vue options page that moves it from right to left.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay has an **Open options** button, and the options page behind it has one checkbox that hides and shows the overlay live.
+**What you'll see**: A small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay has an **Open options** button, and the options page behind it has one checkbox that moves the overlay between the right and left edge of the page, live.
 
 **How it works**: A content script mounts a Vue + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
 
-The manifest registers an `options_ui` page bundled from `src/options/`, a second Vue app that reads and writes one setting with `chrome.storage.sync`. The content script reads the same key on load and subscribes to `chrome.storage.onChanged`, so ticking the checkbox hides or shows the overlay without reloading the page. A content script cannot open the options page itself, so the button sends a message to the background script, which calls `chrome.runtime.openOptionsPage`.
+The manifest registers an `options_ui` page bundled from `src/options/`, a second Vue app that reads and writes one setting, `badgePosition`, with `chrome.storage.sync`. The value is `right` by default and `left` when the box is ticked. The content script reads the same key on load and subscribes to `chrome.storage.onChanged`, so ticking the checkbox slides the overlay to the other edge without reloading the page. A content script cannot open the options page itself, so the button sends a message to the background script, which calls `chrome.runtime.openOptionsPage`.
 
 The manifest asks for the `storage` permission and nothing else beyond the content script match.
 

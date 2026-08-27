@@ -11,7 +11,7 @@
     }
   },
   "name": "Svelte Content Example",
-  "description": "Shows a Svelte overlay on every web page you visit, with an options page that saves one setting.",
+  "description": "Shows a Svelte overlay on every web page you visit, with an options page that moves it from right to left.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

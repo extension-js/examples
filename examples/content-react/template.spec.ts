@@ -174,7 +174,7 @@ test('options page shows the setting checkbox', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
-  const checkbox = page.locator('#show-badge')
+  const checkbox = page.locator('#badge-left')
   await test.expect(checkbox).toBeVisible({timeout: 60000})
   await test.expect(checkbox).toHaveAttribute('type', 'checkbox')
   const statusLine = page.locator('#status')
@@ -183,13 +183,13 @@ test('options page shows the setting checkbox', async ({page, extensionId}) => {
   })
 })
 
-// The options page advertises that unticking the setting takes the injected UI
-// off the page, so this asserts the rendered result and not the stored value.
-// An earlier version hid the host with a plain `style.display` assignment,
-// which the CSSOM drops over the host's own `all: initial !important`: the
-// checkbox round-tripped through storage and the badge stayed on screen, and
-// every other assertion in this file still passed.
-test('unticking the setting actually hides the injected UI', async ({
+// The options page advertises that the setting moves the injected UI to the
+// other edge of the page, so this asserts the rendered geometry and not the
+// stored value or the class on the element. An earlier feature here hid the
+// host with a plain `style.display` assignment, which the CSSOM drops over the
+// host's own `all: initial !important`: the checkbox round-tripped through
+// storage, nothing on screen changed, and every other assertion still passed.
+test('the setting moves the badge from right to left', async ({
   page,
   context,
   extensionId
@@ -202,10 +202,22 @@ test('unticking the setting actually hides the injected UI', async ({
     .locator('#extension-root, [data-extension-root="true"]')
     .first()
   await test.expect(host).toBeAttached({timeout: 30000})
-  // The UI lives in a shadow root, so reach through the host for the button
+  // The UI lives in a shadow root, so reach through the host for the panel
   // the page itself never has.
-  const injectedUi = host.locator('css=[aria-label="Open options"]')
+  const injectedUi = host.locator('css=.content_script')
   await test.expect(injectedUi).toBeVisible({timeout: 30000})
+
+  const viewport = page.viewportSize() || {width: 1280, height: 720}
+  const middle = viewport.width / 2
+  const centerX = async () => {
+    const box = await injectedUi.boundingBox()
+    return box ? box.x + box.width / 2 : -1
+  }
+
+  const before = await centerX()
+  test
+    .expect(before, 'the badge did not start on the right half')
+    .toBeGreaterThan(middle)
 
   const optionsPage = await context.newPage()
   await optionsPage.goto(
@@ -218,31 +230,30 @@ test('unticking the setting actually hides the injected UI', async ({
   await test.expect(status).toContainText('chrome.storage.sync', {
     timeout: 60000
   })
-  const checkbox = optionsPage.locator('#show-badge')
-  await test.expect(checkbox).toBeChecked({timeout: 60000})
-  await checkbox.uncheck()
+  const checkbox = optionsPage.locator('#badge-left')
+  await test.expect(checkbox).not.toBeChecked({timeout: 60000})
+  await checkbox.check()
   await test.expect(status).toContainText('Saved', {timeout: 60000})
   await page.bringToFront()
 
   await test.expect
-    .poll(
-      async () =>
-        host.evaluate((el: HTMLElement) => window.getComputedStyle(el).display),
-      {timeout: 20000, message: 'the host never reached display none'}
-    )
-    .toBe('none')
-  await test.expect(injectedUi).toBeHidden({timeout: 20000})
+    .poll(centerX, {
+      timeout: 20000,
+      message: 'the badge never reached the left half of the viewport'
+    })
+    .toBeLessThan(middle)
+  const after = await centerX()
+  test.expect(after, 'the badge never travelled left').toBeLessThan(before)
 
   await optionsPage.bringToFront()
-  await checkbox.check()
+  await checkbox.uncheck()
+  await test.expect(status).toContainText('Saved', {timeout: 60000})
   await page.bringToFront()
-  await test.expect(injectedUi).toBeVisible({timeout: 20000})
   await test.expect
-    .poll(
-      async () =>
-        host.evaluate((el: HTMLElement) => window.getComputedStyle(el).display),
-      {timeout: 20000, message: 'the host never came back'}
-    )
-    .not.toBe('none')
+    .poll(centerX, {
+      timeout: 20000,
+      message: 'the badge never came back to the right half'
+    })
+    .toBeGreaterThan(middle)
   await optionsPage.close()
 })

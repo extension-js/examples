@@ -349,31 +349,6 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
-### Options
-
-<details>
-  <summary><img src="./public/options/src/images/icon.png" alt="options example icon" width="22" /> Options Page Example</summary>
-
-> Adds an options page that saves a single setting with chrome.storage.sync.
-
-  <table>
-    <tr>
-      <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/options/README.md">examples/options</a></td>
-      <td rowspan="5"><img src="./examples/options/screenshot.png" alt="options screenshot" width="360" /></td>
-    </tr>
-    <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Options</td></tr>
-    <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
-    <tr><td>CSS</td><td align="right">CSS</td></tr>
-    <tr>
-      <td>Background included</td>
-      <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/options">Start with this template &#8599;</a></td>
-    </tr>
-  </table>
-</details>
-
 ### DevTools
 
 <details>
@@ -519,7 +494,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content/src/images/icon.png" alt="content example icon" width="22" /> Content Example</summary>
 
-> Injects a small badge into every web page you visit, with an options page that turns it off.
+> Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.
 
   <table>
     <tr>
@@ -542,7 +517,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-css-modules/src/images/icon.png" alt="content-css-modules example icon" width="22" /> Content CSS Modules Example</summary>
 
-> Injects a small styled badge into every web page you visit, with an options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
   <table>
     <tr>
@@ -551,7 +526,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-css-modules/screenshot.png" alt="content-css-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -565,7 +540,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-custom-font/src/images/icon.png" alt="content-custom-font example icon" width="22" /> Content Custom Font Example</summary>
 
-> Injects a badge rendered in a custom font into every web page you visit, with an options page that turns it off.
+> Injects a badge rendered in a custom font into every web page you visit.
 
   <table>
     <tr>
@@ -574,7 +549,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-custom-font/screenshot.png" alt="content-custom-font screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -588,7 +563,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-env/src/images/icon.png" alt="content-env example icon" width="22" /> Content Env Example</summary>
 
-> Injects a small panel showing the extension's environment values into every web page you visit, with an options page that turns it off.
+> Injects a small panel showing the extension's environment values into every web page you visit.
 
   <table>
     <tr>
@@ -597,7 +572,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-env/screenshot.png" alt="content-env screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -611,7 +586,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less/src/images/icon.png" alt="content-less example icon" width="22" /> Content Less Example</summary>
 
-> Injects a small styled badge into every web page, with a Less options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
   <table>
     <tr>
@@ -620,7 +595,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less/screenshot.png" alt="content-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -634,7 +609,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-less-modules/src/images/icon.png" alt="content-less-modules example icon" width="22" /> Content Less Modules Example</summary>
 
-> Injects a small styled badge into every web page, with a Less modules options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
   <table>
     <tr>
@@ -643,7 +618,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-less-modules/screenshot.png" alt="content-less-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Less</td></tr>
     <tr>
@@ -657,7 +632,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-multi-one-entry/src/images/icon.png" alt="content-multi-one-entry example icon" width="22" /> Content Multi One Entry Example</summary>
 
-> Injects four small elements into every web page you visit, with an options page that hides the first one.
+> Injects four small elements into every web page you visit.
 
   <table>
     <tr>
@@ -666,7 +641,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-multi-one-entry/screenshot.png" alt="content-multi-one-entry screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -680,7 +655,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-multi-three-entries/src/images/icon.png" alt="content-multi-three-entries example icon" width="22" /> Content Multi Three Entries Example</summary>
 
-> Injects four small elements into every web page you visit, with an options page that hides the first one.
+> Injects four small elements into every web page you visit.
 
   <table>
     <tr>
@@ -689,7 +664,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-multi-three-entries/screenshot.png" alt="content-multi-three-entries screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">CSS</td></tr>
     <tr>
@@ -703,7 +678,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-preact/src/images/icon.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
 
-> Shows an overlay UI on web pages and an options page that saves one setting.
+> Shows an overlay UI on web pages and an options page that moves it from right to left.
 
   <table>
     <tr>
@@ -726,7 +701,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-react/src/images/icon.png" alt="content-react example icon" width="22" /> Content React Example</summary>
 
-> Shows a small overlay UI on every web page, with a React options page that turns it off.
+> Shows a small overlay UI on every web page, with a React options page that moves it from right to left.
 
   <table>
     <tr>
@@ -749,7 +724,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass/src/images/icon.png" alt="content-sass example icon" width="22" /> Content Sass Example</summary>
 
-> Injects a small styled badge into every web page, with a Sass options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
   <table>
     <tr>
@@ -758,7 +733,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass/screenshot.png" alt="content-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>
@@ -772,7 +747,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-sass-modules/src/images/icon.png" alt="content-sass-modules example icon" width="22" /> Content Sass Modules Example</summary>
 
-> Injects a small styled badge into every web page you visit, with an options page that turns it off.
+> Injects a small styled badge into every web page you visit.
 
   <table>
     <tr>
@@ -781,7 +756,7 @@ npx extension@latest create my-extension --template javascript
       <td rowspan="5"><img src="./examples/content-sass-modules/screenshot.png" alt="content-sass-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
-    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Background</td></tr>
     <tr><td>JavaScript framework</td><td align="right">JavaScript</td></tr>
     <tr><td>CSS</td><td align="right">Sass</td></tr>
     <tr>
@@ -795,7 +770,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-svelte/src/images/icon.png" alt="content-svelte example icon" width="22" /> Content Svelte Example</summary>
 
-> Shows a Svelte overlay on every web page you visit, with an options page that saves one setting.
+> Shows a Svelte overlay on every web page you visit, with an options page that moves it from right to left.
 
   <table>
     <tr>
@@ -818,7 +793,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-typescript/src/images/icon.png" alt="content-typescript example icon" width="22" /> Content TypeScript Example</summary>
 
-> Shows a small overlay UI on every web page, with an options page that turns it off.
+> Shows a small overlay UI on every web page, with an options page that moves it from right to left.
 
   <table>
     <tr>
@@ -841,7 +816,7 @@ npx extension@latest create my-extension --template javascript
 <details>
   <summary><img src="./public/content-vue/src/images/icon.png" alt="content-vue example icon" width="22" /> Content Vue Example</summary>
 
-> Shows a small overlay UI on every web page, with an options page for one saved setting.
+> Shows a small overlay UI on every web page, with a Vue options page that moves it from right to left.
 
   <table>
     <tr>

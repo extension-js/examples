@@ -9,12 +9,12 @@ Packaging your extension is local and free. Submitting the result to a
 store is what [extension.dev](https://docs.extension.dev/publish/overview?utm_source=store-md)
 does, and it sponsors Extension.js.
 
-Last updated: 2026-08-27
+Last updated: 2026-07-30
 
 ## Listing
 
 - Name: JavaScript Content (Multiple Scripts) Example
-- Summary: Injects four small elements into web pages, with an options page that hides the first one.
+- Summary: Injects four small elements into web pages.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,9 +23,7 @@ Last updated: 2026-08-27
 
 ## Privacy and data use
 
-- This template stores one setting, whether the first injected
-  element is shown, in the browser's own sync storage. It collects
-  and transmits no user data.
+- This template collects, stores, and transmits no user data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -37,13 +35,12 @@ Last updated: 2026-08-27
 
 ### Single purpose
 
-Injects four small elements into web pages, with an options page that hides the first one.
+Injects four small elements into web pages.
 
 ### Permissions justification
 
 - activeTab: Grants temporary access to the page the user is on when they invoke the extension, so it can act on that page only.
 - scripting: Injects the extension's content script that renders its on-page interface.
-- storage: Keeps the one setting from the options page so it survives closing the page and restarting the browser. Nothing leaves the browser.
 - Host access <all_urls>: The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.
 
 ## Firefox Add-ons
@@ -51,9 +48,7 @@ Injects four small elements into web pages, with an options page that hides the 
 ### Reviewer notes
 
 TODO steps a reviewer needs to exercise the extension, plus test
-credentials if sign-in is required. Start by opening any page, then
-click Open options on the top-left element and untick the setting to
-watch that element disappear. The build is bundled, so AMO
+credentials if sign-in is required. The build is bundled, so AMO
 requires a source zip; include build-from-source instructions:
 npm install, then npm run build. The dist output matches the upload.
 

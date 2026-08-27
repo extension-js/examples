@@ -3,8 +3,21 @@ import ContentApp from './ContentApp'
 
 console.log('[From the page context] Hello from content_scripts!')
 
-const SETTING_KEY = 'showBadge'
-const DEFAULT_VALUE = true
+type BadgePosition = 'left' | 'right'
+
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE: BadgePosition = 'right'
+
+// Both strings are spelled out so Tailwind sees `left-0` and `right-0` in the
+// source and compiles them into the stylesheet the shadow root loads.
+const POSITION_CLASS: Record<BadgePosition, string> = {
+  left: 'content_script left-0',
+  right: 'content_script right-0'
+}
+
+function toPosition(value: unknown): BadgePosition {
+  return value === 'left' ? 'left' : 'right'
+}
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -16,7 +29,7 @@ export default function initial() {
   rootDiv.setAttribute('data-extension-root', 'true')
   // Isolate the host from page styles (e.g. example.com ships div{opacity:.8},
   // which would otherwise fade the whole widget): the shadow DOM only protects
-  // descendants; the host element itself still takes page CSS.
+  // descendants, and the host element itself still takes page CSS.
   rootDiv.style.cssText = 'all: initial !important'
   document.body.appendChild(rootDiv)
 
@@ -26,39 +39,34 @@ export default function initial() {
 
   fetchCSS().then((css) => (styleElement.textContent = css))
 
-  const mountingPoint = ReactDOM.createRoot(shadowRoot)
-  mountingPoint.render(
-    <div className="content_script">
-      <ContentApp />
-    </div>
-  )
+  const container = document.createElement('div')
+  container.className = POSITION_CLASS[DEFAULT_VALUE]
+  shadowRoot.appendChild(container)
+
+  const mountingPoint = ReactDOM.createRoot(container)
+  mountingPoint.render(<ContentApp />)
 
   // The key is absent until the first write, so ask storage for the default too.
   chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
-    render(Boolean(settings[SETTING_KEY]))
+    applyPosition(settings[SETTING_KEY])
   })
 
-  // The options page writes the same key, so the overlay follows it live rather
-  // than waiting for the next page load.
+  // The options page writes the same key, so the badge changes edge live
+  // rather than waiting for the next page load.
   const onChanged = (
     changes: {[key: string]: chrome.storage.StorageChange},
     area: string
   ) => {
     if (area === 'sync' && changes[SETTING_KEY]) {
-      render(Boolean(changes[SETTING_KEY].newValue))
+      applyPosition(changes[SETTING_KEY].newValue)
     }
   }
   chrome.storage.onChanged.addListener(onChanged)
 
-  function render(showBadge: boolean) {
-    // The host carries `all: initial !important`, and a plain assignment
-    // cannot overwrite an important declaration: the CSSOM drops it and
-    // the badge never hides. setProperty with the flag is what sticks.
-    rootDiv.style.setProperty(
-      'display',
-      showBadge ? 'initial' : 'none',
-      'important'
-    )
+  function applyPosition(value: unknown) {
+    // The stylesheet positions this inner element, not the host. The host
+    // carries `all: initial !important`, which a plain style write cannot beat.
+    container.className = POSITION_CLASS[toPosition(value)]
   }
 
   return () => {

@@ -1,15 +1,17 @@
 <script lang="ts">
 import iconUrl from '../images/icon.png'
 
-const SETTING_KEY = 'showBadge'
-const DEFAULT_VALUE = true
+type BadgePosition = 'left' | 'right'
 
-let showBadge = DEFAULT_VALUE
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE: BadgePosition = 'right'
+
+let badgePosition: BadgePosition = DEFAULT_VALUE
 let status = 'Loading your setting...'
 
 // The key is absent until the first write, so ask storage for the default too.
 chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
-  showBadge = Boolean(settings[SETTING_KEY])
+  badgePosition = settings[SETTING_KEY] === 'left' ? 'left' : 'right'
   status = 'Setting loaded from chrome.storage.sync'
 })
 
@@ -17,9 +19,9 @@ chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
 // options page is still open.
 function saveSetting(event: Event) {
   const checkbox = event.currentTarget as HTMLInputElement
-  showBadge = checkbox.checked
-  chrome.storage.sync.set({[SETTING_KEY]: showBadge}, () => {
-    status = `Saved: the overlay is ${showBadge ? 'on' : 'off'}`
+  badgePosition = checkbox.checked ? 'left' : 'right'
+  chrome.storage.sync.set({[SETTING_KEY]: badgePosition}, () => {
+    status = `Saved: the overlay sits on the ${badgePosition}`
   })
 }
 </script>
@@ -43,21 +45,21 @@ function saveSetting(event: Event) {
     </p>
   </header>
   <p class="mt-8 border-l-4 border-blue-500 bg-gray-900 px-6 py-4 text-white">
-    The Svelte overlay this extension injects into every page is the setting
-    below, saved here and read back by the content script.
+    The Svelte overlay this extension injects into every page sits on the edge
+    picked below, saved here and read back by the content script.
   </p>
   <label
-    for="show-badge"
+    for="badge-left"
     class="mt-8 flex cursor-pointer items-center gap-3 text-base"
   >
     <input
-      id="show-badge"
+      id="badge-left"
       type="checkbox"
       class="h-5 w-5 accent-blue-500"
-      checked={showBadge}
+      checked={badgePosition === 'left'}
       on:change={saveSetting}
     />
-    Show the overlay on web pages
+    Show the badge on the left
   </label>
   <p id="status" role="status" class="mt-4 text-sm text-gray-400">{status}</p>
 </main>

@@ -11,7 +11,7 @@
     }
   },
   "name": "React Content Example",
-  "description": "Shows a small overlay UI on every web page, with a React options page that turns it off.",
+  "description": "Shows a small overlay UI on every web page, with a React options page that moves it from right to left.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",

@@ -9,12 +9,12 @@ Packaging your extension is local and free. Submitting the result to a
 store is what [extension.dev](https://docs.extension.dev/publish/overview?utm_source=store-md)
 does, and it sponsors Extension.js.
 
-Last updated: 2026-08-27
+Last updated: 2026-07-30
 
 ## Listing
 
 - Name: .env Content Example
-- Summary: Injects a panel with the extension's environment values, with an options page that turns it off.
+- Summary: Injects a panel with the extension's environment values.
 - Description: TODO write two or three short paragraphs of user
   benefits. Describe what the user sees and gains, not how the code
   works.
@@ -23,9 +23,7 @@ Last updated: 2026-08-27
 
 ## Privacy and data use
 
-- This template stores one setting in the browser's own sync storage,
-  read by both the options page and the content script. It collects and
-  transmits no user data.
+- This template collects, stores, and transmits no user data.
 - The manifest declares data_collection_permissions: none for
   Firefox, which matches this behavior. If you add data collection,
   update the declaration, this section, and your privacy policy in
@@ -37,15 +35,12 @@ Last updated: 2026-08-27
 
 ### Single purpose
 
-Injects a panel with the extension's environment values, with an options page that turns it off.
+Injects a panel with the extension's environment values.
 
 ### Permissions justification
 
 - activeTab: Grants temporary access to the page the user is on when they invoke the extension, so it can act on that page only.
 - scripting: Injects the extension's content script that renders its on-page interface.
-- storage: keeps the one setting so it survives closing the page and
-  restarting the browser, and so the content script can read the same
-  value the options page wrote. Nothing leaves the browser.
 - Host access <all_urls>: The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.
 
 ## Firefox Add-ons

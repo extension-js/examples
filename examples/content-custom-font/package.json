@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "content-custom-font",
-  "description": "Injects a badge rendered in a custom font into every web page you visit, with an options page that turns it off.",
+  "description": "Injects a badge rendered in a custom font into every web page you visit.",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",

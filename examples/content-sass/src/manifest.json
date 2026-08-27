@@ -11,7 +11,7 @@
     }
   },
   "name": "Sass Content Example",
-  "description": "Injects a small styled badge into every web page, with a Sass options page that turns it off.",
+  "description": "Injects a small styled badge into every web page you visit.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -19,11 +19,7 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
-  "options_ui": {
-    "page": "options/index.html",
-    "open_in_tab": false
-  },
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["activeTab", "scripting"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",
