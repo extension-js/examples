@@ -1,8 +1,24 @@
-import {mount} from 'svelte'
+import {mount, unmount} from 'svelte'
 import ContentApp from './ContentApp.svelte'
 import './styles.css'
 
 console.log('[From the page context] Hello from content_scripts!')
+
+type BadgePosition = 'left' | 'right'
+
+const SETTING_KEY = 'badgePosition'
+const DEFAULT_VALUE: BadgePosition = 'right'
+
+// Both strings are spelled out so Tailwind sees `left-0` and `right-0` in the
+// source and compiles them into the stylesheet the shadow root loads.
+const POSITION_CLASS: Record<BadgePosition, string> = {
+  left: 'content_script left-0',
+  right: 'content_script right-0'
+}
+
+function toPosition(value: unknown): BadgePosition {
+  return value === 'left' ? 'left' : 'right'
+}
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
@@ -14,7 +30,7 @@ export default function initial() {
   rootDiv.setAttribute('data-extension-root', 'true')
   // Isolate the host from page styles (e.g. example.com ships div{opacity:.8},
   // which would otherwise fade the whole widget): the shadow DOM only protects
-  // descendants; the host element itself still takes page CSS.
+  // descendants, and the host element itself still takes page CSS.
   rootDiv.style.cssText = 'all: initial !important'
   document.body.appendChild(rootDiv)
   const shadowRoot = rootDiv.attachShadow({mode: 'open'})
@@ -26,15 +42,41 @@ export default function initial() {
 
   // Create container for Svelte app
   const contentDiv = document.createElement('div')
-  contentDiv.className = 'content_script'
+  contentDiv.className = POSITION_CLASS[DEFAULT_VALUE]
   shadowRoot.appendChild(contentDiv)
 
   // Mount Svelte app using Svelte 5's mount function
-  mount(ContentApp, {
+  const app = mount(ContentApp, {
     target: contentDiv
   })
 
+  // The key is absent until the first write, so ask storage for the default too.
+  chrome.storage.sync.get({[SETTING_KEY]: DEFAULT_VALUE}, (settings) => {
+    applyPosition(settings[SETTING_KEY])
+  })
+
+  // The options page writes the same key, so the overlay follows it live rather
+  // than waiting for the next page load.
+  const onStorageChanged = (
+    changes: Record<string, {newValue?: unknown}>,
+    areaName: string
+  ) => {
+    if (areaName === 'sync' && changes[SETTING_KEY]) {
+      applyPosition(changes[SETTING_KEY].newValue)
+    }
+  }
+  chrome.storage.onChanged.addListener(onStorageChanged)
+
+  // The class lands on the element the stylesheet positions, not on the host:
+  // the host is hardened with `all: initial !important`, which a plain style
+  // write cannot beat, and it is not the positioned box either way.
+  function applyPosition(value: unknown) {
+    contentDiv.className = POSITION_CLASS[toPosition(value)]
+  }
+
   return () => {
+    chrome.storage.onChanged.removeListener(onStorageChanged)
+    unmount(app)
     rootDiv.remove()
   }
 }

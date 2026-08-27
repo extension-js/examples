@@ -1,5 +1,12 @@
 import logo from '../images/icon.png'
 import {createBadge} from './utils/create-badge.js'
+import {
+  BRIDGE_CHANNEL,
+  REQUEST_POSITION,
+  PUBLISH_POSITION,
+  OPEN_OPTIONS,
+  DEFAULT_VALUE
+} from './utils/bridge.js'
 
 console.log('[From the page context] Hello from content_scripts!')
 
@@ -48,7 +55,51 @@ export default function initial() {
     'This MAIN world content script runs alongside page scripts. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  const button = document.createElement('button')
+  button.className = 'content_button'
+  button.type = 'button'
+  button.textContent = 'Open options'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  button.setAttribute('aria-label', 'Open options')
+  button.addEventListener('click', () => {
+    // chrome.runtime does not exist in the MAIN world, so the click goes to
+    // the ISOLATED world companion, which relays it to the background worker.
+    window.postMessage({channel: BRIDGE_CHANNEL, type: OPEN_OPTIONS}, '*')
+  })
+  contentDiv.appendChild(button)
+
+  function render(position) {
+    // The move lands on the badge inside the shadow root, not on the host:
+    // the host carries `all: initial !important`, which a plain write loses to.
+    const onLeft = position === 'left'
+    // A fixed box with a width honors one anchor only, so the other is cleared.
+    contentDiv.style.left = onLeft ? '0' : 'auto'
+    contentDiv.style.right = onLeft ? 'auto' : '0'
+  }
+
+  // Paint the default straight away, then correct it when the companion
+  // answers with what storage actually holds.
+  render(DEFAULT_VALUE)
+
+  // The page shares this window and can read and forge these messages, so the
+  // payloads stay trivial and every value is narrowed to one of two edges.
+  const onBridgeMessage = (event) => {
+    if (event.source !== window) return
+    const data = event.data
+    if (!data || data.channel !== BRIDGE_CHANNEL) return
+    if (data.type === PUBLISH_POSITION) {
+      render(data.value === 'left' ? 'left' : 'right')
+    }
+  }
+  window.addEventListener('message', onBridgeMessage)
+
+  // The companion may have published before this listener existed, so ask for
+  // the value once, now that the listener is attached.
+  window.postMessage({channel: BRIDGE_CHANNEL, type: REQUEST_POSITION}, '*')
+
   return () => {
+    window.removeEventListener('message', onBridgeMessage)
     rootDiv.remove()
   }
 }

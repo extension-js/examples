@@ -1,9 +1,18 @@
-import {useSignal} from '@preact/signals'
+import {useSignal, type Signal} from '@preact/signals'
 import preactLogo from '../images/preact.png'
 import tailwindBg from '../images/tailwind_bg.png'
 import typescriptLogo from '../images/typescript.png'
 import tailwindLogo from '../images/tailwind.png'
 import chromeWindowBg from '../images/chromeWindow.png'
+
+export type BadgePosition = 'left' | 'right'
+
+// Both strings are spelled out so Tailwind sees `left-0` and `right-0` in the
+// source and compiles them into the stylesheet the shadow root loads.
+const POSITION_CLASS: Record<BadgePosition, string> = {
+  left: 'content_script left-0',
+  right: 'content_script right-0'
+}
 
 function ClosedHint({onOpen}: {onOpen: () => void}) {
   return (
@@ -18,10 +27,16 @@ function ClosedHint({onOpen}: {onOpen: () => void}) {
   )
 }
 
-function OpenHint({onClose}: {onClose: () => void}) {
+function OpenHint({
+  onClose,
+  onOpenOptions
+}: {
+  onClose: () => void
+  onOpenOptions: () => void
+}) {
   return (
     <div className="mx-auto max-w-7xl md:px-0 lg:p-6">
-      <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+      <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:flex-wrap lg:gap-x-20 lg:px-24 lg:pt-0">
         <div className="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
           <div className="w-[108rem] flex-none flex justify-end">
             <picture>
@@ -81,17 +96,50 @@ function OpenHint({onClose}: {onClose: () => void}) {
             height="1080"
           />
         </div>
+        {/* Last child of the card, full width so it wraps below both columns
+            rather than becoming a third one. Every other content template ends
+            on this button, and the framework ones used to bury it beside the
+            screenshot. */}
+        <div className="w-full pb-12 text-center lg:pb-16">
+          <button
+            onClick={onOpenOptions}
+            aria-label="Open options"
+            className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Open options
+          </button>
+        </div>
       </div>
     </div>
   )
 }
 
-export default function ContentApp() {
+export default function ContentApp({
+  badgePosition
+}: {
+  badgePosition: Signal<BadgePosition>
+}) {
   const isdialogOpen = useSignal(true)
 
-  if (!isdialogOpen.value) {
-    return <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
-  }
+  // Reading the signal subscribes the component to it, so the UI changes edge
+  // as the checkbox does. The class lands on the element the stylesheet
+  // positions, never on the shadow host that ignores a plain style write.
+  return (
+    <div className={POSITION_CLASS[badgePosition.value]}>
+      {isdialogOpen.value ? (
+        <OpenHint
+          onClose={() => (isdialogOpen.value = false)}
+          onOpenOptions={openOptions}
+        />
+      ) : (
+        <ClosedHint onOpen={() => (isdialogOpen.value = true)} />
+      )}
+    </div>
+  )
+}
 
-  return <OpenHint onClose={() => (isdialogOpen.value = false)} />
+// openOptionsPage is not available to a content script, so the background
+// worker gets the message and opens the page from the extension side.
+function openOptions() {
+  chrome.runtime.sendMessage({type: 'open-options'})
 }

@@ -11,7 +11,7 @@
     }
   },
   "name": "JavaScript Content Example",
-  "description": "Injects a small badge into every web page you visit.",
+  "description": "Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.",
   "icons": {
     "16": "images/icon.png",
     "32": "images/icon.png",
@@ -19,7 +19,11 @@
     "64": "images/icon.png",
     "128": "images/icon.png"
   },
-  "permissions": ["activeTab", "scripting"],
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": false
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.js",

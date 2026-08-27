@@ -3,7 +3,6 @@
   color: #c9c9c9;
   background-color: #0a0c10;
   position: fixed;
-  right: 0;
   bottom: 0;
   z-index: 9;
   width: 315px;
@@ -13,6 +12,14 @@
   flex-direction: column;
   gap: 1em;
   border-radius: 6px;
+}
+
+.content_script--right {
+  right: 0;
+}
+
+.content_script--left {
+  left: 0;
 }
 
 .content_logo {
@@ -39,4 +46,19 @@
   border-bottom: 2px solid #c9c9c9;
   color: #e5e7eb;
   margin: 0;
+}
+
+.content_button {
+  font: inherit;
+  font-size: small;
+  color: #e5e7eb;
+  background-color: #11151c;
+  border: 1px solid #2a3140;
+  border-radius: 6px;
+  padding: 0.6em 1em;
+  cursor: pointer;
+}
+
+.content_button:hover {
+  background-color: #182030;
 }

@@ -1,0 +1,92 @@
+/*
+  The same face the content script declares, repeated here because @font-face
+  rules do not cross documents: the badge declares it inside its shadow root
+  and this page is a separate document of its own. Momo Signature ships one
+  weight, so bold text on this page is synthesised by the browser.
+*/
+@font-face {
+  font-family: "Momo Signature";
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+  src:
+    url("/fonts/MomoSignature-Regular.woff2") format("woff2"),
+    url("/fonts/MomoSignature-Regular.ttf") format("truetype");
+}
+
+html {
+  font-size: 62.5%;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+}
+
+body {
+  min-width: 480px;
+  max-width: 38em;
+  margin: auto;
+  padding: 1.6rem 2rem;
+  font-size: 1.6rem;
+  line-height: 1.618;
+  color: #c9c9c9;
+  background-color: #0a0c10;
+}
+
+h1 {
+  line-height: 1.1;
+  font-weight: 700;
+  font-size: 2.1em;
+  margin-bottom: 1rem;
+  font-family: "Momo Signature", cursive;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 1.2rem;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 2px solid #c9c9c9;
+  color: #e5e7eb;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  margin-top: 0;
+  margin-bottom: 0.8rem;
+}
+
+.banner {
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #0971fe;
+  background-color: #11151c;
+  color: #e5e7eb;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.setting input {
+  width: 1.8rem;
+  height: 1.8rem;
+  accent-color: #0971fe;
+}
+
+.sample {
+  font-family: "Momo Signature", cursive;
+  font-size: 2rem;
+  color: #e5e7eb;
+}
+
+.status {
+  margin-bottom: 0px;
+  font-size: 1.4rem;
+  color: #9aa4b2;
+}

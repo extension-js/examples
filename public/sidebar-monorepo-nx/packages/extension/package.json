@@ -1,5 +1,5 @@
 {
-  "name": "sidebar-monorepo-nx-packages-extension",
+  "name": "@extension-js/sidebar-monorepo-nx-packages-extension",
   "version": "1.0.0",
   "private": true,
   "type": "module",

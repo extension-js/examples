@@ -3,11 +3,11 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-27T17:11:45.149Z",
+  "generatedAt": "2026-08-27T21:48:05.441Z",
   "templates": [
     {
       "slug": "action",
-      "name": "action",
+      "name": "@extension-js/action",
       "title": "Action (Popup)",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -63,7 +63,7 @@
     },
     {
       "slug": "action-locales",
-      "name": "action-locales",
+      "name": "@extension-js/action-locales",
       "title": "Action Locales",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -108,7 +108,7 @@
     },
     {
       "slug": "ai-chatgpt",
-      "name": "ai-chatgpt",
+      "name": "@extension-js/ai-chatgpt",
       "title": "ChatGPT AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -196,7 +196,7 @@
     },
     {
       "slug": "ai-claude",
-      "name": "ai-claude",
+      "name": "@extension-js/ai-claude",
       "title": "Claude AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -283,7 +283,7 @@
     },
     {
       "slug": "ai-gemini",
-      "name": "ai-gemini",
+      "name": "@extension-js/ai-gemini",
       "title": "Gemini AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -370,7 +370,7 @@
     },
     {
       "slug": "ai-perplexity",
-      "name": "ai-perplexity",
+      "name": "@extension-js/ai-perplexity",
       "title": "Perplexity AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -461,10 +461,14 @@
       "title": "Content scripts",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small badge into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -478,10 +482,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content", "options", "storage", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Tick the setting and watch the badge move to the left edge"
+      ],
+      "useCases": [
+        "A plain JavaScript UI injected into every page",
+        "One position setting shared between an options page and a content script",
+        "Starting point for content scripts that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "video": "7mTnLUCs3i0",
       "files": [
@@ -490,7 +507,10 @@
         "public/content/src/content/scripts.js",
         "public/content/src/content/styles.css",
         "public/content/src/images/icon.png",
-        "public/content/src/manifest.json"
+        "public/content/src/manifest.json",
+        "public/content/src/options/index.html",
+        "public/content/src/options/scripts.js",
+        "public/content/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content/screenshot.png",
@@ -541,14 +561,18 @@
     },
     {
       "slug": "content-custom-font",
-      "name": "content-custom-font",
-      "title": "Content Custom Font",
+      "name": "@extension-js/content-custom-font",
+      "title": "Custom fonts in a content script",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a badge rendered in a custom font into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a badge rendered in a custom font into every web page you visit, with an options page that turns the custom font on and off.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["postcss.config.js", "extension.config.js"],
@@ -562,19 +586,38 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content", "fonts", "options", "storage", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Untick the setting and watch the badge fall back to the system font"
+      ],
+      "useCases": [
+        "A content script that ships its own typeface",
+        "One font setting shared between an options page and a content script",
+        "Starting point for injected UI that must not inherit host page type"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "video": "ZjLlNQ-z81I",
       "files": [
         "public/content-custom-font/extension.config.js",
+        "public/content-custom-font/public/fonts/MomoSignature-Regular.ttf",
+        "public/content-custom-font/public/fonts/MomoSignature-Regular.woff2",
+        "public/content-custom-font/public/fonts/OFL.txt",
         "public/content-custom-font/src/background.js",
         "public/content-custom-font/src/content/scripts.js",
         "public/content-custom-font/src/content/styles.css",
         "public/content-custom-font/src/images/icon.png",
-        "public/content-custom-font/src/manifest.json"
+        "public/content-custom-font/src/manifest.json",
+        "public/content-custom-font/src/options/index.html",
+        "public/content-custom-font/src/options/scripts.js",
+        "public/content-custom-font/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-custom-font/screenshot.png",
@@ -583,7 +626,7 @@
     },
     {
       "slug": "content-env",
-      "name": "content-env",
+      "name": "@extension-js/content-env",
       "title": "Content Env",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -629,10 +672,14 @@
       "title": "Content Less",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small styled badge into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a small styled badge into every web page you visit, with a Less options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "less",
       "configFiles": ["extension.config.js"],
@@ -646,10 +693,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["content", "options", "storage", "less"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Tick the setting and watch the badge move to the left edge"
+      ],
+      "useCases": [
+        "A Less-styled badge injected into every page",
+        "One position setting shared between an options page and a content script",
+        "Starting point for Less extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "video": "_-e1WfL80pU",
       "files": [
@@ -658,7 +718,10 @@
         "public/content-less/src/content/scripts.js",
         "public/content-less/src/content/styles.less",
         "public/content-less/src/images/icon.png",
-        "public/content-less/src/manifest.json"
+        "public/content-less/src/manifest.json",
+        "public/content-less/src/options/index.html",
+        "public/content-less/src/options/scripts.js",
+        "public/content-less/src/options/styles.less"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-less/screenshot.png",
@@ -671,10 +734,14 @@
       "title": "Content Less Modules",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small styled badge into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a small styled badge into every web page you visit, with a Less modules options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "less",
       "configFiles": ["extension.config.js"],
@@ -688,10 +755,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content", "options", "storage", "less-modules"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Tick the setting and watch the badge move to the left edge"
+      ],
+      "useCases": [
+        "Hashed class names shared by a content script and an options page",
+        "One position setting shared between an options page and a content script",
+        "Starting point for CSS Modules extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "video": "zd43w44AeSA",
       "files": [
@@ -700,7 +780,10 @@
         "public/content-less-modules/src/content/scripts.js",
         "public/content-less-modules/src/content/styles.module.less",
         "public/content-less-modules/src/images/icon.png",
-        "public/content-less-modules/src/manifest.json"
+        "public/content-less-modules/src/manifest.json",
+        "public/content-less-modules/src/options/index.html",
+        "public/content-less-modules/src/options/scripts.js",
+        "public/content-less-modules/src/options/styles.module.less"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-less-modules/screenshot.png",
@@ -709,18 +792,20 @@
     },
     {
       "slug": "content-main-world",
-      "name": "content-main-world",
+      "name": "@extension-js/content-main-world",
       "title": "Main-world Content Script",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
+      "description": "Injects a small UI into every web page from both the extension and the page's own JavaScript world, with an options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
       "entrypoints": [
+        "options/index.html",
         "background.js",
         "content/isolated-one.js",
         "content/isolated-two.js",
-        "content/scripts.js"
+        "content/scripts.js",
+        "content/isolated-options.js"
       ],
       "uiFramework": "",
       "css": "css",
@@ -735,22 +820,29 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
-      "tags": ["content-scripts", "main-world", "isolated-world", "javascript"],
+      "tags": [
+        "content-scripts",
+        "main-world",
+        "isolated-world",
+        "options",
+        "storage",
+        "javascript"
+      ],
       "difficulty": "intermediate",
       "timeToFirstSuccessMinutes": 3,
       "firstSteps": [
         "Run npm run dev to launch the extension",
-        "Open any page and watch the main-world script run alongside isolated entries",
-        "Inspect window.postMessage bridges between isolated and main worlds"
+        "Click Open options on the UI injected into the page",
+        "Tick the setting and watch the main-world UI move to the left edge"
       ],
       "useCases": [
         "Hook into page-level globals that isolated content scripts cannot reach",
         "Bridge isolated and main-world execution contexts cleanly",
-        "Reference for multi-group content_scripts in MV3"
+        "Read a stored setting from a main-world script that has no chrome APIs"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "video": "2MPjBfm9Y2g",
@@ -758,13 +850,18 @@
         "public/content-main-world/extension.config.js",
         "public/content-main-world/src/background.js",
         "public/content-main-world/src/content/isolated-one.js",
+        "public/content-main-world/src/content/isolated-options.js",
         "public/content-main-world/src/content/isolated-two.js",
         "public/content-main-world/src/content/scripts.js",
         "public/content-main-world/src/content/styles.css",
+        "public/content-main-world/src/content/utils/bridge.js",
         "public/content-main-world/src/content/utils/constants.js",
         "public/content-main-world/src/content/utils/create-badge.js",
         "public/content-main-world/src/images/icon.png",
-        "public/content-main-world/src/manifest.json"
+        "public/content-main-world/src/manifest.json",
+        "public/content-main-world/src/options/index.html",
+        "public/content-main-world/src/options/scripts.js",
+        "public/content-main-world/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-main-world/screenshot.png",
@@ -773,7 +870,7 @@
     },
     {
       "slug": "content-multi-one-entry",
-      "name": "content-multi-one-entry",
+      "name": "@extension-js/content-multi-one-entry",
       "title": "Content Multi One Entry",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -826,7 +923,7 @@
     },
     {
       "slug": "content-multi-three-entries",
-      "name": "content-multi-three-entries",
+      "name": "@extension-js/content-multi-three-entries",
       "title": "Multi-entry Content Scripts",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -893,14 +990,18 @@
     },
     {
       "slug": "content-preact",
-      "name": "content-preact",
+      "name": "@extension-js/content-preact",
       "title": "Content Preact",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Shows a small overlay UI on every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.ts", "./content/scripts.tsx"],
+      "description": "Shows an overlay UI on web pages and an options page that moves it from right to left.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.ts",
+        "./content/scripts.tsx"
+      ],
       "uiFramework": "preact",
       "css": "css",
       "configFiles": [
@@ -918,10 +1019,20 @@
           "hasEnv": false
         }
       },
-      "permissions": [],
+      "permissions": ["storage"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the overlay injected into the page",
+        "Tick the setting and watch the overlay move to the left edge"
+      ],
+      "useCases": [
+        "An on-page UI written in Preact and isolated in a Shadow DOM",
+        "One setting shared between an options page and a content script",
+        "Starting point for Preact extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
       "video": "iz9OojQfV8Q",
       "files": [
@@ -936,7 +1047,11 @@
         "public/content-preact/src/images/tailwind.png",
         "public/content-preact/src/images/tailwind_bg.png",
         "public/content-preact/src/images/typescript.png",
-        "public/content-preact/src/manifest.json"
+        "public/content-preact/src/manifest.json",
+        "public/content-preact/src/options/OptionsApp.tsx",
+        "public/content-preact/src/options/index.html",
+        "public/content-preact/src/options/scripts.tsx",
+        "public/content-preact/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-preact/screenshot.png",
@@ -945,14 +1060,18 @@
     },
     {
       "slug": "content-react",
-      "name": "content-react",
+      "name": "@extension-js/content-react",
       "title": "Content React",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Shows a small overlay UI on every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.ts", "./content/scripts.tsx"],
+      "description": "Shows a small overlay UI on every web page, with a React options page that moves it from right to left.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.ts",
+        "./content/scripts.tsx"
+      ],
       "uiFramework": "react",
       "css": "css",
       "configFiles": [
@@ -970,10 +1089,28 @@
           "hasEnv": false
         }
       },
-      "permissions": [],
+      "permissions": ["storage"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": [
+        "content",
+        "options",
+        "storage",
+        "react",
+        "typescript",
+        "tailwind"
+      ],
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the overlay injected into the page",
+        "Tick the setting and watch the overlay move to the left edge"
+      ],
+      "useCases": [
+        "A React UI injected into any page, isolated in a Shadow DOM",
+        "One setting shared between a React options page and a content script",
+        "Starting point for content-script extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "video": "01eAh8MYC1E",
       "files": [
@@ -988,7 +1125,11 @@
         "public/content-react/src/images/tailwind.png",
         "public/content-react/src/images/tailwind_bg.png",
         "public/content-react/src/images/typescript.png",
-        "public/content-react/src/manifest.json"
+        "public/content-react/src/manifest.json",
+        "public/content-react/src/options/OptionsApp.tsx",
+        "public/content-react/src/options/index.html",
+        "public/content-react/src/options/scripts.tsx",
+        "public/content-react/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-react/screenshot.png",
@@ -998,13 +1139,17 @@
     {
       "slug": "content-sass",
       "name": "@extension-js/content-sass",
-      "title": "Content Sass",
+      "title": "Content scripts with Sass",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small styled badge into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a small styled badge into every web page you visit, with a Sass options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "sass",
       "configFiles": ["extension.config.js"],
@@ -1018,10 +1163,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["content", "sass", "options", "storage"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Tick the setting and watch the badge move to the left edge"
+      ],
+      "useCases": [
+        "A badge injected into every page and styled with Sass",
+        "One position setting shared between an options page and a content script",
+        "Starting point for Sass content scripts that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
       "video": "5v335BPb2KY",
       "files": [
@@ -1030,7 +1188,10 @@
         "public/content-sass/src/content/scripts.js",
         "public/content-sass/src/content/styles.scss",
         "public/content-sass/src/images/icon.png",
-        "public/content-sass/src/manifest.json"
+        "public/content-sass/src/manifest.json",
+        "public/content-sass/src/options/index.html",
+        "public/content-sass/src/options/scripts.js",
+        "public/content-sass/src/options/styles.scss"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-sass/screenshot.png",
@@ -1040,13 +1201,17 @@
     {
       "slug": "content-sass-modules",
       "name": "@extension-js/content-sass-modules",
-      "title": "Content Sass Modules",
+      "title": "Content scripts with Sass modules",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Injects a small styled badge into every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.js", "content/scripts.js"],
+      "description": "Injects a small styled badge into every web page you visit, with a Sass modules options page that moves it to the left or right edge.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "sass",
       "configFiles": ["extension.config.js"],
@@ -1062,10 +1227,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content", "sass", "css-modules", "options", "storage"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the badge injected into the page",
+        "Tick the setting and watch the badge move to the left edge"
+      ],
+      "useCases": [
+        "A badge injected into every page and styled with hashed Sass module class names",
+        "One position setting shared between an options page and a content script",
+        "Starting point for Sass module content scripts that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "video": "4RgNs3oFB2s",
       "files": [
@@ -1074,7 +1252,10 @@
         "public/content-sass-modules/src/content/scripts.js",
         "public/content-sass-modules/src/content/styles.module.scss",
         "public/content-sass-modules/src/images/icon.png",
-        "public/content-sass-modules/src/manifest.json"
+        "public/content-sass-modules/src/manifest.json",
+        "public/content-sass-modules/src/options/index.html",
+        "public/content-sass-modules/src/options/scripts.js",
+        "public/content-sass-modules/src/options/styles.module.scss"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-sass-modules/screenshot.png",
@@ -1083,14 +1264,18 @@
     },
     {
       "slug": "content-svelte",
-      "name": "content-svelte",
+      "name": "@extension-js/content-svelte",
       "title": "Content Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Shows a small overlay UI on every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.ts", "./content/scripts.ts"],
+      "description": "Shows a Svelte overlay on every web page you visit, with an options page that moves it from right to left.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.ts",
+        "./content/scripts.ts"
+      ],
       "uiFramework": "svelte",
       "css": "css",
       "configFiles": [
@@ -1108,10 +1293,28 @@
           "hasEnv": false
         }
       },
-      "permissions": [],
+      "permissions": ["storage"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": [
+        "content",
+        "svelte",
+        "typescript",
+        "tailwind",
+        "options",
+        "storage"
+      ],
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the overlay injected into the page",
+        "Tick the setting and watch the overlay move to the left edge"
+      ],
+      "useCases": [
+        "A Svelte overlay injected into every page, isolated in a Shadow DOM",
+        "One setting shared between a Svelte options page and a content script",
+        "Starting point for Svelte extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
       "video": "Vxe265iGZZI",
       "files": [
@@ -1127,7 +1330,11 @@
         "public/content-svelte/src/images/tailwind.png",
         "public/content-svelte/src/images/tailwind_bg.png",
         "public/content-svelte/src/images/typescript.png",
-        "public/content-svelte/src/manifest.json"
+        "public/content-svelte/src/manifest.json",
+        "public/content-svelte/src/options/OptionsApp.svelte",
+        "public/content-svelte/src/options/index.html",
+        "public/content-svelte/src/options/scripts.ts",
+        "public/content-svelte/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-svelte/screenshot.png",
@@ -1136,14 +1343,18 @@
     },
     {
       "slug": "content-typescript",
-      "name": "content-typescript",
+      "name": "@extension-js/content-typescript",
       "title": "Content TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Shows a small overlay UI on every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.ts", "content/scripts.ts"],
+      "description": "Shows a small overlay UI on every web page, with an options page that moves it from right to left.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.ts",
+        "content/scripts.ts"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json", "extension.config.js"],
@@ -1157,10 +1368,23 @@
           "hasEnv": false
         }
       },
-      "permissions": ["activeTab", "scripting"],
+      "permissions": ["activeTab", "scripting", "storage"],
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content", "options", "storage", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the overlay injected into the page",
+        "Tick the setting and watch the overlay move to the left edge"
+      ],
+      "useCases": [
+        "A typed overlay injected into every page",
+        "One setting shared between an options page and a content script",
+        "Starting point for TypeScript extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "video": "n8IrGmO9C-M",
       "files": [
@@ -1169,7 +1393,11 @@
         "public/content-typescript/src/content/scripts.ts",
         "public/content-typescript/src/content/styles.css",
         "public/content-typescript/src/images/icon.png",
-        "public/content-typescript/src/manifest.json"
+        "public/content-typescript/src/manifest.json",
+        "public/content-typescript/src/options/index.html",
+        "public/content-typescript/src/options/scripts.ts",
+        "public/content-typescript/src/options/styles.css",
+        "public/content-typescript/src/types.ts"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-typescript/screenshot.png",
@@ -1178,14 +1406,18 @@
     },
     {
       "slug": "content-vue",
-      "name": "content-vue",
+      "name": "@extension-js/content-vue",
       "title": "Content Vue",
       "version": "1.0.0",
       "manifest_version": 3,
-      "description": "Shows a small overlay UI on every web page you visit.",
-      "uiContext": ["content", "background"],
-      "surfaces": ["content", "background"],
-      "entrypoints": ["background.ts", "./content/scripts.ts"],
+      "description": "Shows a small overlay UI on every web page, with a Vue options page that moves it from right to left.",
+      "uiContext": ["content", "options", "background"],
+      "surfaces": ["content", "options", "background"],
+      "entrypoints": [
+        "options/index.html",
+        "background.ts",
+        "./content/scripts.ts"
+      ],
       "uiFramework": "vue",
       "css": "css",
       "configFiles": [
@@ -1203,10 +1435,28 @@
           "hasEnv": false
         }
       },
-      "permissions": [],
+      "permissions": ["storage"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": [
+        "content",
+        "options",
+        "storage",
+        "vue",
+        "typescript",
+        "tailwind"
+      ],
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click Open options on the overlay injected into the page",
+        "Tick the setting and watch the overlay move to the left edge"
+      ],
+      "useCases": [
+        "A Vue overlay injected into every page, isolated in a Shadow DOM",
+        "One setting shared between a Vue options page and a content script",
+        "Starting point for Vue extensions that need preferences"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
       "video": "AKjihhS1k4U",
       "files": [
@@ -1223,7 +1473,11 @@
         "public/content-vue/src/images/tailwind_bg.png",
         "public/content-vue/src/images/typescript.png",
         "public/content-vue/src/images/vue.png",
-        "public/content-vue/src/manifest.json"
+        "public/content-vue/src/manifest.json",
+        "public/content-vue/src/options/OptionsApp.vue",
+        "public/content-vue/src/options/index.html",
+        "public/content-vue/src/options/scripts.ts",
+        "public/content-vue/src/options/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-vue/screenshot.png",
@@ -1231,8 +1485,361 @@
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
     },
     {
+      "slug": "devtools",
+      "name": "@extension-js/devtools",
+      "title": "Devtools panel",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a devtools panel to the browser that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/index.html and reopen devtools to see the change"
+      ],
+      "useCases": [
+        "A devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "jf6wxttBfek",
+      "files": [
+        "public/devtools/extension.config.js",
+        "public/devtools/src/devtools/index.html",
+        "public/devtools/src/devtools/scripts.js",
+        "public/devtools/src/images/icon.png",
+        "public/devtools/src/manifest.json",
+        "public/devtools/src/panel/index.html",
+        "public/devtools/src/panel/scripts.js",
+        "public/devtools/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools/screenshot.png",
+      "icon": "public/devtools/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools"
+    },
+    {
+      "slug": "devtools-preact",
+      "name": "@extension-js/devtools-preact",
+      "title": "Devtools panel Preact",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a devtools panel written in Preact that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "preact",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "preact", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/PanelApp.tsx and reopen devtools to see the change"
+      ],
+      "useCases": [
+        "A devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for Preact debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "BOEOpZMKDGQ",
+      "files": [
+        "public/devtools-preact/extension.config.js",
+        "public/devtools-preact/src/devtools/index.html",
+        "public/devtools-preact/src/devtools/scripts.ts",
+        "public/devtools-preact/src/images/icon.png",
+        "public/devtools-preact/src/images/preact.png",
+        "public/devtools-preact/src/manifest.json",
+        "public/devtools-preact/src/panel/PanelApp.tsx",
+        "public/devtools-preact/src/panel/index.html",
+        "public/devtools-preact/src/panel/scripts.tsx",
+        "public/devtools-preact/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools-preact/screenshot.png",
+      "icon": "public/devtools-preact/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-preact"
+    },
+    {
+      "slug": "devtools-react",
+      "name": "@extension-js/devtools-react",
+      "title": "React devtools panel",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a React devtools panel to the browser that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "react",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "react", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/PanelApp.tsx and save to see the panel update"
+      ],
+      "useCases": [
+        "A React devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
+      "video": "wvY27g9jJ88",
+      "files": [
+        "public/devtools-react/extension.config.js",
+        "public/devtools-react/src/devtools/index.html",
+        "public/devtools-react/src/devtools/scripts.js",
+        "public/devtools-react/src/images/icon.png",
+        "public/devtools-react/src/images/react.png",
+        "public/devtools-react/src/manifest.json",
+        "public/devtools-react/src/panel/PanelApp.tsx",
+        "public/devtools-react/src/panel/index.html",
+        "public/devtools-react/src/panel/scripts.tsx",
+        "public/devtools-react/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools-react/screenshot.png",
+      "icon": "public/devtools-react/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-react"
+    },
+    {
+      "slug": "devtools-svelte",
+      "name": "@extension-js/devtools-svelte",
+      "title": "Devtools panel with Svelte",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a Svelte devtools panel to the browser that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "svelte",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "svelte", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/PanelApp.svelte and reopen devtools to see the change"
+      ],
+      "useCases": [
+        "A devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "WezOojQXpws",
+      "files": [
+        "public/devtools-svelte/extension.config.js",
+        "public/devtools-svelte/src/devtools/index.html",
+        "public/devtools-svelte/src/devtools/scripts.ts",
+        "public/devtools-svelte/src/images/icon.png",
+        "public/devtools-svelte/src/images/svelte.png",
+        "public/devtools-svelte/src/manifest.json",
+        "public/devtools-svelte/src/panel/PanelApp.svelte",
+        "public/devtools-svelte/src/panel/index.html",
+        "public/devtools-svelte/src/panel/scripts.ts",
+        "public/devtools-svelte/src/panel/styles.css",
+        "public/devtools-svelte/src/panel/svelte.d.ts"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools-svelte/screenshot.png",
+      "icon": "public/devtools-svelte/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-svelte"
+    },
+    {
+      "slug": "devtools-typescript",
+      "name": "@extension-js/devtools-typescript",
+      "title": "Devtools panel (TypeScript)",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a devtools panel to the browser that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/index.html and reopen devtools to see the change"
+      ],
+      "useCases": [
+        "A devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "F3KrwvfBNbw",
+      "files": [
+        "public/devtools-typescript/extension.config.js",
+        "public/devtools-typescript/src/devtools/index.html",
+        "public/devtools-typescript/src/devtools/scripts.ts",
+        "public/devtools-typescript/src/images/icon.png",
+        "public/devtools-typescript/src/images/typescript.png",
+        "public/devtools-typescript/src/manifest.json",
+        "public/devtools-typescript/src/panel/index.html",
+        "public/devtools-typescript/src/panel/scripts.ts",
+        "public/devtools-typescript/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools-typescript/screenshot.png",
+      "icon": "public/devtools-typescript/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript"
+    },
+    {
+      "slug": "devtools-vue",
+      "name": "@extension-js/devtools-vue",
+      "title": "Devtools panel with Vue",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Adds a devtools panel built with Vue that reads the inspected page.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "vue",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "vue", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open the browser devtools with F12 or Cmd+Option+I, then pick the Example tab",
+        "Edit src/panel/PanelApp.vue and reopen devtools to see the change"
+      ],
+      "useCases": [
+        "A devtools panel as the primary UI surface",
+        "Inspecting the current page from inside the developer tools",
+        "Starting point for debugging tools built as browser extensions"
+      ],
+      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "LpY6RVgBsEM",
+      "files": [
+        "public/devtools-vue/extension.config.js",
+        "public/devtools-vue/src/devtools/index.html",
+        "public/devtools-vue/src/devtools/scripts.ts",
+        "public/devtools-vue/src/images/icon.png",
+        "public/devtools-vue/src/images/vue.png",
+        "public/devtools-vue/src/manifest.json",
+        "public/devtools-vue/src/panel/PanelApp.vue",
+        "public/devtools-vue/src/panel/index.html",
+        "public/devtools-vue/src/panel/scripts.ts",
+        "public/devtools-vue/src/panel/shims-vue.d.ts",
+        "public/devtools-vue/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "public/devtools-vue/screenshot.png",
+      "icon": "public/devtools-vue/src/images/icon.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-vue"
+    },
+    {
       "slug": "init",
-      "name": "init",
+      "name": "@extension-js/init",
       "title": "Initial",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1272,7 +1879,7 @@
     },
     {
       "slug": "javascript",
-      "name": "javascript",
+      "name": "@extension-js/javascript",
       "title": "JavaScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1323,7 +1930,7 @@
     },
     {
       "slug": "newtab",
-      "name": "newtab",
+      "name": "@extension-js/newtab",
       "title": "New Tab",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1366,7 +1973,7 @@
     },
     {
       "slug": "newtab-browser-flags",
-      "name": "newtab-browser-flags",
+      "name": "@extension-js/newtab-browser-flags",
       "title": "New Tab Browser Flags",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1418,7 +2025,7 @@
     },
     {
       "slug": "newtab-config-eslint",
-      "name": "newtab-config-eslint",
+      "name": "@extension-js/newtab-config-eslint",
       "title": "New Tab Config ESLint",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1465,7 +2072,7 @@
     },
     {
       "slug": "newtab-config-prettier",
-      "name": "newtab-config-prettier",
+      "name": "@extension-js/newtab-config-prettier",
       "title": "New Tab Config Prettier",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1508,7 +2115,7 @@
     },
     {
       "slug": "newtab-config-stylelint",
-      "name": "newtab-config-stylelint",
+      "name": "@extension-js/newtab-config-stylelint",
       "title": "New Tab Config Stylelint",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1551,7 +2158,7 @@
     },
     {
       "slug": "newtab-crypto",
-      "name": "newtab-crypto",
+      "name": "@extension-js/newtab-crypto",
       "title": "New Tab Crypto",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1594,7 +2201,7 @@
     },
     {
       "slug": "newtab-env",
-      "name": "newtab-env",
+      "name": "@extension-js/newtab-env",
       "title": "Environment Variables",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1650,7 +2257,7 @@
     },
     {
       "slug": "newtab-less",
-      "name": "newtab-less",
+      "name": "@extension-js/newtab-less",
       "title": "New Tab Less",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1693,7 +2300,7 @@
     },
     {
       "slug": "newtab-preact",
-      "name": "newtab-preact",
+      "name": "@extension-js/newtab-preact",
       "title": "New Tab Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1737,7 +2344,7 @@
     },
     {
       "slug": "newtab-react",
-      "name": "newtab-react",
+      "name": "@extension-js/newtab-react",
       "title": "New Tab React",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1781,7 +2388,7 @@
     },
     {
       "slug": "newtab-react-router",
-      "name": "newtab-react-router",
+      "name": "@extension-js/newtab-react-router",
       "title": "New Tab React Router",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1825,7 +2432,7 @@
     },
     {
       "slug": "newtab-sass",
-      "name": "newtab-sass",
+      "name": "@extension-js/newtab-sass",
       "title": "New Tab Sass",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1868,7 +2475,7 @@
     },
     {
       "slug": "newtab-svelte",
-      "name": "newtab-svelte",
+      "name": "@extension-js/newtab-svelte",
       "title": "New Tab Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1912,7 +2519,7 @@
     },
     {
       "slug": "newtab-typescript",
-      "name": "newtab-typescript",
+      "name": "@extension-js/newtab-typescript",
       "title": "New Tab TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1955,7 +2562,7 @@
     },
     {
       "slug": "newtab-vue",
-      "name": "newtab-vue",
+      "name": "@extension-js/newtab-vue",
       "title": "New Tab Vue",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1999,7 +2606,7 @@
     },
     {
       "slug": "playwright",
-      "name": "playwright",
+      "name": "@extension-js/playwright",
       "title": "Playwright E2E Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2058,7 +2665,7 @@
     },
     {
       "slug": "preact",
-      "name": "preact",
+      "name": "@extension-js/preact",
       "title": "Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2111,7 +2718,7 @@
     },
     {
       "slug": "react",
-      "name": "react",
+      "name": "@extension-js/react",
       "title": "React",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2162,7 +2769,7 @@
     },
     {
       "slug": "sidebar",
-      "name": "sidebar",
+      "name": "@extension-js/sidebar",
       "title": "Sidebar page",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2205,7 +2812,7 @@
     },
     {
       "slug": "sidebar-antd",
-      "name": "sidebar-antd",
+      "name": "@extension-js/sidebar-antd",
       "title": "Sidebar Ant Design",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2249,7 +2856,7 @@
     },
     {
       "slug": "sidebar-monorepo-nx",
-      "name": "sidebar-monorepo-nx",
+      "name": "@extension-js/sidebar-monorepo-nx",
       "title": "Sidebar Nx",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2303,7 +2910,7 @@
     },
     {
       "slug": "sidebar-monorepo-turborepo",
-      "name": "sidebar-monorepo-turborepo",
+      "name": "@extension-js/sidebar-monorepo-turborepo",
       "title": "Sidebar Turborepo",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2357,7 +2964,7 @@
     },
     {
       "slug": "sidebar-shadcn",
-      "name": "sidebar-shadcn",
+      "name": "@extension-js/sidebar-shadcn",
       "title": "Sidebar shadcn",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2410,7 +3017,7 @@
     },
     {
       "slug": "special-folders-pages",
-      "name": "special-folders-pages",
+      "name": "@extension-js/special-folders-pages",
       "title": "Special Folders: pages/",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2473,7 +3080,7 @@
     },
     {
       "slug": "special-folders-scripts",
-      "name": "special-folders-scripts",
+      "name": "@extension-js/special-folders-scripts",
       "title": "Special Folders Scripts",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2519,7 +3126,7 @@
     },
     {
       "slug": "svelte",
-      "name": "svelte",
+      "name": "@extension-js/svelte",
       "title": "Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2571,7 +3178,7 @@
     },
     {
       "slug": "transformers-js",
-      "name": "transformers-js",
+      "name": "@extension-js/transformers-js",
       "title": "Transformers.js",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2630,7 +3237,7 @@
     },
     {
       "slug": "typescript",
-      "name": "typescript",
+      "name": "@extension-js/typescript",
       "title": "TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2682,7 +3289,7 @@
     },
     {
       "slug": "vue",
-      "name": "vue",
+      "name": "@extension-js/vue",
       "title": "Vue",
       "version": "1.0.0",
       "manifest_version": 3,

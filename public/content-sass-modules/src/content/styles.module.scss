@@ -1,7 +1,13 @@
+$badge-surface: #0a0c10;
+$badge-text: #c9c9c9;
+$badge-bright: #e5e7eb;
+$badge-border: #2a3140;
+$badge-radius: 6px;
+
 .content_script {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #c9c9c9;
-  background-color: #0a0c10;
+  color: $badge-text;
+  background-color: $badge-surface;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -12,7 +18,14 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
-  border-radius: 6px;
+  border-radius: $badge-radius;
+}
+
+// The options page toggles this modifier through storage. The content script
+// imports the hashed name, because the name below never reaches the browser.
+.content_script_left {
+  left: 0;
+  right: auto;
 }
 
 .content_logo {
@@ -31,13 +44,28 @@
 .content_description {
   font-size: small;
   margin: 0;
+
+  a {
+    text-decoration: none;
+    border-bottom: 2px solid $badge-text;
+    color: $badge-bright;
+    margin: 0;
+  }
 }
 
-.content_description a {
-  text-decoration: none;
-  border-bottom: 2px solid #c9c9c9;
-  color: #e5e7eb;
-  margin: 0;
+.content_button {
+  font: inherit;
+  font-size: small;
+  color: $badge-bright;
+  background-color: #11151c;
+  border: 1px solid $badge-border;
+  border-radius: $badge-radius;
+  padding: 0.6em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #182030;
+  }
 }
 
 .logo {

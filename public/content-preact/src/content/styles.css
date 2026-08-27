@@ -4,6 +4,5 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   position: fixed;
   bottom: 0;
-  right: 0;
   z-index: 99999;
 }
