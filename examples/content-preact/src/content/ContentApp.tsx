@@ -36,7 +36,7 @@ function OpenHint({
 }) {
   return (
     <div className="mx-auto max-w-7xl md:px-0 lg:p-6">
-      <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+      <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:flex-wrap lg:gap-x-20 lg:px-24 lg:pt-0">
         <div className="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
           <div className="w-[108rem] flex-none flex justify-end">
             <picture>
@@ -85,15 +85,6 @@ function OpenHint({
             </button>
             .
           </p>
-          <div className="mt-6">
-            <button
-              onClick={onOpenOptions}
-              aria-label="Open options"
-              className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Open options
-            </button>
-          </div>
         </div>
 
         <div className="relative mt-16 h-80 lg:mt-8">
@@ -104,6 +95,19 @@ function OpenHint({
             width="1824"
             height="1080"
           />
+        </div>
+        {/* Last child of the card, full width so it wraps below both columns
+            rather than becoming a third one. Every other content template ends
+            on this button, and the framework ones used to bury it beside the
+            screenshot. */}
+        <div className="w-full pb-12 text-center lg:pb-16">
+          <button
+            onClick={onOpenOptions}
+            aria-label="Open options"
+            className="bg-white rounded-md p-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Open options
+          </button>
         </div>
       </div>
     </div>

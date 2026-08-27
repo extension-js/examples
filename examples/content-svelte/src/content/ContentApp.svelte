@@ -29,7 +29,7 @@ function openOptions() {
   </div>
 {:else}
   <div class="mx-auto max-w-7xl md:px-0 lg:p-6">
-    <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+    <div class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:flex-wrap lg:gap-x-20 lg:px-24 lg:pt-0">
       <div class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
         <div class="w-[108rem] flex-none flex justify-end">
           <picture>
@@ -52,16 +52,22 @@ function openOptions() {
           Learn more about creating cross-browser extensions by
           <button on:click={toggleDialog} class="underline hover:no-underline">closing this hint</button>.
         </p>
-        <button
-          on:click={openOptions}
-          aria-label="Open options"
-          class="mt-6 rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          Open options
-        </button>
       </div>
       <div class="relative mt-16 h-80 lg:mt-8">
         <img class="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src={chromeWindowBg} alt="Chrome window screenshot" width="1824" height="1080" />
+      </div>
+      <!-- Last child of the card, full width so it wraps below both columns
+           rather than becoming a third one. Every other content template ends
+           on this button, and the framework ones used to bury it beside the
+           screenshot. -->
+      <div class="w-full pb-12 text-center lg:pb-16">
+        <button
+          on:click={openOptions}
+          aria-label="Open options"
+          class="rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Open options
+        </button>
       </div>
     </div>
   </div>

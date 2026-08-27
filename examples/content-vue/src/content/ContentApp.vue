@@ -13,7 +13,7 @@ function openOptions() {
   <div v-if="isdialogOpen">
     <div class="mx-auto max-w-7xl md:px-0 lg:p-6">
       <div
-        class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:gap-x-20 lg:px-24 lg:pt-0"
+        class="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl lg:rounded-3xl md:pt-24 md:h-full sm:h-[100vh] lg:flex lg:flex-wrap lg:gap-x-20 lg:px-24 lg:pt-0"
       >
         <div
           class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none"
@@ -70,15 +70,6 @@ function openOptions() {
             </button>
             .
           </p>
-          <div class="mt-8 flex justify-center lg:justify-start">
-            <button
-              @click="openOptions"
-              aria-label="Open options"
-              class="bg-white rounded-md px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Open options
-            </button>
-          </div>
         </div>
 
         <div class="relative mt-16 h-80 lg:mt-8">
@@ -89,6 +80,20 @@ function openOptions() {
             width="1824"
             height="1080"
           />
+        </div>
+
+        <!-- Last child of the card, full width so it wraps below both columns
+             rather than becoming a third one. Every other content template ends
+             on this button, and the framework ones used to bury it beside the
+             screenshot. -->
+        <div class="w-full pb-12 text-center lg:pb-16">
+          <button
+            @click="openOptions"
+            aria-label="Open options"
+            class="bg-white rounded-md px-4 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            Open options
+          </button>
         </div>
       </div>
     </div>
