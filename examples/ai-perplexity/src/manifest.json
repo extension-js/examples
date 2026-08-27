@@ -52,14 +52,8 @@
     "default_panel": "sidebar/index.html",
     "default_title": "Perplexity Sidebar"
   },
-  "chromium:permissions": [
-    "sidePanel",
-    "storage",
-    "activeTab",
-    "scripting",
-    "tabs"
-  ],
-  "firefox:permissions": ["storage", "activeTab", "tabs"],
+  "chromium:permissions": ["sidePanel", "storage", "tabs"],
+  "firefox:permissions": ["storage", "tabs"],
   "host_permissions": ["<all_urls>"],
   "background": {
     "chromium:service_worker": "background.ts",
