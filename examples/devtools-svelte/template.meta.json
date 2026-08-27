@@ -1,7 +1,12 @@
 {
   "title": "Devtools panel with Svelte",
   "featured": false,
-  "tags": ["devtools", "panel", "svelte", "typescript"],
+  "tags": [
+    "devtools",
+    "panel",
+    "svelte",
+    "typescript"
+  ],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -14,5 +19,6 @@
     "Inspecting the current page from inside the developer tools",
     "Starting point for debugging tools built as browser extensions"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+  "video": "WezOojQXpws"
 }

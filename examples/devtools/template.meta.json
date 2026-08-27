@@ -1,7 +1,11 @@
 {
   "title": "Devtools panel",
   "featured": false,
-  "tags": ["devtools", "panel", "javascript"],
+  "tags": [
+    "devtools",
+    "panel",
+    "javascript"
+  ],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -14,5 +18,6 @@
     "Inspecting the current page from inside the developer tools",
     "Starting point for debugging tools built as browser extensions"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+  "video": "jf6wxttBfek"
 }
