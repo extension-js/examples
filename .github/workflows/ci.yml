@@ -124,6 +124,15 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    # `extension create --template=<slug>` downloads the corpus from a commit
+    # the SHIPPED CLI pins, so by default this job tests whatever templates
+    # existed when that CLI was released, not the ones in this checkout. A
+    # template added here is then unresolvable until an engine release moves
+    # the pin, which deadlocks: CI red -> no publish -> still red. Point it at
+    # the commit under test so the job answers the question it exists to ask,
+    # "do THESE templates scaffold and run".
+    env:
+      EXTENSION_CREATE_TEMPLATE_REF: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -153,6 +162,9 @@ jobs:
   # ──────────────────────────────────────────────────────────────────────────
   create-dev-workflow-guards-windows:
     needs: setup
+    # Same reason as the Linux job above.
+    env:
+      EXTENSION_CREATE_TEMPLATE_REF: ${{ github.event.pull_request.head.sha || github.sha }}
     runs-on: windows-latest
     timeout-minutes: 60
     steps:
