@@ -84,3 +84,18 @@ header > div {
   display: flex;
   align-items: center;
 }
+
+.edit-hint {
+  margin-top: -1.5rem;
+  font-size: 0.8em;
+  color: #7d8590;
+}
+
+.edit-hint code {
+  padding: 0.2em 0.45em;
+  border-radius: 4px;
+  background-color: #161b22;
+  color: #9aa4af;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+}

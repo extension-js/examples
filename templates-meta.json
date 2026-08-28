@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-08-28T01:20:03.345Z",
+  "generatedAt": "2026-08-28T02:52:07.099Z",
   "templates": [
     {
       "slug": "action",
@@ -2611,9 +2611,13 @@
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Adds a sidebar panel to the browser, covered end to end by Playwright tests.",
-      "uiContext": ["sidebar", "action", "background"],
-      "surfaces": ["action", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "background.ts"],
+      "uiContext": ["content", "sidebar", "action", "background"],
+      "surfaces": ["content", "action", "sidebar", "background"],
+      "entrypoints": [
+        "sidebar/index.html",
+        "background.ts",
+        "content/scripts.ts"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["tsconfig.json", "extension.config.js"],
@@ -2651,6 +2655,9 @@
       "files": [
         "public/playwright/extension.config.js",
         "public/playwright/src/background.ts",
+        "public/playwright/src/content/ContentApp.ts",
+        "public/playwright/src/content/scripts.ts",
+        "public/playwright/src/content/styles.css",
         "public/playwright/src/images/icon.png",
         "public/playwright/src/manifest.json",
         "public/playwright/src/sidebar/SidebarApp.ts",
@@ -2774,9 +2781,13 @@
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Adds a sidebar panel to the browser with a simple page.",
-      "uiContext": ["sidebar", "action", "background"],
-      "surfaces": ["action", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "background.js"],
+      "uiContext": ["content", "sidebar", "action", "background"],
+      "surfaces": ["content", "action", "sidebar", "background"],
+      "entrypoints": [
+        "sidebar/index.html",
+        "background.js",
+        "content/scripts.js"
+      ],
       "uiFramework": "",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -2799,6 +2810,8 @@
       "files": [
         "public/sidebar/extension.config.js",
         "public/sidebar/src/background.js",
+        "public/sidebar/src/content/scripts.js",
+        "public/sidebar/src/content/styles.css",
         "public/sidebar/src/images/icon.png",
         "public/sidebar/src/manifest.json",
         "public/sidebar/src/sidebar/index.html",
@@ -2817,9 +2830,13 @@
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Adds a sidebar panel to the browser showing Ant Design components.",
-      "uiContext": ["sidebar", "action", "background"],
-      "surfaces": ["action", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "background.js"],
+      "uiContext": ["content", "sidebar", "action", "background"],
+      "surfaces": ["content", "action", "sidebar", "background"],
+      "entrypoints": [
+        "sidebar/index.html",
+        "background.js",
+        "content/scripts.jsx"
+      ],
       "uiFramework": "react",
       "css": "css",
       "configFiles": ["extension.config.js"],
@@ -2842,6 +2859,9 @@
       "files": [
         "public/sidebar-antd/extension.config.js",
         "public/sidebar-antd/src/background.js",
+        "public/sidebar-antd/src/content/ContentApp.jsx",
+        "public/sidebar-antd/src/content/scripts.jsx",
+        "public/sidebar-antd/src/content/styles.css",
         "public/sidebar-antd/src/images/icon.png",
         "public/sidebar-antd/src/manifest.json",
         "public/sidebar-antd/src/sidebar/SidebarApp.jsx",
@@ -2969,9 +2989,13 @@
       "version": "1.0.0",
       "manifest_version": 3,
       "description": "Adds a sidebar panel to the browser built with shadcn/ui components.",
-      "uiContext": ["sidebar", "action", "background"],
-      "surfaces": ["action", "sidebar", "background"],
-      "entrypoints": ["sidebar/index.html", "background.ts"],
+      "uiContext": ["content", "sidebar", "action", "background"],
+      "surfaces": ["content", "action", "sidebar", "background"],
+      "entrypoints": [
+        "sidebar/index.html",
+        "background.ts",
+        "content/scripts.tsx"
+      ],
       "uiFramework": "react",
       "css": "css",
       "configFiles": [
@@ -3002,6 +3026,9 @@
         "public/sidebar-shadcn/src/components/ui/card.tsx",
         "public/sidebar-shadcn/src/components/ui/label.tsx",
         "public/sidebar-shadcn/src/components/ui/switch.tsx",
+        "public/sidebar-shadcn/src/content/ContentApp.tsx",
+        "public/sidebar-shadcn/src/content/scripts.tsx",
+        "public/sidebar-shadcn/src/content/styles.css",
         "public/sidebar-shadcn/src/images/icon.png",
         "public/sidebar-shadcn/src/lib/utils.ts",
         "public/sidebar-shadcn/src/manifest.json",
