@@ -9,9 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A browser side panel that loads when you open the sidebar.
+**What you'll see**: A sidebar panel with a TypeScript page, plus a small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a TypeScript page bundled from `src/sidebar/`.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a TypeScript page bundled from `src/sidebar/`. A content script also mounts a pill inside a Shadow DOM, and clicking it asks the background worker to open the panel.
 
 Designed for Playwright-driven E2E tests. The template ships a sidebar panel together with a Playwright fixture (`extension-fixtures`) so you can drive the extension from a real browser session in CI.
 
@@ -30,6 +30,10 @@ A fresh browser window opens with the extension already loaded.
 
 ```
 src/
+├── content/
+│   ├── ContentApp.ts
+│   ├── scripts.ts
+│   └── styles.css
 ├── images/
 │   └── icon.png
 ├── sidebar/

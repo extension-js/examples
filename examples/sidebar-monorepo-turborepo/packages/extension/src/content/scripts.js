@@ -1,4 +1,11 @@
+import logo from '../images/icon.png'
+
 console.log('[From the page context] Hello from content_scripts!')
+
+const isFirefoxLike =
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
+
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
@@ -34,6 +41,33 @@ export default function initMonorepoContent() {
   info.innerHTML =
     'Built with <strong>Extension.js</strong> · Monorepo + Turborepo'
   container.appendChild(info)
+
+  const pill = document.createElement('button')
+  pill.className = 'content_pill'
+  pill.type = 'button'
+  // Named for Accessibility as well as for sight: the label is how a screen
+  // reader announces the button, and how the docs recorder finds it.
+  pill.setAttribute('aria-label', 'Open sidebar')
+  pill.addEventListener('click', () => {
+    if (isFirefoxLike) {
+      browser.runtime.sendMessage({type: 'openSidebar'})
+    } else {
+      chrome.runtime.sendMessage({type: 'openSidebar'})
+    }
+  })
+  container.appendChild(pill)
+
+  const pillLogo = document.createElement('img')
+  pillLogo.className = 'content_pill_logo'
+  pillLogo.src = logo
+  pillLogo.alt = ''
+  pillLogo.setAttribute('aria-hidden', 'true')
+  pill.appendChild(pillLogo)
+
+  const pillText = document.createElement('span')
+  pillText.className = 'content_pill_text'
+  pillText.textContent = 'Open sidebar'
+  pill.appendChild(pillText)
 
   return () => {
     root.remove()

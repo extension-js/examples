@@ -3,44 +3,32 @@ import logo from '../images/icon.png'
 console.log('[From the page context] Hello from content_scripts!')
 
 const isFirefoxLike =
-  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
-  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
+  process.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  process.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 /**
  * Extension.js content_script entrypoint. The framework calls this on
  * injection and calls the returned function on HMR/teardown to clean up.
  * Do not invoke it yourself.
  */
-export default function initMonorepoContent() {
-  const root = document.createElement('div')
-  root.setAttribute('data-extension-root', 'true')
+export default function initial() {
+  const rootDiv = document.createElement('div')
+  rootDiv.setAttribute('data-extension-root', 'true')
   // Isolate the host from page styles (e.g. example.com ships div{opacity:.8},
   // which would otherwise fade the whole widget): the shadow DOM only protects
   // descendants; the host element itself still takes page CSS.
-  root.style.cssText = 'all: initial !important'
-  document.documentElement.appendChild(root)
+  rootDiv.style.cssText = 'all: initial !important'
+  document.body.appendChild(rootDiv)
 
-  const shadow = root.attachShadow({mode: 'open'})
-  const styleEl = document.createElement('style')
-  shadow.appendChild(styleEl)
-  loadCSS()
-    .then((css) => (styleEl.textContent = css))
-    .catch(() => {})
+  const shadowRoot = rootDiv.attachShadow({mode: 'open'})
+  const styleElement = document.createElement('style')
+  shadowRoot.appendChild(styleElement)
 
-  const container = document.createElement('div')
-  container.className = 'monorepo_content'
-  shadow.appendChild(container)
+  fetchCSS().then((css) => (styleElement.textContent = css))
 
-  const badge = document.createElement('div')
-  badge.className = 'monorepo_badge'
-  badge.textContent = 'Nx Monorepo Content Script Active'
-  container.appendChild(badge)
-
-  const info = document.createElement('div')
-  info.className = 'monorepo_info'
-  info.innerHTML =
-    'Built with <strong>Extension.js</strong> · Monorepo + Nx'
-  container.appendChild(info)
+  const contentDiv = document.createElement('div')
+  contentDiv.className = 'content_script'
+  shadowRoot.appendChild(contentDiv)
 
   const pill = document.createElement('button')
   pill.className = 'content_pill'
@@ -55,7 +43,7 @@ export default function initMonorepoContent() {
       chrome.runtime.sendMessage({type: 'openSidebar'})
     }
   })
-  container.appendChild(pill)
+  contentDiv.appendChild(pill)
 
   const pillLogo = document.createElement('img')
   pillLogo.className = 'content_pill_logo'
@@ -70,13 +58,13 @@ export default function initMonorepoContent() {
   pill.appendChild(pillText)
 
   return () => {
-    root.remove()
+    rootDiv.remove()
   }
 }
 
-async function loadCSS() {
+async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
-  const res = await fetch(cssUrl)
-  const text = await res.text()
-  return res.ok ? text : ''
+  const response = await fetch(cssUrl)
+  const text = await response.text()
+  return response.ok ? text : Promise.reject(text)
 }

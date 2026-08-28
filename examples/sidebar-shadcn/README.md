@@ -9,9 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A browser side panel that loads when you open the sidebar.
+**What you'll see**: A sidebar panel with a shadcn/ui page, plus a small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react. A content script also mounts a pill inside a Shadow DOM, and clicking it asks the background worker to open the panel.
 
 A React sidebar built with [shadcn/ui](https://ui.shadcn.com/) primitives over Radix UI and Tailwind v4. Cards, switches, and labels are composed from the registry, not pulled from a UI library; the components live inside the project under `src/components/ui/`.
 
@@ -30,6 +30,10 @@ A fresh browser window opens with the extension already loaded.
 
 ```
 src/
+├── content/
+│   ├── ContentApp.tsx
+│   ├── scripts.tsx
+│   └── styles.css
 ├── components/
 │   └── ui/
 │       ├── button.tsx

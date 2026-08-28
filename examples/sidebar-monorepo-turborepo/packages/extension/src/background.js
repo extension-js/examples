@@ -30,20 +30,15 @@ if (isFirefoxLike) {
 }
 
 try {
-  chrome?.runtime?.onMessage.addListener((message) => {
+  chrome?.runtime?.onMessage.addListener((message, sender) => {
     if (!message || message.type !== 'openSidebar') return
     try {
+      // Everything here must run synchronously: a tabs.query callback would
+      // outlive the click's user gesture and sidePanel.open() would refuse.
       chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
-      if (!chrome.sidePanel.open) return
-      chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        const activeTabId = tabs && tabs[0] && tabs[0].id
-        if (!activeTabId) return
-        try {
-          chrome.sidePanel.open({tabId: activeTabId})
-        } catch {
-          // Ignore errors - best effort
-        }
-      })
+      const tabId = sender.tab?.id
+      if (!chrome.sidePanel.open || tabId === undefined) return
+      chrome.sidePanel.open({tabId})
     } catch {
       // Ignore errors - best effort
     }

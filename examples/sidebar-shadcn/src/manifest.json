@@ -52,5 +52,11 @@
   "background": {
     "chromium:service_worker": "background.ts",
     "firefox:scripts": ["background.ts"]
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content/scripts.tsx"]
+    }
+  ]
 }

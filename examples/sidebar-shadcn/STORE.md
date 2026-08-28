@@ -40,6 +40,7 @@ Adds a sidebar panel built with shadcn/ui.
 ### Permissions justification
 
 - sidePanel (Chromium only): Renders the extension's main interface in the browser side panel.
+- Content script match <all_urls>: The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.
 
 ## Firefox Add-ons
 

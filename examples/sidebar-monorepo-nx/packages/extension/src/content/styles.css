@@ -40,3 +40,39 @@
   font-size: 12px;
   opacity: 0.85;
 }
+
+.content_pill {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #111827;
+  color: #fff;
+  padding: 0.375rem 0.75rem 0.375rem 0.375rem;
+  border-radius: 9999px;
+}
+
+.content_pill:hover {
+  background: #1f2937;
+}
+
+.content_pill_logo {
+  height: 1.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  object-fit: contain;
+  aspect-ratio: 1 / 1;
+  padding: 0.125rem;
+}
+
+.content_pill_text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
