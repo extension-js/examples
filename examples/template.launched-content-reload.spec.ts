@@ -51,6 +51,7 @@ interface DevServer {
   proc: ChildProcess
   output: string
   cdpPort?: number
+  startedAtMs: number
 }
 
 function startDev(exampleDir: string): DevServer {
@@ -65,7 +66,7 @@ function startDev(exampleDir: string): DevServer {
     stdio: 'pipe',
     detached: process.platform !== 'win32'
   })
-  const server: DevServer = {proc, output: ''}
+  const server: DevServer = {proc, output: '', startedAtMs: Date.now()}
   const stripAnsi = (s: string) => s.replace(/\x1b\[[0-9;]*m/g, '')
   const onData = (chunk: Buffer) => {
     const text = stripAnsi(chunk.toString())
@@ -87,22 +88,43 @@ interface ReadyContract {
   pid?: number
   cdpPort?: number
   extensionId?: string
+  startedAt?: string
+}
+
+interface RunStamp {
+  pid?: number
+  startedAtMs?: number
+}
+
+// A ready.json is ours if it is stamped with our own dev pid, or, when a
+// wrapper process sits between us and the dev process, if it was started
+// after we spawned. `pnpm extension dev` puts pnpm's pid on `proc` and the
+// node child's pid in the contract, so pid alone rejects every live run.
+function isOurRun(ready: ReadyContract, stamp: RunStamp): boolean {
+  if (stamp.pid !== undefined && ready?.pid === stamp.pid) return true
+  if (stamp.startedAtMs === undefined) return false
+  const startedAt = Date.parse(String(ready?.startedAt || ''))
+  if (!Number.isFinite(startedAt)) return false
+  // 2s of slack: the contract is stamped by the dev process a moment after
+  // spawn, and clock granularity should not reject our own run.
+  return startedAt >= stamp.startedAtMs - 2000
 }
 
 // Read the ready.json contract the dev server writes under
-// <root>/extension-js/<browser>/ready.json. Only trust a file stamped with
-// our own dev process pid, a leftover contract from a prior run satisfies
-// every other field check.
+// <root>/extension-js/<browser>/ready.json. Only trust a contract from our
+// own run, a leftover from a prior run satisfies every other field check.
+// `cleanDevRoots` does not remove it: it wipes <root>/<channel>, and the
+// contract lives under <root>/extension-js/<browser>.
 function readReadyContract(
   dir: string,
   browser: string,
-  expectedPid?: number
+  stamp?: RunStamp
 ): ReadyContract | null {
   for (const root of DEV_ROOTS) {
     const p = path.join(dir, root, 'extension-js', browser, 'ready.json')
     try {
       const ready = JSON.parse(fs.readFileSync(p, 'utf8')) as ReadyContract
-      if (expectedPid !== undefined && ready?.pid !== expectedPid) continue
+      if (stamp !== undefined && !isOurRun(ready, stamp)) continue
       return ready
     } catch {}
   }
@@ -118,10 +140,15 @@ async function waitForCdpReady(
   // to "ready" and gains a browser-confirmed cdpPort plus extensionId once
   // the extension is registered in the launched browser.
   // Fallback: structured stdout, the "cdpPort=N" line plus "cdp connected"
-  // plus the "Extension ID" banner card.
+  // plus the ready line. NOT the banner card's Extension ID row: the card
+  // keeps only its first three populated rows, and a dev run always fills
+  // Browser/Extension/Profile, so that row is never printed.
   const start = Date.now()
   while (Date.now() - start < timeoutMs) {
-    const ready = readReadyContract(exampleDir, 'chromium', server.proc.pid)
+    const ready = readReadyContract(exampleDir, 'chromium', {
+      pid: server.proc.pid,
+      startedAtMs: server.startedAtMs
+    })
     if (
       ready?.status === 'ready' &&
       typeof ready.cdpPort === 'number' &&
@@ -133,7 +160,7 @@ async function waitForCdpReady(
     if (
       server.cdpPort !== undefined &&
       /cdp\s+connected/i.test(server.output) &&
-      /Extension ID\s+[a-z0-9]/i.test(server.output)
+      /ready for development/i.test(server.output)
     ) {
       return server.cdpPort
     }
@@ -143,9 +170,11 @@ async function waitForCdpReady(
   throw new Error(
     `CDP did not become ready within ${timeoutMs}ms.\n` +
       `Awaited: ready.json under <root>/extension-js/chromium with ` +
-      `status=ready, numeric cdpPort, extensionId and pid=${server.proc.pid}, ` +
-      `or stdout lines "cdpPort=N" + "cdp connected" + "Extension ID".\n` +
-      `ready.json seen (any pid): ${
+      `status=ready, numeric cdpPort, extensionId, and pid=${server.proc.pid} ` +
+      `or startedAt at/after ${new Date(server.startedAtMs).toISOString()}, ` +
+      `or stdout lines "cdpPort=N" + "cdp connected" + "ready for ` +
+      `development".\n` +
+      `ready.json seen (any run): ${
         anyReady ? JSON.stringify(anyReady) : 'none'
       }\n` +
       `Last dev output:\n${server.output.slice(-2000)}`
