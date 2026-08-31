@@ -1,0 +1,23 @@
+{
+  "title": "Options page",
+  "featured": false,
+  "tags": [
+    "options",
+    "settings",
+    "storage",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open the extensions page of your browser and pick Options on this extension",
+    "Edit src/options/index.html to add a setting of your own"
+  ],
+  "useCases": [
+    "An options page as the primary UI surface",
+    "Saving a user setting with chrome.storage.sync so it follows the profile",
+    "Starting point for any extension that needs preferences"
+  ],
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+}

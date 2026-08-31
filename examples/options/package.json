@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "options",
+  "description": "Adds an options page to the browser that saves a setting with chrome.storage.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {},
+  "devDependencies": {}
+}

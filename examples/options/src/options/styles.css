@@ -1,0 +1,61 @@
+html {
+  font-size: 62.5%;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 1.2rem 1.6rem;
+  box-sizing: border-box;
+  font-size: 1.35rem;
+  line-height: 1.618;
+  color: #c9c9c9;
+  background-color: #0a0c10;
+}
+
+header,
+.card {
+  max-width: 62rem;
+}
+
+h1 {
+  line-height: 1.1;
+  font-weight: 700;
+  font-size: 1.7em;
+  margin-bottom: 0.6rem;
+}
+
+a {
+  color: #0971fe;
+}
+
+.card {
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+  border: 1px solid #21262d;
+  border-radius: 0.8rem;
+  background-color: #0d1117;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+}
+
+.setting input {
+  width: 1.6rem;
+  height: 1.6rem;
+  accent-color: #0971fe;
+  cursor: pointer;
+}
+
+.status {
+  margin: 1.2rem 0 0;
+  color: #8b949e;
+}
