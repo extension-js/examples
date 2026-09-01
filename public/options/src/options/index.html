@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Options</title>
+    <link rel="stylesheet" href="./styles.css" media="screen" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <img class="logo" src="../images/icon.png" alt="Extension icon" width="40px" />
+        <br />
+        Welcome to your Options Page
+      </h1>
+      <p>
+        Learn more in the
+        <a href="https://extension.js.org" target="_blank" rel="noopener noreferrer"
+          >Extension.js docs</a
+        >.
+      </p>
+    </header>
+    <section class="card">
+      <label class="setting" for="greet">
+        <input id="greet" type="checkbox" />
+        <span>Greet me by name</span>
+      </label>
+      <p id="status" class="status">Loading your settings...</p>
+    </section>
+  </body>
+  <script src="./scripts.js"></script>
+</html>
