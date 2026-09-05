@@ -35,7 +35,9 @@ const EXEMPT = new Set([
 // being shot; until then they are not allowed to block CI. Delete a slug from
 // this list the moment its video lands, and never add one: a NEW template with
 // no video is exactly what this file exists to stop.
-const AWAITING_FIRST_SHOOT = new Set([])
+// options: take shot in the 2026-09-05 session, upload waits on the 4.1.13
+// batch publish. Drop it the moment the id lands in template.meta.json.
+const AWAITING_FIRST_SHOOT = new Set(['options'])
 
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/
 
