@@ -89,7 +89,7 @@ test.describe('Content Custom Font Template', () => {
     const css = readFileSync(join(srcDir, 'content/styles.css'), 'utf8')
 
     expect(css).toContain('@font-face')
-    expect(css).toContain('font-family: "Momo Signature"')
+    expect(css).toMatch(/font-family: ['"]Momo Signature['"]/)
     expect(css).toContain('font-display: swap')
   })
 
