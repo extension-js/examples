@@ -66,13 +66,23 @@ test.describe('Content Custom Font Template', () => {
 
     expect(manifest.name).toContain('Custom Fonts')
     expect(manifest.description).toContain('custom font')
-    expect(manifest.web_accessible_resources).toBeDefined()
+    // Extension.js lists the font files from the url() references in the
+    // content script's stylesheet, so the source manifest names none.
+    expect(manifest.web_accessible_resources).toBeUndefined()
+  })
 
-    const fontResources = manifest.web_accessible_resources[0].resources
-    expect(fontResources).toContain('fonts/*.woff2')
-    expect(fontResources).toContain('fonts/*.woff')
-    expect(fontResources).toContain('fonts/*.ttf')
-    expect(fontResources).toContain('fonts/*.otf')
+  test('the build lists the font in web_accessible_resources', async () => {
+    const builtManifestPath = join(pathToExtension, 'manifest.json')
+    test.skip(!existsSync(builtManifestPath), 'needs a built extension')
+    const manifest = JSON.parse(readFileSync(builtManifestPath, 'utf8'))
+    const war = manifest.web_accessible_resources
+    const resources: string[] = Array.isArray(war)
+      ? war.flatMap((entry: any) =>
+          typeof entry === 'string' ? [entry] : entry.resources || []
+        )
+      : []
+    expect(resources).toContain('fonts/MomoSignature-Regular.woff2')
+    expect(resources).toContain('fonts/MomoSignature-Regular.ttf')
   })
 
   test('should have correct font-face declarations in CSS', async () => {
