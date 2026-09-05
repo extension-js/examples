@@ -246,8 +246,12 @@ const TAILWIND_CONTENT_TEMPLATES = [
 
 // Extract the compiled CSS that a content script would fetch at runtime.
 // Handles both emission modes that the build may produce:
-//   - A standalone file under content_scripts/*.css (when CSS is large enough)
-//   - An inlined data URI embedded in a content_scripts/*.js bundle (when small)
+//   - A standalone file under content_scripts/*.css (older CLIs, large sheets)
+//   - A base64 data URI embedded in a content_scripts/*.js bundle (older CLIs)
+//   - A charset=utf-8 data URI built from encodeURIComponent('<css>'...) in
+//     the bundle, which is how the CLI inlines a content-script stylesheet
+//     since it rewrites url() to the extension root (4.1.13 and up); the
+//     literal is followed by the chain that swaps in the extension root
 // Returns null if no CSS could be located under the built extension dir.
 function readCompiledContentCss(builtExtDir: string): string | null {
   const csDir = path.join(builtExtDir, 'content_scripts')
@@ -261,10 +265,23 @@ function readCompiledContentCss(builtExtDir: string): string | null {
   for (const entry of entries) {
     if (!entry.isFile() || !entry.name.endsWith('.js')) continue
     const js = fs.readFileSync(path.join(csDir, entry.name), 'utf8')
-    const m = js.match(/"data:text\/css;base64,([A-Za-z0-9+/=]+)"/)
-    if (m) return Buffer.from(m[1], 'base64').toString('utf8')
+    const base64 = js.match(/"data:text\/css;base64,([A-Za-z0-9+/=]+)"/)
+    if (base64) return Buffer.from(base64[1], 'base64').toString('utf8')
+    const literal = js.match(
+      /data:text\/css;charset=utf-8,"\s*\+\s*encodeURIComponent\((["'])((?:\\.|(?!\1)[^\\])*)\1/
+    )
+    if (literal) return decodeJsStringLiteral(literal[2])
+    const encoded = js.match(/data:text\/css;charset=utf-8,([^"'`]+)/)
+    if (encoded) return decodeURIComponent(encoded[1])
   }
   return null
+}
+
+// The body of a JS string literal, with its escapes resolved. JSON handles
+// every escape the minifier writes except \' and a bare double quote.
+function decodeJsStringLiteral(body: string): string {
+  const asJson = body.replace(/\\'/g, "'").replace(/"/g, '\\"')
+  return JSON.parse(`"${asJson}"`)
 }
 
 for (const name of TAILWIND_CONTENT_TEMPLATES) {
