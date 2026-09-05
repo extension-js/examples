@@ -4,6 +4,8 @@ import {
   resolveBuiltExtensionPath
 } from '../extension-fixtures.js'
 import {getDirname} from '../dirname.js'
+import fs from 'node:fs'
+import path from 'node:path'
 
 const __dirname = getDirname(import.meta.url)
 const pathToExtension = resolveBuiltExtensionPath(__dirname)
@@ -172,4 +174,91 @@ test('the setting moves the badge from right to left', async ({
     })
     .toBeGreaterThan(middle)
   await optionsPage.close()
+})
+
+// The greeting comes through a dynamic import(), so the production build has
+// to emit that module as a chunk of its own and the content script has to
+// fetch it from the extension at runtime. Issue #507 was this path breaking
+// in build while dev stayed green, so both halves are pinned against the
+// built output here.
+const LAZY_GREETING = 'Hello from a lazy-loaded chunk'
+
+function listBuiltScripts(root: string, dir = root): string[] {
+  const out: string[] = []
+  for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
+    const abs = path.join(dir, entry.name)
+    if (entry.isDirectory()) out.push(...listBuiltScripts(root, abs))
+    else if (entry.name.endsWith('.js')) {
+      out.push(path.relative(root, abs).split(path.sep).join('/'))
+    }
+  }
+  return out
+}
+
+// MV3 lists objects with a resources array, MV2 lists plain strings. A
+// resource pattern is a glob where * matches anything, slashes included.
+function isWebAccessible(manifest: any, file: string): boolean {
+  const entries: unknown[] = manifest.web_accessible_resources ?? []
+  const patterns = entries.flatMap((entry) =>
+    typeof entry === 'string' ? [entry] : ((entry as any).resources ?? [])
+  )
+  return patterns.some((pattern: string) => {
+    const source = pattern
+      .split('*')
+      .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&'))
+      .join('.*')
+    return new RegExp(`^${source}$`).test(file)
+  })
+}
+
+test('the lazy greeting ships as its own web accessible chunk', async () => {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(pathToExtension, 'manifest.json'), 'utf8')
+  )
+  const entries: string[] = (manifest.content_scripts ?? []).flatMap(
+    (script: {js?: string[]}) => script.js ?? []
+  )
+  const carriers = listBuiltScripts(pathToExtension).filter((file) =>
+    fs
+      .readFileSync(path.join(pathToExtension, file), 'utf8')
+      .includes(LAZY_GREETING)
+  )
+  // Exactly one file carries the greeting and it is not the entry the
+  // manifest injects, otherwise the import was inlined and nothing here
+  // exercises chunk loading.
+  test.expect(carriers).toHaveLength(1)
+  test.expect(entries).not.toContain(carriers[0])
+  test
+    .expect(
+      isWebAccessible(manifest, carriers[0]),
+      `${carriers[0]} is not covered by web_accessible_resources, so the ` +
+        'content script cannot fetch it from a web page'
+    )
+    .toBe(true)
+})
+
+test('the content script runs the module it imports on demand', async ({
+  page
+}) => {
+  await page.goto('https://example.com/', {
+    waitUntil: 'domcontentloaded',
+    timeout: 60000
+  })
+  const greeting = await waitForShadowElement(
+    page,
+    '#extension-root, [data-extension-root="true"]',
+    'div.content_script > p.content_greeting',
+    60000
+  )
+  if (!greeting) {
+    throw new Error('greeting paragraph not found in Shadow DOM')
+  }
+  // The paragraph is in the DOM before the chunk arrives, so poll its text
+  // rather than reading it once.
+  await test.expect
+    .poll(() => greeting.evaluate((node) => node.textContent), {
+      timeout: 20000,
+      message: 'the lazily imported module never wrote its greeting'
+    })
+    .toContain(LAZY_GREETING)
 })

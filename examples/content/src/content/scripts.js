@@ -45,6 +45,14 @@ export default function initial() {
     'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
   contentDiv.appendChild(description)
 
+  // The greeting comes from a sibling module loaded on demand. This is the
+  // code-splitting path: the build emits greet.js as a second chunk and the
+  // content script fetches it from the extension while the page runs.
+  const greeting = document.createElement('p')
+  greeting.className = 'content_greeting'
+  contentDiv.appendChild(greeting)
+  loadGreeting().then((text) => (greeting.textContent = text))
+
   const button = document.createElement('button')
   button.className = 'content_button'
   button.type = 'button'
@@ -84,6 +92,11 @@ export default function initial() {
     chrome.storage.onChanged.removeListener(onSettingChanged)
     rootDiv.remove()
   }
+}
+
+async function loadGreeting() {
+  const {greet} = await import('./greet.js')
+  return greet('Content Template')
 }
 
 async function fetchCSS() {

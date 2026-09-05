@@ -33,6 +33,7 @@ A fresh browser window opens with the extension already loaded.
 ```
 src/
 ├── content/
+│   ├── greet.js
 │   ├── scripts.js
 │   └── styles.css
 ├── images/
