@@ -46,7 +46,7 @@
         "Starting point for popup-based browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "YV76E35pRjI",
+      "video": "Z4v3jrB2L64",
       "files": [
         "public/action/extension.config.js",
         "public/action/src/action/index.html",
@@ -89,7 +89,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
-      "video": "bSSvGvTXF_s",
+      "video": "emSaEro2VGU",
       "files": [
         "public/action-locales/_locales/en/messages.json",
         "public/action-locales/_locales/pt_BR/messages.json",
@@ -166,7 +166,7 @@
         "Starting point for page-aware ChatGPT extensions"
       ],
       "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
-      "video": "IkdNS7djI6A",
+      "video": "YgHw-f-ak9Y",
       "files": [
         "public/ai-chatgpt/extension.config.js",
         "public/ai-chatgpt/src/background.ts",
@@ -253,7 +253,7 @@
         "Starting point for page-aware Claude extensions"
       ],
       "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
-      "video": "srJRKrPssGk",
+      "video": "7vJt96zahF0",
       "files": [
         "public/ai-claude/extension.config.js",
         "public/ai-claude/src/background.ts",
@@ -340,7 +340,7 @@
         "Starting point for page-aware Gemini extensions"
       ],
       "docsUrl": "https://ai.google.dev/gemini-api/docs",
-      "video": "xbRGM5WA3Ms",
+      "video": "L4HaF9sbYnw",
       "files": [
         "public/ai-gemini/extension.config.js",
         "public/ai-gemini/src/background.ts",
@@ -427,7 +427,7 @@
         "Starting point for page-aware Perplexity extensions"
       ],
       "docsUrl": "https://docs.perplexity.ai/",
-      "video": "tV2CYeKbDgQ",
+      "video": "bU2bBThVR5c",
       "files": [
         "public/ai-perplexity/extension.config.js",
         "public/ai-perplexity/src/background.ts",
@@ -500,7 +500,7 @@
         "Starting point for content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "7mTnLUCs3i0",
+      "video": "f8buwZuJ1b0",
       "files": [
         "public/content/extension.config.js",
         "public/content/src/background.js",
@@ -546,7 +546,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
-      "video": "qdEGRy1JXCU",
+      "video": "j545f_pO-nc",
       "files": [
         "public/content-css-modules/extension.config.js",
         "public/content-css-modules/src/background.js",
@@ -605,7 +605,7 @@
         "Starting point for injected UI that must not inherit host page type"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
-      "video": "ZjLlNQ-z81I",
+      "video": "jDBOlDM7kGM",
       "files": [
         "public/content-custom-font/extension.config.js",
         "public/content-custom-font/public/fonts/MomoSignature-Regular.ttf",
@@ -653,7 +653,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-      "video": "fko_R23LXUU",
+      "video": "MtmZxqCkVIs",
       "files": [
         "public/content-env/extension.config.js",
         "public/content-env/src/background.ts",
@@ -712,7 +712,7 @@
         "Starting point for Less extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "_-e1WfL80pU",
+      "video": "VAtRkBKl0aM",
       "files": [
         "public/content-less/extension.config.js",
         "public/content-less/src/background.js",
@@ -774,7 +774,7 @@
         "Starting point for CSS Modules extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "zd43w44AeSA",
+      "video": "_mGFlL_PMys",
       "files": [
         "public/content-less-modules/extension.config.js",
         "public/content-less-modules/src/background.js",
@@ -846,7 +846,7 @@
         "Read a stored setting from a main-world script that has no chrome APIs"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "2MPjBfm9Y2g",
+      "video": "aaz5FxIz-kk",
       "files": [
         "public/content-main-world/extension.config.js",
         "public/content-main-world/src/background.js",
@@ -903,7 +903,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "VD4BveNj53E",
+      "video": "CPgNqxzuX1w",
       "files": [
         "public/content-multi-one-entry/extension.config.js",
         "public/content-multi-one-entry/src/background.js",
@@ -969,7 +969,7 @@
         "Reference for the multi-entry content_scripts pattern in MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "O_jYxm4miBU",
+      "video": "CC0qK0tOzrA",
       "files": [
         "public/content-multi-three-entries/extension.config.js",
         "public/content-multi-three-entries/src/background.js",
@@ -1035,7 +1035,7 @@
         "Starting point for Preact extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
-      "video": "iz9OojQfV8Q",
+      "video": "zCaoRfj-VPY",
       "files": [
         "public/content-preact/extension.config.js",
         "public/content-preact/src/background.ts",
@@ -1113,7 +1113,7 @@
         "Starting point for content-script extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "01eAh8MYC1E",
+      "video": "jFSNUOGXJ8Q",
       "files": [
         "public/content-react/extension.config.js",
         "public/content-react/src/background.ts",
@@ -1182,7 +1182,7 @@
         "Starting point for Sass content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
-      "video": "5v335BPb2KY",
+      "video": "NSdzmg7GxIo",
       "files": [
         "public/content-sass/extension.config.js",
         "public/content-sass/src/background.js",
@@ -1246,7 +1246,7 @@
         "Starting point for Sass module content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-      "video": "4RgNs3oFB2s",
+      "video": "puKd5X_3AnE",
       "files": [
         "public/content-sass-modules/extension.config.js",
         "public/content-sass-modules/src/background.js",
@@ -1317,7 +1317,7 @@
         "Starting point for Svelte extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
-      "video": "Vxe265iGZZI",
+      "video": "r1BYyY5pTEo",
       "files": [
         "public/content-svelte/extension.config.js",
         "public/content-svelte/src/background.ts",
@@ -1387,7 +1387,7 @@
         "Starting point for TypeScript extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-      "video": "n8IrGmO9C-M",
+      "video": "vavyOTyrhZo",
       "files": [
         "public/content-typescript/extension.config.js",
         "public/content-typescript/src/background.ts",
@@ -1459,7 +1459,7 @@
         "Starting point for Vue extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
-      "video": "AKjihhS1k4U",
+      "video": "71AVIpuRZe0",
       "files": [
         "public/content-vue/extension.config.js",
         "public/content-vue/src/background.ts",
@@ -1526,7 +1526,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "jf6wxttBfek",
+      "video": "ZfHTMhQjzDU",
       "files": [
         "public/devtools/extension.config.js",
         "public/devtools/src/devtools/index.html",
@@ -1583,7 +1583,7 @@
         "Starting point for Preact debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "BOEOpZMKDGQ",
+      "video": "CsvIDMT3Fqw",
       "files": [
         "public/devtools-preact/extension.config.js",
         "public/devtools-preact/src/devtools/index.html",
@@ -1642,7 +1642,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "wvY27g9jJ88",
+      "video": "yQa43nEy7nI",
       "files": [
         "public/devtools-react/extension.config.js",
         "public/devtools-react/src/devtools/index.html",
@@ -1701,7 +1701,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "WezOojQXpws",
+      "video": "gFZO2omoI7I",
       "files": [
         "public/devtools-svelte/extension.config.js",
         "public/devtools-svelte/src/devtools/index.html",
@@ -1761,7 +1761,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "F3KrwvfBNbw",
+      "video": "MCRCrrBZ0Ms",
       "files": [
         "public/devtools-typescript/extension.config.js",
         "public/devtools-typescript/src/devtools/index.html",
@@ -1819,7 +1819,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "LpY6RVgBsEM",
+      "video": "8gurmH4KakM",
       "files": [
         "public/devtools-vue/extension.config.js",
         "public/devtools-vue/src/devtools/index.html",
@@ -1910,7 +1910,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
-      "video": "YTxsFK6uHwc",
+      "video": "B69YVFxCedA",
       "files": [
         "public/javascript/extension.config.js",
         "public/javascript/src/background.js",
@@ -1957,7 +1957,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
-      "video": "lVW4GVTjiIY",
+      "video": "wfAMR_pFi-I",
       "files": [
         "public/newtab/extension.config.js",
         "public/newtab/src/background.js",
@@ -2056,7 +2056,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/eslint",
-      "video": "IO9A39ktO8A",
+      "video": "JgpGJJEmzQY",
       "files": [
         "public/newtab-config-eslint/extension.config.js",
         "public/newtab-config-eslint/src/background.js",
@@ -2099,7 +2099,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/prettier",
-      "video": "fRtYN0t_l08",
+      "video": "SjWCjV5vwb0",
       "files": [
         "public/newtab-config-prettier/extension.config.js",
         "public/newtab-config-prettier/src/background.js",
@@ -2142,7 +2142,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
-      "video": "bKDYOJDvVLM",
+      "video": "BQjLmTP4wR0",
       "files": [
         "public/newtab-config-stylelint/extension.config.js",
         "public/newtab-config-stylelint/src/background.js",
@@ -2185,7 +2185,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
-      "video": "ErGEKmDQ5wA",
+      "video": "Zcc04JoGoEg",
       "files": [
         "public/newtab-crypto/extension.config.js",
         "public/newtab-crypto/src/background.js",
@@ -2241,7 +2241,7 @@
         "Reference for safe env-var usage across JS, JSON, and HTML"
       ],
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-      "video": "BjewlscKWBc",
+      "video": "LWqlA5L-gjI",
       "files": [
         "public/newtab-env/extension.config.js",
         "public/newtab-env/src/background.js",
@@ -2284,7 +2284,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "5ETd_3ElBtk",
+      "video": "jQbibj4aOf4",
       "files": [
         "public/newtab-less/extension.config.js",
         "public/newtab-less/src/background.js",
@@ -2327,7 +2327,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
-      "video": "qrw_eojr420",
+      "video": "TK8PQ34WXbg",
       "files": [
         "public/newtab-preact/extension.config.js",
         "public/newtab-preact/src/background.js",
@@ -2371,7 +2371,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "DnZ0PgPXZBg",
+      "video": "uEJgP6pMPcI",
       "files": [
         "public/newtab-react/extension.config.js",
         "public/newtab-react/src/background.js",
@@ -2415,7 +2415,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "morc2JMTJsQ",
+      "video": "qIoJPWJP6Nw",
       "files": [
         "public/newtab-react-router/extension.config.js",
         "public/newtab-react-router/src/background.js",
@@ -2459,7 +2459,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-      "video": "HUtrh8T5kfU",
+      "video": "2gYlkSibAWo",
       "files": [
         "public/newtab-sass/extension.config.js",
         "public/newtab-sass/src/background.js",
@@ -2502,7 +2502,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
-      "video": "S5qq7PeRbuQ",
+      "video": "wkwdcGEMLkk",
       "files": [
         "public/newtab-svelte/extension.config.js",
         "public/newtab-svelte/src/background.js",
@@ -2546,7 +2546,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-      "video": "bpI_dBAlvPc",
+      "video": "cUTUKw7qzHM",
       "files": [
         "public/newtab-typescript/extension.config.js",
         "public/newtab-typescript/src/background.js",
@@ -2589,7 +2589,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
-      "video": "m5ZDTVo008U",
+      "video": "rI233ov_U7I",
       "files": [
         "public/newtab-vue/extension.config.js",
         "public/newtab-vue/src/background.js",
@@ -2647,6 +2647,7 @@
         "Starting point for any extension that needs preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+      "video": "08dD2GrEH4M",
       "files": [
         "public/options/extension.config.js",
         "public/options/src/images/icon.png",
@@ -2707,7 +2708,7 @@
         "Reference for automating extension flows in headed and headless modes"
       ],
       "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
-      "video": "zKiU3mOJQSs",
+      "video": "y1twvcH9SSU",
       "files": [
         "public/playwright/extension.config.js",
         "public/playwright/src/background.ts",
@@ -2758,7 +2759,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
-      "video": "5OOGRvmqhAE",
+      "video": "WEYlBXW-O4g",
       "files": [
         "public/preact/extension.config.js",
         "public/preact/src/background.ts",
@@ -2811,7 +2812,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
-      "video": "Zai_7t2Y4bU",
+      "video": "JEAaRI5sPpY",
       "files": [
         "public/react/extension.config.js",
         "public/react/src/background.ts",
@@ -2862,7 +2863,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
-      "video": "ArbAtOLsiKc",
+      "video": "AszMJA9WwJI",
       "files": [
         "public/sidebar/extension.config.js",
         "public/sidebar/src/background.js",
@@ -2911,7 +2912,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://ant.design/docs/react/introduce",
-      "video": "7EUeb1vzn6k",
+      "video": "H_xHLB21HMQ",
       "files": [
         "public/sidebar-antd/extension.config.js",
         "public/sidebar-antd/src/background.js",
@@ -2965,7 +2966,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://nx.dev/docs",
-      "video": "E2icZvYCAaE",
+      "video": "CZkj5dkO1Rw",
       "files": [
         "public/sidebar-monorepo-nx/extension.config.js",
         "public/sidebar-monorepo-nx/packages/analytics/src/index.js",
@@ -3019,7 +3020,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://turborepo.dev/docs",
-      "video": "uvslnElG2A8",
+      "video": "rFBWy7YV9Do",
       "files": [
         "public/sidebar-monorepo-turborepo/extension.config.js",
         "public/sidebar-monorepo-turborepo/packages/analytics/src/index.js",
@@ -3074,7 +3075,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
-      "video": "w_n04Oo93Bk",
+      "video": "_Um6LUL5H1o",
       "files": [
         "public/sidebar-shadcn/extension.config.js",
         "public/sidebar-shadcn/src/background.ts",
@@ -3189,7 +3190,7 @@
       "optional_permissions": [],
       "featured": false,
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
-      "video": "Kc5NHZ8Wdek",
+      "video": "ag6NdzzVgQA",
       "files": [
         "public/special-folders-scripts/extension.config.js",
         "public/special-folders-scripts/scripts/script-one.js",
@@ -3239,7 +3240,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
-      "video": "RKMghHzwmm0",
+      "video": "jDjQNBN40_M",
       "files": [
         "public/svelte/extension.config.js",
         "public/svelte/src/background.ts",
@@ -3291,7 +3292,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
-      "video": "GJOGyOGqawA",
+      "video": "NJV-KFUJLXA",
       "files": [
         "public/transformers-js/extension.config.js",
         "public/transformers-js/src/background.js",
@@ -3342,7 +3343,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
-      "video": "EE-lhKWqGyQ",
+      "video": "VMy5VvZfthA",
       "files": [
         "public/typescript/extension.config.js",
         "public/typescript/src/background.ts",
@@ -3394,7 +3395,7 @@
       "optional_permissions": [],
       "featured": true,
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
-      "video": "QtLkBvGZM0o",
+      "video": "TsMjNcDERGk",
       "files": [
         "public/vue/extension.config.js",
         "public/vue/src/background.ts",

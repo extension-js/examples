@@ -19,5 +19,6 @@
     "Saving a user setting with chrome.storage.sync so it follows the profile",
     "Starting point for any extension that needs preferences"
   ],
-  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json"
+  "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
+  "video": "08dD2GrEH4M"
 }
