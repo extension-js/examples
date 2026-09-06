@@ -1,23 +1,21 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Custom Font Face Declarations */
-/* 
-  IMPORTANT: In browser extensions, font files must be:
-  1. Placed in the public/fonts/ directory
-  2. Declared in web_accessible_resources in manifest.json
-  3. Referenced using relative paths from the extension root
-  4. This example uses static CSS-only @font-face with absolute URLs
-     to the extension root (e.g. /fonts/Roboto-Regular.woff2).
+/*
+  The font files live in public/fonts/, so they land at the extension root
+  and the root-absolute url() below names them from there. Extension.js
+  rewrites these references to the extension's own origin when it injects
+  the stylesheet, and lists the files in web_accessible_resources for you.
 */
 /* Sample Font 1 - Momo Signature (static CSS) */
 @font-face {
-  font-family: "Momo Signature";
+  font-family: 'Momo Signature';
   font-weight: 400;
   font-display: swap;
   font-style: normal;
   src:
-    url("/fonts/MomoSignature-Regular.woff2") format("woff2"),
-    url("/fonts/MomoSignature-Regular.ttf") format("truetype");
+    url('/fonts/MomoSignature-Regular.woff2') format('woff2'),
+    url('/fonts/MomoSignature-Regular.ttf') format('truetype');
 }
 
 /* Content Script Styles */
@@ -32,7 +30,7 @@
   background-color: #f3f4f6;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   max-width: 400px;
-  font-family: "Momo Signature", cursive;
+  font-family: 'Momo Signature', cursive;
 }
 
 .font_demo {
@@ -54,7 +52,7 @@
 
 /* Font-specific styles */
 .font_momo_signature {
-  font-family: "Momo Signature", cursive;
+  font-family: 'Momo Signature', cursive;
 }
 
 /* The options page setting turns the custom face off, and this is the plain
@@ -62,8 +60,8 @@
    the single one above, so the switch needs no !important. */
 .font_demo.font_system {
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", sans-serif;
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif;
 }
 
 .content_button {
@@ -75,8 +73,8 @@
   background-color: #ffffff;
   color: #1f2937;
   font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", sans-serif;
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, 'Noto Sans', sans-serif;
   font-size: 13px;
   cursor: pointer;
 }

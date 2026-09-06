@@ -23,11 +23,9 @@ export default function initial() {
 
   fetchCSS().then((css) => (styleElement.textContent = css))
 
-  // Chrome does not apply an @font-face rule declared inside a shadow root, and
-  // the root-absolute url in the injected stylesheet would resolve against the
-  // host page rather than the extension. So the face is registered on the
-  // page's own font set, from the extension's copy of the file, and the shadow
-  // tree can then use it.
+  // Chrome does not apply an @font-face rule declared inside a shadow root.
+  // So the face is registered on the page's own font set, from the
+  // extension's copy of the file, and the shadow tree can then use it.
   const customFace = new FontFace(
     'Momo Signature',
     `url("${chrome.runtime.getURL('fonts/MomoSignature-Regular.woff2')}")`

@@ -29,23 +29,6 @@
     "chromium:service_worker": "background.js",
     "firefox:scripts": ["background.js"]
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "fonts/*.woff2",
-        "fonts/*.woff",
-        "fonts/*.ttf",
-        "fonts/*.otf",
-        "fonts/static/*.ttf",
-        "fonts/static/*.otf",
-        "assets/*.woff2",
-        "assets/*.woff",
-        "assets/*.ttf",
-        "assets/*.otf"
-      ],
-      "matches": ["<all_urls>"]
-    }
-  ],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

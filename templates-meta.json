@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-05T09:46:55.692Z",
+  "generatedAt": "2026-09-06T01:49:03.710Z",
   "templates": [
     {
       "slug": "action",
@@ -504,6 +504,7 @@
       "files": [
         "public/content/extension.config.js",
         "public/content/src/background.js",
+        "public/content/src/content/greet.js",
         "public/content/src/content/scripts.js",
         "public/content/src/content/styles.css",
         "public/content/src/images/icon.png",
@@ -2597,6 +2598,7 @@
         "public/newtab-vue/src/newtab/NewTabApp.vue",
         "public/newtab-vue/src/newtab/index.html",
         "public/newtab-vue/src/newtab/scripts.ts",
+        "public/newtab-vue/src/newtab/shims-vue.d.ts",
         "public/newtab-vue/src/newtab/styles.css"
       ],
       "browsers": ["chrome", "edge", "firefox"],
@@ -3402,6 +3404,7 @@
         "public/vue/src/content/types.d.ts",
         "public/vue/src/images/icon.png",
         "public/vue/src/manifest.json",
+        "public/vue/src/shims-vue.d.ts",
         "public/vue/src/sidebar/SidebarApp.vue",
         "public/vue/src/sidebar/index.html",
         "public/vue/src/sidebar/scripts.ts",
