@@ -2607,61 +2607,6 @@
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-vue"
     },
     {
-      "slug": "options",
-      "name": "options",
-      "title": "Options page",
-      "version": "1.0.0",
-      "manifest_version": 3,
-      "description": "Adds an options page to the browser that saves a setting with chrome.storage.",
-      "uiContext": ["options"],
-      "surfaces": ["options"],
-      "entrypoints": ["options/index.html"],
-      "uiFramework": "",
-      "css": "css",
-      "configFiles": ["extension.config.js"],
-      "hasBackground": false,
-      "hasEnv": false,
-      "setup": {
-        "packageManager": "pnpm",
-        "scripts": {},
-        "env": {
-          "hasEnvExample": false,
-          "hasEnv": false
-        }
-      },
-      "permissions": ["storage"],
-      "host_permissions": [],
-      "optional_permissions": [],
-      "featured": false,
-      "tags": ["options", "settings", "storage", "javascript"],
-      "difficulty": "beginner",
-      "timeToFirstSuccessMinutes": 3,
-      "firstSteps": [
-        "Run npm run dev to launch the extension",
-        "Open the extensions page of your browser and pick Options on this extension",
-        "Edit src/options/index.html to add a setting of your own"
-      ],
-      "useCases": [
-        "An options page as the primary UI surface",
-        "Saving a user setting with chrome.storage.sync so it follows the profile",
-        "Starting point for any extension that needs preferences"
-      ],
-      "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "08dD2GrEH4M",
-      "files": [
-        "public/options/extension.config.js",
-        "public/options/src/images/icon.png",
-        "public/options/src/manifest.json",
-        "public/options/src/options/index.html",
-        "public/options/src/options/scripts.js",
-        "public/options/src/options/styles.css"
-      ],
-      "browsers": ["chrome", "edge", "firefox"],
-      "screenshot": "public/options/screenshot.png",
-      "icon": "public/options/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/options"
-    },
-    {
       "slug": "playwright",
       "name": "playwright",
       "title": "Playwright E2E Sidebar",
