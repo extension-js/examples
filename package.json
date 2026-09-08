@@ -89,7 +89,8 @@
     "test:strict-json": "node scripts/assert-strict-json.mjs",
     "test:catalog-readme": "node scripts/assert-catalog-readme.mjs",
     "test:spec-coverage": "node scripts/assert-spec-coverage.mjs",
-    "test:template-videos": "node scripts/assert-template-videos.mjs"
+    "test:template-videos": "node scripts/assert-template-videos.mjs",
+    "test:template-screenshots": "node scripts/assert-template-screenshots.mjs"
   },
   "files": [
     "public/**",
