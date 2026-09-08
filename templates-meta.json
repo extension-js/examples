@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-08T16:11:42.979Z",
+  "generatedAt": "2026-09-08T16:56:26.906Z",
   "templates": [
     {
       "slug": "action",
@@ -981,8 +981,7 @@
         "public/content-multi-three-entries/src/content/utils/constants.js",
         "public/content-multi-three-entries/src/content/utils/create-badge.js",
         "public/content-multi-three-entries/src/images/icon.png",
-        "public/content-multi-three-entries/src/manifest.json",
-        "public/content-multi-three-entries/src/screenshot.png"
+        "public/content-multi-three-entries/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "public/content-multi-three-entries/screenshot.png",
