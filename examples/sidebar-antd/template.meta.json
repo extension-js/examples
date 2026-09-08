@@ -1,5 +1,23 @@
 {
   "featured": false,
+  "tags": [
+    "sidebar",
+    "react",
+    "antd",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Swap an Ant Design component in src/sidebar/ to see it update"
+  ],
+  "useCases": [
+    "A sidebar built from Ant Design components",
+    "A component library bundled into an extension surface",
+    "Starting point for extensions with a ready-made design system"
+  ],
   "docsUrl": "https://ant.design/docs/react/introduce",
   "video": "H_xHLB21HMQ"
 }

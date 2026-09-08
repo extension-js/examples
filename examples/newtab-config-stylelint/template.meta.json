@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "sass",
+    "configuration"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the styled page this template ships",
+    "Run npx stylelint src to check the Sass with the bundled config"
+  ],
+  "useCases": [
+    "A new tab extension that lints its own stylesheets",
+    "Stylelint and Sass wired into an Extension.js project",
+    "Reference for adding a style linter to an extension codebase"
+  ],
   "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
   "video": "BQjLmTP4wR0"
 }

@@ -1,4 +1,22 @@
 {
+  "tags": [
+    "new-tab",
+    "react",
+    "routing",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab and follow the links to move between routes",
+    "Add a route under src/newtab/ and it renders with no server"
+  ],
+  "useCases": [
+    "A multi-route new tab app with client-side routing",
+    "React Router running inside an extension page",
+    "Reference for routing with no server under MV3"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
   "video": "qIoJPWJP6Nw"
 }

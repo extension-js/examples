@@ -1,5 +1,22 @@
 {
   "featured": true,
+  "tags": [
+    "sidebar",
+    "preact",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the Preact sidebar panel",
+    "Edit the component in src/sidebar/ to see fast refresh update it"
+  ],
+  "useCases": [
+    "A sidebar panel rendered by Preact",
+    "Preact and JSX compiled with no extra config",
+    "Starting point for Preact extensions"
+  ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
   "video": "WEYlBXW-O4g"
 }

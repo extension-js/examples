@@ -1,4 +1,14 @@
 {
+  "tags": [
+    "content",
+    "options",
+    "storage",
+    "preact",
+    "typescript",
+    "tailwind"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "Click Open options on the overlay injected into the page",

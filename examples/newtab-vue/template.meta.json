@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "vue",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the Vue page this template ships",
+    "Edit src/newtab/NewTabApp.vue and save to watch it update"
+  ],
+  "useCases": [
+    "A new tab page rendered by Vue",
+    "Single-file components compiled with no extra config",
+    "Starting point for Vue extensions with a new tab"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
   "video": "rI233ov_U7I"
 }

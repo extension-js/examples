@@ -1,6 +1,22 @@
 {
   "title": "Sidebar page",
   "featured": true,
+  "tags": [
+    "sidebar",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Edit src/sidebar/index.html and save to watch the panel update"
+  ],
+  "useCases": [
+    "A sidebar panel that stays open while you browse",
+    "Reading and acting on the page beside it",
+    "Starting point for sidebar-first extensions"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
   "video": "AszMJA9WwJI"
 }

@@ -1,3 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "sidebar",
+    "configuration",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "The browser starts with the flags this template sets in extension.config.js",
+    "Open a new tab and use the launcher to open the sidebar panel"
+  ],
+  "useCases": [
+    "Passing custom browser flags through extension.config.js",
+    "A new tab launcher that opens another extension surface",
+    "Reference for browser-specific differences across targets"
+  ],
   "docsUrl": "https://extension.js.org/docs/browsers/browser-flags"
 }

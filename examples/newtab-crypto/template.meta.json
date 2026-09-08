@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "web-crypto",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab and type any text to see its SHA-256 hash",
+    "Edit src/newtab/scripts.ts to hash with a different algorithm"
+  ],
+  "useCases": [
+    "Hashing text with the Web Crypto API inside an extension",
+    "A new tab page that does real work with no network",
+    "Reference for browser crypto primitives under MV3"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
   "video": "Zcc04JoGoEg"
 }

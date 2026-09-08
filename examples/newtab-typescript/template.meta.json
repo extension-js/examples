@@ -1,4 +1,20 @@
 {
+  "tags": [
+    "new-tab",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the page this template ships",
+    "Edit src/newtab/scripts.ts and save to watch the tab update"
+  ],
+  "useCases": [
+    "A typed new tab page",
+    "TypeScript compiled by Extension.js with no extra config",
+    "Starting point for TypeScript extensions with a new tab"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
   "video": "cUTUKw7qzHM"
 }

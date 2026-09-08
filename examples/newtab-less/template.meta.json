@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "less",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the styled page this template ships",
+    "Edit src/newtab/styles.less and save to watch the styles reload"
+  ],
+  "useCases": [
+    "A new tab page styled with Less",
+    "Less compiled by Extension.js with no extra config",
+    "Starting point for extensions that prefer Less to plain CSS"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
   "video": "jQbibj4aOf4"
 }

@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "special-folders",
+    "scripts",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open any page for the overlay, then click the toolbar icon for the popup",
+    "Add a file under scripts/ and it ships as its own bundle"
+  ],
+  "useCases": [
+    "Scripts shared between a popup and a content script",
+    "Standalone script bundles without manifest plumbing",
+    "Reference for the scripts/ special folder convention"
+  ],
   "docsUrl": "https://extension.js.org/docs/features/special-folders",
   "video": "ag6NdzzVgQA"
 }

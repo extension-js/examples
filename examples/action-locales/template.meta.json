@@ -1,4 +1,22 @@
 {
+  "tags": [
+    "action",
+    "popup",
+    "i18n",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the toolbar icon to see the popup in your browser's language",
+    "Add a folder under _locales/ and switch your browser language to see it"
+  ],
+  "useCases": [
+    "A toolbar popup translated with the i18n API",
+    "Shipping _locales without hand-editing the manifest",
+    "Reference for localized extension UI across browsers"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
   "video": "emSaEro2VGU"
 }

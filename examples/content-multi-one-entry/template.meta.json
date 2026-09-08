@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "content-scripts",
+    "multi-entry",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open any web page and an element appears in each of its four corners",
+    "Edit one script in src/content/ and save to see that corner update"
+  ],
+  "useCases": [
+    "Four scripts shipped from a single content-script entry",
+    "One match rule driving several focused files",
+    "Reference for grouping content scripts under one entry"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
   "video": "CPgNqxzuX1w"
 }

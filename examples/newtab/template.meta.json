@@ -1,5 +1,21 @@
 {
   "title": "New Tab",
+  "tags": [
+    "new-tab",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab and this page loads in place of the default",
+    "Edit src/newtab/index.html and save to watch the tab update"
+  ],
+  "useCases": [
+    "A new tab page as the primary UI surface",
+    "Dashboards, launchers, and start pages",
+    "Starting point for new tab extensions in JavaScript"
+  ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
   "video": "wfAMR_pFi-I"
 }

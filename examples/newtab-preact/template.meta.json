@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "preact",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the Preact page this template ships",
+    "Edit src/newtab/NewTabApp.tsx and save to see fast refresh update it"
+  ],
+  "useCases": [
+    "A new tab page rendered by Preact",
+    "Preact and JSX compiled with no extra config",
+    "Starting point for Preact extensions with a new tab"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
   "video": "TK8PQ34WXbg"
 }

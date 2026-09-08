@@ -1,5 +1,21 @@
 {
   "featured": true,
+  "tags": [
+    "sidebar",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Edit the typed sources in src/sidebar/ to watch the panel update"
+  ],
+  "useCases": [
+    "A typed sidebar extension with no compiler config",
+    "TypeScript compiled by Extension.js out of the box",
+    "Starting point for TypeScript extensions"
+  ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
   "video": "VMy5VvZfthA"
 }

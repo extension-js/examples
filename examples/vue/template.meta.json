@@ -1,5 +1,22 @@
 {
   "featured": true,
+  "tags": [
+    "sidebar",
+    "vue",
+    "typescript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the Vue sidebar panel",
+    "Edit the component in src/sidebar/ and save to watch it update"
+  ],
+  "useCases": [
+    "A sidebar panel rendered by Vue",
+    "Single-file components compiled with no extra config",
+    "Starting point for Vue extensions"
+  ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
   "video": "TsMjNcDERGk"
 }

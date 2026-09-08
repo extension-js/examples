@@ -1,6 +1,24 @@
 {
   "title": "Transformers.js",
   "featured": true,
+  "tags": [
+    "sidebar",
+    "ai",
+    "transformers",
+    "javascript"
+  ],
+  "difficulty": "intermediate",
+  "timeToFirstSuccessMinutes": 4,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Classify the page or your selection, and the model runs on your machine"
+  ],
+  "useCases": [
+    "Running Transformers.js models inside an extension",
+    "Classifying page text with no server and no API key",
+    "Reference for shipping on-device AI under MV3"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
   "video": "NJV-KFUJLXA"
 }

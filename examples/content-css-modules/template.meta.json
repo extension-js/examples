@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "content-scripts",
+    "css-modules",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open any web page to see the badge this template injects",
+    "Edit src/content/styles.module.css and save to restyle the badge"
+  ],
+  "useCases": [
+    "A content script styled with CSS modules",
+    "Class names hashed so page styles never collide",
+    "Starting point for content scripts that need scoped CSS"
+  ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
   "video": "j545f_pO-nc"
 }

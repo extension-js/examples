@@ -1,5 +1,14 @@
 {
-  "tags": ["content", "svelte", "typescript", "tailwind", "options", "storage"],
+  "tags": [
+    "content",
+    "svelte",
+    "typescript",
+    "tailwind",
+    "options",
+    "storage"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
     "Run npm run dev to launch the extension",
     "Click Open options on the overlay injected into the page",

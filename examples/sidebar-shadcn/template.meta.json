@@ -1,5 +1,23 @@
 {
   "featured": true,
+  "tags": [
+    "sidebar",
+    "react",
+    "shadcn",
+    "tailwind"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Add a shadcn/ui component and save to see it in the panel"
+  ],
+  "useCases": [
+    "A sidebar built from shadcn/ui components",
+    "Tailwind and Radix primitives inside an extension surface",
+    "Starting point for extensions with a modern component kit"
+  ],
   "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
   "video": "_Um6LUL5H1o"
 }

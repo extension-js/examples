@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "new-tab",
+    "configuration",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Open a new tab to see the page this template ships",
+    "Run npx prettier --check src to see the rules this template ships"
+  ],
+  "useCases": [
+    "A new tab extension that formats its own source",
+    "Prettier wired into an Extension.js project without ejecting",
+    "Reference for adding a formatter to an extension codebase"
+  ],
   "docsUrl": "https://extension.js.org/docs/integrations/prettier",
   "video": "SjWCjV5vwb0"
 }

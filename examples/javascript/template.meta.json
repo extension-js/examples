@@ -1,4 +1,21 @@
 {
+  "tags": [
+    "sidebar",
+    "javascript",
+    "content-scripts"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "Click the extension icon to open the sidebar panel",
+    "Edit src/sidebar/index.html and save to watch the panel update"
+  ],
+  "useCases": [
+    "A sidebar panel as the primary UI surface",
+    "Plain JavaScript with no compiler config to maintain",
+    "Starting point for extensions written in JavaScript"
+  ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
   "video": "B69YVFxCedA"
 }

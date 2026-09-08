@@ -1,6 +1,24 @@
 {
   "title": "Sidebar Turborepo",
   "featured": true,
+  "tags": [
+    "sidebar",
+    "monorepo",
+    "turborepo",
+    "javascript"
+  ],
+  "difficulty": "intermediate",
+  "timeToFirstSuccessMinutes": 4,
+  "firstSteps": [
+    "Run npm install at the workspace root to link the packages",
+    "Run npm run dev to launch the extension from the workspace",
+    "Edit the shared package and both the sidebar and the overlay follow"
+  ],
+  "useCases": [
+    "An extension that lives inside a Turborepo workspace",
+    "Sharing code between the extension and other packages",
+    "Reference for Extension.js in a monorepo with no plugin"
+  ],
   "docsUrl": "https://turborepo.dev/docs",
   "video": "rFBWy7YV9Do"
 }

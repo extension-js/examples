@@ -1,4 +1,20 @@
 {
   "title": "Initial",
+  "tags": [
+    "minimal",
+    "javascript"
+  ],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm run dev to launch the extension",
+    "The extension loads in a fresh profile with no surface of its own",
+    "Add src/newtab/index.html and it ships on the next reload"
+  ],
+  "useCases": [
+    "The smallest Extension.js project that still runs",
+    "A blank slate for whichever surface you choose",
+    "Reference for the minimum an MV3 extension needs"
+  ],
   "docsUrl": "https://extension.js.org/docs/getting-started/immediately"
 }
