@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-08T16:56:26.906Z",
+  "generatedAt": "2026-09-08T18:16:19.266Z",
   "templates": [
     {
       "slug": "action",
@@ -88,6 +88,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["action", "popup", "i18n", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the toolbar icon to see the popup in your browser's language",
+        "Add a folder under _locales/ and switch your browser language to see it"
+      ],
+      "useCases": [
+        "A toolbar popup translated with the i18n API",
+        "Shipping _locales without hand-editing the manifest",
+        "Reference for localized extension UI across browsers"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
       "video": "emSaEro2VGU",
       "files": [
@@ -545,6 +558,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content-scripts", "css-modules", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page to see the badge this template injects",
+        "Edit src/content/styles.module.css and save to restyle the badge"
+      ],
+      "useCases": [
+        "A content script styled with CSS modules",
+        "Class names hashed so page styles never collide",
+        "Starting point for content scripts that need scoped CSS"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
       "video": "j545f_pO-nc",
       "files": [
@@ -652,6 +678,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content-scripts", "env", "configuration", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page to see the panel print the injected values",
+        "Edit .env.chrome or .env.firefox to change what the panel reads"
+      ],
+      "useCases": [
+        "Reading build-time configuration inside a content script",
+        "Switching behavior per browser without touching the source",
+        "Reference for EXTENSION_PUBLIC_* values in typed sources"
+      ],
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
       "video": "MtmZxqCkVIs",
       "files": [
@@ -902,6 +941,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["content-scripts", "multi-entry", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any web page and an element appears in each of its four corners",
+        "Edit one script in src/content/ and save to see that corner update"
+      ],
+      "useCases": [
+        "Four scripts shipped from a single content-script entry",
+        "One match rule driving several focused files",
+        "Reference for grouping content scripts under one entry"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
       "video": "CPgNqxzuX1w",
       "files": [
@@ -1023,6 +1075,16 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": [
+        "content",
+        "options",
+        "storage",
+        "preact",
+        "typescript",
+        "tailwind"
+      ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
       "firstSteps": [
         "Run npm run dev to launch the extension",
         "Click Open options on the overlay injected into the page",
@@ -1101,6 +1163,8 @@
         "typescript",
         "tailwind"
       ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
       "firstSteps": [
         "Run npm run dev to launch the extension",
         "Click Open options on the overlay injected into the page",
@@ -1305,6 +1369,8 @@
         "options",
         "storage"
       ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
       "firstSteps": [
         "Run npm run dev to launch the extension",
         "Click Open options on the overlay injected into the page",
@@ -1447,6 +1513,8 @@
         "typescript",
         "tailwind"
       ],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
       "firstSteps": [
         "Run npm run dev to launch the extension",
         "Click Open options on the overlay injected into the page",
@@ -1864,6 +1932,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["minimal", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "The extension loads in a fresh profile with no surface of its own",
+        "Add src/newtab/index.html and it ships on the next reload"
+      ],
+      "useCases": [
+        "The smallest Extension.js project that still runs",
+        "A blank slate for whichever surface you choose",
+        "Reference for the minimum an MV3 extension needs"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/immediately",
       "files": [
         "public/init/extension.config.js",
@@ -1908,6 +1989,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["sidebar", "javascript", "content-scripts"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Edit src/sidebar/index.html and save to watch the panel update"
+      ],
+      "useCases": [
+        "A sidebar panel as the primary UI surface",
+        "Plain JavaScript with no compiler config to maintain",
+        "Starting point for extensions written in JavaScript"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
       "video": "B69YVFxCedA",
       "files": [
@@ -1955,6 +2049,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab and this page loads in place of the default",
+        "Edit src/newtab/index.html and save to watch the tab update"
+      ],
+      "useCases": [
+        "A new tab page as the primary UI surface",
+        "Dashboards, launchers, and start pages",
+        "Starting point for new tab extensions in JavaScript"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "video": "wfAMR_pFi-I",
       "files": [
@@ -2005,6 +2112,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "sidebar", "configuration", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "The browser starts with the flags this template sets in extension.config.js",
+        "Open a new tab and use the launcher to open the sidebar panel"
+      ],
+      "useCases": [
+        "Passing custom browser flags through extension.config.js",
+        "A new tab launcher that opens another extension surface",
+        "Reference for browser-specific differences across targets"
+      ],
       "docsUrl": "https://extension.js.org/docs/browsers/browser-flags",
       "files": [
         "public/newtab-browser-flags/extension.config.js",
@@ -2054,6 +2174,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "configuration", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the page this template ships",
+        "Run npx eslint src to check the source with the bundled config"
+      ],
+      "useCases": [
+        "A new tab extension that lints its own source",
+        "ESLint wired into an Extension.js project without ejecting",
+        "Reference for adding a linter to an extension codebase"
+      ],
       "docsUrl": "https://extension.js.org/docs/integrations/eslint",
       "video": "JgpGJJEmzQY",
       "files": [
@@ -2097,6 +2230,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "configuration", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the page this template ships",
+        "Run npx prettier --check src to see the rules this template ships"
+      ],
+      "useCases": [
+        "A new tab extension that formats its own source",
+        "Prettier wired into an Extension.js project without ejecting",
+        "Reference for adding a formatter to an extension codebase"
+      ],
       "docsUrl": "https://extension.js.org/docs/integrations/prettier",
       "video": "SjWCjV5vwb0",
       "files": [
@@ -2140,6 +2286,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "sass", "configuration"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the styled page this template ships",
+        "Run npx stylelint src to check the Sass with the bundled config"
+      ],
+      "useCases": [
+        "A new tab extension that lints its own stylesheets",
+        "Stylelint and Sass wired into an Extension.js project",
+        "Reference for adding a style linter to an extension codebase"
+      ],
       "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
       "video": "BQjLmTP4wR0",
       "files": [
@@ -2183,6 +2342,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "web-crypto", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab and type any text to see its SHA-256 hash",
+        "Edit src/newtab/scripts.ts to hash with a different algorithm"
+      ],
+      "useCases": [
+        "Hashing text with the Web Crypto API inside an extension",
+        "A new tab page that does real work with no network",
+        "Reference for browser crypto primitives under MV3"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
       "video": "Zcc04JoGoEg",
       "files": [
@@ -2282,6 +2454,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "less", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the styled page this template ships",
+        "Edit src/newtab/styles.less and save to watch the styles reload"
+      ],
+      "useCases": [
+        "A new tab page styled with Less",
+        "Less compiled by Extension.js with no extra config",
+        "Starting point for extensions that prefer Less to plain CSS"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
       "video": "jQbibj4aOf4",
       "files": [
@@ -2325,6 +2510,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "preact", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the Preact page this template ships",
+        "Edit src/newtab/NewTabApp.tsx and save to see fast refresh update it"
+      ],
+      "useCases": [
+        "A new tab page rendered by Preact",
+        "Preact and JSX compiled with no extra config",
+        "Starting point for Preact extensions with a new tab"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
       "video": "TK8PQ34WXbg",
       "files": [
@@ -2369,6 +2567,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "react", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the React page this template ships",
+        "Edit src/newtab/NewTabApp.tsx and save to see fast refresh update it"
+      ],
+      "useCases": [
+        "A new tab page rendered by React",
+        "React and JSX compiled with no extra config",
+        "Starting point for React extensions with a new tab"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "video": "uEJgP6pMPcI",
       "files": [
@@ -2413,6 +2624,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "react", "routing", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab and follow the links to move between routes",
+        "Add a route under src/newtab/ and it renders with no server"
+      ],
+      "useCases": [
+        "A multi-route new tab app with client-side routing",
+        "React Router running inside an extension page",
+        "Reference for routing with no server under MV3"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
       "video": "qIoJPWJP6Nw",
       "files": [
@@ -2457,6 +2681,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "sass", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the styled page this template ships",
+        "Edit src/newtab/styles.scss and save to watch the styles reload"
+      ],
+      "useCases": [
+        "A new tab page styled with Sass",
+        "Sass compiled by Extension.js with no extra config",
+        "Starting point for extensions that prefer Sass to plain CSS"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
       "video": "2gYlkSibAWo",
       "files": [
@@ -2500,6 +2737,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "svelte", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the Svelte page this template ships",
+        "Edit src/newtab/NewTabApp.svelte and save to watch it update"
+      ],
+      "useCases": [
+        "A new tab page rendered by Svelte",
+        "Svelte components compiled with no extra config",
+        "Starting point for Svelte extensions with a new tab"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
       "video": "wkwdcGEMLkk",
       "files": [
@@ -2544,6 +2794,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the page this template ships",
+        "Edit src/newtab/scripts.ts and save to watch the tab update"
+      ],
+      "useCases": [
+        "A typed new tab page",
+        "TypeScript compiled by Extension.js with no extra config",
+        "Starting point for TypeScript extensions with a new tab"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
       "video": "cUTUKw7qzHM",
       "files": [
@@ -2587,6 +2850,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["new-tab", "vue", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open a new tab to see the Vue page this template ships",
+        "Edit src/newtab/NewTabApp.vue and save to watch it update"
+      ],
+      "useCases": [
+        "A new tab page rendered by Vue",
+        "Single-file components compiled with no extra config",
+        "Starting point for Vue extensions with a new tab"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
       "video": "rI233ov_U7I",
       "files": [
@@ -2702,6 +2978,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "preact", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the Preact sidebar panel",
+        "Edit the component in src/sidebar/ to see fast refresh update it"
+      ],
+      "useCases": [
+        "A sidebar panel rendered by Preact",
+        "Preact and JSX compiled with no extra config",
+        "Starting point for Preact extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
       "video": "WEYlBXW-O4g",
       "files": [
@@ -2755,6 +3044,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "react", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the React sidebar panel",
+        "Edit the component in src/sidebar/ to see fast refresh update it"
+      ],
+      "useCases": [
+        "A sidebar panel rendered by React",
+        "React and JSX compiled with no extra config",
+        "Starting point for React extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
       "video": "JEAaRI5sPpY",
       "files": [
@@ -2806,6 +3108,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Edit src/sidebar/index.html and save to watch the panel update"
+      ],
+      "useCases": [
+        "A sidebar panel that stays open while you browse",
+        "Reading and acting on the page beside it",
+        "Starting point for sidebar-first extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
       "video": "AszMJA9WwJI",
       "files": [
@@ -2855,6 +3170,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["sidebar", "react", "antd", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Swap an Ant Design component in src/sidebar/ to see it update"
+      ],
+      "useCases": [
+        "A sidebar built from Ant Design components",
+        "A component library bundled into an extension surface",
+        "Starting point for extensions with a ready-made design system"
+      ],
       "docsUrl": "https://ant.design/docs/react/introduce",
       "video": "H_xHLB21HMQ",
       "files": [
@@ -2909,6 +3237,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "monorepo", "nx", "javascript"],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 4,
+      "firstSteps": [
+        "Run npm install at the workspace root to link the packages",
+        "Run npm run dev to launch the extension from the workspace",
+        "Edit the shared package and both the sidebar and the overlay follow"
+      ],
+      "useCases": [
+        "An extension that lives inside an Nx workspace",
+        "Sharing code between the extension and other packages",
+        "Reference for Extension.js in a monorepo with no plugin"
+      ],
       "docsUrl": "https://nx.dev/docs",
       "video": "CZkj5dkO1Rw",
       "files": [
@@ -2963,6 +3304,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "monorepo", "turborepo", "javascript"],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 4,
+      "firstSteps": [
+        "Run npm install at the workspace root to link the packages",
+        "Run npm run dev to launch the extension from the workspace",
+        "Edit the shared package and both the sidebar and the overlay follow"
+      ],
+      "useCases": [
+        "An extension that lives inside a Turborepo workspace",
+        "Sharing code between the extension and other packages",
+        "Reference for Extension.js in a monorepo with no plugin"
+      ],
       "docsUrl": "https://turborepo.dev/docs",
       "video": "rFBWy7YV9Do",
       "files": [
@@ -3018,6 +3372,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "react", "shadcn", "tailwind"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Add a shadcn/ui component and save to see it in the panel"
+      ],
+      "useCases": [
+        "A sidebar built from shadcn/ui components",
+        "Tailwind and Radix primitives inside an extension surface",
+        "Starting point for extensions with a modern component kit"
+      ],
       "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
       "video": "_Um6LUL5H1o",
       "files": [
@@ -3133,6 +3500,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": false,
+      "tags": ["special-folders", "scripts", "javascript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Open any page for the overlay, then click the toolbar icon for the popup",
+        "Add a file under scripts/ and it ships as its own bundle"
+      ],
+      "useCases": [
+        "Scripts shared between a popup and a content script",
+        "Standalone script bundles without manifest plumbing",
+        "Reference for the scripts/ special folder convention"
+      ],
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
       "video": "ag6NdzzVgQA",
       "files": [
@@ -3183,6 +3563,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "svelte", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the Svelte sidebar panel",
+        "Edit the component in src/sidebar/ and save to watch it update"
+      ],
+      "useCases": [
+        "A sidebar panel rendered by Svelte",
+        "Svelte components compiled with no extra config",
+        "Starting point for Svelte extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
       "video": "jDjQNBN40_M",
       "files": [
@@ -3235,6 +3628,19 @@
       "host_permissions": ["<all_urls>"],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "ai", "transformers", "javascript"],
+      "difficulty": "intermediate",
+      "timeToFirstSuccessMinutes": 4,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Classify the page or your selection, and the model runs on your machine"
+      ],
+      "useCases": [
+        "Running Transformers.js models inside an extension",
+        "Classifying page text with no server and no API key",
+        "Reference for shipping on-device AI under MV3"
+      ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
       "video": "NJV-KFUJLXA",
       "files": [
@@ -3286,6 +3692,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the sidebar panel",
+        "Edit the typed sources in src/sidebar/ to watch the panel update"
+      ],
+      "useCases": [
+        "A typed sidebar extension with no compiler config",
+        "TypeScript compiled by Extension.js out of the box",
+        "Starting point for TypeScript extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
       "video": "VMy5VvZfthA",
       "files": [
@@ -3338,6 +3757,19 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
+      "tags": ["sidebar", "vue", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 2,
+      "firstSteps": [
+        "Run npm run dev to launch the extension",
+        "Click the extension icon to open the Vue sidebar panel",
+        "Edit the component in src/sidebar/ and save to watch it update"
+      ],
+      "useCases": [
+        "A sidebar panel rendered by Vue",
+        "Single-file components compiled with no extra config",
+        "Starting point for Vue extensions"
+      ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
       "video": "TsMjNcDERGk",
       "files": [
