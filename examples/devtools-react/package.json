@@ -10,6 +10,7 @@
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
+    "@types/chrome": "^0.0.287",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "typescript": "7.0.2"
