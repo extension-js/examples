@@ -11,6 +11,10 @@ import fs from 'fs'
 import crypto from 'crypto'
 import {getDirname} from './dirname.js'
 
+// Keep in sync with scripts/prod-dist.mjs, which publishes the same trees
+// from globalSetup. Playwright loads specs as CJS, so it cannot import it.
+export const PROD_DIST_ROOT = '.prod-dist'
+
 // Wait for `pathToExtension` to be a complete, loadable extension before
 // launching Chromium. The dev-html specs in `template.dev.spec.ts` write to
 // the source tree to exercise live reload; between tests the dev server may
@@ -713,7 +717,63 @@ export function missingManifestRefs(dir: string): string[] | null {
   })
 }
 
+// A dist qualifies only when the manifest parses AND every file it
+// references exists non-empty. Manifest presence alone is not enough: an
+// interrupted or failed build can leave manifest.json without its pages
+// (seen as sidebar-shadcn failing 13/13 with net::ERR_FILE_NOT_FOUND on a
+// warm tree), and gating on the manifest alone would trust that poisoned
+// dist forever.
+export function isCompleteDist(dir: string): boolean {
+  const missing = missingManifestRefs(dir)
+  return missing !== null && missing.length === 0
+}
+
+// Read-only production trees, one per example, parked outside every example
+// so no project that wipes dist/ can reach the build another project reads.
+export function prodDistPath(exampleDirAbsolute: string): string {
+  const examplesDir = getDirname(import.meta.url)
+  const repoRoot = path.resolve(examplesDir, '..')
+  const slug = path
+    .relative(repoRoot, exampleDirAbsolute)
+    .replace(/[\\/]/g, '__')
+  return path.join(repoRoot, PROD_DIST_ROOT, slug, 'chrome')
+}
+
+// Copy `dist/chrome` into this example's private tree. The swap goes through
+// two renames so a reader never sees the target half-written.
+export function publishProdDist(exampleDirAbsolute: string): string | null {
+  const source = path.join(exampleDirAbsolute, 'dist', 'chrome')
+  if (!isCompleteDist(source)) return null
+  const target = prodDistPath(exampleDirAbsolute)
+  const staging = `${target}.staging-${process.pid}`
+  const retired = `${target}.retired-${process.pid}`
+  try {
+    fs.mkdirSync(path.dirname(target), {recursive: true})
+    fs.rmSync(staging, {recursive: true, force: true})
+    fs.cpSync(source, staging, {recursive: true})
+    try {
+      fs.renameSync(target, retired)
+    } catch {
+      // Nothing published yet.
+    }
+    fs.renameSync(staging, target)
+    return isCompleteDist(target) ? target : null
+  } catch {
+    return null
+  } finally {
+    fs.rmSync(staging, {recursive: true, force: true})
+    fs.rmSync(retired, {recursive: true, force: true})
+  }
+}
+
 export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
+  // The private tree wins outright. scripts/prebuild-assets-templates.mjs
+  // publishes it serially at globalSetup, before any worker can race it.
+  const published = prodDistPath(exampleDirAbsolute)
+  if (isCompleteDist(published)) return published
+  const republished = publishProdDist(exampleDirAbsolute)
+  if (republished) return republished
+
   const roots = ['dist', 'build', '.extension']
   const channels = ['chrome', 'chromium', 'chrome-mv3']
   const candidateDirs: string[] = []
@@ -722,17 +782,6 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       candidateDirs.push(path.join(exampleDirAbsolute, root, ch))
     }
   }
-  // A dist qualifies only when the manifest parses AND every file it
-  // references exists non-empty. Manifest presence alone is not enough: an
-  // interrupted or failed build can leave manifest.json without its pages
-  // (seen as sidebar-shadcn failing 13/13 with net::ERR_FILE_NOT_FOUND on a
-  // warm tree), and gating on the manifest alone would trust that poisoned
-  // dist forever.
-  const isCompleteDist = (dir: string) => {
-    const missing = missingManifestRefs(dir)
-    return missing !== null && missing.length === 0
-  }
-  for (const dir of candidateDirs) if (isCompleteDist(dir)) return dir
   // Try building when no complete dist exists. This also self-heals a
   // partial dist left behind by an interrupted earlier run. Some
   // Extension.js versions install deps first and require a second
@@ -751,13 +800,15 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
   } catch {
     /* noop */
   }
-  if (!candidateDirs.some((dir) => isCompleteDist(dir))) {
-    try {
-      runBuild()
-    } catch {
-      /* noop */
-    }
+  const afterFirstBuild = publishProdDist(exampleDirAbsolute)
+  if (afterFirstBuild) return afterFirstBuild
+  try {
+    runBuild()
+  } catch {
+    /* noop */
   }
+  const afterSecondBuild = publishProdDist(exampleDirAbsolute)
+  if (afterSecondBuild) return afterSecondBuild
   for (const dir of candidateDirs) if (isCompleteDist(dir)) return dir
   // As a last attempt, search shallowly under known roots for any complete dist
   for (const root of roots) {

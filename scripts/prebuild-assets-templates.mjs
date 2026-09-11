@@ -10,9 +10,12 @@
 // serially here guarantees every worker finds a complete dist/ when it imports.
 
 import fs from 'node:fs'
+import net from 'node:net'
 import path from 'node:path'
 import {spawnSync} from 'node:child_process'
 import {fileURLToPath} from 'node:url'
+import {restoreGuardedSources} from './restore-guarded-sources.mjs'
+import {isCompleteDist, prodDistPath, publishProdDist} from './prod-dist.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = path.resolve(__dirname, '..')
@@ -68,15 +71,10 @@ const TEMPLATES = [
   'action-locales'
 ]
 
+// Only a complete `dist/chrome` counts. Accepting `dist/chromium` here used
+// to leave a dev-flavored tree as the one the static specs read.
 function hasBuiltDist(exampleDir) {
-  for (const channel of ['chrome', 'chromium', 'chrome-mv3']) {
-    if (
-      fs.existsSync(path.join(exampleDir, 'dist', channel, 'manifest.json'))
-    ) {
-      return true
-    }
-  }
-  return false
+  return isCompleteDist(path.join(exampleDir, 'dist', 'chrome'))
 }
 
 function installDeps(exampleDir, {clean = false} = {}) {
@@ -119,7 +117,14 @@ function buildOne(name) {
     return {name, status: 'skipped (no src/manifest.json)'}
   }
   if (hasBuiltDist(exampleDir) && !process.env.FORCE_PREBUILD) {
-    return {name, status: 'cached'}
+    return publishProdDist(exampleDir)
+      ? {name, status: 'cached (republished)'}
+      : {name, status: 'FAILED (publish)'}
+  }
+  // A warm tree whose dist/ a prior run wiped still has its published copy,
+  // and that copy is the only thing the static specs read.
+  if (isCompleteDist(prodDistPath(exampleDir)) && !process.env.FORCE_PREBUILD) {
+    return {name, status: 'cached (published)'}
   }
   if (!installDeps(exampleDir)) {
     return {name, status: 'FAILED (install)'}
@@ -139,10 +144,92 @@ function buildOne(name) {
   if (!hasBuiltDist(exampleDir)) {
     return {name, status: 'FAILED (no dist after build)'}
   }
+  if (!publishProdDist(exampleDir)) {
+    return {name, status: 'FAILED (publish)'}
+  }
   return {name, status: 'built'}
 }
 
+const DEBUG_PORT_BAND = [9222, 9223, 9224, 9225]
+
+function isPortBound(port) {
+  return new Promise((resolve) => {
+    const socket = net.connect({host: '127.0.0.1', port})
+    const settle = (value) => {
+      socket.destroy()
+      resolve(value)
+    }
+    socket.setTimeout(500)
+    socket.on('connect', () => settle(true))
+    socket.on('timeout', () => settle(false))
+    socket.on('error', () => settle(false))
+  })
+}
+
+function listenerPids(port) {
+  const r = spawnSync('lsof', ['-nP', `-iTCP:${port}`, '-sTCP:LISTEN', '-t'], {
+    encoding: 'utf8'
+  })
+  return String(r.stdout || '')
+    .split('\n')
+    .map((line) => Number(line.trim()))
+    .filter((pid) => Number.isInteger(pid) && pid > 0)
+}
+
+function describePid(pid) {
+  const r = spawnSync('ps', ['-o', 'command=', '-p', String(pid)], {
+    encoding: 'utf8'
+  })
+  return String(r.stdout || '').trim()
+}
+
+// The CLI derives its debugging port from 9222 up. A browser already holding
+// one kills the run mid-edit, which is how source corruption starts.
+async function assertDebuggingPortsFree() {
+  if (process.env.ALLOW_BUSY_CDP_PORT === '1') return
+  const foreign = []
+  for (const port of DEBUG_PORT_BAND) {
+    if (!(await isPortBound(port))) continue
+    for (const pid of listenerPids(port)) {
+      const command = describePid(pid)
+      // Only reap what this checkout launched. Anything else is the owner's
+      // browser, and the run stops rather than closing their window.
+      if (command.includes(REPO_ROOT)) {
+        console.log(
+          `[prebuild-assets-templates] reaping orphaned harness browser ` +
+            `pid ${pid} on port ${port}`
+        )
+        try {
+          process.kill(pid, 'SIGKILL')
+        } catch {
+          // Already gone.
+        }
+      } else {
+        foreign.push(`port ${port}: pid ${pid} ${command.slice(0, 120)}`)
+      }
+    }
+  }
+  if (!foreign.length) return
+  throw new Error(
+    `[prebuild-assets-templates] debugging port(s) still held by a browser ` +
+      `this checkout did not launch:\n  ${foreign.join('\n  ')}\n` +
+      `The reload specs edit example sources, and losing a dev server to a ` +
+      `port clash leaves those edits on disk. Close the browser, or set ` +
+      `ALLOW_BUSY_CDP_PORT=1 to run anyway.`
+  )
+}
+
 export default async function globalSetup() {
+  // Always first: a source left truncated by a killed run poisons every
+  // build below, and every later run, until someone reverts it by hand.
+  const reverted = restoreGuardedSources()
+  if (reverted.length) {
+    console.log(
+      `[prebuild-assets-templates] reverted ${reverted.length} source file(s) ` +
+        `left edited by an interrupted run:\n` +
+        reverted.map((f) => `  ${path.relative(REPO_ROOT, f)}`).join('\n')
+    )
+  }
   // List-only callers (scripts/assert-spec-coverage.mjs) need Playwright to
   // collect specs, not to run them. Building templates there wastes minutes
   // and pollutes stdout while a JSON report is being captured.
@@ -150,6 +237,7 @@ export default async function globalSetup() {
     console.log('[prebuild-assets-templates] skipped (SKIP_PREBUILD=1)')
     return
   }
+  await assertDebuggingPortsFree()
   const only = process.env.PREBUILD_ONLY
   const targets = only ? only.split(',').map((s) => s.trim()) : TEMPLATES
   const results = []

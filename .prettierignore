@@ -8,6 +8,8 @@ build/
 .next/
 .turbo/
 artifacts/
+.prod-dist/
+.source-guard/
 
 # Test outputs
 e2e-report/

@@ -33,12 +33,15 @@ import {spawn, type ChildProcess} from 'child_process'
 import * as http from 'http'
 import WebSocket from 'ws'
 import {getDirname} from './dirname.js'
+import {guardSource, releaseSource} from './source-guard.js'
 
 const __dirname = getDirname(import.meta.url)
 const examplesDir = __dirname
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
-const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
+// Deliberately excludes `chrome`: that channel is the production build
+// scripts/prebuild-assets-templates.mjs publishes for the static specs.
+const DEV_CHANNELS = ['chromium', 'chrome-mv3']
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 // Priority-ordered list of visible-text anchors that exist in at least one
@@ -711,9 +714,9 @@ for (const example of EXAMPLES) {
     baseTest.beforeAll(async ({}, testInfo) => {
       testInfo.setTimeout(180000)
       cleanDevRoots(example.dir)
-      originalJsSource = fs.readFileSync(example.jsAnchor.file, 'utf8')
+      originalJsSource = guardSource(example.jsAnchor.file)
       if (example.styleTarget) {
-        originalCssSource = fs.readFileSync(example.styleTarget.file, 'utf8')
+        originalCssSource = guardSource(example.styleTarget.file)
       }
       server = startDev(example.dir)
       await waitForCdpReady(server, example.dir, 90000)
@@ -743,6 +746,8 @@ for (const example of EXAMPLES) {
           fs.writeFileSync(example.styleTarget.file, originalCssSource, 'utf8')
         } catch {}
       }
+      releaseSource(example.jsAnchor.file)
+      if (example.styleTarget) releaseSource(example.styleTarget.file)
       if (server) await stopDev(server)
       server = null
     })

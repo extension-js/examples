@@ -1,4 +1,3 @@
-import {execSync} from 'child_process'
 import fs from 'fs'
 import path from 'path'
 import {test as baseTest} from '@playwright/test'
@@ -71,15 +70,9 @@ test('should render description text element', async ({page, extensionId}) => {
 // Verify import.meta.env.EXTENSION_PUBLIC_DESCRIPTION_TEXT is compiled into
 // the built newtab script. The build replaces import.meta.env.* at compile
 // time. .env.chrome sets it to "Chrome Extension".
-// Uses a fresh prod build because dev-live tests clean dist/ before running.
+// Reads the published production tree, which no dev-live project can wipe.
 baseTest('env variable is compiled into built newtab script', async () => {
-  const prodPath = path.join(__dirname, 'dist', 'chrome')
-  if (!fs.existsSync(path.join(prodPath, 'manifest.json'))) {
-    execSync(
-      'node ../../scripts/build-with-manifest.mjs build --browser=chrome',
-      {cwd: __dirname, stdio: 'pipe', timeout: 60000}
-    )
-  }
+  const prodPath = resolveBuiltExtensionPath(__dirname)
   const jsPath = path.join(prodPath, 'chrome_url_overrides', 'newtab.js')
   const jsCode = fs.readFileSync(jsPath, 'utf8')
   const envValues = [

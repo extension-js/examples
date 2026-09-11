@@ -22,6 +22,7 @@ import fs from 'fs'
 import path from 'path'
 import {spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
+import {guardSource, releaseSource} from './source-guard.js'
 import {extensionFixtures} from './extension-fixtures.js'
 
 const __dirname = getDirname(import.meta.url)
@@ -29,7 +30,9 @@ const examplesDir = __dirname
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
-const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
+// Deliberately excludes `chrome`: that channel is the production build
+// scripts/prebuild-assets-templates.mjs publishes for the static specs.
+const DEV_CHANNELS = ['chromium', 'chrome-mv3']
 
 const contentExampleDir = path.join(examplesDir, 'content')
 const contentDevPath = path.join(contentExampleDir, 'dist', 'chromium')
@@ -213,8 +216,8 @@ test.describe('content reload under --no-browser', () => {
   test.describe.configure({mode: 'serial', timeout: 180000})
 
   // Captured at collection time, before any test edits the files.
-  const ORIGINAL = fs.readFileSync(scriptPath, 'utf8')
-  const STYLE_ORIGINAL = fs.readFileSync(stylePath, 'utf8')
+  const ORIGINAL = guardSource(scriptPath)
+  const STYLE_ORIGINAL = guardSource(stylePath)
   let proc: ChildProcess | null = null
 
   test.beforeAll(async () => {
@@ -230,6 +233,8 @@ test.describe('content reload under --no-browser', () => {
     try {
       fs.writeFileSync(stylePath, STYLE_ORIGINAL, 'utf8')
     } catch {}
+    releaseSource(scriptPath)
+    releaseSource(stylePath)
     if (proc) await stopDev(proc)
     proc = null
   })

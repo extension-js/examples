@@ -32,6 +32,7 @@ import path from 'path'
 import net from 'net'
 import {spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
+import {guardSource, releaseSource} from './source-guard.js'
 
 const __dirname = getDirname(import.meta.url)
 const examplesDir = __dirname
@@ -608,9 +609,9 @@ for (const example of EXAMPLES) {
     baseTest.beforeAll(async ({}, testInfo) => {
       testInfo.setTimeout(240000)
       cleanDevRoots(example.dir)
-      originalJsSource = fs.readFileSync(example.jsAnchor.file, 'utf8')
+      originalJsSource = guardSource(example.jsAnchor.file)
       if (example.styleTarget) {
-        originalCssSource = fs.readFileSync(example.styleTarget.file, 'utf8')
+        originalCssSource = guardSource(example.styleTarget.file)
       }
       server = startDev(example.dir)
       const port = await waitForRdpReady(server, example.dir, 90000)
@@ -642,6 +643,8 @@ for (const example of EXAMPLES) {
           fs.writeFileSync(example.styleTarget.file, originalCssSource, 'utf8')
         } catch {}
       }
+      releaseSource(example.jsAnchor.file)
+      if (example.styleTarget) releaseSource(example.styleTarget.file)
       if (server) await stopDev(server)
       server = null
     })

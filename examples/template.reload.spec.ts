@@ -14,6 +14,7 @@ import fs from 'fs'
 import path from 'path'
 import {execSync, spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
+import {guardSource} from './source-guard.js'
 import {
   extensionFixtures,
   getShadowRootElement,
@@ -299,7 +300,7 @@ function getContentTemplateAssets(dir: string): TemplateAssets | null {
   const editableFile = path.join(dir, 'src', jsEntry)
   if (!fs.existsSync(editableFile)) return null
 
-  const original = fs.readFileSync(editableFile, 'utf8')
+  const original = guardSource(editableFile)
   if (!original.includes('Content Template')) return null
 
   return {
@@ -345,7 +346,7 @@ function getActionTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', popup)
   if (!fs.existsSync(htmlFile)) return null
-  const original = fs.readFileSync(htmlFile, 'utf8')
+  const original = guardSource(htmlFile)
 
   return {
     editableFile: htmlFile,
@@ -378,7 +379,7 @@ function getSidebarTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', sp)
   if (!fs.existsSync(htmlFile)) return null
-  const original = fs.readFileSync(htmlFile, 'utf8')
+  const original = guardSource(htmlFile)
 
   return {
     editableFile: htmlFile,
@@ -409,7 +410,7 @@ function getNewTabTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', newtab)
   if (!fs.existsSync(htmlFile)) return null
-  const original = fs.readFileSync(htmlFile, 'utf8')
+  const original = guardSource(htmlFile)
 
   return {
     editableFile: htmlFile,
@@ -585,7 +586,7 @@ for (const templateName of RELOAD_TEMPLATES) {
       test.describe.configure({mode: 'serial', timeout: 120000})
 
       let cssServer: DevServer | null = null
-      const cssOriginal = fs.readFileSync(cssEdit.file, 'utf8')
+      const cssOriginal = guardSource(cssEdit.file)
 
       test.beforeAll(async ({}, testInfo) => {
         testInfo.setTimeout(120000)
@@ -820,7 +821,7 @@ if (localeReloadManifest) {
       const localeFile =
         candidateLocaleFiles.find((f) => fs.existsSync(f)) ||
         candidateLocaleFiles[0]
-      const localeOriginal = fs.readFileSync(localeFile, 'utf8')
+      const localeOriginal = guardSource(localeFile)
 
       localeTest.beforeAll(async ({}, testInfo) => {
         testInfo.setTimeout(120000)
@@ -904,7 +905,7 @@ if (bgReloadManifest) {
 
     let bgServer: DevServer | null = null
     const bgFile = path.join(bgReloadDir, 'src', 'background.js')
-    const bgOriginal = fs.readFileSync(bgFile, 'utf8')
+    const bgOriginal = guardSource(bgFile)
 
     bgTest.beforeAll(async ({}, testInfo) => {
       testInfo.setTimeout(120000)
@@ -1055,9 +1056,9 @@ for (const tmpl of IMPORT_TREE_TEMPLATES) {
   )
     continue
 
-  const constOriginal = fs.readFileSync(constFile, 'utf8')
-  const badgeOriginal = fs.readFileSync(badgeFile, 'utf8')
-  const leafOriginal = fs.readFileSync(leafFile, 'utf8')
+  const constOriginal = guardSource(constFile)
+  const badgeOriginal = guardSource(badgeFile)
+  const leafOriginal = guardSource(leafFile)
 
   baseTest.describe(`${tmpl.name}: import-tree tracing`, () => {
     baseTest.describe.configure({mode: 'serial', timeout: 180000})

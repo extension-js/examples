@@ -32,13 +32,16 @@ import fs from 'fs'
 import path from 'path'
 import {spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
+import {guardSource, releaseSource} from './source-guard.js'
 
 const __dirname = getDirname(import.meta.url)
 const examplesDir = __dirname
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
-const DEV_CHANNELS = ['chrome', 'chromium', 'chrome-mv3']
+// Deliberately excludes `chrome`: that channel is the production build
+// scripts/prebuild-assets-templates.mjs publishes for the static specs.
+const DEV_CHANNELS = ['chromium', 'chrome-mv3']
 
 const contentExampleDir = path.join(examplesDir, 'content')
 const scriptPath = path.join(contentExampleDir, 'src', 'content', 'scripts.js')
@@ -320,8 +323,8 @@ baseTest.describe(
   () => {
     baseTest.describe.configure({mode: 'serial', timeout: 180000})
 
-    const ORIGINAL = fs.readFileSync(scriptPath, 'utf8')
-    const STYLE_ORIGINAL = fs.readFileSync(stylePath, 'utf8')
+    const ORIGINAL = guardSource(scriptPath)
+    const STYLE_ORIGINAL = guardSource(stylePath)
 
     let server: DevServer | null = null
     let browser: Browser | null = null
@@ -362,6 +365,8 @@ baseTest.describe(
       try {
         fs.writeFileSync(stylePath, STYLE_ORIGINAL, 'utf8')
       } catch {}
+      releaseSource(scriptPath)
+      releaseSource(stylePath)
       try {
         if (browser) await browser.close()
       } catch {}

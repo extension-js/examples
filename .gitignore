@@ -86,6 +86,14 @@ TEST_FAILURES.md
 # build artifacts produced by packaging script
 artifacts/
 
+# Read-only copy of each example's production build, published by
+# scripts/prebuild-assets-templates.mjs and never written during a test run.
+.prod-dist/
+
+# Pristine example sources journaled before a reload spec edits them, so an
+# interrupted run can be undone on the next globalSetup.
+.source-guard/
+
 # build outputs in examples
 examples/**/dist/
 examples/**/build/

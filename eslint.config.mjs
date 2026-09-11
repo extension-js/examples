@@ -22,6 +22,8 @@ export default [
   {
     ignores: [
       '**/dist/',
+      '.prod-dist/',
+      '.source-guard/',
       '**/e2e-report/',
       '**/coverage/',
       '**/webpack.config.js',

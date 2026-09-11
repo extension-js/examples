@@ -16,6 +16,7 @@ import fs from 'fs'
 import path from 'path'
 import {spawn, type ChildProcess} from 'child_process'
 import {getDirname} from './dirname.js'
+import {guardSource, releaseSource} from './source-guard.js'
 import {
   extensionFixtures,
   getShadowRootElement,
@@ -254,11 +255,15 @@ async function stopDev(proc: ChildProcess) {
 // mid-`try` while removing the rebuild in the steady case.
 function restoreIfChanged(filePath: string, original: string) {
   try {
-    if (fs.readFileSync(filePath, 'utf8') === original) return
+    if (fs.readFileSync(filePath, 'utf8') === original) {
+      releaseSource(filePath)
+      return
+    }
   } catch {
     // Source file vanished — fall through and rewrite.
   }
   fs.writeFileSync(filePath, original, 'utf8')
+  releaseSource(filePath)
 }
 
 async function expectHtmlText(page: any, text: string) {
@@ -331,7 +336,7 @@ for (const example of examples) {
 
       test('updates html UI on change', async ({page, extensionId}) => {
         const filePath = path.join(exampleDir, 'src', entryPath)
-        const original = fs.readFileSync(filePath, 'utf8')
+        const original = guardSource(filePath)
 
         const pageUrl = getHtmlPageUrl(manifest, extensionId, entryPath)
 
@@ -357,7 +362,7 @@ for (const example of examples) {
         extensionId
       }) => {
         const filePath = path.join(exampleDir, 'src', entryPath)
-        const original = fs.readFileSync(filePath, 'utf8')
+        const original = guardSource(filePath)
 
         const pageUrl = getHtmlPageUrl(manifest, extensionId, entryPath)
 
@@ -465,7 +470,7 @@ if (
           'content',
           'scripts.js'
         )
-        const original = fs.readFileSync(scriptPath, 'utf8')
+        const original = guardSource(scriptPath)
         const marker = `E2E-PERSIST-${Date.now()}`
 
         try {
@@ -549,6 +554,7 @@ if (
           expect(finalText).not.toBe(marker)
         } finally {
           fs.writeFileSync(scriptPath, original, 'utf8')
+          releaseSource(scriptPath)
         }
       }
     )
@@ -581,7 +587,7 @@ if (
           'content',
           'scripts.js'
         )
-        const original = fs.readFileSync(scriptPath, 'utf8')
+        const original = guardSource(scriptPath)
         const marker = `JS-RECOVER-${Date.now()}`
 
         try {
@@ -631,6 +637,7 @@ if (
             .toBe(marker)
         } finally {
           fs.writeFileSync(scriptPath, original, 'utf8')
+          releaseSource(scriptPath)
         }
       }
     )
