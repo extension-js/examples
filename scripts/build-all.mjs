@@ -3,6 +3,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import {spawn} from 'node:child_process'
+import {prodDistPath} from './prod-dist.mjs'
 
 const repoRoot = path.resolve(
   path.dirname(new URL(import.meta.url).pathname),
@@ -73,6 +74,12 @@ function cleanOutputs(exampleDirectory) {
         fs.rmSync(target, {recursive: true, force: true})
       }
     }
+    // The static specs prefer the published copy outright, so a rebuild
+    // must retire it or they keep reading the previous CLI's output.
+    fs.rmSync(path.dirname(prodDistPath(baseDir)), {
+      recursive: true,
+      force: true
+    })
   }
 }
 
