@@ -39,14 +39,27 @@ function writeIfChanged(absolutePath: string, original: string): void {
 
 // SIGKILL cannot be trapped, which is why the journal exists. These handlers
 // only shorten the window for the signals a runner actually sends first.
+//
+// Playwright loads spec files inside the runner, so a module-scope guard
+// installs these on the runner too. Exiting from here would cut off its own
+// SIGINT watcher (report, worker teardown), and a worker keeps a no-op
+// listener so the runner decides when it goes. When another listener remains
+// the handler only puts the originals back and keeps the baseline, since the
+// run still has a moment to write again before the exit handler runs. When
+// nothing else listens, the process is ours to end, so it releases and
+// re-raises the signal for the default disposition.
 function installHandlers(): void {
   if (handlersInstalled) return
   handlersInstalled = true
   process.on('exit', () => restoreGuardedSources())
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const) {
     process.once(signal, () => {
+      if (process.listenerCount(signal) > 0) {
+        for (const [file, original] of guarded) writeIfChanged(file, original)
+        return
+      }
       restoreGuardedSources()
-      process.exit(signal === 'SIGINT' ? 130 : 143)
+      process.kill(process.pid, signal)
     })
   }
 }
