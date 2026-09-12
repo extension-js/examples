@@ -12,6 +12,10 @@ const JOURNAL_DIR = path.resolve(
   '.source-guard'
 )
 
+// The runner and every worker guard the same files. A journal named after
+// the path alone let the first process to release unlink it for all of them.
+const PROCESS_TOKEN = `${process.pid}-${crypto.randomBytes(3).toString('hex')}`
+
 const guarded = new Map<string, string>()
 let handlersInstalled = false
 
@@ -21,7 +25,7 @@ function journalFileFor(absolutePath: string): string {
     .update(absolutePath)
     .digest('hex')
     .slice(0, 16)
-  return path.join(JOURNAL_DIR, `${key}.json`)
+  return path.join(JOURNAL_DIR, `${key}.${PROCESS_TOKEN}.json`)
 }
 
 function writeIfChanged(absolutePath: string, original: string): void {
@@ -77,7 +81,12 @@ export function guardSource(file: string): string {
     fs.mkdirSync(JOURNAL_DIR, {recursive: true})
     fs.writeFileSync(
       journalFileFor(absolutePath),
-      JSON.stringify({file: absolutePath, original}),
+      JSON.stringify({
+        file: absolutePath,
+        original,
+        pid: process.pid,
+        at: Date.now()
+      }),
       'utf8'
     )
   } catch {
@@ -86,7 +95,8 @@ export function guardSource(file: string): string {
   return original
 }
 
-// Restore `file` and drop its journal entry. Safe to call more than once.
+// Restore `file` and drop this process's journal entry. Safe to call more
+// than once. Another process's journal for the same file is left alone.
 export function releaseSource(file: string): void {
   const absolutePath = path.resolve(file)
   const original = guarded.get(absolutePath)
