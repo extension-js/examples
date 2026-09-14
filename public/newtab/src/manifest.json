@@ -14,11 +14,11 @@
   "name": "JavaScript New Tab Example",
   "description": "Replaces your new tab page with a simple page you can customize.",
   "icons": {
-    "16": "images/icon.png",
-    "32": "images/icon.png",
-    "48": "images/icon.png",
-    "64": "images/icon.png",
-    "128": "images/icon.png"
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "64": "images/icon-64.png",
+    "128": "images/icon-128.png"
   },
   "background": {
     "chromium:service_worker": "background.js",

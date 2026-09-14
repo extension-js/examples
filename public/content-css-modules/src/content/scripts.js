@@ -40,8 +40,16 @@ export default function initial() {
 
   const description = document.createElement('p')
   description.className = content_description
-  description.innerHTML =
-    'This content script runs in the context of web pages. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
+  const link = document.createElement('a')
+  link.href = 'https://extension.js.org'
+  link.target = '_blank'
+  link.rel = 'noreferrer noopener'
+  link.textContent = 'extension.js.org'
+  description.append(
+    'This content script runs in the context of web pages. Learn more at ',
+    link,
+    '.'
+  )
   contentDiv.appendChild(description)
 
   return () => {

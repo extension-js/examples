@@ -51,8 +51,16 @@ export default function initial() {
 
   const description = document.createElement('p')
   description.className = 'content_description'
-  description.innerHTML =
-    'This MAIN world content script runs alongside page scripts. Learn more at <a href="https://extension.js.org" target="_blank" rel="noreferrer noopener">extension.js.org</a>.'
+  const link = document.createElement('a')
+  link.href = 'https://extension.js.org'
+  link.target = '_blank'
+  link.rel = 'noreferrer noopener'
+  link.textContent = 'extension.js.org'
+  description.append(
+    'This MAIN world content script runs alongside page scripts. Learn more at ',
+    link,
+    '.'
+  )
   contentDiv.appendChild(description)
 
   const button = document.createElement('button')

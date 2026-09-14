@@ -29,20 +29,24 @@ if (isFirefoxLike) {
   }
 }
 
-try {
-  chrome?.runtime?.onMessage.addListener((message, sender) => {
-    if (!message || message.type !== 'openSidebar') return
-    try {
-      // Everything here must run synchronously: a tabs.query callback would
-      // outlive the click's user gesture and sidePanel.open() would refuse.
-      chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
-      const tabId = sender.tab?.id
-      if (!chrome.sidePanel.open || tabId === undefined) return
-      chrome.sidePanel.open({tabId})
-    } catch {
-      // Ignore errors - best effort
-    }
-  })
-} catch {
-  // Ignore errors - best effort
+// The side panel API only exists in Chromium. Firefox opens the sidebar in
+// the listener above, so this listener is compiled out of gecko builds.
+if (!isFirefoxLike) {
+  try {
+    chrome?.runtime?.onMessage.addListener((message, sender) => {
+      if (!message || message.type !== 'openSidebar') return
+      try {
+        // Everything here must run synchronously: a tabs.query callback would
+        // outlive the click's user gesture and sidePanel.open() would refuse.
+        chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+        const tabId = sender.tab?.id
+        if (!chrome.sidePanel.open || tabId === undefined) return
+        chrome.sidePanel.open({tabId})
+      } catch {
+        // Ignore errors - best effort
+      }
+    })
+  } catch {
+    // Ignore errors - best effort
+  }
 }
