@@ -1,8 +1,12 @@
 export default function renderSidebar(root) {
-  root.innerHTML = `
-    <header>
-      <h1>Monorepo Sidebar</h1>
-      <p>Monorepo Nx example sidebar.</p>
-    </header>
-  `
+  const header = document.createElement('header')
+
+  const title = document.createElement('h1')
+  title.textContent = 'Monorepo Sidebar'
+
+  const description = document.createElement('p')
+  description.textContent = 'Monorepo Nx example sidebar.'
+
+  header.append(title, description)
+  root.replaceChildren(header)
 }

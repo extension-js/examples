@@ -38,8 +38,9 @@ export default function initMonorepoContent() {
 
   const info = document.createElement('div')
   info.className = 'monorepo_info'
-  info.innerHTML =
-    'Built with <strong>Extension.js</strong> · Monorepo + Nx'
+  const strong = document.createElement('strong')
+  strong.textContent = 'Extension.js'
+  info.append('Built with ', strong, ' · Monorepo + Nx')
   container.appendChild(info)
 
   const pill = document.createElement('button')
