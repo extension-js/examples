@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "firefox:browser_specific_settings": {
     "gecko": {
+      "id": "content-multi-one-entry@extension.js",
       "data_collection_permissions": {
         "required": ["none"]
       }

@@ -3,6 +3,14 @@
   "chromium:manifest_version": 3,
   "firefox:manifest_version": 2,
   "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "id": "sidebar-monorepo-nx@extension.js",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "name": "Monorepo Nx Example",
   "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
   "icons": {
