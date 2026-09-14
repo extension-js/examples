@@ -89,6 +89,14 @@ function resolveCli() {
   return {kind: 'bin'}
 }
 
+// Monorepo examples keep the extension package one level down, the same
+// resolution scripts/build-all.mjs uses.
+function projectDir(slug) {
+  const exampleDir = path.join(EXAMPLES_DIR, slug)
+  const monorepoDir = path.join(exampleDir, 'packages', 'extension')
+  return fs.existsSync(monorepoDir) ? monorepoDir : exampleDir
+}
+
 function listAllExamples() {
   return fs
     .readdirSync(EXAMPLES_DIR, {withFileTypes: true})
@@ -212,13 +220,16 @@ function validate(slug, target, result) {
   if (lower.includes('compiled with errors')) {
     problems.push('build reported "compiled with errors"')
   }
+  // A build that only carries warnings still compiled, and gecko targets
+  // print "Add-on ready" where chromium targets print "Extension ready".
   const compiledOk =
     lower.includes('compiled successfully') ||
     lower.includes('compiled in ') ||
-    lower.includes('extension ready for development')
+    lower.includes('compiled with warnings') ||
+    lower.includes('ready for development')
   if (!compiledOk) problems.push('build did not report a successful compile')
 
-  const distDir = path.join(EXAMPLES_DIR, slug, 'dist', target.browser)
+  const distDir = path.join(projectDir(slug), 'dist', target.browser)
   const manifestPath = path.join(distDir, 'manifest.json')
   if (!fs.existsSync(manifestPath)) {
     problems.push(`dist/${target.browser}/manifest.json was not emitted`)
@@ -292,12 +303,13 @@ async function main() {
         console.log(`  ✗ ${slug} — not found`)
         continue
       }
-      fs.rmSync(path.join(exampleDir, 'dist', target.browser), {
+      const buildDir = projectDir(slug)
+      fs.rmSync(path.join(buildDir, 'dist', target.browser), {
         recursive: true,
         force: true
       })
 
-      const result = await runDev(cli, exampleDir, target.browser)
+      const result = await runDev(cli, buildDir, target.browser)
       const problems = validate(slug, target, result)
       if (problems.length === 0) {
         console.log(`  ✓ ${slug}`)
