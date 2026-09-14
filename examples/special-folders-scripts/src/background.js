@@ -20,14 +20,29 @@ async function injectScripts(tabId) {
 }
 
 // Toolbar action click — activeTab grants temporary access to the current tab.
-chrome.action.onClicked.addListener(async (tab) => {
+async function onActionClicked(tab) {
   try {
     if (!tab?.id) return
     await injectScripts(tab.id)
   } catch (error) {
     console.warn('[special-folders-scripts] action injection failed', error)
   }
-})
+}
+
+const isFirefoxLike =
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
+
+// The Firefox manifest is MV2, so the toolbar button is browser_action there.
+// Each branch is compiled out of the other browser's build, which keeps the
+// chrome.action reference out of the Gecko bundle entirely.
+if (isFirefoxLike) {
+  chrome.browserAction.onClicked.addListener(onActionClicked)
+}
+
+if (!isFirefoxLike) {
+  chrome.action.onClicked.addListener(onActionClicked)
+}
 
 // In-page "Run scripts/" button (content.js) → background → same executeScript
 // path as the toolbar action. Requires host_permissions to inject into the
