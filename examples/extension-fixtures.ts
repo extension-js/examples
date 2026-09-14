@@ -128,6 +128,20 @@ async function closeContextBounded(
   if (!finished) killBrowserByUserDataDir(userDataDir)
 }
 
+// A browser-channel lane (Chrome Canary, Chrome Dev) points this at a build
+// Playwright does not ship, so the pinned Chromium is bypassed when it is set.
+const chromiumBinaryOverride = (
+  process.env.EXTENSION_CHROMIUM_BINARY || ''
+).trim()
+
+function chromiumLaunchTarget(isHeadless: boolean) {
+  if (chromiumBinaryOverride) return {executablePath: chromiumBinaryOverride}
+  // headless:true alone selects the chromium_headless_shell build, which
+  // silently ignores --load-extension. The full build's new headless does
+  // support extensions, so opt into it whenever we run headless.
+  return isHeadless ? {channel: 'chromium' as const} : {}
+}
+
 export const extensionFixtures = (
   pathToExtension: string,
   headless?: boolean
@@ -159,12 +173,7 @@ export const extensionFixtures = (
           chromium.launchPersistentContext(dir, {
             timeout: LAUNCH_TIMEOUT_MS,
             headless: isHeadless,
-            // headless:true alone selects the chromium_headless_shell build,
-            // which silently ignores --load-extension (tests then fail on
-            // extensionId, or worse, pass vacuously if they never need the
-            // extension). The full chromium build's new headless supports
-            // extensions — opt into it whenever we run headless.
-            ...(isHeadless ? {channel: 'chromium' as const} : {}),
+            ...chromiumLaunchTarget(isHeadless),
             args: [
               `--disable-extensions-except=${pathToExtension}`,
               `--load-extension=${pathToExtension}`,
@@ -591,8 +600,7 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
   const isHeadless = process.env.HEADLESS === 'true'
   const context = await chromium.launchPersistentContext(userDataDir, {
     headless: isHeadless,
-    // See context fixture above: headless shell drops extensions.
-    ...(isHeadless ? {channel: 'chromium' as const} : {}),
+    ...chromiumLaunchTarget(isHeadless),
     args: [
       `--disable-extensions-except=${pathToExtension}`,
       `--load-extension=${pathToExtension}`,

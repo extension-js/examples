@@ -225,9 +225,27 @@ function startDev(exampleDir: string): DevServer {
     EXTENSION_AUTHOR_MODE: 'true'
   }
   const command = localCliCjs ? process.execPath : 'pnpm'
+  // Same override the fixtures honour: a browser-channel lane pins the
+  // Chromium the CLI launches instead of letting it pick the system one.
+  const chromiumBinary = (process.env.EXTENSION_CHROMIUM_BINARY || '').trim()
+  const chromiumArgs = chromiumBinary ? ['--chromium-binary', chromiumBinary] : []
   const args = localCliCjs
-    ? [localCliCjs, 'dev', exampleDir, '--browser=chromium', '--install=false']
-    : ['extension', 'dev', exampleDir, '--browser=chromium', '--install=false']
+    ? [
+        localCliCjs,
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--install=false',
+        ...chromiumArgs
+      ]
+    : [
+        'extension',
+        'dev',
+        exampleDir,
+        '--browser=chromium',
+        '--install=false',
+        ...chromiumArgs
+      ]
   const proc = spawn(command, args, {cwd: exampleDir, env, stdio: 'pipe'})
   const server: DevServer = {proc, output: '', startedAtMs: Date.now()}
 
