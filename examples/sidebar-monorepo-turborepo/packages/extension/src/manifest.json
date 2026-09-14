@@ -14,9 +14,9 @@
   "name": "Monorepo Turborepo Example",
   "description": "Adds a sidebar panel and shows a small overlay UI on every web page you visit.",
   "icons": {
-    "16": "images/icon.png",
-    "48": "images/icon.png",
-    "128": "images/icon.png"
+    "16": "images/icon-16.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
   },
   "chromium:action": {
     "default_title": "Open Side Panel"
