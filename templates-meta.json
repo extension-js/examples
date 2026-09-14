@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-14T19:03:22.891Z",
+  "generatedAt": "2026-09-14T19:58:25.046Z",
   "templates": [
     {
       "slug": "action",
@@ -3730,6 +3730,7 @@
         "public/special-folders-pages/src/images/icon.png",
         "public/special-folders-pages/src/images/javascript.png",
         "public/special-folders-pages/src/manifest.json",
+        "public/special-folders-pages/src/sandbox/eval.js",
         "public/special-folders-pages/src/sandbox/index.html",
         "public/special-folders-pages/src/sandbox/scripts.js",
         "public/special-folders-pages/src/sandbox/styles.css"
