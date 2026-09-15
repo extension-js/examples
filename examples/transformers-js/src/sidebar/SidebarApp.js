@@ -1,6 +1,9 @@
 import {ACTION_NAME} from '../constants.js'
 import './styles.css'
 
+// Firefox Manifest V2 returns promises only from the browser namespace.
+const ext = globalThis.browser ?? chrome
+
 const DEFAULTS = {
   task: 'text-classification',
   model: 'Xenova/distilbert-base-uncased-finetuned-sst-2-english',
@@ -36,7 +39,7 @@ function SidebarApp() {
   const dtypeEl = root.querySelector('#dtype')
 
   // Show active model in title (if available)
-  chrome.storage.sync.get('modelConfig').then(({modelConfig}) => {
+  ext.storage.sync.get('modelConfig').then(({modelConfig}) => {
     if (modelConfig?.model && titleElement) {
       titleElement.textContent = `Transformers.js (${modelConfig.model})`
     }
@@ -55,7 +58,7 @@ function SidebarApp() {
 
   async function loadConfig() {
     populateTasks()
-    const {modelConfig} = await chrome.storage.sync.get('modelConfig')
+    const {modelConfig} = await ext.storage.sync.get('modelConfig')
     const cfg = {...DEFAULTS, ...(modelConfig || {})}
     taskEl.value = cfg.task
     populateModels(cfg.task, cfg.model)
@@ -77,12 +80,12 @@ function SidebarApp() {
 
   async function saveConfig() {
     const cfg = currentConfig()
-    await chrome.storage.sync.set({modelConfig: cfg})
+    await ext.storage.sync.set({modelConfig: cfg})
     if (titleElement && cfg.model) {
       titleElement.textContent = `Transformers.js (${cfg.model})`
     }
     // Notify background (optional, background also listens to storage change)
-    chrome.runtime.sendMessage({action: 'model-config-updated', config: cfg})
+    ext.runtime.sendMessage({action: 'model-config-updated', config: cfg})
   }
 
   // Changing the task re-populates the model list; every change persists config.
@@ -118,7 +121,7 @@ function SidebarApp() {
   // because the sidebar can't message tabs directly in MV3).
   async function fillFromActiveTab(action, fallback) {
     try {
-      const response = await chrome.runtime.sendMessage({action})
+      const response = await ext.runtime.sendMessage({action})
       if (!response?.ok) {
         showError(
           new Error(response?.error || `Could not read ${fallback}`),
@@ -150,7 +153,7 @@ function SidebarApp() {
   )
 
   // Pick up classifications triggered from the right-click context menu.
-  chrome.runtime.onMessage.addListener((message) => {
+  ext.runtime.onMessage.addListener((message) => {
     if (message?.action !== 'classification-broadcast') return
     if (message.ok) {
       inputElement.value = message.text
@@ -170,7 +173,7 @@ async function classifyText(text, outputElement) {
     }
 
     // Send message to the service worker
-    const response = await chrome.runtime.sendMessage(message)
+    const response = await ext.runtime.sendMessage(message)
 
     if (response && response.length > 0) {
       showResults(response, outputElement)

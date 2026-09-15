@@ -2,6 +2,10 @@
 import {env, pipeline} from '@huggingface/transformers'
 import {ACTION_NAME, CONTEXT_MENU_ITEM_ID} from './constants.js'
 
+// Firefox Manifest V2 returns promises only from the browser namespace, so
+// every awaited call goes through it when it exists.
+const ext = globalThis.browser ?? chrome
+
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
@@ -19,12 +23,16 @@ if (isFirefoxLike) {
 } else {
   // setPanelBehavior only affects FUTURE action clicks — registering it
   // inside onClicked would swallow the first toolbar click.
-  chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 }
 
 // If you'd like to use a local model instead of loading the model
 // from the Hugging Face Hub, you can remove this line.
 env.allowLocalModels = false
+
+// In a page context transformers.js points onnxruntime at jsDelivr, which the
+// extension CSP blocks. Unset, onnxruntime loads the WASM this build bundles.
+env.backends.onnx.wasm.wasmPaths = undefined
 
 // A config-aware model manager that caches pipelines per configuration
 function configKey(cfg) {
@@ -64,11 +72,11 @@ class ModelManager {
     this.currentKey = null
     this.currentConfig = null
     this.ready = this.loadInitial()
-    chrome.storage.onChanged.addListener(this.onStorageChanged.bind(this))
+    ext.storage.onChanged.addListener(this.onStorageChanged.bind(this))
   }
 
   async loadInitial() {
-    const {modelConfig} = await chrome.storage.sync.get('modelConfig')
+    const {modelConfig} = await ext.storage.sync.get('modelConfig')
     this.currentConfig = modelConfig || {
       task: 'text-classification',
       model: 'Xenova/distilbert-base-uncased-finetuned-sst-2-english',
@@ -112,7 +120,7 @@ const classify = async (text) => {
 // Ask the active tab's content script for either the full page context or
 // the current selection. Mirrors the ai-* templates' relay pattern.
 async function relayActiveTabRequest(messageType) {
-  const [tab] = await chrome.tabs.query({
+  const [tab] = await ext.tabs.query({
     active: true,
     lastFocusedWindow: true
   })
@@ -120,7 +128,7 @@ async function relayActiveTabRequest(messageType) {
     return {ok: false, error: 'No active tab'}
   }
   try {
-    const context = await chrome.tabs.sendMessage(tab.id, {type: messageType})
+    const context = await ext.tabs.sendMessage(tab.id, {type: messageType})
     if (!context) {
       return {ok: false, error: 'No context received from page'}
     }
@@ -133,9 +141,9 @@ async function relayActiveTabRequest(messageType) {
 
 // Right-click → "Classify selection" runs the pipeline directly and
 // broadcasts the result so an open sidebar can pick it up.
-chrome.runtime.onInstalled.addListener(() => {
+ext.runtime.onInstalled.addListener(() => {
   try {
-    chrome.contextMenus.create({
+    ext.contextMenus.create({
       id: CONTEXT_MENU_ITEM_ID,
       title: 'Classify selection with Transformers.js',
       contexts: ['selection']
@@ -145,20 +153,20 @@ chrome.runtime.onInstalled.addListener(() => {
   }
 })
 
-chrome.contextMenus?.onClicked.addListener(async (info) => {
+ext.contextMenus?.onClicked.addListener(async (info) => {
   if (info.menuItemId !== CONTEXT_MENU_ITEM_ID) return
   const text = info.selectionText?.trim()
   if (!text) return
   try {
     const result = await classify(text)
-    chrome.runtime.sendMessage({
+    ext.runtime.sendMessage({
       action: 'classification-broadcast',
       ok: true,
       text,
       result
     })
   } catch (e) {
-    chrome.runtime.sendMessage({
+    ext.runtime.sendMessage({
       action: 'classification-broadcast',
       ok: false,
       error: e?.message || 'classification failed'
@@ -169,7 +177,7 @@ chrome.contextMenus?.onClicked.addListener(async (info) => {
 ////////////////////// Message Events /////////////////////
 //
 // Listen for messages from the UI, process it, and send the result back.
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === ACTION_NAME) {
     ;(async function () {
       try {
