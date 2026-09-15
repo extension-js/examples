@@ -33,7 +33,7 @@ function setupSidebarOpenHandlers() {
         try {
           // Ensure clicks on the action will open the panel as fallback
           if (chrome?.sidePanel?.setPanelBehavior) {
-            chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+            chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
           }
 
           if (typeof chrome?.sidePanel?.open !== 'function') return
@@ -43,7 +43,7 @@ function setupSidebarOpenHandlers() {
             if (!activeTabId) return
 
             try {
-              chrome.sidePanel.open({tabId: activeTabId})
+              chrome.sidePanel?.open({tabId: activeTabId})
             } catch (error) {
               console.error(error)
             }
