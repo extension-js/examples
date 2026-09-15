@@ -24,8 +24,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.1.17
-        version: 4.1.17(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+        specifier: 4.1.18
+        version: 4.1.18(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3889,12 +3889,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.1.17:
-    resolution: {integrity: sha512-TF18KIW61heUxMBaFCZk54YhxpIW/RZA/GHyxIR+MCntt6J6NGvpthc7TgqZfjhskPvV6+WazBn5QQK8mFbhQQ==}
+  extension-create@4.1.18:
+    resolution: {integrity: sha512-hFiZ68O9smFTbshKBlKQi2oiMvjpbFx8Zz//REyIGY1E8BHNlpfmgapMZK+LcjSJOZxUvB7Gdlm4fN4cQC+ewA==}
     engines: {node: '>=22.12'}
 
-  extension-develop@4.1.17:
-    resolution: {integrity: sha512-x0tL7ajcIiyebvpAQ4TjTHQ9YvQy14Pcl2mWestF0T0NGar5OsyaUFJnPYf4pOUKyEA3exMZnZpukSwm0gBA4A==}
+  extension-develop@4.1.18:
+    resolution: {integrity: sha512-t+bdAZt8GNdBNHSkzj2Gsw7aIZT/IELrsu9cmaxZQg6EdNeW2G/FHE4TveIPApSs9bNdRTn58BfwxEzzi2xLGQ==}
     engines: {node: '>=22.12'}
 
   extension-from-store@0.2.5:
@@ -3902,12 +3902,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.1.17:
-    resolution: {integrity: sha512-v+E/DGkO89c6ph7wTV/K6F7WFoXVzxzu4lcmFRHBoMtxu8369rrMFH4N4rC/INVnxBirX68a+pTCmnps1+vApg==}
+  extension-install@4.1.18:
+    resolution: {integrity: sha512-Lr5oL0LOmFSYFRhxXvtVovv22HJi1dXhuY0T11TLM3KD39cYJiBvgO2b3kBLoUjKNAzZ7v5A05Qm+VlLKh3RPg==}
     engines: {node: '>=22.12'}
 
-  extension@4.1.17:
-    resolution: {integrity: sha512-GrUVxNsD7k8ptPb/Ro9xjA2+M95AjAlIVlKeipbcW3tmXIe4ePTY1rBGE1Da/z9A+qZiaQMt+LoipdqRSmvQbQ==}
+  extension@4.1.18:
+    resolution: {integrity: sha512-hMvrH8fUqDGkk3Z7NW8RbJrS/7nc3OEdwYIS9k3DT5uEfmsqt37MhsO3sjaaJ5qgd4ZKj5U6lxByuNbcCdsYDw==}
     engines: {node: '>=22.12'}
     hasBin: true
 
@@ -9059,7 +9059,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.1.17:
+  extension-create@4.1.18:
     dependencies:
       axios: 1.18.1
       cross-spawn: 7.0.6
@@ -9071,7 +9071,7 @@ snapshots:
       - debug
       - supports-color
 
-  extension-develop@4.1.17(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension-develop@4.1.18(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -9084,6 +9084,7 @@ snapshots:
       browser-extension-manifest-fields: 2.3.1
       case-sensitive-paths-webpack-plugin: 2.4.0
       content-security-policy-parser: 0.6.0
+      cross-spawn: 7.0.6
       dotenv: 17.4.2
       es-module-lexer: 3.0.2
       extension-from-store: 0.2.5
@@ -9127,12 +9128,12 @@ snapshots:
     dependencies:
       fflate: 0.8.3
 
-  extension-install@4.1.17:
+  extension-install@4.1.18:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.1.17(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension@4.1.18(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       brave-location: 3.1.1
       chrome-location2: 4.1.1
@@ -9140,9 +9141,9 @@ snapshots:
       commander: 15.0.0
       cross-spawn: 7.0.6
       edge-location: 2.3.1
-      extension-create: 4.1.17
-      extension-develop: 4.1.17(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
-      extension-install: 4.1.17
+      extension-create: 4.1.18
+      extension-develop: 4.1.18(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+      extension-install: 4.1.18
       firefox-location2: 3.1.1
       librewolf-location: 1.2.1
       opera-location2: 2.1.1
