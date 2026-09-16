@@ -26,7 +26,8 @@
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Browser Flags Sidebar"
+    "default_title": "Browser Flags Sidebar",
+    "browser_style": false
   },
   "content_scripts": [
     {

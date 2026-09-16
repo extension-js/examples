@@ -47,7 +47,8 @@
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Transformers.js Side Panel"
+    "default_title": "Transformers.js Side Panel",
+    "browser_style": false
   },
   "chromium:permissions": ["sidePanel", "storage", "tabs", "contextMenus"],
   "firefox:permissions": ["storage", "tabs", "contextMenus"],

@@ -47,7 +47,8 @@
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Extension.js Ant Design Sidebar Panel"
+    "default_title": "Extension.js Ant Design Sidebar Panel",
+    "browser_style": false
   },
   "chromium:permissions": ["sidePanel"],
   "background": {

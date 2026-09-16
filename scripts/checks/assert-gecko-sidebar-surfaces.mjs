@@ -126,6 +126,33 @@ for (const file of walk(EXAMPLES_DIR)) {
   }
 }
 
+// Rule 4. A Manifest V2 sidebar_action defaults browser_style to true, so
+// Firefox injects its own stylesheet into the panel. It resets header
+// text-align to start and the root font to 13px, which left an inline logo
+// flush left under centred text. Chromium has no such sheet.
+for (const file of walk(EXAMPLES_DIR)) {
+  if (path.basename(file) !== 'manifest.json') continue
+  if (!file.includes(`${path.sep}src${path.sep}`)) continue
+
+  let manifest
+
+  try {
+    manifest = JSON.parse(fs.readFileSync(file, 'utf8'))
+  } catch {
+    continue
+  }
+
+  const sidebar = manifest['firefox:sidebar_action'] || manifest.sidebar_action
+
+  if (sidebar && sidebar.browser_style !== false) {
+    problems.push(
+      `${relative(file)}: the Firefox sidebar_action does not set ` +
+        `"browser_style": false, so Firefox restyles the panel and it renders ` +
+        `differently from Chromium. Set it to false.`
+    )
+  }
+}
+
 if (problems.length) {
   console.error('Gecko sidebar surface check FAILED:\n')
   for (const problem of problems) console.error(`  - ${problem}`)

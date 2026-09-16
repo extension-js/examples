@@ -80,6 +80,10 @@ body {
   height: calc(100vh - 4rem);
 }
 
+header {
+  text-align: center;
+}
+
 header > div {
   display: flex;
   align-items: center;
