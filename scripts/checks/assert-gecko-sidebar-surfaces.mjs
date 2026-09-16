@@ -52,6 +52,7 @@ function messageListenerBodies(source) {
         depth -= 1
         if (depth === 0) break
       }
+
       cursor += 1
     }
 
