@@ -3415,7 +3415,7 @@
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
-      "tags": ["sidebar", "react", "antd", "typescript"],
+      "tags": ["sidebar", "react", "antd"],
       "difficulty": "beginner",
       "timeToFirstSuccessMinutes": 3,
       "firstSteps": [
