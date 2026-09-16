@@ -32,6 +32,7 @@ body {
 }
 
 .sidebar_logo {
+  display: block;
   width: 72px;
   height: 72px;
   margin: 0 auto 0.5rem;

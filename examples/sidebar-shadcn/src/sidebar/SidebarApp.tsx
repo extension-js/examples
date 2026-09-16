@@ -13,7 +13,7 @@ import {Switch} from '../components/ui/switch'
 export default function SidebarApp() {
   return (
     <Card className="h-screen">
-      <CardHeader>
+      <CardHeader className="justify-items-center text-center">
         <img src={shadcnLogo} alt="shadcn Logo" className="size-12" />
         <CardTitle>Welcome to your shadcn Extension.</CardTitle>
         <CardDescription>Manage your cookie settings here.</CardDescription>

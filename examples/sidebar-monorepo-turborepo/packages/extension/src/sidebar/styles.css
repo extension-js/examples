@@ -9,7 +9,13 @@ body {
   color: #e5e7eb;
 }
 #root {
+  box-sizing: border-box;
+  min-height: 100vh;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 h1 {
   margin: 0 0 8px 0;

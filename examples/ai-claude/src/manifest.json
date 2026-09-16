@@ -51,7 +51,8 @@
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Claude Sidebar"
+    "default_title": "Claude Sidebar",
+    "browser_style": false
   },
   "chromium:permissions": ["sidePanel", "storage", "tabs"],
   "firefox:permissions": ["storage", "tabs"],
