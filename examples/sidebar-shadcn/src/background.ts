@@ -12,7 +12,7 @@ if (isFirefoxLike) {
 } else {
   // setPanelBehavior only affects FUTURE action clicks — registering it
   // inside onClicked would swallow the first toolbar click.
-  chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 }
 
 // The content_script pill asks for the panel from the page context.
@@ -27,13 +27,13 @@ chrome.runtime.onMessage.addListener((message, sender) => {
   // Everything here runs synchronously inside the listener. An async hop
   // (chrome.tabs.query and friends) drops the click's user gesture, and
   // sidePanel.open() then refuses to run.
-  chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 
   const tabId = sender.tab?.id
-  if (!chrome.sidePanel.open || tabId === undefined) return
+  if (!chrome.sidePanel?.open || tabId === undefined) return
 
   try {
-    chrome.sidePanel.open({tabId})
+    chrome.sidePanel?.open({tabId})
   } catch (error) {
     console.error(error)
   }
