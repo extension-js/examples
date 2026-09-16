@@ -1,13 +1,30 @@
 import React from 'react'
 import iconUrl from '../images/icon.png'
+const isFirefoxLike =
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 export default function ContentApp() {
   const handleClick = () => {
-    if (import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox') {
-      browser.runtime.sendMessage({type: 'openSidebar'})
-    } else {
-      chrome.runtime.sendMessage({type: 'openSidebar'})
-    }
+    chrome.runtime.sendMessage({type: 'openSidebar'})
+  }
+
+  // Firefox cannot open a sidebar from a message listener, so the gecko build
+  // renders a hint naming the toolbar action instead of a control that cannot work.
+  if (isFirefoxLike) {
+    return (
+      <div className="content_pill content_pill_static">
+        <img
+          className="content_pill_logo"
+          src={iconUrl}
+          alt=""
+          aria-hidden="true"
+        />
+        <span className="content_pill_text">
+          Use the toolbar icon to open the sidebar
+        </span>
+      </div>
+    )
   }
 
   return (

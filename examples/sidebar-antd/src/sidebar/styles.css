@@ -9,7 +9,9 @@
 body {
   background-color: var(--sidebar-bg);
   color: var(--sidebar-text);
-  height: 100vh;
+  /* The margin insets the panel, so a full-viewport height would push the
+     content below centre and overflow the panel by twice the margin. */
+  height: calc(100vh - 2 * var(--sidebar-margin));
   margin: var(--sidebar-margin);
   border-radius: 6px;
   display: flex;
@@ -24,7 +26,7 @@ body {
   align-items: center;
   padding: 0 1rem;
   text-align: center;
-  max-height: 100vh;
+  max-height: 100%;
   overflow-y: auto;
   gap: 0.25rem;
 }

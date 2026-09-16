@@ -1,5 +1,9 @@
 .monorepo_content {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -21,8 +25,8 @@
     Roboto,
     Helvetica,
     Arial,
-    "Apple Color Emoji",
-    "Segoe UI Emoji";
+    'Apple Color Emoji',
+    'Segoe UI Emoji';
   backdrop-filter: saturate(150%) blur(8px);
 }
 
@@ -58,7 +62,7 @@
   border-radius: 9999px;
 }
 
-.content_pill:hover {
+.content_pill:not(.content_pill_static):hover {
   background: #1f2937;
 }
 
@@ -75,4 +79,10 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
+}
+
+/* The gecko build renders this hint in place of the pill, so it must not read
+   as a control: no pointer cursor and no hover response. */
+.content_pill_static {
+  cursor: default;
 }
