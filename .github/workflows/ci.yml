@@ -84,6 +84,14 @@ jobs:
             examples/*/node_modules
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
+      # test:banner launches the Playwright Chromium. Without this restore it
+      # found no binary, skipped, and exited 0 on every run.
+      - name: Restore Playwright browsers
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
+
       - run: node scripts/build/normalize-examples.mjs
       - run: pnpm lint
       - run: pnpm run test:strict-json
