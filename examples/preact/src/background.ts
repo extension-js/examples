@@ -37,13 +37,9 @@ function openSidebarTab() {
 }
 
 if (isFirefoxLike) {
+  // Firefox refuses sidebarAction.open() outside a user input handler, and a
+  // message listener is not one, so the toolbar click is the only route.
   browser.browserAction.onClicked.addListener(() => {
-    browser.sidebarAction.open()
-  })
-
-  browser.runtime.onMessage.addListener((message: any) => {
-    if (!message || message.type !== 'openSidebar') return
-
     browser.sidebarAction.open()
   })
 }

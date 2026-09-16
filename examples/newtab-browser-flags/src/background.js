@@ -43,17 +43,8 @@ function setupSidebarOpenHandlers() {
     const isSafariLike =
       envBrowser === 'safari' || envBrowser === 'webkit-based'
 
-    if (isFirefoxLike) {
-      browser.runtime.onMessage.addListener((message) => {
-        if (!message || message.type !== 'openSidebar') return
-
-        try {
-          browser.sidebarAction.open()
-        } catch (error) {
-          console.error(error)
-        }
-      })
-    }
+    // No gecko listener on purpose: Firefox refuses sidebarAction.open() outside
+    // a user input handler, so the new tab page opens the sidebar itself.
 
     if (isSafariLike) {
       chrome.runtime.onMessage.addListener((message) => {

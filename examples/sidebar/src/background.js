@@ -54,12 +54,6 @@ if (isFirefoxLike) {
 chrome.runtime.onMessage.addListener((message, sender) => {
   if (message?.type !== 'openSidebar') return
 
-  if (isFirefoxLike) {
-    browser.sidebarAction.open()
-
-    return
-  }
-
   if (isSafariLike) {
     openSidebarTab()
 

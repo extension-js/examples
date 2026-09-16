@@ -30,19 +30,22 @@ export default function initial() {
   contentDiv.className = 'content_script'
   shadowRoot.appendChild(contentDiv)
 
-  const pill = document.createElement('button')
-  pill.className = 'content_pill'
-  pill.type = 'button'
-  // Named for Accessibility as well as for sight: the label is how a screen
-  // reader announces the button, and how the docs recorder finds it.
-  pill.setAttribute('aria-label', 'Open sidebar')
-  pill.addEventListener('click', () => {
-    if (isFirefoxLike) {
-      browser.runtime.sendMessage({type: 'openSidebar'})
-    } else {
+  // Firefox cannot open a sidebar from a message listener, so the gecko build
+  // renders a hint naming the toolbar action instead of a dead control.
+  const pill = document.createElement(isFirefoxLike ? 'div' : 'button')
+  pill.className = isFirefoxLike
+    ? 'content_pill content_pill_static'
+    : 'content_pill'
+
+  if (!isFirefoxLike) {
+    pill.type = 'button'
+    // Named for Accessibility as well as for sight: the label is how a screen
+    // reader announces the button, and how the docs recorder finds it.
+    pill.setAttribute('aria-label', 'Open sidebar')
+    pill.addEventListener('click', () => {
       chrome.runtime.sendMessage({type: 'openSidebar'})
-    }
-  })
+    })
+  }
 
   contentDiv.appendChild(pill)
 
@@ -55,7 +58,10 @@ export default function initial() {
 
   const pillText = document.createElement('span')
   pillText.className = 'content_pill_text'
-  pillText.textContent = 'Open sidebar'
+  pillText.textContent = isFirefoxLike
+    ? 'Use the toolbar icon to open the sidebar'
+    : 'Open sidebar'
+
   pill.appendChild(pillText)
 
   return () => {

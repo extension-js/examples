@@ -19,6 +19,9 @@ const JS_ANCHOR_PRIORITY: string[] = [
   'Click, grant, delight — little scripts take flight!',
   'This MAIN world content script',
   'Learn more about creating cross-browser extensions',
+  // A gecko build renders the static hint instead of the pill, so this must
+  // outrank 'Open sidebar', which survives only in the chromium branch.
+  'Use the toolbar icon to open the sidebar',
   'Open sidebar'
 ]
 

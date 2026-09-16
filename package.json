@@ -51,6 +51,7 @@
     "test:report": "playwright show-report",
     "test:install": "playwright install",
     "test:banner": "node scripts/checks/test-browser-banner.mjs",
+    "test:gecko-surfaces": "node scripts/checks/assert-gecko-sidebar-surfaces.mjs",
     "test:canary-one-run": "node scripts/install-contracts/assert-canary-one-run-builds.mjs",
     "test:canary-runtime-installed": "node scripts/install-contracts/assert-canary-runtime-installed.mjs",
     "test:optional-deps-contract": "node scripts/install-contracts/assert-optional-deps-canary-matrix.mjs",
