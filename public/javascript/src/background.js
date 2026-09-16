@@ -21,7 +21,7 @@ if (isFirefoxLike) {
 if (!isFirefoxLike) {
   // setPanelBehavior only affects FUTURE action clicks, registering it
   // inside onClicked would swallow the first toolbar click.
-  chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 
   // The side panel API only exists in Chromium. Firefox opens the sidebar in
   // the listener above, so this listener is compiled out of gecko builds.
@@ -32,13 +32,13 @@ if (!isFirefoxLike) {
     // allowed inside the user gesture that the content-script click carries, and
     // a tabs.query callback outlives it: the panel then silently refuses to open.
     // sender.tab is the tab the click came from, so no lookup is needed at all.
-    chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true})
+    chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 
     const tabId = sender.tab?.id
-    if (!chrome.sidePanel.open || tabId === undefined) return
+    if (!chrome.sidePanel?.open || tabId === undefined) return
 
     try {
-      chrome.sidePanel.open({tabId})
+      chrome.sidePanel?.open({tabId})
     } catch (error) {
       console.error(error)
     }
