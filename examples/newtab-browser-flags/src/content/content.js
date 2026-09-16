@@ -25,6 +25,7 @@ export default function initial() {
     z-index: 999999;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   `
+
   indicator.textContent = 'Browser Flags Extension Loaded!'
   document.body.appendChild(indicator)
 
@@ -38,6 +39,7 @@ export default function initial() {
   // Return cleanup function
   return () => {
     clearTimeout(timeoutId)
+
     if (indicator.parentNode) {
       indicator.parentNode.removeChild(indicator)
     }

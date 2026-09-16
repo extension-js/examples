@@ -1,14 +1,3 @@
-// Multi-browser build verification
-//
-// For each representative template × browser (chrome, edge, firefox):
-//   1. Production build exits successfully
-//   2. Output contains a valid manifest.json
-//   3. Manifest version matches the browser expectation (MV3 or MV2)
-//   4. Content script / background / popup entries listed in manifest exist on disk
-//   5. No dev-only artifacts leak into production output
-//
-// No mocking — runs real CLI build command against real templates.
-
 import {test, expect} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
@@ -32,14 +21,13 @@ const TEMPLATES = [
   'vue'
 ]
 
-// ---------------------------------------------------------------------------
 // Helpers
-// ---------------------------------------------------------------------------
 
 function buildCommand(exampleDir: string, browser: string): string {
   if (localCliCjs) {
     return `node ${localCliCjs} build ${exampleDir} --browser=${browser}`
   }
+
   return `pnpm extension build ${exampleDir} --browser=${browser}`
 }
 
@@ -62,6 +50,7 @@ function findOutputDir(exampleDir: string, browser: string): string | null {
       if (fs.existsSync(path.join(dir, 'manifest.json'))) return dir
     }
   }
+
   return null
 }
 
@@ -84,21 +73,22 @@ function expectedManifestVersion(
     const ffMv = srcManifest?.['firefox:manifest_version']
     if (typeof ffMv === 'number') return ffMv
   }
+
   // Chromium-based use MV3 when declared
   const chrMv = srcManifest?.['chromium:manifest_version']
   if (typeof chrMv === 'number') return chrMv
+
   return srcManifest?.manifest_version ?? null
 }
 
-// ---------------------------------------------------------------------------
 // Tests
-// ---------------------------------------------------------------------------
 
 for (const templateName of TEMPLATES) {
   const exampleDir = path.join(__dirname, templateName)
   const srcManifestPath = path.join(exampleDir, 'src', 'manifest.json')
 
   if (!fs.existsSync(srcManifestPath)) continue
+
   const srcManifest = readJSON(srcManifestPath)
 
   test.describe(`${templateName}: multi-browser build`, () => {
@@ -124,6 +114,7 @@ for (const templateName of TEMPLATES) {
           const msg = (error as any)?.stderr
             ? String((error as any).stderr).slice(0, 500)
             : (error as Error).message
+
           throw new Error(`${templateName} × ${browser}: build failed:\n${msg}`)
         }
 
@@ -137,6 +128,7 @@ for (const templateName of TEMPLATES) {
 
         // Manifest version matches expectation
         const expectedMv = expectedManifestVersion(browser, srcManifest)
+
         if (expectedMv !== null) {
           expect(
             manifest.manifest_version,
@@ -163,12 +155,14 @@ for (const templateName of TEMPLATES) {
         // Background entry exists on disk
         const sw = manifest.background?.service_worker
         const bgScripts = manifest.background?.scripts
+
         if (sw) {
           expect(
             fs.existsSync(path.join(outputDir!, sw)),
             `${templateName} × ${browser}: service worker ${sw} missing`
           ).toBe(true)
         }
+
         if (Array.isArray(bgScripts)) {
           for (const script of bgScripts) {
             expect(
@@ -182,6 +176,7 @@ for (const templateName of TEMPLATES) {
         const popup =
           manifest.action?.default_popup ||
           manifest.browser_action?.default_popup
+
         if (popup) {
           expect(
             fs.existsSync(path.join(outputDir!, popup)),
@@ -198,9 +193,11 @@ for (const templateName of TEMPLATES) {
         ).toBe(false)
 
         const allFiles: string[] = []
+
         try {
-          for (const f of fs.readdirSync(outputDir!, {recursive: true}))
+          for (const f of fs.readdirSync(outputDir!, {recursive: true})) {
             allFiles.push(String(f))
+          }
         } catch {}
 
         const hotUpdateFiles = allFiles.filter((f) =>
@@ -216,6 +213,7 @@ for (const templateName of TEMPLATES) {
           .filter((f) => {
             try {
               const content = fs.readFileSync(path.join(outputDir!, f), 'utf8')
+
               return content.includes('//# sourceURL=webpack-internal')
             } catch {
               return false
@@ -226,9 +224,7 @@ for (const templateName of TEMPLATES) {
           `${templateName} × ${browser}: ${evalSourceMaps.length} files with eval source maps`
         ).toBe(0)
 
-        // ---------------------------------------------------------------
         // Firefox-specific manifest key verification
-        // ---------------------------------------------------------------
         if (browser === 'firefox') {
           if (manifest.manifest_version === 2) {
             // Firefox MV2 should have a popup when the source declares one
@@ -236,6 +232,7 @@ for (const templateName of TEMPLATES) {
               srcManifest.action?.default_popup ||
               srcManifest['chromium:action']?.default_popup ||
               srcManifest['firefox:browser_action']?.default_popup
+
             if (srcPopup) {
               const outPopup =
                 manifest.action?.default_popup ||
@@ -245,6 +242,7 @@ for (const templateName of TEMPLATES) {
                 `${templateName} × firefox: MV2 should have a popup entry`
               ).toBeTruthy()
             }
+
             // Firefox MV2 should use sidebar_action, not side_panel
             if (
               srcManifest['chromium:side_panel'] ||
@@ -258,15 +256,16 @@ for (const templateName of TEMPLATES) {
           }
         }
 
-        // ---------------------------------------------------------------
         // CSS files referenced in HTML entries are present and non-empty
-        // ---------------------------------------------------------------
         const htmlFiles = allFiles.filter((f) => f.endsWith('.html'))
+
         for (const htmlFile of htmlFiles) {
           const htmlPath = path.join(outputDir!, htmlFile)
+
           try {
             const htmlContent = fs.readFileSync(htmlPath, 'utf8')
             const cssHrefs = htmlContent.match(/href="([^"]*\.css)"/g)
+
             if (cssHrefs) {
               for (const match of cssHrefs) {
                 const href = match.replace(/href="([^"]*)"/, '$1')
@@ -278,6 +277,7 @@ for (const templateName of TEMPLATES) {
                   fs.existsSync(cssPath),
                   `${templateName} × ${browser}: CSS file ${href} referenced in ${htmlFile} is missing`
                 ).toBe(true)
+
                 const cssContent = fs.readFileSync(cssPath, 'utf8')
                 expect(
                   cssContent.trim().length,

@@ -14,6 +14,7 @@ export default function PanelApp() {
     // missing, so the panel says so instead of throwing.
     if (!chrome?.devtools?.inspectedWindow) {
       inspectedTitle.value = FALLBACK_MESSAGE
+
       return
     }
 
@@ -22,8 +23,10 @@ export default function PanelApp() {
       (result: string, error) => {
         if (error) {
           inspectedTitle.value = 'Could not read the inspected page.'
+
           return
         }
+
         inspectedTitle.value = result || 'The inspected page has no title.'
       }
     )

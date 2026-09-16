@@ -1,14 +1,3 @@
-// Template reload strategy test
-//
-// Covers the full reload lifecycle for content-script and HTML-page templates:
-//   1. Dev server starts and first compile succeeds
-//   2. UI renders with expected initial content
-//   3. Source edit triggers rebuild → extension reload → change persists on hard reload
-//   4. Second edit replaces first without stale content flash
-//   5. Production build succeeds for chrome, edge, and firefox
-//
-// No mocking — real Chromium, real dev server, real file edits.
-
 import {expect, test as baseTest} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
@@ -30,9 +19,7 @@ const SUPPORTED_BUILD_BROWSERS = ['chrome', 'edge', 'firefox']
 
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
-// ---------------------------------------------------------------------------
 // Dev server helpers
-// ---------------------------------------------------------------------------
 
 type Manifest = {
   content_scripts?: Array<{js?: string[]; css?: string[]}>
@@ -47,6 +34,7 @@ type Manifest = {
 
 function readManifest(dir: string): Manifest | null {
   const p = path.join(dir, 'src', 'manifest.json')
+
   try {
     return JSON.parse(fs.readFileSync(p, 'utf8'))
   } catch {
@@ -57,7 +45,7 @@ function readManifest(dir: string): Manifest | null {
 // Channels written by `extension dev` / `extension build --browser=*`
 // that this test owns and is free to wipe between runs. Deliberately
 // excludes `chrome` — that channel is the production target written by
-// scripts/prebuild-assets-templates.mjs at globalSetup time, and many
+// scripts/build/prebuild-assets-templates.mjs at globalSetup time, and many
 // downstream static specs (template.assets.spec.ts, content-env's,
 // sidebar-antd's, …) resolve `pathToExtension` to `dist/chrome` first.
 // If we wiped it, the dev test below leaves only `dist/chromium`
@@ -68,22 +56,30 @@ function readManifest(dir: string): Manifest | null {
 const CLEAN_CHANNELS = DEV_CHANNELS.filter((ch) => ch !== 'chrome')
 
 function cleanDevRoots(dir: string) {
-  for (const root of DEV_ROOTS)
-    for (const ch of CLEAN_CHANNELS)
+  for (const root of DEV_ROOTS) {
+    for (const ch of CLEAN_CHANNELS) {
       try {
         fs.rmSync(path.join(dir, root, ch), {recursive: true, force: true})
       } catch {}
+    }
+  }
 }
 
 async function waitForDevManifest(dir: string, timeoutMs = 60000) {
   const start = Date.now()
+
   while (Date.now() - start < timeoutMs) {
-    for (const root of DEV_ROOTS)
-      for (const ch of DEV_CHANNELS)
-        if (fs.existsSync(path.join(dir, root, ch, 'manifest.json')))
+    for (const root of DEV_ROOTS) {
+      for (const ch of DEV_CHANNELS) {
+        if (fs.existsSync(path.join(dir, root, ch, 'manifest.json'))) {
           return path.join(dir, root, ch)
+        }
+      }
+    }
+
     await new Promise((r) => setTimeout(r, 500))
   }
+
   throw new Error(`Dev manifest not found for ${dir}`)
 }
 
@@ -130,6 +126,7 @@ function startDev(exampleDir: string): DevServer {
     const matches = text.match(/compiled (successfully|in \d+\s*ms)/g)
     if (matches) server.compileCount += matches.length
   }
+
   proc.stdout?.on('data', onData)
   proc.stderr?.on('data', onData)
 
@@ -146,13 +143,16 @@ async function waitForCompile(
   // Track manifest mtime as filesystem-based fallback for when
   // stdio capture misses the compile receipt line.
   let initialMtime = 0
-  for (const root of DEV_ROOTS)
+
+  for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       const mf = path.join(exampleDir, root, ch, 'manifest.json')
+
       try {
         initialMtime = Math.max(initialMtime, fs.statSync(mf).mtimeMs)
       } catch {}
     }
+  }
 
   while (Date.now() - start < timeoutMs) {
     // Primary: stdout-based detection
@@ -160,23 +160,30 @@ async function waitForCompile(
 
     // Fallback: manifest mtime changed on disk
     if (afterCount > 0) {
-      for (const root of DEV_ROOTS)
+      for (const root of DEV_ROOTS) {
         for (const ch of DEV_CHANNELS) {
           const mf = path.join(exampleDir, root, ch, 'manifest.json')
+
           try {
             const mt = fs.statSync(mf).mtimeMs
             if (mt > initialMtime) return
           } catch {}
         }
+      }
     }
 
     await new Promise((r) => setTimeout(r, 200))
   }
+
   // If manifest exists, the compile likely succeeded even without the message
-  for (const root of DEV_ROOTS)
-    for (const ch of DEV_CHANNELS)
-      if (fs.existsSync(path.join(exampleDir, root, ch, 'manifest.json')))
+  for (const root of DEV_ROOTS) {
+    for (const ch of DEV_CHANNELS) {
+      if (fs.existsSync(path.join(exampleDir, root, ch, 'manifest.json'))) {
         return
+      }
+    }
+  }
+
   throw new Error(
     `Compile did not complete within ${timeoutMs}ms (count=${server.compileCount}, expected>${afterCount})`
   )
@@ -184,6 +191,7 @@ async function waitForCompile(
 
 async function stopDev(server: DevServer) {
   if (server.proc.killed) return
+
   server.proc.kill('SIGTERM')
   await new Promise((resolve) => {
     const timeout = setTimeout(resolve, 5000)
@@ -198,15 +206,14 @@ function normalize(p: string) {
   return p.replace(/^\.\//, '')
 }
 
-// ---------------------------------------------------------------------------
 // Extension reload via Playwright CDP
-// ---------------------------------------------------------------------------
 
 async function reloadExtensionViaCDP(context: any): Promise<void> {
   const pages = context.pages()
   const page = pages.length > 0 ? pages[0] : await context.newPage()
 
   let cdp: any
+
   try {
     cdp = await context.newCDPSession(page)
   } catch {
@@ -237,9 +244,11 @@ async function reloadExtensionViaCDP(context: any): Promise<void> {
           },
           sessionId
         )
+
         // One successful reload is enough.
         // Wait for the extension to reinitialise and re-register content scripts.
         await new Promise((r) => setTimeout(r, 3000))
+
         return
       } catch {
         // Try next worker
@@ -252,9 +261,7 @@ async function reloadExtensionViaCDP(context: any): Promise<void> {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Page navigation helper (handles HMR redirects)
-// ---------------------------------------------------------------------------
 
 async function gotoSettled(page: any, url: string) {
   try {
@@ -262,6 +269,7 @@ async function gotoSettled(page: any, url: string) {
   } catch {
     // HMR client may redirect — wait for final state
   }
+
   await page.waitForLoadState('domcontentloaded').catch(() => {})
 }
 
@@ -271,12 +279,11 @@ async function reloadSettled(page: any) {
   } catch {
     // redirect
   }
+
   await page.waitForLoadState('domcontentloaded').catch(() => {})
 }
 
-// ---------------------------------------------------------------------------
 // Template asset descriptors
-// ---------------------------------------------------------------------------
 
 interface TemplateAssets {
   editableFile: string
@@ -314,6 +321,7 @@ function getContentTemplateAssets(dir: string): TemplateAssets | null {
         waitUntil: 'domcontentloaded',
         timeout: 60000
       })
+
       const el = await getShadowRootElement(
         page,
         '[data-extension-root="true"]',
@@ -346,6 +354,7 @@ function getActionTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', popup)
   if (!fs.existsSync(htmlFile)) return null
+
   const original = guardSource(htmlFile)
 
   return {
@@ -379,6 +388,7 @@ function getSidebarTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', sp)
   if (!fs.existsSync(htmlFile)) return null
+
   const original = guardSource(htmlFile)
 
   return {
@@ -410,6 +420,7 @@ function getNewTabTemplateAssets(dir: string): TemplateAssets | null {
 
   const htmlFile = path.join(dir, 'src', newtab)
   if (!fs.existsSync(htmlFile)) return null
+
   const original = guardSource(htmlFile)
 
   return {
@@ -443,9 +454,7 @@ function resolveTemplateAssets(dir: string): TemplateAssets | null {
   )
 }
 
-// ---------------------------------------------------------------------------
 // Templates under test
-// ---------------------------------------------------------------------------
 
 // HTML-page templates (action, new, sidebar) verify that dev-server output
 // is read fresh from disk on navigation — no extension reload needed.
@@ -455,9 +464,7 @@ function resolveTemplateAssets(dir: string): TemplateAssets | null {
 // tests below instead.
 const RELOAD_TEMPLATES = ['action', 'new', 'sidebar']
 
-// ---------------------------------------------------------------------------
 // Tests
-// ---------------------------------------------------------------------------
 
 for (const templateName of RELOAD_TEMPLATES) {
   const exampleDir = path.join(examplesDir, templateName)
@@ -484,6 +491,7 @@ for (const templateName of RELOAD_TEMPLATES) {
 
     test.afterAll(async () => {
       if (server) await stopDev(server)
+
       server = null
       fs.writeFileSync(assets.editableFile, assets.editableOriginal, 'utf8')
     })
@@ -510,6 +518,7 @@ for (const templateName of RELOAD_TEMPLATES) {
         assets.applyMarker(assets.editableOriginal, marker),
         'utf8'
       )
+
       await waitForCompile(server!, countBefore, exampleDir)
 
       if (assets.isContentScript) await reloadExtensionViaCDP(context)
@@ -541,8 +550,10 @@ for (const templateName of RELOAD_TEMPLATES) {
         assets.applyMarker(assets.editableOriginal, marker1),
         'utf8'
       )
+
       await waitForCompile(server!, count1, exampleDir)
       if (assets.isContentScript) await reloadExtensionViaCDP(context)
+
       await gotoSettled(page, url)
       await assets.verifyMarker(page, extensionId, marker1)
 
@@ -553,6 +564,7 @@ for (const templateName of RELOAD_TEMPLATES) {
         assets.applyMarker(assets.editableOriginal, marker2),
         'utf8'
       )
+
       await waitForCompile(server!, count2, exampleDir)
       // Extra settle: give the bundler time to flush output to disk
       await new Promise((r) => setTimeout(r, 1000))
@@ -581,6 +593,7 @@ for (const templateName of RELOAD_TEMPLATES) {
     }
   }
   const cssEdit = cssFileMap[templateName]
+
   if (cssEdit && fs.existsSync(cssEdit.file)) {
     test.describe(`${templateName}: CSS reload`, () => {
       test.describe.configure({mode: 'serial', timeout: 120000})
@@ -598,6 +611,7 @@ for (const templateName of RELOAD_TEMPLATES) {
 
       test.afterAll(async () => {
         if (cssServer) await stopDev(cssServer)
+
         cssServer = null
         fs.writeFileSync(cssEdit.file, cssOriginal, 'utf8')
       })
@@ -647,6 +661,7 @@ for (const templateName of RELOAD_TEMPLATES) {
     for (const browser of SUPPORTED_BUILD_BROWSERS) {
       baseTest(`builds for ${browser}`, () => {
         cleanDevRoots(exampleDir)
+
         try {
           execSync(
             `node ../../scripts/build-with-manifest.mjs build --browser=${browser}`,
@@ -692,19 +707,20 @@ for (const templateName of RELOAD_TEMPLATES) {
   })
 }
 
-// ---------------------------------------------------------------------------
 // File-mtime-based rebuild detection helper
-// ---------------------------------------------------------------------------
 // More robust than compileCount — waits for any output file to be newer
 // than the recorded baseline. Works regardless of stdout format changes.
 
 function getLatestOutputMtime(exampleDir: string): number {
   let latest = 0
-  for (const root of DEV_ROOTS)
+
+  for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       const dir = path.join(exampleDir, root, ch)
+
       try {
         const entries = fs.readdirSync(dir, {recursive: true})
+
         for (const entry of entries) {
           try {
             const mt = fs.statSync(path.join(dir, String(entry))).mtimeMs
@@ -713,6 +729,8 @@ function getLatestOutputMtime(exampleDir: string): number {
         }
       } catch {}
     }
+  }
+
   return latest
 }
 
@@ -722,16 +740,17 @@ async function waitForOutputNewerThan(
   timeoutMs = 30000
 ): Promise<void> {
   const start = Date.now()
+
   while (Date.now() - start < timeoutMs) {
     if (getLatestOutputMtime(exampleDir) > baseline) return
+
     await new Promise((r) => setTimeout(r, 300))
   }
+
   throw new Error(`No output file newer than baseline after ${timeoutMs}ms`)
 }
 
-// ---------------------------------------------------------------------------
 // Manifest edit reload — non-critical field (description) triggers rebuild
-// ---------------------------------------------------------------------------
 
 const manifestReloadDir = path.join(examplesDir, 'action')
 const manifestReloadManifest = readManifest(manifestReloadDir)
@@ -759,6 +778,7 @@ if (manifestReloadManifest) {
 
       manifestTest.afterAll(async () => {
         if (mServer) await stopDev(mServer)
+
         mServer = null
         fs.writeFileSync(manifestFile, manifestOriginal, 'utf8')
       })
@@ -789,9 +809,7 @@ if (manifestReloadManifest) {
   )
 }
 
-// ---------------------------------------------------------------------------
 // Locale file edit reload — _locales/en/messages.json triggers rebuild
-// ---------------------------------------------------------------------------
 
 const localeReloadDir = path.join(examplesDir, 'action-locales')
 const localeReloadManifest = readManifest(localeReloadDir)
@@ -833,6 +851,7 @@ if (localeReloadManifest) {
 
       localeTest.afterAll(async () => {
         if (lServer) await stopDev(lServer)
+
         lServer = null
         fs.writeFileSync(localeFile, localeOriginal, 'utf8')
       })
@@ -852,6 +871,7 @@ if (localeReloadManifest) {
 
           // Verify built locale file contains the new message
           let builtLocaleUpdated = false
+
           for (const root of DEV_ROOTS) {
             for (const ch of DEV_CHANNELS) {
               const builtLocale = path.join(
@@ -862,16 +882,20 @@ if (localeReloadManifest) {
                 'en',
                 'messages.json'
               )
+
               try {
                 const content = fs.readFileSync(builtLocale, 'utf8')
+
                 if (content.includes(marker)) {
                   builtLocaleUpdated = true
                   break
                 }
               } catch {}
             }
+
             if (builtLocaleUpdated) break
           }
+
           localeTest
             .expect(
               builtLocaleUpdated,
@@ -889,9 +913,7 @@ if (localeReloadManifest) {
   )
 }
 
-// ---------------------------------------------------------------------------
 // Background script edit — triggers recompile + service worker restart
-// ---------------------------------------------------------------------------
 
 const bgReloadDir = path.join(examplesDir, 'content')
 const bgReloadManifest = readManifest(bgReloadDir)
@@ -917,6 +939,7 @@ if (bgReloadManifest) {
 
     bgTest.afterAll(async () => {
       if (bgServer) await stopDev(bgServer)
+
       bgServer = null
       fs.writeFileSync(bgFile, bgOriginal, 'utf8')
     })
@@ -937,6 +960,7 @@ if (bgReloadManifest) {
       'service worker is running after background edit',
       async ({context}) => {
         let hasServiceWorker = false
+
         try {
           if (context.serviceWorkers().length > 0) {
             hasServiceWorker = true
@@ -949,6 +973,7 @@ if (bgReloadManifest) {
         } catch {
           hasServiceWorker = context.serviceWorkers().length > 0
         }
+
         bgTest
           .expect(
             hasServiceWorker,
@@ -960,7 +985,6 @@ if (bgReloadManifest) {
   })
 }
 
-// ---------------------------------------------------------------------------
 // Import-tree reload — multi-content and main-world examples
 //
 // Validates that editing ANY level of the import chain triggers rebuild:
@@ -970,7 +994,6 @@ if (bgReloadManifest) {
 //
 // For Maro's workflow: content_script import trees must be fully traced
 // and any change must propagate through to the running extension.
-// ---------------------------------------------------------------------------
 
 interface ImportTreeTemplate {
   name: string
@@ -1020,6 +1043,7 @@ function buildExample(dir: string): boolean {
       `node ../../scripts/build-with-manifest.mjs build --browser=chrome`,
       {cwd: dir, stdio: 'pipe', timeout: 120000}
     )
+
     return true
   } catch {
     return false
@@ -1028,17 +1052,21 @@ function buildExample(dir: string): boolean {
 
 function readContentScripts(dir: string): string[] {
   const results: string[] = []
+
   for (const root of [...DEV_ROOTS, 'dist']) {
     for (const ch of [...DEV_CHANNELS, 'chrome']) {
       const csDir = path.join(dir, root, ch, 'content_scripts')
+
       try {
         for (const f of fs.readdirSync(csDir)) {
           if (!f.endsWith('.js') || f.endsWith('.map')) continue
+
           results.push(fs.readFileSync(path.join(csDir, f), 'utf8'))
         }
       } catch {}
     }
   }
+
   return results
 }
 
@@ -1049,12 +1077,14 @@ for (const tmpl of IMPORT_TREE_TEMPLATES) {
   const constFile = path.join(importTreeDir, tmpl.constantsFile)
   const badgeFile = path.join(importTreeDir, tmpl.createBadgeFile)
   const leafFile = path.join(importTreeDir, tmpl.leafFile)
+
   if (
     !fs.existsSync(constFile) ||
     !fs.existsSync(badgeFile) ||
     !fs.existsSync(leafFile)
-  )
+  ) {
     continue
+  }
 
   const constOriginal = guardSource(constFile)
   const badgeOriginal = guardSource(badgeFile)
@@ -1080,6 +1110,7 @@ for (const tmpl of IMPORT_TREE_TEMPLATES) {
         constOriginal.replace("'extension.js'", `'${marker}'`),
         'utf8'
       )
+
       cleanDevRoots(importTreeDir)
       const ok = buildExample(importTreeDir)
       baseTest
@@ -1110,6 +1141,7 @@ for (const tmpl of IMPORT_TREE_TEMPLATES) {
         ),
         'utf8'
       )
+
       cleanDevRoots(importTreeDir)
       const ok = buildExample(importTreeDir)
       baseTest
@@ -1136,6 +1168,7 @@ for (const tmpl of IMPORT_TREE_TEMPLATES) {
         leafOriginal.replace(tmpl.leafTitleText, marker),
         'utf8'
       )
+
       cleanDevRoots(importTreeDir)
       const ok = buildExample(importTreeDir)
       baseTest

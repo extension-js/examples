@@ -13,8 +13,8 @@ const isHeadless = process.env.HEADLESS === 'true'
 // claims the exact slug and any `<prefix>-*` variant. The `other` project
 // collects every template.spec.ts whose slug no prefix claims, so a new
 // template is tested by default instead of silently skipped.
-// scripts/get-examples-for-project.mjs derives the CI build list from the
-// same rule and scripts/assert-spec-coverage.mjs fails the build when a
+// scripts/build/get-examples-for-project.mjs derives the CI build list from the
+// same rule and scripts/checks/assert-spec-coverage.mjs fails the build when a
 // spec file still ends up matched by no project.
 const claimedSlugPrefixes = [
   'content',
@@ -35,16 +35,9 @@ const unclaimedTemplateSpec = new RegExp(
     `[^/]+/template\\.spec\\.ts$`
 )
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
 // import dotenv from 'dotenv';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
 export default defineConfig({
   // Pre-build every template referenced by the assets suite BEFORE workers
   // start. resolveBuiltExtensionPath() shells out to the CLI at module-load
@@ -52,7 +45,7 @@ export default defineConfig({
   // same spec the concurrent builds race and produce partial dist/ writes
   // (observed as "manifest missing" chrome errors). Serial prebuild is the
   // only reliable way to eliminate the race.
-  globalSetup: './scripts/prebuild-assets-templates.mjs',
+  globalSetup: './scripts/build/prebuild-assets-templates.mjs',
 
   // Reasonable timeout for CI environments
   timeout: process.env.CI ? 60_000 : 30_000,

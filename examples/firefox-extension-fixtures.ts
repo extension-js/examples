@@ -1,19 +1,3 @@
-// Firefox extension test fixtures using Playwright + Firefox RDP
-//
-// Strategy:
-// 1. Launch Firefox via Playwright's firefox.launchPersistentContext with
-//    a temp profile that has remote debugging enabled
-// 2. Pass -start-debugger-server <port> to open the RDP socket
-// 3. Connect a minimal RDP client and call installTemporaryAddon
-// 4. Discover the moz-extension:// UUID from the profile's prefs.js
-// 5. Expose page + extensionId (UUID) for Playwright assertions
-//
-// Limitation: Playwright's Juggler protocol cannot navigate to
-// moz-extension:// URLs, and the patched Firefox RDP does not expose
-// addon debugging (webExtensionDescriptor has no getTarget). Therefore
-// extension page rendering is verified via built HTML content on disk,
-// while content scripts are verified at runtime via Playwright.
-
 import {
   test as base,
   firefox,
@@ -25,12 +9,11 @@ import path from 'path'
 import fs from 'fs'
 import os from 'os'
 
-// ---------------------------------------------------------------------------
 // Minimal RDP client — just enough for installTemporaryAddon + listTabs
-// ---------------------------------------------------------------------------
 
 function buildRdpFrame(obj: unknown): string {
   const body = JSON.stringify(obj)
+
   return `${Buffer.byteLength(body)}:${body}`
 }
 
@@ -47,16 +30,19 @@ class RdpClient {
             this.socket = s
             s.on('data', (chunk) => {
               this.buffer = Buffer.concat([this.buffer, chunk])
+
               if (this.dataResolve) {
                 const fn = this.dataResolve
                 this.dataResolve = null
                 fn()
               }
             })
+
             resolve()
           })
           s.once('error', reject)
         })
+
         return
       } catch {
         if (i < retries - 1) {
@@ -64,6 +50,7 @@ class RdpClient {
         }
       }
     }
+
     throw new Error(`Failed to connect to Firefox RDP on port ${port}`)
   }
 
@@ -71,29 +58,35 @@ class RdpClient {
     const str = this.buffer.toString()
     const sep = str.indexOf(':')
     if (sep < 1) return null
+
     const len = parseInt(str.substring(0, sep), 10)
     if (isNaN(len)) return null
+
     const byteOffset = Buffer.byteLength(str.substring(0, sep + 1))
     if (this.buffer.length - byteOffset < len) return null
+
     const msg = this.buffer.slice(byteOffset, byteOffset + len)
     this.buffer = this.buffer.slice(byteOffset + len)
+
     return JSON.parse(msg.toString())
   }
 
   private async readOneMessage(timeoutMs = 8000): Promise<any> {
     const deadline = Date.now() + timeoutMs
+
     while (Date.now() < deadline) {
       const msg = this.tryParse()
       if (msg) return msg
+
       await new Promise<void>((resolve) => {
         this.dataResolve = resolve
         setTimeout(resolve, 100)
       })
     }
+
     throw new Error('RDP read timeout')
   }
 
-  /** Consume the initial welcome packet Firefox sends on connect */
   async consumeWelcome(): Promise<any> {
     return this.readOneMessage()
   }
@@ -102,20 +95,22 @@ class RdpClient {
     this.socket.write(buildRdpFrame(payload))
     // Read messages, skipping unsolicited events from other actors
     const deadline = Date.now() + 8000
+
     while (Date.now() < deadline) {
       const msg = await this.readOneMessage(
         Math.max(deadline - Date.now(), 500)
       )
+
       if (msg.from === payload.to || !msg.type || payload.to === 'root') {
         return msg
       }
     }
+
     throw new Error(
       `RDP request timeout waiting for response from ${payload.to}`
     )
   }
 
-  /** Drain any unsolicited messages (events) from the buffer */
   drainEvents(): void {
     while (this.tryParse()) {
       // discard
@@ -131,9 +126,7 @@ class RdpClient {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Port allocation
-// ---------------------------------------------------------------------------
 
 function getFreePort(): Promise<number> {
   return new Promise((resolve, reject) => {
@@ -142,13 +135,12 @@ function getFreePort(): Promise<number> {
       const addr = srv.address() as net.AddressInfo
       srv.close(() => resolve(addr.port))
     })
+
     srv.on('error', reject)
   })
 }
 
-// ---------------------------------------------------------------------------
 // UUID discovery — reads prefs.js after addon install
-// ---------------------------------------------------------------------------
 
 async function getExtensionUuid(
   profileDir: string,
@@ -159,11 +151,13 @@ async function getExtensionUuid(
   for (let i = 0; i < maxRetries; i++) {
     try {
       const prefsPath = path.join(profileDir, 'prefs.js')
+
       if (fs.existsSync(prefsPath)) {
         const content = fs.readFileSync(prefsPath, 'utf8')
         const uuidMatch = content.match(
           /user_pref\("extensions\.webextensions\.uuids",\s*"(.+?)"\)/
         )
+
         if (uuidMatch) {
           // Value is escaped JSON: {\"addon-id\":\"uuid\", ...}
           const jsonStr = uuidMatch[1].replace(/\\"/g, '"')
@@ -174,31 +168,32 @@ async function getExtensionUuid(
     } catch {
       // prefs.js may not exist yet or may be partially written
     }
+
     await new Promise((r) => setTimeout(r, delayMs))
   }
+
   return undefined
 }
 
-// ---------------------------------------------------------------------------
 // Firefox build path resolution
-// ---------------------------------------------------------------------------
 
 export function resolveBuiltFirefoxExtensionPath(
   exampleDirAbsolute: string
 ): string {
   const roots = ['dist', 'build', '.extension']
+
   for (const root of roots) {
     const dir = path.join(exampleDirAbsolute, root, 'firefox')
+
     if (fs.existsSync(dir) && fs.existsSync(path.join(dir, 'manifest.json'))) {
       return dir
     }
   }
+
   return path.join(exampleDirAbsolute, 'dist', 'firefox')
 }
 
-// ---------------------------------------------------------------------------
 // Firefox master preferences for test profile
-// ---------------------------------------------------------------------------
 
 const firefoxTestPrefs: Record<string, string | number | boolean> = {
   // Remote debugging
@@ -242,9 +237,7 @@ const firefoxTestPrefs: Record<string, string | number | boolean> = {
   'extensions.getAddons.cache.enabled': false
 }
 
-// ---------------------------------------------------------------------------
 // RDP helpers
-// ---------------------------------------------------------------------------
 
 export interface RdpTab {
   actor: string
@@ -253,18 +246,14 @@ export interface RdpTab {
   outerWindowID?: number
 }
 
-/**
- * List tabs via RDP. Returns tab descriptors including moz-extension:// pages.
- */
 export async function rdpListTabs(rdpClient: RdpClient): Promise<RdpTab[]> {
   rdpClient.drainEvents()
   const response = await rdpClient.request({to: 'root', type: 'listTabs'})
+
   return (response?.tabs || []) as RdpTab[]
 }
 
-// ---------------------------------------------------------------------------
 // Fixture factory
-// ---------------------------------------------------------------------------
 
 export const firefoxExtensionFixtures = (pathToExtension: string) => {
   return base.extend<{
@@ -295,8 +284,10 @@ export const firefoxExtensionFixtures = (pathToExtension: string) => {
         // Get addons actor
         const root = await rdpClient.request({to: 'root', type: 'getRoot'})
         const addonsActor: string | undefined = root?.addonsActor
+
         if (!addonsActor) {
           const tabs = await rdpClient.request({to: 'root', type: 'listTabs'})
+
           if (!tabs?.addonsActor) {
             throw new Error('Could not find addonsActor from Firefox RDP')
           }
@@ -315,6 +306,7 @@ export const firefoxExtensionFixtures = (pathToExtension: string) => {
         })
 
         const addonId: string | undefined = installResult?.addon?.id
+
         if (!addonId) {
           throw new Error(
             `installTemporaryAddon did not return an addon ID. Response: ${JSON.stringify(installResult)}`
@@ -333,6 +325,7 @@ export const firefoxExtensionFixtures = (pathToExtension: string) => {
         await use(context)
       } finally {
         if (rdpClient) rdpClient.disconnect()
+
         if (context) {
           try {
             await context.close()
@@ -340,6 +333,7 @@ export const firefoxExtensionFixtures = (pathToExtension: string) => {
             // ignore
           }
         }
+
         try {
           if (profileDir && fs.existsSync(profileDir)) {
             fs.rmSync(profileDir, {recursive: true, force: true})
@@ -362,11 +356,13 @@ export const firefoxExtensionFixtures = (pathToExtension: string) => {
 
       // Discover the moz-extension:// UUID from the profile
       const uuid = await getExtensionUuid(profileDir, addonId)
+
       if (!uuid) {
         throw new Error(
           `Could not discover moz-extension UUID for addon ${addonId} in ${profileDir}`
         )
       }
+
       await use(uuid)
     },
 

@@ -23,6 +23,7 @@ async function queryInShadow(page: any, hostLocator: any, selector: string) {
   const shadow = await hostLocator.evaluateHandle(
     (host: HTMLElement) => host.shadowRoot
   )
+
   return await shadow.evaluateHandle(
     (root: ShadowRoot, sel: string) => root?.querySelector(sel) ?? null,
     selector

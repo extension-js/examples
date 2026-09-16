@@ -26,8 +26,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 
@@ -55,11 +57,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type === 'openSidebar') {
     if (isFirefoxLike) {
       browser.sidebarAction.open()
+
       return
     }
 
     if (isSafariLike) {
       openSidebarTab()
+
       return
     }
 
@@ -67,6 +71,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // user-gesture context from the content-script click is preserved.
     chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
     const tabId = sender.tab?.id
+
     if (chrome.sidePanel?.open && tabId !== undefined) {
       try {
         chrome.sidePanel?.open({tabId})
@@ -74,6 +79,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         console.error(error)
       }
     }
+
     return
   }
 
@@ -84,17 +90,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         active: true,
         lastFocusedWindow: true
       })
+
       if (!tab?.id) {
         sendResponse({ok: false, error: 'No active tab'})
+
         return
       }
+
       const context = (await chrome.tabs.sendMessage(tab.id, {
         type: 'getPageContext'
       })) as PageContext | undefined
+
       if (!context) {
         sendResponse({ok: false, error: 'No page context received'})
+
         return
       }
+
       sendResponse({ok: true, context})
     } catch (err) {
       const error = err instanceof Error ? err.message : String(err)

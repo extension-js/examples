@@ -54,6 +54,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   const button = document.createElement('button')
@@ -66,6 +67,7 @@ export default function initial() {
   button.addEventListener('click', () => {
     chrome.runtime.sendMessage({type: 'open-options'})
   })
+
   contentDiv.appendChild(button)
 
   function render(position) {
@@ -88,6 +90,7 @@ export default function initial() {
       render(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onSettingChanged)
 
   return () => {
@@ -100,5 +103,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.less', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

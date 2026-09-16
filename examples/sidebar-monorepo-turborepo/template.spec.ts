@@ -24,6 +24,7 @@ const buildScript = path.join(
   'build-with-manifest.mjs'
 )
 const expectedDist = path.join(extensionPackageDir, 'dist', 'chrome')
+
 if (!fs.existsSync(path.join(expectedDist, 'manifest.json'))) {
   try {
     execSync(`node ${buildScript} build --browser=chrome`, {
@@ -34,6 +35,7 @@ if (!fs.existsSync(path.join(expectedDist, 'manifest.json'))) {
     /* noop */
   }
 }
+
 const pathToExtension = expectedDist
 const runtimeTest = extensionFixtures(pathToExtension)
 
@@ -128,6 +130,7 @@ test.describe('Monorepo Build Artifacts', () => {
     const manifest = JSON.parse(
       fs.readFileSync(path.join(expectedDist, 'manifest.json'), 'utf8')
     )
+
     for (const cs of manifest.content_scripts) {
       for (const jsFile of cs.js || []) {
         const jsPath = path.join(expectedDist, jsFile)
@@ -135,6 +138,7 @@ test.describe('Monorepo Build Artifacts', () => {
           fs.existsSync(jsPath),
           `content script ${jsFile} should exist`
         ).toBe(true)
+
         const content = fs.readFileSync(jsPath, 'utf8')
         expect(content.length).toBeGreaterThan(100)
       }
@@ -184,6 +188,7 @@ test.describe('Monorepo Build Artifacts', () => {
     )
     const iconPaths = Object.values(manifest.icons ?? {}) as string[]
     expect(iconPaths.length, 'manifest should declare icons').toBeGreaterThan(0)
+
     for (const iconPath of iconPaths) {
       expect(
         fs.existsSync(path.join(expectedDist, iconPath)),
@@ -197,6 +202,7 @@ test.describe('Monorepo Build Artifacts', () => {
     expect(fs.existsSync(hotDir), 'hot/ should not exist').toBe(false)
 
     const allFiles: string[] = []
+
     try {
       for (const f of fs.readdirSync(expectedDist, {recursive: true})) {
         allFiles.push(String(f))
@@ -216,6 +222,7 @@ test.describe('Monorepo Build Artifacts', () => {
       'pnpm-lock.yaml',
       'extension.config.js'
     ]
+
     for (const file of shouldNotExist) {
       expect(
         fs.existsSync(path.join(expectedDist, file)),
@@ -238,6 +245,7 @@ test.describe('Monorepo Multi-Browser Builds', () => {
       !fs.existsSync(path.join(firefoxDist, 'manifest.json')),
       'Firefox build not available'
     )
+
     const manifest = JSON.parse(
       fs.readFileSync(path.join(firefoxDist, 'manifest.json'), 'utf8')
     )
@@ -256,6 +264,7 @@ test.describe('Monorepo Multi-Browser Builds', () => {
       !fs.existsSync(path.join(edgeDist, 'manifest.json')),
       'Edge build not available'
     )
+
     const manifest = JSON.parse(
       fs.readFileSync(path.join(edgeDist, 'manifest.json'), 'utf8')
     )
@@ -269,6 +278,7 @@ test.describe('Monorepo Multi-Browser Builds', () => {
       !fs.existsSync(path.join(firefoxDist, 'sidebar', 'index.html')),
       'Firefox sidebar HTML not available'
     )
+
     const html = fs.readFileSync(
       path.join(firefoxDist, 'sidebar', 'index.html'),
       'utf8'
@@ -289,6 +299,7 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     const el = await waitForShadowElement(
       page,
       '[data-extension-root="true"]',
@@ -306,6 +317,7 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     const badge = await waitForShadowElement(
       page,
       '[data-extension-root="true"]',
@@ -325,6 +337,7 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     const host = page.locator('[data-extension-root="true"]')
     await runtimeTest.expect(host).toBeAttached({timeout: 15000})
 
@@ -332,7 +345,9 @@ runtimeTest(
     const hasStyles = await host.evaluate((el: HTMLElement) => {
       const sr = el.shadowRoot
       if (!sr) return false
+
       const styles = sr.querySelectorAll('style')
+
       return Array.from(styles).some(
         (s) => (s.textContent || '').trim().length > 0
       )
@@ -350,6 +365,7 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     const heading = page.locator('h1, h2').first()
     await heading.waitFor({state: 'visible', timeout: 10000})
     await runtimeTest.expect(heading).toBeVisible()
@@ -365,10 +381,12 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     await page
       .locator('h1, h2')
       .first()
       .waitFor({state: 'visible', timeout: 10000})
+
     // The sidebar CSS sets background: #0a0c10, verify it's applied
     const bg = await page.evaluate(() =>
       window

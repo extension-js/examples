@@ -33,6 +33,7 @@ test('all four shadow DOM hosts are injected across three entries', async ({
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   for (const pos of POSITIONS) {
     const host = page.locator(`[data-extension-root="${pos}"]`)
     await test.expect(host).toBeAttached({timeout: 15000})
@@ -51,12 +52,14 @@ test('badge from deep import chain renders in all positions', async ({
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   for (const pos of POSITIONS) {
     const host = page.locator(`[data-extension-root="${pos}"]`)
     await test.expect(host).toBeAttached({timeout: 15000})
 
     const badgeText = await host.evaluate((el: HTMLElement) => {
       const badge = el.shadowRoot?.querySelector('[data-badge]')
+
       return badge?.textContent || ''
     })
     test
@@ -65,6 +68,7 @@ test('badge from deep import chain renders in all positions', async ({
         `${pos}: badge from constants.js → create-badge.js should render`
       )
       .toContain('extension.js')
+
     test
       .expect(badgeText, `${pos}: badge should include version`)
       .toContain('v1')
@@ -78,6 +82,7 @@ test('all positions have styled containers (position:fixed)', async ({
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   for (const pos of POSITIONS) {
     const host = page.locator(`[data-extension-root="${pos}"]`)
     await test.expect(host).toBeAttached({timeout: 15000})
@@ -88,6 +93,7 @@ test('all positions have styled containers (position:fixed)', async ({
           return host.evaluate((el: HTMLElement) => {
             const div = el.shadowRoot?.querySelector('div')
             if (!div) return null
+
             return window.getComputedStyle(div).position
           })
         },
@@ -110,14 +116,17 @@ baseTest(
     baseTest
       .expect(manifest.content_scripts[0].js)
       .toEqual(['content_scripts/content-0.js'])
+
     // Entry 1: one script
     baseTest
       .expect(manifest.content_scripts[1].js)
       .toEqual(['content_scripts/content-1.js'])
+
     // Entry 2: one script
     baseTest
       .expect(manifest.content_scripts[2].js)
       .toEqual(['content_scripts/content-2.js'])
+
     // All three bundles must exist on disk
     for (let i = 0; i < 3; i++) {
       const jsPath = path.join(

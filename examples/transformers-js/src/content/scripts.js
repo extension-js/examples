@@ -29,10 +29,13 @@ function getSelection() {
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type === 'getPageContext') {
     sendResponse(getPageContext())
+
     return
   }
+
   if (message?.type === 'getSelection') {
     sendResponse(getSelection())
+
     return
   }
 })

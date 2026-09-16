@@ -51,6 +51,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   // The greeting comes from a sibling module loaded on demand. This is the
@@ -71,6 +72,7 @@ export default function initial() {
   button.addEventListener('click', () => {
     chrome.runtime.sendMessage({type: 'open-options'})
   })
+
   contentDiv.appendChild(button)
 
   function render(position) {
@@ -94,6 +96,7 @@ export default function initial() {
       render(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onSettingChanged)
 
   return () => {
@@ -104,6 +107,7 @@ export default function initial() {
 
 async function loadGreeting() {
   const {greet} = await import('./greet.js')
+
   return greet('Content Template')
 }
 
@@ -111,5 +115,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

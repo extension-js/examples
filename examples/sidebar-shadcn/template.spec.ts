@@ -17,6 +17,7 @@ test('sidebar page renders', async ({page, extensionId}) => {
     extensionId,
     'sidebar/index.html'
   )
+
   const root = await page.locator('body').first()
   await test.expect(root).toBeVisible()
 })

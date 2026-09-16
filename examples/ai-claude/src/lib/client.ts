@@ -16,6 +16,7 @@ const DEFAULT_MAX_TOKENS = 1024
 
 export async function getApiKey(): Promise<string | null> {
   const result = await chrome.storage.local.get(STORAGE_KEY)
+
   return result[STORAGE_KEY] ?? null
 }
 
@@ -61,9 +62,11 @@ export async function sendMessage(
 
   if (!response.ok) {
     const detail = data?.error?.message || response.statusText
+
     throw new Error(`Anthropic API ${response.status}: ${detail}`)
   }
 
   const textBlock = data.content?.find((block) => block.type === 'text')
+
   return textBlock?.text ?? ''
 }

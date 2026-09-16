@@ -1,16 +1,3 @@
-// HMR live-update tests for HTML-page templates (popups, newtab, sidebar).
-//
-// Scope: verifies that editing an HTML source file triggers a live update
-// in the browser WITHOUT a manual reload (HMR/hot-reload path).
-//
-// Does NOT test hard-reload persistence — that's in template.reload.spec.ts.
-// Does NOT test content scripts — those don't use HMR (they use CDP reinject).
-//
-// Complementary to:
-//   template.reload.spec.ts  — hard-reload persistence + content scripts
-//   template.assets.spec.ts  — rendered output verification (shadow DOM, CSS, etc.)
-//   template.multi-browser.spec.ts — production build × browser matrix
-
 import {expect} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
@@ -49,7 +36,7 @@ function listExampleDirs(): string[] {
 
 function cleanDevRoots(exampleDir: string) {
   // Wipe ONLY the dev-mode channel directories. Preserving `dist/chrome`
-  // is load-bearing: scripts/prebuild-assets-templates.mjs writes the
+  // is load-bearing: scripts/build/prebuild-assets-templates.mjs writes the
   // production-clean dist there at globalSetup time, and many static
   // specs (template.assets.spec.ts, content-env/template.spec.ts,
   // sidebar-antd/template.spec.ts, …) resolve their `pathToExtension`
@@ -68,6 +55,7 @@ function cleanDevRoots(exampleDir: string) {
     'firefox-based',
     'edge'
   ]
+
   for (const root of DEV_ROOTS) {
     for (const channel of DEV_ONLY_CHANNELS) {
       try {
@@ -85,6 +73,7 @@ function cleanDevRoots(exampleDir: string) {
 function readManifest(exampleDir: string): Manifest | null {
   const manifestPath = path.join(exampleDir, 'src', 'manifest.json')
   if (!fs.existsSync(manifestPath)) return null
+
   try {
     return JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
   } catch {
@@ -120,18 +109,22 @@ async function waitForDevManifest(
 ): Promise<string> {
   const start = Date.now()
   const DEV_ONLY_CHANNELS = ['chromium', 'chrome-mv3']
+
   while (Date.now() - start < timeoutMs) {
     for (const root of DEV_ROOTS) {
       for (const channel of DEV_ONLY_CHANNELS) {
         const candidate = path.join(exampleDir, root, channel)
         const manifestPath = path.join(candidate, 'manifest.json')
+
         // existsSync alone is not enough: rspack creates the file before the
         // build finishes writing dependent assets. Require a non-empty,
         // parseable manifest before unblocking the test.
         try {
           const stat = fs.statSync(manifestPath)
+
           if (stat.size > 0) {
             JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+
             return candidate
           }
         } catch {
@@ -139,16 +132,20 @@ async function waitForDevManifest(
         }
       }
     }
+
     await new Promise((resolve) => setTimeout(resolve, 250))
   }
+
   throw new Error(`Dev manifest not found for ${exampleDir}`)
 }
 
 function appendHtmlBodyProbe(source: string, marker: string): string {
   const probe = `\n<div data-extjs-dev-live-probe="true">${marker}</div>\n`
+
   if (source.includes('</body>')) {
     return source.replace('</body>', `${probe}</body>`)
   }
+
   return `${source}${probe}`
 }
 
@@ -163,9 +160,11 @@ function getHtmlPageUrl(
   ) {
     return 'chrome://newtab'
   }
+
   if (entryPath.includes('sidebar/')) {
     return getSidebarPath(extensionId)
   }
+
   return `chrome-extension://${extensionId}/${entryPath}`
 }
 
@@ -201,11 +200,13 @@ function startDev(exampleDir: string): ChildProcess {
         '--install=false'
       ]
   const command = localCliCjs ? process.execPath : 'pnpm'
+
   return spawn(command, args, spawnOpts)
 }
 
 async function stopDev(proc: ChildProcess) {
   if (proc.killed || proc.exitCode !== null) return
+
   const pid = proc.pid
 
   // pnpm does not forward signals to the `node` CLI child it spawns, so
@@ -237,6 +238,7 @@ async function stopDev(proc: ChildProcess) {
     closed.then(() => 'closed' as const),
     waitMs(5000)
   ])
+
   if (outcome === 'timeout') {
     signalTree('SIGKILL')
     await Promise.race([closed, waitMs(5000)])
@@ -257,11 +259,13 @@ function restoreIfChanged(filePath: string, original: string) {
   try {
     if (fs.readFileSync(filePath, 'utf8') === original) {
       releaseSource(filePath)
+
       return
     }
   } catch {
     // Source file vanished — fall through and rewrite.
   }
+
   fs.writeFileSync(filePath, original, 'utf8')
   releaseSource(filePath)
 }
@@ -298,6 +302,7 @@ function getMountContainerId(
       'utf8'
     )
     const match = html.match(/<div id="(root|app)">\s*<\/div>/)
+
     return match ? match[1] : null
   } catch {
     return null
@@ -344,6 +349,7 @@ for (const example of examples) {
           waitUntil: 'domcontentloaded',
           timeout: 60000
         })
+
         const updatedText = `DevLiveHtmlUpdate${Date.now()}`
 
         try {
@@ -370,6 +376,7 @@ for (const example of examples) {
           waitUntil: 'domcontentloaded',
           timeout: 60000
         })
+
         const recoveredText = `DevLiveHtmlRecovered${Date.now()}`
 
         try {
@@ -423,14 +430,11 @@ for (const example of examples) {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Content script: live-update + hard-reload persistence
-// ---------------------------------------------------------------------------
 // Verifies that editing a content script source file:
 //   1. Live-updates the injected shadow DOM on the page.
 //   2. Survives multiple Cmd+Shift+R (hard reload) cycles.
 //   3. Does not flash stale content from a previous edit after a new edit.
-// ---------------------------------------------------------------------------
 
 const contentExampleDir = path.join(examplesDir, 'content')
 const contentManifest = readManifest(contentExampleDir)
@@ -500,6 +504,7 @@ if (
                   '.content_title',
                   5000
                 )
+
                 return el ? await el.textContent() : ''
               },
               {timeout: 30000}
@@ -535,6 +540,7 @@ if (
                   '.content_title',
                   5000
                 )
+
                 return el ? await el.textContent() : ''
               },
               {timeout: 30000}
@@ -630,6 +636,7 @@ if (
                   '.content_title',
                   5000
                 )
+
                 return el ? await el.textContent() : ''
               },
               {timeout: 60000}
@@ -644,14 +651,11 @@ if (
   })
 }
 
-// ---------------------------------------------------------------------------
 // Dev-mode CSS link injection & React HMR verification
-// ---------------------------------------------------------------------------
 // Verifies that:
 //   1. Dev-mode HTML output contains a <link rel="stylesheet"> tag.
 //   2. React Fast Refresh runtime is present (no $RefreshSig$ errors).
 // Uses `new-react` as the representative React + CSS template.
-// ---------------------------------------------------------------------------
 
 const reactExampleDir = path.join(examplesDir, 'new-react')
 const reactManifest = readManifest(reactExampleDir)

@@ -1,22 +1,3 @@
-// `extension dev --no-browser` content-script reload gate — VISIBLE BEHAVIOR.
-//
-// The controller-less counterpart to template.content-reload.spec.ts. That suite
-// lets `extension dev` launch its own Chrome and reloads content scripts through
-// the CDP controller. This suite removes the controller: it runs `--no-browser`,
-// loads the built `dist/chromium` into an independent Playwright Chrome, and
-// asserts an edit reaches the OPEN tab IN PLACE — driven only by the control
-// bridge (dev server -> service-worker producer -> chrome.scripting.executeScript
-// re-injection). Nothing here triggers a reload: no page.reload(), no CDP
-// runtime.reload. If the broadcast/re-injection chain regresses, the marker never
-// appears and this fails.
-//
-// It also live-proves the self-mount: the content script mounts under
-// `--no-browser` with no controller present (the original hmr-no-browser concern).
-//
-// Scoped to the canonical `content` example (JS, MV3, <all_urls>,
-// `[data-extension-root]` + `.content_title` "Content Template"). The re-injection
-// path is framework-agnostic; the controller suite covers the framework matrix.
-
 import {expect, type Page} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
@@ -31,7 +12,7 @@ const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
 // Deliberately excludes `chrome`: that channel is the production build
-// scripts/prebuild-assets-templates.mjs publishes for the static specs.
+// scripts/build/prebuild-assets-templates.mjs publishes for the static specs.
 const DEV_CHANNELS = ['chromium', 'chrome-mv3']
 
 const contentExampleDir = path.join(examplesDir, 'content')
@@ -40,7 +21,7 @@ const scriptPath = path.join(contentExampleDir, 'src', 'content', 'scripts.js')
 const stylePath = path.join(contentExampleDir, 'src', 'content', 'styles.css')
 const ANCHOR = 'Content Template'
 
-// --- dev (--no-browser) harness ---------------------------------------------
+// dev (--no-browser) harness
 
 function startDev(exampleDir: string): ChildProcess {
   const env = {...process.env, EXTENSION_AUTHOR_MODE: 'true'}
@@ -68,12 +49,15 @@ function startDev(exampleDir: string): ChildProcess {
         '--install=false'
       ]
   const command = localCliCjs ? process.execPath : 'pnpm'
+
   return spawn(command, args, spawnOpts)
 }
 
 async function stopDev(proc: ChildProcess) {
   if (proc.killed || proc.exitCode !== null) return
+
   const pid = proc.pid
+
   const signalTree = (signal: NodeJS.Signals) => {
     try {
       if (process.platform !== 'win32' && pid) process.kill(-pid, signal)
@@ -82,6 +66,7 @@ async function stopDev(proc: ChildProcess) {
       // group already gone
     }
   }
+
   const closed = new Promise<void>((resolve) =>
     proc.on('close', () => resolve())
   )
@@ -94,6 +79,7 @@ async function stopDev(proc: ChildProcess) {
     closed.then(() => 'closed' as const),
     waitMs(5000)
   ])
+
   if (outcome === 'timeout') {
     signalTree('SIGKILL')
     await Promise.race([closed, waitMs(5000)])
@@ -101,11 +87,12 @@ async function stopDev(proc: ChildProcess) {
 }
 
 function cleanDevRoots(dir: string) {
-  for (const root of DEV_ROOTS)
+  for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       try {
         fs.rmSync(path.join(dir, root, ch), {recursive: true, force: true})
       } catch {}
+
       try {
         fs.rmSync(path.join(dir, root, `extension-profile-${ch}`), {
           recursive: true,
@@ -113,6 +100,7 @@ function cleanDevRoots(dir: string) {
         })
       } catch {}
     }
+  }
 }
 
 async function waitForDevManifest(
@@ -121,13 +109,16 @@ async function waitForDevManifest(
 ): Promise<void> {
   const start = Date.now()
   const channels = ['chromium', 'chrome-mv3']
+
   while (Date.now() - start < timeoutMs) {
     for (const root of DEV_ROOTS) {
       for (const ch of channels) {
         const manifestPath = path.join(dir, root, ch, 'manifest.json')
+
         try {
           if (fs.statSync(manifestPath).size > 0) {
             JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+
             return
           }
         } catch {
@@ -135,26 +126,32 @@ async function waitForDevManifest(
         }
       }
     }
+
     await new Promise((r) => setTimeout(r, 250))
   }
+
   throw new Error(`Dev manifest not found for ${dir}`)
 }
 
 function getLatestContentScriptMtime(dir: string): number {
   let latest = 0
+
   for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       const csDir = path.join(dir, root, ch, 'content_scripts')
       if (!fs.existsSync(csDir)) continue
+
       try {
         for (const f of fs.readdirSync(csDir)) {
           if (!/\.js$/.test(f) || /\.map$/.test(f)) continue
+
           const mt = fs.statSync(path.join(csDir, f)).mtimeMs
           if (mt > latest) latest = mt
         }
       } catch {}
     }
   }
+
   return latest
 }
 
@@ -164,10 +161,13 @@ async function waitForBundleNewerThan(
   timeoutMs = 45000
 ): Promise<void> {
   const start = Date.now()
+
   while (Date.now() - start < timeoutMs) {
     if (getLatestContentScriptMtime(dir) > baseline) return
+
     await new Promise((r) => setTimeout(r, 200))
   }
+
   throw new Error(`content_scripts bundle not re-emitted within ${timeoutMs}ms`)
 }
 
@@ -180,7 +180,9 @@ async function readContentTitle(page: Page): Promise<string> {
       const host = document.querySelector('[data-extension-root="true"]')
       const sr = host ? (host as HTMLElement).shadowRoot : null
       if (!sr) return ''
+
       const el = sr.querySelector('.content_title')
+
       return el ? el.textContent || '' : ''
     })
   } catch {
@@ -199,16 +201,19 @@ async function readStyleProbe(page: Page, prop: string): Promise<string> {
       const sr = host ? (host as HTMLElement).shadowRoot : null
       const el = sr ? sr.querySelector('.content_script') : null
       if (!el) return ''
+
       const view = el.ownerDocument.defaultView || window
+
       return view.getComputedStyle(el as Element).getPropertyValue(p)
     }, prop)
+
     return (value || '').replace(/['"\s]/g, '')
   } catch {
     return ''
   }
 }
 
-// --- test -------------------------------------------------------------------
+// test
 
 const test = extensionFixtures(contentDevPath)
 
@@ -230,12 +235,15 @@ test.describe('content reload under --no-browser', () => {
     try {
       fs.writeFileSync(scriptPath, ORIGINAL, 'utf8')
     } catch {}
+
     try {
       fs.writeFileSync(stylePath, STYLE_ORIGINAL, 'utf8')
     } catch {}
+
     releaseSource(scriptPath)
     releaseSource(stylePath)
     if (proc) await stopDev(proc)
+
     proc = null
   })
 
@@ -300,6 +308,7 @@ test.describe('content reload under --no-browser', () => {
         waitUntil: 'domcontentloaded',
         timeout: 60000
       })
+
       await expect
         .poll(() => readContentTitle(page), {timeout: 45000})
         .toBe(ANCHOR)
@@ -316,17 +325,20 @@ test.describe('content reload under --no-browser', () => {
       // A BRAND-NEW tab must inject the FRESH build — not the stale build still
       // referenced by the static manifest registration.
       const newTab = await context.newPage()
+
       try {
         await newTab.goto('https://example.com/', {
           waitUntil: 'domcontentloaded',
           timeout: 60000
         })
+
         await expect
           .poll(() => readContentTitle(newTab), {
             timeout: 60000,
             intervals: [500, 1000, 2000]
           })
           .toBe(marker)
+
         // Exactly one root — the static (stale) + dynamic (fresh) double-inject
         // must converge to a single fresh mount, not leave a duplicate behind.
         await expect
@@ -366,6 +378,7 @@ test.describe('content reload under --no-browser', () => {
         waitUntil: 'domcontentloaded',
         timeout: 60000
       })
+
       // Wait until the content script has mounted and applied its stylesheet.
       await expect
         .poll(() => readStyleProbe(page, 'color'), {timeout: 45000})
@@ -379,6 +392,7 @@ test.describe('content reload under --no-browser', () => {
         `${STYLE_ORIGINAL}\n.content_script { ${probe}: "${marker}"; }\n`,
         'utf8'
       )
+
       await waitForBundleNewerThan(contentExampleDir, baseline, 45000)
       await expect
         .poll(() => readStyleProbe(page, probe), {

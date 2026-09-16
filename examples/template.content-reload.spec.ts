@@ -1,31 +1,3 @@
-// Content-script hot-reload regression gate — VISIBLE-BEHAVIOR edition.
-//
-// Parameterized over every example that declares `content_scripts` in its
-// manifest. For each example this spec asserts two user-visible axes:
-//
-//   (A) JS source edit → visible TEXT CHANGE in the already-open tab.
-//       A known anchor string (e.g. "Content Template", "Open sidebar",
-//       "Learn more about creating cross-browser extensions") is replaced
-//       with `anchor + " <MARKER>"` in the source. The test then polls the
-//       same tab's DOM (light + all open shadow roots) until the marker
-//       is visible — or fails hard after 30s.
-//
-//   (B) CSS source edit → visible STYLE CHANGE in the already-open tab.
-//       A new rule is appended to the content-script stylesheet setting a
-//       custom CSS property on the extension root; the test polls the
-//       element's computed style for that property value.
-//
-// Architecture
-//   - `extension dev` is spawned for real and allowed to launch its own
-//     Chrome (we need the actual dev → CDP → open-tab reinject chain).
-//   - Playwright connects to that Chrome via `chromium.connectOverCDP`.
-//   - No navigation after the edit — the whole point is to prove the
-//     edit reaches the EXISTING tab.
-//
-// Every wait is a bounded poll against a concrete signal (bundle mtime,
-// DOM predicate). No fixed sleeps. Tests are serial because they share the
-// CDP port the dev server picks.
-
 import {expect, test as baseTest} from '@playwright/test'
 import fs from 'fs'
 import path from 'path'
@@ -40,7 +12,7 @@ const examplesDir = __dirname
 
 const DEV_ROOTS = ['.extension', 'dist', 'build']
 // Deliberately excludes `chrome`: that channel is the production build
-// scripts/prebuild-assets-templates.mjs publishes for the static specs.
+// scripts/build/prebuild-assets-templates.mjs publishes for the static specs.
 const DEV_CHANNELS = ['chromium', 'chrome-mv3']
 const localCliCjs = process.env.EXTENSION_LOCAL_CLI_CJS || ''
 
@@ -57,9 +29,7 @@ const JS_ANCHOR_PRIORITY: string[] = [
   'Open sidebar'
 ]
 
-// -----------------------------------------------------------------------------
 // Example discovery
-// -----------------------------------------------------------------------------
 
 interface AnchorHit {
   file: string
@@ -81,20 +51,25 @@ interface ContentExample {
 function candidateJsFiles(exampleDir: string): string[] {
   const out: string[] = []
   const manifestPath = path.join(exampleDir, 'src', 'manifest.json')
+
   try {
     const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
     const entry = manifest?.content_scripts?.[0]?.js?.[0]
+
     if (typeof entry === 'string') {
       out.push(path.join(exampleDir, 'src', entry))
     }
   } catch {}
+
   const contentDir = path.join(exampleDir, 'src', 'content')
+
   if (fs.existsSync(contentDir)) {
     for (const f of fs.readdirSync(contentDir)) {
       if (/^(ContentApp|App|Content)\.(tsx?|jsx?|vue|svelte)$/.test(f)) {
         out.push(path.join(contentDir, f))
       }
     }
+
     // Also fall back to every .js/.ts/.tsx/.jsx in content/ if needed.
     for (const f of fs.readdirSync(contentDir)) {
       if (/\.(tsx?|jsx?|vue|svelte)$/.test(f)) {
@@ -103,28 +78,34 @@ function candidateJsFiles(exampleDir: string): string[] {
       }
     }
   }
+
   return out
 }
 
 function findJsAnchor(exampleDir: string): AnchorHit | null {
   for (const file of candidateJsFiles(exampleDir)) {
     if (!fs.existsSync(file)) continue
+
     let text = ''
+
     try {
       text = fs.readFileSync(file, 'utf8')
     } catch {
       continue
     }
+
     for (const anchor of JS_ANCHOR_PRIORITY) {
       if (text.includes(anchor)) return {file, anchor}
     }
   }
+
   return null
 }
 
 function findStyleTarget(exampleDir: string): StyleTarget | null {
   const contentDir = path.join(exampleDir, 'src', 'content')
   if (!fs.existsSync(contentDir)) return null
+
   const preferred = [
     'styles.css',
     'styles.scss',
@@ -132,10 +113,12 @@ function findStyleTarget(exampleDir: string): StyleTarget | null {
     'styles.module.css',
     'styles.module.scss'
   ]
+
   for (const name of preferred) {
     const p = path.join(contentDir, name)
     if (fs.existsSync(p)) return {file: p}
   }
+
   return null
 }
 
@@ -151,28 +134,36 @@ function expectedRootCountFor(manifest: any): number {
     ? manifest.content_scripts
     : []
   let count = 0
+
   for (const block of blocks) {
     if (block && Array.isArray(block.js)) count += block.js.length
   }
+
   return Math.max(1, count)
 }
 
 function discoverContentExamples(): ContentExample[] {
   const out: ContentExample[] = []
+
   for (const name of fs.readdirSync(examplesDir)) {
     const dir = path.join(examplesDir, name)
     const manifestPath = path.join(dir, 'src', 'manifest.json')
     if (!fs.statSync(dir, {throwIfNoEntry: false})?.isDirectory?.()) continue
     if (!fs.existsSync(manifestPath)) continue
+
     let manifest: any
+
     try {
       manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
     } catch {
       continue
     }
+
     if (!manifest?.content_scripts?.[0]?.js?.[0]) continue
+
     const jsAnchor = findJsAnchor(dir)
     if (!jsAnchor) continue // no known visible anchor — handled below
+
     const styleTarget = findStyleTarget(dir)
     out.push({
       name,
@@ -182,6 +173,7 @@ function discoverContentExamples(): ContentExample[] {
       expectedRootCount: expectedRootCountFor(manifest)
     })
   }
+
   return out
 }
 
@@ -205,12 +197,11 @@ const SKIP_EXAMPLES = new Set<string>([
 const EXAMPLES = discoverContentExamples().filter((e) => {
   if (SKIP_EXAMPLES.has(e.name)) return false
   if (envFilter.length === 0) return true
+
   return envFilter.includes(e.name)
 })
 
-// -----------------------------------------------------------------------------
 // Dev server harness
-// -----------------------------------------------------------------------------
 
 interface DevServer {
   proc: ChildProcess
@@ -228,7 +219,9 @@ function startDev(exampleDir: string): DevServer {
   // Same override the fixtures honour: a browser-channel lane pins the
   // Chromium the CLI launches instead of letting it pick the system one.
   const chromiumBinary = (process.env.EXTENSION_CHROMIUM_BINARY || '').trim()
-  const chromiumArgs = chromiumBinary ? ['--chromium-binary', chromiumBinary] : []
+  const chromiumArgs = chromiumBinary
+    ? ['--chromium-binary', chromiumBinary]
+    : []
   const args = localCliCjs
     ? [
         localCliCjs,
@@ -251,9 +244,11 @@ function startDev(exampleDir: string): DevServer {
 
   // Strip ANSI color codes so our port regex matches.
   const stripAnsi = (s: string) => s.replace(/\x1b\[[0-9;]*m/g, '')
+
   const onData = (chunk: Buffer) => {
     const text = stripAnsi(chunk.toString())
     server.output += text
+
     if (server.cdpPort === undefined) {
       // Current grammar is the structured "browser  cdpPort=N requested=M"
       // line. The old "Chromium debug port: N" was removed in the redesign.
@@ -261,6 +256,7 @@ function startDev(exampleDir: string): DevServer {
       if (m) server.cdpPort = Number(m[1])
     }
   }
+
   proc.stdout?.on('data', onData)
   proc.stderr?.on('data', onData)
 
@@ -288,8 +284,10 @@ interface RunStamp {
 function isOurRun(ready: ReadyContract, stamp: RunStamp): boolean {
   if (stamp.pid !== undefined && ready?.pid === stamp.pid) return true
   if (stamp.startedAtMs === undefined) return false
+
   const startedAt = Date.parse(String(ready?.startedAt || ''))
   if (!Number.isFinite(startedAt)) return false
+
   // 2s of slack: the contract is stamped by the dev process a moment after
   // spawn, and clock granularity should not reject our own run.
   return startedAt >= stamp.startedAtMs - 2000
@@ -307,12 +305,15 @@ function readReadyContract(
 ): ReadyContract | null {
   for (const root of DEV_ROOTS) {
     const p = path.join(dir, root, 'extension-js', browser, 'ready.json')
+
     try {
       const ready = JSON.parse(fs.readFileSync(p, 'utf8')) as ReadyContract
       if (stamp !== undefined && !isOurRun(ready, stamp)) continue
+
       return ready
     } catch {}
   }
+
   return null
 }
 
@@ -329,19 +330,23 @@ async function waitForCdpReady(
   // keeps only its first three populated rows, and a dev run always fills
   // Browser/Extension/Profile, so that row is never printed.
   const start = Date.now()
+
   while (Date.now() - start < timeoutMs) {
     const ready = readReadyContract(exampleDir, 'chromium', {
       pid: server.proc.pid,
       startedAtMs: server.startedAtMs
     })
+
     if (
       ready?.status === 'ready' &&
       typeof ready.cdpPort === 'number' &&
       ready.extensionId
     ) {
       server.cdpPort = ready.cdpPort
+
       return ready.cdpPort
     }
+
     if (
       server.cdpPort !== undefined &&
       /cdp\s+connected/i.test(server.output) &&
@@ -349,9 +354,12 @@ async function waitForCdpReady(
     ) {
       return server.cdpPort
     }
+
     await new Promise((r) => setTimeout(r, 250))
   }
+
   const anyReady = readReadyContract(exampleDir, 'chromium')
+
   throw new Error(
     `CDP did not become ready within ${timeoutMs}ms.\n` +
       `Awaited: ready.json under <root>/extension-js/chromium with ` +
@@ -368,12 +376,14 @@ async function waitForCdpReady(
 
 async function stopDev(server: DevServer) {
   if (server.proc.killed) return
+
   server.proc.kill('SIGTERM')
   await new Promise((resolve) => {
     const timeout = setTimeout(() => {
       try {
         server.proc.kill('SIGKILL')
       } catch {}
+
       resolve(null)
     }, 5000)
     server.proc.on('close', () => {
@@ -384,15 +394,18 @@ async function stopDev(server: DevServer) {
 }
 
 function cleanDevRoots(dir: string) {
-  for (const root of DEV_ROOTS)
-    for (const ch of DEV_CHANNELS)
+  for (const root of DEV_ROOTS) {
+    for (const ch of DEV_CHANNELS) {
       try {
         fs.rmSync(path.join(dir, root, ch), {recursive: true, force: true})
       } catch {}
+    }
+  }
+
   // Also drop persistent profiles — accumulated tabs from prior runs create
   // dozens of stale `[data-extension-root]` hosts + CDP targets that race
   // with our test's reinject flow.
-  for (const root of DEV_ROOTS)
+  for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       try {
         fs.rmSync(path.join(dir, root, `extension-profile-${ch}`), {
@@ -401,23 +414,28 @@ function cleanDevRoots(dir: string) {
         })
       } catch {}
     }
+  }
 }
 
 function getLatestContentScriptMtime(dir: string): number {
   let latest = 0
+
   for (const root of DEV_ROOTS) {
     for (const ch of DEV_CHANNELS) {
       const csDir = path.join(dir, root, ch, 'content_scripts')
       if (!fs.existsSync(csDir)) continue
+
       try {
         for (const f of fs.readdirSync(csDir)) {
           if (!/\.js$/.test(f) || /\.map$/.test(f)) continue
+
           const mt = fs.statSync(path.join(csDir, f)).mtimeMs
           if (mt > latest) latest = mt
         }
       } catch {}
     }
   }
+
   return latest
 }
 
@@ -427,14 +445,16 @@ async function waitForBundleNewerThan(
   timeoutMs = 45000
 ): Promise<void> {
   const start = Date.now()
+
   while (Date.now() - start < timeoutMs) {
     if (getLatestContentScriptMtime(dir) > baseline) return
+
     await new Promise((r) => setTimeout(r, 200))
   }
+
   throw new Error(`content_scripts bundle not re-emitted within ${timeoutMs}ms`)
 }
 
-// -----------------------------------------------------------------------------
 // Raw CDP tab driver
 //
 // Deliberately not using Playwright's `chromium.connectOverCDP` + `newPage()`
@@ -443,7 +463,6 @@ async function waitForBundleNewerThan(
 // page stayed stale). Opening the tab via /json/new and driving it over a
 // WebSocket mirrors the real user scenario and matches the manual
 // reproduction that proved the reload chain works end-to-end.
-// -----------------------------------------------------------------------------
 
 interface JsonTarget {
   id: string
@@ -481,6 +500,7 @@ async function openCdpTab(
   // so retry until it answers or the ceiling fires.
   const start = Date.now()
   let lastErr: unknown = null
+
   while (Date.now() - start < timeoutMs) {
     try {
       const target = await httpJson<JsonTarget>({
@@ -492,12 +512,14 @@ async function openCdpTab(
       })
       const tab = new CdpTab(port, target.id, target.webSocketDebuggerUrl)
       await tab.connect()
+
       return tab
     } catch (err) {
       lastErr = err
       await new Promise((r) => setTimeout(r, 400))
     }
   }
+
   throw new Error(
     `openCdpTab(${port}, ${url}) failed within ${timeoutMs}ms: ${String(
       (lastErr as any)?.message || lastErr
@@ -529,9 +551,11 @@ class CdpTab {
       ws.once('open', () => resolve())
       ws.once('error', reject)
     })
+
     this.ws.on('message', (raw: Buffer | string) => {
       try {
         const m = JSON.parse(raw.toString())
+
         if (typeof m.id === 'number' && this.pending.has(m.id)) {
           const resolve = this.pending.get(m.id)!
           this.pending.delete(m.id)
@@ -543,7 +567,9 @@ class CdpTab {
 
   send(method: string, params: Record<string, unknown> = {}): Promise<any> {
     if (!this.ws) throw new Error('not connected')
+
     const id = ++this.nextId
+
     return new Promise((resolve) => {
       this.pending.set(id, resolve)
       this.ws!.send(JSON.stringify({id, method, params}))
@@ -557,6 +583,7 @@ class CdpTab {
       awaitPromise: false
     })
     if (m.result?.exceptionDetails) return null
+
     return (m.result?.result?.value as T) ?? null
   }
 
@@ -570,9 +597,11 @@ class CdpTab {
         headers: {Host: `localhost:${this.port}`}
       })
     } catch {}
+
     try {
       this.ws?.close()
     } catch {}
+
     this.ws = null
   }
 }
@@ -582,6 +611,7 @@ class CdpTab {
 // verbatim to CDP's Runtime.evaluate.
 function domContainsNeedleExpr(needle: string): string {
   const n = JSON.stringify(needle)
+
   return `(function(){
     function walk(root){
       if (!root) return false;
@@ -613,6 +643,7 @@ function readStylePropertyExpr(params: {
 }): string {
   const selector = JSON.stringify('.' + params.className)
   const prop = JSON.stringify(params.prop)
+
   return `(function(){
     function isCompanionHost(el){
       try {
@@ -657,6 +688,7 @@ function styleDiagnosticExpr(params: {
 }): string {
   const selector = JSON.stringify('.' + params.className)
   const prop = JSON.stringify(params.prop)
+
   return `(function(){
     var out = [];
     function describeHost(el){
@@ -713,9 +745,7 @@ function userRootCountExpr(): string {
   return `document.querySelectorAll('[data-extension-root]:not([data-extension-root="extension-js-devtools"])').length`
 }
 
-// -----------------------------------------------------------------------------
 // Parameterized tests
-// -----------------------------------------------------------------------------
 
 if (EXAMPLES.length === 0) {
   baseTest.skip('no content-script examples discovered', () => {})
@@ -733,13 +763,16 @@ for (const example of EXAMPLES) {
       testInfo.setTimeout(180000)
       cleanDevRoots(example.dir)
       originalJsSource = guardSource(example.jsAnchor.file)
+
       if (example.styleTarget) {
         originalCssSource = guardSource(example.styleTarget.file)
       }
+
       server = startDev(example.dir)
       await waitForCdpReady(server, example.dir, 90000)
       // Wait for the first manifest to land on disk.
       const deadline = Date.now() + 60000
+
       while (Date.now() < deadline) {
         const hit = DEV_ROOTS.flatMap((root) =>
           DEV_CHANNELS.map((ch) =>
@@ -747,6 +780,7 @@ for (const example of EXAMPLES) {
           )
         ).some((p) => fs.existsSync(p))
         if (hit) break
+
         await new Promise((r) => setTimeout(r, 300))
       }
     })
@@ -759,14 +793,17 @@ for (const example of EXAMPLES) {
           fs.writeFileSync(example.jsAnchor.file, originalJsSource, 'utf8')
         } catch {}
       }
+
       if (originalCssSource !== null && example.styleTarget) {
         try {
           fs.writeFileSync(example.styleTarget.file, originalCssSource, 'utf8')
         } catch {}
       }
+
       releaseSource(example.jsAnchor.file)
       if (example.styleTarget) releaseSource(example.styleTarget.file)
       if (server) await stopDev(server)
+
       server = null
     })
 
@@ -815,7 +852,7 @@ for (const example of EXAMPLES) {
             })
             .toBe(example.expectedRootCount)
 
-          // ------- JS edit: visible text must change in the SAME tab -------
+          // JS edit: visible text must change in the SAME tab
           // Replace EVERY occurrence of the anchor, not just the first.
           // Anchors like "Open sidebar" appear in multiple spots inside a
           // single file (e.g. aria-label + visible text in JSX), and a
@@ -842,6 +879,7 @@ for (const example of EXAMPLES) {
           } catch (err) {
             const state = await tab.evaluate<any>(domDiagnosticExpr())
             const tail = server!.output.slice(-3000)
+
             throw new Error(
               `JS marker "${jsMarker}" never reached the open tab.\n` +
                 `Page state: ${JSON.stringify(state, null, 2)}\n\n` +
@@ -865,6 +903,7 @@ for (const example of EXAMPLES) {
               .toBe(example.expectedRootCount)
           } catch (err) {
             const state = await tab.evaluate<any>(domDiagnosticExpr())
+
             throw new Error(
               `Wrong \`data-extension-root\` host count after JS reinject, ` +
                 `expected exactly ${example.expectedRootCount} user root(s), ` +
@@ -873,7 +912,7 @@ for (const example of EXAMPLES) {
             )
           }
 
-          // ------- JS revert: original source restores the page text -------
+          // JS revert: original source restores the page text
           // Asserts the reload pipeline propagates *both* directions, not
           // just edits-add-new-text. Previously this was only a cleanup
           // step in afterAll, which silently masked one-way reload bugs
@@ -891,6 +930,7 @@ for (const example of EXAMPLES) {
                   const hasAnchor = await tab.evaluate<boolean>(
                     domContainsNeedleExpr(example.jsAnchor.anchor)
                   )
+
                   return hasAnchor && !hasMarker
                 },
                 {timeout: 30000, intervals: [250, 500, 1000]}
@@ -898,7 +938,7 @@ for (const example of EXAMPLES) {
               .toBe(true)
           }
 
-          // ------- JS syntax error: previous good state must be preserved --
+          // JS syntax error: previous good state must be preserved
           // Writing a parse error makes rspack fail the compile. The dev
           // pipeline must NOT crash, and the already-rendered tab must keep
           // showing the last successful build. This is the regression that
@@ -914,8 +954,10 @@ for (const example of EXAMPLES) {
             const stillThere = await tab.evaluate<boolean>(
               domContainsNeedleExpr(example.jsAnchor.anchor)
             )
+
             if (!stillThere) {
               const tail = server!.output.slice(-3000)
+
               throw new Error(
                 `Anchor "${example.jsAnchor.anchor}" disappeared while ` +
                   `JS source had a parse error — recoverability broken.\n` +
@@ -924,7 +966,7 @@ for (const example of EXAMPLES) {
             }
           }
 
-          // ------- JS post-fix recovery: fix + a new marker must land -----
+          // JS post-fix recovery: fix + a new marker must land
           // Confirms the dev watcher is still alive after the failed compile
           // and the reload pipeline picks the next successful build.
           {
@@ -958,7 +1000,7 @@ for (const example of EXAMPLES) {
               .toBe(false)
           }
 
-          // ------- CSS edit: computed style must change in the SAME tab ----
+          // CSS edit: computed style must change in the SAME tab
           // Only examples with a plain (non-modules) stylesheet — CSS/SASS
           // modules hash class names at build time, making a static appended
           // rule unreliable. The JS edit above already covers modules-based
@@ -1004,6 +1046,7 @@ for (const example of EXAMPLES) {
                   prop: cssProbe
                 })
               )
+
               // Browsers return custom-property values wrapped in
               // whitespace and quotes; normalize for the compare.
               return (value || '').replace(/['"\s]/g, '')
@@ -1025,6 +1068,7 @@ for (const example of EXAMPLES) {
               )
               const state = await tab.evaluate<any>(domDiagnosticExpr())
               const tail = server!.output.slice(-3000)
+
               throw new Error(
                 `CSS probe ${cssProbe} never became "${cssMarker}".\n` +
                   `Class matches: ${JSON.stringify(matches, null, 2)}\n` +
@@ -1033,7 +1077,7 @@ for (const example of EXAMPLES) {
               )
             }
 
-            // ------- CSS syntax error: previous good state preserved ------
+            // CSS syntax error: previous good state preserved
             // Append a broken rule to the original source. The rebuild
             // fails and the existing stylesheet stays in effect.
             const cssSyntaxBroken =
@@ -1043,8 +1087,10 @@ for (const example of EXAMPLES) {
             fs.writeFileSync(example.styleTarget.file, cssSyntaxBroken, 'utf8')
             await new Promise((r) => setTimeout(r, 8000))
             const heldValue = await readProbe()
+
             if (heldValue !== cssMarker) {
               const tail = server!.output.slice(-3000)
+
               throw new Error(
                 `CSS custom prop ${cssProbe} (= ${cssMarker}) was lost ` +
                   `while CSS had a parse error — got ${JSON.stringify(
@@ -1054,7 +1100,7 @@ for (const example of EXAMPLES) {
               )
             }
 
-            // ------- CSS post-fix recovery: fix + new value must land ----
+            // CSS post-fix recovery: fix + new value must land
             const recoveryProbe = `--reload-recovery-${Date.now()}-${Math.floor(
               Math.random() * 1e6
             )}`
@@ -1074,6 +1120,7 @@ for (const example of EXAMPLES) {
                       prop: recoveryProbe
                     })
                   )
+
                   return (value || '').replace(/['"\s]/g, '')
                 },
                 {timeout: 30000, intervals: [250, 500, 1000]}
@@ -1090,6 +1137,7 @@ for (const example of EXAMPLES) {
                 .toBe(example.expectedRootCount)
             } catch (err) {
               const state = await tab.evaluate<any>(domDiagnosticExpr())
+
               throw new Error(
                 `Wrong \`data-extension-root\` host count after CSS reinject, ` +
                   `expected exactly ${example.expectedRootCount} user root(s), ` +
@@ -1098,13 +1146,14 @@ for (const example of EXAMPLES) {
               )
             }
 
-            // ------- CSS revert: original source restores the style ------
+            // CSS revert: original source restores the style
             const revertBaseline = getLatestContentScriptMtime(example.dir)
             fs.writeFileSync(
               example.styleTarget.file,
               originalCssSource!,
               'utf8'
             )
+
             await waitForBundleNewerThan(example.dir, revertBaseline, 45000)
             await expect
               .poll(
@@ -1115,6 +1164,7 @@ for (const example of EXAMPLES) {
                       prop: recoveryProbe
                     })
                   )
+
                   return (value || '').replace(/['"\s]/g, '')
                 },
                 {timeout: 30000, intervals: [250, 500, 1000]}

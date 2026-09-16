@@ -5,6 +5,7 @@ console.log('Special Folders - Pages: main.js loaded successfully.')
 document.addEventListener('DOMContentLoaded', () => {
   const timestamp = new Date().toLocaleTimeString()
   const timestampElement = document.getElementById('timestamp')
+
   if (timestampElement) {
     timestampElement.textContent = `Loaded at: ${timestamp}`
   }

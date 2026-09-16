@@ -52,6 +52,7 @@ export default function initial() {
       badgePosition.value = toPosition(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onChanged)
 
   return () => {
@@ -64,5 +65,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

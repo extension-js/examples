@@ -43,6 +43,7 @@ export default function initial() {
       chrome.runtime.sendMessage({type: 'openSidebar'})
     }
   })
+
   contentDiv.appendChild(pill)
 
   const pillLogo = document.createElement('img')
@@ -66,5 +67,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

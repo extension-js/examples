@@ -6,8 +6,10 @@ if (chrome?.devtools?.inspectedWindow) {
   chrome.devtools.inspectedWindow.eval('document.title', (result, error) => {
     if (error) {
       output.textContent = 'Could not read the inspected page.'
+
       return
     }
+
     output.textContent = result || 'The inspected page has no title.'
   })
 } else {

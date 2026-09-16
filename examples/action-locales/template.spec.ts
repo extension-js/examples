@@ -29,6 +29,7 @@ test('localized action popup page renders with i18n string', async ({
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for JavaScript to populate the localized content - use condition-based wait
   const header = page.locator('h1').first()
   await test.expect(header).toBeVisible({timeout: 60000})
@@ -53,6 +54,7 @@ baseTest.describe('i18n build artifacts', () => {
         '_locales/en/messages.json must be present in build output'
       )
       .toBe(true)
+
     const messages = JSON.parse(fs.readFileSync(messagesPath, 'utf8'))
     baseTest.expect(Object.keys(messages).length).toBeGreaterThan(0)
   })
@@ -69,6 +71,7 @@ baseTest.describe('i18n build artifacts', () => {
     )
     const manifestStr = JSON.stringify(manifest)
     const msgRefs = manifestStr.match(/__MSG_(\w+)__/g) || []
+
     for (const ref of msgRefs) {
       const key = ref.replace(/__MSG_(\w+)__/, '$1')
       baseTest

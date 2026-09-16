@@ -24,8 +24,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 

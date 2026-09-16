@@ -36,9 +36,11 @@ export default function initial() {
 
   const onBridgeMessage = (event) => {
     if (event.source !== window) return
+
     const data = event.data
     if (!data || data.channel !== BRIDGE_CHANNEL) return
     if (data.type === REQUEST_POSITION) readAndPublish()
+
     // A content script cannot open the options page itself, and the MAIN world
     // cannot even reach chrome.runtime, so the click is relayed twice.
     if (data.type === OPEN_OPTIONS) {
@@ -59,6 +61,7 @@ export default function initial() {
       publish(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onSettingChanged)
 
   return () => {

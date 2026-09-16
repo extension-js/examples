@@ -1,0 +1,85 @@
+#!/usr/bin/env node
+
+import fs from 'node:fs'
+import path from 'node:path'
+
+const repoRoot = path.resolve(
+  path.dirname(new URL(import.meta.url).pathname),
+  '..',
+  '..'
+)
+
+const examplesDir = path.join(repoRoot, 'examples')
+
+// Map Playwright project names to example name patterns
+const PROJECT_TO_EXAMPLES = {
+  content: /^(content|content-.*)$/,
+  sidebar: /^(sidebar|sidebar-.*)$/,
+  action: /^(action|action-.*)$/,
+  newtab: /^(newtab|newtab-.*)$/,
+  'special-folders': /^special-folders-.*$/,
+  'mixed-context': /^(javascript|preact|react|svelte|typescript|vue)$/,
+  // Catch-all, mirrors the `other` project in playwright.config.ts: every
+  // example whose slug no context-scoped project claims. Keep the prefix
+  // list in sync with claimedSlugPrefixes in playwright.config.ts.
+  other:
+    /^(?!(?:content|sidebar|action|new|special-folders|javascript|preact|react|svelte|typescript|vue)(?:-.*)?$).+$/,
+  // Assets project tests a cross-section of all context types
+  assets:
+    /^(content|content-css-modules|content-sass|content-less|content-sass-modules|content-less-modules|content-main-world|content-multi-one-entry|content-multi-three-entries|action|new|sidebar|react|vue|svelte|preact|javascript)$/
+}
+
+function getExamplesForProject(projectName) {
+  const pattern = PROJECT_TO_EXAMPLES[projectName]
+
+  if (!pattern) {
+    console.error(`►►► Unknown project: ${projectName}`)
+    console.error(
+      `►►► Available projects: ${Object.keys(PROJECT_TO_EXAMPLES).join(', ')}`
+    )
+
+    process.exit(1)
+  }
+
+  const allExamples = fs
+    .readdirSync(examplesDir, {withFileTypes: true})
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name)
+    // Skip ghost dirs left behind by renames or partial cache restores
+    // (e.g. only `node_modules/` remains). A real example must ship a
+    // `package.json`.
+    .filter((name) =>
+      fs.existsSync(path.join(examplesDir, name, 'package.json'))
+    )
+
+  const matchingExamples = allExamples.filter((example) =>
+    pattern.test(example)
+  )
+
+  return matchingExamples
+}
+
+// If called from command line (check if process.argv[1] matches this file)
+import {fileURLToPath} from 'node:url'
+const __filename = fileURLToPath(import.meta.url)
+const isMainModule = process.argv[1] === __filename
+
+if (isMainModule) {
+  const projectName = process.argv[2]
+
+  if (!projectName) {
+    console.error('►►► Usage: node get-examples-for-project.mjs <project-name>')
+    console.error(
+      `►►► Available projects: ${Object.keys(PROJECT_TO_EXAMPLES).join(', ')}`
+    )
+
+    process.exit(1)
+  }
+
+  const examples = getExamplesForProject(projectName)
+  // Output as comma-separated list for use in shell scripts
+  console.log(`►►► ${examples.join(',')}`)
+}
+
+// Export for use as a module
+export {getExamplesForProject, PROJECT_TO_EXAMPLES}

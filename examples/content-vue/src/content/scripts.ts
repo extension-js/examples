@@ -60,6 +60,7 @@ export default function initial() {
       applyPosition(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onChanged)
 
   function applyPosition(value: unknown) {
@@ -80,5 +81,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

@@ -7,5 +7,6 @@ export function createBadge() {
   badge.className = 'content_badge'
   badge.textContent = `${BADGE_LABEL} ${BADGE_VERSION}`
   badge.setAttribute('data-badge', 'true')
+
   return badge
 }

@@ -24,6 +24,7 @@ test('CSS module class names produce matching computed styles', async ({
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   const host = page.locator('#extension-root, [data-extension-root="true"]')
   await test.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -34,9 +35,12 @@ test('CSS module class names produce matching computed styles', async ({
         return host.first().evaluate((el: HTMLElement) => {
           const sr = el.shadowRoot
           if (!sr) return null
+
           const div = sr.querySelector('div')
           if (!div) return null
+
           const cs = window.getComputedStyle(div)
+
           return cs.position !== 'static' ? true : null
         })
       },
@@ -52,6 +56,7 @@ test('CSS module class names produce matching computed styles', async ({
     const sr = el.shadowRoot!
     const div = sr.querySelector('div')!
     const cs = window.getComputedStyle(div)
+
     return {
       position: cs.position,
       backgroundColor: cs.backgroundColor,
@@ -61,12 +66,14 @@ test('CSS module class names produce matching computed styles', async ({
   test
     .expect(result.position, 'container should be position:fixed')
     .toBe('fixed')
+
   test
     .expect(
       result.backgroundColor,
       'container should have white background (#ffffff)'
     )
     .toBe('rgb(255, 255, 255)')
+
   test
     .expect(result.color, 'text should be dark (#0a0c10)')
     .toBe('rgb(10, 12, 16)')
@@ -77,6 +84,7 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   const host = page.locator('#extension-root, [data-extension-root="true"]')
   await test.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -86,6 +94,7 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
         return host.first().evaluate((el: HTMLElement) => {
           const h1 = el.shadowRoot?.querySelector('h1')
           if (!h1) return null
+
           return window.getComputedStyle(h1).fontWeight
         })
       },

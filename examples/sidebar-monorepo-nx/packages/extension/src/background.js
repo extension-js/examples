@@ -1,6 +1,7 @@
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
+
 console.log('Monorepo Nx: background ready')
 
 const isFirefoxLike =
@@ -25,8 +26,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 
@@ -40,8 +43,10 @@ if (isFirefoxLike) {
     browser.browserAction?.onClicked.addListener(() => {
       browser.sidebarAction.open()
     })
+
     browser.runtime.onMessage.addListener((message) => {
       if (!message || message.type !== 'openSidebar') return
+
       browser.sidebarAction.open()
     })
   } catch {
@@ -72,6 +77,7 @@ if (isSafariLike) {
   try {
     chrome?.runtime?.onMessage.addListener((message) => {
       if (!message || message.type !== 'openSidebar') return
+
       openSidebarTab()
     })
   } catch {
@@ -83,12 +89,14 @@ if (!isFirefoxLike && !isSafariLike) {
   try {
     chrome?.runtime?.onMessage.addListener((message, sender) => {
       if (!message || message.type !== 'openSidebar') return
+
       try {
         // Everything here must run synchronously: a tabs.query callback would
         // outlive the click's user gesture and sidePanel.open() would refuse.
         chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
         const tabId = sender.tab?.id
         if (!chrome.sidePanel?.open || tabId === undefined) return
+
         chrome.sidePanel?.open({tabId})
       } catch {
         // Ignore errors - best effort

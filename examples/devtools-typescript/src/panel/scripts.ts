@@ -8,8 +8,10 @@ if (output && chrome?.devtools?.inspectedWindow) {
     (result: unknown, error?: unknown) => {
       if (error) {
         output.textContent = 'Could not read the inspected page.'
+
         return
       }
+
       // eval hands back whatever the page expression produced, so the panel
       // checks the shape instead of trusting it to be a string.
       output.textContent =

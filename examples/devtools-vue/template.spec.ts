@@ -23,6 +23,7 @@ test('devtools panel page renders', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for the Vue app to mount - use condition-based wait instead of a
   // fixed timeout
   const h1 = page.locator('h1').first()

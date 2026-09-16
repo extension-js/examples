@@ -1,14 +1,3 @@
-// Smoke run for the reload matrix harness.
-//
-// Runs the single most reproducible scenario the user reported (editing
-// `_locales/en/messages.json` once in the action-locales fixture) so we can
-// validate the harness end-to-end before scaling out to the full matrix.
-//
-// Output is intentionally human-readable: a per-extension-origin table of
-// service-worker create/destroy counts and extension-page navigations,
-// plus the raw event list with timestamps. The numbers in this table are
-// the ground truth that future fixes have to move.
-
 import {runScenario, resolveTemplateFixture} from './harness.mjs'
 
 const FIXTURE = resolveTemplateFixture('action-locales')
@@ -23,10 +12,12 @@ function formatBuckets(buckets, userOrigin) {
     .sort((a, b) => {
       if (a.origin === userOrigin) return -1
       if (b.origin === userOrigin) return 1
+
       return a.origin.localeCompare(b.origin)
     })
     .map((b) => {
       const role = b.origin === userOrigin ? 'user' : 'companion'
+
       return [
         `  ${b.origin}  (${role})`,
         `    serviceWorkerCreated:    ${b.serviceWorkerCreated}`,
@@ -34,7 +25,9 @@ function formatBuckets(buckets, userOrigin) {
         `    extensionPageNavigated:  ${b.extensionPageNavigated}`
       ].join('\n')
     })
+
   if (rows.length === 0) return '  (no extension-origin events)'
+
   return rows.join('\n')
 }
 
@@ -50,6 +43,7 @@ function formatEvent(event, indexBase) {
     event.contextOrigin ||
     event.contextName ||
     ''
+
   return `  ${String(indexBase).padStart(3)}  ${ts}ms  ${cat}  ${origin}  ${detail}`
 }
 
@@ -98,24 +92,30 @@ async function main() {
   result.events.forEach((event, i) => {
     console.log(formatEvent(event, i))
   })
+
   console.log()
 
   console.log(bar())
   console.log('summary')
   console.log(bar())
+
   const userBucket = result.buckets.find((b) => b.origin === result.userOrigin)
+
   if (!userBucket) {
     console.log('NO user-extension events captured. Harness needs adjustment.')
     process.exit(2)
   }
+
   console.log(
     `user extension SW restarts (created+destroyed÷2 ≈ restart count): ` +
       `${Math.min(userBucket.serviceWorkerCreated, userBucket.serviceWorkerDestroyed)}`
   )
+
   console.log(
     `user extension SW first-time creations (no prior destroy): ` +
       `${Math.max(0, userBucket.serviceWorkerCreated - userBucket.serviceWorkerDestroyed)}`
   )
+
   console.log(
     `user extension page navigations (popup/options/etc): ` +
       `${userBucket.extensionPageNavigated}`
@@ -124,13 +124,16 @@ async function main() {
 
 main().catch(async (err) => {
   console.error('smoke run failed:', err)
+
   if (err && err.stdoutTail) {
     console.error('--- dev stdout (last lines) ---')
     console.error(err.stdoutTail)
   }
+
   if (err && err.stderrTail) {
     console.error('--- dev stderr (last lines) ---')
     console.error(err.stderrTail)
   }
+
   process.exit(1)
 })

@@ -1,0 +1,250 @@
+#!/usr/bin/env node
+
+import fs from 'node:fs'
+import path from 'node:path'
+import {fileURLToPath} from 'node:url'
+import {spawnSync} from 'node:child_process'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const REPO_ROOT = path.resolve(path.join(__dirname, '..', '..'))
+const EXAMPLES_DIR = path.join(REPO_ROOT, 'examples')
+const ARTIFACTS_DIR = path.join(REPO_ROOT, 'artifacts') // produced by package-artifacts.mjs
+const OUT_PUBLIC = path.join(REPO_ROOT, 'public') // committed to repo root
+const META_PATH = path.join(REPO_ROOT, 'templates-meta.json')
+
+function ensureDir(directoryPath) {
+  fs.mkdirSync(directoryPath, {recursive: true})
+}
+
+function cp(sourcePath, destinationPath) {
+  ensureDir(path.dirname(destinationPath))
+  fs.cpSync(sourcePath, destinationPath, {recursive: true})
+}
+
+// cpSync merges, so a file deleted or renamed in an example survives forever
+// inside its mirror. Clear the destination first, the same reason whole
+// orphaned mirrors are pruned below.
+function replaceDir(sourcePath, destinationPath) {
+  fs.rmSync(destinationPath, {recursive: true, force: true})
+  cp(sourcePath, destinationPath)
+}
+
+function readJSON(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'))
+}
+
+function writeJSON(filePath, value) {
+  ensureDir(path.dirname(filePath))
+  fs.writeFileSync(filePath, JSON.stringify(value, null, 2) + '\n', 'utf8')
+}
+
+function listSlugs(directory) {
+  return fs
+    .readdirSync(directory, {withFileTypes: true})
+    .filter(
+      (dirent) =>
+        dirent.isDirectory() &&
+        fs.existsSync(path.join(directory, dirent.name, 'package.json'))
+    )
+    .map((dirent) => dirent.name)
+}
+
+function main() {
+  if (!fs.existsSync(META_PATH)) {
+    console.error(
+      '►►► templates-meta.json not found. Run "pnpm run generate" first.'
+    )
+
+    process.exit(1)
+  }
+
+  const templatesMetadata = readJSON(META_PATH)
+  // Ensure website references live branch instead of a detached SHA
+  templatesMetadata.commit = 'main'
+  const slugs = listSlugs(EXAMPLES_DIR)
+
+  // public/<slug> mirrors are copies, not sources: when an example is
+  // renamed or removed, its mirror must be pruned too, or stale code lingers
+  // in the committed gallery (public/sidebar-claude and
+  // public/sidebar-transformers-js survived the ai-* rename for weeks,
+  // still carrying a since-fixed bug). Prune any mirror whose example
+  // directory no longer exists.
+  if (fs.existsSync(OUT_PUBLIC)) {
+    for (const dirent of fs.readdirSync(OUT_PUBLIC, {withFileTypes: true})) {
+      if (!dirent.isDirectory()) continue
+      if (fs.existsSync(path.join(EXAMPLES_DIR, dirent.name))) continue
+
+      fs.rmSync(path.join(OUT_PUBLIC, dirent.name), {
+        recursive: true,
+        force: true
+      })
+
+      console.log(`►►► Pruned orphaned public/${dirent.name}`)
+    }
+  }
+
+  for (const slug of slugs) {
+    const templateDirectory = path.join(EXAMPLES_DIR, slug)
+    const packageJsonPath = path.join(templateDirectory, 'package.json')
+
+    if (!fs.existsSync(packageJsonPath)) {
+      continue
+    }
+
+    const packageJson = readJSON(packageJsonPath)
+    const version = packageJson.version || '0.0.1'
+
+    const destinationBase = path.join(OUT_PUBLIC, slug)
+
+    // Copy sources, public assets, and root-level special folders. When a
+    // source directory no longer exists (e.g. a template's public/ went away
+    // after its screenshot moved to the template root), prune the mirror copy
+    // too, or the stale directory lingers in the committed gallery forever.
+    const mirroredDirectories = [
+      'src',
+      'public',
+      'pages',
+      'scripts',
+      'locales',
+      '_locales'
+    ]
+
+    for (const directoryName of mirroredDirectories) {
+      const sourceDirectory = path.join(templateDirectory, directoryName)
+      const destinationDirectory = path.join(destinationBase, directoryName)
+
+      if (fs.existsSync(sourceDirectory)) {
+        replaceDir(sourceDirectory, destinationDirectory)
+      } else {
+        fs.rmSync(destinationDirectory, {recursive: true, force: true})
+      }
+    }
+
+    // Monorepo templates keep their sources under packages/, so none of the
+    // directories above exist and the mirror ships nothing the catalog lists.
+    // Mirror packages/ too, minus installs and build output.
+    const packagesSource = path.join(templateDirectory, 'packages')
+    const packagesDestination = path.join(destinationBase, 'packages')
+
+    if (fs.existsSync(packagesSource)) {
+      fs.rmSync(packagesDestination, {recursive: true, force: true})
+      ensureDir(path.dirname(packagesDestination))
+      fs.cpSync(packagesSource, packagesDestination, {
+        recursive: true,
+        filter: (sourcePath) =>
+          !/(^|\/)(node_modules|dist|\.turbo|\.extension-js)(\/|$)/.test(
+            sourcePath
+          )
+      })
+    } else {
+      fs.rmSync(packagesDestination, {recursive: true, force: true})
+    }
+
+    // Root-level files templates-meta.json lists in `files` (templates with a
+    // root layout keep manifest.json outside src/).
+    const mirroredRootFiles = ['manifest.json', 'extension.config.js']
+
+    for (const fileName of mirroredRootFiles) {
+      const sourceFile = path.join(templateDirectory, fileName)
+      const destinationFile = path.join(destinationBase, fileName)
+
+      if (fs.existsSync(sourceFile)) {
+        cp(sourceFile, destinationFile)
+      } else {
+        fs.rmSync(destinationFile, {force: true})
+      }
+    }
+
+    // Normalize screenshot to public/<slug>/screenshot.png if available
+    const screenshotCandidates = [
+      path.join(templateDirectory, 'public', 'screenshot.png'),
+      path.join(templateDirectory, 'screenshot.png')
+    ]
+    const screenshotPath = screenshotCandidates.find((candidatePath) =>
+      fs.existsSync(candidatePath)
+    )
+
+    if (screenshotPath) {
+      cp(screenshotPath, path.join(destinationBase, 'screenshot.png'))
+    }
+
+    // Bring packaged distributions (created by package-artifacts.mjs)
+    const browsers = ['chrome', 'edge', 'firefox']
+
+    for (const browser of browsers) {
+      const zipSourcePath = path.join(ARTIFACTS_DIR, `${slug}.${browser}.zip`)
+
+      if (!fs.existsSync(zipSourcePath)) {
+        continue
+      }
+
+      const distributionDirectory = path.join(destinationBase, 'dist', browser)
+      ensureDir(distributionDirectory)
+      const baseFileName = `${slug}-${version}`
+
+      fs.copyFileSync(
+        zipSourcePath,
+        path.join(distributionDirectory, `${baseFileName}.zip`)
+      )
+
+      if (browser === 'firefox') {
+        // Duplicate as .xpi for website preview command convenience
+        fs.copyFileSync(
+          zipSourcePath,
+          path.join(distributionDirectory, `${baseFileName}.xpi`)
+        )
+      }
+    }
+  }
+
+  // Rewrite metadata paths to committed layout under public/<slug>/...
+  const normalizeTemplatePath = (slug, filePath) => {
+    if (!filePath) return filePath
+
+    let clean = String(filePath)
+      .replace(/^\/+/, '')
+      .replace(/^\.\/+/, '')
+
+    if (clean.startsWith(`public/${slug}/`)) return clean
+
+    if (clean.startsWith(`examples/${slug}/`)) {
+      clean = clean.replace(`examples/${slug}/`, '')
+    }
+
+    if (clean.startsWith(`${slug}/`)) {
+      clean = clean.replace(`${slug}/`, '')
+    }
+
+    return `public/${slug}/${clean}`
+  }
+
+  templatesMetadata.templates = (templatesMetadata.templates || []).map(
+    (template) => {
+      const slug = template.slug
+
+      return {
+        ...template,
+        screenshot: `public/${slug}/screenshot.png`,
+        icon: template.icon ? normalizeTemplatePath(slug, template.icon) : null,
+        files: (template.files || []).map((filePath) =>
+          normalizeTemplatePath(slug, filePath)
+        ),
+        repositoryUrl: `https://github.com/extension-js/examples/tree/main/examples/${slug}`
+      }
+    }
+  )
+
+  writeJSON(META_PATH, templatesMetadata)
+
+  // Optional formatting (ignore failures)
+  try {
+    spawnSync('pnpm', ['prettier', '--write', 'templates-meta.json'], {
+      stdio: 'inherit'
+    })
+  } catch {
+    // Do nothing
+  }
+}
+
+main()

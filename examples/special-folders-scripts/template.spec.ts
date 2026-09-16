@@ -22,11 +22,13 @@ test('scripts folder is accessible', async ({page, extensionId}) => {
       fs.existsSync(path.join(pathToExtension, 'scripts', 'script-one.js'))
     )
     .toBe(true)
+
   test
     .expect(
       fs.existsSync(path.join(pathToExtension, 'scripts', 'script-two.js'))
     )
     .toBe(true)
+
   test
     .expect(
       fs.existsSync(path.join(pathToExtension, 'scripts', 'script-three.js'))

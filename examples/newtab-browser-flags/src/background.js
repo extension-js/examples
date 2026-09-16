@@ -1,6 +1,7 @@
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
+
 // This extension doesn't need to do much in the background
 // It's primarily designed to demonstrate browser flag customization
 console.log('Browser Flags Example background script running')
@@ -19,8 +20,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 

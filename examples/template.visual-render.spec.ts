@@ -1,21 +1,3 @@
-// On-screen render verification for CSS-pipeline content templates
-// (plain CSS, sass, less, and their *-modules variants).
-//
-// Motivation: the assets/spec suites assert computed styles on the shadow
-// wrapper <div>, which can pass while the widget is not actually visible on
-// screen (image failed to load, inner elements unstyled, panel off-viewport
-// or zero-painted). This spec closes that gap by verifying what the user
-// sees, not what the CSSOM reports:
-//   1. Panel bounding box is sane (expected ~347px content+padding box) and
-//      fully inside the viewport.
-//   2. The logo <img> actually decoded (naturalWidth > 0, complete).
-//   3. h1 title and description <p> paint non-zero boxes inside the panel.
-//   4. Real pixels: a patch of the rendered screenshot inside the panel
-//      matches the stylesheet background color (dark templates), proving the
-//      compositor painted the styled panel — not just that CSSOM matched.
-//
-// Uses pre-built extensions (dist/chrome), same as template.assets.spec.ts.
-
 import {expect} from '@playwright/test'
 import path from 'path'
 import fs from 'fs'
@@ -73,7 +55,6 @@ interface PanelInfo {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Host-integrity guard for every template that injects a shadow host.
 // The host div lives in the page DOM, so page CSS applies to it (only the
 // shadow *descendants* are isolated) — example.com ships `div{opacity:.8}`,
@@ -82,7 +63,6 @@ interface PanelInfo {
 // `all: initial !important`; this test asserts that hardening is present and
 // effective (host opacity exactly 1, no page filter/transform, and the widget
 // actually paints a non-zero box).
-// ---------------------------------------------------------------------------
 
 const HOST_TEMPLATES = [
   'content',
@@ -131,6 +111,7 @@ for (const name of HOST_TEMPLATES) {
               const hosts = document.querySelectorAll(
                 '#extension-root, [data-extension-root]'
               )
+
               return hosts.length > 0 ? hosts.length : null
             }),
           {timeout: 30000, message: `${name}: no shadow host mounted`}
@@ -144,6 +125,7 @@ for (const name of HOST_TEMPLATES) {
           const cs = window.getComputedStyle(host as HTMLElement)
           const inner = (host as HTMLElement).shadowRoot?.querySelector('div')
           const r = inner?.getBoundingClientRect()
+
           return {
             key:
               (host as HTMLElement).getAttribute('data-extension-root') ||
@@ -164,18 +146,21 @@ for (const name of HOST_TEMPLATES) {
             `${name} host "${h.key}": page CSS leaked opacity=${h.opacity} onto the shadow host — widget renders faded on screen`
           )
           .toBe('1')
+
         test
           .expect(
             h.filter,
             `${name} host "${h.key}": page CSS leaked a filter onto the host`
           )
           .toBe('none')
+
         test
           .expect(
             h.transform,
             `${name} host "${h.key}": page CSS leaked a transform onto the host`
           )
           .toBe('none')
+
         test
           .expect(
             h.innerW > 0 && h.innerH > 0,
@@ -211,7 +196,9 @@ for (const tmpl of TEMPLATES) {
               const sr = document.querySelector(sel)?.shadowRoot
               const panel = sr?.querySelector('div')
               if (!panel) return null
+
               const r = panel.getBoundingClientRect()
+
               return r.width > 0 && r.height > 0 ? true : null
             }, HOST_SELECTOR),
           {
@@ -225,8 +212,10 @@ for (const tmpl of TEMPLATES) {
         const host = document.querySelector(sel)
         const sr = host?.shadowRoot
         if (!sr) return null
+
         const panel = sr.querySelector('div')
         if (!panel) return null
+
         const pr = panel.getBoundingClientRect()
         const img = sr.querySelector('img') as HTMLImageElement | null
         const ir = img?.getBoundingClientRect()
@@ -242,6 +231,7 @@ for (const tmpl of TEMPLATES) {
           r.right <= pr.right + 1 &&
           r.top >= pr.top - 1 &&
           r.bottom <= pr.bottom + 1
+
         return {
           panel: {x: pr.x, y: pr.y, w: pr.width, h: pr.height},
           img: {
@@ -295,7 +285,11 @@ for (const tmpl of TEMPLATES) {
           `${tmpl.name}: panel width ${panel.w}px — expected ~347px styled box (unstyled block would be full-width, broken module would collapse)`
         )
         .toBeGreaterThanOrEqual(300)
-      test.expect(panel.w, `${tmpl.name}: panel too wide`).toBeLessThanOrEqual(420)
+
+      test
+        .expect(panel.w, `${tmpl.name}: panel too wide`)
+        .toBeLessThanOrEqual(420)
+
       test
         .expect(panel.h, `${tmpl.name}: panel height collapsed`)
         .toBeGreaterThanOrEqual(120)
@@ -320,26 +314,36 @@ for (const tmpl of TEMPLATES) {
           `${tmpl.name}: logo image did not load (complete=${img.complete}, naturalWidth=${img.naturalWidth})`
         )
         .toBe(true)
+
       test
         .expect(
           img.w,
           `${tmpl.name}: logo rendered width ${img.w}px — expected 72px from .content_logo`
         )
         .toBeGreaterThanOrEqual(60)
+
       test.expect(img.w).toBeLessThanOrEqual(90)
 
       // Title + description paint inside the panel.
       test
-        .expect(title.found && title.text.includes('Content Template'), `${tmpl.name}: title missing or wrong: "${title.text}"`)
+        .expect(
+          title.found && title.text.includes('Content Template'),
+          `${tmpl.name}: title missing or wrong: "${title.text}"`
+        )
         .toBe(true)
+
       test
         .expect(
           title.inPanel,
           `${tmpl.name}: title does not paint inside the panel box`
         )
         .toBe(true)
+
       test
-        .expect(desc.found && desc.inPanel, `${tmpl.name}: description missing or outside panel`)
+        .expect(
+          desc.found && desc.inPanel,
+          `${tmpl.name}: description missing or outside panel`
+        )
         .toBe(true)
 
       // Real-pixel check: sample an 8x8 patch just inside the panel's
@@ -356,11 +360,13 @@ for (const tmpl of TEMPLATES) {
         let g = 0
         let b = 0
         const n = png.width * png.height
+
         for (let i = 0; i < n; i++) {
           r += png.data[i * 4]
           g += png.data[i * 4 + 1]
           b += png.data[i * 4 + 2]
         }
+
         r /= n
         g /= n
         b /= n

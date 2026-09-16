@@ -38,6 +38,7 @@ test('should exist an element with the welcome message text', async ({
       timeout: 60000
     }
   )
+
   await waitForWelcomeHeading(page)
 })
 
@@ -49,6 +50,7 @@ test('should exist a default color value', async ({page, extensionId}) => {
       timeout: 60000
     }
   )
+
   await waitForWelcomeHeading(page)
   const h1 = page.locator('h1')
   const color = await page.evaluate(

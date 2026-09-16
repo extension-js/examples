@@ -22,6 +22,7 @@ export default function ChatInput({onSend, disabled}: ChatInputProps) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const trimmed = input.trim()
+
     if (trimmed && !disabled) {
       onSend(trimmed)
       setInput('')

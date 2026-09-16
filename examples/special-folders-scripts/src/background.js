@@ -23,6 +23,7 @@ async function injectScripts(tabId) {
 async function onActionClicked(tab) {
   try {
     if (!tab?.id) return
+
     await injectScripts(tab.id)
   } catch (error) {
     console.warn('[special-folders-scripts] action injection failed', error)
@@ -49,15 +50,20 @@ if (!isFirefoxLike) {
 // page since activeTab isn't granted for arbitrary content-script messages.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type !== 'special-folders-scripts:run') return
+
   const tabId = sender?.tab?.id
+
   if (typeof tabId !== 'number') {
     sendResponse({ok: false, error: 'no sender.tab.id'})
+
     return
   }
+
   injectScripts(tabId)
     .then(() => sendResponse({ok: true}))
     .catch((error) =>
       sendResponse({ok: false, error: String(error?.message || error)})
     )
+
   return true
 })

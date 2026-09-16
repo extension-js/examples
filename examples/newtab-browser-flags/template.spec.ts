@@ -17,6 +17,7 @@ test('new tab page renders with title', async ({page, extensionId}) => {
       timeout: 60000
     }
   )
+
   // Wait for page to fully load - use condition-based wait instead of fixed timeout
   const title = page.locator('.title').first()
   await test.expect(title).toBeVisible({timeout: 60000})

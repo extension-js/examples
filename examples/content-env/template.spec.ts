@@ -21,9 +21,11 @@ test('should exist an element with the class name content_script', async ({
     '#extension-root, [data-extension-root="true"]',
     'div.content_script'
   )
+
   if (!div) {
     throw new Error('div with class content_script not found in Shadow DOM')
   }
+
   test.expect(div).not.toBeNull()
 })
 
@@ -32,6 +34,7 @@ test('should exist an h1 element with specified content', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for content script to inject - waitForShadowElement handles waiting internally
   const h1 = await waitForShadowElement(
     page,
@@ -39,9 +42,11 @@ test('should exist an h1 element with specified content', async ({page}) => {
     'div.content_script > h1',
     60000
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const textContent = await h1.evaluate((node) => node.textContent)
   test.expect(textContent).toContain('Content Template')
 })
@@ -53,9 +58,11 @@ test('should exist a default color value', async ({page}) => {
     '#extension-root, [data-extension-root="true"]',
     'div.content_script > h1'
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const color = await h1.evaluate((node) =>
     window.getComputedStyle(node as HTMLElement).getPropertyValue('color')
   )

@@ -9,6 +9,7 @@ function updateDescriptionText() {
   console.log('Full env object:', import.meta.env)
 
   const descriptionElement = document.getElementById('description-text')
+
   if (descriptionElement) {
     descriptionElement.textContent = descriptionText
   } else {

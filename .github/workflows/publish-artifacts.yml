@@ -1,3 +1,10 @@
+# ███████╗██╗  ██╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗███████╗
+# ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝██╔════╝
+# █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗  ███████╗
+# ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  ╚════██║
+# ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗███████║
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝
+
 name: Publish artifacts
 
 on:
@@ -73,7 +80,7 @@ jobs:
 
       - name: Normalize examples (only if rebuilding)
         if: failure() || github.event_name == 'workflow_dispatch'
-        run: node scripts/normalize-examples.mjs
+        run: node scripts/build/normalize-examples.mjs
 
       - name: Build all examples (only if artifacts not downloaded)
         run: |
@@ -86,7 +93,7 @@ jobs:
           fi
 
       - name: Package distributions
-        run: node scripts/package-artifacts.mjs
+        run: node scripts/catalog/package-artifacts.mjs
 
       - name: Generate metadata
         env:
@@ -107,7 +114,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Stage public artifacts
-        run: node scripts/publish-artifacts.mjs
+        run: node scripts/catalog/publish-artifacts.mjs
 
       - name: Commit and push if changed
         run: |

@@ -9,6 +9,7 @@ const ext = globalThis.browser ?? chrome
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
+
 console.log('Transformers.js background script loaded!')
 
 // Browser compatibility handling for sidebar functionality
@@ -34,8 +35,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 
@@ -75,6 +78,7 @@ function configKey(cfg) {
     device: cfg.device,
     dtype: cfg.dtype
   }
+
   return JSON.stringify(safe)
 }
 
@@ -82,20 +86,25 @@ function configKey(cfg) {
 // and serializes calls through a single promise chain.
 function createCachedRunner(cfg, progress_callback) {
   const entry = {}
+
   entry.fn = async (...args) => {
     entry.instance ||= pipeline(cfg.task, cfg.model, {
       progress_callback,
       device: cfg.device,
       dtype: cfg.dtype
     })
+
     entry.promise_chain = (entry.promise_chain || Promise.resolve()).then(
       async () => {
         const runner = await entry.instance
+
         return runner(...args)
       }
     )
+
     return entry.promise_chain
   }
+
   return entry
 }
 
@@ -116,11 +125,13 @@ class ModelManager {
       device: 'webgpu',
       dtype: 'q4'
     }
+
     this.currentKey = configKey(this.currentConfig)
   }
 
   onStorageChanged(changes, area) {
     if (area !== 'sync' || !changes.modelConfig) return
+
     this.currentConfig = changes.modelConfig.newValue
     this.currentKey = configKey(this.currentConfig)
     // Lazy rebuild: next call uses the new key; cache retains previous instance
@@ -136,6 +147,7 @@ class ModelManager {
         createCachedRunner(this.currentConfig, progress_callback)
       )
     }
+
     return this.cache.get(key).fn
   }
 }
@@ -147,6 +159,7 @@ const classify = async (text) => {
     // Optionally forward progress to UI
     // console.log('progress', data)
   })
+
   return runner(text)
 }
 
@@ -157,17 +170,22 @@ async function relayActiveTabRequest(messageType) {
     active: true,
     lastFocusedWindow: true
   })
+
   if (!tab?.id) {
     return {ok: false, error: 'No active tab'}
   }
+
   try {
     const context = await ext.tabs.sendMessage(tab.id, {type: messageType})
+
     if (!context) {
       return {ok: false, error: 'No context received from page'}
     }
+
     return {ok: true, context}
   } catch (err) {
     const error = err instanceof Error ? err.message : String(err)
+
     return {ok: false, error}
   }
 }
@@ -188,8 +206,10 @@ ext.runtime.onInstalled.addListener(() => {
 
 ext.contextMenus?.onClicked.addListener(async (info) => {
   if (info.menuItemId !== CONTEXT_MENU_ITEM_ID) return
+
   const text = info.selectionText?.trim()
   if (!text) return
+
   try {
     const result = await classify(text)
     ext.runtime.sendMessage({
@@ -220,6 +240,7 @@ ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({error: e?.message || 'classification failed'})
       }
     })()
+
     return true
   }
 
@@ -231,13 +252,16 @@ ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
       message.action === 'getActiveTabSelection'
         ? 'getSelection'
         : 'getPageContext'
+
     ;(async () => sendResponse(await relayActiveTabRequest(messageType)))()
+
     return true
   }
 
   if (message.action === 'model-config-updated') {
     // Storage listener already updates; acknowledge for UI
     sendResponse({ok: true})
+
     return
   }
 })

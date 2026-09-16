@@ -52,8 +52,10 @@ function SidebarApp() {
 
   function populateModels(taskValue, selected) {
     modelEl.replaceChildren(...MODELS[taskValue].map((m) => new Option(m, m)))
-    if (selected && MODELS[taskValue].includes(selected))
+
+    if (selected && MODELS[taskValue].includes(selected)) {
       modelEl.value = selected
+    }
   }
 
   async function loadConfig() {
@@ -69,6 +71,7 @@ function SidebarApp() {
 
   function currentConfig() {
     const customModel = customEl.value.trim()
+
     return {
       task: taskEl.value,
       model: customModel || modelEl.value,
@@ -81,9 +84,11 @@ function SidebarApp() {
   async function saveConfig() {
     const cfg = currentConfig()
     await ext.storage.sync.set({modelConfig: cfg})
+
     if (titleElement && cfg.model) {
       titleElement.textContent = `Transformers.js (${cfg.model})`
     }
+
     // Notify background (optional, background also listens to storage change)
     ext.runtime.sendMessage({action: 'model-config-updated', config: cfg})
   }
@@ -102,14 +107,19 @@ function SidebarApp() {
   // Run analysis only when clicking the button
   runBtn.addEventListener('click', async () => {
     const text = inputElement.value.trim()
+
     if (!text) {
       outputElement.textContent =
         'Enter some text above to see the sentiment analysis results.'
+
       outputElement.className = 'sidebar_output'
+
       return
     }
+
     outputElement.textContent = 'Analyzing sentiment...'
     outputElement.className = 'sidebar_output sidebar_output--loading'
+
     try {
       await classifyText(text, outputElement)
     } catch (error) {
@@ -122,21 +132,27 @@ function SidebarApp() {
   async function fillFromActiveTab(action, fallback) {
     try {
       const response = await ext.runtime.sendMessage({action})
+
       if (!response?.ok) {
         showError(
           new Error(response?.error || `Could not read ${fallback}`),
           outputElement
         )
+
         return
       }
+
       const text = response.context?.text || ''
+
       if (!text) {
         showError(
           new Error(`No ${fallback} found on the active tab`),
           outputElement
         )
+
         return
       }
+
       inputElement.value = text
       outputElement.textContent = `Loaded ${fallback} from the active tab. Click "Run Analysis" to classify it.`
       outputElement.className = 'sidebar_output'
@@ -148,6 +164,7 @@ function SidebarApp() {
   usePageBtn.addEventListener('click', () =>
     fillFromActiveTab('getActiveTabContext', 'page text')
   )
+
   useSelectionBtn.addEventListener('click', () =>
     fillFromActiveTab('getActiveTabSelection', 'selection')
   )
@@ -155,6 +172,7 @@ function SidebarApp() {
   // Pick up classifications triggered from the right-click context menu.
   ext.runtime.onMessage.addListener((message) => {
     if (message?.action !== 'classification-broadcast') return
+
     if (message.ok) {
       inputElement.value = message.text
       showResults(message.result, outputElement)

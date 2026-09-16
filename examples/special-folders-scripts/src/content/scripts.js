@@ -52,6 +52,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   contentDiv.appendChild(createRunButton())
@@ -87,6 +88,7 @@ function createRunButton() {
             '[special-folders-scripts] message failed',
             chrome.runtime.lastError.message
           )
+
           return
         }
 
@@ -96,6 +98,7 @@ function createRunButton() {
             '[special-folders-scripts] background returned error',
             response.error
           )
+
           return
         }
 
@@ -111,5 +114,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

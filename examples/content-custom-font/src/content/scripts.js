@@ -45,6 +45,7 @@ export default function initial() {
   const normal = document.createElement('p')
   normal.textContent =
     'In tabs and tools they find their home,\nExtensions roam the chrome‑y dome;\nThey tweak, they theme, they block, they play,\nSmall bits of joy to save your day.'
+
   demo.appendChild(normal)
   const bold = document.createElement('p')
   bold.style.fontWeight = '700'
@@ -62,6 +63,7 @@ export default function initial() {
   button.addEventListener('click', () => {
     chrome.runtime.sendMessage({type: 'open-options'})
   })
+
   contentDiv.appendChild(button)
 
   function render(useCustomFont) {
@@ -83,6 +85,7 @@ export default function initial() {
       render(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onSettingChanged)
 
   return () => {
@@ -96,5 +99,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

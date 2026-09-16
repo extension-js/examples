@@ -56,6 +56,7 @@ export default function initMonorepoContent() {
       chrome.runtime.sendMessage({type: 'openSidebar'})
     }
   })
+
   container.appendChild(pill)
 
   const pillLogo = document.createElement('img')
@@ -79,5 +80,6 @@ async function loadCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const res = await fetch(cssUrl)
   const text = await res.text()
+
   return res.ok ? text : ''
 }

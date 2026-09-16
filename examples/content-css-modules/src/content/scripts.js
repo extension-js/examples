@@ -50,6 +50,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   return () => {

@@ -1,38 +1,9 @@
-// Reload-matrix scenarios.
-//
-// Each row is one ground-truth assertion about the dev pipeline. The harness
-// runs the row and the matrix runner compares observed vs. expected.
-//
-// Expectations are written from the user's perspective: "for save X, the
-// user extension's SW should restart Y times and its pages should reload Z
-// times". Companion-extension noise is filtered out at classification time.
-//
-// The rows here are the executable counterpart of `_FUTURE/examples/RELOAD_MATRIX.md`,
-// which documents the expected outcome per template × surface. Each cell in
-// that doc maps to one row below; when the doc and the runtime diverge, the
-// matrix flips to FAIL and surfaces the specific cell.
-//
-// Where Chrome's behavior is non-deterministic (e.g. SW idle restarts on a
-// fresh profile under memory pressure), the row uses `serviceWorkerRestartsAtMost`
-// instead of `serviceWorkerRestarts`. We default to exact counts unless the
-// surface is documented as ambiguous.
-
 import {resolveTemplateFixture} from './harness.mjs'
 
-/**
- * Helper: replace any string field's value matching `searchPattern` with
- * `replacement`. Used to make controlled, harmless edits to fixture files
- * without rewriting them wholesale.
- */
 function regexReplace(searchPattern, replacement) {
   return (current) => current.replace(searchPattern, replacement)
 }
 
-/**
- * Append a comment to a file so its mtime changes without breaking the
- * file. Used for HTML / config files where any whitespace edit is fine but
- * the watcher needs a real content delta.
- */
 function appendComment(commentText) {
   return (current) =>
     `${current}\n<!-- reload-matrix: ${commentText} ${Date.now()} -->\n`
@@ -42,9 +13,6 @@ const ACTION_LOCALES = resolveTemplateFixture('action-locales')
 const ACTION = resolveTemplateFixture('action')
 
 export const SCENARIOS = [
-  // ---------------------------------------------------------------------------
-  // _locales / message catalog edits
-  // ---------------------------------------------------------------------------
   {
     name: 'locales-single-edit-popup-closed',
     fixturePath: ACTION_LOCALES,
@@ -78,9 +46,6 @@ export const SCENARIOS = [
         waitMsAfter: 200
       }
     ],
-    // The popup is a chrome-extension:// page; the extension reload tears it
-    // down. From CDP that's one navigation event for the popup, plus one SW
-    // restart for the extension.
     expected: {
       serviceWorkerRestarts: 1,
       extensionPageNavigationsAtMost: 1
@@ -124,9 +89,6 @@ export const SCENARIOS = [
     }
   },
 
-  // ---------------------------------------------------------------------------
-  // manifest.json edits
-  // ---------------------------------------------------------------------------
   {
     name: 'manifest-edit-popup-closed',
     fixturePath: ACTION_LOCALES,
@@ -146,12 +108,6 @@ export const SCENARIOS = [
       extensionPageNavigations: 0
     }
   },
-
-  // ---------------------------------------------------------------------------
-  // Page-only edits (popup HTML/JS/CSS) on a non-content-script extension.
-  // These should NOT restart the SW — the dev-server's livereload broadcast
-  // refreshes the open page on its own.
-  // ---------------------------------------------------------------------------
   {
     name: 'popup-html-edit-popup-open',
     fixturePath: ACTION,

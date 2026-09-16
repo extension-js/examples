@@ -1,4 +1,5 @@
 console.log('[From the action popup context] Hello regular page!')
+
 if (
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox-based'

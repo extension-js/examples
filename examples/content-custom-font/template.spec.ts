@@ -113,6 +113,7 @@ runtimeTest('custom font is applied in shadow DOM', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const fontDemo = await getShadowRootElement(
     page,
     '[data-extension-root="true"]',
@@ -132,6 +133,7 @@ runtimeTest('content script injects the options button', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const button = await getShadowRootElement(
     page,
     '[data-extension-root="true"]',
@@ -150,6 +152,7 @@ runtimeTest(
       waitUntil: 'domcontentloaded',
       timeout: 60000
     })
+
     const checkbox = page.locator('#custom-font')
     await runtimeTest.expect(checkbox).toBeVisible({timeout: 60000})
     await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
@@ -178,6 +181,7 @@ runtimeTest(
         const host = document.querySelector('[data-extension-root="true"]')
         const text = host?.shadowRoot?.querySelector('.font_demo p')
         if (!text) return null
+
         return window
           .getComputedStyle(text as HTMLElement)
           .getPropertyValue('font-family')
@@ -195,12 +199,14 @@ runtimeTest(
       `chrome-extension://${extensionId}/options/index.html`,
       {waitUntil: 'domcontentloaded', timeout: 60000}
     )
+
     const status = optionsPage.locator('#status')
     // The checkbox is filled in from storage after the page loads, so wait for
     // that read before toggling or the load can undo the click.
     await runtimeTest
       .expect(status)
       .toContainText('chrome.storage.sync', {timeout: 60000})
+
     const checkbox = optionsPage.locator('#custom-font')
     await runtimeTest.expect(checkbox).toBeChecked({timeout: 60000})
 
@@ -214,6 +220,7 @@ runtimeTest(
         message: 'the badge text never left the custom face'
       })
       .not.toContain('Momo Signature')
+
     const systemFamily = await readFontFamily()
     runtimeTest.expect(systemFamily).toContain('sans-serif')
 
@@ -228,6 +235,7 @@ runtimeTest(
         message: 'the badge text never came back to the custom face'
       })
       .toContain('Momo Signature')
+
     await optionsPage.close()
   }
 )

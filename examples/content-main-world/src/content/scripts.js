@@ -61,6 +61,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   const button = document.createElement('button')
@@ -75,6 +76,7 @@ export default function initial() {
     // the ISOLATED world companion, which relays it to the background worker.
     window.postMessage({channel: BRIDGE_CHANNEL, type: OPEN_OPTIONS}, '*')
   })
+
   contentDiv.appendChild(button)
 
   function render(position) {
@@ -94,12 +96,15 @@ export default function initial() {
   // payloads stay trivial and every value is narrowed to one of two edges.
   const onBridgeMessage = (event) => {
     if (event.source !== window) return
+
     const data = event.data
     if (!data || data.channel !== BRIDGE_CHANNEL) return
+
     if (data.type === PUBLISH_POSITION) {
       render(data.value === 'left' ? 'left' : 'right')
     }
   }
+
   window.addEventListener('message', onBridgeMessage)
 
   // The companion may have published before this listener existed, so ask for
@@ -116,5 +121,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

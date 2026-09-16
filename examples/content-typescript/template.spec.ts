@@ -18,9 +18,11 @@ test('should exist an element with the class name content_script', async ({
     '#extension-root, [data-extension-root="true"]',
     'div.content_script'
   )
+
   if (!div) {
     throw new Error('div with class content_script not found in Shadow DOM')
   }
+
   test.expect(div).not.toBeNull()
 })
 
@@ -29,6 +31,7 @@ test('should exist an h1 element with specified content', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for content script to inject - waitForShadowElement handles waiting internally
   const h1 = await waitForShadowElement(
     page,
@@ -36,9 +39,11 @@ test('should exist an h1 element with specified content', async ({page}) => {
     'div.content_script > h1',
     60000
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const textContent = await h1.evaluate((node) => node.textContent)
   test.expect(textContent).toContain('Content Template')
 })
@@ -50,9 +55,11 @@ test('should exist a default color value', async ({page}) => {
     '#extension-root, [data-extension-root="true"]',
     'div.content_script > h1'
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const color = await h1.evaluate((node) =>
     window.getComputedStyle(node as HTMLElement).getPropertyValue('color')
   )
@@ -70,6 +77,7 @@ test('injected UI offers the Open options button by default', async ({
     '#extension-root, [data-extension-root="true"]',
     'button'
   )
+
   const buttons = await page
     .locator('#extension-root, [data-extension-root="true"]')
     .evaluate((host: HTMLElement) =>
@@ -83,6 +91,7 @@ test('injected UI offers the Open options button by default', async ({
   test
     .expect(buttons.some((button) => button.text === 'Open options'))
     .toBe(true)
+
   test
     .expect(buttons.some((button) => button.accessibleName === 'Open options'))
     .toBe(true)
@@ -93,6 +102,7 @@ test('options page renders', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const h1 = page.locator('h1').first()
   await test.expect(h1).toBeVisible({timeout: 60000})
   const textContent = await h1.textContent()
@@ -104,6 +114,7 @@ test('options page shows the setting checkbox', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const checkbox = page.locator('#badge-left')
   await test.expect(checkbox).toBeVisible({timeout: 60000})
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
@@ -128,6 +139,7 @@ test('the setting moves the badge from right to left', async ({
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const host = page
     .locator('#extension-root, [data-extension-root="true"]')
     .first()
@@ -139,8 +151,10 @@ test('the setting moves the badge from right to left', async ({
 
   const viewport = page.viewportSize() || {width: 1280, height: 720}
   const middle = viewport.width / 2
+
   const centerX = async () => {
     const box = await injectedUi.boundingBox()
+
     return box ? box.x + box.width / 2 : -1
   }
 
@@ -154,12 +168,14 @@ test('the setting moves the badge from right to left', async ({
     `chrome-extension://${extensionId}/options/index.html`,
     {waitUntil: 'domcontentloaded', timeout: 60000}
   )
+
   const status = optionsPage.locator('#status')
   // The checkbox starts unchecked in markup and is filled in from storage, so
   // wait for that read before toggling or the load can undo the click.
   await test.expect(status).toContainText('chrome.storage.sync', {
     timeout: 60000
   })
+
   const checkbox = optionsPage.locator('#badge-left')
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
   await checkbox.check()
@@ -172,6 +188,7 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never reached the left half of the viewport'
     })
     .toBeLessThan(middle)
+
   const after = await centerX()
   test.expect(after, 'the badge never travelled left').toBeLessThan(before)
 
@@ -185,5 +202,6 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never came back to the right half'
     })
     .toBeGreaterThan(middle)
+
   await optionsPage.close()
 })

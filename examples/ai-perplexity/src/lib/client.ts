@@ -9,6 +9,7 @@ const STORAGE_KEY = 'perplexity_api_key'
 
 export async function getApiKey(): Promise<string | null> {
   const result = await chrome.storage.local.get(STORAGE_KEY)
+
   return result[STORAGE_KEY] ?? null
 }
 
@@ -33,9 +34,11 @@ export async function sendMessage(
   })
 
   const payload: {role: 'system' | 'user' | 'assistant'; content: string}[] = []
+
   if (systemPrompt) {
     payload.push({role: 'system', content: systemPrompt})
   }
+
   for (const m of messages) {
     payload.push({role: m.role, content: m.content})
   }

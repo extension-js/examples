@@ -1,28 +1,3 @@
-// Per-scenario harness driver.
-//
-// One run = one scenario from the matrix. The driver:
-//   1. Copies the source fixture into a temp directory so edits cannot leak
-//      back to the repo. The temp dir is the project root for this run.
-//   2. Spawns the dev pipeline against the temp project. Two modes:
-//      - "local"  → runs `node <monorepo>/programs/extension/dist/cli.cjs dev`
-//                   so we measure what the dev branch produces. This is the
-//                   inner-loop mode used for matrix-driven fix iteration.
-//      - "remote" → runs `npx -y extension@<tag> dev` so we measure what an
-//                   end user installs from npm. This is the publish-gate mode
-//                   used after a canary is uploaded; it catches packaging
-//                   bugs (missing dist files, wrong cross-package deps, broken
-//                   bin entries) that local mode never sees.
-//      Both modes parse stdout for the CDP debug port and wait for the dev
-//      banner to confirm the browser is up.
-//   3. Connects the passive CDP observer to the same Chrome instance.
-//   4. Optionally opens extension pages requested by the scenario (the popup,
-//      options page, etc.) so we can measure their reload behavior.
-//   5. Performs the file edits the scenario specifies, with controlled timing.
-//   6. Waits for the observer to fall quiet, snapshots events, classifies
-//      them per extension origin (user vs companion), and returns counts.
-//   7. Tears everything down: kills the dev process, closes the observer,
-//      removes the temp project.
-
 import {spawn} from 'node:child_process'
 import {
   cpSync,
@@ -37,10 +12,6 @@ import {dirname, join, resolve} from 'node:path'
 import {fileURLToPath} from 'node:url'
 import {connectObserver} from './cdp-observer.mjs'
 
-// __dirname is `<repo>/_FUTURE/examples/scripts/reload-matrix`. The harness
-// is co-located with the example templates it validates and the existing
-// reload-tooling family (verify-dev-reload-suite.mjs etc.) so reload-related
-// code stays in one neighbourhood.
 const HARNESS_DIR = dirname(fileURLToPath(import.meta.url))
 const EXAMPLES_WORKSPACE = resolve(HARNESS_DIR, '..', '..')
 const MONOREPO_ROOT = resolve(EXAMPLES_WORKSPACE, '..', '..')
@@ -49,20 +20,16 @@ const TEMPLATES_DIR = join(EXAMPLES_WORKSPACE, 'examples')
 
 const COMPANION_ORIGINS_HINT = ['extension-js-devtools', 'extension-js-theme']
 
-/**
- * Resolve a fixture path from a template name. Scenarios reference templates
- * by short name (e.g. `'action-locales'`); the harness anchors that name to
- * `_FUTURE/examples/examples/<name>` so paths stay portable across machines
- * and CI.
- */
 export function resolveTemplateFixture(templateName) {
   const path = join(TEMPLATES_DIR, templateName)
+
   if (!existsSync(path)) {
     throw new Error(
       `Template "${templateName}" not found at ${path}. Available templates ` +
         `are listed under ${TEMPLATES_DIR}.`
     )
   }
+
   return path
 }
 
@@ -73,20 +40,18 @@ function nodeBin() {
 function copyFixture(sourceDir) {
   const tempRoot = mkdtempSync(join(tmpdir(), 'reload-matrix-'))
   const projectDir = join(tempRoot, 'project')
+
   cpSync(sourceDir, projectDir, {recursive: true})
+
   // Strip any existing dist or profile so we always start clean.
   for (const sub of ['dist', 'node_modules/.cache']) {
     const candidate = join(projectDir, sub)
     if (existsSync(candidate)) rmSync(candidate, {recursive: true, force: true})
   }
+
   return {tempRoot, projectDir}
 }
 
-/**
- * Build the spawn descriptor for the dev process based on the requested
- * mode. The same args/cwd/env shape works for both modes so the harness
- * downstream of this point doesn't care which one is in play.
- */
 function buildDevSpawn({mode = 'local', remoteTag = 'canary'}) {
   if (mode === 'local') {
     if (!existsSync(LOCAL_CLI_PATH)) {
@@ -96,11 +61,13 @@ function buildDevSpawn({mode = 'local', remoteTag = 'canary'}) {
           `root before running the matrix in local mode.`
       )
     }
+
     return {
       command: nodeBin(),
       args: [LOCAL_CLI_PATH, 'dev', '--browser=chromium', '--no-telemetry']
     }
   }
+
   if (mode === 'remote') {
     // `npx -y` accepts the install on first use without a TTY prompt. The
     // remote-tag is honored via the registry's dist-tag (e.g. `extension@canary`).
@@ -115,6 +82,7 @@ function buildDevSpawn({mode = 'local', remoteTag = 'canary'}) {
       ]
     }
   }
+
   throw new Error(`Unknown harness mode: ${mode}`)
 }
 
@@ -129,14 +97,18 @@ function spawnDev({projectDir, env, mode, remoteTag}) {
     },
     stdio: ['ignore', 'pipe', 'pipe']
   })
+
   let stdout = ''
   let stderr = ''
+
   child.stdout.on('data', (chunk) => {
     stdout += chunk.toString()
   })
+
   child.stderr.on('data', (chunk) => {
     stderr += chunk.toString()
   })
+
   return {
     child,
     getStdout: () => stdout,
@@ -147,50 +119,59 @@ function spawnDev({projectDir, env, mode, remoteTag}) {
 
 async function waitForCdpPort(getStdout, deadlineMs) {
   const start = Date.now()
-  // The CLI logs the structured `browser  cdpPort=NNNN requested=MMMM` line.
-  // We grab the assigned port so a port-conflict shift is honored.
+
   while (Date.now() - start < deadlineMs) {
     const out = getStdout()
     const match = out.match(/\bcdpPort=(\d+)/)
+
     if (match) return Number(match[1])
+
     await new Promise((r) => setTimeout(r, 100))
   }
-  throw new Error(
-    'Timed out waiting for the "cdpPort=N" line in dev stdout'
-  )
+
+  throw new Error('Timed out waiting for the "cdpPort=N" line in dev stdout')
 }
 
 async function waitForDevReady(getStdout, getStderr, deadlineMs) {
   const start = Date.now()
+
   while (Date.now() - start < deadlineMs) {
     if (/(Extension|Add-on) ready for development/.test(getStdout())) return
+
     await new Promise((r) => setTimeout(r, 100))
   }
+
   const error = new Error(
     'Timed out waiting for the "ready for development" line'
   )
   error.stdoutTail = getStdout().split('\n').slice(-40).join('\n')
   error.stderrTail = getStderr().split('\n').slice(-40).join('\n')
+
   throw error
 }
 
 async function killTree(child) {
   if (!child || child.killed) return
+
   try {
     child.kill('SIGTERM')
   } catch {
     // best-effort
   }
+
   await new Promise((resolve) => {
     if (child.exitCode != null) return resolve()
+
     const timer = setTimeout(() => {
       try {
         child.kill('SIGKILL')
       } catch {
         // best-effort
       }
+
       resolve()
     }, 4_000)
+
     child.once('exit', () => {
       clearTimeout(timer)
       resolve()
@@ -200,9 +181,12 @@ async function killTree(child) {
 
 function classifyEvents(events) {
   const buckets = new Map()
+
   for (const event of events) {
     const origin = event.extensionOrigin
+
     if (!origin) continue
+
     if (!buckets.has(origin)) {
       buckets.set(origin, {
         origin,
@@ -211,13 +195,22 @@ function classifyEvents(events) {
         extensionPageNavigated: 0
       })
     }
+
     const bucket = buckets.get(origin)
-    if (event.category === 'serviceWorkerCreated') bucket.serviceWorkerCreated++
-    if (event.category === 'serviceWorkerDestroyed')
+
+    if (event.category === 'serviceWorkerCreated') {
+      bucket.serviceWorkerCreated++
+    }
+
+    if (event.category === 'serviceWorkerDestroyed') {
       bucket.serviceWorkerDestroyed++
-    if (event.category === 'extensionPageNavigated')
+    }
+
+    if (event.category === 'extensionPageNavigated') {
       bucket.extensionPageNavigated++
+    }
   }
+
   return Array.from(buckets.values())
 }
 
@@ -235,6 +228,7 @@ function findUserExtensionOrigin(buckets) {
         )
     )
     .sort((a, b) => b.serviceWorkerCreated - a.serviceWorkerCreated)
+
   return ranked[0]?.origin
 }
 
@@ -242,6 +236,7 @@ function readManifestName(projectDir) {
   for (const candidate of ['manifest.json', 'src/manifest.json']) {
     const path = join(projectDir, candidate)
     if (!existsSync(path)) continue
+
     try {
       const json = JSON.parse(readFileSync(path, 'utf-8'))
       if (typeof json.name === 'string') return json.name
@@ -249,12 +244,11 @@ function readManifestName(projectDir) {
       // best-effort
     }
   }
+
   return undefined
 }
 
 /**
- * Run a single scenario.
- *
  * @param {object} scenario
  * @param {string} scenario.name              Display label.
  * @param {string} scenario.fixturePath       Absolute path to the source fixture.
@@ -286,28 +280,25 @@ export async function runScenario(scenario) {
     mode: scenario.mode || 'local',
     remoteTag: scenario.remoteTag || 'canary'
   })
+
   let observer
+
   try {
     const port = await waitForCdpPort(dev.getStdout, 30_000)
     await waitForDevReady(dev.getStdout, dev.getStderr, 30_000)
 
     observer = await connectObserver({port})
 
-    // Drain the post-launch flurry of attach events so the scenario starts
-    // from a quiet baseline. Lifecycle events recorded BEFORE the first edit
-    // are kept in the transcript but excluded from the per-edit deltas.
     await observer.waitForQuiescence(
       scenario.startupQuietMs ?? 1_500,
       scenario.startupTimeoutMs ?? 8_000
     )
 
-    // Identify the user extension origin from the extension ID printed by
-    // the CLI banner. We need this to (a) classify origins later and (b)
-    // open user-extension pages on request.
     const userExtensionId = extractExtensionIdFromStdout(dev.getStdout())
 
     // Open any extension pages the scenario asks for (popup, options, etc.)
     const openedTargets = []
+
     for (const open of scenario.openPages || []) {
       if (!userExtensionId) {
         throw new Error(
@@ -315,10 +306,12 @@ export async function runScenario(scenario) {
             `extension ID was not found in dev stdout`
         )
       }
+
       const url = `chrome-extension://${userExtensionId}/${open.replace(/^\//, '')}`
       const targetId = await observer.openTarget(url)
       if (targetId) openedTargets.push(targetId)
     }
+
     if (openedTargets.length > 0) {
       await observer.waitForQuiescence(800, 5_000)
     }
@@ -327,17 +320,21 @@ export async function runScenario(scenario) {
 
     for (const edit of scenario.edits || []) {
       const target = join(projectDir, edit.relativePath)
+
       if (!existsSync(target)) {
         throw new Error(
           `Scenario "${scenario.name}" referenced missing file: ${edit.relativePath}`
         )
       }
+
       const current = readFileSync(target, 'utf-8')
       const next =
         typeof edit.transform === 'function'
           ? edit.transform(current)
           : current + ' '
+
       writeFileSync(target, next, 'utf-8')
+
       if (edit.waitMsAfter) {
         await new Promise((r) => setTimeout(r, edit.waitMsAfter))
       }
@@ -379,7 +376,9 @@ export async function runScenario(scenario) {
         // best-effort
       }
     }
+
     await killTree(dev.child)
+
     try {
       rmSync(tempRoot, {recursive: true, force: true})
     } catch {
@@ -390,5 +389,6 @@ export async function runScenario(scenario) {
 
 function extractExtensionIdFromStdout(stdout) {
   const match = stdout.match(/Extension ID\s+([a-p]{32})/)
+
   return match ? match[1] : undefined
 }

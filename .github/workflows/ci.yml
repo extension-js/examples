@@ -1,3 +1,10 @@
+# ███████╗██╗  ██╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗███████╗
+# ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝██╔════╝
+# █████╗   ╚███╔╝ ███████║██╔████╔██║██████╔╝██║     █████╗  ███████╗
+# ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝  ╚════██║
+# ███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗███████║
+# ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝╚══════╝
+
 name: Examples CI
 
 on:
@@ -77,7 +84,7 @@ jobs:
             examples/*/node_modules
           key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
 
-      - run: node scripts/normalize-examples.mjs
+      - run: node scripts/build/normalize-examples.mjs
       - run: pnpm lint
       - run: pnpm run test:strict-json
       - run: pnpm run test:catalog-readme
@@ -241,13 +248,6 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
 
-      # NOTE: verify-content-live and verify-full-extension-reload are disabled
-      # until source inspection emits ndjson events reliably in CI. In
-      # extension@3.13.5 the ChromiumSourceInspectionPlugin hangs silently
-      # after launch, so no page_html / action_event events are produced and
-      # every template times out at 180 s × retries, exceeding the job limit.
-      # The Playwright dev-live project below still validates reload behavior.
-
       - name: Dev-live playwright regression
         env:
           CI: true
@@ -323,11 +323,11 @@ jobs:
       - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node scripts/get-examples-for-project.mjs content)
+          EXAMPLES=$(node scripts/build/get-examples-for-project.mjs content)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
 
       - name: Build (chrome only)
-        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
+        run: node scripts/build/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
       - name: Run tests
         env:
@@ -392,11 +392,11 @@ jobs:
       - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node scripts/get-examples-for-project.mjs sidebar)
+          EXAMPLES=$(node scripts/build/get-examples-for-project.mjs sidebar)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
 
       - name: Build (chrome only)
-        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
+        run: node scripts/build/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
       - name: Run tests
         env:
@@ -461,11 +461,11 @@ jobs:
       - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node scripts/get-examples-for-project.mjs newtab)
+          EXAMPLES=$(node scripts/build/get-examples-for-project.mjs newtab)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
 
       - name: Build (chrome only)
-        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
+        run: node scripts/build/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
       - name: Run tests
         env:
@@ -530,11 +530,11 @@ jobs:
       - name: Get examples
         id: get-examples
         run: |
-          EXAMPLES=$(node scripts/get-examples-for-project.mjs mixed-context)
+          EXAMPLES=$(node scripts/build/get-examples-for-project.mjs mixed-context)
           echo "examples=$EXAMPLES" >> $GITHUB_OUTPUT
 
       - name: Build (chrome only)
-        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
+        run: node scripts/build/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
       - name: Run tests
         env:
@@ -603,14 +603,14 @@ jobs:
       - name: Get examples
         id: get-examples
         run: |
-          ACTION=$(node scripts/get-examples-for-project.mjs action)
-          SPECIAL=$(node scripts/get-examples-for-project.mjs special-folders)
-          OTHER=$(node scripts/get-examples-for-project.mjs other)
+          ACTION=$(node scripts/build/get-examples-for-project.mjs action)
+          SPECIAL=$(node scripts/build/get-examples-for-project.mjs special-folders)
+          OTHER=$(node scripts/build/get-examples-for-project.mjs other)
           ALL="${ACTION},${SPECIAL},${OTHER}"
           echo "examples=$ALL" >> $GITHUB_OUTPUT
 
       - name: Build (chrome only)
-        run: node scripts/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
+        run: node scripts/build/build-all.mjs --filter="${{ steps.get-examples.outputs.examples }}" --browsers=chrome
 
       - name: Run action tests
         env:
@@ -689,7 +689,7 @@ jobs:
 
       - name: Build assets examples (chrome only)
         run: |
-          node scripts/build-all.mjs \
+          node scripts/build/build-all.mjs \
             --filter="content,content-css-modules,content-sass,content-less,content-sass-modules,content-less-modules,content-main-world,content-multi-one-entry,content-multi-three-entries,action,new,sidebar,react,vue,svelte,preact,javascript" \
             --browsers=chrome
 
@@ -748,7 +748,7 @@ jobs:
         run: pnpm test:install firefox
 
       - name: Build all examples (firefox only)
-        run: node scripts/build-all.mjs --browsers=firefox
+        run: node scripts/build/build-all.mjs --browsers=firefox
 
       - name: Run Firefox tests
         env:

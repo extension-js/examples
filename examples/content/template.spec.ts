@@ -20,9 +20,11 @@ test('should exist an element with the class name content_script', async ({
     '#extension-root, [data-extension-root="true"]',
     'div.content_script'
   )
+
   if (!div) {
     throw new Error('div with class content_script not found in Shadow DOM')
   }
+
   test.expect(div).not.toBeNull()
 })
 
@@ -31,6 +33,7 @@ test('should exist an h1 element with specified content', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for content script to inject - waitForShadowElement handles waiting internally
   const h1 = await waitForShadowElement(
     page,
@@ -38,9 +41,11 @@ test('should exist an h1 element with specified content', async ({page}) => {
     'div.content_script > h1',
     60000
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const textContent = await h1.evaluate((node) => node.textContent)
   test.expect(textContent).toContain('Content Template')
 })
@@ -52,9 +57,11 @@ test('should exist a default color value', async ({page}) => {
     '#extension-root, [data-extension-root="true"]',
     'div.content_script > h1'
   )
+
   if (!h1) {
     throw new Error('h1 element not found in Shadow DOM')
   }
+
   const color = await h1.evaluate((node) =>
     window.getComputedStyle(node as HTMLElement).getPropertyValue('color')
   )
@@ -66,15 +73,18 @@ test('content script injects the options button', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const button = await waitForShadowElement(
     page,
     '#extension-root, [data-extension-root="true"]',
     'div.content_script > button.content_button',
     60000
   )
+
   if (!button) {
     throw new Error('options button not found in Shadow DOM')
   }
+
   const label = await button.evaluate((node) => node.getAttribute('aria-label'))
   test.expect(label).toEqual('Open options')
 })
@@ -84,6 +94,7 @@ test('options page renders', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const h1 = page.locator('h1').first()
   await test.expect(h1).toBeVisible({timeout: 60000})
   const textContent = await h1.textContent()
@@ -95,6 +106,7 @@ test('options page shows the setting checkbox', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const checkbox = page.locator('#badge-left')
   await test.expect(checkbox).toBeVisible({timeout: 60000})
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
@@ -119,6 +131,7 @@ test('the setting moves the badge from right to left', async ({
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const host = page
     .locator('#extension-root, [data-extension-root="true"]')
     .first()
@@ -129,13 +142,16 @@ test('the setting moves the badge from right to left', async ({
   await test.expect(injectedUi).toBeVisible({timeout: 30000})
 
   const middle = (page.viewportSize()?.width ?? 1280) / 2
+
   // Geometry is the only honest witness here: a style string or a class name
   // can change while the badge stays exactly where it was.
   const badgeCenterX = async () => {
     const box = await injectedUi.boundingBox()
     if (!box) throw new Error('the injected UI paints no box')
+
     return box.x + box.width / 2
   }
+
   test.expect(await badgeCenterX()).toBeGreaterThan(middle)
 
   const optionsPage = await context.newPage()
@@ -143,12 +159,14 @@ test('the setting moves the badge from right to left', async ({
     `chrome-extension://${extensionId}/options/index.html`,
     {waitUntil: 'domcontentloaded', timeout: 60000}
   )
+
   const status = optionsPage.locator('#status')
   // The checkbox is filled in from storage after the page loads, so wait for
   // that read before toggling or the load can undo the click.
   await test.expect(status).toContainText('chrome.storage.sync', {
     timeout: 60000
   })
+
   const checkbox = optionsPage.locator('#badge-left')
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
   await checkbox.check()
@@ -161,6 +179,7 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never reached the left half of the viewport'
     })
     .toBeLessThan(middle)
+
   await test.expect(injectedUi).toBeVisible({timeout: 20000})
 
   await optionsPage.bringToFront()
@@ -173,6 +192,7 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never came back to the right half of the viewport'
     })
     .toBeGreaterThan(middle)
+
   await optionsPage.close()
 })
 
@@ -185,13 +205,16 @@ const LAZY_GREETING = 'Hello from a lazy-loaded chunk'
 
 function listBuiltScripts(root: string, dir = root): string[] {
   const out: string[] = []
+
   for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
     const abs = path.join(dir, entry.name)
+
     if (entry.isDirectory()) out.push(...listBuiltScripts(root, abs))
     else if (entry.name.endsWith('.js')) {
       out.push(path.relative(root, abs).split(path.sep).join('/'))
     }
   }
+
   return out
 }
 
@@ -202,11 +225,13 @@ function isWebAccessible(manifest: any, file: string): boolean {
   const patterns = entries.flatMap((entry) =>
     typeof entry === 'string' ? [entry] : ((entry as any).resources ?? [])
   )
+
   return patterns.some((pattern: string) => {
     const source = pattern
       .split('*')
       .map((part) => part.replace(/[.+?^${}()|[\]\\]/g, '\\$&'))
       .join('.*')
+
     return new RegExp(`^${source}$`).test(file)
   })
 }
@@ -244,15 +269,18 @@ test('the content script runs the module it imports on demand', async ({
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const greeting = await waitForShadowElement(
     page,
     '#extension-root, [data-extension-root="true"]',
     'div.content_script > p.content_greeting',
     60000
   )
+
   if (!greeting) {
     throw new Error('greeting paragraph not found in Shadow DOM')
   }
+
   // The paragraph is in the DOM before the chunk arrives, so poll its text
   // rather than reading it once.
   await test.expect

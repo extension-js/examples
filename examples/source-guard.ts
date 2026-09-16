@@ -1,6 +1,3 @@
-// Journals the pristine text of every example source a spec is about to edit.
-// A killed run leaves the journal behind, and globalSetup replays it.
-
 import fs from 'fs'
 import path from 'path'
 import crypto from 'crypto'
@@ -25,6 +22,7 @@ function journalFileFor(absolutePath: string): string {
     .update(absolutePath)
     .digest('hex')
     .slice(0, 16)
+
   return path.join(JOURNAL_DIR, `${key}.${PROCESS_TOKEN}.json`)
 }
 
@@ -34,6 +32,7 @@ function writeIfChanged(absolutePath: string, original: string): void {
   } catch {
     // Source vanished mid-run, so fall through and rewrite it.
   }
+
   try {
     fs.writeFileSync(absolutePath, original, 'utf8')
   } catch {
@@ -54,14 +53,18 @@ function writeIfChanged(absolutePath: string, original: string): void {
 // re-raises the signal for the default disposition.
 function installHandlers(): void {
   if (handlersInstalled) return
+
   handlersInstalled = true
   process.on('exit', () => restoreGuardedSources())
+
   for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP'] as const) {
     process.once(signal, () => {
       if (process.listenerCount(signal) > 0) {
         for (const [file, original] of guarded) writeIfChanged(file, original)
+
         return
       }
+
       restoreGuardedSources()
       process.kill(process.pid, signal)
     })
@@ -74,9 +77,11 @@ export function guardSource(file: string): string {
   const absolutePath = path.resolve(file)
   const known = guarded.get(absolutePath)
   if (known !== undefined) return known
+
   const original = fs.readFileSync(absolutePath, 'utf8')
   guarded.set(absolutePath, original)
   installHandlers()
+
   try {
     fs.mkdirSync(JOURNAL_DIR, {recursive: true})
     fs.writeFileSync(
@@ -92,6 +97,7 @@ export function guardSource(file: string): string {
   } catch {
     // Ignore
   }
+
   return original
 }
 
@@ -101,8 +107,10 @@ export function releaseSource(file: string): void {
   const absolutePath = path.resolve(file)
   const original = guarded.get(absolutePath)
   if (original === undefined) return
+
   writeIfChanged(absolutePath, original)
   guarded.delete(absolutePath)
+
   try {
     fs.unlinkSync(journalFileFor(absolutePath))
   } catch {

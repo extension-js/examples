@@ -19,6 +19,7 @@ test('should exist an element with the welcome message text', async ({
       timeout: 60000
     }
   )
+
   // Wait for page to fully load - use condition-based wait instead of fixed timeout
   const h1 = await page.waitForSelector('h1', {
     state: 'visible',
@@ -36,6 +37,7 @@ test('should exist a default color value', async ({page, extensionId}) => {
       timeout: 60000
     }
   )
+
   await page.waitForSelector('h1', {state: 'visible', timeout: 60000})
   const h1 = page.locator('h1')
   const color = await page.evaluate(
@@ -58,6 +60,7 @@ test('should hash a string using crypto.subtle', async ({
       timeout: 60000
     }
   )
+
   await page.waitForSelector('#hash-button', {state: 'visible', timeout: 60000})
 
   // Type a known string and click the hash button

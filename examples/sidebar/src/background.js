@@ -1,6 +1,7 @@
 console.log(
   '[From the background context] Hello from the background worker/script!'
 )
+
 const isFirefoxLike =
   process.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
   process.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
@@ -23,8 +24,10 @@ function openSidebarTab() {
 
   // A repeat click focuses the tab already opened instead of a new copy.
   const knownTabId = sidebarTabId
+
   if (knownTabId === undefined) {
     openNewTab()
+
     return
   }
 
@@ -53,11 +56,13 @@ chrome.runtime.onMessage.addListener((message, sender) => {
 
   if (isFirefoxLike) {
     browser.sidebarAction.open()
+
     return
   }
 
   if (isSafariLike) {
     openSidebarTab()
+
     return
   }
 
@@ -65,6 +70,7 @@ chrome.runtime.onMessage.addListener((message, sender) => {
   // user-gesture context from the content-script click is preserved.
   chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
   const tabId = sender.tab?.id
+
   if (chrome.sidePanel?.open && tabId !== undefined) {
     chrome.sidePanel?.open({tabId})
   }

@@ -9,6 +9,7 @@ const STORAGE_KEY = 'gemini_api_key'
 
 export async function getApiKey(): Promise<string | null> {
   const result = await chrome.storage.local.get(STORAGE_KEY)
+
   return result[STORAGE_KEY] ?? null
 }
 
@@ -40,5 +41,6 @@ export async function sendMessage(
 
   const chat = model.startChat({history})
   const result = await chat.sendMessage(last.content)
+
   return result.response.text()
 }

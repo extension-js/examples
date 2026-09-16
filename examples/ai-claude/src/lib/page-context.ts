@@ -14,6 +14,7 @@ export async function getActiveTabContext(): Promise<PageContext | null> {
       type: 'getActiveTabContext'
     })) as ContextResponse | undefined
     if (!response?.ok || !response.context) return null
+
     return response.context
   } catch {
     return null

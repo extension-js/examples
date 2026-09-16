@@ -12,11 +12,13 @@ const test = extensionFixtures(pathToExtension)
 
 test('build outputs a manifest with javascript icons', async () => {
   const manifestPath = path.join(pathToExtension, 'manifest.json')
+
   if (!fs.existsSync(manifestPath)) {
     throw new Error(
       `Manifest not found at ${manifestPath}. Extension may not be built.`
     )
   }
+
   const json = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
   test
     .expect([

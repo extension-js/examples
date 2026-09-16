@@ -19,6 +19,7 @@ export default function ApiKeyForm({onSubmit}: ApiKeyFormProps) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const trimmed = key.trim()
+
     if (trimmed) {
       onSubmit(trimmed)
     }

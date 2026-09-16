@@ -14,6 +14,7 @@ export default function injectScriptOne() {
     el.style.borderRadius = '6px'
     el.style.font =
       '13px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif'
+
     el.style.boxShadow = '0 4px 12px rgba(0,0,0,.35)'
 
     el.textContent = 'scripts/script-one.js injected ✔'

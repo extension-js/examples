@@ -30,6 +30,7 @@ test('antd sidebar renders without interop runtime errors', async ({
   await test
     .expect(page.getByRole('button', {name: 'antd button'}))
     .toBeVisible()
+
   test.expect(errors.join('\n')).not.toMatch(/_interopRequireDefault/)
   test.expect(errors).toEqual([])
 })

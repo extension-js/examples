@@ -11,7 +11,7 @@ import fs from 'fs'
 import crypto from 'crypto'
 import {getDirname} from './dirname.js'
 
-// Keep in sync with scripts/prod-dist.mjs, which publishes the same trees
+// Keep in sync with scripts/build/prod-dist.mjs, which publishes the same trees
 // from globalSetup. Playwright loads specs as CJS, so it cannot import it.
 export const PROD_DIST_ROOT = '.prod-dist'
 
@@ -39,6 +39,7 @@ async function waitForExtensionReady(
 
   // 1. Manifest must exist, be non-empty, and parse.
   let manifest: any = null
+
   while (Date.now() - start < timeoutMs) {
     try {
       if (fs.statSync(manifestPath).size > 0) {
@@ -48,8 +49,10 @@ async function waitForExtensionReady(
     } catch {
       // Missing/partial — keep polling.
     }
+
     await sleep(100)
   }
+
   if (!manifest) {
     // Don't escalate to a thrown error: the fixture's existing path-validation
     // gives a clearer message and matches the pre-fix behavior on truly-bad
@@ -64,6 +67,7 @@ async function waitForExtensionReady(
   const refs: string[] = []
   const sw = manifest.background?.service_worker
   if (typeof sw === 'string') refs.push(sw)
+
   if (Array.isArray(manifest.content_scripts)) {
     for (const cs of manifest.content_scripts) {
       if (Array.isArray(cs?.js)) refs.push(...cs.js)
@@ -89,6 +93,7 @@ async function waitForExtensionReady(
   // Chrome won't read a half-written tree.
   while (Date.now() - start < timeoutMs) {
     let mtimeMs = 0
+
     try {
       mtimeMs = fs.statSync(manifestPath).mtimeMs
     } catch {
@@ -96,7 +101,9 @@ async function waitForExtensionReady(
       await sleep(100)
       continue
     }
+
     if (Date.now() - mtimeMs >= quietMs) break
+
     await sleep(100)
   }
 }
@@ -106,6 +113,7 @@ const LAUNCH_TIMEOUT_MS = 20_000
 
 function killBrowserByUserDataDir(userDataDir: string) {
   if (process.platform === 'win32') return
+
   try {
     execSync(`pkill -9 -f ${JSON.stringify(userDataDir)}`, {stdio: 'ignore'})
   } catch {
@@ -136,6 +144,7 @@ const chromiumBinaryOverride = (
 
 function chromiumLaunchTarget(isHeadless: boolean) {
   if (chromiumBinaryOverride) return {executablePath: chromiumBinaryOverride}
+
   // headless:true alone selects the chromium_headless_shell build, which
   // silently ignores --load-extension. The full build's new headless does
   // support extensions, so opt into it whenever we run headless.
@@ -164,6 +173,7 @@ export const extensionFixtures = (
       const tmpRoot = os.tmpdir()
       let userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
       let context: BrowserContext | null = null
+
       try {
         // Wait for the extension tree to be complete before Chrome reads it.
         // Cheap on static builds (manifest hasn't been touched), critical on
@@ -215,20 +225,24 @@ export const extensionFixtures = (
           context = await launchOnce(userDataDir)
         } catch {
           killBrowserByUserDataDir(userDataDir)
+
           try {
             fs.rmSync(userDataDir, {recursive: true, force: true})
           } catch {
             // Ignore
           }
+
           userDataDir = fs.mkdtempSync(path.join(tmpRoot, 'pw-ext-'))
           context = await launchOnce(userDataDir)
         }
+
         // Store userDataDir for this context instance
         userDataDirMap.set(context, userDataDir)
 
         // Wait for extension to load by checking for service worker registration
         // Use event-based waiting instead of hardcoded delays
         let hasServiceWorker = false
+
         try {
           // Check if service worker already exists
           if (context.serviceWorkers().length === 0) {
@@ -240,6 +254,7 @@ export const extensionFixtures = (
                 // Extension may not have background script (e.g., action popups)
               })
           }
+
           hasServiceWorker = context.serviceWorkers().length > 0
         } catch {
           // Extension may not have background script, continue anyway
@@ -260,6 +275,7 @@ export const extensionFixtures = (
         if (context) {
           await closeContextBounded(context, userDataDir)
         }
+
         // Clean up temp directory
         try {
           if (userDataDir && fs.existsSync(userDataDir)) {
@@ -304,15 +320,18 @@ export const extensionFixtures = (
         try {
           // A manifest "key" overrides path derivation, so do not guess then.
           const manifestPath = path.join(pathToExtension, 'manifest.json')
+
           if (fs.existsSync(manifestPath)) {
             const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'))
             if (manifest?.key) return undefined
           }
+
           const hash = crypto
             .createHash('sha256')
             .update(path.resolve(pathToExtension), 'utf8')
             .digest('hex')
             .slice(0, 32)
+
           return [...hash]
             .map((c) => String.fromCharCode(parseInt(c, 16) + 97))
             .join('')
@@ -326,17 +345,20 @@ export const extensionFixtures = (
       ): string | undefined => {
         try {
           const prefsPath = path.join(userDataDir, 'Default', 'Preferences')
+
           if (!fs.existsSync(prefsPath)) {
             return undefined
           }
 
           // Check file size - if it's very small, it might not have extension data yet
           const stats = fs.statSync(prefsPath)
+
           if (stats.size < 100) {
             return undefined
           }
 
           const prefsText = fs.readFileSync(prefsPath, 'utf-8')
+
           if (!prefsText || prefsText.trim().length === 0) {
             return undefined
           }
@@ -348,6 +370,7 @@ export const extensionFixtures = (
           const extensionEntries = Object.entries<any>(settings).filter(
             ([_, info]) => info?.path
           )
+
           if (extensionEntries.length === 0) {
             return undefined
           }
@@ -368,10 +391,12 @@ export const extensionFixtures = (
               try {
                 // Normalize both paths for comparison
                 const normalizedInfoPath = path.resolve(String(info.path))
+
                 // Check exact match first
                 if (normalizedInfoPath === normalizedTargetPath) {
                   return id
                 }
+
                 // Check if resolved paths point to the same location (handles symlinks)
                 if (
                   fs.realpathSync(normalizedInfoPath) ===
@@ -379,11 +404,13 @@ export const extensionFixtures = (
                 ) {
                   return id
                 }
+
                 // Fallback: check if basenames match (for cases where Chrome stores relative paths)
                 if (path.basename(normalizedInfoPath) === targetBasename) {
                   // Additional check: verify parent directory matches
                   const targetParent = path.dirname(normalizedTargetPath)
                   const infoParent = path.dirname(normalizedInfoPath)
+
                   if (
                     path.basename(targetParent) === path.basename(infoParent)
                   ) {
@@ -399,6 +426,7 @@ export const extensionFixtures = (
         } catch (error) {
           // Ignore errors during Preferences read (file might not exist yet, etc.)
         }
+
         return undefined
       }
 
@@ -409,6 +437,7 @@ export const extensionFixtures = (
       try {
         const testPage = context.pages()[0] || (await context.newPage())
         const cdpSession = await context.newCDPSession(testPage)
+
         try {
           const targets = await cdpSession.send('Target.getTargets')
           const extensionTargets = targets.targetInfos.filter(
@@ -420,6 +449,7 @@ export const extensionFixtures = (
           if (extensionTargets.length > 0) {
             const extensionUrl = extensionTargets[0].url
             const match = extensionUrl.match(/chrome-extension:\/\/([a-z]{32})/)
+
             if (match && match[1]) {
               extensionId = match[1]
             }
@@ -434,6 +464,7 @@ export const extensionFixtures = (
       // Fallback 1: Try service worker (for MV3 extensions with background scripts)
       if (!extensionId) {
         let [background] = context.serviceWorkers()
+
         if (!background) {
           try {
             background = await context.waitForEvent('serviceworker', {
@@ -443,6 +474,7 @@ export const extensionFixtures = (
             // No service worker - extension may not have background script
           }
         }
+
         if (background) {
           extensionId = background.url().split('/')[2]
         }
@@ -460,9 +492,11 @@ export const extensionFixtures = (
 
         for (let i = 0; i < maxRetries; i++) {
           extensionId = readExtensionIdFromPreferences(userDataDir)
+
           if (extensionId) {
             break
           }
+
           if (i < maxRetries - 1) {
             await new Promise((resolve) => setTimeout(resolve, retryDelay))
           }
@@ -482,11 +516,13 @@ export const extensionFixtures = (
         const errorDetails = userDataDir
           ? `Preferences file exists: ${fs.existsSync(path.join(userDataDir, 'Default', 'Preferences'))}`
           : 'UserDataDir not found'
+
         throw new Error(
           `Could not determine extension ID for ${pathToExtension}. ${errorDetails}. ` +
             `Service workers: ${context.serviceWorkers().length}`
         )
       }
+
       await use(extensionId)
     }
   })
@@ -498,7 +534,6 @@ export async function takeScreenshot(page: any, screenshotPath: string) {
 }
 
 /**
- * Utility to access elements inside the Shadow DOM.
  * @param page The Playwright Page object.
  * @param shadowHostSelector The selector for the Shadow DOM host element.
  * @param innerSelector The selector for the element inside the Shadow DOM.
@@ -521,6 +556,7 @@ export async function getShadowRootElement(
   })
 
   const startTime = Date.now()
+
   while (Date.now() - startTime < effectiveTimeout) {
     const shadowHosts = page.locator(shadowHostSelector)
     const hostCount = await shadowHosts.count()
@@ -537,10 +573,12 @@ export async function getShadowRootElement(
       )
       const elementHandle =
         element.asElement() as ElementHandle<HTMLElement> | null
+
       if (elementHandle) {
         return elementHandle
       }
     }
+
     await page.waitForTimeout(250)
   }
 
@@ -558,6 +596,7 @@ export async function waitForShadowElement(
   const effectiveTimeout = timeoutMs === 30000 && isCI ? 60000 : timeoutMs
 
   const start = Date.now()
+
   while (Date.now() - start < effectiveTimeout) {
     try {
       const el = await getShadowRootElement(
@@ -570,8 +609,10 @@ export async function waitForShadowElement(
     } catch {
       /* noop */
     }
+
     await page.waitForTimeout(250)
   }
+
   return null
 }
 
@@ -579,8 +620,10 @@ export function getPathToExtension(exampleDir: string): string {
   const __dirname = getDirname(import.meta.url)
   const absoluteExampleDir = path.join(__dirname, exampleDir)
   const chromeDist = path.join(absoluteExampleDir, 'dist', 'chrome')
+
   try {
     const fs = require('fs') as typeof import('fs')
+
     if (!fs.existsSync(chromeDist)) {
       execSync(`pnpm extension build ${exampleDir}`, {
         cwd: __dirname,
@@ -590,6 +633,7 @@ export function getPathToExtension(exampleDir: string): string {
   } catch {
     /* noop */
   }
+
   return chromeDist
 }
 
@@ -607,6 +651,7 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
       '--no-first-run'
     ]
   })
+
   try {
     // Try Preferences lookup
     try {
@@ -614,6 +659,7 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
       const prefsText = fs.readFileSync(prefsPath, 'utf-8')
       const prefs = JSON.parse(prefsText)
       const settings = prefs?.extensions?.settings || {}
+
       for (const [id, info] of Object.entries<any>(settings)) {
         if (
           info?.path &&
@@ -625,9 +671,11 @@ export async function getExtensionId(pathToExtension: string): Promise<string> {
     } catch {
       /* noop */
     }
+
     // Fallback to waiting for background service worker
     let [background] = context.serviceWorkers()
     if (!background) background = await context.waitForEvent('serviceworker')
+
     return background.url().split('/')[2]
   } finally {
     await context.close()
@@ -648,12 +696,14 @@ export async function gotoExtensionPage(
   relPath: string
 ): Promise<void> {
   const url = `chrome-extension://${extensionId}/${relPath.replace(/^\//, '')}`
+
   try {
     await page.goto(url)
   } catch (error) {
     const diskPath = path.join(pathToExtension, relPath)
     const shipped = fs.existsSync(diskPath)
     let listing = '(unreadable)'
+
     try {
       listing = fs
         .readdirSync(pathToExtension, {recursive: true})
@@ -664,10 +714,12 @@ export async function gotoExtensionPage(
     } catch {
       /* keep placeholder */
     }
+
     const reason = shipped
       ? `the dist DOES ship ${relPath}, so the loaded extension and the ` +
         `on-disk dist disagree (dist rewritten after load, or wrong id)`
       : `the dist does NOT ship ${relPath}`
+
     throw new Error(
       `Navigation to ${url} failed: ${(error as Error).message.split('\n')[0]}. ` +
         `Checked ${diskPath}: ${reason}. Dist contents: ${listing}`,
@@ -682,19 +734,23 @@ export async function gotoExtensionPage(
 // refuses to load or 404s the spec's page.goto with a bare net error.
 function manifestEntryRefs(manifest: any): string[] {
   const refs: string[] = []
+
   const push = (value: unknown) => {
     if (typeof value === 'string' && value.trim().length > 0) {
       refs.push(value.replace(/^\.?\//, ''))
     }
   }
+
   push(manifest?.background?.service_worker)
   for (const script of manifest?.background?.scripts ?? []) push(script)
+
   if (Array.isArray(manifest?.content_scripts)) {
     for (const cs of manifest.content_scripts) {
       for (const file of cs?.js ?? []) push(file)
       for (const file of cs?.css ?? []) push(file)
     }
   }
+
   push(manifest?.action?.default_popup)
   push(manifest?.browser_action?.default_popup)
   push(manifest?.side_panel?.default_path)
@@ -702,6 +758,7 @@ function manifestEntryRefs(manifest: any): string[] {
   push(manifest?.chrome_url_overrides?.newtab)
   push(manifest?.options_ui?.page)
   push(manifest?.devtools_page)
+
   return refs
 }
 
@@ -709,6 +766,7 @@ function manifestEntryRefs(manifest: any): string[] {
 // dir has no parseable manifest at all.
 export function missingManifestRefs(dir: string): string[] | null {
   let manifest: any
+
   try {
     manifest = JSON.parse(
       fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8')
@@ -716,6 +774,7 @@ export function missingManifestRefs(dir: string): string[] | null {
   } catch {
     return null
   }
+
   return manifestEntryRefs(manifest).filter((rel) => {
     try {
       return fs.statSync(path.join(dir, rel)).size === 0
@@ -733,6 +792,7 @@ export function missingManifestRefs(dir: string): string[] | null {
 // dist forever.
 export function isCompleteDist(dir: string): boolean {
   const missing = missingManifestRefs(dir)
+
   return missing !== null && missing.length === 0
 }
 
@@ -744,6 +804,7 @@ export function prodDistPath(exampleDirAbsolute: string): string {
   const slug = path
     .relative(repoRoot, exampleDirAbsolute)
     .replace(/[\\/]/g, '__')
+
   return path.join(repoRoot, PROD_DIST_ROOT, slug, 'chrome')
 }
 
@@ -752,19 +813,24 @@ export function prodDistPath(exampleDirAbsolute: string): string {
 export function publishProdDist(exampleDirAbsolute: string): string | null {
   const source = path.join(exampleDirAbsolute, 'dist', 'chrome')
   if (!isCompleteDist(source)) return null
+
   const target = prodDistPath(exampleDirAbsolute)
   const staging = `${target}.staging-${process.pid}`
   const retired = `${target}.retired-${process.pid}`
+
   try {
     fs.mkdirSync(path.dirname(target), {recursive: true})
     fs.rmSync(staging, {recursive: true, force: true})
     fs.cpSync(source, staging, {recursive: true})
+
     try {
       fs.renameSync(target, retired)
     } catch {
       // Nothing published yet.
     }
+
     fs.renameSync(staging, target)
+
     return isCompleteDist(target) ? target : null
   } catch {
     return null
@@ -775,21 +841,24 @@ export function publishProdDist(exampleDirAbsolute: string): string | null {
 }
 
 export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
-  // The private tree wins outright. scripts/prebuild-assets-templates.mjs
+  // The private tree wins outright. scripts/build/prebuild-assets-templates.mjs
   // publishes it serially at globalSetup, before any worker can race it.
   const published = prodDistPath(exampleDirAbsolute)
   if (isCompleteDist(published)) return published
+
   const republished = publishProdDist(exampleDirAbsolute)
   if (republished) return republished
 
   const roots = ['dist', 'build', '.extension']
   const channels = ['chrome', 'chromium', 'chrome-mv3']
   const candidateDirs: string[] = []
+
   for (const root of roots) {
     for (const ch of channels) {
       candidateDirs.push(path.join(exampleDirAbsolute, root, ch))
     }
   }
+
   // Try building when no complete dist exists. This also self-heals a
   // partial dist left behind by an interrupted earlier run. Some
   // Extension.js versions install deps first and require a second
@@ -803,28 +872,37 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       }
     )
   }
+
   try {
     runBuild()
   } catch {
     /* noop */
   }
+
   const afterFirstBuild = publishProdDist(exampleDirAbsolute)
   if (afterFirstBuild) return afterFirstBuild
+
   try {
     runBuild()
   } catch {
     /* noop */
   }
+
   const afterSecondBuild = publishProdDist(exampleDirAbsolute)
   if (afterSecondBuild) return afterSecondBuild
+
   for (const dir of candidateDirs) if (isCompleteDist(dir)) return dir
+
   // As a last attempt, search shallowly under known roots for any complete dist
   for (const root of roots) {
     const rootPath = path.join(exampleDirAbsolute, root)
+
     try {
       const entries = fs.readdirSync(rootPath, {withFileTypes: true})
+
       for (const entry of entries) {
         if (!entry.isDirectory()) continue
+
         const dir = path.join(rootPath, entry.name)
         if (isCompleteDist(dir)) return dir
       }
@@ -832,11 +910,13 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       /* noop */
     }
   }
+
   // A manifest-bearing but incomplete dist that the rebuild could not repair
   // must fail loudly, naming the missing artifacts instead of letting Chrome
   // surface a bare net::ERR_FILE_NOT_FOUND later.
   for (const dir of candidateDirs) {
     const missing = missingManifestRefs(dir)
+
     if (missing !== null && missing.length > 0) {
       throw new Error(
         `Built extension at ${dir} is missing manifest-referenced files ` +
@@ -845,6 +925,7 @@ export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
       )
     }
   }
+
   // Last resort: return default expected path (will fail loudly in Playwright if missing)
   return path.join(exampleDirAbsolute, 'dist', 'chrome')
 }

@@ -120,6 +120,7 @@ export default function SidebarApp() {
     try {
       const fresh = await getActiveTabContext()
       if (fresh) setPageContext(fresh)
+
       const systemPrompt = fresh
         ? buildSystemPrompt(fresh, PRODUCT_NAME)
         : undefined

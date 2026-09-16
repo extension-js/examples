@@ -22,20 +22,30 @@ function fileExists(...segments: string[]): boolean {
 function detectUIContexts(manifest: any): UIContext[] | undefined {
   const contexts: UIContext[] = []
   if (manifest?.chrome_url_overrides?.newtab) contexts.push('newTab')
+
   if (
     Array.isArray(manifest?.content_scripts) &&
     manifest.content_scripts.length
-  )
+  ) {
     contexts.push('content')
+  }
+
   if (
     manifest?.action ||
     manifest?.browser_action ||
     manifest?.['chromium:action'] ||
     manifest?.['firefox:browser_action']
-  )
+  ) {
     contexts.push('action')
-  if (manifest?.['chromium:side_panel'] || manifest?.['firefox:sidebar_action'])
+  }
+
+  if (
+    manifest?.['chromium:side_panel'] ||
+    manifest?.['firefox:sidebar_action']
+  ) {
     contexts.push('sidebar')
+  }
+
   return contexts.length ? contexts : undefined
 }
 
@@ -47,6 +57,7 @@ function detectUIFramework(exampleDir: string): UIFramework | undefined {
   if (deps.preact) return 'preact'
   if (deps.vue) return 'vue'
   if (deps.svelte) return 'svelte'
+
   return undefined
 }
 
@@ -57,12 +68,14 @@ function detectCssTech(exampleName: string, exampleDir: string): CssTech {
   if (exampleName.includes('css-modules')) return 'css-modules'
   if (exampleName.includes('sass')) return 'sass'
   if (exampleName.includes('less')) return 'less'
+
   // Fallback to deps
   const pkgPath = path.join(exampleDir, 'package.json')
   const pkg = readJSON(pkgPath) ?? {}
   const deps = {...(pkg.dependencies || {}), ...(pkg.devDependencies || {})}
   if (deps.sass) return 'sass'
   if (deps.less) return 'less'
+
   return 'css'
 }
 
@@ -78,6 +91,7 @@ function detectConfigFiles(exampleDir: string): ConfigFiles[] | undefined {
     'eslint.config.mjs'
   ]
   const present = possible.filter((f) => fileExists(exampleDir, f))
+
   return present.length ? present : undefined
 }
 
@@ -89,6 +103,7 @@ function detectHasEnv(exampleDir: string): boolean {
     '.env.development',
     'extension-env.d.ts'
   ]
+
   return envFiles.some((f) => fileExists(exampleDir, f))
 }
 
@@ -100,6 +115,7 @@ function isExampleDir(dirName: string): boolean {
 function readJSON(filePath: string): any | undefined {
   try {
     const text = fs.readFileSync(filePath, 'utf-8')
+
     return JSON.parse(text)
   } catch {
     return undefined
@@ -115,6 +131,7 @@ const ALL_TEMPLATES: Template[] = exampleDirs.map((name) => {
   const examplePath = path.join(__dirname, name)
   const manifestPath = path.join(examplePath, 'src', 'manifest.json')
   const manifest = readJSON(manifestPath) ?? {}
+
   return {
     name,
     uiContext: detectUIContexts(manifest),

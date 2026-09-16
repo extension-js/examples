@@ -21,6 +21,7 @@ test('action popup page renders', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   // Wait for page to load - use condition-based wait instead of fixed timeout
   const h1 = page.locator('h1').first()
   await test.expect(h1).toBeVisible({timeout: 60000})

@@ -62,6 +62,7 @@ export default function initial() {
     link,
     '.'
   )
+
   contentDiv.appendChild(description)
 
   const button = document.createElement('button')
@@ -75,6 +76,7 @@ export default function initial() {
     const message: OpenOptionsMessage = {type: 'open-options'}
     chrome.runtime.sendMessage(message)
   })
+
   contentDiv.appendChild(button)
 
   function applyPosition(value: unknown) {
@@ -96,10 +98,12 @@ export default function initial() {
     areaName: string
   ) => {
     const change = changes.badgePosition
+
     if (areaName === 'sync' && change) {
       applyPosition(change.newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onSettingChanged)
 
   return () => {
@@ -112,5 +116,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }

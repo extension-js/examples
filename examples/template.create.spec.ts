@@ -1,13 +1,3 @@
-// Template create + first-run test
-//
-// For each built-in template, verifies:
-//   1. Scaffolding produces a valid project (manifest.json + package.json)
-//   2. Dependencies install without errors
-//   3. Production build succeeds and emits manifest.json
-//
-// Uses the LOCAL examples as the template source (no network).
-// Runs in a temporary directory so tests are fully isolated.
-
 import {test, expect} from '@playwright/test'
 import fs from 'fs'
 import os from 'os'
@@ -23,12 +13,14 @@ function buildCommand(projectDir: string): string {
   if (localCliCjs) {
     return `node ${localCliCjs} build ${projectDir} --browser=chrome`
   }
+
   return `pnpm extension build ${projectDir} --browser=chrome`
 }
 
 function copyTemplate(templateName: string, dest: string) {
   const src = path.join(__dirname, templateName)
   if (!fs.existsSync(src)) throw new Error(`Template dir not found: ${src}`)
+
   fs.cpSync(src, dest, {recursive: true})
 }
 
@@ -46,6 +38,7 @@ function findOutputManifest(projectDir: string): string | null {
       if (fs.existsSync(candidate)) return candidate
     }
   }
+
   return null
 }
 
@@ -110,8 +103,10 @@ test.describe('template: create and first build', () => {
 
       test('dependencies install', () => {
         const projectDir = path.join(tmpDir, templateName)
+
         if (!fs.existsSync(path.join(projectDir, 'package.json'))) {
           test.skip()
+
           return
         }
 
@@ -140,16 +135,20 @@ test.describe('template: create and first build', () => {
 
       test('production build succeeds', () => {
         const projectDir = path.join(tmpDir, templateName)
+
         if (!fs.existsSync(path.join(projectDir, 'node_modules'))) {
           test.skip()
+
           return
         }
 
         // Framework templates have monorepo-linked deps that don't resolve
         // in isolated tmpdirs. Their builds are covered by multi-browser suite.
         const frameworkTemplates = ['react', 'preact', 'vue', 'svelte']
+
         if (frameworkTemplates.some((f) => templateName.includes(f))) {
           test.skip()
+
           return
         }
 

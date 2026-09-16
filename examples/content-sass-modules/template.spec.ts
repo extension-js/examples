@@ -24,6 +24,7 @@ test('CSS module class names produce matching computed styles', async ({
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   const host = page.locator('#extension-root, [data-extension-root="true"]')
   await test.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -34,9 +35,12 @@ test('CSS module class names produce matching computed styles', async ({
         return host.first().evaluate((el: HTMLElement) => {
           const sr = el.shadowRoot
           if (!sr) return null
+
           const div = sr.querySelector('div')
           if (!div) return null
+
           const cs = window.getComputedStyle(div)
+
           return cs.position !== 'static' ? true : null
         })
       },
@@ -52,6 +56,7 @@ test('CSS module class names produce matching computed styles', async ({
     const sr = el.shadowRoot!
     const div = sr.querySelector('div')!
     const cs = window.getComputedStyle(div)
+
     return {
       position: cs.position,
       backgroundColor: cs.backgroundColor,
@@ -61,12 +66,14 @@ test('CSS module class names produce matching computed styles', async ({
   test
     .expect(result.position, 'container should be position:fixed')
     .toBe('fixed')
+
   test
     .expect(
       result.backgroundColor,
       'container should have dark background (#0a0c10)'
     )
     .toBe('rgb(10, 12, 16)')
+
   test
     .expect(result.color, 'text should be light (#c9c9c9)')
     .toBe('rgb(201, 201, 201)')
@@ -77,6 +84,7 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 30000
   })
+
   const host = page.locator('#extension-root, [data-extension-root="true"]')
   await test.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -86,6 +94,7 @@ test('h1 title has correct font-weight from CSS module', async ({page}) => {
         return host.first().evaluate((el: HTMLElement) => {
           const h1 = el.shadowRoot?.querySelector('h1')
           if (!h1) return null
+
           return window.getComputedStyle(h1).fontWeight
         })
       },
@@ -105,6 +114,7 @@ test('content script injects the options button', async ({page}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const host = page
     .locator('#extension-root, [data-extension-root="true"]')
     .first()
@@ -119,6 +129,7 @@ test('options page shows the setting checkbox', async ({page, extensionId}) => {
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const checkbox = page.locator('#badge-left')
   await test.expect(checkbox).toBeVisible({timeout: 60000})
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
@@ -143,6 +154,7 @@ test('the setting moves the badge from right to left', async ({
     waitUntil: 'domcontentloaded',
     timeout: 60000
   })
+
   const host = page
     .locator('#extension-root, [data-extension-root="true"]')
     .first()
@@ -153,13 +165,16 @@ test('the setting moves the badge from right to left', async ({
   await test.expect(injectedUi).toBeVisible({timeout: 30000})
 
   const middle = (page.viewportSize()?.width ?? 1280) / 2
+
   // Geometry is the only honest witness here: a style string or a class name
   // can change while the badge stays exactly where it was.
   const badgeCenterX = async () => {
     const box = await injectedUi.boundingBox()
     if (!box) throw new Error('the injected UI paints no box')
+
     return box.x + box.width / 2
   }
+
   test.expect(await badgeCenterX()).toBeGreaterThan(middle)
 
   const optionsPage = await context.newPage()
@@ -167,12 +182,14 @@ test('the setting moves the badge from right to left', async ({
     `chrome-extension://${extensionId}/options/index.html`,
     {waitUntil: 'domcontentloaded', timeout: 60000}
   )
+
   const status = optionsPage.locator('#status')
   // The checkbox is filled in from storage after the page loads, so wait for
   // that read before toggling or the load can undo the click.
   await test.expect(status).toContainText('chrome.storage.sync', {
     timeout: 60000
   })
+
   const checkbox = optionsPage.locator('#badge-left')
   await test.expect(checkbox).not.toBeChecked({timeout: 60000})
   await checkbox.check()
@@ -185,6 +202,7 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never reached the left half of the viewport'
     })
     .toBeLessThan(middle)
+
   await test.expect(injectedUi).toBeVisible({timeout: 20000})
 
   await optionsPage.bringToFront()
@@ -197,5 +215,6 @@ test('the setting moves the badge from right to left', async ({
       message: 'the badge never came back to the right half of the viewport'
     })
     .toBeGreaterThan(middle)
+
   await optionsPage.close()
 })

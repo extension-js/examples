@@ -1,14 +1,3 @@
-// Firefox Runtime Verification
-//
-// Full parity tests for Firefox: content script injection, CSS injection
-// in shadow DOM, background script presence, and extension page build
-// verification (HTML/JS/CSS content on disk).
-//
-// Content script tests use Playwright's page object (navigate to regular URLs).
-// Extension page tests verify built HTML content on disk because Playwright's
-// Juggler protocol cannot navigate to moz-extension:// URLs, and the patched
-// Firefox RDP does not support addon debugging (webExtensionDescriptor).
-
 import fs from 'fs'
 import path from 'path'
 import {test as baseTest} from '@playwright/test'
@@ -35,9 +24,7 @@ function readFileIfExists(filePath: string): string | null {
   }
 }
 
-// ---------------------------------------------------------------------------
 // Auto-discover content examples with Firefox builds
-// ---------------------------------------------------------------------------
 
 const contentExamples: Array<{name: string; extPath: string}> = []
 // MAIN world content scripts are Chromium-only; skip them in Firefox
@@ -46,8 +33,10 @@ const FIREFOX_SKIP = new Set(['content-main-world'])
 for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
   if (!entry.isDirectory() || !entry.name.startsWith('content')) continue
   if (FIREFOX_SKIP.has(entry.name)) continue
+
   const exampleDir = path.join(__dirname, entry.name)
   const extPath = resolveBuiltFirefoxExtensionPath(exampleDir)
+
   if (
     fs.existsSync(extPath) &&
     fs.existsSync(path.join(extPath, 'manifest.json'))
@@ -56,6 +45,7 @@ for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
       const manifest = JSON.parse(
         fs.readFileSync(path.join(extPath, 'manifest.json'), 'utf8')
       )
+
       if (Array.isArray(manifest.content_scripts)) {
         contentExamples.push({name: entry.name, extPath})
       }
@@ -87,6 +77,7 @@ for (const {name, extPath} of contentExamples) {
       waitUntil: 'domcontentloaded',
       timeout: 20000
     })
+
     const host = page.locator('[data-extension-root]')
     await test.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -99,9 +90,7 @@ for (const {name, extPath} of contentExamples) {
   })
 }
 
-// ---------------------------------------------------------------------------
 // Content script CSS injection — verify shadow DOM has styles applied
-// ---------------------------------------------------------------------------
 
 const contentCssExample = contentExamples.find(
   (e) =>
@@ -109,6 +98,7 @@ const contentCssExample = contentExamples.find(
     e.name === 'content-sass' ||
     e.name === 'content-less'
 )
+
 if (contentCssExample) {
   const cssTest = firefoxExtensionFixtures(contentCssExample.extPath)
 
@@ -119,6 +109,7 @@ if (contentCssExample) {
         waitUntil: 'domcontentloaded',
         timeout: 20000
       })
+
       const host = page.locator('[data-extension-root]')
       await cssTest.expect(host.first()).toBeAttached({timeout: 15000})
 
@@ -129,11 +120,13 @@ if (contentCssExample) {
             return host.first().evaluate((el: HTMLElement) => {
               const sr = el.shadowRoot
               if (!sr) return false
+
               const styles = sr.querySelectorAll('style')
               const links = sr.querySelectorAll('link[rel="stylesheet"]')
               const hasStyleContent = Array.from(styles).some(
                 (s) => (s.textContent || '').trim().length > 0
               )
+
               return hasStyleContent || links.length > 0
             })
           },
@@ -147,12 +140,11 @@ if (contentCssExample) {
   )
 }
 
-// ---------------------------------------------------------------------------
 // Background script verification — addon installs and background runs
-// ---------------------------------------------------------------------------
 
 const actionDir = path.join(__dirname, 'action')
 const actionFirefoxPath = resolveBuiltFirefoxExtensionPath(actionDir)
+
 if (
   fs.existsSync(actionFirefoxPath) &&
   fs.existsSync(path.join(actionFirefoxPath, 'manifest.json'))
@@ -175,14 +167,12 @@ if (
   }
 }
 
-// ---------------------------------------------------------------------------
 // Extension page HTML verification — verify built HTML on disk
 //
 // Playwright's Juggler cannot navigate to moz-extension:// URLs and the
 // patched Firefox RDP doesn't expose addon target debugging. We verify the
 // built HTML/CSS/JS files contain expected content, which combined with
 // successful addon installation gives strong parity confidence.
-// ---------------------------------------------------------------------------
 
 // Action popup HTML verification
 if (
@@ -203,6 +193,7 @@ if (
         baseTest
           .expect(html, `popup HTML should exist at ${htmlPath}`)
           .toBeTruthy()
+
         baseTest.expect(html!).toContain('<')
         baseTest.expect(html!).toContain('</html>')
         // Verify it references a JS bundle
@@ -215,6 +206,7 @@ if (
 // Sidebar panel HTML verification
 const sidebarDir = path.join(__dirname, 'sidebar')
 const sidebarFirefoxPath = resolveBuiltFirefoxExtensionPath(sidebarDir)
+
 if (
   fs.existsSync(sidebarFirefoxPath) &&
   fs.existsSync(path.join(sidebarFirefoxPath, 'manifest.json'))
@@ -252,6 +244,7 @@ if (
         baseTest
           .expect(html, `sidebar HTML should exist at ${htmlPath}`)
           .toBeTruthy()
+
         baseTest.expect(html!).toContain('<')
         baseTest.expect(html!).toContain('</html>')
         baseTest.expect(html!).toMatch(/<script\b/)
@@ -266,6 +259,7 @@ if (
         baseTest
           .expect(sidebarManifest.sidebar_action.default_panel)
           .toBeTruthy()
+
         // Firefox MV2 should not have MV3-only side_panel
         baseTest.expect(sidebarManifest.side_panel).toBeUndefined()
         // Should be MV2
@@ -278,6 +272,7 @@ if (
 // New tab override HTML verification
 const newDir = path.join(__dirname, 'new')
 const newFirefoxPath = resolveBuiltFirefoxExtensionPath(newDir)
+
 if (
   fs.existsSync(newFirefoxPath) &&
   fs.existsSync(path.join(newFirefoxPath, 'manifest.json'))
@@ -295,6 +290,7 @@ if (
         baseTest
           .expect(html, `newtab HTML should exist at ${htmlPath}`)
           .toBeTruthy()
+
         baseTest.expect(html!).toContain('<')
         baseTest.expect(html!).toContain('</html>')
         baseTest.expect(html!).toMatch(/<script\b/)
@@ -323,9 +319,7 @@ if (
   }
 }
 
-// ---------------------------------------------------------------------------
 // Monorepo content script + addon install
-// ---------------------------------------------------------------------------
 
 for (const monorepoSlug of [
   'sidebar-monorepo-turborepo',
@@ -339,80 +333,86 @@ for (const monorepoSlug of [
     'dist',
     'firefox'
   )
+
   if (
     !fs.existsSync(monorepoFirefoxDist) ||
     !fs.existsSync(path.join(monorepoFirefoxDist, 'manifest.json'))
   ) {
     continue
   }
+
   {
-  const monorepoManifest = readManifest(monorepoFirefoxDist)
+    const monorepoManifest = readManifest(monorepoFirefoxDist)
 
-  // Content script runtime test
-  if (Array.isArray(monorepoManifest.content_scripts)) {
-    const monorepoTest = firefoxExtensionFixtures(monorepoFirefoxDist)
+    // Content script runtime test
+    if (Array.isArray(monorepoManifest.content_scripts)) {
+      const monorepoTest = firefoxExtensionFixtures(monorepoFirefoxDist)
 
-    monorepoTest(
-      `firefox: ${monorepoSlug} content script injects in Firefox`,
-      async ({page}) => {
-        await page.goto('https://example.com/', {
-          waitUntil: 'domcontentloaded',
-          timeout: 20000
-        })
-        const host = page.locator('[data-extension-root]')
-        await monorepoTest.expect(host.first()).toBeAttached({timeout: 15000})
+      monorepoTest(
+        `firefox: ${monorepoSlug} content script injects in Firefox`,
+        async ({page}) => {
+          await page.goto('https://example.com/', {
+            waitUntil: 'domcontentloaded',
+            timeout: 20000
+          })
 
-        const hasShadow = await host
-          .first()
-          .evaluate((el: HTMLElement) => !!el.shadowRoot)
-        monorepoTest.expect(hasShadow).toBe(true)
-      }
-    )
-  }
+          const host = page.locator('[data-extension-root]')
+          await monorepoTest.expect(host.first()).toBeAttached({timeout: 15000})
 
-  // Sidebar HTML verification
-  const monorepoSidebar = monorepoManifest.sidebar_action?.default_panel
-  if (monorepoSidebar) {
-    baseTest(
-      `firefox: ${monorepoSlug} sidebar HTML is valid and references JS`,
-      async () => {
-        const htmlPath = path.join(monorepoFirefoxDist, monorepoSidebar)
-        const html = readFileIfExists(htmlPath)
-        baseTest.expect(html).toBeTruthy()
-        baseTest.expect(html!).toContain('<')
-        baseTest.expect(html!).toMatch(/<script\b/)
-      }
-    )
-
-    // Verify Firefox MV2 manifest keys
-    baseTest(
-      `firefox: ${monorepoSlug} manifest has sidebar_action and MV2 background`,
-      async () => {
-        baseTest.expect(monorepoManifest.sidebar_action).toBeDefined()
-        baseTest.expect(monorepoManifest.manifest_version).toBe(2)
-        // Firefox uses background.scripts, not service_worker
-        if (monorepoManifest.background) {
-          baseTest
-            .expect(
-              monorepoManifest.background.scripts ||
-                monorepoManifest.background.page
-            )
-            .toBeTruthy()
-          baseTest
-            .expect(monorepoManifest.background.service_worker)
-            .toBeUndefined()
+          const hasShadow = await host
+            .first()
+            .evaluate((el: HTMLElement) => !!el.shadowRoot)
+          monorepoTest.expect(hasShadow).toBe(true)
         }
+      )
+    }
+
+    // Sidebar HTML verification
+    const monorepoSidebar = monorepoManifest.sidebar_action?.default_panel
+
+    if (monorepoSidebar) {
+      baseTest(
+        `firefox: ${monorepoSlug} sidebar HTML is valid and references JS`,
+        async () => {
+          const htmlPath = path.join(monorepoFirefoxDist, monorepoSidebar)
+          const html = readFileIfExists(htmlPath)
+          baseTest.expect(html).toBeTruthy()
+          baseTest.expect(html!).toContain('<')
+          baseTest.expect(html!).toMatch(/<script\b/)
+        }
+      )
+
+      // Verify Firefox MV2 manifest keys
+      baseTest(
+        `firefox: ${monorepoSlug} manifest has sidebar_action and MV2 background`,
+        async () => {
+          baseTest.expect(monorepoManifest.sidebar_action).toBeDefined()
+          baseTest.expect(monorepoManifest.manifest_version).toBe(2)
+
+          // Firefox uses background.scripts, not service_worker
+          if (monorepoManifest.background) {
+            baseTest
+              .expect(
+                monorepoManifest.background.scripts ||
+                  monorepoManifest.background.page
+              )
+              .toBeTruthy()
+
+            baseTest
+              .expect(monorepoManifest.background.service_worker)
+              .toBeUndefined()
+          }
+        }
+      )
+    }
+
+    // Monorepo addon install test
+    const monorepoInstallTest = firefoxExtensionFixtures(monorepoFirefoxDist)
+    monorepoInstallTest(
+      `firefox: ${monorepoSlug} addon installs and gets UUID`,
+      async ({extensionId}) => {
+        monorepoInstallTest.expect(extensionId.length).toBeGreaterThan(0)
       }
     )
-  }
-
-  // Monorepo addon install test
-  const monorepoInstallTest = firefoxExtensionFixtures(monorepoFirefoxDist)
-  monorepoInstallTest(
-    `firefox: ${monorepoSlug} addon installs and gets UUID`,
-    async ({extensionId}) => {
-      monorepoInstallTest.expect(extensionId.length).toBeGreaterThan(0)
-    }
-  )
   }
 }

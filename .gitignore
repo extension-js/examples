@@ -55,6 +55,8 @@ yarn-error.log*
 
 # examples
 /examples/**/pnpm-lock.yaml
+/examples/**/package-lock.json
+/examples/**/yarn.lock
 /examples/**/extension-env.d.ts
 templates/
 
@@ -87,7 +89,7 @@ TEST_FAILURES.md
 artifacts/
 
 # Read-only copy of each example's production build, published by
-# scripts/prebuild-assets-templates.mjs and never written during a test run.
+# scripts/build/prebuild-assets-templates.mjs and never written during a test run.
 .prod-dist/
 
 # Pristine example sources journaled before a reload spec edits them, so an

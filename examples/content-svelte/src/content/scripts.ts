@@ -65,6 +65,7 @@ export default function initial() {
       applyPosition(changes[SETTING_KEY].newValue)
     }
   }
+
   chrome.storage.onChanged.addListener(onStorageChanged)
 
   // The class lands on the element the stylesheet positions, not on the host:
@@ -85,5 +86,6 @@ async function fetchCSS() {
   const cssUrl = new URL('./styles.css', import.meta.url)
   const response = await fetch(cssUrl)
   const text = await response.text()
+
   return response.ok ? text : Promise.reject(text)
 }
