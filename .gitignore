@@ -88,6 +88,9 @@ TEST_FAILURES.md
 # build artifacts produced by packaging script
 artifacts/
 
+# Former committed mirror of examples/<slug>/. Consumers read examples/ now.
+/public/
+
 # Read-only copy of each example's production build, published by
 # scripts/build/prebuild-assets-templates.mjs and never written during a test run.
 .prod-dist/

@@ -91,7 +91,6 @@
     "test:template-screenshots": "node scripts/checks/assert-template-screenshots.mjs"
   },
   "files": [
-    "public/**",
     "templates-meta.json",
     "templates-meta.d.ts"
   ],

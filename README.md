@@ -49,7 +49,7 @@ npx extension@latest create my-extension --template javascript
 ### Sidebar
 
 <details>
-  <summary><img src="./public/javascript/src/images/icon.png" alt="javascript example icon" width="22" /> JavaScript Example</summary>
+  <summary><img src="./examples/javascript/src/images/icon.png" alt="javascript example icon" width="22" /> JavaScript Example</summary>
 
 > JavaScript-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -72,7 +72,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/react/src/images/icon.png" alt="react example icon" width="22" /> React Example</summary>
+  <summary><img src="./examples/react/src/images/icon.png" alt="react example icon" width="22" /> React Example</summary>
 
 > React-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -95,7 +95,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/preact/src/images/icon.png" alt="preact example icon" width="22" /> Preact Example</summary>
+  <summary><img src="./examples/preact/src/images/icon.png" alt="preact example icon" width="22" /> Preact Example</summary>
 
 > Preact-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -118,7 +118,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/svelte/src/images/icon.png" alt="svelte example icon" width="22" /> Svelte Example</summary>
+  <summary><img src="./examples/svelte/src/images/icon.png" alt="svelte example icon" width="22" /> Svelte Example</summary>
 
 > Svelte-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -141,7 +141,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/vue/src/images/icon.png" alt="vue example icon" width="22" /> Vue Example</summary>
+  <summary><img src="./examples/vue/src/images/icon.png" alt="vue example icon" width="22" /> Vue Example</summary>
 
 > Vue.js-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -164,7 +164,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/typescript/src/images/icon.png" alt="typescript example icon" width="22" /> TypeScript Example</summary>
+  <summary><img src="./examples/typescript/src/images/icon.png" alt="typescript example icon" width="22" /> TypeScript Example</summary>
 
 > TypeScript-based extension with a sidebar panel. Adds a sidebar with a simple page.
 
@@ -187,7 +187,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/sidebar/src/images/icon.png" alt="sidebar example icon" width="22" /> Sidebar Example</summary>
+  <summary><img src="./examples/sidebar/src/images/icon.png" alt="sidebar example icon" width="22" /> Sidebar Example</summary>
 
 > Sidebar panel example. Adds a sidebar to the browser with a simple page.
 
@@ -210,7 +210,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/sidebar-shadcn/src/images/icon.png" alt="sidebar-shadcn example icon" width="22" /> Sidebar Shadcn Example</summary>
+  <summary><img src="./examples/sidebar-shadcn/src/images/icon.png" alt="sidebar-shadcn example icon" width="22" /> Sidebar Shadcn Example</summary>
 
 > React sidebar example using shadcn/ui components. Adds a sidebar panel with a simple React page.
 
@@ -233,7 +233,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/transformers-js/src/images/icon.png" alt="transformers-js example icon" width="22" /> Transformers JS Example</summary>
+  <summary><img src="./examples/transformers-js/src/images/icon.png" alt="transformers-js example icon" width="22" /> Transformers JS Example</summary>
 
 > Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.
 
@@ -304,7 +304,7 @@ npx extension@latest create my-extension --template javascript
 ### Action
 
 <details>
-  <summary><img src="./public/action/src/images/icon.png" alt="action example icon" width="22" /> Action Example</summary>
+  <summary><img src="./examples/action/src/images/icon.png" alt="action example icon" width="22" /> Action Example</summary>
 
 > Action popup example. Opens a toolbar popup with a simple page.
 
@@ -327,7 +327,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/action-locales/src/images/icon.png" alt="action-locales example icon" width="22" /> Action Locales Example</summary>
+  <summary><img src="./examples/action-locales/src/images/icon.png" alt="action-locales example icon" width="22" /> Action Locales Example</summary>
 
 > Action popup example demonstrating i18n with \_locales and message placeholders.
 
@@ -352,7 +352,7 @@ npx extension@latest create my-extension --template javascript
 ### DevTools
 
 <details>
-  <summary><img src="./public/devtools/src/images/icon.png" alt="devtools example icon" width="22" /> DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools/src/images/icon.png" alt="devtools example icon" width="22" /> DevTools Panel Example</summary>
 
 > Adds a devtools panel to the browser that reads the inspected page.
 
@@ -375,7 +375,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/devtools-react/src/images/icon.png" alt="devtools-react example icon" width="22" /> React DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-react/src/images/icon.png" alt="devtools-react example icon" width="22" /> React DevTools Panel Example</summary>
 
 > Adds a React devtools panel to the browser that reads the inspected page.
 
@@ -398,7 +398,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/devtools-preact/src/images/icon.png" alt="devtools-preact example icon" width="22" /> Preact DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-preact/src/images/icon.png" alt="devtools-preact example icon" width="22" /> Preact DevTools Panel Example</summary>
 
 > Adds a devtools panel written in Preact that reads the inspected page.
 
@@ -421,7 +421,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/devtools-typescript/src/images/icon.png" alt="devtools-typescript example icon" width="22" /> TypeScript DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-typescript/src/images/icon.png" alt="devtools-typescript example icon" width="22" /> TypeScript DevTools Panel Example</summary>
 
 > Adds a devtools panel to the browser that reads the inspected page.
 
@@ -444,7 +444,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/devtools-svelte/src/images/icon.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-svelte/src/images/icon.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
 
 > Adds a Svelte devtools panel to the browser that reads the inspected page.
 
@@ -467,7 +467,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/devtools-vue/src/images/icon.png" alt="devtools-vue example icon" width="22" /> Vue DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-vue/src/images/icon.png" alt="devtools-vue example icon" width="22" /> Vue DevTools Panel Example</summary>
 
 > Adds a devtools panel built with Vue that reads the inspected page.
 
@@ -492,7 +492,7 @@ npx extension@latest create my-extension --template javascript
 ### Content
 
 <details>
-  <summary><img src="./public/content/src/images/icon.png" alt="content example icon" width="22" /> Content Example</summary>
+  <summary><img src="./examples/content/src/images/icon.png" alt="content example icon" width="22" /> Content Example</summary>
 
 > Injects a small badge into every web page you visit, with an options page that moves it to the left or right edge.
 
@@ -515,7 +515,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-css-modules/src/images/icon.png" alt="content-css-modules example icon" width="22" /> Content CSS Modules Example</summary>
+  <summary><img src="./examples/content-css-modules/src/images/icon.png" alt="content-css-modules example icon" width="22" /> Content CSS Modules Example</summary>
 
 > Injects a small styled badge into every web page you visit.
 
@@ -538,7 +538,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-custom-font/src/images/icon.png" alt="content-custom-font example icon" width="22" /> Content Custom Font Example</summary>
+  <summary><img src="./examples/content-custom-font/src/images/icon.png" alt="content-custom-font example icon" width="22" /> Content Custom Font Example</summary>
 
 > Injects a badge rendered in a custom font into every web page you visit, with an options page that turns the custom font on and off.
 
@@ -561,7 +561,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-env/src/images/icon.png" alt="content-env example icon" width="22" /> Content Env Example</summary>
+  <summary><img src="./examples/content-env/src/images/icon.png" alt="content-env example icon" width="22" /> Content Env Example</summary>
 
 > Injects a small panel showing the extension's environment values into every web page you visit.
 
@@ -584,7 +584,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-less/src/images/icon.png" alt="content-less example icon" width="22" /> Content Less Example</summary>
+  <summary><img src="./examples/content-less/src/images/icon.png" alt="content-less example icon" width="22" /> Content Less Example</summary>
 
 > Injects a small styled badge into every web page you visit, with a Less options page that moves it to the left or right edge.
 
@@ -607,7 +607,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-less-modules/src/images/icon.png" alt="content-less-modules example icon" width="22" /> Content Less Modules Example</summary>
+  <summary><img src="./examples/content-less-modules/src/images/icon.png" alt="content-less-modules example icon" width="22" /> Content Less Modules Example</summary>
 
 > Injects a small styled badge into every web page you visit, with a Less modules options page that moves it to the left or right edge.
 
@@ -630,7 +630,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-multi-one-entry/src/images/icon.png" alt="content-multi-one-entry example icon" width="22" /> Content Multi One Entry Example</summary>
+  <summary><img src="./examples/content-multi-one-entry/src/images/icon.png" alt="content-multi-one-entry example icon" width="22" /> Content Multi One Entry Example</summary>
 
 > Injects four small elements into every web page you visit.
 
@@ -653,7 +653,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-multi-three-entries/src/images/icon.png" alt="content-multi-three-entries example icon" width="22" /> Content Multi Three Entries Example</summary>
+  <summary><img src="./examples/content-multi-three-entries/src/images/icon.png" alt="content-multi-three-entries example icon" width="22" /> Content Multi Three Entries Example</summary>
 
 > Injects four small elements into every web page you visit.
 
@@ -676,7 +676,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-preact/src/images/icon.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
+  <summary><img src="./examples/content-preact/src/images/icon.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
 
 > Shows an overlay UI on web pages and an options page that moves it from right to left.
 
@@ -699,7 +699,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-react/src/images/icon.png" alt="content-react example icon" width="22" /> Content React Example</summary>
+  <summary><img src="./examples/content-react/src/images/icon.png" alt="content-react example icon" width="22" /> Content React Example</summary>
 
 > Shows a small overlay UI on every web page, with a React options page that moves it from right to left.
 
@@ -722,7 +722,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-sass/src/images/icon.png" alt="content-sass example icon" width="22" /> Content Sass Example</summary>
+  <summary><img src="./examples/content-sass/src/images/icon.png" alt="content-sass example icon" width="22" /> Content Sass Example</summary>
 
 > Injects a small styled badge into every web page you visit, with a Sass options page that moves it to the left or right edge.
 
@@ -745,7 +745,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-sass-modules/src/images/icon.png" alt="content-sass-modules example icon" width="22" /> Content Sass Modules Example</summary>
+  <summary><img src="./examples/content-sass-modules/src/images/icon.png" alt="content-sass-modules example icon" width="22" /> Content Sass Modules Example</summary>
 
 > Injects a small styled badge into every web page you visit, with a Sass modules options page that moves it to the left or right edge.
 
@@ -768,7 +768,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-svelte/src/images/icon.png" alt="content-svelte example icon" width="22" /> Content Svelte Example</summary>
+  <summary><img src="./examples/content-svelte/src/images/icon.png" alt="content-svelte example icon" width="22" /> Content Svelte Example</summary>
 
 > Shows a Svelte overlay on every web page you visit, with an options page that moves it from right to left.
 
@@ -791,7 +791,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-typescript/src/images/icon.png" alt="content-typescript example icon" width="22" /> Content TypeScript Example</summary>
+  <summary><img src="./examples/content-typescript/src/images/icon.png" alt="content-typescript example icon" width="22" /> Content TypeScript Example</summary>
 
 > Shows a small overlay UI on every web page, with an options page that moves it from right to left.
 
@@ -814,7 +814,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/content-vue/src/images/icon.png" alt="content-vue example icon" width="22" /> Content Vue Example</summary>
+  <summary><img src="./examples/content-vue/src/images/icon.png" alt="content-vue example icon" width="22" /> Content Vue Example</summary>
 
 > Shows a small overlay UI on every web page, with a Vue options page that moves it from right to left.
 
@@ -839,7 +839,7 @@ npx extension@latest create my-extension --template javascript
 ### New
 
 <details>
-  <summary><img src="./public/newtab/src/images/icon.png" alt="newtab example icon" width="22" /> New Example</summary>
+  <summary><img src="./examples/newtab/src/images/icon.png" alt="newtab example icon" width="22" /> New Example</summary>
 
 > New tab page example using plain JavaScript. Renders a simple page you can customize.
 
@@ -862,7 +862,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-browser-flags/src/images/icon.png" alt="newtab-browser-flags example icon" width="22" /> New Browser Flags Example</summary>
+  <summary><img src="./examples/newtab-browser-flags/src/images/icon.png" alt="newtab-browser-flags example icon" width="22" /> New Browser Flags Example</summary>
 
 > A browser extension example built with Extension.js demonstrating browser-specific features and flags. Shows how to handle browser differences across targets.
 
@@ -885,7 +885,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-config-eslint/src/images/icon.png" alt="newtab-config-eslint example icon" width="22" /> New Config ESLint Example</summary>
+  <summary><img src="./examples/newtab-config-eslint/src/images/icon.png" alt="newtab-config-eslint example icon" width="22" /> New Config ESLint Example</summary>
 
 > New tab page example with ESLint configured. Shows how linting is set up in an extension project.
 
@@ -908,7 +908,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-config-prettier/src/images/icon.png" alt="newtab-config-prettier example icon" width="22" /> New Config Prettier Example</summary>
+  <summary><img src="./examples/newtab-config-prettier/src/images/icon.png" alt="newtab-config-prettier example icon" width="22" /> New Config Prettier Example</summary>
 
 > New tab page example with Prettier configured. Shows how formatting is set up in an extension project.
 
@@ -931,7 +931,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-config-stylelint/src/images/icon.png" alt="newtab-config-stylelint example icon" width="22" /> New Config Stylelint Example</summary>
+  <summary><img src="./examples/newtab-config-stylelint/src/images/icon.png" alt="newtab-config-stylelint example icon" width="22" /> New Config Stylelint Example</summary>
 
 > New tab page example with Stylelint configured. Shows how CSS linting is set up in an extension project.
 
@@ -954,7 +954,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-crypto/src/images/icon.png" alt="newtab-crypto example icon" width="22" /> New Crypto Example</summary>
+  <summary><img src="./examples/newtab-crypto/src/images/icon.png" alt="newtab-crypto example icon" width="22" /> New Crypto Example</summary>
 
 > New tab page example demonstrating basic crypto operations inside an extension.
 
@@ -977,7 +977,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-env/src/images/icon.png" alt="newtab-env example icon" width="22" /> New Env Example</summary>
+  <summary><img src="./examples/newtab-env/src/images/icon.png" alt="newtab-env example icon" width="22" /> New Env Example</summary>
 
 > New tab page example demonstrating environment variables (.env) in an extension project.
 
@@ -1000,7 +1000,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-less/src/images/icon.png" alt="newtab-less example icon" width="22" /> New Less Example</summary>
+  <summary><img src="./examples/newtab-less/src/images/icon.png" alt="newtab-less example icon" width="22" /> New Less Example</summary>
 
 > New tab page example styled with Less. Renders a simple page and organizes styles with Less.
 
@@ -1023,7 +1023,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-preact/src/images/icon.png" alt="newtab-preact example icon" width="22" /> New Preact Example</summary>
+  <summary><img src="./examples/newtab-preact/src/images/icon.png" alt="newtab-preact example icon" width="22" /> New Preact Example</summary>
 
 > New tab page example rendered with Preact. Loads a small Preact app you can extend.
 
@@ -1046,7 +1046,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-react/src/images/icon.png" alt="newtab-react example icon" width="22" /> New React Example</summary>
+  <summary><img src="./examples/newtab-react/src/images/icon.png" alt="newtab-react example icon" width="22" /> New React Example</summary>
 
 > A browser extension new tab page example built with Extension.js and React. Demonstrates a React-based new tab page with a working build and preview flow.
 
@@ -1069,7 +1069,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-react-router/src/images/icon.png" alt="newtab-react-router example icon" width="22" /> New React Router Example</summary>
+  <summary><img src="./examples/newtab-react-router/src/images/icon.png" alt="newtab-react-router example icon" width="22" /> New React Router Example</summary>
 
 > New tab page example using React Router. Shows multiple routes inside the new tab app.
 
@@ -1092,7 +1092,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-sass/src/images/icon.png" alt="newtab-sass example icon" width="22" /> New Sass Example</summary>
+  <summary><img src="./examples/newtab-sass/src/images/icon.png" alt="newtab-sass example icon" width="22" /> New Sass Example</summary>
 
 > New tab page example styled with Sass. Renders a simple page and organizes styles with Sass.
 
@@ -1115,7 +1115,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-svelte/src/images/icon.png" alt="newtab-svelte example icon" width="22" /> New Svelte Example</summary>
+  <summary><img src="./examples/newtab-svelte/src/images/icon.png" alt="newtab-svelte example icon" width="22" /> New Svelte Example</summary>
 
 > New tab page example rendered with Svelte. Loads a small Svelte app you can extend.
 
@@ -1138,7 +1138,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-typescript/src/images/icon.png" alt="newtab-typescript example icon" width="22" /> New TypeScript Example</summary>
+  <summary><img src="./examples/newtab-typescript/src/images/icon.png" alt="newtab-typescript example icon" width="22" /> New TypeScript Example</summary>
 
 > A browser extension new tab page example built with Extension.js and TypeScript. Demonstrates a type-safe new tab page with a working build and preview flow.
 
@@ -1161,7 +1161,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/newtab-vue/src/images/icon.png" alt="newtab-vue example icon" width="22" /> New Vue Example</summary>
+  <summary><img src="./examples/newtab-vue/src/images/icon.png" alt="newtab-vue example icon" width="22" /> New Vue Example</summary>
 
 > New tab page example rendered with Vue. Loads a small Vue app you can extend.
 
@@ -1186,7 +1186,7 @@ npx extension@latest create my-extension --template javascript
 ### Special folders
 
 <details>
-  <summary><img src="./public/special-folders-pages/src/images/icon.png" alt="special-folders-pages example icon" width="22" /> Special Folders Pages Example</summary>
+  <summary><img src="./examples/special-folders-pages/src/images/icon.png" alt="special-folders-pages example icon" width="22" /> Special Folders Pages Example</summary>
 
 > Opens a welcome page on extension load, showcasing the pages/ folder.
 
@@ -1209,7 +1209,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./public/special-folders-scripts/src/images/icon.png" alt="special-folders-scripts example icon" width="22" /> Special Folders Scripts Example</summary>
+  <summary><img src="./examples/special-folders-scripts/src/images/icon.png" alt="special-folders-scripts example icon" width="22" /> Special Folders Scripts Example</summary>
 
 > Demonstrates scripts/ folder organization and how to run standalone scripts via the extension.
 
@@ -1234,7 +1234,7 @@ npx extension@latest create my-extension --template javascript
 ### Utilities
 
 <details>
-  <summary><img src="./public/init/src/images/icon.png" alt="init example icon" width="22" /> Init Example</summary>
+  <summary><img src="./examples/init/src/images/icon.png" alt="init example icon" width="22" /> Init Example</summary>
 
 > A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.
 

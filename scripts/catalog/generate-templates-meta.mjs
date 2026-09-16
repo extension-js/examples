@@ -894,7 +894,7 @@ function assertSurfaceCoverage(templates) {
 
 // The committed templates-meta.json is the POST-stage artifact: after the raw
 // generator runs, publish-artifacts.mjs rewrites commit to "main", prefixes
-// files/screenshot/icon with public/<slug>/, and adds repositoryUrl. Running
+// files/screenshot/icon with examples/<slug>/, and adds repositoryUrl. Running
 // the raw generator alone over that file is a silent downgrade (a 1,300+ line
 // diff) that breaks every consumer reading the staged paths. Refuse unless the
 // caller explicitly asks for the pre-stage shape, which only the artifact
@@ -921,7 +921,7 @@ function refuseToClobberStagedMeta() {
     [
       `►►► Refusing to overwrite ${outFile}.`,
       'The committed templates-meta.json is the post-stage artifact',
-      '(commit "main", public/<slug>/ paths, repositoryUrl). Writing the raw',
+      '(commit "main", examples/<slug>/ paths, repositoryUrl). Writing the raw',
       'generator output over it would regress the file consumers read.',
       'Run "pnpm run artifacts:prepare" to rebuild the full artifact, or',
       `"pnpm run generate:raw" if you really want the pre-stage shape.`

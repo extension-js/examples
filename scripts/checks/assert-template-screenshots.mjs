@@ -37,7 +37,6 @@ const sourceCandidates = (slug) => [
 const untracked = []
 const missingField = []
 const dangling = []
-const pendingMirror = []
 let haveScreenshot = 0
 
 for (const slug of slugs) {
@@ -62,9 +61,7 @@ for (const slug of slugs) {
 }
 
 // The catalog is what the website trusts, so a row may not promise a picture
-// that is not in the repository. A row pointing at the staged mirror the
-// artifacts workflow writes is fine while that workflow has yet to run, as
-// long as the template's own screenshot is committed.
+// that is not in the repository.
 const catalogPath = path.join(ROOT, 'templates-meta.json')
 const catalog = JSON.parse(fs.readFileSync(catalogPath, 'utf8'))
 const rows = Array.isArray(catalog) ? catalog : (catalog.templates ?? [])
@@ -82,26 +79,13 @@ for (const row of rows) {
 
   if (tracked.has(claim)) continue
 
-  if (sourceCandidates(slug).some((candidate) => tracked.has(candidate))) {
-    pendingMirror.push(`${slug}: ${claim}`)
-    continue
-  }
-
   dangling.push(`${slug}: ${claim}`)
 }
 
 console.log(
   `templates: ${slugs.length} | with screenshot: ${haveScreenshot} | ` +
-    `catalog rows: ${rows.length} | mirrors not staged yet: ${pendingMirror.length}`
+    `catalog rows: ${rows.length}`
 )
-
-if (pendingMirror.length) {
-  console.log(
-    `\nThese rows name a mirror the artifacts workflow has not staged yet, ` +
-      `which is fine because each template's own screenshot is committed:\n` +
-      pendingMirror.map((entry) => `  ${entry}`).join('\n')
-  )
-}
 
 if (untracked.length) {
   console.error(

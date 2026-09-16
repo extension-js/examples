@@ -92,7 +92,6 @@ export default [
   },
   {
     ignores: [
-      'public/',
       'templates-meta.d.ts',
       'templates/',
       'artifacts/',
