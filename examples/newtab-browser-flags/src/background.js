@@ -5,7 +5,31 @@ console.log(
 // It's primarily designed to demonstrate browser flag customization
 console.log('Browser Flags Example background script running')
 
-// Sidebar open handling (Chromium + Firefox)
+// Safari has no side panel surface, so the sidebar page opens in a tab.
+let sidebarTabId
+
+function openSidebarTab() {
+  const url = chrome.runtime.getURL('sidebar/index.html')
+
+  const openNewTab = () => {
+    chrome.tabs.create({url}, (tab) => {
+      sidebarTabId = tab?.id
+    })
+  }
+
+  // A repeat click focuses the tab already opened instead of a new copy.
+  const knownTabId = sidebarTabId
+  if (knownTabId === undefined) {
+    openNewTab()
+    return
+  }
+
+  chrome.tabs.update(knownTabId, {active: true}, () => {
+    if (chrome.runtime.lastError) openNewTab()
+  })
+}
+
+// Sidebar open handling (Chromium, Firefox and Safari)
 function setupSidebarOpenHandlers() {
   try {
     // Prefer import.meta.env for environment hints; fall back
@@ -13,6 +37,8 @@ function setupSidebarOpenHandlers() {
     let envBrowser = import.meta.env.EXTENSION_PUBLIC_BROWSER
     const isFirefoxLike =
       envBrowser === 'firefox' || envBrowser === 'gecko-based'
+    const isSafariLike =
+      envBrowser === 'safari' || envBrowser === 'webkit-based'
 
     if (isFirefoxLike) {
       browser.runtime.onMessage.addListener((message) => {
@@ -26,7 +52,19 @@ function setupSidebarOpenHandlers() {
       })
     }
 
-    if (!isFirefoxLike) {
+    if (isSafariLike) {
+      chrome.runtime.onMessage.addListener((message) => {
+        if (!message || message.type !== 'openSidebar') return
+
+        try {
+          openSidebarTab()
+        } catch (error) {
+          console.error(error)
+        }
+      })
+    }
+
+    if (!isFirefoxLike && !isSafariLike) {
       chrome.runtime.onMessage.addListener((message) => {
         if (!message || message.type !== 'openSidebar') return
 
