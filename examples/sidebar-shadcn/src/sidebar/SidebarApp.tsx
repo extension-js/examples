@@ -56,8 +56,7 @@ export default function SidebarApp() {
             className="underline"
           >
             Extension.js docs
-          </a>
-          .
+          </a>.
         </p>
       </CardFooter>
     </Card>

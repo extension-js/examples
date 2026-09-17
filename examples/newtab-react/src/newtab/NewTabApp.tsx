@@ -22,8 +22,7 @@ export default function NewTabApp() {
           rel="noopener noreferrer"
         >
           Extension.js docs
-        </a>
-        .
+        </a>.
       </p>
       <p className="edit-hint">
         Edit <code>src/newtab/NewTabApp.tsx</code> and save to see your changes.

@@ -33,16 +33,14 @@ export default function SidebarApp() {
               rel="noopener noreferrer"
             >
               Ant Design
-            </a>
-            . Learn more in the{' '}
+            </a>. Learn more in the{' '}
             <a
               href="https://extension.js.org"
               target="_blank"
               rel="noopener noreferrer"
             >
               Extension.js docs
-            </a>
-            .
+            </a>.
           </Paragraph>
           <Space size="small" className="sidebar_actions">
             <Button type="primary" icon={<SmileOutlined />}>
