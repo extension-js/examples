@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-17T10:46:57.774Z",
+  "generatedAt": "2026-09-17T17:13:21.886Z",
   "templates": [
     {
       "slug": "action",
@@ -46,7 +46,7 @@
         "Starting point for popup-based browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "Z4v3jrB2L64",
+      "video": "AWMlWK934qE",
       "files": [
         "examples/action/extension.config.js",
         "examples/action/src/action/index.html",
@@ -107,7 +107,7 @@
         "Reference for localized extension UI across browsers"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
-      "video": "emSaEro2VGU",
+      "video": "bY0Mtv77bVc",
       "files": [
         "examples/action-locales/_locales/en/messages.json",
         "examples/action-locales/_locales/pt_BR/messages.json",
@@ -189,7 +189,7 @@
         "Starting point for page-aware ChatGPT extensions"
       ],
       "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
-      "video": "YgHw-f-ak9Y",
+      "video": "oEiJ_b36EtE",
       "files": [
         "examples/ai-chatgpt/extension.config.js",
         "examples/ai-chatgpt/src/background.ts",
@@ -281,7 +281,7 @@
         "Starting point for page-aware Claude extensions"
       ],
       "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
-      "video": "7vJt96zahF0",
+      "video": "z3JmyUlmiUw",
       "files": [
         "examples/ai-claude/extension.config.js",
         "examples/ai-claude/src/background.ts",
@@ -373,7 +373,7 @@
         "Starting point for page-aware Gemini extensions"
       ],
       "docsUrl": "https://ai.google.dev/gemini-api/docs",
-      "video": "L4HaF9sbYnw",
+      "video": "I2uhXovfurE",
       "files": [
         "examples/ai-gemini/extension.config.js",
         "examples/ai-gemini/src/background.ts",
@@ -465,7 +465,7 @@
         "Starting point for page-aware Perplexity extensions"
       ],
       "docsUrl": "https://docs.perplexity.ai/",
-      "video": "bU2bBThVR5c",
+      "video": "W9j9rUrevjI",
       "files": [
         "examples/ai-perplexity/extension.config.js",
         "examples/ai-perplexity/src/background.ts",
@@ -543,7 +543,7 @@
         "Starting point for content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "f8buwZuJ1b0",
+      "video": "GflWcgdS9Tw",
       "files": [
         "examples/content/extension.config.js",
         "examples/content/src/background.js",
@@ -607,7 +607,7 @@
         "Starting point for content scripts that need scoped CSS"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
-      "video": "j545f_pO-nc",
+      "video": "ondh3B28ieQ",
       "files": [
         "examples/content-css-modules/extension.config.js",
         "examples/content-css-modules/src/background.js",
@@ -671,7 +671,7 @@
         "Starting point for injected UI that must not inherit host page type"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
-      "video": "jDBOlDM7kGM",
+      "video": "IAbckjfGO5Y",
       "files": [
         "examples/content-custom-font/extension.config.js",
         "examples/content-custom-font/public/fonts/MomoSignature-Regular.ttf",
@@ -737,7 +737,7 @@
         "Reference for EXTENSION_PUBLIC_* values in typed sources"
       ],
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-      "video": "MtmZxqCkVIs",
+      "video": "Q-ugTIZVZ-U",
       "files": [
         "examples/content-env/extension.config.js",
         "examples/content-env/src/background.ts",
@@ -801,7 +801,7 @@
         "Starting point for Less extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "VAtRkBKl0aM",
+      "video": "VGssDbxBeMM",
       "files": [
         "examples/content-less/extension.config.js",
         "examples/content-less/src/background.js",
@@ -868,7 +868,7 @@
         "Starting point for CSS Modules extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "_mGFlL_PMys",
+      "video": "Q1fNVB2ZuNw",
       "files": [
         "examples/content-less-modules/extension.config.js",
         "examples/content-less-modules/src/background.js",
@@ -945,7 +945,7 @@
         "Read a stored setting from a main-world script that has no chrome APIs"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "aaz5FxIz-kk",
+      "video": "3-C3wCE3fWU",
       "files": [
         "examples/content-main-world/extension.config.js",
         "examples/content-main-world/src/background.js",
@@ -1020,7 +1020,7 @@
         "Reference for grouping content scripts under one entry"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "CPgNqxzuX1w",
+      "video": "l1QWq7lIKo8",
       "files": [
         "examples/content-multi-one-entry/extension.config.js",
         "examples/content-multi-one-entry/src/background.js",
@@ -1091,7 +1091,7 @@
         "Reference for the multi-entry content_scripts pattern in MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/content-scripts",
-      "video": "CC0qK0tOzrA",
+      "video": "oDcdmGaIBjw",
       "files": [
         "examples/content-multi-three-entries/extension.config.js",
         "examples/content-multi-three-entries/src/background.js",
@@ -1171,7 +1171,7 @@
         "Starting point for Preact extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
-      "video": "zCaoRfj-VPY",
+      "video": "sYA3V9YIWwo",
       "files": [
         "examples/content-preact/extension.config.js",
         "examples/content-preact/src/background.ts",
@@ -1256,7 +1256,7 @@
         "Starting point for content-script extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "jFSNUOGXJ8Q",
+      "video": "oGNhj9k4bNs",
       "files": [
         "examples/content-react/extension.config.js",
         "examples/content-react/src/background.ts",
@@ -1330,7 +1330,7 @@
         "Starting point for Sass content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
-      "video": "NSdzmg7GxIo",
+      "video": "-VceQYe_KMk",
       "files": [
         "examples/content-sass/extension.config.js",
         "examples/content-sass/src/background.js",
@@ -1399,7 +1399,7 @@
         "Starting point for Sass module content scripts that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-      "video": "puKd5X_3AnE",
+      "video": "Ma9f_Q1C7Eo",
       "files": [
         "examples/content-sass-modules/extension.config.js",
         "examples/content-sass-modules/src/background.js",
@@ -1477,7 +1477,7 @@
         "Starting point for Svelte extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
-      "video": "r1BYyY5pTEo",
+      "video": "g6-GZ6_Rn38",
       "files": [
         "examples/content-svelte/extension.config.js",
         "examples/content-svelte/src/background.ts",
@@ -1552,7 +1552,7 @@
         "Starting point for TypeScript extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-      "video": "vavyOTyrhZo",
+      "video": "9OBuuh3N_cM",
       "files": [
         "examples/content-typescript/extension.config.js",
         "examples/content-typescript/src/background.ts",
@@ -1631,7 +1631,7 @@
         "Starting point for Vue extensions that need preferences"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
-      "video": "71AVIpuRZe0",
+      "video": "LIfZxR-B2Nk",
       "files": [
         "examples/content-vue/extension.config.js",
         "examples/content-vue/src/background.ts",
@@ -1703,7 +1703,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "ZfHTMhQjzDU",
+      "video": "kyJk6ksDOsU",
       "files": [
         "examples/devtools/extension.config.js",
         "examples/devtools/src/devtools/index.html",
@@ -1765,7 +1765,7 @@
         "Starting point for Preact debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "CsvIDMT3Fqw",
+      "video": "WjPVn5SlGaU",
       "files": [
         "examples/devtools-preact/extension.config.js",
         "examples/devtools-preact/src/devtools/index.html",
@@ -1829,7 +1829,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "yQa43nEy7nI",
+      "video": "mRZO9Eg2aUQ",
       "files": [
         "examples/devtools-react/extension.config.js",
         "examples/devtools-react/src/devtools/index.html",
@@ -1893,7 +1893,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "gFZO2omoI7I",
+      "video": "SqOxa9hRg1s",
       "files": [
         "examples/devtools-svelte/extension.config.js",
         "examples/devtools-svelte/src/devtools/index.html",
@@ -1958,7 +1958,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "MCRCrrBZ0Ms",
+      "video": "iI1Th6Hi_ck",
       "files": [
         "examples/devtools-typescript/extension.config.js",
         "examples/devtools-typescript/src/devtools/index.html",
@@ -2021,7 +2021,7 @@
         "Starting point for debugging tools built as browser extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-      "video": "8gurmH4KakM",
+      "video": "sp-bjexg2X8",
       "files": [
         "examples/devtools-vue/extension.config.js",
         "examples/devtools-vue/src/devtools/index.html",
@@ -2148,7 +2148,7 @@
         "Starting point for extensions written in JavaScript"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
-      "video": "B69YVFxCedA",
+      "video": "Ryjuq2o-kzc",
       "files": [
         "examples/javascript/extension.config.js",
         "examples/javascript/src/background.js",
@@ -2213,7 +2213,7 @@
         "Starting point for new tab extensions in JavaScript"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
-      "video": "wfAMR_pFi-I",
+      "video": "fouoMkXLyvQ",
       "files": [
         "examples/newtab/extension.config.js",
         "examples/newtab/src/background.js",
@@ -2348,7 +2348,7 @@
         "Reference for adding a linter to an extension codebase"
       ],
       "docsUrl": "https://extension.js.org/docs/integrations/eslint",
-      "video": "JgpGJJEmzQY",
+      "video": "CoS-_Cv-SvM",
       "files": [
         "examples/newtab-config-eslint/extension.config.js",
         "examples/newtab-config-eslint/src/background.js",
@@ -2409,7 +2409,7 @@
         "Reference for adding a formatter to an extension codebase"
       ],
       "docsUrl": "https://extension.js.org/docs/integrations/prettier",
-      "video": "SjWCjV5vwb0",
+      "video": "JnNNaUzefTg",
       "files": [
         "examples/newtab-config-prettier/extension.config.js",
         "examples/newtab-config-prettier/src/background.js",
@@ -2470,7 +2470,7 @@
         "Reference for adding a style linter to an extension codebase"
       ],
       "docsUrl": "https://extension.js.org/docs/integrations/stylelint",
-      "video": "BQjLmTP4wR0",
+      "video": "3DVh7oDKFxo",
       "files": [
         "examples/newtab-config-stylelint/extension.config.js",
         "examples/newtab-config-stylelint/src/background.js",
@@ -2531,7 +2531,7 @@
         "Reference for browser crypto primitives under MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
-      "video": "Zcc04JoGoEg",
+      "video": "dPdh5H_sTgw",
       "files": [
         "examples/newtab-crypto/extension.config.js",
         "examples/newtab-crypto/src/background.js",
@@ -2592,7 +2592,7 @@
         "Reference for safe env-var usage across JS, JSON, and HTML"
       ],
       "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-      "video": "LWqlA5L-gjI",
+      "video": "8XP2acacpK8",
       "files": [
         "examples/newtab-env/extension.config.js",
         "examples/newtab-env/src/background.js",
@@ -2653,7 +2653,7 @@
         "Starting point for extensions that prefer Less to plain CSS"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/less",
-      "video": "jQbibj4aOf4",
+      "video": "T4Bgw8pCYY0",
       "files": [
         "examples/newtab-less/extension.config.js",
         "examples/newtab-less/src/background.js",
@@ -2714,7 +2714,7 @@
         "Starting point for Preact extensions with a new tab"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
-      "video": "TK8PQ34WXbg",
+      "video": "ezN6818j744",
       "files": [
         "examples/newtab-preact/extension.config.js",
         "examples/newtab-preact/src/background.js",
@@ -2776,7 +2776,7 @@
         "Starting point for React extensions with a new tab"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "uEJgP6pMPcI",
+      "video": "jt4HgQPdJX8",
       "files": [
         "examples/newtab-react/extension.config.js",
         "examples/newtab-react/src/background.js",
@@ -2838,7 +2838,7 @@
         "Reference for routing with no server under MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react",
-      "video": "qIoJPWJP6Nw",
+      "video": "ysvv7Q10p3Q",
       "files": [
         "examples/newtab-react-router/extension.config.js",
         "examples/newtab-react-router/src/background.js",
@@ -2900,7 +2900,7 @@
         "Starting point for extensions that prefer Sass to plain CSS"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-      "video": "2gYlkSibAWo",
+      "video": "bUWLBJeWzpc",
       "files": [
         "examples/newtab-sass/extension.config.js",
         "examples/newtab-sass/src/background.js",
@@ -2961,7 +2961,7 @@
         "Starting point for Svelte extensions with a new tab"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/svelte",
-      "video": "wkwdcGEMLkk",
+      "video": "uq-HVZb51U8",
       "files": [
         "examples/newtab-svelte/extension.config.js",
         "examples/newtab-svelte/src/background.js",
@@ -3023,7 +3023,7 @@
         "Starting point for TypeScript extensions with a new tab"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-      "video": "cUTUKw7qzHM",
+      "video": "0sRMGlx7MbA",
       "files": [
         "examples/newtab-typescript/extension.config.js",
         "examples/newtab-typescript/src/background.js",
@@ -3084,7 +3084,7 @@
         "Starting point for Vue extensions with a new tab"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
-      "video": "rI233ov_U7I",
+      "video": "g4rjynbMI5c",
       "files": [
         "examples/newtab-vue/extension.config.js",
         "examples/newtab-vue/src/background.js",
@@ -3153,7 +3153,7 @@
         "Reference for automating extension flows in headed and headless modes"
       ],
       "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
-      "video": "y1twvcH9SSU",
+      "video": "k8PP2Gs1AsU",
       "files": [
         "examples/playwright/extension.config.js",
         "examples/playwright/src/background.ts",
@@ -3222,7 +3222,7 @@
         "Starting point for Preact extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
-      "video": "WEYlBXW-O4g",
+      "video": "VcAPgX8KHgI",
       "files": [
         "examples/preact/extension.config.js",
         "examples/preact/src/background.ts",
@@ -3293,7 +3293,7 @@
         "Starting point for React extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/react",
-      "video": "JEAaRI5sPpY",
+      "video": "mRgWdPgv1hE",
       "files": [
         "examples/react/extension.config.js",
         "examples/react/src/background.ts",
@@ -3362,7 +3362,7 @@
         "Starting point for sidebar-first extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
-      "video": "AszMJA9WwJI",
+      "video": "bgGUqLiaZFI",
       "files": [
         "examples/sidebar/extension.config.js",
         "examples/sidebar/src/background.js",
@@ -3429,7 +3429,7 @@
         "Starting point for extensions with a ready-made design system"
       ],
       "docsUrl": "https://ant.design/docs/react/introduce",
-      "video": "H_xHLB21HMQ",
+      "video": "7YSGpO-RmVE",
       "files": [
         "examples/sidebar-antd/extension.config.js",
         "examples/sidebar-antd/src/background.js",
@@ -3501,7 +3501,7 @@
         "Reference for Extension.js in a monorepo with no plugin"
       ],
       "docsUrl": "https://nx.dev/docs",
-      "video": "CZkj5dkO1Rw",
+      "video": "2zuBnmCVvqg",
       "files": [
         "examples/sidebar-monorepo-nx/extension.config.js",
         "examples/sidebar-monorepo-nx/packages/analytics/src/index.js",
@@ -3571,7 +3571,7 @@
         "Reference for Extension.js in a monorepo with no plugin"
       ],
       "docsUrl": "https://turborepo.dev/docs",
-      "video": "rFBWy7YV9Do",
+      "video": "l3Z90k_4c3I",
       "files": [
         "examples/sidebar-monorepo-turborepo/extension.config.js",
         "examples/sidebar-monorepo-turborepo/packages/analytics/src/index.js",
@@ -3642,7 +3642,7 @@
         "Starting point for extensions with a modern component kit"
       ],
       "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
-      "video": "_Um6LUL5H1o",
+      "video": "gTpQ7v7zSuY",
       "files": [
         "examples/sidebar-shadcn/extension.config.js",
         "examples/sidebar-shadcn/src/background.ts",
@@ -3781,7 +3781,7 @@
         "Reference for the scripts/ special folder convention"
       ],
       "docsUrl": "https://extension.js.org/docs/features/special-folders",
-      "video": "ag6NdzzVgQA",
+      "video": "P8Q8TDQqbQE",
       "files": [
         "examples/special-folders-scripts/extension.config.js",
         "examples/special-folders-scripts/scripts/script-one.js",
@@ -3849,7 +3849,7 @@
         "Starting point for Svelte extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/svelte",
-      "video": "jDjQNBN40_M",
+      "video": "RgMo9t-oLL4",
       "files": [
         "examples/svelte/extension.config.js",
         "examples/svelte/src/background.ts",
@@ -3919,7 +3919,7 @@
         "Reference for shipping on-device AI under MV3"
       ],
       "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
-      "video": "NJV-KFUJLXA",
+      "video": "cTxqV5HXXWE",
       "files": [
         "examples/transformers-js/extension.config.js",
         "examples/transformers-js/src/background.js",
@@ -3988,7 +3988,7 @@
         "Starting point for TypeScript extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/typescript",
-      "video": "VMy5VvZfthA",
+      "video": "UX91cqUH2DU",
       "files": [
         "examples/typescript/extension.config.js",
         "examples/typescript/src/background.ts",
@@ -4058,7 +4058,7 @@
         "Starting point for Vue extensions"
       ],
       "docsUrl": "https://extension.js.org/docs/getting-started/templates/vue",
-      "video": "TsMjNcDERGk",
+      "video": "x55b3Md2zIY",
       "files": [
         "examples/vue/extension.config.js",
         "examples/vue/src/background.ts",
