@@ -37,41 +37,49 @@ function openSidebarTab() {
 }
 
 if (isFirefoxLike) {
+  // Firefox refuses sidebarAction.open() outside a user input handler, and a
+  // message listener is not one, so the toolbar click is the only route.
   browser.browserAction.onClicked.addListener(() => {
     browser.sidebarAction.open()
   })
-} else if (isSafariLike) {
+}
+
+if (isSafariLike) {
   // Safari never had setPanelBehavior, so the toolbar click needs a listener.
   chrome.action?.onClicked.addListener(() => {
     openSidebarTab()
   })
-} else {
-  // setPanelBehavior only affects FUTURE action clicks — registering it
-  // inside onClicked would swallow the first toolbar click.
-  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
+
+  chrome.runtime.onMessage.addListener((message) => {
+    if (!message || message.type !== 'openSidebar') return
+
+    openSidebarTab()
+  })
 }
 
-// The content_script pill asks for the panel from the page context.
-chrome.runtime.onMessage.addListener((message, sender) => {
-  if (!message || message.type !== 'openSidebar') return
-
-  if (isSafariLike) {
-    openSidebarTab()
-
-    return
-  }
-
-  // Everything here runs synchronously inside the listener. An async hop
-  // (chrome.tabs.query and friends) drops the click's user gesture, and
-  // sidePanel.open() then refuses to run.
+if (!isFirefoxLike && !isSafariLike) {
+  // setPanelBehavior only affects FUTURE action clicks, registering it
+  // inside onClicked would swallow the first toolbar click.
   chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 
-  const tabId = sender.tab?.id
-  if (!chrome.sidePanel?.open || tabId === undefined) return
+  // The side panel API only exists in Chromium. Firefox opens the sidebar in
+  // the listener above, so this listener is compiled out of gecko builds.
+  chrome.runtime.onMessage.addListener((message, sender) => {
+    if (!message || message.type !== 'openSidebar') return
 
-  try {
-    chrome.sidePanel?.open({tabId})
-  } catch (error) {
-    console.error(error)
-  }
-})
+    // Every line here runs synchronously on purpose. sidePanel.open() is only
+    // allowed inside the user gesture that the content-script click carries, and
+    // a tabs.query callback outlives it: the panel then silently refuses to open.
+    // sender.tab is the tab the click came from, so no lookup is needed at all.
+    chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
+
+    const tabId = sender.tab?.id
+    if (!chrome.sidePanel?.open || tabId === undefined) return
+
+    try {
+      chrome.sidePanel?.open({tabId})
+    } catch (error) {
+      console.error(error)
+    }
+  })
+}
