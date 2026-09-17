@@ -548,7 +548,11 @@ const OVERRIDES = {
       'API key: the model and tokenizer are loaded from the Hugging Face ' +
       'Hub on first run, and inference happens locally via WebGPU/WASM. A ' +
       'right-click context menu (`Classify selection with Transformers.js`) ' +
-      'mirrors the in-sidebar flow for ad-hoc text on any page.'
+      'mirrors the in-sidebar flow for ad-hoc text on any page. The ' +
+      'production build ships the onnxruntime WebAssembly core (about 21 MiB) ' +
+      'at the output root, so `extension.config.js` declares `runtime` and ' +
+      '`service-worker` budgets sized for the model runtime and ' +
+      '`extension build` finishes without a performance warning.'
   },
   'sidebar-monorepo-turborepo': {
     title: 'React Sidebar (Monorepo + Turborepo) Example',

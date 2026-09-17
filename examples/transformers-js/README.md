@@ -13,7 +13,7 @@
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. UI is composed with Transformers.js.
 
-Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) pipelines on the active page or the current selection. No server, no API key: the model and tokenizer are loaded from the Hugging Face Hub on first run, and inference happens locally via WebGPU/WASM. A right-click context menu (`Classify selection with Transformers.js`) mirrors the in-sidebar flow for ad-hoc text on any page.
+Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) pipelines on the active page or the current selection. No server, no API key: the model and tokenizer are loaded from the Hugging Face Hub on first run, and inference happens locally via WebGPU/WASM. A right-click context menu (`Classify selection with Transformers.js`) mirrors the in-sidebar flow for ad-hoc text on any page. The production build ships the onnxruntime WebAssembly core (about 21 MiB) at the output root, so `extension.config.js` declares `runtime` and `service-worker` budgets sized for the model runtime and `extension build` finishes without a performance warning.
 
 ## Try it locally
 
@@ -33,6 +33,11 @@ src/
 ├── content/
 │   └── scripts.js
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html
