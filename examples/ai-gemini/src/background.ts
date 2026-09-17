@@ -39,44 +39,56 @@ function openSidebarTab() {
 }
 
 if (isFirefoxLike) {
+  // Firefox refuses sidebarAction.open() outside a user input handler, and a
+  // message listener is not one, so the toolbar click is the only route.
   browser.browserAction.onClicked.addListener(() => {
     browser.sidebarAction.open()
   })
-} else if (isSafariLike) {
+}
+
+if (isSafariLike) {
   // Safari never had setPanelBehavior, so the toolbar click needs a listener.
   chrome.action?.onClicked.addListener(() => {
     openSidebarTab()
   })
-} else {
-  // setPanelBehavior only affects FUTURE action clicks — registering it
-  // inside onClicked would swallow the first toolbar click.
-  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
+
+  chrome.runtime.onMessage.addListener((message) => {
+    if (!message || message.type !== 'openSidebar') return
+
+    openSidebarTab()
+  })
 }
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message?.type === 'openSidebar') {
-    if (isSafariLike) {
-      openSidebarTab()
+if (!isFirefoxLike && !isSafariLike) {
+  // setPanelBehavior only affects FUTURE action clicks, registering it
+  // inside onClicked would swallow the first toolbar click.
+  chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
 
-      return
-    }
+  // The side panel API only exists in Chromium. Firefox opens the sidebar in
+  // the listener above, so this listener is compiled out of gecko builds.
+  chrome.runtime.onMessage.addListener((message, sender) => {
+    if (!message || message.type !== 'openSidebar') return
 
-    // Must be invoked synchronously inside the message handler so the
-    // user-gesture context from the content-script click is preserved.
+    // Every line here runs synchronously on purpose. sidePanel.open() is only
+    // allowed inside the user gesture that the content-script click carries, and
+    // a tabs.query callback outlives it: the panel then silently refuses to open.
+    // sender.tab is the tab the click came from, so no lookup is needed at all.
     chrome.sidePanel?.setPanelBehavior({openPanelOnActionClick: true})
+
     const tabId = sender.tab?.id
+    if (!chrome.sidePanel?.open || tabId === undefined) return
 
-    if (chrome.sidePanel?.open && tabId !== undefined) {
-      try {
-        chrome.sidePanel?.open({tabId})
-      } catch (error) {
-        console.error(error)
-      }
+    try {
+      chrome.sidePanel?.open({tabId})
+    } catch (error) {
+      console.error(error)
     }
+  })
+}
 
-    return
-  }
-
+// The sidebar asks for the active tab's page context on every browser, so this
+// listener stays outside the browser branches above.
+chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type !== 'getActiveTabContext') return
   ;(async () => {
     try {

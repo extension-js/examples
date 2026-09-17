@@ -15,19 +15,24 @@ const EXAMPLES_DIR = path.join(REPO_ROOT, 'examples')
 // and a multi-file (classic-concat) content script.
 const DEFAULT_SET = ['init', 'content', 'action', 'content-multi-one-entry']
 
-// One target per engine "shape": Safari (chromium-shaped MV3 bundle from the
-// converter), a chromium fork, and a gecko fork. Forks get the same coverage as
-// Safari — chromium-fork HTML pages and gecko-fork declared backgrounds now
-// build, via normalizeBrowserForManifestFields in the develop pipeline.
+// One target per engine "shape": Safari (MV3 with a background script list),
+// a chromium fork, and a gecko fork. Forks get the same coverage as Safari:
+// chromium-fork HTML pages and gecko-fork declared backgrounds now build, via
+// normalizeBrowserForManifestFields in the develop pipeline.
 const ALL_TARGETS = [
-  {browser: 'safari', family: 'chromium', note: 'safari (chromium-shaped MV3)'},
+  {
+    browser: 'safari',
+    family: 'webkit',
+    note: 'webkit (MV3, background.scripts)'
+  },
   {browser: 'brave', family: 'chromium', note: 'chromium fork'},
   {browser: 'waterfox', family: 'gecko', note: 'gecko fork'}
 ]
 
 // Per-family manifest expectations. A target falling back to the wrong family
 // (the bug class this guard exists to catch) trips both the manifest_version and
-// the forbidden-background-key assertions.
+// the forbidden-background-key assertions. Safari never starts an MV3 service
+// worker, so the webkit family keeps MV3 but lists background.scripts instead.
 const FAMILY_RULES = {
   chromium: {
     manifestVersion: 3,
@@ -36,6 +41,11 @@ const FAMILY_RULES = {
   },
   gecko: {
     manifestVersion: 2,
+    backgroundKey: 'scripts',
+    forbiddenBackgroundKey: 'service_worker'
+  },
+  webkit: {
+    manifestVersion: 3,
     backgroundKey: 'scripts',
     forbiddenBackgroundKey: 'service_worker'
   }
@@ -68,6 +78,20 @@ function projectDir(slug) {
   const monorepoDir = path.join(exampleDir, 'packages', 'extension')
 
   return fs.existsSync(monorepoDir) ? monorepoDir : exampleDir
+}
+
+// True when the example's own manifest declares a background, under the plain
+// key or any browser-prefixed one such as "chromium:background".
+function declaresBackground(slug) {
+  const manifestPath = path.join(projectDir(slug), 'src', 'manifest.json')
+
+  try {
+    const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+
+    return Object.keys(manifest).some((key) => /(^|:)background$/.test(key))
+  } catch {
+    return false
+  }
 }
 
 function listAllExamples() {
@@ -244,7 +268,9 @@ function validate(slug, target, result) {
     )
   }
 
-  if (manifest.background) {
+  // An example with no background of its own still gets a dev-only reload
+  // background from the CLI. Its shape is the CLI's choice, not the example's.
+  if (manifest.background && declaresBackground(slug)) {
     if (manifest.background[rules.forbiddenBackgroundKey] !== undefined) {
       problems.push(
         `background.${rules.forbiddenBackgroundKey} is set, but the ${target.family} family expects background.${rules.backgroundKey} — looks like a wrong-family fallback`
