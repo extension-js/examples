@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-17T17:13:21.886Z",
+  "generatedAt": "2026-09-17T20:52:02.447Z",
   "templates": [
     {
       "slug": "action",
@@ -3225,6 +3225,8 @@
       "video": "VcAPgX8KHgI",
       "files": [
         "examples/preact/extension.config.js",
+        "examples/preact/public/extension.svg",
+        "examples/preact/public/logo.svg",
         "examples/preact/src/background.ts",
         "examples/preact/src/content/ContentApp.tsx",
         "examples/preact/src/content/scripts.tsx",
@@ -3236,8 +3238,6 @@
         "examples/preact/src/images/icon-64.png",
         "examples/preact/src/images/icon.png",
         "examples/preact/src/manifest.json",
-        "examples/preact/src/public/extension.svg",
-        "examples/preact/src/public/logo.svg",
         "examples/preact/src/sidebar/SidebarApp.tsx",
         "examples/preact/src/sidebar/index.html",
         "examples/preact/src/sidebar/scripts.tsx",
@@ -3245,7 +3245,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/preact/screenshot.png",
-      "icon": "examples/preact/src/images/icon.png",
+      "icon": "examples/preact/public/logo.svg",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/preact"
     },
     {
@@ -3852,6 +3852,7 @@
       "video": "RgMo9t-oLL4",
       "files": [
         "examples/svelte/extension.config.js",
+        "examples/svelte/public/extension.svg",
         "examples/svelte/src/background.ts",
         "examples/svelte/src/content/ContentApp.svelte",
         "examples/svelte/src/content/scripts.ts",
@@ -3863,7 +3864,6 @@
         "examples/svelte/src/images/icon-64.png",
         "examples/svelte/src/images/icon.png",
         "examples/svelte/src/manifest.json",
-        "examples/svelte/src/public/extension.svg",
         "examples/svelte/src/sidebar/SidebarApp.svelte",
         "examples/svelte/src/sidebar/index.html",
         "examples/svelte/src/sidebar/scripts.ts",
