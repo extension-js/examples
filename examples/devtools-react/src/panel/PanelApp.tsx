@@ -48,8 +48,7 @@ export default function PanelApp() {
             rel="noopener noreferrer"
           >
             Extension.js docs
-          </a>
-          .
+          </a>.
         </p>
       </header>
       <section className="card">

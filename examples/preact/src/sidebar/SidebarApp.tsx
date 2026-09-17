@@ -14,8 +14,7 @@ export default function SidebarApp() {
           rel="noopener noreferrer"
         >
           Extension.js docs
-        </a>
-        .
+        </a>.
       </p>
     </div>
   )
