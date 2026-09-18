@@ -166,7 +166,8 @@ async function main(linker) {
     throw new Error(`Example not found: ${exampleSource}`)
   }
 
-  const extensionSpec = getExtensionSpec()
+  // The linker gates documented this override before the consolidation.
+  const extensionSpec = getExtensionSpec({allowOverride: true})
   const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'extjs-linker-'))
   const workDir = path.join(tempRoot, linker.example)
 

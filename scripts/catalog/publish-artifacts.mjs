@@ -48,7 +48,7 @@ function resolveScreenshot(slug) {
 function main() {
   if (!fs.existsSync(META_PATH)) {
     console.error(
-      '►►► templates-meta.json not found. Run "pnpm run generate" first.'
+      '►►► templates-meta.json not found. Run "pnpm run artifacts:prepare" first.'
     )
 
     process.exit(1)

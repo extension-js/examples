@@ -9,13 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay carries an **Open options** button, and the options page it opens has one checkbox that moves the overlay between the right and left edge of the page, live.
+**What you'll see**: A small Svelte UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a Svelte + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
-
-The options page is a second Svelte app, bundled from `src/options/` and registered as `options_ui` in the manifest. It reads the `badgePosition` setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The value is `right` by default and `left` when the box is ticked. The content script reads the same key on injection and subscribes to `chrome.storage.onChanged`, so the overlay slides to the other edge the moment you tick the box, with no page reload. Its cleanup function drops that subscription and unmounts the Svelte app, which is what the framework calls on reload and on hot updates.
-
-A content script cannot open the options page on its own, so the **Open options** button posts `{type: 'open-options'}` to the background script, which calls `chrome.runtime.openOptionsPage()`. The manifest asks for the `storage` permission and nothing else beyond the content script match.
 
 ## Try it locally
 
@@ -39,14 +35,19 @@ src/
 │   └── svelte.d.ts
 ├── images/
 │   ├── chromeWindow.png
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   ├── icon.png
 │   ├── svelte.png
 │   ├── tailwind_bg.png
 │   ├── tailwind.png
 │   └── typescript.png
 ├── options/
-│   ├── OptionsApp.svelte
 │   ├── index.html
+│   ├── OptionsApp.svelte
 │   ├── scripts.ts
 │   └── styles.css
 ├── background.ts

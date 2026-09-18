@@ -16,8 +16,8 @@
 ## Try it locally
 
 ```bash
-npx extension@latest create my-new-preact --template new-preact
-cd my-new-preact
+npx extension@latest create my-newtab-preact --template newtab-preact
+cd my-newtab-preact
 npm install
 npm run dev
 ```
@@ -29,6 +29,11 @@ A fresh browser window opens with the extension already loaded.
 ```
 src/
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── newtab/
 │   ├── index.html

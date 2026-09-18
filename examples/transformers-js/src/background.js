@@ -11,8 +11,12 @@ console.log(
 )
 
 // Browser compatibility handling for sidebar functionality
+// Named one by one so the bundler can fold each build down to a single
+// branch. waterfox and librewolf are gecko, and used to fall to chromium.
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'waterfox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'librewolf' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 const isSafariLike =
@@ -40,8 +44,16 @@ function openSidebarTab() {
     return
   }
 
-  chrome.tabs.update(knownTabId, {active: true}, () => {
-    if (chrome.runtime.lastError) openNewTab()
+  chrome.tabs.update(knownTabId, {active: true}, (tab) => {
+    if (chrome.runtime.lastError || !tab) {
+      openNewTab()
+
+      return
+    }
+
+    // Selecting a tab in another window leaves that window behind the one the
+    // user is looking at, so raise it too.
+    chrome.windows?.update(tab.windowId, {focused: true})
   })
 }
 
@@ -177,14 +189,31 @@ const classify = async (text) => {
 
 // Ask the active tab's content script for either the full page context or
 // the current selection. Mirrors the ai-* templates' relay pattern.
-async function relayActiveTabRequest(messageType) {
-  const [tab] = await ext.tabs.query({
+async function relayActiveTabRequest(messageType, askingTabId) {
+  // On Safari the sidebar is a tab of its own, so the active tab can be the
+  // sidebar. The tab that asked is never the page the user wants classified.
+  const extensionOrigin = ext.runtime.getURL('')
+
+  const isPageTab = (tab) =>
+    tab.id !== undefined &&
+    tab.id !== askingTabId &&
+    !String(tab.url || '').startsWith(extensionOrigin)
+
+  const active = await ext.tabs.query({
     active: true,
     lastFocusedWindow: true
   })
 
+  const all = active.some(isPageTab)
+    ? active
+    : await ext.tabs.query({lastFocusedWindow: true})
+
+  const tab = all
+    .filter(isPageTab)
+    .sort((one, two) => (two.lastAccessed ?? 0) - (one.lastAccessed ?? 0))[0]
+
   if (!tab?.id) {
-    return {ok: false, error: 'No active tab'}
+    return {ok: false, error: 'No page tab to read'}
   }
 
   try {
@@ -277,7 +306,12 @@ ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
         ? 'getSelection'
         : 'getPageContext'
 
-    ;(async () => sendResponse(await relayActiveTabRequest(messageType)))()
+    // Remembering the asking tab also repopulates sidebarTabId after Safari
+    // unloads the background page, so a repeat click reuses the same tab.
+    const askingTabId = sender.tab?.id
+    if (askingTabId !== undefined) sidebarTabId = askingTabId
+    ;(async () =>
+      sendResponse(await relayActiveTabRequest(messageType, askingTabId)))()
 
     return true
   }

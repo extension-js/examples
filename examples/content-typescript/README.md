@@ -9,13 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. The overlay carries an **Open options** button, and the options page behind it has one checkbox that moves the overlay between the right and left edge of the page, live.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
-
-The template ships two more surfaces on top of that overlay. The manifest registers an `options_ui` page bundled from `src/options/`, which reads the `badgePosition` setting with `chrome.storage.sync.get` on load and writes it back with `chrome.storage.sync.set` on change. The value is `right` by default and `left` when the box is ticked. The content script reads the same key on injection and subscribes to `chrome.storage.onChanged`, so ticking the box slides the overlay to the other edge on every open page without a reload. The subscription is removed in the cleanup function the framework calls, next to the overlay teardown.
-
-A content script cannot open the options page itself, because `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends `{type: 'open-options'}` to the background script, and the background script opens the page. Both ends import the message and settings types from `src/types.ts`, so the two surfaces cannot drift apart without a type error.
 
 ## Try it locally
 
@@ -36,14 +32,19 @@ src/
 │   ├── scripts.ts
 │   └── styles.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── options/
 │   ├── index.html
 │   ├── scripts.ts
 │   └── styles.css
 ├── background.ts
-├── types.ts
-└── manifest.json
+├── manifest.json
+└── types.ts
 ```
 
 ## Commands

@@ -11,15 +11,15 @@
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead.
 
 Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) so a single `manifest.json` ships clean to multiple targets.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-new-browser-flags --template new-browser-flags
-cd my-new-browser-flags
+npx extension@latest create my-newtab-browser-flags --template newtab-browser-flags
+cd my-newtab-browser-flags
 npm install
 npm run dev
 ```
@@ -33,6 +33,11 @@ src/
 ├── content/
 │   └── content.js
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── newtab/
 │   ├── index.html

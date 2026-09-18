@@ -15,7 +15,7 @@
 
 Demonstrates Extension.js's **`pages/`** convention: every HTML file inside the project-root `pages/` directory becomes an entrypoint without manifest wiring. The background script opens `pages/welcome.html` on install / startup.
 
-**On Safari**: the `sandbox/` page does not run. Safari has no sandboxed extension pages, so a Safari build drops the `sandbox` manifest key and prints a line saying it did. Everything the `pages/` convention demonstrates still works there.
+**On Safari**: the `sandbox/` page does not run. Safari has no sandboxed extension pages, so a Safari build drops the `sandbox` key and the page it points at never loads.
 
 ## Try it locally
 
@@ -34,9 +34,15 @@ A fresh browser window opens with the extension already loaded.
 .
 ├── src/
 │   ├── images/
+│   │   ├── icon-128.png
+│   │   ├── icon-16.png
+│   │   ├── icon-32.png
+│   │   ├── icon-48.png
+│   │   ├── icon-64.png
 │   │   ├── icon.png
 │   │   └── javascript.png
 │   ├── sandbox/
+│   │   ├── eval.js
 │   │   ├── index.html
 │   │   ├── scripts.js
 │   │   └── styles.css

@@ -23,6 +23,7 @@ const slugs = fs
 
 const missing = []
 const malformed = []
+const seen = []
 let haveVideo = 0
 
 for (const slug of slugs) {
@@ -52,6 +53,7 @@ for (const slug of slugs) {
   }
 
   haveVideo += 1
+  seen.push([slug, String(video)])
 
   if (AWAITING_FIRST_SHOOT.has(slug)) {
     malformed.push(
@@ -59,6 +61,17 @@ for (const slug of slugs) {
         'Remove it from that list.'
     )
   }
+}
+
+// Two templates pointing at one clip is what a 56-file repoint gets wrong, and
+// a shape test cannot see it.
+const duplicates = []
+const bySeenId = new Map()
+
+for (const [slug, id] of seen) {
+  if (bySeenId.has(id))
+    {duplicates.push(`${slug} and ${bySeenId.get(id)}: ${id}`)}
+  else bySeenId.set(id, slug)
 }
 
 const awaiting = [...AWAITING_FIRST_SHOOT].filter((s) => slugs.includes(s))
@@ -81,4 +94,21 @@ if (malformed.length) {
   )
 }
 
-process.exit(missing.length || malformed.length ? 1 : 0)
+if (duplicates.length) {
+  console.error(
+    `\nThese templates share one clip, so at least one points at the wrong ` +
+      `video:\n` +
+      duplicates.map((s) => `  ${s}`).join('\n')
+  )
+}
+
+// A slug list that came back empty would report every template as fine.
+if (slugs.length < 40) {
+  console.error(
+    `\nScanned only ${slugs.length} templates, expected at least 40.`
+  )
+
+  process.exit(1)
+}
+
+process.exit(missing.length || malformed.length || duplicates.length ? 1 : 0)

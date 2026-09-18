@@ -121,9 +121,41 @@ function selectExamples() {
   return DEFAULT_SET
 }
 
+// Same reason as selectTargets: an empty selection is a broken invocation, not
+// a pass.
+function assertSelection(examples, targets) {
+  if (examples.length > 0 && targets.length > 0) return
+
+  console.error(
+    `►►► Nothing to check: ${examples.length} example(s) x ` +
+      `${targets.length} target(s).`
+  )
+
+  process.exit(1)
+}
+
+// "Safari extensions can only be built on macOS", says the CLI, so a webkit
+// build on Linux fails in under a second with nothing emitted. Skipping it
+// there keeps the other engines gating; asking for it explicitly still fails.
+const WEBKIT_BROWSERS = new Set(['safari'])
+const canBuildWebkit = process.platform === 'darwin'
+
 function selectTargets() {
   const flag = process.argv.find((a) => a.startsWith('--targets='))
-  if (!flag) return ALL_TARGETS
+
+  if (!flag) {
+    if (canBuildWebkit) return ALL_TARGETS
+
+    const runnable = ALL_TARGETS.filter((t) => !WEBKIT_BROWSERS.has(t.browser))
+
+    console.log(
+      `►►► Skipping ${[...WEBKIT_BROWSERS].join(', ')} on ${process.platform}: ` +
+        `Safari extensions can only be built on macOS. ` +
+        `${runnable.length} target(s) still checked.`
+    )
+
+    return runnable
+  }
 
   const wanted = new Set(
     flag
@@ -133,7 +165,33 @@ function selectTargets() {
       .filter(Boolean)
   )
 
-  return ALL_TARGETS.filter((t) => wanted.has(t.browser))
+  const selected = ALL_TARGETS.filter((t) => wanted.has(t.browser))
+
+  const impossible = selected.filter(
+    (t) => WEBKIT_BROWSERS.has(t.browser) && !canBuildWebkit
+  )
+
+  if (impossible.length > 0) {
+    console.error(
+      `►►► Cannot build ${impossible.map((t) => t.browser).join(', ')} on ` +
+        `${process.platform}: Safari extensions can only be built on macOS.`
+    )
+
+    process.exit(1)
+  }
+
+  // An unknown name here used to leave an empty list, and the run then printed
+  // PASSED for all 0 check(s). A typo must not silently disable the guard.
+  if (selected.length === 0) {
+    console.error(
+      `►►► No target matches --targets=${[...wanted].join(',')}. ` +
+        `Known targets: ${ALL_TARGETS.map((t) => t.browser).join(', ')}.`
+    )
+
+    process.exit(1)
+  }
+
+  return selected
 }
 
 function runDev(cli, exampleDir, browser) {
@@ -299,6 +357,8 @@ async function main() {
   const cli = resolveCli()
   const targets = selectTargets()
   const examples = selectExamples()
+
+  assertSelection(examples, targets)
 
   console.log(
     `►►► Browser manifest-integrity guard — ${targets.length} target(s) × ${examples.length} example(s) via ${

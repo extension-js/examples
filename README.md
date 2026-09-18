@@ -233,6 +233,144 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
+  <summary><img src="./examples/ai-chatgpt/src/images/icon.png" alt="ai-chatgpt example icon" width="22" /> AI ChatGPT Example</summary>
+
+> Adds a sidebar panel where you can chat with ChatGPT about the page you are viewing.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-chatgpt/README.md">examples/ai-chatgpt</a></td>
+      <td rowspan="5"><img src="./examples/ai-chatgpt/screenshot.png" alt="ai-chatgpt screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/ai-chatgpt">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/ai-claude/src/images/icon.png" alt="ai-claude example icon" width="22" /> AI Claude Example</summary>
+
+> Adds a sidebar panel where you can chat with Claude about the page you are viewing.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-claude/README.md">examples/ai-claude</a></td>
+      <td rowspan="5"><img src="./examples/ai-claude/screenshot.png" alt="ai-claude screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/ai-claude">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/ai-gemini/src/images/icon.png" alt="ai-gemini example icon" width="22" /> AI Gemini Example</summary>
+
+> Adds a sidebar panel where you can chat with Gemini about the page you are viewing.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-gemini/README.md">examples/ai-gemini</a></td>
+      <td rowspan="5"><img src="./examples/ai-gemini/screenshot.png" alt="ai-gemini screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/ai-gemini">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/ai-perplexity/src/images/icon.png" alt="ai-perplexity example icon" width="22" /> AI Perplexity Example</summary>
+
+> Adds a sidebar panel where you can chat with Perplexity about the page you are viewing.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-perplexity/README.md">examples/ai-perplexity</a></td>
+      <td rowspan="5"><img src="./examples/ai-perplexity/screenshot.png" alt="ai-perplexity screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/ai-perplexity">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/sidebar-antd/src/images/icon.png" alt="sidebar-antd example icon" width="22" /> Sidebar Ant Design Example</summary>
+
+> Adds a sidebar panel to the browser showing Ant Design components.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-antd/README.md">examples/sidebar-antd</a></td>
+      <td rowspan="5"><img src="./examples/sidebar-antd/screenshot.png" alt="sidebar-antd screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/sidebar-antd">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/playwright/src/images/icon.png" alt="playwright example icon" width="22" /> Playwright Example</summary>
+
+> Adds a sidebar panel to the browser, covered end to end by Playwright tests.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/playwright/README.md">examples/playwright</a></td>
+      <td rowspan="5"><img src="./examples/playwright/screenshot.png" alt="playwright screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Sidebar, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">-</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/playwright">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
   <summary><img src="./examples/transformers-js/src/images/icon.png" alt="transformers-js example icon" width="22" /> Transformers JS Example</summary>
 
 > Transformers.js demo with a sidebar and a content script: classify the active page or your selection on-device via WebGPU/WASM.
@@ -625,6 +763,29 @@ npx extension@latest create my-extension --template javascript
       <td>Background included</td>
       <td align="right">Yes</td>
       <td align="center"><a href="https://templates.extension.dev/content-less-modules">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
+  <summary><img src="./examples/content-main-world/src/images/icon.png" alt="content-main-world example icon" width="22" /> Content Main World Example</summary>
+
+> Injects a small UI into every web page from both the extension and the page's own JavaScript world, with an options page that moves it to the left or right edge.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-main-world/README.md">examples/content-main-world</a></td>
+      <td rowspan="5"><img src="./examples/content-main-world/screenshot.png" alt="content-main-world screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">Content Script, Options, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">-</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/content-main-world">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
