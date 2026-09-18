@@ -15,21 +15,44 @@
           src="../images/icon.png"
           alt="The Transformers.js logo"
         />
-        <h1 class="sidebar_title" id="title">Transformers.js Sidebar Panel</h1>
+        <h1 class="sidebar_title">Transformers.js</h1>
+        <h2 class="sidebar_subtitle">
+          Run 🤗 Transformers in a Browser Extension!
+        </h2>
         <p class="sidebar_description">
-          AI-powered sentiment analysis running in your browser.
-          <br />
           Learn more in the
           <a
             href="https://extension.js.org"
             target="_blank"
             rel="noopener noreferrer"
             >Extension.js docs</a
-          >
+          >.
         </p>
 
-        <div class="sidebar_config_section">
-          <h3 class="sidebar_output_title">Model Settings</h3>
+        <div class="sidebar_input_section">
+          <input id="text" placeholder="Enter text here" />
+          <pre id="output"></pre>
+        </div>
+
+        <div class="actions">
+          <button
+            id="use-page"
+            type="button"
+            title="Classify the text of the active page"
+          >
+            Use page text
+          </button>
+          <button
+            id="use-selection"
+            type="button"
+            title="Classify the selection on the active page"
+          >
+            Use selection
+          </button>
+        </div>
+
+        <details class="sidebar_config_section">
+          <summary class="sidebar_config_summary">Model settings</summary>
 
           <div class="sidebar_input_section">
             <label class="sidebar_label" for="task">Task</label>
@@ -65,42 +88,7 @@
               <option value="fp32">fp32</option>
             </select>
           </div>
-        </div>
-
-        <div class="sidebar_input_section">
-          <label for="text-input" class="sidebar_label">
-            Enter text for sentiment analysis:
-          </label>
-          <textarea
-            id="text-input"
-            placeholder="Type or paste your text here..."
-            rows="4"
-          ></textarea>
-          <div class="actions">
-            <button
-              id="use-page"
-              type="button"
-              title="Pull text from the active page"
-            >
-              Use page text
-            </button>
-            <button
-              id="use-selection"
-              type="button"
-              title="Pull the active selection from the page"
-            >
-              Use selection
-            </button>
-            <button id="run-analysis">Run Analysis</button>
-          </div>
-        </div>
-
-        <div class="sidebar_output_section">
-          <h3 class="sidebar_output_title">Analysis Results</h3>
-          <div id="output" class="sidebar_output">
-            Enter some text above to see the sentiment analysis results.
-          </div>
-        </div>
+        </details>
       </div>
     </div>
     <script type="module" src="scripts.js"></script>

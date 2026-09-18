@@ -10,8 +10,6 @@ console.log(
   '[From the background context] Hello from the background worker/script!'
 )
 
-console.log('Transformers.js background script loaded!')
-
 // Browser compatibility handling for sidebar functionality
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
@@ -70,7 +68,14 @@ env.allowLocalModels = false
 // extension CSP blocks. Unset, onnxruntime loads the WASM this build bundles.
 env.backends.onnx.wasm.wasmPaths = undefined
 
-// A config-aware model manager that caches pipelines per configuration
+/**
+ * Wrap the pipeline construction in a small manager to ensure:
+ * (1) each pipeline is only loaded once, and
+ * (2) the pipeline can be loaded lazily (only when needed).
+ *
+ * It keeps one pipeline per configuration, and reads the active configuration
+ * from storage, which is what the side panel's model settings write to.
+ */
 function configKey(cfg) {
   const safe = {
     task: cfg.task,
@@ -154,13 +159,20 @@ class ModelManager {
 
 const models = new ModelManager()
 
+// Create generic classify function, which will be reused for the different types of events.
 const classify = async (text) => {
-  const runner = await models.getRunner(() => {
-    // Optionally forward progress to UI
-    // console.log('progress', data)
+  // Get the pipeline for the active configuration. This will load and build
+  // the model when run for the first time.
+  const classifier = await models.getRunner(() => {
+    // You can track the progress of the pipeline creation here.
+    // e.g., you can send the progress data back to the UI for a progress bar
+    // console.log(data)
   })
 
-  return runner(text)
+  // Run the model on the input text
+  const result = await classifier(text)
+
+  return result
 }
 
 // Ask the active tab's content script for either the full page context or
@@ -190,13 +202,16 @@ async function relayActiveTabRequest(messageType) {
   }
 }
 
-// Right-click → "Classify selection" runs the pipeline directly and
-// broadcasts the result so an open sidebar can pick it up.
+////////////////////// 1. Context Menus //////////////////////
+//
+// Add a listener to create the initial context menu items,
+// context menu items only need to be created at runtime.onInstalled
 ext.runtime.onInstalled.addListener(() => {
+  // Register a context menu item that will only show up for selection text.
   try {
     ext.contextMenus.create({
       id: CONTEXT_MENU_ITEM_ID,
-      title: 'Classify selection with Transformers.js',
+      title: 'Classify "%s"',
       contexts: ['selection']
     })
   } catch (error) {
@@ -204,11 +219,12 @@ ext.runtime.onInstalled.addListener(() => {
   }
 })
 
+// Perform inference when the user clicks a context menu, then broadcast the
+// result so an open side panel shows it next to the page.
 ext.contextMenus?.onClicked.addListener(async (info) => {
-  if (info.menuItemId !== CONTEXT_MENU_ITEM_ID) return
-
+  // Ignore context menu clicks that are not for classifications (or when there is no input)
   const text = info.selectionText?.trim()
-  if (!text) return
+  if (info.menuItemId !== CONTEXT_MENU_ITEM_ID || !text) return
 
   try {
     const result = await classify(text)
@@ -226,24 +242,32 @@ ext.contextMenus?.onClicked.addListener(async (info) => {
     })
   }
 })
+//////////////////////////////////////////////////////////////
 
-////////////////////// Message Events /////////////////////
+////////////////////// 2. Message Events /////////////////////
 //
 // Listen for messages from the UI, process it, and send the result back.
 ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === ACTION_NAME) {
+    // Run model prediction asynchronously
     ;(async function () {
       try {
+        // Perform classification
         const result = await classify(message.text)
+
+        // Send response back to UI
         sendResponse(result)
       } catch (e) {
         sendResponse({error: e?.message || 'classification failed'})
       }
     })()
 
+    // return true to indicate we will send a response asynchronously
     return true
   }
 
+  // The side panel asks for the active page's text or selection, which the
+  // content script reads. A panel cannot message a tab on its own.
   if (
     message.action === 'getActiveTabContext' ||
     message.action === 'getActiveTabSelection'
@@ -256,13 +280,6 @@ ext.runtime.onMessage.addListener((message, sender, sendResponse) => {
     ;(async () => sendResponse(await relayActiveTabRequest(messageType)))()
 
     return true
-  }
-
-  if (message.action === 'model-config-updated') {
-    // Storage listener already updates; acknowledge for UI
-    sendResponse({ok: true})
-
-    return
   }
 })
 //////////////////////////////////////////////////////////////
