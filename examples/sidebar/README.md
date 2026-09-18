@@ -3,15 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# JavaScript Sidebar Example
+# JavaScript Content Script Example
 
 > Adds a sidebar panel to the browser with a simple page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A browser side panel that loads when you open the sidebar.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead.
 
 ## Try it locally
 
@@ -28,7 +28,15 @@ A fresh browser window opens with the extension already loaded.
 
 ```
 src/
+├── content/
+│   ├── scripts.js
+│   └── styles.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html

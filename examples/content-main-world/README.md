@@ -9,19 +9,11 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through, carrying an Open options button. The options page has one checkbox, and ticking it sends the UI to the left edge of the page straight away.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
 
 Loads the content script in the page's **MAIN world** (Chromium-only). Useful when your script needs direct access to page-side globals or classes that the isolated world cannot reach. Firefox does not support MAIN-world content scripts, so this template is gated to Chromium targets.
-
-The manifest also registers an `options_ui` page bundled from `src/options/`. The options page reads the setting with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change.
-
-Here is the part worth copying. `chrome.storage` and `chrome.runtime` do not exist in the MAIN world, so the injected UI cannot read the setting and cannot message the background worker. A second content script, `src/content/isolated-options.js`, is registered without a `world` key and therefore runs in the ISOLATED world, where both APIs are available. That companion owns the storage read, the `chrome.storage.onChanged` subscription, and the relay to the background worker. The two halves talk over `window.postMessage` on a shared channel from `src/content/utils/bridge.js`.
-
-Either half can load first, so both paths exist: the companion publishes the value as soon as it loads, and the MAIN world half asks for it once its own listener is attached. Both halves remove their listeners in the cleanup function Extension.js calls on teardown.
-
-That window belongs to the page, which can read and forge these messages. The payloads are therefore trivial, they carry nothing secret, and the MAIN world half narrows any value it receives to one of the two edges before using it.
 
 ## Try it locally
 
@@ -49,6 +41,11 @@ src/
 │   ├── scripts.js
 │   └── styles.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── options/
 │   ├── index.html

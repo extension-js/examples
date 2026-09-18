@@ -13,13 +13,13 @@
 
 **How it works**: The manifest overrides the new-tab page and loads a TypeScript entry bundled from `src/newtab/`.
 
-Demonstrates hashing with the browser's native Web Crypto API (`window.crypto.subtle`) directly, no Node `crypto` module and no polyfill involved.
+Demonstrates the bundler's automatic Web Crypto polyfill for extension contexts where Node-style `crypto` modules are referenced.
 
 ## Try it locally
 
 ```bash
-npx extension@latest create my-new-crypto --template new-crypto
-cd my-new-crypto
+npx extension@latest create my-newtab-crypto --template newtab-crypto
+cd my-newtab-crypto
 npm install
 npm run dev
 ```
@@ -31,6 +31,11 @@ A fresh browser window opens with the extension already loaded.
 ```
 src/
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── newtab/
 │   ├── index.html

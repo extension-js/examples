@@ -3,17 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Svelte Devtools Panel Example
+# Svelte DevTools Panel Example
 
 > Adds a Svelte devtools panel to the browser that reads the inspected page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A new **Example** tab inside the browser developer tools. The panel shows the title of the page you are inspecting.
+**What you'll see**: A panel inside the browser DevTools, reading the inspected page.
 
-**How it works**: A devtools extension is two pages, not one. The manifest points `devtools_page` at `src/devtools/index.html`, a registrar the browser loads in the background whenever devtools opens. That page has no visible UI at all, and its only job is one call to `chrome.devtools.panels.create('Example', '', 'panel/index.html')`. It stays a plain script for that reason, because a Svelte app there would render into a page nobody ever sees. The second page, bundled from `src/panel/`, is the UI that call registers, and it is the Svelte app you get as the Example tab.
-
-The panel mounts `PanelApp.svelte` with Svelte 5's `mount` and reads the inspected page through `chrome.devtools.inspectedWindow.eval`, rendering one fact from it, the inspected document's title. That API works in every host, so the panel has something honest to show anywhere it loads. The panel also guards on `chrome?.devtools?.inspectedWindow`, because that namespace only exists when the page runs as a real panel. Opened as an ordinary extension page it renders a short message instead of throwing.
+**How it works**: The manifest registers a `devtools_page`, which has no UI of its own: its only job is to call `chrome.devtools.panels.create`. The panel it registers is a Svelte + TypeScript page bundled from `src/panel/`.
 
 ## Try it locally
 
@@ -24,7 +22,7 @@ npm install
 npm run dev
 ```
 
-A fresh browser window opens with the extension already loaded. Open the developer tools and pick the **Example** tab.
+A fresh browser window opens with the extension already loaded.
 
 ## Project layout
 
@@ -34,11 +32,16 @@ src/
 │   ├── index.html
 │   └── scripts.ts
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   ├── icon.png
 │   └── svelte.png
 ├── panel/
-│   ├── PanelApp.svelte
 │   ├── index.html
+│   ├── PanelApp.svelte
 │   ├── scripts.ts
 │   ├── styles.css
 │   └── svelte.d.ts

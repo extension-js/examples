@@ -76,11 +76,7 @@ function OpenHint({
           </h2>
           <p className="mt-6 text-lg leading-8 text-gray-300">
             Learn more about creating cross-browser extensions by{' '}
-            <button
-              onClick={onClose}
-              className="underline hover:no-underline
-            "
-            >
+            <button onClick={onClose} className="underline hover:no-underline">
               closing this hint
             </button>
             .

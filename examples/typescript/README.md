@@ -11,7 +11,7 @@
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a TypeScript page bundled from `src/sidebar/`. A content script mounts a TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead.
 
 TypeScript starter wired through `tsconfig.json`. Extension.js generates ambient types for the Web Extension APIs and the bundler transpiles `.ts` / `.tsx` automatically.
 
@@ -36,6 +36,11 @@ src/
 │   ├── styles.css
 │   └── types.d.ts
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html

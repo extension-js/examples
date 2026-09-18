@@ -18,7 +18,27 @@ const MARKUP_EXTENSIONS = new Set(['.vue', '.svelte', '.jsx', '.tsx', '.html'])
 
 // A line break between a closing inline tag and sentence punctuation
 // collapses to a rendered space, so the panel shows "docs ." instead of "docs."
-const SPLIT_PUNCTUATION = /<\/(?:a|span)>\n\s*[.,;:!?]/g
+const INLINE_TAGS = 'a|span|strong|b|em|i|code|small|abbr|label|button'
+
+// A line break between a closing inline tag and punctuation collapses to a
+// rendered space in HTML and in Vue/Svelte templates. JSX is the exception: it
+// strips whitespace adjacent to a newline, so there only the same-line form
+// renders "docs ." and the wrapped form is what Prettier produces anyway.
+const JSX_EXTENSIONS = new Set(['.jsx', '.tsx'])
+const SPLIT_ANY_WHITESPACE = new RegExp(
+  `</(?:${INLINE_TAGS})\\s*>(?:\\n\\s*|[ \\t]+)[.,;:!?]`,
+  'g'
+)
+const SPLIT_SAME_LINE = new RegExp(
+  `</(?:${INLINE_TAGS})\\s*>[ \\t]+[.,;:!?]`,
+  'g'
+)
+
+function patternFor(file) {
+  return JSX_EXTENSIONS.has(path.extname(file))
+    ? SPLIT_SAME_LINE
+    : SPLIT_ANY_WHITESPACE
+}
 
 const bad = []
 let checked = 0
@@ -36,7 +56,7 @@ function walk(dir) {
 
       const source = fs.readFileSync(p, 'utf8').replace(/\r\n/g, '\n')
 
-      for (const match of source.matchAll(SPLIT_PUNCTUATION)) {
+      for (const match of source.matchAll(patternFor(p))) {
         const line = source.slice(0, match.index).split('\n').length
 
         bad.push(`${path.relative(ROOT, p)}:${line}`)

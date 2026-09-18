@@ -34,6 +34,11 @@ src/
 │   ├── scripts.js
 │   └── styles.module.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── background.js
 └── manifest.json

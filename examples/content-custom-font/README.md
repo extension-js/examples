@@ -9,23 +9,11 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through, carrying an Open options button. The options page has one checkbox, and unticking it drops the badge back to the plain system font straight away.
+**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
 
-Loads a custom web font inside the injected Shadow DOM. Extension.js lists the font in `web_accessible_resources` for you, from the `url()` references in the content script's stylesheet, so the UI ships its own typography without a hand-written manifest entry.
-
-The manifest also registers an `options_ui` page bundled from `src/options/`. The setting here is the typeface itself, because the typeface is what this template is for. The options page reads `useCustomFont` with `chrome.storage.sync.get` on load and writes it with `chrome.storage.sync.set` on change. The content script reads the same key and subscribes to `chrome.storage.onChanged`, so the badge swaps between the custom face and the system stack live rather than waiting for the next page load. It removes that listener in the cleanup function Extension.js calls on teardown.
-
-A content script cannot open the options page itself, because `openOptionsPage` lives on the extension side. So the badge's button posts a message and the background worker opens the page. That relay is the part worth copying.
-
-## How the font reaches the injected UI
-
-The font ships in `public/fonts/`, so it lands at the extension root. Extension.js reads the `url()` references in the content script's stylesheet and adds both font files to `web_accessible_resources` on its own, so nothing in `manifest.json` names them. Momo Signature publishes one weight, 400, so there is a single `@font-face` block and the browser synthesises bold from it.
-
-Getting that face into a Shadow DOM takes one extra step, and it is the part of this template worth copying. **Chrome does not apply an `@font-face` rule declared inside a shadow root.** So the content script registers the face on the page's own font set with the `FontFace` API, pointing at `chrome.runtime.getURL('fonts/MomoSignature-Regular.woff2')`. The shadow tree can use it from there, and the cleanup function removes it again with `document.fonts.delete`.
-
-The `@font-face` block in `src/content/styles.css` stays: Extension.js rewrites its `url()` to the extension's own origin when it injects the text, and those references are what tell the build which files to list. The options page has its own copy, and there it works as written because that page is an ordinary document. Without the `FontFace` registration the badge would silently fall back to the generic `cursive` face, and every style assertion would still pass, which is why the spec measures the rendered text rather than a class name.
+Loads custom web fonts inside the injected Shadow DOM via `web_accessible_resources`, so the UI ships its own typography without depending on the host page's stylesheet.
 
 ## Try it locally
 
@@ -46,6 +34,11 @@ src/
 │   ├── scripts.js
 │   └── styles.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── options/
 │   ├── index.html

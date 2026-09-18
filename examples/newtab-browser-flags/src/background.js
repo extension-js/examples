@@ -27,8 +27,16 @@ function openSidebarTab() {
     return
   }
 
-  chrome.tabs.update(knownTabId, {active: true}, () => {
-    if (chrome.runtime.lastError) openNewTab()
+  chrome.tabs.update(knownTabId, {active: true}, (tab) => {
+    if (chrome.runtime.lastError || !tab) {
+      openNewTab()
+
+      return
+    }
+
+    // Selecting a tab in another window leaves that window behind the one the
+    // user is looking at, so raise it too.
+    chrome.windows?.update(tab.windowId, {focused: true})
   })
 }
 
@@ -37,11 +45,17 @@ function setupSidebarOpenHandlers() {
   try {
     // Prefer import.meta.env for environment hints; fall back
     // to feature detection
-    let envBrowser = import.meta.env.EXTENSION_PUBLIC_BROWSER
+    // Named one by one so the bundler can fold each build down to a single
+    // branch. waterfox and librewolf are gecko, and used to fall to chromium.
     const isFirefoxLike =
-      envBrowser === 'firefox' || envBrowser === 'gecko-based'
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'waterfox' ||
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'librewolf' ||
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
+
     const isSafariLike =
-      envBrowser === 'safari' || envBrowser === 'webkit-based'
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'safari' ||
+      import.meta.env.EXTENSION_PUBLIC_BROWSER === 'webkit-based'
 
     // No gecko listener on purpose: Firefox refuses sidebarAction.open() outside
     // a user input handler, so the new tab page opens the sidebar itself.
@@ -59,7 +73,7 @@ function setupSidebarOpenHandlers() {
     }
 
     if (!isFirefoxLike && !isSafariLike) {
-      chrome.runtime.onMessage.addListener((message) => {
+      chrome.runtime.onMessage.addListener((message, sender) => {
         if (!message || message.type !== 'openSidebar') return
 
         try {
@@ -70,16 +84,12 @@ function setupSidebarOpenHandlers() {
 
           if (typeof chrome?.sidePanel?.open !== 'function') return
 
-          chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-            const activeTabId = tabs && tabs[0] && tabs[0].id
-            if (!activeTabId) return
+          // A tabs.query callback outlives the click gesture and the panel then
+          // refuses to open, so read the sender's tab and open synchronously.
+          const tabId = sender.tab?.id
+          if (tabId === undefined) return
 
-            try {
-              chrome.sidePanel?.open({tabId: activeTabId})
-            } catch (error) {
-              console.error(error)
-            }
-          })
+          chrome.sidePanel?.open({tabId})
         } catch (error) {
           console.error(error)
         }

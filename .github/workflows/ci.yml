@@ -103,6 +103,13 @@ jobs:
       - run: pnpm run test:template-screenshots
       - run: pnpm run test:banner
       - run: pnpm run test:gecko-surfaces
+
+      # Builds the default set for one target per engine shape (about two
+      # minutes). Until now nothing ran this guard, so its rules never gated.
+      # This runner is Linux, so the guard skips safari and checks the chromium
+      # and gecko forks: Safari extensions can only be built on macOS.
+      - run: pnpm run test:browser-manifest
+
       - run: pnpm run test:canary-one-run
 
   # ──────────────────────────────────────────────────────────────────────────
@@ -264,43 +271,6 @@ jobs:
           CI: true
           HEADLESS: false
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x720x24" pnpm playwright test --workers=1 --project=dev-live --shard=${{ matrix.shard }}/3
-
-  # ──────────────────────────────────────────────────────────────────────────
-  # Dev reload regression — Firefox
-  # ──────────────────────────────────────────────────────────────────────────
-  dev-reload-firefox:
-    needs: setup
-    runs-on: ubuntu-latest
-    timeout-minutes: 40
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Restore node_modules
-        uses: actions/cache/restore@v4
-        with:
-          path: |
-            node_modules
-            examples/*/node_modules
-          key: ${{ runner.os }}-node-${{ env.NODE_VERSION }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: Restore Playwright browsers
-        uses: actions/cache/restore@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('pnpm-lock.yaml') }}
-
-      # NOTE: verify-content-live and verify-full-extension-reload are disabled
-      # for Firefox until source inspection is wired into launchFirefox(). In
-      # extension@3.13.5 the Firefox launcher returns empty no-op stubs for
-      # reload/logging/close, so no ndjson events are ever emitted and every
-      # template times out at 180 s × retries, exceeding the job limit.
-      - name: Firefox dev-reload (placeholder)
-        run: echo "Firefox source inspection not yet wired — verify scripts disabled"
 
   # ──────────────────────────────────────────────────────────────────────────
   # E2E — Content scripts (17 examples)
