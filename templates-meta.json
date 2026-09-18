@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-09-18T00:44:05.518Z",
+  "generatedAt": "2026-09-18T02:40:00.527Z",
   "templates": [
     {
       "slug": "action",
@@ -3910,8 +3910,8 @@
       "timeToFirstSuccessMinutes": 4,
       "firstSteps": [
         "Run npm run dev to launch the extension",
-        "Click the extension icon to open the sidebar panel",
-        "Classify the page or your selection, and the model runs on your machine"
+        "Click the extension icon to open the side panel",
+        "Type in the text box, or use the page text or your selection, and the model classifies it on your machine"
       ],
       "useCases": [
         "Running Transformers.js models inside an extension",
