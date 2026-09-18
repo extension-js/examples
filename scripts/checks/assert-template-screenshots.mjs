@@ -111,4 +111,20 @@ if (dangling.length) {
   )
 }
 
-process.exit(untracked.length || missingField.length || dangling.length ? 1 : 0)
+// A catalog that lost rows would otherwise pass: every row it still holds is
+// fine, and the slugs it dropped are simply never visited.
+const rowSlugs = new Set(rows.map((row) => row.slug))
+const unlisted = slugs.filter((slug) => !rowSlugs.has(slug))
+
+if (unlisted.length) {
+  console.error(
+    `\nThese templates have no catalog row at all:\n` +
+      unlisted.map((slug) => `  ${slug}`).join('\n')
+  )
+}
+
+process.exit(
+  untracked.length || missingField.length || dangling.length || unlisted.length
+    ? 1
+    : 0
+)

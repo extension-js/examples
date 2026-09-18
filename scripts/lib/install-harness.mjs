@@ -38,9 +38,13 @@ export function commandFor(tool) {
   return WINDOWS_COMMANDS[tool] || tool
 }
 
-export function getExtensionSpec() {
+// The override is opt-in per caller. Consolidating these gates gave every one
+// of them an EXTENSION_SPEC hook that only the linker checks used to have, so
+// a stray value in the environment could point a pinned contract at another
+// package while still reading as a pass.
+export function getExtensionSpec({allowOverride = false} = {}) {
   const override = process.env.EXTENSION_SPEC?.trim()
-  if (override) return override
+  if (allowOverride && override) return override
 
   const rootPackage = JSON.parse(
     fs.readFileSync(path.join(repoRoot, 'package.json'), 'utf8')

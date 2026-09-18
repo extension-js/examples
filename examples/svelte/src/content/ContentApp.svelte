@@ -1,8 +1,12 @@
 <script>
 import logo from '../images/icon.png'
 
+// Named one by one so the bundler can fold each build down to a single
+// branch. waterfox and librewolf are gecko, and used to fall to chromium.
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'waterfox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'librewolf' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 function openSidebar() {

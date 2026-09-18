@@ -63,8 +63,7 @@ export default function ContentApp() {
             Learn more about creating cross-browser extensions by{' '}
             <button
               onClick={() => setIsDialogOpen(false)}
-              className="underline hover:no-underline
-            "
+              className="underline hover:no-underline"
             >
               closing this hint
             </button>

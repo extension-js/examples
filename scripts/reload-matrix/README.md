@@ -5,16 +5,15 @@ real dev pipeline end-to-end against a real fixture in `examples/`,
 attaches a passive CDP observer to the launched Chrome, performs a controlled
 file edit, and counts the actual lifecycle events the user would see.
 
-The matrix is the executable counterpart of `RELOAD_MATRIX.md` at the root of
-this workspace. When the documented expectation drifts from runtime reality,
+The matrix is the executable list of reload scenarios for this workspace. When the documented expectation drifts from runtime reality,
 the matrix flips to FAIL with the specific cell.
 
 ## Run modes
 
-| Mode              | What it tests                                                          | When to run                                                                                                                                                              |
-| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `local` (default) | The CLI built from `programs/extension/dist/cli.cjs` in this monorepo. | Inner-loop while iterating on reload-pipeline fixes.                                                                                                                     |
-| `remote`          | The published `extension@<tag>` from npm, fetched via `npx`.           | Publish gate — verifies the canary that was just uploaded behaves the same as local. Catches packaging bugs (missing files, broken bin entry, wrong cross-package deps). |
+| Mode              | What it tests                                                          | When to run                                                                                                                                              |
+| ----------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `local` (default) | The CLI built from `programs/extension/dist/cli.cjs` in this monorepo. | Inner-loop while iterating on reload-pipeline fixes.                                                                                                     |
+| `remote`          | The published `extension@<tag>` from npm, fetched via `npx`.           | Run after a release to check the published package behaves like local. It tests whatever that tag already points at, it does not publish anything first. |
 
 ```sh
 # from _FUTURE/examples
@@ -57,7 +56,7 @@ Edit `scenarios.mjs`. Each row is a JS object with:
   - `extensionPageNavigations: number` — exact count.
   - `extensionPageNavigationsAtMost: number` — upper bound.
 
-Cross-reference the new row against `RELOAD_MATRIX.md`. If the doc's cell is
+Cross-reference the new row against the scenarios in `scenarios.mjs`. If the doc's cell is
 wrong, update it in the same commit so the doc and the runtime match.
 
 ## How it works

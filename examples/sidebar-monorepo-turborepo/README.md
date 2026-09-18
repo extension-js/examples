@@ -11,7 +11,7 @@
 
 **What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. The extension lives in a workspace under `packages/extension/`; root scripts target it explicitly.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead. The extension lives in a workspace under `packages/extension/`; root scripts target it explicitly.
 
 A pnpm workspace + Turborepo setup. The extension lives under `packages/extension`; root scripts target it via `extension <command> packages/extension`. Useful as a starting point when an extension shares code with web / mobile apps in the same monorepo.
 
@@ -40,6 +40,9 @@ packages/
     │   │   ├── scripts.js
     │   │   └── styles.css
     │   ├── images/
+    │   │   ├── icon-128.png
+    │   │   ├── icon-16.png
+    │   │   ├── icon-48.png
     │   │   └── icon.png
     │   ├── sidebar/
     │   │   ├── index.html

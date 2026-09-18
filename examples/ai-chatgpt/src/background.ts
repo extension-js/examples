@@ -4,8 +4,12 @@ console.log(
   '[From the background context] Hello from the background worker/script!'
 )
 
+// Named one by one so the bundler can fold each build down to a single
+// branch. waterfox and librewolf are gecko, and used to fall to chromium.
 const isFirefoxLike =
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'waterfox' ||
+  import.meta.env.EXTENSION_PUBLIC_BROWSER === 'librewolf' ||
   import.meta.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 const isSafariLike =
@@ -33,8 +37,16 @@ function openSidebarTab() {
     return
   }
 
-  chrome.tabs.update(knownTabId, {active: true}, () => {
-    if (chrome.runtime.lastError) openNewTab()
+  chrome.tabs.update(knownTabId, {active: true}, (tab) => {
+    if (chrome.runtime.lastError || !tab) {
+      openNewTab()
+
+      return
+    }
+
+    // Selecting a tab in another window leaves that window behind the one the
+    // user is looking at, so raise it too.
+    chrome.windows?.update(tab.windowId, {focused: true})
   })
 }
 
@@ -86,19 +98,47 @@ if (!isFirefoxLike && !isSafariLike) {
   })
 }
 
+// On Safari the sidebar is a tab of its own, so the active tab can be the
+// sidebar. The tab that asked is never the page the user wants summarized.
+async function findPageTab(askingTabId: number | undefined) {
+  const extensionOrigin = chrome.runtime.getURL('')
+
+  const isPageTab = (tab: chrome.tabs.Tab) =>
+    tab.id !== undefined &&
+    tab.id !== askingTabId &&
+    !String(tab.url || '').startsWith(extensionOrigin)
+
+  const active = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true
+  })
+
+  const fromActive = active.find(isPageTab)
+
+  if (fromActive) return fromActive
+
+  const all = await chrome.tabs.query({lastFocusedWindow: true})
+
+  return all
+    .filter(isPageTab)
+    .sort((one, two) => (two.lastAccessed ?? 0) - (one.lastAccessed ?? 0))[0]
+}
+
 // The sidebar asks for the active tab's page context on every browser, so this
 // listener stays outside the browser branches above.
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message?.type !== 'getActiveTabContext') return
+
+  // Remembering the asking tab also repopulates sidebarTabId after Safari
+  // unloads the background page, so a repeat click reuses the same tab.
+  const askingTabId = sender.tab?.id
+  if (askingTabId !== undefined) sidebarTabId = askingTabId
   ;(async () => {
     try {
-      const [tab] = await chrome.tabs.query({
-        active: true,
-        lastFocusedWindow: true
-      })
+      const tab = await findPageTab(askingTabId)
 
       if (!tab?.id) {
-        sendResponse({ok: false, error: 'No active tab'})
+        sendResponse({ok: false, error: 'No page tab to read'})
 
         return
       }

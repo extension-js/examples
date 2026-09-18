@@ -18,8 +18,8 @@ Includes a Stylelint config so CSS / SCSS / LESS files stay consistent across ed
 ## Try it locally
 
 ```bash
-npx extension@latest create my-new-config-stylelint --template new-config-stylelint
-cd my-new-config-stylelint
+npx extension@latest create my-newtab-config-stylelint --template newtab-config-stylelint
+cd my-newtab-config-stylelint
 npm install
 npm run dev
 ```
@@ -31,6 +31,11 @@ A fresh browser window opens with the extension already loaded.
 ```
 src/
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── newtab/
 │   ├── index.html

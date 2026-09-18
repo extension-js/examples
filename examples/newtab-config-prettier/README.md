@@ -18,8 +18,8 @@ Includes a Prettier config so formatting stays consistent across editors and CI.
 ## Try it locally
 
 ```bash
-npx extension@latest create my-new-config-prettier --template new-config-prettier
-cd my-new-config-prettier
+npx extension@latest create my-newtab-config-prettier --template newtab-config-prettier
+cd my-newtab-config-prettier
 npm install
 npm run dev
 ```
@@ -31,6 +31,11 @@ A fresh browser window opens with the extension already loaded.
 ```
 src/
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── newtab/
 │   ├── index.html

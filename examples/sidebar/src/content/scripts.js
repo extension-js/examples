@@ -2,8 +2,12 @@ import logo from '../images/icon.png'
 
 console.log('[From the page context] Hello from content_scripts!')
 
+// Named one by one so the bundler can fold each build down to a single
+// branch. waterfox and librewolf are gecko, and used to fall to chromium.
 const isFirefoxLike =
   process.env.EXTENSION_PUBLIC_BROWSER === 'firefox' ||
+  process.env.EXTENSION_PUBLIC_BROWSER === 'waterfox' ||
+  process.env.EXTENSION_PUBLIC_BROWSER === 'librewolf' ||
   process.env.EXTENSION_PUBLIC_BROWSER === 'gecko-based'
 
 /**

@@ -9,9 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A sidebar panel with a shadcn/ui page, plus a small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small React UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react. A content script also mounts a pill inside a Shadow DOM, and clicking it asks the background worker to open the panel.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a React + TypeScript page bundled from `src/sidebar/`. A content script mounts a React + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead. Styles flow through Tailwind + PostCSS. UI is composed with Radix / shadcn primitives, lucide-react.
 
 A React sidebar built with [shadcn/ui](https://ui.shadcn.com/) primitives over Radix UI and Tailwind v4. Cards, switches, and labels are composed from the registry, not pulled from a UI library; the components live inside the project under `src/components/ui/`.
 
@@ -30,17 +30,22 @@ A fresh browser window opens with the extension already loaded.
 
 ```
 src/
-├── content/
-│   ├── ContentApp.tsx
-│   ├── scripts.tsx
-│   └── styles.css
 ├── components/
 │   └── ui/
 │       ├── button.tsx
 │       ├── card.tsx
 │       ├── label.tsx
 │       └── switch.tsx
+├── content/
+│   ├── ContentApp.tsx
+│   ├── scripts.tsx
+│   └── styles.css
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── lib/
 │   └── utils.ts

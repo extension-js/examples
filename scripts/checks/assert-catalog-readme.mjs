@@ -48,6 +48,25 @@ function main() {
 
   const problems = []
 
+  // Rows are only half the contract: an example added without a row was
+  // invisible to this check, and seven of them had piled up.
+  const listed = new Set(rows.map((row) => row.example))
+
+  const onDisk = fs
+    .readdirSync(EXAMPLES, {withFileTypes: true})
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .filter((name) => fs.existsSync(path.join(EXAMPLES, name, 'package.json')))
+
+  for (const example of onDisk) {
+    if (!listed.has(example)) {
+      problems.push(
+        `${example}: exists under examples/ but the catalog table has no row ` +
+          `for it, so nobody reading the README learns it exists`
+      )
+    }
+  }
+
   for (const row of rows) {
     const declared = declaredVersion(row.example)
 

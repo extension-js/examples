@@ -478,7 +478,10 @@ const OVERRIDES = {
       "Demonstrates Extension.js's **`pages/`** convention: every HTML file " +
       'inside the project-root `pages/` directory becomes an entrypoint ' +
       'without manifest wiring. The background script opens ' +
-      '`pages/welcome.html` on install / startup.'
+      '`pages/welcome.html` on install / startup.\n\n' +
+      '**On Safari**: the `sandbox/` page does not run. Safari has no ' +
+      'sandboxed extension pages, so a Safari build drops the `sandbox` key ' +
+      'and the page it points at never loads.'
   },
   'special-folders-scripts': {
     title: 'Special Folders (Scripts) Example',
@@ -694,17 +697,34 @@ function deriveHowItWorks(detected) {
         `ready to be referenced from \`manifest.json\` or executed at ` +
         `runtime via \`chrome.scripting.*\`.`
     )
-  } else if (detected.surfaces.has('content')) {
-    sentences.push(
-      `A content script mounts ${langPrefix} UI inside a Shadow DOM and ` +
-        `applies scoped styles so the host page can't bleed through.`
-    )
-  } else if (detected.surfaces.has('sidebar')) {
-    sentences.push(
-      `The manifest registers a side panel (\`chromium:side_panel\` / ` +
-        `\`firefox:sidebar_action\`) that loads ${langPrefix} page bundled ` +
-        `from \`src/sidebar/\`.`
-    )
+  } else if (
+    detected.surfaces.has('content') ||
+    detected.surfaces.has('sidebar')
+  ) {
+    // A template can ship both. Testing content first dropped the sidebar
+    // sentence from every sidebar+content template it regenerated.
+    if (detected.surfaces.has('sidebar')) {
+      sentences.push(
+        `The manifest registers a side panel (\`chromium:side_panel\` / ` +
+          `\`firefox:sidebar_action\`) that loads ${langPrefix} page bundled ` +
+          `from \`src/sidebar/\`.`
+      )
+    }
+
+    if (detected.surfaces.has('content')) {
+      sentences.push(
+        `A content script mounts ${langPrefix} UI inside a Shadow DOM and ` +
+          `applies scoped styles so the host page can't bleed through.`
+      )
+    }
+
+    if (detected.surfaces.has('sidebar') && detected.surfaces.has('content')) {
+      sentences.push(
+        `On Chromium the in-page pill opens the panel. Firefox only opens a ` +
+          `sidebar from a toolbar gesture, so the gecko build renders the ` +
+          `pill inert with a hint to use the toolbar icon instead.`
+      )
+    }
   } else if (detected.surfaces.has('action')) {
     sentences.push(
       `The manifest registers an \`action\` and points \`default_popup\` at ` +

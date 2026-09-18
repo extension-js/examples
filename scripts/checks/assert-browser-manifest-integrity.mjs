@@ -121,6 +121,19 @@ function selectExamples() {
   return DEFAULT_SET
 }
 
+// Same reason as selectTargets: an empty selection is a broken invocation, not
+// a pass.
+function assertSelection(examples, targets) {
+  if (examples.length > 0 && targets.length > 0) return
+
+  console.error(
+    `►►► Nothing to check: ${examples.length} example(s) x ` +
+      `${targets.length} target(s).`
+  )
+
+  process.exit(1)
+}
+
 function selectTargets() {
   const flag = process.argv.find((a) => a.startsWith('--targets='))
   if (!flag) return ALL_TARGETS
@@ -133,7 +146,20 @@ function selectTargets() {
       .filter(Boolean)
   )
 
-  return ALL_TARGETS.filter((t) => wanted.has(t.browser))
+  const selected = ALL_TARGETS.filter((t) => wanted.has(t.browser))
+
+  // An unknown name here used to leave an empty list, and the run then printed
+  // PASSED for all 0 check(s). A typo must not silently disable the guard.
+  if (selected.length === 0) {
+    console.error(
+      `►►► No target matches --targets=${[...wanted].join(',')}. ` +
+        `Known targets: ${ALL_TARGETS.map((t) => t.browser).join(', ')}.`
+    )
+
+    process.exit(1)
+  }
+
+  return selected
 }
 
 function runDev(cli, exampleDir, browser) {
@@ -299,6 +325,8 @@ async function main() {
   const cli = resolveCli()
   const targets = selectTargets()
   const examples = selectExamples()
+
+  assertSelection(examples, targets)
 
   console.log(
     `►►► Browser manifest-integrity guard — ${targets.length} target(s) × ${examples.length} example(s) via ${

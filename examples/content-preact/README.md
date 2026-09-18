@@ -9,13 +9,9 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small Preact UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through. It carries an **Open options** button, and the options page behind it has one checkbox that moves the overlay between the right and left edge of the page, live.
+**What you'll see**: A small Preact UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
 **How it works**: A content script mounts a Preact + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. Styles flow through Tailwind.
-
-The manifest also registers an `options_ui` page bundled from `src/options/`, a second Preact app. It reads and writes one setting, `badgePosition`, through `chrome.storage.sync`, which is why the manifest asks for the `storage` permission. The value is `right` by default and `left` when the box is ticked. The content script reads the same key on load and subscribes to `chrome.storage.onChanged`, so ticking the checkbox slides the overlay to the other edge on every open page without a reload. That listener is removed in the cleanup function the framework calls on teardown.
-
-A content script cannot open the options page on its own, because `chrome.runtime.openOptionsPage` lives on the extension side. The **Open options** button sends a message to the background worker, and the worker opens the page. The options page is also reachable from the extension's entry in the browser's extensions page.
 
 ## Try it locally
 
@@ -38,14 +34,19 @@ src/
 │   └── styles.css
 ├── images/
 │   ├── chromeWindow.png
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   ├── icon.png
 │   ├── preact.png
 │   ├── tailwind_bg.png
 │   ├── tailwind.png
 │   └── typescript.png
 ├── options/
-│   ├── OptionsApp.tsx
 │   ├── index.html
+│   ├── OptionsApp.tsx
 │   ├── scripts.tsx
 │   └── styles.css
 ├── background.ts

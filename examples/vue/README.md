@@ -3,15 +3,15 @@
 
 ![Powered by Extension.js][powered-image]
 
-# Vue Sidebar Example
+# Vue Content Script Example
 
 > Adds a sidebar panel to the browser with a simple Vue page.
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A sidebar panel with a Vue page, plus a small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A small Vue UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
 
-**How it works**: The side panel loads a Vue + TypeScript page. A content script also mounts a Vue UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through.
+**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a Vue + TypeScript page bundled from `src/sidebar/`. A content script mounts a Vue + TypeScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead.
 
 ## Try it locally
 
@@ -34,6 +34,11 @@ src/
 │   ├── styles.css
 │   └── types.d.ts
 ├── images/
+│   ├── icon-128.png
+│   ├── icon-16.png
+│   ├── icon-32.png
+│   ├── icon-48.png
+│   ├── icon-64.png
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html
@@ -41,7 +46,8 @@ src/
 │   ├── SidebarApp.vue
 │   └── styles.css
 ├── background.ts
-└── manifest.json
+├── manifest.json
+└── shims-vue.d.ts
 ```
 
 ## Commands
