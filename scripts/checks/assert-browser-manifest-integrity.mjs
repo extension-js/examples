@@ -134,9 +134,28 @@ function assertSelection(examples, targets) {
   process.exit(1)
 }
 
+// "Safari extensions can only be built on macOS", says the CLI, so a webkit
+// build on Linux fails in under a second with nothing emitted. Skipping it
+// there keeps the other engines gating; asking for it explicitly still fails.
+const WEBKIT_BROWSERS = new Set(['safari'])
+const canBuildWebkit = process.platform === 'darwin'
+
 function selectTargets() {
   const flag = process.argv.find((a) => a.startsWith('--targets='))
-  if (!flag) return ALL_TARGETS
+
+  if (!flag) {
+    if (canBuildWebkit) return ALL_TARGETS
+
+    const runnable = ALL_TARGETS.filter((t) => !WEBKIT_BROWSERS.has(t.browser))
+
+    console.log(
+      `►►► Skipping ${[...WEBKIT_BROWSERS].join(', ')} on ${process.platform}: ` +
+        `Safari extensions can only be built on macOS. ` +
+        `${runnable.length} target(s) still checked.`
+    )
+
+    return runnable
+  }
 
   const wanted = new Set(
     flag
@@ -147,6 +166,19 @@ function selectTargets() {
   )
 
   const selected = ALL_TARGETS.filter((t) => wanted.has(t.browser))
+
+  const impossible = selected.filter(
+    (t) => WEBKIT_BROWSERS.has(t.browser) && !canBuildWebkit
+  )
+
+  if (impossible.length > 0) {
+    console.error(
+      `►►► Cannot build ${impossible.map((t) => t.browser).join(', ')} on ` +
+        `${process.platform}: Safari extensions can only be built on macOS.`
+    )
+
+    process.exit(1)
+  }
 
   // An unknown name here used to leave an empty list, and the run then printed
   // PASSED for all 0 check(s). A typo must not silently disable the guard.

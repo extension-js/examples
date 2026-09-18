@@ -106,6 +106,8 @@ jobs:
 
       # Builds the default set for one target per engine shape (about two
       # minutes). Until now nothing ran this guard, so its rules never gated.
+      # This runner is Linux, so the guard skips safari and checks the chromium
+      # and gecko forks: Safari extensions can only be built on macOS.
       - run: pnpm run test:browser-manifest
 
       - run: pnpm run test:canary-one-run
