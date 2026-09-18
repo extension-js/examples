@@ -40,6 +40,15 @@ body {
   text-align: center;
 }
 
+.sidebar_subtitle {
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin: 0;
+  color: #374151;
+  line-height: 1.4;
+  text-align: center;
+}
+
 .sidebar_description {
   font-size: 1em;
   margin: 0;
@@ -70,12 +79,7 @@ body {
   font-size: 1em;
 }
 
-/* Let sakura.css style inputs/textareas; keep layout spacing only */
-textarea {
-  min-height: 100px;
-  font-size: 1em;
-}
-
+/* Let sakura.css style inputs and selects; keep layout spacing only */
 input,
 select {
   font-size: 1em;
@@ -85,20 +89,33 @@ button {
   font-size: 1em;
 }
 
-.sidebar_output_section {
+#text {
+  width: 100%;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sidebar_config_section {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 }
 
-.sidebar_output_title {
+.sidebar_config_summary {
+  cursor: pointer;
   font-size: 1.125rem;
   font-weight: 500;
   color: #374151;
-  margin: 0;
 }
 
-.sidebar_output {
+#output {
+  min-height: 100px;
+  margin: 0;
   font-size: 0.875rem;
   font-family:
     'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
@@ -107,8 +124,6 @@ button {
   color: #374151;
   padding: 1em;
   border-radius: 6px;
-  /* min-height: 120px;
-  max-height: 400px; */
   overflow-y: auto;
   white-space: pre-wrap;
   word-break: break-word;
@@ -116,59 +131,21 @@ button {
   line-height: 1.5;
 }
 
-.sidebar_output--loading {
-  background-color: #eff6ff;
-  border-color: #3b82f6;
-  color: #1e40af;
-  position: relative;
-}
-
-.sidebar_output--loading::after {
-  content: '';
-  position: absolute;
-  top: 1em;
-  right: 1em;
-  width: 16px;
-  height: 16px;
-  border: 2px solid transparent;
-  border-top: 2px solid #3b82f6;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.sidebar_output--success {
-  background-color: #f0fdf4;
-  border-color: #22c55e;
-  color: #166534;
-}
-
-.sidebar_output--error {
-  background-color: #fef2f2;
-  border-color: #ef4444;
-  color: #dc2626;
-}
-
 /* Scrollbar styling for webkit browsers */
-.sidebar_output::-webkit-scrollbar {
+#output::-webkit-scrollbar {
   width: 6px;
 }
 
-.sidebar_output::-webkit-scrollbar-track {
+#output::-webkit-scrollbar-track {
   background: #f1f5f9;
   border-radius: 3px;
 }
 
-.sidebar_output::-webkit-scrollbar-thumb {
+#output::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 3px;
 }
 
-.sidebar_output::-webkit-scrollbar-thumb:hover {
+#output::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }

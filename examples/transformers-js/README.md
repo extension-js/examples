@@ -9,11 +9,11 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A small UI injected into any web page, isolated in a Shadow DOM so site styles don't bleed through.
+**What you'll see**: A side panel that runs 🤗 Transformers in your browser: type in the text box and the classification appears below it as you type.
 
-**How it works**: The manifest registers a side panel (`chromium:side_panel` / `firefox:sidebar_action`) that loads a JavaScript page bundled from `src/sidebar/`. A content script mounts a JavaScript UI inside a Shadow DOM and applies scoped styles so the host page can't bleed through. On Chromium the in-page pill opens the panel. Firefox only opens a sidebar from a toolbar gesture, so the gecko build renders the pill inert with a hint to use the toolbar icon instead. UI is composed with Transformers.js.
+**How it works**: The same demo as the [Transformers.js browser extension sample](https://github.com/huggingface/transformers.js-examples/tree/main/browser-extension), built with Extension.js: a service worker loads a `text-classification` pipeline once, the panel sends it text over `runtime.sendMessage`, and the result prints as JSON. The panel adds what an extension needs on top of that sample: a button that classifies the active page text or your selection (read by the content script and relayed by the service worker), a right-click menu that classifies selected text, and model settings persisted in `storage.sync`, one cached pipeline per configuration.
 
-Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) pipelines on the active page or the current selection. No server, no API key: the model and tokenizer are loaded from the Hugging Face Hub on first run, and inference happens locally via WebGPU/WASM. A right-click context menu (`Classify selection with Transformers.js`) mirrors the in-sidebar flow for ad-hoc text on any page. The production build ships the onnxruntime WebAssembly core (about 21 MiB) at the output root, so `extension.config.js` declares `runtime` and `service-worker` budgets sized for the model runtime and `extension build` finishes without a performance warning.
+Runs [Transformers.js](https://huggingface.co/docs/transformers.js) pipelines with no server and no API key: the model and tokenizer are loaded from the Hugging Face Hub on first run, and inference happens locally via WebGPU/WASM. One manifest builds for Chrome, Edge and Firefox, where `chromium:` and `firefox:` prefixed keys pick the side panel surface and manifest version for each browser. The production build ships the onnxruntime WebAssembly core (about 21 MiB) at the output root, so `extension.config.js` declares `runtime` and `service-worker` budgets sized for the model runtime and `extension build` finishes without a performance warning.
 
 ## Try it locally
 
