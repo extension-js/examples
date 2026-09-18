@@ -542,15 +542,31 @@ const OVERRIDES = {
   },
   'transformers-js': {
     title: 'Transformers.js Example',
+    // The panel reads as a sibling of the Transformers.js popup sample, so
+    // the generic lines (a content script UI in a Shadow DOM) would be wrong.
+    whatYoullSee:
+      'A side panel that runs 🤗 Transformers in your browser: type in the ' +
+      'text box and the classification appears below it as you type.',
+    howItWorks:
+      'The same demo as the [Transformers.js browser extension sample]' +
+      '(https://github.com/huggingface/transformers.js-examples/tree/main/browser-extension), ' +
+      'built with Extension.js: a service worker loads a ' +
+      '`text-classification` pipeline once, the panel sends it text over ' +
+      '`runtime.sendMessage`, and the result prints as JSON. The panel adds ' +
+      'what an extension needs on top of that sample: a button that ' +
+      'classifies the active page text or your selection (read by the ' +
+      'content script and relayed by the service worker), a right-click ' +
+      'menu that classifies selected text, and model settings persisted in ' +
+      '`storage.sync`, one cached pipeline per configuration.',
     extra:
-      'Sidebar + content script that runs [Transformers.js](https://huggingface.co/docs/transformers.js) ' +
-      'pipelines on the active page or the current selection. No server, no ' +
-      'API key: the model and tokenizer are loaded from the Hugging Face ' +
-      'Hub on first run, and inference happens locally via WebGPU/WASM. A ' +
-      'right-click context menu (`Classify selection with Transformers.js`) ' +
-      'mirrors the in-sidebar flow for ad-hoc text on any page. The ' +
-      'production build ships the onnxruntime WebAssembly core (about 21 MiB) ' +
-      'at the output root, so `extension.config.js` declares `runtime` and ' +
+      'Runs [Transformers.js](https://huggingface.co/docs/transformers.js) ' +
+      'pipelines with no server and no API key: the model and tokenizer are ' +
+      'loaded from the Hugging Face Hub on first run, and inference happens ' +
+      'locally via WebGPU/WASM. One manifest builds for Chrome, Edge and ' +
+      'Firefox, where `chromium:` and `firefox:` prefixed keys pick the side ' +
+      'panel surface and manifest version for each browser. The production ' +
+      'build ships the onnxruntime WebAssembly core (about 21 MiB) at the ' +
+      'output root, so `extension.config.js` declares `runtime` and ' +
       '`service-worker` budgets sized for the model runtime and ' +
       '`extension build` finishes without a performance warning.'
   },
@@ -848,9 +864,9 @@ function renderReadme(detected) {
     `\n` +
     blockquote +
     screenshotEmbed +
-    `**What you'll see**: ${deriveWhatYoullSee(detected)}\n` +
+    `**What you'll see**: ${OVERRIDES[detected.slug]?.whatYoullSee ?? deriveWhatYoullSee(detected)}\n` +
     `\n` +
-    `**How it works**: ${deriveHowItWorks(detected)}\n` +
+    `**How it works**: ${OVERRIDES[detected.slug]?.howItWorks ?? deriveHowItWorks(detected)}\n` +
     `\n` +
     overrideBlock +
     `## Try it locally\n` +
