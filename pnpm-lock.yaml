@@ -33,8 +33,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.1.22
-        version: 4.1.22(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+        specifier: 4.1.25-canary.1789771240.9b4be6a5
+        version: 4.1.25-canary.1789771240.9b4be6a5(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -3732,6 +3732,22 @@ packages:
   dayjs@1.11.20:
     resolution: {integrity: sha512-YbwwqR/uYpeoP4pu043q+LTDLFBLApUP6VxRihdfNTqu4ubqMlGDLd6ErXhEgsyvY0K6nCs7nggYumAN+9uEuQ==}
 
+  debug@2.6.9:
+    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
+  debug@3.2.7:
+    resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+
   debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
     engines: {node: '>=6.0'}
@@ -4011,12 +4027,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.1.22:
-    resolution: {integrity: sha512-l3RnhDZYKlUC71ENw0lHG43GDbVg6giPqtJJyrmYhKW4er6TnYvkCLduHgxLC1V9JXY0huHVrXG+SFrY867bYQ==}
+  extension-create@4.1.25-canary.1789771240.9b4be6a5:
+    resolution: {integrity: sha512-awbJdCox/4+i+wE9+M8YfCQchGvW1LjiFrMQHQhMlYrghz5iVaLQc9UnZMotwkhnEK9ERHqX2v/5zJBZULpHjw==}
     engines: {node: '>=22.12'}
 
-  extension-develop@4.1.22:
-    resolution: {integrity: sha512-H8oVqIGiZx4PIlzI4Xq+R9kEroINmm2LY6ETrZ3/WA+NkhuuTM9ylAi78iYBrddTqs5n9h3zMpPEaFUwq0E4xQ==}
+  extension-develop@4.1.25-canary.1789771240.9b4be6a5:
+    resolution: {integrity: sha512-sd41ZXxP+5H5BPJ1SSTTT82Jc8ox1aMCwZ8H4zHjjALybd/sacw94nZVOUujF5XRP/mvt0070yhY5osfGQR4/Q==}
     engines: {node: '>=22.12'}
 
   extension-from-store@0.2.5:
@@ -4024,12 +4040,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.1.22:
-    resolution: {integrity: sha512-0fs4/dt/J02uSlJoyDi2Fm81KUqeqn3pRP1D6QJ9CFqmzf5rgYIQlMrOkkzglUOxBXj1jAXepWrlVhz42fvh8Q==}
+  extension-install@4.1.25-canary.1789771240.9b4be6a5:
+    resolution: {integrity: sha512-WIjqEmtU9O8w3B0CZh/egxOJ8oyPCILB6PmN+xUQTST/NA1A7+qXkCxQ0PT3puKbpfFRXp2c37lmCZsyZucmyA==}
     engines: {node: '>=22.12'}
 
-  extension@4.1.22:
-    resolution: {integrity: sha512-UCax/Z2c2kJ3kKyQ0CYR/ayyfWi5fSevKSYfO1iULoB+LZYUdGZOHC1zrZddll6i49lI4MX8O1anDILSzVQCyg==}
+  extension@4.1.25-canary.1789771240.9b4be6a5:
+    resolution: {integrity: sha512-RzEuZvlPEvStOi2hnUqgnN4rFVSLLzJIzQeXF7ZfAYOEOjxnkpBGZO81UzUJ+mYr2WWMFf6lVW3PgDpMF5PV5A==}
     engines: {node: '>=22.12'}
     hasBin: true
 
@@ -4307,6 +4323,10 @@ packages:
   humanize-ms@1.2.1:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
 
+  iconv-lite@0.4.24:
+    resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
+    engines: {node: '>=0.10.0'}
+
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
@@ -4573,6 +4593,11 @@ packages:
 
   less@4.6.7:
     resolution: {integrity: sha512-o3UxHBPPVY1HtCXx15/z1NlknQiWyafRNbtLEv+6xFaDRI2g2xPKIH43do9dSwt8bGLTsjNSaifa48N3d6odsQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  less@4.9.1:
+    resolution: {integrity: sha512-orp15PfJvvNDIqJdVWzMI9Sjpjp3VTiw3sfvbB+67LlISTEn8uVT2EdYSuyl02BLvaftv6sdk9Umnxmm5rckmg==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -4921,6 +4946,9 @@ packages:
   mlly@1.8.2:
     resolution: {integrity: sha512-d+ObxMQFmbt10sretNDytwt85VrbkhhUA/JBGm1MPaWJ65Cl4wOgLaB1NYvJSZ0Ef03MMEU/0xpPMXUIQ29UfA==}
 
+  ms@2.0.0:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
@@ -4940,6 +4968,11 @@ packages:
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+
+  needle@2.9.1:
+    resolution: {integrity: sha512-6R9fqJ5Zcmf+uYaFgdIHmLwNldn5HbK8L5ybn7Uz+ylX/rnOsSp1AHcvQSrCaFN+qNM1wpymHqD7mVasEOlHGQ==}
+    engines: {node: '>= 4.4.x'}
+    hasBin: true
 
   needle@3.3.1:
     resolution: {integrity: sha512-6k0YULvhpw+RoLNiQCRKOl09Rv1dPLr8hHnVjHqdolKwDrdNyk+Hmrthi4lIGPPz3r39dLx0hsF5s40sZ3Us4Q==}
@@ -5390,6 +5423,9 @@ packages:
     resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
     engines: {node: '>=6'}
 
+  probe-image-size@7.4.0:
+    resolution: {integrity: sha512-cdEprVtZxV+awMde9X+4jILBFYh4CARxVrQaMl4wY4YcPWbul9jntXrIW95NInBDyJwcVUP3U0T6yukN8rMBaQ==}
+
   progress@2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
@@ -5692,6 +5728,9 @@ packages:
 
   sprintf-js@1.1.3:
     resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
+
+  stream-parser@0.3.1:
+    resolution: {integrity: sha512-bJ/HgKq41nlKvlhccD5kaCr/P+Hu0wPNKPJOH7en+YrJu/9EgqUF+88w5Jb6KNcjOFMhfX4B2asfeAtIGuHObQ==}
 
   string-argv@0.3.2:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
@@ -9087,6 +9126,16 @@ snapshots:
 
   dayjs@1.11.20: {}
 
+  debug@2.6.9:
+    dependencies:
+      ms: 2.0.0
+    optional: true
+
+  debug@3.2.7:
+    dependencies:
+      ms: 2.1.3
+    optional: true
+
   debug@4.4.1:
     dependencies:
       ms: 2.1.3
@@ -9342,7 +9391,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.1.22:
+  extension-create@4.1.25-canary.1789771240.9b4be6a5:
     dependencies:
       axios: 1.18.1
       cross-spawn: 7.0.6
@@ -9354,7 +9403,7 @@ snapshots:
       - debug
       - supports-color
 
-  extension-develop@4.1.22(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension-develop@4.1.25-canary.1789771240.9b4be6a5(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -9374,8 +9423,8 @@ snapshots:
       fflate: 0.8.3
       go-git-it: 5.1.5
       ignore: 7.0.5
-      less: 4.6.7
-      less-loader: 13.0.0(@rspack/core@2.2.3)(less@4.6.7)(webpack@5.103.0)
+      less: 4.9.1
+      less-loader: 13.0.0(@rspack/core@2.2.3)(less@4.9.1)(webpack@5.103.0)
       parse5-utilities: 1.0.0
       pintor: 0.3.0
       postcss: 8.5.23
@@ -9402,6 +9451,7 @@ snapshots:
       - sass
       - sass-embedded
       - selfsigned
+      - supports-color
       - svelte
       - typescript
       - utf-8-validate
@@ -9411,12 +9461,12 @@ snapshots:
     dependencies:
       fflate: 0.8.3
 
-  extension-install@4.1.22:
+  extension-install@4.1.25-canary.1789771240.9b4be6a5:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.1.22(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension@4.1.25-canary.1789771240.9b4be6a5(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.0.287
       '@types/node': 22.19.17
@@ -9426,9 +9476,9 @@ snapshots:
       chromium-location: 2.1.2
       commander: 15.0.0
       edge-location: 2.3.1
-      extension-create: 4.1.22
-      extension-develop: 4.1.22(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
-      extension-install: 4.1.22
+      extension-create: 4.1.25-canary.1789771240.9b4be6a5
+      extension-develop: 4.1.25-canary.1789771240.9b4be6a5(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+      extension-install: 4.1.25-canary.1789771240.9b4be6a5
       firefox-location2: 3.1.1
       librewolf-location: 1.2.1
       opera-location2: 2.1.1
@@ -9749,6 +9799,11 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
+  iconv-lite@0.4.24:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
+
   iconv-lite@0.6.3:
     dependencies:
       safer-buffer: 2.1.2
@@ -9951,10 +10006,10 @@ snapshots:
 
   layout-base@2.0.1: {}
 
-  less-loader@13.0.0(@rspack/core@2.2.3)(less@4.6.7)(webpack@5.103.0):
+  less-loader@13.0.0(@rspack/core@2.2.3)(less@4.9.1)(webpack@5.103.0):
     dependencies:
       '@types/less': 3.0.8
-      less: 4.6.7
+      less: 4.9.1
     optionalDependencies:
       '@rspack/core': 2.2.3
       webpack: 5.103.0
@@ -9985,6 +10040,21 @@ snapshots:
       mime: 1.6.0
       needle: 3.3.1
       source-map: 0.6.1
+
+  less@4.9.1:
+    dependencies:
+      copy-anything: 3.0.5
+      parse-node-version: 1.0.1
+    optionalDependencies:
+      errno: 0.1.8
+      graceful-fs: 4.2.11
+      make-dir: 5.1.0
+      mime: 1.6.0
+      needle: 3.3.1
+      probe-image-size: 7.4.0
+      source-map: 0.6.1
+    transitivePeerDependencies:
+      - supports-color
 
   levn@0.4.1:
     dependencies:
@@ -10454,6 +10524,9 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.6.3
 
+  ms@2.0.0:
+    optional: true
+
   ms@2.1.3: {}
 
   nano-spawn@1.0.2: {}
@@ -10463,6 +10536,15 @@ snapshots:
   nanoid@3.3.16: {}
 
   natural-compare@1.4.0: {}
+
+  needle@2.9.1:
+    dependencies:
+      debug: 3.2.7
+      iconv-lite: 0.4.24
+      sax: 1.4.1
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
 
   needle@3.3.1:
     dependencies:
@@ -11028,6 +11110,15 @@ snapshots:
 
   prismjs@1.30.0: {}
 
+  probe-image-size@7.4.0:
+    dependencies:
+      lodash.merge: 4.6.2
+      needle: 2.9.1
+      stream-parser: 0.3.1
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
+
   progress@2.0.3: {}
 
   prop-types@15.8.1:
@@ -11381,6 +11472,13 @@ snapshots:
   sprintf-js@1.0.3: {}
 
   sprintf-js@1.1.3: {}
+
+  stream-parser@0.3.1:
+    dependencies:
+      debug: 2.6.9
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
 
   string-argv@0.3.2: {}
 
