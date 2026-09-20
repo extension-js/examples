@@ -33,8 +33,8 @@ importers:
         specifier: ^9.16.0
         version: 9.39.1(jiti@2.6.1)
       extension:
-        specifier: 4.1.25
-        version: 4.1.25(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+        specifier: 4.1.26
+        version: 4.1.26(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
       globals:
         specifier: ^15.13.0
         version: 15.15.0
@@ -4027,12 +4027,12 @@ packages:
   extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
 
-  extension-create@4.1.25:
-    resolution: {integrity: sha512-pVD+dhd7cuwKV5SnMXhMR3L16SAsNhZueUaKXZRWnddevrcN0gQs5fSWPnJfXsdf0ByzTL8azbD285h+AMj1mA==}
+  extension-create@4.1.26:
+    resolution: {integrity: sha512-IF/U9HbKhbGI+S5UIZ777ZeVTvOk9RLF9WIZyx/LYuNf+cV35pB7QLuTlKPE6VatcHOEi8nWgAzP//26BxTIhA==}
     engines: {node: '>=22.12'}
 
-  extension-develop@4.1.25:
-    resolution: {integrity: sha512-Krw/CStIhvg7u6V7cel0xE9wpGJhqI/5BMFWG6cm8U5QhMwLbdWQyiG4/WScJ0QyJOlOWIy5T/W3VgdzCvzYhg==}
+  extension-develop@4.1.26:
+    resolution: {integrity: sha512-B71esvjvCR+lwIZ+27g+jTaKvKtvhxsNmVjU2TAh19rGVEYCbJOoKjYIx40hFtoew0xLEV6VJzrpCXgEQpp5QQ==}
     engines: {node: '>=22.12'}
 
   extension-from-store@0.2.5:
@@ -4040,12 +4040,12 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
-  extension-install@4.1.25:
-    resolution: {integrity: sha512-NZ+SnOY00qT9rAUNtB2YHbqjbDrhx8NqUkthV6baq6CdYh0t6Zn/337NlZDwt/UgbczDNfIylzjudhNnJZ0eVQ==}
+  extension-install@4.1.26:
+    resolution: {integrity: sha512-eVp3CQU9+kSCWkSWDwrSbsXrq6RjYOa1xifmezymLEZu1CZC2uKoXPL6+iFvDWM/s3uBPgkfCsSe9cNq0+9Hcw==}
     engines: {node: '>=22.12'}
 
-  extension@4.1.25:
-    resolution: {integrity: sha512-TZek/Xn5MdSo1uEC2nz9zmlY8i9k6ZxbrOSeYRFp/oYm3r88NmBWipYLAHPXFl/ZXlWWkB6bs9alJo2ZPDAs6w==}
+  extension@4.1.26:
+    resolution: {integrity: sha512-P/O9IGFQW+0GFct/akBbzTG+DSFr6VB0eGqc9Iqyj9ijbcXI0XVwIIfWoWBS/wR8iichHtaUi/GCvAtbAK9rXw==}
     engines: {node: '>=22.12'}
     hasBin: true
 
@@ -4121,6 +4121,11 @@ packages:
 
   flatted@3.3.3:
     resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+
+  floorp-location@1.0.0:
+    resolution: {integrity: sha512-37pti2wxM4Jepe1Jfq/d7P4J6WJVQvexGvbKSCxz+W9tOFlG04pFQ4W19vmoCaOjWZrcHEAd5H02Kg41FDN03w==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   follow-redirects@1.16.0:
     resolution: {integrity: sha512-y5rN/uOsadFT/JfYwhxRS5R7Qce+g3zG97+JrtFZlC9klX/W5hD7iiLzScI4nZqUS7DNUdhPgw4xI8W2LuXlUw==}
@@ -6273,6 +6278,11 @@ packages:
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  zen-location@1.0.0:
+    resolution: {integrity: sha512-7HUnvRWxU/3EoReNBmQi7bi5AWBTQHFpMJc9rDOx8j3RtGj1TfEU/L1Eoebgqi3xNK6dciRM203JEEvNmBHocw==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   zimmerframe@1.1.2:
     resolution: {integrity: sha512-rAbqEGa8ovJy4pyBxZM70hg4pE6gDgaQ0Sl9M3enG3I0d6H4XSAM3GeNGLKnsBpuijUow064sf7ww1nutC5/3w==}
@@ -9391,7 +9401,7 @@ snapshots:
 
   extend@3.0.2: {}
 
-  extension-create@4.1.25:
+  extension-create@4.1.26:
     dependencies:
       axios: 1.18.1
       cross-spawn: 7.0.6
@@ -9403,7 +9413,7 @@ snapshots:
       - debug
       - supports-color
 
-  extension-develop@4.1.25(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension-develop@4.1.26(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.27.3)
       '@prefresh/utils': 1.2.1
@@ -9461,12 +9471,12 @@ snapshots:
     dependencies:
       fflate: 0.8.3
 
-  extension-install@4.1.25:
+  extension-install@4.1.26:
     dependencies:
       cross-spawn: 7.0.6
       pintor: 0.3.0
 
-  extension@4.1.25(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
+  extension@4.1.26(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0):
     dependencies:
       '@types/chrome': 0.0.287
       '@types/node': 22.19.17
@@ -9476,10 +9486,11 @@ snapshots:
       chromium-location: 2.1.2
       commander: 15.0.0
       edge-location: 2.3.1
-      extension-create: 4.1.25
-      extension-develop: 4.1.25(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
-      extension-install: 4.1.25
+      extension-create: 4.1.26
+      extension-develop: 4.1.26(sass@1.94.1)(svelte@5.43.12)(typescript@7.0.2)(webpack@5.103.0)
+      extension-install: 4.1.26
       firefox-location2: 3.1.1
+      floorp-location: 1.0.0
       librewolf-location: 1.2.1
       opera-location2: 2.1.1
       pintor: 0.3.0
@@ -9491,6 +9502,7 @@ snapshots:
       ws: 8.21.0
       wsl-support: 0.1.0
       yandex-location: 2.1.1
+      zen-location: 1.0.0
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
       - '@swc/helpers'
@@ -9579,6 +9591,10 @@ snapshots:
   flatbuffers@25.9.23: {}
 
   flatted@3.3.3: {}
+
+  floorp-location@1.0.0:
+    dependencies:
+      which: 6.0.1
 
   follow-redirects@1.16.0: {}
 
@@ -12067,6 +12083,10 @@ snapshots:
       yargs-parser: 21.1.1
 
   yocto-queue@0.1.0: {}
+
+  zen-location@1.0.0:
+    dependencies:
+      which: 6.0.1
 
   zimmerframe@1.1.2: {}
 
