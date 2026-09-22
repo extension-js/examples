@@ -8,5 +8,12 @@
   "dependencies": {
     "@huggingface/transformers": "3.7.1"
   },
+  "overrides": {
+    "sharp": "npm:empty-npm-package@1.0.0",
+    "onnxruntime-node": "npm:empty-npm-package@1.0.0"
+  },
+  "allowScripts": {
+    "protobufjs": false
+  },
   "devDependencies": {}
 }
