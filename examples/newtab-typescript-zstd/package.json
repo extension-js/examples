@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "newtab-typescript-zstd",
+  "description": "Replaces your new tab page with a page that compresses and decompresses text using Zstandard.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@bokuweb/zstd-wasm": "0.0.27"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

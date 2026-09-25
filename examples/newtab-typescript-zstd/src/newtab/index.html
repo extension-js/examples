@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Zstandard Extension</title>
+    <link rel="stylesheet" href="./styles.css" media="screen" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hero">
+        <img class="logo" src="../images/icon.png" alt="Zstandard" />
+        <div>
+          <h1>Zstandard Compression</h1>
+          <p>
+            Compress and decompress text using
+            <a
+              href="https://www.npmjs.com/package/@bokuweb/zstd-wasm"
+              target="_blank"
+              rel="noopener noreferrer"
+              >@bokuweb/zstd-wasm</a
+            >.
+          </p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <label class="input">
+            <span>Compression level</span>
+            <input id="levelInput" type="range" min="1" max="19" value="10" />
+            <span id="levelValue">10</span>
+          </label>
+          <button id="compressButton" type="button">Compress</button>
+          <button id="decompressButton" type="button" class="secondary">
+            Decompress
+          </button>
+          <button id="clearButton" type="button" class="ghost">Clear</button>
+        </div>
+        <div class="status">
+          <div class="status__label" id="statusText">Loading Zstandard…</div>
+          <div class="status__meta" id="statusMeta">
+            Preparing the bundled runtime
+          </div>
+        </div>
+      </section>
+
+      <section class="panel grid">
+        <div>
+          <h2>Input</h2>
+          <textarea
+            id="inputText"
+            placeholder="Type or paste text to compress…"
+          ></textarea>
+        </div>
+        <div>
+          <h2>Output</h2>
+          <textarea
+            id="outputText"
+            placeholder="Compressed output (Base64) or decompressed text…"
+          ></textarea>
+        </div>
+      </section>
+
+      <section class="panel stats">
+        <div class="stat">
+          <span>Input bytes</span>
+          <strong id="inputBytes">0</strong>
+        </div>
+        <div class="stat">
+          <span>Output bytes</span>
+          <strong id="outputBytes">0</strong>
+        </div>
+        <div class="stat">
+          <span>Ratio</span>
+          <strong id="ratioValue">–</strong>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="./scripts.ts"></script>
+</html>
