@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "newtab-typescript-tesseract",
+  "description": "Replaces your new tab page with a page that reads text from an image using Tesseract.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "tesseract-wasm": "0.11.0"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

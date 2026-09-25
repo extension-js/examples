@@ -636,6 +636,14 @@ const OVERRIDES = {
       'A new-tab page driven by [React Router](https://reactrouter.com/). ' +
       'Useful for extension UIs that span multiple in-app routes.'
   },
+  'newtab-typescript-tesseract': {
+    extra:
+      'Reads text out of an image with ' +
+      '[tesseract-wasm](https://github.com/robertknight/tesseract-wasm). ' +
+      'The OCR engine, WebAssembly binary, and English language data are ' +
+      'bundled into the extension, so opening a new tab does not fetch ' +
+      'them from the network.'
+  },
   'newtab-browser-flags': {
     extra:
       'Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) ' +

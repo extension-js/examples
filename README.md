@@ -1344,6 +1344,29 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+<details>
+  <summary><img src="./examples/newtab-typescript-tesseract/src/images/icon.png" alt="newtab-typescript-tesseract example icon" width="22" /> Tesseract OCR New Tab Example</summary>
+
+> Replaces your new tab page with a page that reads text from an image using Tesseract.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-typescript-tesseract/README.md">examples/newtab-typescript-tesseract</a></td>
+      <td rowspan="5"><img src="./examples/newtab-typescript-tesseract/screenshot.png" alt="newtab-typescript-tesseract screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">TypeScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-typescript-tesseract">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Special folders
 
 <details>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tesseract OCR Extension</title>
+    <link rel="stylesheet" href="./styles.css" media="screen" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hero">
+        <img class="logo" src="../images/icon.png" alt="Tesseract OCR" />
+        <div>
+          <h1>Tesseract OCR Extension</h1>
+          <p>
+            Drop an image or select a file to extract text using
+            <a href="https://github.com/robertknight/tesseract-wasm" target="_blank" rel="noopener noreferrer">tesseract-wasm</a>.
+          </p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="controls">
+          <label class="input">
+            <span>Select an image</span>
+            <input id="fileInput" type="file" accept="image/*" />
+          </label>
+          <button id="runButton" type="button">Run OCR</button>
+          <button id="clearButton" type="button" class="secondary">Clear</button>
+        </div>
+
+        <div class="dropzone" id="dropzone">
+          <p>Drag and drop an image here</p>
+        </div>
+
+        <div class="status">
+          <div class="status__label" id="statusText">Idle</div>
+          <div class="progress">
+            <div class="progress__bar" id="progressBar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel output">
+        <div class="preview">
+          <img id="previewImage" alt="Selected preview" />
+        </div>
+        <div class="results">
+          <h2>Extracted text</h2>
+          <pre id="ocrOutput">Pick an image to get started.</pre>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="./scripts.ts"></script>
+</html>

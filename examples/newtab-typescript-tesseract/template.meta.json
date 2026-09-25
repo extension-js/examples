@@ -1,0 +1,17 @@
+{
+  "title": "Tesseract OCR New Tab",
+  "tags": ["tesseract", "ocr", "wasm", "new-tab", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm install, then npm run dev",
+    "Open a new tab",
+    "Drop an image onto the page and run OCR"
+  ],
+  "useCases": [
+    "Read text from an image in a new tab",
+    "Run Tesseract in the browser with WebAssembly",
+    "Reference for bundling a wasm runtime and language data with Extension.js"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript"
+}
