@@ -45,7 +45,8 @@
   },
   "firefox:sidebar_action": {
     "default_panel": "sidebar/index.html",
-    "default_title": "Last detection"
+    "default_title": "Last detection",
+    "browser_style": false
   },
   "chromium:permissions": ["sidePanel", "storage"],
   "firefox:permissions": ["storage"],
