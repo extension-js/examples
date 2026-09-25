@@ -11,31 +11,71 @@ const ext = globalThis.browser ?? chrome
 const inputElement = document.getElementById('text')
 const outputElement = document.getElementById('output')
 
-// Listen for changes made to the textbox.
-inputElement.addEventListener('input', async (event) => {
-  // Bundle the input data into a message.
-  const message = {
-    action: ACTION_NAME,
-    text: event.target.value
-  }
+// Classify when the typing pauses, not on every keystroke. A sentiment model
+// asked about "Debu" answers with a confident guess, so a per-key run flips
+// the label on word fragments and rewrites the card dozens of times a sentence.
+const CLASSIFY_AFTER_MS = 400
+const MIN_TEXT_LENGTH = 12
+const PENDING_MARK = '…'
 
-  // Send this message to the service worker.
-  const response = await ext.runtime.sendMessage(message)
+let pendingTimer = null
+let latestRequest = 0
+
+async function classifyText(text) {
+  const request = ++latestRequest
+  outputElement.textContent = PENDING_MARK
+
+  // Bundle the input data into a message and send it to the service worker.
+  const response = await ext.runtime.sendMessage({action: ACTION_NAME, text})
+
+  // A slower answer for older text must not overwrite a newer one.
+  if (request !== latestRequest) return
 
   // Handle results returned by the service worker (`background.js`) and
   // update the panel's UI.
   outputElement.textContent = JSON.stringify(response, null, 2)
+}
+
+// Listen for changes made to the textbox.
+inputElement.addEventListener('input', (event) => {
+  clearTimeout(pendingTimer)
+  latestRequest++
+
+  const text = event.target.value.trim()
+
+  if (!text) {
+    outputElement.textContent = ''
+
+    return
+  }
+
+  // Too short to mean anything yet: show that a result is coming rather
+  // than a confident label for a fragment.
+  outputElement.textContent = PENDING_MARK
+  if (text.length < MIN_TEXT_LENGTH) return
+
+  pendingTimer = setTimeout(() => classifyText(text), CLASSIFY_AFTER_MS)
+})
+
+// Enter classifies at once, whatever the length.
+inputElement.addEventListener('keydown', (event) => {
+  if (event.key !== 'Enter') return
+
+  clearTimeout(pendingTimer)
+  const text = inputElement.value.trim()
+  if (text) classifyText(text)
 })
 
 ////////////////////// 1. Active tab //////////////////////
 //
 // The side panel sits next to a page, so it can classify that page's text or
 // selection. The content script reads it, the service worker relays it here
-// (a panel cannot message a tab directly), and the textbox runs it through
-// the same listener as typed text.
+// (a panel cannot message a tab directly), and the textbox shows what ran.
+// These arrive whole, so they skip the typing pause.
 function classify(text) {
+  clearTimeout(pendingTimer)
   inputElement.value = text
-  inputElement.dispatchEvent(new Event('input'))
+  classifyText(text)
 }
 
 async function classifyFromActiveTab(action, what) {
@@ -67,6 +107,8 @@ document.getElementById('use-selection').addEventListener('click', () => {
 ext.runtime.onMessage.addListener((message) => {
   if (message?.action !== 'classification-broadcast') return
 
+  clearTimeout(pendingTimer)
+  latestRequest++
   if (typeof message.text === 'string') inputElement.value = message.text
 
   const output = message.ok ? message.result : {error: message.error}

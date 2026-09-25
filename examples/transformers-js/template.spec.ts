@@ -33,3 +33,17 @@ test('sidebar page has the text input and output block', async ({
   await test.expect(page.locator('#use-page')).toBeVisible()
   await test.expect(page.locator('#use-selection')).toBeVisible()
 })
+
+// A word fragment must not be classified: the model would answer with a
+// confident label for "Debu", so the panel waits for a pause and a sentence.
+test('typing a fragment shows a pending mark, not a label', async ({
+  page,
+  extensionId
+}) => {
+  await page.goto(getSidebarPath(extensionId))
+  await page.locator('input#text').pressSequentially('Debu', {delay: 30})
+  await test.expect(page.locator('pre#output')).toHaveText('…')
+
+  await page.locator('input#text').fill('')
+  await test.expect(page.locator('pre#output')).toHaveText('')
+})

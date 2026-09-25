@@ -9,7 +9,7 @@
 
 ![screenshot](./screenshot.png)
 
-**What you'll see**: A side panel that runs 🤗 Transformers in your browser: type in the text box and the classification appears below it as you type.
+**What you'll see**: A side panel that runs 🤗 Transformers in your browser: type in the text box and the classification appears below it when you pause, or press Enter.
 
 **How it works**: The same demo as the [Transformers.js browser extension sample](https://github.com/huggingface/transformers.js-examples/tree/main/browser-extension), built with Extension.js: a service worker loads a `text-classification` pipeline once, the panel sends it text over `runtime.sendMessage`, and the result prints as JSON. The panel adds what an extension needs on top of that sample: a button that classifies the active page text or your selection (read by the content script and relayed by the service worker), a right-click menu that classifies selected text, and model settings persisted in `storage.sync`, one cached pipeline per configuration.
 
