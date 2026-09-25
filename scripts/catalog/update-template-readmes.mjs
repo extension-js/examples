@@ -636,6 +636,15 @@ const OVERRIDES = {
       'A new-tab page driven by [React Router](https://reactrouter.com/). ' +
       'Useful for extension UIs that span multiple in-app routes.'
   },
+  'newtab-vue-imagemagick': {
+    extra:
+      'Blurs, rotates, and charcoals a picture with ' +
+      '[@imagemagick/magick-wasm](https://www.npmjs.com/package/@imagemagick/magick-wasm) ' +
+      'across in-page routes. The WebAssembly runtime and the Hack font are ' +
+      'bundled into the extension, so opening a new tab does not fetch them ' +
+      'from the network. Routes use hash history so they work on the ' +
+      'extension new-tab page.'
+  },
   'newtab-browser-flags': {
     extra:
       'Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) ' +

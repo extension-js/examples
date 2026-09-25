@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "newtab-vue-imagemagick",
+  "description": "Replaces your new tab page with a Vue page that blurs, rotates, and charcoals a picture using ImageMagick.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@imagemagick/magick-wasm": "0.0.37",
+    "@vueform/multiselect": "2.6.11",
+    "simple-syntax-highlighter": "3.1.1",
+    "vue": "^3.4.27",
+    "vue-router": "4.6.4"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

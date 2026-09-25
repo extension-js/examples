@@ -712,6 +712,28 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
+  examples/newtab-vue-imagemagick:
+    dependencies:
+      '@imagemagick/magick-wasm':
+        specifier: 0.0.37
+        version: 0.0.37
+      '@vueform/multiselect':
+        specifier: 2.6.11
+        version: 2.6.11
+      simple-syntax-highlighter:
+        specifier: 3.1.1
+        version: 3.1.1(vue@3.5.26(typescript@7.0.2))
+      vue:
+        specifier: ^3.4.27
+        version: 3.5.26(typescript@7.0.2)
+      vue-router:
+        specifier: 4.6.4
+        version: 4.6.4(vue@3.5.26(typescript@7.0.2))
+    devDependencies:
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
   examples/playwright:
     devDependencies:
       '@playwright/test':
@@ -1507,6 +1529,9 @@ packages:
 
   '@iconify/utils@3.1.0':
     resolution: {integrity: sha512-Zlzem1ZXhI1iHeeERabLNzBHdOa4VhQbqAcOQaMKuTuyZCpwKbC2R4Dd0Zo3g9EAc+Y4fiarO8HIHRAth7+skw==}
+
+  '@imagemagick/magick-wasm@0.0.37':
+    resolution: {integrity: sha512-tVs9hcWu9u7I3Jz/XvUYVvCEniuxAR+JjZEzI+yKtQmYAtNsLF1WjoH1HZGCKPumaB9jAHZlcf2RGT9+1l3nxQ==}
 
   '@img/colour@1.0.0':
     resolution: {integrity: sha512-A5P/LfWGFSl6nsckYtjw9da+19jB8hkJ6ACTGcDfEJ0aE+l2n2El7dsVM7UVHZQ9s2lmYMWlrS21YLy2IR1LUw==}
@@ -3086,6 +3111,9 @@ packages:
   '@vue/compiler-ssr@3.5.26':
     resolution: {integrity: sha512-lZT9/Y0nSIRUPVvapFJEVDbEXruZh2IYHMk2zTtEgJSlP5gVOqeWXH54xDKAaFS4rTnDeDBQUYDtxKyoW9FwDw==}
 
+  '@vue/devtools-api@6.6.4':
+    resolution: {integrity: sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==}
+
   '@vue/reactivity@3.5.26':
     resolution: {integrity: sha512-9EnYB1/DIiUYYnzlnUBgwU32NNvLp/nhxLXeWRhHUEeWNTn1ECxX8aGO7RTXeX6PPcxe3LLuNBFoJbV4QZ+CFQ==}
 
@@ -3102,6 +3130,9 @@ packages:
 
   '@vue/shared@3.5.26':
     resolution: {integrity: sha512-7Z6/y3uFI5PRoKeorTOSXKcDj0MSasfNNltcslbFrPpcw6aXRUALq4IfJlaTRspiWIUOEZbrpM+iQGmCOiWe4A==}
+
+  '@vueform/multiselect@2.6.11':
+    resolution: {integrity: sha512-iG4TGfqE3baftbSGF0PhoS+xZOCnV0ChkDo9rwhJ/Qi2YlCdb6tyQCjvyug3jnzncga8+d85kx0WvG7rDYFqiA==}
 
   '@webassemblyjs/ast@1.14.1':
     resolution: {integrity: sha512-nuBEDgQfm1ccRp/8bCQrx1frohyufl4JlbMMZ4P1wpeOfDhF6FQkxZJ1b/e+PLwr6X1Nhw6OLme5usuBWYBvuQ==}
@@ -5695,6 +5726,12 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+  simple-syntax-highlighter@3.1.1:
+    resolution: {integrity: sha512-FSM31Qj6bvxHSngu5fSFNiKpLgsxIGVPMgxQZFiiNqlB19X4uUhl16iYxBCAJWev1qJOmgbXXOkskVt6AXhFxQ==}
+    engines: {node: '>=16.0.0', pnpm: '>=8.0.0'}
+    peerDependencies:
+      vue: ^3.2.0
+
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -6136,6 +6173,11 @@ packages:
         optional: true
       vue:
         optional: true
+
+  vue-router@4.6.4:
+    resolution: {integrity: sha512-Hz9q5sa33Yhduglwz6g9skT8OBPii+4bFn88w6J+J4MfEo4KRRpmiNG/hHHkdbRFlLBOqxN8y8gf2Fb0MTUgVg==}
+    peerDependencies:
+      vue: ^3.5.0
 
   vue@3.5.26:
     resolution: {integrity: sha512-SJ/NTccVyAoNUJmkM9KUqPcYlY+u8OVL1X5EW9RIs3ch5H2uERxyyIUI4MRxVCSOiEcupX9xNGde1tL9ZKpimA==}
@@ -6956,6 +6998,8 @@ snapshots:
       '@antfu/install-pkg': 1.1.0
       '@iconify/types': 2.0.0
       mlly: 1.8.2
+
+  '@imagemagick/magick-wasm@0.0.37': {}
 
   '@img/colour@1.0.0': {}
 
@@ -8415,6 +8459,8 @@ snapshots:
       '@vue/compiler-dom': 3.5.26
       '@vue/shared': 3.5.26
 
+  '@vue/devtools-api@6.6.4': {}
+
   '@vue/reactivity@3.5.26':
     dependencies:
       '@vue/shared': 3.5.26
@@ -8438,6 +8484,8 @@ snapshots:
       vue: 3.5.26(typescript@7.0.2)
 
   '@vue/shared@3.5.26': {}
+
+  '@vueform/multiselect@2.6.11': {}
 
   '@webassemblyjs/ast@1.14.1':
     dependencies:
@@ -11455,6 +11503,10 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
+  simple-syntax-highlighter@3.1.1(vue@3.5.26(typescript@7.0.2)):
+    dependencies:
+      vue: 3.5.26(typescript@7.0.2)
+
   slash@3.0.0: {}
 
   slice-ansi@4.0.0:
@@ -11940,6 +11992,11 @@ snapshots:
       webpack: 5.103.0
     optionalDependencies:
       '@vue/compiler-sfc': 3.5.26
+      vue: 3.5.26(typescript@7.0.2)
+
+  vue-router@4.6.4(vue@3.5.26(typescript@7.0.2)):
+    dependencies:
+      '@vue/devtools-api': 6.6.4
       vue: 3.5.26(typescript@7.0.2)
 
   vue@3.5.26(typescript@7.0.2):

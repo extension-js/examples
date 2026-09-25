@@ -1,0 +1,17 @@
+{
+  "title": "ImageMagick New Tab",
+  "tags": ["imagemagick", "wasm", "vue", "new-tab"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm install, then npm run dev",
+    "Open a new tab",
+    "Open MagickImage, load the logo, and rotate, blur, or charcoal it"
+  ],
+  "useCases": [
+    "Edit a picture in a new tab with ImageMagick",
+    "Load a WebAssembly runtime and a font that ship inside the extension",
+    "Navigate several routes on an extension new-tab page"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue"
+}
