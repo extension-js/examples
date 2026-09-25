@@ -22,3 +22,49 @@ import {RouterLink, RouterView} from 'vue-router'
 
   <RouterView />
 </template>
+
+<style>
+@font-face {
+  font-family: 'Hack';
+  src: url('./assets/fonts/Hack-Regular.ttf') format('truetype');
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Hack', monospace;
+  font-weight: bold;
+  border-radius: 2em;
+  border-color: black;
+  color: pink;
+  background-color: black;
+  text-align: center;
+  display: inline-block;
+  padding: 0.5em 1em;
+  margin: 0 1em 1em 0;
+}
+
+button:hover {
+  color: pink;
+  background-color: black;
+}
+
+.arguments {
+  margin-top: 10px;
+}
+
+.arguments label {
+  display: inline-block;
+  width: 80px;
+}
+
+.arguments input {
+  width: 50px;
+  margin-bottom: 10px;
+}
+
+.arguments .multiselect {
+  display: inline-block;
+  width: 400px;
+  margin-bottom: 10px;
+}
+</style>

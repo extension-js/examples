@@ -44,3 +44,18 @@ const showExample = (func: (image: IMagickImage) => void) => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.container {
+  display: flex;
+}
+
+.container div {
+  padding: 0 1em 0 1em;
+  flex: 0 1 50%;
+}
+
+.container .buttons {
+  padding: 1em 0 1em 0;
+}
+</style>

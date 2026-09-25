@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Multiselect from '@vueform/multiselect'
-import '@vueform/multiselect/themes/default.css'
 import {Channels} from '@imagemagick/magick-wasm'
 import {ref} from 'vue'
 
@@ -70,3 +69,5 @@ const optionSelected = (_value: Channels[], option: ChannelOption): void => {
   >
   </Multiselect>
 </template>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
