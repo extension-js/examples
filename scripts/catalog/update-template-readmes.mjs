@@ -636,6 +636,13 @@ const OVERRIDES = {
       'A new-tab page driven by [React Router](https://reactrouter.com/). ' +
       'Useful for extension UIs that span multiple in-app routes.'
   },
+  'newtab-typescript-zstd': {
+    extra:
+      'Compresses and decompresses text with ' +
+      '[@bokuweb/zstd-wasm](https://www.npmjs.com/package/@bokuweb/zstd-wasm). ' +
+      'The WebAssembly binary is bundled into the extension, so opening a ' +
+      'new tab does not fetch it from the network.'
+  },
   'newtab-browser-flags': {
     extra:
       'Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) ' +

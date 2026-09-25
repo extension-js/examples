@@ -1344,6 +1344,29 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+<details>
+  <summary><img src="./examples/newtab-typescript-zstd/src/images/icon.png" alt="newtab-typescript-zstd example icon" width="22" /> Zstandard New Tab Example</summary>
+
+> Replaces your new tab page with a page that compresses and decompresses text using Zstandard.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-typescript-zstd/README.md">examples/newtab-typescript-zstd</a></td>
+      <td rowspan="5"><img src="./examples/newtab-typescript-zstd/screenshot.png" alt="newtab-typescript-zstd screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">New Tab, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">TypeScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-typescript-zstd">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Special folders
 
 <details>

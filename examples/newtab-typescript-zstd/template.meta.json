@@ -1,0 +1,17 @@
+{
+  "title": "Zstandard New Tab",
+  "tags": ["zstd", "wasm", "new-tab", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 2,
+  "firstSteps": [
+    "Run npm install, then npm run dev",
+    "Open a new tab",
+    "Type text, compress it, then decompress the Base64 output"
+  ],
+  "useCases": [
+    "Compress text in a new tab with Zstandard",
+    "Load a WebAssembly binary that ships inside the extension",
+    "Reference for bundling an Emscripten wasm asset with Extension.js"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript"
+}
