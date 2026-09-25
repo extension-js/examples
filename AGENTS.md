@@ -91,6 +91,13 @@ then `artifacts:stage`. The stage step rewrites the raw generator output
   points at the commands above. `pnpm generate:raw` bypasses the guard and is
   meant for the pipeline only.
 
+## Adding a catalog example
+
+- Name the folder after its surface, the way the tree does: `newtab-<what>`, `content-<what>`, `sidebar-<what>`, `action-<what>`. A new example lands on a `catalog/<slug>` branch and stays there until merged. On `main`, a folder under `examples/` that holds only `dist/`, `node_modules/` or a browser profile is a build leftover from a checked-out branch, not an example: its sources are on the branch, so do not read from the folder. Run `git clean -fdX examples/<slug>` before switching branches so the leftover does not survive the switch.
+- Every example `README.md` is generated, never hand-written. The per-example paragraph lives in the `OVERRIDES` map in `scripts/catalog/update-template-readmes.mjs`, keyed by slug. Add the entry there and run `pnpm catalog:readmes -- --only=<slug>` to write the README.
+- The catalog table in the root `README.md` is hand-maintained: copy the `<details>` block of the nearest example and edit it. `pnpm test:catalog-readme` fails on an example with no row.
+- `pnpm test:template-videos` fails on a `template.meta.json` with no `video` id. Until the clip is shot, list the slug in `AWAITING_FIRST_SHOOT` in `scripts/checks/assert-template-videos.mjs`.
+
 ## Editing guidance for agents
 
 - When asked to add behavior to a content script, modify the body of the default-exported function. Don't introduce a new top-level call.
