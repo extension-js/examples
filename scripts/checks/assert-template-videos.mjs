@@ -10,7 +10,7 @@ const EXEMPT = new Set([
   'newtab-browser-flags'
 ])
 
-const AWAITING_FIRST_SHOOT = new Set([])
+const AWAITING_FIRST_SHOOT = new Set(['newtab-react-onnxruntime'])
 
 const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/
 

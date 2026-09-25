@@ -1344,6 +1344,29 @@ npx extension@latest create my-extension --template javascript
   </table>
 </details>
 
+<details>
+  <summary><img src="./examples/newtab-react-onnxruntime/src/images/icon.png" alt="newtab-react-onnxruntime example icon" width="22" /> YOLO Object Detection New Tab Example</summary>
+
+> Replaces your new tab page with a page that detects objects in an image, a video, or the camera.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-react-onnxruntime/README.md">examples/newtab-react-onnxruntime</a></td>
+      <td rowspan="5"><img src="./examples/newtab-react-onnxruntime/screenshot.png" alt="newtab-react-onnxruntime screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">New Tab, Sidebar, Action, Background</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">React</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">Yes</td>
+      <td align="center"><a href="https://templates.extension.dev/newtab-react-onnxruntime">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
 ### Special folders
 
 <details>

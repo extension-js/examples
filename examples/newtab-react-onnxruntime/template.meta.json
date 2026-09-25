@@ -1,0 +1,17 @@
+{
+  "title": "YOLO Object Detection New Tab",
+  "tags": ["yolo", "onnx", "object-detection", "new-tab", "react"],
+  "difficulty": "intermediate",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm install, then npx extension dev .",
+    "Open a new tab",
+    "Wait for YOLO11n to load, then open the sample image, a video, or the camera"
+  ],
+  "useCases": [
+    "Detect objects in a photo, a video file, or the camera from a new tab",
+    "Run ONNX Runtime Web inside an extension with no network fetch",
+    "Reference for shipping a model and its wasm runtime with Extension.js"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/react"
+}

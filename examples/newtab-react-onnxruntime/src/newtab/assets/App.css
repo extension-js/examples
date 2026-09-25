@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Mobile-first button styles */
+.btn-primary {
+  @apply bg-violet-600 text-white font-medium 
+    py-2 px-3 
+    rounded-md
+    text-sm
+    transition-all duration-300 ease-in-out hover:bg-violet-700 
+    focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 
+    active:bg-violet-800 shadow-md
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-violet-600
+    disabled:active:bg-violet-600 disabled:shadow-none;
+}
+
+.btn-secondary {
+  @apply bg-gray-700 text-white font-medium 
+    py-2 px-3 
+    rounded-md
+    text-sm
+    transition-all duration-300 ease-in-out hover:bg-gray-600 
+    focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 
+    active:bg-gray-800 shadow-md
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-700
+    disabled:active:bg-gray-700 disabled:shadow-none;
+}
+
+.btn-danger {
+  @apply bg-red-600 text-white font-medium 
+    py-2 px-3 
+    rounded-md
+    text-sm
+    transition-all duration-300 ease-in-out hover:bg-red-700 
+    focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 
+    active:bg-red-800 shadow-md
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-600
+    disabled:active:bg-red-600 disabled:shadow-none;
+}
+
+.container {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Animations */
+@keyframes textLoading {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes details-show {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-text-loading {
+  animation: textLoading 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.animate-details-show {
+  animation: details-show 300ms ease-in-out;
+}
+
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-secondary,
+  .btn-danger {
+    @apply py-1.5 px-2 text-xs;
+  }
+}

@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme:dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #2a2a2a;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  display: flex;
+  justify-content: center;
+  text-align: center;  
+  @apply leading-relaxed tracking-wide font-bold
+}
+

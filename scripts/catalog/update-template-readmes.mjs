@@ -636,6 +636,17 @@ const OVERRIDES = {
       'A new-tab page driven by [React Router](https://reactrouter.com/). ' +
       'Useful for extension UIs that span multiple in-app routes.'
   },
+  'newtab-react-onnxruntime': {
+    extra:
+      'Detects objects in a photo, an MP4 file, or the camera with ' +
+      '[onnxruntime-web](https://onnxruntime.ai/docs/tutorials/web/) and a ' +
+      'bundled YOLO11n model. The wasm runtime and the model are copied ' +
+      'into the extension at build time, so a new tab does not fetch them. ' +
+      'The weights are Ultralytics YOLO11n under AGPL-3.0 ' +
+      '(`src/newtab/models/LICENSE.txt`); the example code stays MIT. ' +
+      'A local `.onnx` file can be added from the page if you want a ' +
+      'different detector.'
+  },
   'newtab-browser-flags': {
     extra:
       'Demonstrates browser-specific manifest keys (`chromium:*`, `firefox:*`) ' +

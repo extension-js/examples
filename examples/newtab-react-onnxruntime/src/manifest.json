@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json.schemastore.org/chrome-manifest.json",
+  "chromium:manifest_version": 3,
+  "firefox:manifest_version": 2,
+  "version": "1.0.0",
+  "firefox:browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "name": "YOLO Object Detection New Tab Example",
+  "description": "Replaces your new tab page with a page that detects objects in an image, a video, or the camera.",
+  "icons": {
+    "16": "images/icon.png",
+    "32": "images/icon.png",
+    "48": "images/icon.png",
+    "64": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "chromium:action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_title": "Open Side Panel"
+  },
+  "firefox:browser_action": {
+    "default_icon": {
+      "16": "images/icon.png",
+      "32": "images/icon.png",
+      "48": "images/icon.png",
+      "64": "images/icon.png",
+      "128": "images/icon.png"
+    },
+    "default_title": "Open Side Panel"
+  },
+  "chromium:side_panel": {
+    "default_path": "sidebar/index.html",
+    "default_title": "Last detection"
+  },
+  "firefox:sidebar_action": {
+    "default_panel": "sidebar/index.html",
+    "default_title": "Last detection"
+  },
+  "chromium:permissions": ["sidePanel", "storage"],
+  "firefox:permissions": ["storage"],
+  "background": {
+    "chromium:service_worker": "background.js",
+    "firefox:scripts": ["background.js"]
+  },
+  "chromium:content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self'"
+  },
+  "firefox:content_security_policy": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self'",
+  "chrome_url_overrides": {
+    "newtab": "newtab/index.html"
+  }
+}

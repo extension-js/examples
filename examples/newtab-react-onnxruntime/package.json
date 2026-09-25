@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "newtab-react-onnxruntime",
+  "description": "Replaces your new tab page with a page that detects objects in an image, a video, or the camera.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "mp4-muxer": "^5.2.2",
+    "mp4box": "^2.3.0",
+    "onnxruntime-web": "^1.23.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.3",
+    "tailwindcss": "^4.1.17"
+  }
+}
