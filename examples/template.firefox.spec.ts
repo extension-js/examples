@@ -270,12 +270,6 @@ if (
   }
 }
 
-// New tab overrides. Playwright cannot open the override: moz-extension://
-// times out, about:newtab stays Firefox's own page, newPage() is about:blank,
-// and the WebExtension actor has no getTarget. Each built examples/newtab*
-// addon is installed, the tab target loads the override document, and the
-// rendered text is read back. Opening a browser new tab is not covered.
-
 function renderedPhrase(source: string): string | null {
   const match =
     source.match(/Welcome to your[^<"\\\n]{0,80}/) ||
@@ -370,9 +364,7 @@ for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
       newtabPath,
       phrase: phraseFromBuiltExtension(extPath, newtabPath)
     })
-  } catch {
-    // A built manifest that cannot be read is a miss for the control below.
-  }
+  } catch {}
 }
 
 baseTest(

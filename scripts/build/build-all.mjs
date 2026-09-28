@@ -358,18 +358,8 @@ const browsers = browsersArg
       .filter(Boolean)
   : ['chrome', 'edge', 'firefox']
 
-// Every browser named for this run is part of the run. A failed build fails
-// the process, including Firefox when the caller passed `--browsers=firefox`
-// (the e2e-firefox job) and Edge when the caller asked for Edge.
-//
-// Chrome CI passes `--browsers=chrome`. That job still exits on a Chrome
-// failure and never builds Edge or Firefox, so its result is unchanged.
-//
-// The previous exit treated every non-Chrome failure as a warning and still
-// returned 0. Firefox CI then continued into tests that skip any example
-// with no dist/firefox. Pass `--allow-non-chrome-failures` to restore that
-// lenient exit: Chrome failures still fail the run, and Edge or Firefox
-// failures are printed and ignored.
+// A failed build for any requested browser fails the run. This flag restores
+// the old lenient exit where only Chrome failures counted.
 const allowNonChromeFailures = process.argv.includes(
   '--allow-non-chrome-failures'
 )

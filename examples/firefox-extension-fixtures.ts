@@ -285,14 +285,8 @@ export interface RdpRenderedPage {
   text: string
 }
 
-// Load an extension page in the first tab and read what it rendered.
-//
-// Playwright's Juggler cannot open moz-extension:// (page.goto times out on
-// about:blank). about:newtab stays Firefox's own new-tab page, and
-// context.newPage() is about:blank because Juggler does not open a browser
-// new tab. The WebExtension descriptor has no getTarget. The tab's
-// windowGlobalTarget does accept navigateTo for the override document, and
-// evaluateJSAsync can read that document.
+// Juggler cannot open moz-extension:// pages, so the tab's windowGlobal
+// target loads the page over RDP and evaluateJSAsync reads what it rendered.
 export async function rdpReadExtensionPage(
   rdpClient: RdpClient,
   pageUrl: string,
