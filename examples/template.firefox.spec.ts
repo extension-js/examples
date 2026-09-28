@@ -275,7 +275,19 @@ function renderedPhrase(source: string): string | null {
     source.match(/Welcome to your[^<"\\\n]{0,80}/) ||
     source.match(/Branded New Tab/)
 
-  return match ? match[0].replace(/\s+/g, ' ').trim() : null
+  if (match) {
+    return match[0].replace(/\s+/g, ' ').trim()
+  }
+
+  // Shell phrases win, so the existing new-tab examples keep the same text.
+  // A page with its own heading still has something visible to assert.
+  const heading = source.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
+
+  if (!heading) return null
+
+  const text = heading[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+
+  return text.length > 0 ? text : null
 }
 
 function phraseFromBuiltExtension(extPath: string, newtabPath: string): string {
@@ -310,11 +322,13 @@ function phraseFromBuiltExtension(extPath: string, newtabPath: string): string {
   }
 
   throw new Error(
-    `${extPath}: built new tab has no Welcome/Branded phrase to assert`
+    `${extPath}: built new tab has no visible phrase to assert`
   )
 }
 
 const newtabSourceSlugs: string[] = []
+const newtabUnreadable = new Set<string>()
+const newtabDiscoveryErrors: string[] = []
 const newtabExamples: Array<{
   name: string
   extPath: string
@@ -364,19 +378,33 @@ for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
       newtabPath,
       phrase: phraseFromBuiltExtension(extPath, newtabPath)
     })
-  } catch {}
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+
+    newtabUnreadable.add(entry.name)
+    newtabDiscoveryErrors.push(`${entry.name}: ${message}`)
+  }
 }
 
 baseTest(
   'firefox: new tab sweep discovers every built new tab override',
   async () => {
     const discovered = new Set(newtabExamples.map((example) => example.name))
-    const missing = newtabSourceSlugs.filter((slug) => !discovered.has(slug))
+    const missing = newtabSourceSlugs.filter(
+      (slug) => !discovered.has(slug) && !newtabUnreadable.has(slug)
+    )
 
     baseTest
       .expect(
         missing,
         `Firefox new tab sweep is missing ${missing.join(', ') || 'nothing'}; build those examples for Firefox (dist/firefox) before running this suite`
+      )
+      .toEqual([])
+
+    baseTest
+      .expect(
+        newtabDiscoveryErrors,
+        `Firefox new tab sweep could not read a rendered phrase from:\n${newtabDiscoveryErrors.join('\n')}`
       )
       .toEqual([])
   }
