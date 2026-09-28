@@ -355,7 +355,24 @@ const browsers = browsersArg
       .split('=')[1]
       .split(',')
       .map((b) => b.trim())
+      .filter(Boolean)
   : ['chrome', 'edge', 'firefox']
+
+// Every browser named for this run is part of the run. A failed build fails
+// the process, including Firefox when the caller passed `--browsers=firefox`
+// (the e2e-firefox job) and Edge when the caller asked for Edge.
+//
+// Chrome CI passes `--browsers=chrome`. That job still exits on a Chrome
+// failure and never builds Edge or Firefox, so its result is unchanged.
+//
+// The previous exit treated every non-Chrome failure as a warning and still
+// returned 0. Firefox CI then continued into tests that skip any example
+// with no dist/firefox. Pass `--allow-non-chrome-failures` to restore that
+// lenient exit: Chrome failures still fail the run, and Edge or Firefox
+// failures are printed and ignored.
+const allowNonChromeFailures = process.argv.includes(
+  '--allow-non-chrome-failures'
+)
 
 const CHANNELS_BY_BROWSER = {
   chrome: ['chrome', 'chromium', 'chrome-mv3'],
@@ -627,7 +644,7 @@ for (const buildResult of allBuildResults) {
   const statusMark = buildResult.ok ? '[OK]' : '[FAIL]'
 
   if (!buildResult.ok) {
-    // Chrome builds are critical (used for tests), Edge/Firefox are optional
+    // Chrome stays in its own counter so the Chrome CI message below is unchanged.
     if (buildResult.browser === 'chrome') {
       chromeBuildFailures++
     } else {
@@ -638,8 +655,8 @@ for (const buildResult of allBuildResults) {
   console.log(`►►► ${statusMark} ${buildResult.slug} [${buildResult.browser}]`)
 }
 
-// Only fail CI if Chrome builds fail (Chrome is used for tests)
-// Edge/Firefox builds are optional and failures are non-blocking
+// Chrome CI asks only for Chrome. A Chrome failure still fails the run with
+// this message, and the block below is never reached on that job.
 if (chromeBuildFailures > 0) {
   console.log(
     `►►► \nError: ${chromeBuildFailures} Chrome build(s) failed (critical - used for tests)`
@@ -649,11 +666,39 @@ if (chromeBuildFailures > 0) {
 }
 
 if (nonChromeBuildFailures > 0) {
-  console.log(
-    `►►► \n[WARNING] ${nonChromeBuildFailures} Edge/Firefox build(s) failed (non-blocking - not used for tests)`
-  )
+  if (allowNonChromeFailures) {
+    console.log(
+      `►►► \n[WARNING] ${nonChromeBuildFailures} Edge/Firefox build(s) failed (non-blocking - not used for tests)`
+    )
 
-  console.log(
-    `►►►    Check the error output above for details. These builds are optional since tests only run on Chrome.`
-  )
+    console.log(
+      `►►►    Check the error output above for details. These builds are optional since tests only run on Chrome.`
+    )
+
+    console.log(
+      `►►►    Lenient exit is on because --allow-non-chrome-failures was passed.`
+    )
+  } else {
+    const failedBrowsers = [
+      ...new Set(
+        allBuildResults
+          .filter((buildResult) => !buildResult.ok)
+          .map((buildResult) => buildResult.browser)
+      )
+    ].join(', ')
+
+    console.log(
+      `►►► \nError: ${nonChromeBuildFailures} ${failedBrowsers} build(s) failed`
+    )
+
+    console.log(
+      `►►►    The caller asked for ${failedBrowsers}, so this run fails.`
+    )
+
+    console.log(
+      `►►►    Pass --allow-non-chrome-failures to treat Edge and Firefox failures as warnings and exit 0.`
+    )
+
+    process.exit(1)
+  }
 }
