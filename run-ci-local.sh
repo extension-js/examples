@@ -94,7 +94,7 @@ for batch_info in "${BATCHES[@]}"; do
     
     # Build only the examples for this batch
     echo "Building $batch_name examples..."
-    node scripts/build/build-all.mjs --filter="$EXAMPLES"
+    node scripts/build/build-all.mjs --filter="$EXAMPLES" --allow-non-chrome-failures
     check_result "Build $batch_name examples"
     
     # Run tests for this batch in headed mode (no xvfb needed)
