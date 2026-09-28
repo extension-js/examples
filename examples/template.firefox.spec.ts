@@ -5,7 +5,8 @@ import {getDirname} from './dirname.js'
 import {
   firefoxExtensionFixtures,
   resolveBuiltFirefoxExtensionPath,
-  rdpListTabs
+  rdpListTabs,
+  rdpReadExtensionPage
 } from './firefox-extension-fixtures.js'
 
 const __dirname = getDirname(import.meta.url)
@@ -269,54 +270,137 @@ if (
   }
 }
 
-// New tab override HTML verification
-const newDir = path.join(__dirname, 'new')
-const newFirefoxPath = resolveBuiltFirefoxExtensionPath(newDir)
+function renderedPhrase(source: string): string | null {
+  const match =
+    source.match(/Welcome to your[^<"\\\n]{0,80}/) ||
+    source.match(/Branded New Tab/)
 
-if (
-  fs.existsSync(newFirefoxPath) &&
-  fs.existsSync(path.join(newFirefoxPath, 'manifest.json'))
-) {
-  const newManifest = readManifest(newFirefoxPath)
-  const newtabPath = newManifest.chrome_url_overrides?.newtab
+  return match ? match[0].replace(/\s+/g, ' ').trim() : null
+}
 
-  if (newtabPath) {
-    // Verify new tab HTML content
-    baseTest(
-      'firefox: new tab HTML has welcome content and JS bundle',
-      async () => {
-        const htmlPath = path.join(newFirefoxPath, newtabPath)
-        const html = readFileIfExists(htmlPath)
-        baseTest
-          .expect(html, `newtab HTML should exist at ${htmlPath}`)
-          .toBeTruthy()
+function phraseFromBuiltExtension(extPath: string, newtabPath: string): string {
+  const htmlPath = path.join(extPath, newtabPath)
+  const html = fs.readFileSync(htmlPath, 'utf8')
+  const markup = html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+  const fromMarkup = renderedPhrase(markup)
 
-        baseTest.expect(html!).toContain('<')
-        baseTest.expect(html!).toContain('</html>')
-        baseTest.expect(html!).toMatch(/<script\b/)
+  if (fromMarkup) return fromMarkup
+
+  const stack = [extPath]
+
+  while (stack.length > 0) {
+    const dir = stack.pop()!
+
+    for (const entry of fs.readdirSync(dir, {withFileTypes: true})) {
+      const full = path.join(dir, entry.name)
+
+      if (entry.isDirectory()) {
+        stack.push(full)
+        continue
       }
-    )
 
-    // Verify new tab installs in Firefox
-    const newtabInstallTest = firefoxExtensionFixtures(newFirefoxPath)
-    newtabInstallTest(
-      'firefox: new tab addon installs successfully',
-      async ({extensionId}) => {
-        newtabInstallTest
-          .expect(extensionId.length, 'should get a valid UUID')
-          .toBeGreaterThan(0)
-      }
-    )
+      if (!/\.(html|js|css)$/.test(entry.name)) continue
+      if (full === htmlPath) continue
 
-    // Verify Firefox manifest correctness
-    baseTest(
-      'firefox: new tab manifest has chrome_url_overrides.newtab',
-      async () => {
-        baseTest.expect(newManifest.chrome_url_overrides?.newtab).toBeTruthy()
-        baseTest.expect(newManifest.manifest_version).toBe(2)
-      }
-    )
+      const phrase = renderedPhrase(fs.readFileSync(full, 'utf8'))
+      if (phrase) return phrase
+    }
   }
+
+  throw new Error(
+    `${extPath}: built new tab has no Welcome/Branded phrase to assert`
+  )
+}
+
+const newtabSourceSlugs: string[] = []
+const newtabExamples: Array<{
+  name: string
+  extPath: string
+  newtabPath: string
+  phrase: string
+}> = []
+
+for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
+  if (!entry.isDirectory()) continue
+  if (!/^(newtab|newtab-.*)$/.test(entry.name)) continue
+
+  const exampleDir = path.join(__dirname, entry.name)
+  const sourceManifestPath = path.join(exampleDir, 'src', 'manifest.json')
+
+  if (!fs.existsSync(sourceManifestPath)) continue
+
+  try {
+    const sourceManifest = JSON.parse(
+      fs.readFileSync(sourceManifestPath, 'utf8')
+    )
+
+    if (!sourceManifest.chrome_url_overrides?.newtab) continue
+  } catch {
+    continue
+  }
+
+  newtabSourceSlugs.push(entry.name)
+
+  const extPath = resolveBuiltFirefoxExtensionPath(exampleDir)
+
+  if (
+    !fs.existsSync(extPath) ||
+    !fs.existsSync(path.join(extPath, 'manifest.json'))
+  ) {
+    continue
+  }
+
+  try {
+    const manifest = readManifest(extPath)
+    const newtabPath = manifest.chrome_url_overrides?.newtab
+
+    if (typeof newtabPath !== 'string' || newtabPath.length === 0) continue
+
+    newtabExamples.push({
+      name: entry.name,
+      extPath,
+      newtabPath,
+      phrase: phraseFromBuiltExtension(extPath, newtabPath)
+    })
+  } catch {}
+}
+
+baseTest(
+  'firefox: new tab sweep discovers every built new tab override',
+  async () => {
+    const discovered = new Set(newtabExamples.map((example) => example.name))
+    const missing = newtabSourceSlugs.filter((slug) => !discovered.has(slug))
+
+    baseTest
+      .expect(
+        missing,
+        `Firefox new tab sweep is missing ${missing.join(', ') || 'nothing'}; build those examples for Firefox (dist/firefox) before running this suite`
+      )
+      .toEqual([])
+  }
+)
+
+for (const {name, extPath, newtabPath, phrase} of newtabExamples) {
+  const test = firefoxExtensionFixtures(extPath)
+
+  test.setTimeout(45_000)
+
+  test(`firefox: ${name} new tab renders its page`, async ({
+    extensionId,
+    rdp
+  }) => {
+    const pageUrl = `moz-extension://${extensionId}/${newtabPath}`
+    const rendered = await rdpReadExtensionPage(rdp, pageUrl, {
+      textIncludes: phrase
+    })
+
+    test.expect(rendered.href.split('#')[0]).toBe(pageUrl)
+    test
+      .expect(rendered.text, `${name}: rendered new tab text`)
+      .toContain(phrase)
+  })
 }
 
 // Monorepo content script + addon install

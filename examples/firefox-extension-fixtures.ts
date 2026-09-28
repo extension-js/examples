@@ -117,6 +117,32 @@ class RdpClient {
     }
   }
 
+  // evaluateJSAsync first returns a typeless resultID ack. Wait for the
+  // typed evaluationResult; request() would return the ack.
+  async evaluate(consoleActor: string, text: string): Promise<any> {
+    this.socket.write(
+      buildRdpFrame({to: consoleActor, type: 'evaluateJSAsync', text})
+    )
+
+    const deadline = Date.now() + 8000
+
+    while (Date.now() < deadline) {
+      const msg = await this.readOneMessage(
+        Math.max(deadline - Date.now(), 300)
+      )
+
+      if (msg.from !== consoleActor || msg.type !== 'evaluationResult') continue
+
+      if (msg.hasException) {
+        throw new Error(msg.exceptionMessage || 'Firefox RDP evaluation threw')
+      }
+
+      return msg.result
+    }
+
+    throw new Error('RDP evaluationResult timeout')
+  }
+
   disconnect(): void {
     try {
       this.socket?.end()
@@ -251,6 +277,93 @@ export async function rdpListTabs(rdpClient: RdpClient): Promise<RdpTab[]> {
   const response = await rdpClient.request({to: 'root', type: 'listTabs'})
 
   return (response?.tabs || []) as RdpTab[]
+}
+
+export interface RdpRenderedPage {
+  href: string
+  title: string
+  text: string
+}
+
+// Juggler cannot open moz-extension:// pages, so the tab's windowGlobal
+// target loads the page over RDP and evaluateJSAsync reads what it rendered.
+export async function rdpReadExtensionPage(
+  rdpClient: RdpClient,
+  pageUrl: string,
+  options: {timeoutMs?: number; textIncludes?: string} = {}
+): Promise<RdpRenderedPage> {
+  const timeoutMs = options.timeoutMs ?? 12000
+  rdpClient.drainEvents()
+  const listed = await rdpClient.request({to: 'root', type: 'listTabs'})
+  const tab = (listed?.tabs || [])[0]
+
+  if (!tab?.actor) {
+    throw new Error('Firefox RDP listed no tab to open the extension page in')
+  }
+
+  const target = await rdpClient.request({to: tab.actor, type: 'getTarget'})
+  const frameActor = target?.frame?.actor
+
+  if (!frameActor) {
+    throw new Error('Firefox tab target has no windowGlobal actor')
+  }
+
+  try {
+    await rdpClient.request({to: frameActor, type: 'navigateTo', url: pageUrl})
+  } catch {
+    // navigateTo often answers with an empty packet; the load still proceeds.
+  }
+
+  const expression =
+    'JSON.stringify({href:location.href,title:document.title,text:(document.body&&document.body.innerText||"").slice(0,2000)})'
+  const deadline = Date.now() + timeoutMs
+  let last = ''
+
+  while (Date.now() < deadline) {
+    const tabs = await rdpClient.request({to: 'root', type: 'listTabs'})
+    const live =
+      (tabs?.tabs || []).find((entry: RdpTab) =>
+        String(entry.url || '').startsWith('moz-extension://')
+      ) || (tabs?.tabs || [])[0]
+
+    if (live?.actor) {
+      const liveTarget = await rdpClient.request({
+        to: live.actor,
+        type: 'getTarget'
+      })
+      const consoleActor = liveTarget?.frame?.consoleActor
+
+      if (consoleActor) {
+        const raw = await rdpClient.evaluate(consoleActor, expression)
+        const parsed =
+          typeof raw === 'string'
+            ? (JSON.parse(raw) as RdpRenderedPage)
+            : (raw as RdpRenderedPage)
+
+        const href = String(parsed?.href || '')
+        const text = String(parsed?.text || '')
+        last = `${href} ${parsed?.title || ''} ${text}`
+        const bareHref = href.split('#')[0]
+        const hrefMatches = bareHref === pageUrl
+        const textMatches =
+          !options.textIncludes || text.includes(options.textIncludes)
+
+        if (hrefMatches && textMatches) {
+          return {
+            href,
+            title: String(parsed.title || ''),
+            text
+          }
+        }
+      }
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 250))
+  }
+
+  throw new Error(
+    `extension page ${pageUrl} did not load within ${timeoutMs}ms (last: ${last.slice(0, 180)})`
+  )
 }
 
 // Fixture factory
