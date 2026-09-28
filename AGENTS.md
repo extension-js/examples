@@ -93,6 +93,7 @@ then `artifacts:stage`. The stage step rewrites the raw generator output
 
 ## Adding a catalog example
 
+- Before reading a tree or filing anything, run `git fetch origin` and check `git rev-list --count main..origin/main`. A count above zero means the checkout is behind and what you read is not what is on `main`.
 - Name the folder after its surface, the way the tree does: `newtab-<what>`, `content-<what>`, `sidebar-<what>`, `action-<what>`. A new example lands on a `catalog/<slug>` branch and stays there until merged. On `main`, a folder under `examples/` that holds only `dist/`, `node_modules/` or a browser profile is a build leftover from a checked-out branch, not an example: its sources are on the branch, so do not read from the folder. Run `git clean -fdX examples/<slug>` before switching branches so the leftover does not survive the switch.
 - Every example `README.md` is generated, never hand-written. The per-example paragraph lives in the `OVERRIDES` map in `scripts/catalog/update-template-readmes.mjs`, keyed by slug. Add the entry there and run `pnpm catalog:readmes -- --only=<slug>` to write the README.
 - The catalog table in the root `README.md` is hand-maintained: copy the `<details>` block of the nearest example and edit it. `pnpm test:catalog-readme` fails on an example with no row.
