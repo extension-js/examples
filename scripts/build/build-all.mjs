@@ -522,7 +522,12 @@ for (const slug of slugs) {
 
             installSuccess = await run(
               'pnpm',
-              ['install', '--prod=false', '--ignore-workspace'],
+              [
+                'install',
+                '--no-frozen-lockfile',
+                '--prod=false',
+                '--ignore-workspace'
+              ],
               exampleDirectory
             )
 
@@ -546,7 +551,12 @@ for (const slug of slugs) {
 
               installSuccess = await run(
                 'pnpm',
-                ['install', '--prod=false', '--ignore-workspace'],
+                [
+                  'install',
+                  '--no-frozen-lockfile',
+                  '--prod=false',
+                  '--ignore-workspace'
+                ],
                 exampleDirectory
               )
             } catch (fallbackError) {
