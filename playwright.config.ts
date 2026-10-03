@@ -231,6 +231,12 @@ export default defineConfig({
       }
     },
 
+    // Source hygiene: every shipped file reachable, README trees current
+    {
+      name: 'sources',
+      testMatch: /examples\/template\.sources\.spec\.ts$/
+    },
+
     // Per-template asset pipeline (shadow DOM, CSS, icons, frameworks, SW)
     {
       name: 'assets',

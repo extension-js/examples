@@ -39,7 +39,6 @@ src/
 │   ├── icon-32.png
 │   ├── icon-48.png
 │   ├── icon-64.png
-│   ├── icon.png
 │   ├── preact.png
 │   ├── tailwind_bg.png
 │   ├── tailwind.png

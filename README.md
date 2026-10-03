@@ -513,7 +513,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/devtools-react/src/images/icon.png" alt="devtools-react example icon" width="22" /> React DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-react/src/images/icon-128.png" alt="devtools-react example icon" width="22" /> React DevTools Panel Example</summary>
 
 > Adds a React devtools panel to the browser that reads the inspected page.
 
@@ -536,7 +536,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/devtools-preact/src/images/icon.png" alt="devtools-preact example icon" width="22" /> Preact DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-preact/src/images/icon-128.png" alt="devtools-preact example icon" width="22" /> Preact DevTools Panel Example</summary>
 
 > Adds a devtools panel written in Preact that reads the inspected page.
 
@@ -559,7 +559,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/devtools-typescript/src/images/icon.png" alt="devtools-typescript example icon" width="22" /> TypeScript DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-typescript/src/images/icon-128.png" alt="devtools-typescript example icon" width="22" /> TypeScript DevTools Panel Example</summary>
 
 > Adds a devtools panel to the browser that reads the inspected page.
 
@@ -582,7 +582,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/devtools-svelte/src/images/icon.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-svelte/src/images/icon-128.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
 
 > Adds a Svelte devtools panel to the browser that reads the inspected page.
 
@@ -605,7 +605,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/devtools-vue/src/images/icon.png" alt="devtools-vue example icon" width="22" /> Vue DevTools Panel Example</summary>
+  <summary><img src="./examples/devtools-vue/src/images/icon-128.png" alt="devtools-vue example icon" width="22" /> Vue DevTools Panel Example</summary>
 
 > Adds a devtools panel built with Vue that reads the inspected page.
 
@@ -837,7 +837,7 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
-  <summary><img src="./examples/content-preact/src/images/icon.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
+  <summary><img src="./examples/content-preact/src/images/icon-128.png" alt="content-preact example icon" width="22" /> Content Preact Example</summary>
 
 > Shows an overlay UI on web pages and an options page that moves it from right to left.
 
@@ -1347,7 +1347,7 @@ npx extension@latest create my-extension --template javascript
 ### Special folders
 
 <details>
-  <summary><img src="./examples/special-folders-pages/src/images/icon.png" alt="special-folders-pages example icon" width="22" /> Special Folders Pages Example</summary>
+  <summary><img src="./examples/special-folders-pages/src/images/icon-128.png" alt="special-folders-pages example icon" width="22" /> Special Folders Pages Example</summary>
 
 > Opens a welcome page on extension load, showcasing the pages/ folder.
 
@@ -1395,7 +1395,7 @@ npx extension@latest create my-extension --template javascript
 ### Utilities
 
 <details>
-  <summary><img src="./examples/init/src/images/icon.png" alt="init example icon" width="22" /> Init Example</summary>
+  <summary><img src="./examples/init/src/images/icon-128.png" alt="init example icon" width="22" /> Init Example</summary>
 
 > A basic browser extension example built with Extension.js. A starting point for developers learning current browser extension tooling.
 

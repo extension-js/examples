@@ -405,9 +405,9 @@ const OVERRIDES = {
   init: {
     title: 'Starter Extension (init)',
     extra:
-      'The default starter: what `npx extension@latest create <name>` ' +
-      'produces when no `--template` is passed. A small sidebar panel ' +
-      'wired with dev / build / preview scripts.'
+      'The smallest project Extension.js runs: a manifest and its icons, ' +
+      'with no surface of its own. Name a page or a script in the manifest ' +
+      'and it ships on the next build.'
   },
   javascript: {
     title: 'JavaScript Starter Extension',
