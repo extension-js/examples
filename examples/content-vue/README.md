@@ -44,8 +44,7 @@ src/
 │   ├── logo.svg
 │   ├── tailwind_bg.png
 │   ├── tailwind.png
-│   ├── typescript.png
-│   └── vue.png
+│   └── typescript.png
 ├── options/
 │   ├── index.html
 │   ├── OptionsApp.vue

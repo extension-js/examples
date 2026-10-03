@@ -40,8 +40,7 @@ A fresh browser window opens with the extension already loaded.
 │   │   ├── icon-32.png
 │   │   ├── icon-48.png
 │   │   ├── icon-64.png
-│   │   ├── icon.png
-│   │   └── javascript.png
+│   │   └── icon.png
 │   ├── background.js
 │   └── manifest.json
 └── scripts/

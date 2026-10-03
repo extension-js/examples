@@ -71,6 +71,7 @@
     "test:mixed": "playwright test --project=mixed-context",
     "test:other": "playwright test --project=other",
     "test:assets": "playwright test --project=assets",
+    "test:sources": "SKIP_PREBUILD=1 playwright test --project=sources",
     "test:create": "playwright test --project=create",
     "test:multi-browser": "playwright test --project=multi-browser",
     "test:reload": "playwright test --project=reload",

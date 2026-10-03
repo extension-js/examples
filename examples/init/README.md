@@ -13,7 +13,7 @@
 
 **How it works**: A JavaScript extension scaffold ready for `extension dev` / `extension build`.
 
-The default starter: what `npx extension@latest create <name>` produces when no `--template` is passed. A small sidebar panel wired with dev / build / preview scripts.
+The smallest project Extension.js runs: a manifest and its icons, with no surface of its own. Name a page or a script in the manifest and it ships on the next build.
 
 ## Try it locally
 
@@ -35,10 +35,7 @@ src/
 │   ├── icon-16.png
 │   ├── icon-32.png
 │   ├── icon-48.png
-│   ├── icon-64.png
-│   ├── icon.png
-│   └── javascript.png
-├── index.js
+│   └── icon-64.png
 └── manifest.json
 ```
 

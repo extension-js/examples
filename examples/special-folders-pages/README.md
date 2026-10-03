@@ -38,9 +38,7 @@ A fresh browser window opens with the extension already loaded.
 │   │   ├── icon-16.png
 │   │   ├── icon-32.png
 │   │   ├── icon-48.png
-│   │   ├── icon-64.png
-│   │   ├── icon.png
-│   │   └── javascript.png
+│   │   └── icon-64.png
 │   ├── sandbox/
 │   │   ├── eval.js
 │   │   ├── index.html
