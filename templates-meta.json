@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-10-02T11:42:01.701Z",
+  "generatedAt": "2026-10-03T05:02:12.538Z",
   "templates": [
     {
       "slug": "action",
@@ -1184,7 +1184,6 @@
         "examples/content-preact/src/images/icon-32.png",
         "examples/content-preact/src/images/icon-48.png",
         "examples/content-preact/src/images/icon-64.png",
-        "examples/content-preact/src/images/icon.png",
         "examples/content-preact/src/images/preact.png",
         "examples/content-preact/src/images/tailwind.png",
         "examples/content-preact/src/images/tailwind_bg.png",
@@ -1197,7 +1196,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-preact/screenshot.png",
-      "icon": "examples/content-preact/src/images/icon.png",
+      "icon": "examples/content-preact/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
     },
     {
@@ -1650,7 +1649,6 @@
         "examples/content-vue/src/images/tailwind.png",
         "examples/content-vue/src/images/tailwind_bg.png",
         "examples/content-vue/src/images/typescript.png",
-        "examples/content-vue/src/images/vue.png",
         "examples/content-vue/src/manifest.json",
         "examples/content-vue/src/options/OptionsApp.vue",
         "examples/content-vue/src/options/index.html",
@@ -1775,7 +1773,6 @@
         "examples/devtools-preact/src/images/icon-32.png",
         "examples/devtools-preact/src/images/icon-48.png",
         "examples/devtools-preact/src/images/icon-64.png",
-        "examples/devtools-preact/src/images/icon.png",
         "examples/devtools-preact/src/images/preact.png",
         "examples/devtools-preact/src/manifest.json",
         "examples/devtools-preact/src/panel/PanelApp.tsx",
@@ -1785,7 +1782,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-preact/screenshot.png",
-      "icon": "examples/devtools-preact/src/images/icon.png",
+      "icon": "examples/devtools-preact/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-preact"
     },
     {
@@ -1839,7 +1836,6 @@
         "examples/devtools-react/src/images/icon-32.png",
         "examples/devtools-react/src/images/icon-48.png",
         "examples/devtools-react/src/images/icon-64.png",
-        "examples/devtools-react/src/images/icon.png",
         "examples/devtools-react/src/images/react.png",
         "examples/devtools-react/src/manifest.json",
         "examples/devtools-react/src/panel/PanelApp.tsx",
@@ -1849,7 +1845,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-react/screenshot.png",
-      "icon": "examples/devtools-react/src/images/icon.png",
+      "icon": "examples/devtools-react/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-react"
     },
     {
@@ -1903,7 +1899,6 @@
         "examples/devtools-svelte/src/images/icon-32.png",
         "examples/devtools-svelte/src/images/icon-48.png",
         "examples/devtools-svelte/src/images/icon-64.png",
-        "examples/devtools-svelte/src/images/icon.png",
         "examples/devtools-svelte/src/images/svelte.png",
         "examples/devtools-svelte/src/manifest.json",
         "examples/devtools-svelte/src/panel/PanelApp.svelte",
@@ -1914,7 +1909,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-svelte/screenshot.png",
-      "icon": "examples/devtools-svelte/src/images/icon.png",
+      "icon": "examples/devtools-svelte/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-svelte"
     },
     {
@@ -1968,7 +1963,6 @@
         "examples/devtools-typescript/src/images/icon-32.png",
         "examples/devtools-typescript/src/images/icon-48.png",
         "examples/devtools-typescript/src/images/icon-64.png",
-        "examples/devtools-typescript/src/images/icon.png",
         "examples/devtools-typescript/src/images/typescript.png",
         "examples/devtools-typescript/src/manifest.json",
         "examples/devtools-typescript/src/panel/index.html",
@@ -1977,7 +1971,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-typescript/screenshot.png",
-      "icon": "examples/devtools-typescript/src/images/icon.png",
+      "icon": "examples/devtools-typescript/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript"
     },
     {
@@ -2031,7 +2025,6 @@
         "examples/devtools-vue/src/images/icon-32.png",
         "examples/devtools-vue/src/images/icon-48.png",
         "examples/devtools-vue/src/images/icon-64.png",
-        "examples/devtools-vue/src/images/icon.png",
         "examples/devtools-vue/src/images/vue.png",
         "examples/devtools-vue/src/manifest.json",
         "examples/devtools-vue/src/panel/PanelApp.vue",
@@ -2042,7 +2035,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-vue/screenshot.png",
-      "icon": "examples/devtools-vue/src/images/icon.png",
+      "icon": "examples/devtools-vue/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-vue"
     },
     {
@@ -2093,14 +2086,11 @@
         "examples/init/src/images/icon-32.png",
         "examples/init/src/images/icon-48.png",
         "examples/init/src/images/icon-64.png",
-        "examples/init/src/images/icon.png",
-        "examples/init/src/images/javascript.png",
-        "examples/init/src/index.js",
         "examples/init/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/init/screenshot.png",
-      "icon": "examples/init/src/images/icon.png",
+      "icon": "examples/init/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/init"
     },
     {
@@ -3727,8 +3717,6 @@
         "examples/special-folders-pages/src/images/icon-32.png",
         "examples/special-folders-pages/src/images/icon-48.png",
         "examples/special-folders-pages/src/images/icon-64.png",
-        "examples/special-folders-pages/src/images/icon.png",
-        "examples/special-folders-pages/src/images/javascript.png",
         "examples/special-folders-pages/src/manifest.json",
         "examples/special-folders-pages/src/sandbox/eval.js",
         "examples/special-folders-pages/src/sandbox/index.html",
@@ -3737,7 +3725,7 @@
       ],
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/special-folders-pages/screenshot.png",
-      "icon": "examples/special-folders-pages/src/images/icon.png",
+      "icon": "examples/special-folders-pages/src/images/icon-128.png",
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-pages"
     },
     {
@@ -3796,7 +3784,6 @@
         "examples/special-folders-scripts/src/images/icon-48.png",
         "examples/special-folders-scripts/src/images/icon-64.png",
         "examples/special-folders-scripts/src/images/icon.png",
-        "examples/special-folders-scripts/src/images/javascript.png",
         "examples/special-folders-scripts/src/manifest.json"
       ],
       "browsers": ["chrome", "edge", "firefox"],
