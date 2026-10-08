@@ -1,3 +1,5 @@
+import http from 'node:http'
+import type {AddressInfo} from 'node:net'
 import {
   extensionFixtures,
   getSidebarPath,
@@ -42,4 +44,38 @@ test('sidebar renders a visible heading', async ({page, extensionId}) => {
   const heading = page.locator('h1, h2').first()
   await heading.waitFor({state: 'visible', timeout: 15000})
   await test.expect(heading).toBeVisible()
+})
+
+let server: http.Server
+let origin = ''
+
+test.beforeAll(async () => {
+  server = http.createServer((request, response) => {
+    const name = request.url === '/second' ? 'Second page' : 'First page'
+    response.setHeader('content-type', 'text/html')
+    response.end(`<!doctype html><title>${name}</title><h1>${name}</h1>`)
+  })
+
+  await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+  origin = `http://127.0.0.1:${(server.address() as AddressInfo).port}`
+})
+
+test.afterAll(async () => {
+  await new Promise<void>((resolve) => server.close(() => resolve()))
+})
+
+test('sidebar shows the title of the page it is opened on and follows navigation', async ({
+  context,
+  page,
+  extensionId
+}) => {
+  await page.goto(`${origin}/first`)
+  await getContentHost(page)
+  const panel = await context.newPage()
+  await panel.goto(getSidebarPath(extensionId))
+  const pageTitle = panel.locator('.sidebar_page_title')
+  await test.expect(pageTitle).toHaveText('First page', {timeout: 15000})
+  await page.goto(`${origin}/second`)
+  await getContentHost(page)
+  await test.expect(pageTitle).toHaveText('Second page', {timeout: 15000})
 })

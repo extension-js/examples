@@ -42,6 +42,7 @@ src/
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html
+│   ├── page-title.ts
 │   ├── scripts.ts
 │   ├── SidebarApp.vue
 │   └── styles.css

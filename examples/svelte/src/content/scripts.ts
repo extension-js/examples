@@ -43,9 +43,24 @@ export default function initial() {
     target: contentDiv
   })
 
+  // The sidebar asks this page for its title over runtime messaging, and the
+  // answer leaves with the UI on teardown so a reload never answers twice.
+  chrome.runtime.onMessage.addListener(answerPageTitle)
+
   return () => {
+    chrome.runtime.onMessage.removeListener(answerPageTitle)
     rootDiv.remove()
   }
+}
+
+function answerPageTitle(
+  message: {type?: string} | undefined,
+  _sender: chrome.runtime.MessageSender,
+  sendResponse: (answer: {title: string; url: string}) => void
+) {
+  if (!message || message.type !== 'getPageTitle') return
+
+  sendResponse({title: document.title, url: location.href})
 }
 
 async function fetchCSS() {

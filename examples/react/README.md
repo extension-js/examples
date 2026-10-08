@@ -41,6 +41,7 @@ src/
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html
+│   ├── page-title.ts
 │   ├── scripts.tsx
 │   ├── SidebarApp.tsx
 │   └── styles.css
