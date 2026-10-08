@@ -285,8 +285,29 @@ export interface RdpRenderedPage {
   text: string
 }
 
+async function navigateTab(
+  rdpClient: RdpClient,
+  tabActor: string,
+  url: string
+): Promise<void> {
+  const target = await rdpClient.request({to: tabActor, type: 'getTarget'})
+  const frameActor = target?.frame?.actor
+
+  if (!frameActor) {
+    throw new Error('Firefox tab target has no windowGlobal actor')
+  }
+
+  try {
+    await rdpClient.request({to: frameActor, type: 'navigateTo', url})
+  } catch {
+    // The packet is empty. The load still proceeds.
+  }
+}
+
 // Juggler cannot open moz-extension:// pages, so the tab's windowGlobal
 // target loads the page over RDP and evaluateJSAsync reads what it rendered.
+// This always navigates the first tab. A page that must stay open uses
+// rdpNavigateTab on a different tab, then rdpEvaluateTab.
 export async function rdpReadExtensionPage(
   rdpClient: RdpClient,
   pageUrl: string,
@@ -301,18 +322,7 @@ export async function rdpReadExtensionPage(
     throw new Error('Firefox RDP listed no tab to open the extension page in')
   }
 
-  const target = await rdpClient.request({to: tab.actor, type: 'getTarget'})
-  const frameActor = target?.frame?.actor
-
-  if (!frameActor) {
-    throw new Error('Firefox tab target has no windowGlobal actor')
-  }
-
-  try {
-    await rdpClient.request({to: frameActor, type: 'navigateTo', url: pageUrl})
-  } catch {
-    // navigateTo often answers with an empty packet; the load still proceeds.
-  }
+  await navigateTab(rdpClient, tab.actor, pageUrl)
 
   const expression =
     'JSON.stringify({href:location.href,title:document.title,text:(document.body&&document.body.innerText||"").slice(0,2000)})'
@@ -364,6 +374,47 @@ export async function rdpReadExtensionPage(
   throw new Error(
     `extension page ${pageUrl} did not load within ${timeoutMs}ms (last: ${last.slice(0, 180)})`
   )
+}
+
+// Same windowGlobal navigateTo as rdpReadExtensionPage, on a tab the caller
+// picked. The first tab can keep holding the web page.
+export async function rdpNavigateTab(
+  rdpClient: RdpClient,
+  tabActor: string,
+  url: string
+): Promise<void> {
+  rdpClient.drainEvents()
+  await navigateTab(rdpClient, tabActor, url)
+}
+
+function valueFromEvaluation(raw: unknown): unknown {
+  if (typeof raw === 'string') {
+    try {
+      return JSON.parse(raw)
+    } catch {
+      return raw
+    }
+  }
+
+  return raw
+}
+
+// Same evaluateJSAsync read as rdpReadExtensionPage, against one tab
+// descriptor. getTarget follows that tab across the navigation.
+export async function rdpEvaluateTab(
+  rdpClient: RdpClient,
+  tabActor: string,
+  expression: string
+): Promise<unknown> {
+  rdpClient.drainEvents()
+  const target = await rdpClient.request({to: tabActor, type: 'getTarget'})
+  const consoleActor = target?.frame?.consoleActor
+
+  if (!consoleActor) {
+    throw new Error('Firefox tab target has no console actor')
+  }
+
+  return valueFromEvaluation(await rdpClient.evaluate(consoleActor, expression))
 }
 
 // Fixture factory
