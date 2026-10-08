@@ -840,14 +840,40 @@ export function publishProdDist(exampleDirAbsolute: string): string | null {
   }
 }
 
+// The published copy is older than a rebuilt `dist/chrome` when the prebuild
+// that would refresh it was skipped, and serving it tests the previous build.
+function publishedIsStale(
+  exampleDirAbsolute: string,
+  published: string
+): boolean {
+  const source = path.join(exampleDirAbsolute, 'dist', 'chrome')
+  if (!isCompleteDist(source)) return false
+
+  try {
+    return (
+      fs.statSync(path.join(source, 'manifest.json')).mtimeMs >
+      fs.statSync(path.join(published, 'manifest.json')).mtimeMs
+    )
+  } catch {
+    return false
+  }
+}
+
 export function resolveBuiltExtensionPath(exampleDirAbsolute: string): string {
-  // The private tree wins outright. scripts/build/prebuild-assets-templates.mjs
-  // publishes it serially at globalSetup, before any worker can race it.
+  // The private tree wins while it is current. scripts/build/prebuild-assets-
+  // templates.mjs publishes it serially at globalSetup, before any worker can
+  // race it, and SKIP_PREBUILD=1 leaves that to the first reader here.
   const published = prodDistPath(exampleDirAbsolute)
-  if (isCompleteDist(published)) return published
+  const publishedComplete = isCompleteDist(published)
+
+  if (publishedComplete && !publishedIsStale(exampleDirAbsolute, published)) {
+    return published
+  }
 
   const republished = publishProdDist(exampleDirAbsolute)
   if (republished) return republished
+
+  if (publishedComplete) return published
 
   const roots = ['dist', 'build', '.extension']
   const channels = ['chrome', 'chromium', 'chrome-mv3']

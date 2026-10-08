@@ -78,14 +78,17 @@ export default defineConfig({
       ? 2
       : 4,
 
-  // CI gets machine-readable JSON; locally just list + HTML report.
+  // CI gets machine-readable JSON; locally just list + HTML report. The local
+  // report is never served: the default `open: 'on-failure'` starts a server
+  // and waits for Ctrl+C, so a failed run under a script or an agent never
+  // exits. The list output still prints the show-report command.
   reporter: process.env.CI
     ? [
         ['list'],
         ['html', {outputFolder: 'e2e-report'}],
         ['json', {outputFile: 'test-results.json'}]
       ]
-    : [['list'], ['html', {outputFolder: 'e2e-report'}]],
+    : [['list'], ['html', {outputFolder: 'e2e-report', open: 'never'}]],
 
   use: {
     // Respect HEADLESS environment variable, default to false (headed mode) for better extension compatibility
