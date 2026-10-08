@@ -75,6 +75,8 @@ pnpm -r build     # build every example
 pnpm test         # run E2E (Playwright) across examples
 ```
 
+A failed local run exits on its own and leaves its HTML report in `e2e-report/`. Open it with `pnpm exec playwright show-report e2e-report`. `SKIP_PREBUILD=1` skips the global prebuild, and the fixtures then republish an example's `dist/chrome` themselves when it is newer than the copy under `.prod-dist/`.
+
 ## Artifact pipeline (templates-meta.json)
 
 The committed `templates-meta.json` is a post-stage artifact. CI produces it
