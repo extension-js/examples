@@ -582,6 +582,29 @@ npx extension@latest create my-extension --template javascript
 </details>
 
 <details>
+  <summary><img src="./examples/devtools-typescript-sqlite/src/images/icon-128.png" alt="devtools-typescript-sqlite example icon" width="22" /> SQLite DevTools Panel Example</summary>
+
+> Records the inspected page's network requests in SQLite and lets you query them.
+
+  <table>
+    <tr>
+      <td>Repository</td>
+      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-typescript-sqlite/README.md">examples/devtools-typescript-sqlite</a></td>
+      <td rowspan="5"><img src="./examples/devtools-typescript-sqlite/screenshot.png" alt="devtools-typescript-sqlite screenshot" width="360" /></td>
+    </tr>
+    <tr><td>Version</td><td align="right">1.0.0</td></tr>
+    <tr><td>Context</td><td align="right">DevTools</td></tr>
+    <tr><td>JavaScript framework</td><td align="right">TypeScript</td></tr>
+    <tr><td>CSS</td><td align="right">CSS</td></tr>
+    <tr>
+      <td>Background included</td>
+      <td align="right">No</td>
+      <td align="center"><a href="https://templates.extension.dev/devtools-typescript-sqlite">Start with this template &#8599;</a></td>
+    </tr>
+  </table>
+</details>
+
+<details>
   <summary><img src="./examples/devtools-svelte/src/images/icon-128.png" alt="devtools-svelte example icon" width="22" /> Svelte DevTools Panel Example</summary>
 
 > Adds a Svelte devtools panel to the browser that reads the inspected page.

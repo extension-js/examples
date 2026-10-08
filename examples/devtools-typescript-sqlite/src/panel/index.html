@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Request SQL</title>
+    <link rel="stylesheet" href="./styles.css" media="screen" />
+  </head>
+  <body>
+    <main class="layout">
+      <header class="hero">
+        <img
+          class="logo"
+          src="../images/icon-128.png"
+          alt=""
+          width="40"
+          height="40"
+        />
+        <div>
+          <h1>Request SQL</h1>
+          <p>
+            Requests from the inspected page are stored with
+            <a
+              href="https://www.npmjs.com/package/sql.js"
+              target="_blank"
+              rel="noopener noreferrer"
+              >sql.js</a
+            >. Type a query and the matching rows show up in the table.
+          </p>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="status" aria-live="polite">
+          <div id="status">Loading SQLite…</div>
+          <div id="statusMeta">Preparing the bundled database</div>
+        </div>
+        <label class="field" for="query">SQL</label>
+        <textarea id="query" spellcheck="false"></textarea>
+        <button id="run" type="button">Run query</button>
+        <p id="queryError" role="alert"></p>
+      </section>
+
+      <section class="card">
+        <h2>Rows</h2>
+        <p id="rowCount"></p>
+        <div class="results-wrap">
+          <table id="results">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="./scripts.ts"></script>
+</html>

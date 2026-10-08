@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "devtools-typescript-sqlite",
+  "description": "Records the inspected page's network requests in SQLite and lets you query them.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "sql.js": "1.14.2"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "typescript": "7.0.2"
+  }
+}
