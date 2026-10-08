@@ -44,6 +44,7 @@ src/
 │   └── icon.png
 ├── sidebar/
 │   ├── index.html
+│   ├── page-title.ts
 │   ├── scripts.ts
 │   ├── SidebarApp.ts
 │   └── styles.css

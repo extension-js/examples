@@ -1,5 +1,17 @@
 <script lang="ts">
+import {onMount} from 'svelte'
 import logo from '../images/icon.png'
+import {watchPageTitle} from './page-title'
+
+const NO_PAGE_TEXT = 'Open a web page to see its title here.'
+
+let pageTitle = $state(NO_PAGE_TEXT)
+
+onMount(() =>
+  watchPageTitle((answer) => {
+    pageTitle = answer ? answer.title : NO_PAGE_TEXT
+  })
+)
 </script>
 
 <div class="sidebar_app">
@@ -13,4 +25,5 @@ import logo from '../images/icon.png'
       rel="noopener noreferrer"
     >Extension.js docs</a>.
   </p>
+  <p class="sidebar_page_title">{pageTitle}</p>
 </div>
