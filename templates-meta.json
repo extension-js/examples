@@ -3,7 +3,7 @@
   "sourceRepo": "extension-js/examples",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-10-08T01:23:39.982Z",
+  "generatedAt": "2026-10-08T02:07:58.690Z",
   "templates": [
     {
       "slug": "action",
@@ -2120,7 +2120,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": false,
@@ -2154,6 +2154,7 @@
         "examples/javascript/src/manifest.json",
         "examples/javascript/src/sidebar/SidebarApp.js",
         "examples/javascript/src/sidebar/index.html",
+        "examples/javascript/src/sidebar/page-title.js",
         "examples/javascript/src/sidebar/scripts.js",
         "examples/javascript/src/sidebar/styles.css"
       ],
@@ -3194,7 +3195,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -3230,6 +3231,7 @@
         "examples/preact/src/manifest.json",
         "examples/preact/src/sidebar/SidebarApp.tsx",
         "examples/preact/src/sidebar/index.html",
+        "examples/preact/src/sidebar/page-title.ts",
         "examples/preact/src/sidebar/scripts.tsx",
         "examples/preact/src/sidebar/styles.css"
       ],
@@ -3265,7 +3267,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -3299,6 +3301,7 @@
         "examples/react/src/manifest.json",
         "examples/react/src/sidebar/SidebarApp.tsx",
         "examples/react/src/sidebar/index.html",
+        "examples/react/src/sidebar/page-title.ts",
         "examples/react/src/sidebar/scripts.tsx",
         "examples/react/src/sidebar/styles.css"
       ],
@@ -3818,7 +3821,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -3853,6 +3856,7 @@
         "examples/svelte/src/manifest.json",
         "examples/svelte/src/sidebar/SidebarApp.svelte",
         "examples/svelte/src/sidebar/index.html",
+        "examples/svelte/src/sidebar/page-title.ts",
         "examples/svelte/src/sidebar/scripts.ts",
         "examples/svelte/src/sidebar/styles.css"
       ],
@@ -3957,7 +3961,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -3992,6 +3996,7 @@
         "examples/typescript/src/manifest.json",
         "examples/typescript/src/sidebar/SidebarApp.ts",
         "examples/typescript/src/sidebar/index.html",
+        "examples/typescript/src/sidebar/page-title.ts",
         "examples/typescript/src/sidebar/scripts.ts",
         "examples/typescript/src/sidebar/styles.css"
       ],
@@ -4027,7 +4032,7 @@
           "hasEnv": false
         }
       },
-      "permissions": ["sidePanel"],
+      "permissions": ["sidePanel", "tabs"],
       "host_permissions": [],
       "optional_permissions": [],
       "featured": true,
@@ -4063,6 +4068,7 @@
         "examples/vue/src/shims-vue.d.ts",
         "examples/vue/src/sidebar/SidebarApp.vue",
         "examples/vue/src/sidebar/index.html",
+        "examples/vue/src/sidebar/page-title.ts",
         "examples/vue/src/sidebar/scripts.ts",
         "examples/vue/src/sidebar/styles.css"
       ],
