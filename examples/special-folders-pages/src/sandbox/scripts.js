@@ -1,1 +1,1 @@
-console.log('[From the sandbox page context] Hello regular page!')
+console.log('[From the sandbox page context] Hello from the sandbox page!')

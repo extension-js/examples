@@ -2,7 +2,7 @@ import {mount} from 'svelte'
 import SidebarApp from './SidebarApp.svelte'
 import './styles.css'
 
-console.log('[From the sidebar page context] Hello regular page!')
+console.log('[From the sidebar page context] Hello from the sidebar page!')
 
 const container = document.getElementById('app')
 

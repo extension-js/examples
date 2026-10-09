@@ -2,7 +2,7 @@ import {render} from 'preact'
 import SidebarApp from './SidebarApp'
 import './styles.css'
 
-console.log('[From the sidebar page context] Hello regular page!')
+console.log('[From the sidebar page context] Hello from the sidebar page!')
 
 const rootElement = document.getElementById('root')
 

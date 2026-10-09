@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import NewtabApp from './NewTabApp'
 import './styles.css'
 
-console.log('[From the newtab override context] Hello regular page!')
+console.log('[From the newtab override context] Hello from the new tab page!')
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 

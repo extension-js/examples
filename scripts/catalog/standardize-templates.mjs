@@ -21,10 +21,21 @@ const PAGE_LABELS = {
   popup: 'action popup'
 }
 
+const PAGE_SURFACES = {
+  action: 'the action popup',
+  sidebar: 'the sidebar page',
+  newtab: 'the new tab page',
+  sandbox: 'the sandbox page',
+  options: 'the options page',
+  devtools: 'the devtools page',
+  popup: 'the action popup'
+}
+
 function pageLogFor(dirName) {
   const label = PAGE_LABELS[dirName] || `${dirName} page`
+  const surface = PAGE_SURFACES[dirName] || `the ${dirName} page`
 
-  return `console.log('[From the ${label} context] Hello regular page!')`
+  return `console.log('[From the ${label} context] Hello from ${surface}!')`
 }
 
 const GREETING_LINE_RE =

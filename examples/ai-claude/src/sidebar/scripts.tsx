@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import SidebarApp from './SidebarApp'
 import './styles.css'
 
-console.log('[From the sidebar page context] Hello regular page!')
+console.log('[From the sidebar page context] Hello from the sidebar page!')
 
 const root = ReactDOM.createRoot(document.getElementById('root')!)
 
