@@ -7,7 +7,7 @@
 [firefox-image]: https://img.shields.io/badge/Firefox-Compatible-FF7139?logo=firefox-browser&logoColor=white&style=flat
 [firefox-url]: https://www.mozilla.org/firefox/
 [discord-image]: https://img.shields.io/discord/1253608412890271755?label=Discord&logo=discord&style=flat&color=2ecc40
-[discord-url]: https://discord.gg/v9h2RgeTSN
+[discord-url]: https://discord.gg/BRqbPDfPxb
 
 [![Powered by Extension.js][powered-image]][powered-url] [![CI][action-image]][action-url] [![chromium][chromium-image]][chromium-url] [![firefox][firefox-image]][firefox-url] [![discord][discord-image]][discord-url]
 
