@@ -737,6 +737,213 @@ function domDiagnosticExpr(): string {
   })()`
 }
 
+// A failed smoke check used to leave nothing in the report but a false
+// poll. This names what the session did instead: its output, the page, the
+// browser's targets, the worker's registry state and the bundles on disk.
+async function describeMountFailure(
+  server: DevServer,
+  example: ContentExample,
+  tab: CdpTab
+): Promise<string> {
+  const port = server.cdpPort!
+  const page = await tab.evaluate<unknown>(domDiagnosticExpr())
+  const ready = readReadyContract(example.dir, 'chromium')
+  let targets: JsonTarget[] = []
+
+  try {
+    targets = await httpJson<JsonTarget[]>({
+      host: '127.0.0.1',
+      port,
+      path: '/json/list',
+      method: 'GET',
+      headers: {Host: `localhost:${port}`}
+    })
+  } catch {}
+
+  const worker = await probeDevWorker(port, targets, ready?.extensionId)
+
+  return [
+    `Page state: ${JSON.stringify(page, null, 2)}`,
+    `Browser targets:\n${targets
+      .map((t) => `  ${t.type} ${t.url}`)
+      .join('\n')}`,
+    `Worker state: ${worker}`,
+    `Registry on disk:\n${describeRegistryOnDisk(example.dir)}`,
+    `Dev server output tail:\n${server.output.slice(-4000)}`
+  ].join('\n\n')
+}
+
+// The extension's worker, asked over the browser socket whether the dev
+// runtime booted, read its registry and registered the entries. A worker
+// that cannot answer within the budget is reported as such, not awaited.
+async function probeDevWorker(
+  port: number,
+  targets: JsonTarget[],
+  extensionId?: string
+): Promise<string> {
+  const worker =
+    targets.find(
+      (t) =>
+        t.type === 'service_worker' &&
+        Boolean(extensionId) &&
+        t.url.includes(String(extensionId))
+    ) || targets.find((t) => t.type === 'service_worker')
+
+  if (!worker) return 'no service_worker target in the browser'
+
+  const expression = `(async function(){
+    var out = {url: location.href, installed: !!globalThis.__extjsDevContentScriptsInstalled, ready: null, registryStatus: null, registered: null};
+    try { out.ready = globalThis.__extjsDevContentScripts ? globalThis.__extjsDevContentScripts.isReady() : null; } catch (e) {}
+    try {
+      var r = await fetch(chrome.runtime.getURL('content_scripts/dev-registry.json'), {cache: 'no-store'});
+      out.registryStatus = r.status;
+    } catch (e) { out.registryStatus = 'fetch failed: ' + String(e && e.message); }
+    try {
+      var regs = await chrome.scripting.getRegisteredContentScripts();
+      out.registered = regs.map(function (s) { return {id: s.id, js: s.js, matches: s.matches}; });
+    } catch (e) { out.registered = 'failed: ' + String(e && e.message); }
+    return JSON.stringify(out);
+  })()`
+
+  try {
+    const version = await httpJson<{webSocketDebuggerUrl: string}>({
+      host: '127.0.0.1',
+      port,
+      path: '/json/version',
+      method: 'GET',
+      headers: {Host: `localhost:${port}`}
+    })
+    const browser = await openCdpSession(version.webSocketDebuggerUrl)
+
+    try {
+      const attached = await browser.send('Target.attachToTarget', {
+        targetId: worker.id,
+        flatten: true
+      })
+      const sessionId = attached.result?.sessionId
+      if (!sessionId) return `attach failed: ${JSON.stringify(attached.error)}`
+
+      const evaluated = await browser.send(
+        'Runtime.evaluate',
+        {expression, awaitPromise: true, returnByValue: true},
+        sessionId
+      )
+
+      return String(
+        evaluated.result?.result?.value ??
+          JSON.stringify(evaluated.result?.exceptionDetails ?? evaluated.error)
+      )
+    } finally {
+      browser.close()
+    }
+  } catch (err) {
+    return `probe failed: ${String((err as any)?.message || err)}`
+  }
+}
+
+interface CdpSession {
+  send(
+    method: string,
+    params?: Record<string, unknown>,
+    sessionId?: string
+  ): Promise<any>
+  close(): void
+}
+
+async function openCdpSession(
+  wsUrl: string,
+  timeoutMs = 5000
+): Promise<CdpSession> {
+  const ws = new WebSocket(wsUrl)
+  const pending = new Map<number, (m: any) => void>()
+  let nextId = 0
+
+  await new Promise<void>((resolve, reject) => {
+    ws.once('open', () => resolve())
+    ws.once('error', reject)
+  })
+
+  ws.on('message', (raw: Buffer | string) => {
+    try {
+      const m = JSON.parse(raw.toString())
+
+      if (typeof m.id === 'number' && pending.has(m.id)) {
+        pending.get(m.id)!(m)
+        pending.delete(m.id)
+      }
+    } catch {}
+  })
+
+  return {
+    send(method, params = {}, sessionId) {
+      const id = ++nextId
+
+      return new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          pending.delete(id)
+          resolve({
+            error: {message: `${method} timed out after ${timeoutMs}ms`}
+          })
+        }, timeoutMs)
+        pending.set(id, (m) => {
+          clearTimeout(timer)
+          resolve(m)
+        })
+
+        ws.send(JSON.stringify({id, method, params, sessionId}))
+      })
+    },
+    close() {
+      try {
+        ws.close()
+      } catch {}
+    }
+  }
+}
+
+function describeRegistryOnDisk(dir: string): string {
+  const lines: string[] = []
+
+  for (const root of DEV_ROOTS) {
+    for (const ch of DEV_CHANNELS) {
+      const outDir = path.join(dir, root, ch)
+      const registryPath = path.join(
+        outDir,
+        'content_scripts',
+        'dev-registry.json'
+      )
+      if (!fs.existsSync(registryPath)) continue
+
+      let entries: Array<{entry?: string; js?: string[]; static?: boolean}> = []
+
+      try {
+        entries =
+          JSON.parse(fs.readFileSync(registryPath, 'utf8')).entries || []
+      } catch (err) {
+        lines.push(`  ${registryPath}: unreadable (${String(err)})`)
+        continue
+      }
+
+      lines.push(`  ${registryPath}: ${entries.length} entries`)
+
+      for (const entry of entries) {
+        for (const file of entry.js || []) {
+          const present = fs.existsSync(path.join(outDir, file))
+          lines.push(
+            `    ${entry.entry}${entry.static ? ' (static)' : ''} -> ${file} ${
+              present ? 'present' : 'MISSING'
+            }`
+          )
+        }
+      }
+    }
+  }
+
+  return lines.length
+    ? lines.join('\n')
+    : '  no dev-registry.json under any dev root'
+}
+
 // Count user-extension roots in the page (excluding the devtools companion).
 // We assert the template's exact steady-state count after each reinject,
 // duplicate hosts from stale mounts that this test used to miss are now a
@@ -831,15 +1038,23 @@ for (const example of EXAMPLES) {
           // Smoke check: the extension actually mounted its original anchor.
           // Guards against false negatives where the content script never
           // ran at all (broken example, broken extension, etc.).
-          await expect
-            .poll(
-              () =>
-                tab.evaluate<boolean>(
-                  domContainsNeedleExpr(example.jsAnchor.anchor)
-                ),
-              {timeout: 30000, intervals: [250, 500, 1000]}
+          try {
+            await expect
+              .poll(
+                () =>
+                  tab.evaluate<boolean>(
+                    domContainsNeedleExpr(example.jsAnchor.anchor)
+                  ),
+                {timeout: 30000, intervals: [250, 500, 1000]}
+              )
+              .toBe(true)
+          } catch (err) {
+            throw new Error(
+              `Anchor "${example.jsAnchor.anchor}" never mounted in the open tab.\n` +
+                `${String((err as Error)?.message || err)}\n\n` +
+                (await describeMountFailure(server!, example, tab))
             )
-            .toBe(true)
+          }
 
           // Wait for EVERY declared script to finish its initial mount
           // before editing. The multi templates mount one host per script
