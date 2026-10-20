@@ -4,10 +4,8 @@ Starter file generated from this template's manifest. Every store asks
 for this material at submission time; keep it current as the code
 changes instead of rewriting it at the end. Replace the placeholder
 lines marked TODO before you submit. The Privacy and data use section
-is listing copy; the privacy policy itself is PRIVACY.md beside this
-file, which extension.dev publishes at the project's privacy address
-while the file exists. Add a Privacy policy URL row under Listing only
-when you host the policy elsewhere.
+is listing copy; set the Privacy policy URL row under Listing to your
+own address once you host a policy.
 
 Last updated: 2026-10-19
 
