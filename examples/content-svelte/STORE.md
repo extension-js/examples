@@ -4,9 +4,10 @@ Starter file generated from this template's manifest. Every store asks
 for this material at submission time; keep it current as the code
 changes instead of rewriting it at the end. Replace the placeholder
 lines marked TODO before you submit. The Privacy and data use section
-doubles as the privacy policy: a host that renders STORE.md publishes
-it as the policy page once Privacy policy attested says yes, and
-Privacy policy URL stays empty unless you host a policy elsewhere.
+is listing copy; the privacy policy itself is PRIVACY.md beside this
+file, which extension.dev publishes at the project's privacy address
+while the file exists. Add a Privacy policy URL row under Listing only
+when you host the policy elsewhere.
 
 Last updated: 2026-10-19
 
@@ -22,7 +23,6 @@ Last updated: 2026-10-19
 - Screenshots: TODO at least one 1280x800 screenshot per store.
 
 ## Privacy and data use
-
 - Collected: nothing. The extension sends no user data to any server, has
   no account or sign-in, and runs no analytics.
 - storage: keeps the extension's own settings, and anything the user types
@@ -38,8 +38,6 @@ Last updated: 2026-10-19
   data_collection_permissions required: none, which matches the lines
   above. If you add data collection, update the declaration, this section,
   and your privacy policy in the same change.
-- Privacy policy URL:
-- Privacy policy attested: no
 
 ## Chrome Web Store
 
