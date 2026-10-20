@@ -3,9 +3,12 @@
 Starter file generated from this template's manifest. Every store asks
 for this material at submission time; keep it current as the code
 changes instead of rewriting it at the end. Replace the placeholder
-lines marked TODO before you submit.
+lines marked TODO before you submit. The Privacy and data use section
+doubles as the privacy policy: a host that renders STORE.md publishes
+it as the policy page once Privacy policy attested says yes, and
+Privacy policy URL stays empty unless you host a policy elsewhere.
 
-Last updated: 2026-07-30
+Last updated: 2026-10-19
 
 ## Listing
 
@@ -19,18 +22,30 @@ Last updated: 2026-07-30
 
 ## Privacy and data use
 
-- The user's Google API key is stored with the extension storage
-  API on the device. It is sent only to the provider's own API and
-  never to any other server.
-- Prompts and page text the user submits are sent to the Google
-  API to generate Gemini responses. Nothing is transmitted until
-  the user sends a message.
-- The manifest declares the matching Firefox data collection
-  permissions: authenticationInfo, personalCommunications,
-  websiteContent. Keep that declaration, this section, and the
-  privacy policy in agreement.
-- Privacy policy URL: TODO required by every store once you collect
-  any data.
+- Collected: The user's own API key for Google, kept in the browser's
+  extension storage on the device and sent only to Google. The messages
+  the user types into the extension, sent to Google to get an answer and
+  only when the user sends them. The text of the page the user is viewing,
+  sent to Google only when the user asks about that page.
+- sidePanel (Chromium only): opens the extension's interface in the
+  browser side panel; it reads no page data by itself.
+- storage: keeps the extension's own settings, and anything the user types
+  into its options, in the browser's extension storage on the user's
+  device.
+- tabs: reads the title and address of the open tab so the interface can
+  say which page it refers to.
+- Host access <all_urls>: lets the extension's content script run on the
+  pages the user visits so its interface can appear there.
+- Not collected: browsing history, activity on websites, location, search
+  terms, bookmarks, payment details, health information, personal files,
+  and usage analytics. Nothing else leaves the browser.
+- Firefox data collection declaration: the manifest declares
+  data_collection_permissions required: authenticationInfo,
+  personalCommunications, websiteContent, which matches the lines above.
+  If you add data collection, update the declaration, this section, and
+  your privacy policy in the same change.
+- Privacy policy URL:
+- Privacy policy attested: no
 
 ## Chrome Web Store
 
