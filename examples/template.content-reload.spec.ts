@@ -763,6 +763,7 @@ async function describeMountFailure(
   const worker = await probeDevWorker(port, targets, ready?.extensionId)
 
   return [
+    describeOwnTab(tab, targets),
     `Page state: ${JSON.stringify(page, null, 2)}`,
     `Browser targets:\n${targets
       .map((t) => `  ${t.type} ${t.url}`)
@@ -771,6 +772,32 @@ async function describeMountFailure(
     `Registry on disk:\n${describeRegistryOnDisk(example.dir)}`,
     `Dev server output tail:\n${server.output.slice(-4000)}`
   ].join('\n\n')
+}
+
+// The tab this spec opened, found by its own target id. A first run can move
+// whichever tab is active, so the report names the spec's tab, not any page.
+function describeOwnTab(tab: CdpTab, targets: JsonTarget[]): string {
+  const own = targets.find((t) => t.id === tab.targetId)
+
+  if (!own) return `Spec tab ${tab.targetId}: closed, no longer in /json/list`
+
+  if (own.url.startsWith('https://example.com')) {
+    return `Spec tab ${tab.targetId}: still on ${own.url}`
+  }
+
+  return `Spec tab ${tab.targetId}: navigated away to ${own.url}`
+}
+
+async function ownTabUrl(tab: CdpTab): Promise<string> {
+  const targets = await httpJson<JsonTarget[]>({
+    host: '127.0.0.1',
+    port: tab.port,
+    path: '/json/list',
+    method: 'GET',
+    headers: {Host: `localhost:${tab.port}`}
+  })
+
+  return targets.find((t) => t.id === tab.targetId)?.url ?? ''
 }
 
 // The extension's worker, asked over the browser socket whether the dev
@@ -1049,8 +1076,14 @@ for (const example of EXAMPLES) {
               )
               .toBe(true)
           } catch (err) {
+            const ownUrl = await ownTabUrl(tab).catch(() => '')
+            const moved = ownUrl.startsWith('https://example.com')
+              ? ''
+              : `Spec tab ${tab.targetId} is on "${ownUrl}", not https://example.com/, so no content script could mount.\n`
+
             throw new Error(
-              `Anchor "${example.jsAnchor.anchor}" never mounted in the open tab.\n` +
+              moved +
+                `Anchor "${example.jsAnchor.anchor}" never mounted in the open tab.\n` +
                 `${String((err as Error)?.message || err)}\n\n` +
                 (await describeMountFailure(server!, example, tab))
             )
