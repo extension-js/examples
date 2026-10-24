@@ -13,5 +13,16 @@
     "Starting point for TypeScript extensions that need preferences"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-  "video": "9OBuuh3N_cM"
+  "video": "9OBuuh3N_cM",
+  "store": {
+    "summary": "Shows a small overlay UI on web pages, with an options page that moves it from right to left.",
+    "justifications": {
+      "storage": "Keeps the one setting from the options page so the overlay stays on the chosen edge after closing the page and restarting the browser. Nothing leaves the browser.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "reviewerHints": "Start by opening any page, then click Open options on the overlay and tick the setting to watch the overlay move to the left edge.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-typescript template. Not yet submitted to any store."
+    ]
+  }
 }

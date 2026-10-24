@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "content-scripts",
-    "css-modules",
-    "javascript"
-  ],
+  "tags": ["content-scripts", "css-modules", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,14 @@
     "Starting point for content scripts that need scoped CSS"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/css-modules",
-  "video": "ondh3B28ieQ"
+  "video": "ondh3B28ieQ",
+  "store": {
+    "summary": "Injects a small styled badge into web pages.",
+    "justifications": {
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-css-modules template. Not yet submitted to any store."
+    ]
+  }
 }

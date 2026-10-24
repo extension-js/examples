@@ -1,12 +1,7 @@
 {
   "title": "Devtools panel with Svelte",
   "featured": false,
-  "tags": [
-    "devtools",
-    "panel",
-    "svelte",
-    "typescript"
-  ],
+  "tags": ["devtools", "panel", "svelte", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -20,5 +15,12 @@
     "Starting point for debugging tools built as browser extensions"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-  "video": "SqOxa9hRg1s"
+  "video": "SqOxa9hRg1s",
+  "store": {
+    "summary": "Adds a Svelte devtools panel to the browser that reads the inspected page.",
+    "reviewerHints": "Start by opening the developer tools on any page and picking the Example tab.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the devtools-svelte template. Not yet submitted to any store."
+    ]
+  }
 }

@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "sass",
-    "javascript"
-  ],
+  "tags": ["new-tab", "sass", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,11 @@
     "Starting point for extensions that prefer Sass to plain CSS"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-  "video": "bUWLBJeWzpc"
+  "video": "bUWLBJeWzpc",
+  "store": {
+    "summary": "Replaces your new tab page with a simple styled page.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-sass template. Not yet submitted to any store."
+    ]
+  }
 }

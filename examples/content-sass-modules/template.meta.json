@@ -14,5 +14,15 @@
     "Starting point for Sass module content scripts that need preferences"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/sass",
-  "video": "Ma9f_Q1C7Eo"
+  "video": "Ma9f_Q1C7Eo",
+  "store": {
+    "summary": "Injects a small styled badge into web pages, with an options page that moves it to either edge.",
+    "justifications": {
+      "storage": "keeps the one setting so it survives closing the page and restarting the browser, and so the content script can read the same value the options page wrote. Nothing leaves the browser.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-sass-modules template. Not yet submitted to any store."
+    ]
+  }
 }

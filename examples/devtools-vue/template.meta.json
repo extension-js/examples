@@ -1,12 +1,7 @@
 {
   "title": "Devtools panel with Vue",
   "featured": false,
-  "tags": [
-    "devtools",
-    "panel",
-    "vue",
-    "typescript"
-  ],
+  "tags": ["devtools", "panel", "vue", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -20,5 +15,12 @@
     "Starting point for debugging tools built as browser extensions"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/manifest-json",
-  "video": "sp-bjexg2X8"
+  "video": "sp-bjexg2X8",
+  "store": {
+    "summary": "Adds a devtools panel built with Vue that reads the inspected page.",
+    "reviewerHints": "Start by opening the developer tools on any page and picking the Example tab.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the devtools-vue template. Not yet submitted to any store."
+    ]
+  }
 }

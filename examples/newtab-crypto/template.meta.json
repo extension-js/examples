@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "web-crypto",
-    "typescript"
-  ],
+  "tags": ["new-tab", "web-crypto", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,11 @@
     "Reference for browser crypto primitives under MV3"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/node",
-  "video": "dPdh5H_sTgw"
+  "video": "dPdh5H_sTgw",
+  "store": {
+    "summary": "Replaces your new tab page with a text-hashing page.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-crypto template. Not yet submitted to any store."
+    ]
+  }
 }

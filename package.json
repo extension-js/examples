@@ -36,6 +36,7 @@
     "generate:raw": "node scripts/catalog/generate-templates-meta.mjs --overwrite-staged",
     "catalog:readmes": "node scripts/catalog/update-template-readmes.mjs",
     "catalog:standardize": "node scripts/catalog/standardize-templates.mjs",
+    "catalog:store-md": "node scripts/catalog/generate-store-md.mjs",
     "build:examples": "node scripts/build/build-all.mjs",
     "artifacts:package": "node scripts/catalog/package-artifacts.mjs",
     "artifacts:stage": "node scripts/catalog/publish-artifacts.mjs",
@@ -92,7 +93,8 @@
     "test:public-folder": "node scripts/checks/assert-public-folder-location.mjs",
     "test:markup-punctuation": "node scripts/checks/assert-no-space-before-punctuation.mjs",
     "test:template-videos": "node scripts/checks/assert-template-videos.mjs",
-    "test:template-screenshots": "node scripts/checks/assert-template-screenshots.mjs"
+    "test:template-screenshots": "node scripts/checks/assert-template-screenshots.mjs",
+    "test:store-md": "node scripts/catalog/generate-store-md.mjs --check"
   },
   "files": [
     "templates-meta.json",

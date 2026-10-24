@@ -14,5 +14,11 @@
     "Standalone HTML routes without manifest plumbing",
     "Reference for Extension.js's pages/ special folder convention"
   ],
-  "docsUrl": "https://extension.js.org/docs/features/special-folders"
+  "docsUrl": "https://extension.js.org/docs/features/special-folders",
+  "store": {
+    "summary": "Opens a welcome page when the extension loads.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the special-folders-pages template. Not yet submitted to any store."
+    ]
+  }
 }

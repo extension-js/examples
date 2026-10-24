@@ -26,5 +26,19 @@
     "Starting point for page-aware ChatGPT extensions"
   ],
   "docsUrl": "https://platform.openai.com/docs/api-reference/chat",
-  "video": "oEiJ_b36EtE"
+  "video": "oEiJ_b36EtE",
+  "store": {
+    "summary": "Adds a sidebar panel for chatting with ChatGPT.",
+    "dataCollected": "The user's own API key for OpenAI, kept in the browser's extension storage on the device and sent only to OpenAI. The messages the user types into the extension, sent to OpenAI to get an answer and only when the user sends them. The text of the page the user is viewing, sent to OpenAI only when the user asks about that page.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "storage": "Persists the user's settings and preferences locally on the device.",
+      "tabs": "Reads the active tab's URL and title so the interface can reference the page the user is viewing.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "reviewerHints": "A reviewer needs their own OpenAI API key to exercise the chat. State that clearly here or provide a throwaway key.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the ai-chatgpt template. Not yet submitted to any store."
+    ]
+  }
 }

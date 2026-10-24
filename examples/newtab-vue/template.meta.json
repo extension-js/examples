@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "vue",
-    "typescript"
-  ],
+  "tags": ["new-tab", "vue", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,11 @@
     "Starting point for Vue extensions with a new tab"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/vue",
-  "video": "g4rjynbMI5c"
+  "video": "g4rjynbMI5c",
+  "store": {
+    "summary": "Replaces your new tab page with a simple Vue page.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-vue template. Not yet submitted to any store."
+    ]
+  }
 }

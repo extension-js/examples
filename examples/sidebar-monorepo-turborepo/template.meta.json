@@ -1,12 +1,7 @@
 {
   "title": "Sidebar Turborepo",
   "featured": true,
-  "tags": [
-    "sidebar",
-    "monorepo",
-    "turborepo",
-    "javascript"
-  ],
+  "tags": ["sidebar", "monorepo", "turborepo", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 4,
   "firstSteps": [
@@ -20,5 +15,15 @@
     "Reference for Extension.js in a monorepo with no plugin"
   ],
   "docsUrl": "https://turborepo.dev/docs",
-  "video": "l3Z90k_4c3I"
+  "video": "l3Z90k_4c3I",
+  "store": {
+    "summary": "Adds a sidebar panel and a small page overlay.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the sidebar-monorepo-turborepo template. Not yet submitted to any store."
+    ]
+  }
 }
