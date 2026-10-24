@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "configuration",
-    "javascript"
-  ],
+  "tags": ["new-tab", "configuration", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,11 @@
     "Reference for adding a linter to an extension codebase"
   ],
   "docsUrl": "https://extension.js.org/docs/integrations/eslint",
-  "video": "CoS-_Cv-SvM"
+  "video": "CoS-_Cv-SvM",
+  "store": {
+    "summary": "Replaces your new tab page with a simple page.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-config-eslint template. Not yet submitted to any store."
+    ]
+  }
 }

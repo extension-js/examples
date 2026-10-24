@@ -15,5 +15,11 @@
     "Reference for safe env-var usage across JS, JSON, and HTML"
   ],
   "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-  "video": "8XP2acacpK8"
+  "video": "8XP2acacpK8",
+  "store": {
+    "summary": "Replaces your new tab page with the extension's environment values.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-env template. Not yet submitted to any store."
+    ]
+  }
 }

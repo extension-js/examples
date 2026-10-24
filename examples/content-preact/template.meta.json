@@ -1,12 +1,5 @@
 {
-  "tags": [
-    "content",
-    "options",
-    "storage",
-    "preact",
-    "typescript",
-    "tailwind"
-  ],
+  "tags": ["content", "options", "storage", "preact", "typescript", "tailwind"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -20,5 +13,15 @@
     "Starting point for Preact extensions that need preferences"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/preact",
-  "video": "sYA3V9YIWwo"
+  "video": "sYA3V9YIWwo",
+  "store": {
+    "summary": "Shows an overlay UI on web pages, with an options page that moves it from right to left.",
+    "justifications": {
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting.",
+      "storage": "keeps the one setting from the options page so it survives closing the page and restarting the browser. The content script reads the same setting to decide which edge the overlay sits on. Nothing leaves the browser."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-preact template. Not yet submitted to any store."
+    ]
+  }
 }

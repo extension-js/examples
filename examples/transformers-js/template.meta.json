@@ -1,12 +1,7 @@
 {
   "title": "Transformers.js",
   "featured": true,
-  "tags": [
-    "sidebar",
-    "ai",
-    "transformers",
-    "javascript"
-  ],
+  "tags": ["sidebar", "ai", "transformers", "javascript"],
   "difficulty": "intermediate",
   "timeToFirstSuccessMinutes": 4,
   "firstSteps": [
@@ -20,5 +15,18 @@
     "Reference for shipping on-device AI under MV3"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/webassembly",
-  "video": "cTxqV5HXXWE"
+  "video": "cTxqV5HXXWE",
+  "store": {
+    "summary": "Classifies pages and selections with on-device AI.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "storage": "Persists the user's settings and preferences locally on the device.",
+      "tabs": "Reads the active tab's URL and title so the interface can reference the page the user is viewing.",
+      "contextMenus": "Adds a right-click menu item that runs the extension on the current text selection.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the transformers-js template. Not yet submitted to any store."
+    ]
+  }
 }

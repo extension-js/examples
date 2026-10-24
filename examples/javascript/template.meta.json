@@ -1,9 +1,5 @@
 {
-  "tags": [
-    "sidebar",
-    "javascript",
-    "content-scripts"
-  ],
+  "tags": ["sidebar", "javascript", "content-scripts"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -17,5 +13,15 @@
     "Starting point for extensions written in JavaScript"
   ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/javascript",
-  "video": "Ryjuq2o-kzc"
+  "video": "Ryjuq2o-kzc",
+  "store": {
+    "summary": "Adds a sidebar panel to the browser.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the javascript template. Not yet submitted to any store."
+    ]
+  }
 }

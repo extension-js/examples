@@ -1,10 +1,7 @@
 {
   "title": "Sidebar page",
   "featured": true,
-  "tags": [
-    "sidebar",
-    "javascript"
-  ],
+  "tags": ["sidebar", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -18,5 +15,14 @@
     "Starting point for sidebar-first extensions"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/html",
-  "video": "bgGUqLiaZFI"
+  "video": "bgGUqLiaZFI",
+  "store": {
+    "summary": "Adds a sidebar panel to the browser.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the sidebar template. Not yet submitted to any store."
+    ]
+  }
 }

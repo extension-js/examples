@@ -1,10 +1,5 @@
 {
-  "tags": [
-    "action",
-    "popup",
-    "i18n",
-    "javascript"
-  ],
+  "tags": ["action", "popup", "i18n", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -18,5 +13,11 @@
     "Reference for localized extension UI across browsers"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/locales",
-  "video": "bY0Mtv77bVc"
+  "video": "bY0Mtv77bVc",
+  "store": {
+    "summary": "Adds a toolbar popup in your browser's language.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the action-locales template. Not yet submitted to any store."
+    ]
+  }
 }

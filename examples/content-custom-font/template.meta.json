@@ -14,5 +14,16 @@
     "Starting point for injected UI that must not inherit host page type"
   ],
   "docsUrl": "https://extension.js.org/docs/implementation-guide/css",
-  "video": "IAbckjfGO5Y"
+  "video": "IAbckjfGO5Y",
+  "store": {
+    "summary": "Injects a badge with a custom font into web pages, with an options page that turns that font on and off.",
+    "justifications": {
+      "storage": "keeps the one setting so it survives closing the page and restarting the browser, and so the content script can read the same value the options page wrote. Nothing leaves the browser.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "reviewerHints": "This extension bundles the Momo Signature typeface under public/fonts/. It is licensed under the SIL Open Font License 1.1 and the license text ships beside the binaries as public/fonts/OFL.txt, which the license requires. Keep that file in the package you upload.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-custom-font template. Not yet submitted to any store."
+    ]
+  }
 }

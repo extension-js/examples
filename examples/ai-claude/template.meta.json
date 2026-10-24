@@ -25,5 +25,19 @@
     "Starting point for page-aware Claude extensions"
   ],
   "docsUrl": "https://docs.anthropic.com/en/api/getting-started",
-  "video": "z3JmyUlmiUw"
+  "video": "z3JmyUlmiUw",
+  "store": {
+    "summary": "Adds a sidebar panel for chatting with Claude.",
+    "dataCollected": "The user's own API key for Anthropic, kept in the browser's extension storage on the device and sent only to Anthropic. The messages the user types into the extension, sent to Anthropic to get an answer and only when the user sends them. The text of the page the user is viewing, sent to Anthropic only when the user asks about that page.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "storage": "Persists the user's settings and preferences locally on the device.",
+      "tabs": "Reads the active tab's URL and title so the interface can reference the page the user is viewing.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "reviewerHints": "A reviewer needs their own Anthropic API key to exercise the chat. State that clearly here or provide a throwaway key.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the ai-claude template. Not yet submitted to any store."
+    ]
+  }
 }

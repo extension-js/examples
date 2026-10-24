@@ -1,10 +1,6 @@
 {
   "featured": true,
-  "tags": [
-    "sidebar",
-    "preact",
-    "typescript"
-  ],
+  "tags": ["sidebar", "preact", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -18,5 +14,15 @@
     "Starting point for Preact extensions"
   ],
   "docsUrl": "https://extension.js.org/docs/getting-started/templates/preact",
-  "video": "VcAPgX8KHgI"
+  "video": "VcAPgX8KHgI",
+  "store": {
+    "summary": "Adds a sidebar panel to the browser.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the preact template. Not yet submitted to any store."
+    ]
+  }
 }

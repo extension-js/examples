@@ -1,10 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "sidebar",
-    "configuration",
-    "javascript"
-  ],
+  "tags": ["new-tab", "sidebar", "configuration", "javascript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -17,5 +12,16 @@
     "A new tab launcher that opens another extension surface",
     "Reference for browser-specific differences across targets"
   ],
-  "docsUrl": "https://extension.js.org/docs/browsers/browser-flags"
+  "docsUrl": "https://extension.js.org/docs/browsers/browser-flags",
+  "store": {
+    "summary": "Replaces your new tab page and adds a sidebar panel.",
+    "justifications": {
+      "activeTab": "Grants temporary access to the page the user is on when they invoke the extension, so it can act on that page only.",
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-browser-flags template. Not yet submitted to any store."
+    ]
+  }
 }

@@ -1,11 +1,6 @@
 {
   "featured": true,
-  "tags": [
-    "sidebar",
-    "react",
-    "shadcn",
-    "tailwind"
-  ],
+  "tags": ["sidebar", "react", "shadcn", "tailwind"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 3,
   "firstSteps": [
@@ -19,5 +14,15 @@
     "Starting point for extensions with a modern component kit"
   ],
   "docsUrl": "https://extension.js.org/docs/integrations/shadcnui",
-  "video": "gTpQ7v7zSuY"
+  "video": "gTpQ7v7zSuY",
+  "store": {
+    "summary": "Adds a sidebar panel built with shadcn/ui.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the sidebar-shadcn template. Not yet submitted to any store."
+    ]
+  }
 }

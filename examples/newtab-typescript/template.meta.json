@@ -1,8 +1,5 @@
 {
-  "tags": [
-    "new-tab",
-    "typescript"
-  ],
+  "tags": ["new-tab", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -16,5 +13,11 @@
     "Starting point for TypeScript extensions with a new tab"
   ],
   "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
-  "video": "0sRMGlx7MbA"
+  "video": "0sRMGlx7MbA",
+  "store": {
+    "summary": "Replaces your new tab page with a simple page.",
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the new-typescript template. Not yet submitted to any store."
+    ]
+  }
 }

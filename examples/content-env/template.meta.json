@@ -1,10 +1,5 @@
 {
-  "tags": [
-    "content-scripts",
-    "env",
-    "configuration",
-    "typescript"
-  ],
+  "tags": ["content-scripts", "env", "configuration", "typescript"],
   "difficulty": "beginner",
   "timeToFirstSuccessMinutes": 2,
   "firstSteps": [
@@ -18,5 +13,14 @@
     "Reference for EXTENSION_PUBLIC_* values in typed sources"
   ],
   "docsUrl": "https://extension.js.org/docs/features/environment-variables",
-  "video": "Q-ugTIZVZ-U"
+  "video": "Q-ugTIZVZ-U",
+  "store": {
+    "summary": "Injects a panel with the extension's environment values.",
+    "justifications": {
+      "Host permission <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the content-env template. Not yet submitted to any store."
+    ]
+  }
 }

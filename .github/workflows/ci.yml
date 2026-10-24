@@ -102,6 +102,7 @@ jobs:
       - run: pnpm run test:markup-punctuation
       - run: pnpm run test:template-videos
       - run: pnpm run test:template-screenshots
+      - run: pnpm run test:store-md
       - run: pnpm run test:banner
       - run: pnpm run test:gecko-surfaces
 

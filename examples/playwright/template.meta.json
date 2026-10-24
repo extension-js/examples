@@ -15,5 +15,15 @@
     "Reference for automating extension flows in headed and headless modes"
   ],
   "docsUrl": "https://extension.js.org/docs/workflows/playwright-e2e",
-  "video": "k8PP2Gs1AsU"
+  "video": "k8PP2Gs1AsU",
+  "store": {
+    "summary": "Adds a sidebar panel covered by Playwright tests.",
+    "justifications": {
+      "sidePanel": "Renders the extension's main interface in the browser side panel.",
+      "Content script match <all_urls>": "The content script runs on the pages the user visits to render the extension's on-page interface. Narrow this to the specific sites your extension needs before submitting."
+    },
+    "versionHistory": [
+      "1.0.0 (unreleased): initial version from the playwright template. Not yet submitted to any store."
+    ]
+  }
 }
