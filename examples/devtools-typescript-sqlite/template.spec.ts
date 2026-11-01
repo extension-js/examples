@@ -1,4 +1,5 @@
 import {execSync} from 'node:child_process'
+import crypto from 'node:crypto'
 import fs from 'node:fs'
 import http from 'node:http'
 import net from 'node:net'
@@ -317,6 +318,8 @@ function connectBrowser(debuggerUrl: string) {
   }
 }
 
+class FrontendInternalsMissing extends Error {}
+
 async function showRequestsPanel(browser: ReturnType<typeof connectBrowser>) {
   await browser.opened
   await browser.send('Target.setDiscoverTargets', {discover: true})
@@ -330,9 +333,12 @@ async function showRequestsPanel(browser: ReturnType<typeof connectBrowser>) {
   let devtools: AttachedTarget | undefined
 
   while (Date.now() - started < 20_000) {
+    // Chrome reports an undocked DevTools window as type other on some
+    // launches and as page on others, so the url alone decides.
     const pages = browser.attached.filter(
       (target) =>
-        target.type === 'page' && target.url.startsWith('devtools://devtools/')
+        (target.type === 'page' || target.type === 'other') &&
+        target.url.startsWith('devtools://devtools/')
     )
 
     devtools =
@@ -402,6 +408,15 @@ async function showRequestsPanel(browser: ReturnType<typeof connectBrowser>) {
   }
 
   if (!selected?.ok) {
+    // These two reasons mean the DevTools frontend renamed the internals this
+    // test walks, which says nothing about the panel. Any other reason fails.
+    if (
+      selected?.reason === 'devtools ui is not ready' ||
+      selected?.reason === 'tab strip is missing'
+    ) {
+      throw new FrontendInternalsMissing(String(selected.reason))
+    }
+
     throw new Error(
       `could not show the Requests panel: ${JSON.stringify(selected)}`
     )
@@ -518,13 +533,24 @@ test('loads the inspected requests and returns the queried rows', async () => {
 
     await expect(page.locator('#state')).toHaveText('waiting')
 
-    const panelSessionId = await showRequestsPanel(browser)
+    let panelSessionId = ''
+
+    try {
+      panelSessionId = await showRequestsPanel(browser)
+    } catch (error) {
+      if (!(error instanceof FrontendInternalsMissing)) throw error
+
+      test.skip(
+        true,
+        `the DevTools frontend changed the internals this test selects the panel through (${error.message}); the plain-tab test still covers the panel`
+      )
+    }
+
     const readyStarted = Date.now()
     let ready: {
       heading?: string
       status?: string
       meta?: string
-      resources?: string[]
     } = {}
 
     while (Date.now() - readyStarted < 30_000) {
@@ -533,8 +559,7 @@ test('loads the inspected requests and returns the queried rows', async () => {
         `({
           heading: document.querySelector('h1')?.textContent ?? '',
           status: document.querySelector('#status')?.textContent ?? '',
-          meta: document.querySelector('#statusMeta')?.textContent ?? '',
-          resources: performance.getEntriesByType('resource').map((entry) => entry.name)
+          meta: document.querySelector('#statusMeta')?.textContent ?? ''
         })`
       )) as typeof ready
 
@@ -546,19 +571,6 @@ test('loads the inspected requests and returns the queried rows', async () => {
     expect(ready.status, browser.consoleLines.join('\n')).toBe('Ready')
     expect(ready.heading).toContain('Request SQL')
     expect(ready.meta).toMatch(/SQLite \d+\.\d+/)
-
-    const resources = ready.resources || []
-
-    // Extension pages often omit resource timing for their own wasm fetch.
-    // Any timing entry that does show up must still be the packaged file,
-    // and the panel must not have reached the network for it.
-    expect(
-      resources
-        .filter((url) => url.includes('.wasm'))
-        .every((url) => url.startsWith('chrome-extension://'))
-    ).toBe(true)
-
-    expect(resources.filter((url) => /^https?:/.test(url))).toEqual([])
 
     await page.evaluate(() => {
       const start = (window as unknown as {startRequests?: () => Promise<void>})
@@ -601,6 +613,144 @@ test('loads the inspected requests and returns the queried rows', async () => {
     await context.close()
     browser.ws.close()
     await fixture.close()
+    fs.rmSync(userDataDir, {recursive: true, force: true})
+  }
+})
+
+// Chrome derives an unpacked extension's id from its absolute path.
+function unpackedExtensionId(extensionDir: string) {
+  return crypto
+    .createHash('sha256')
+    .update(fs.realpathSync(extensionDir))
+    .digest('hex')
+    .slice(0, 32)
+    .replace(/[0-9a-f]/g, (digit) =>
+      String.fromCharCode(97 + Number.parseInt(digit, 16))
+    )
+}
+
+const HAR_ENTRIES = [
+  {
+    startedDateTime: '2026-01-01T00:00:00.000Z',
+    time: 12,
+    request: {method: 'GET', url: 'https://har.example/api/alpha.json'},
+    response: {status: 200, content: {mimeType: 'application/json'}}
+  },
+  {
+    startedDateTime: '2026-01-01T00:00:01.000Z',
+    time: 30,
+    request: {method: 'POST', url: 'https://har.example/api/beta.txt'},
+    response: {status: 201, content: {mimeType: 'text/plain'}}
+  },
+  {
+    startedDateTime: '2026-01-01T00:00:02.000Z',
+    time: 8,
+    request: {method: 'GET', url: 'https://har.example/page.html'},
+    response: {status: 200, content: {mimeType: 'text/html'}}
+  }
+]
+
+// The panel needs only chrome.devtools.network, so a plain tab with that one
+// object stubbed exercises the whole panel with no DevTools frontend at all.
+test('loads a HAR and later requests when the panel opens as a plain tab', async () => {
+  const userDataDir = fs.mkdtempSync(
+    path.join(os.tmpdir(), 'pw-request-sql-tab-')
+  )
+  const isHeadless = process.env.HEADLESS === 'true'
+  const context = await chromium.launchPersistentContext(userDataDir, {
+    headless: isHeadless,
+    ...(isHeadless ? {channel: 'chromium' as const} : {}),
+    viewport: {width: 1280, height: 800},
+    args: [
+      `--disable-extensions-except=${extensionPath}`,
+      `--load-extension=${extensionPath}`,
+      '--no-first-run',
+      '--no-default-browser-check'
+    ]
+  })
+
+  try {
+    await context.addInitScript((entries) => {
+      if (location.protocol !== 'chrome-extension:') return
+
+      const runtime = (
+        globalThis as unknown as {chrome?: Record<string, unknown>}
+      ).chrome
+      if (!runtime || runtime.devtools) return
+
+      runtime.devtools = {
+        network: {
+          getHAR: (callback: (log: {entries: unknown[]}) => void) =>
+            callback({entries}),
+          onRequestFinished: {
+            addListener: (listener: (entry: unknown) => void) => {
+              ;(
+                globalThis as unknown as {__finishRequest?: unknown}
+              ).__finishRequest = listener
+            }
+          }
+        }
+      }
+    }, HAR_ENTRIES)
+
+    const page = await context.newPage()
+    const requested: string[] = []
+    page.on('request', (request) => requested.push(request.url()))
+    const extensionOrigin = `chrome-extension://${unpackedExtensionId(extensionPath)}`
+    const panelUrl = `${extensionOrigin}/panel/index.html`
+
+    await page.goto(panelUrl, {waitUntil: 'domcontentloaded', timeout: 30_000})
+    await expect(page.locator('#status')).toHaveText('Ready', {timeout: 30_000})
+    await expect(page.locator('#statusMeta')).toHaveText(/SQLite \d+\.\d+/)
+
+    const fromHar = (await page.evaluate(queryExpression(QUERY))) as QueryResult
+    expect(fromHar.error).toBe('')
+    expect(fromHar.rows).toEqual([
+      ['GET', '200', 'https://har.example/api/alpha.json'],
+      ['POST', '201', 'https://har.example/api/beta.txt']
+    ])
+
+    // A request that finishes after the panel opened arrives through the
+    // listener, not the HAR, and lands in the same table.
+    await page.evaluate(() => {
+      const finish = (
+        globalThis as unknown as {
+          __finishRequest?: (entry: unknown) => void
+        }
+      ).__finishRequest
+
+      if (!finish) {
+        throw new Error('the panel registered no onRequestFinished listener')
+      }
+
+      finish({
+        startedDateTime: '2026-01-01T00:00:03.000Z',
+        time: 5,
+        request: {method: 'GET', url: 'https://har.example/api/gamma.json'},
+        response: {status: 404, content: {mimeType: 'application/json'}}
+      })
+    })
+
+    const withLive = (await page.evaluate(
+      queryExpression(QUERY)
+    )) as QueryResult
+    expect(withLive.rows).toEqual([
+      ['GET', '200', 'https://har.example/api/alpha.json'],
+      ['POST', '201', 'https://har.example/api/beta.txt'],
+      ['GET', '404', 'https://har.example/api/gamma.json']
+    ])
+
+    // Resource timing records nothing for an extension page here, so the
+    // page's real requests prove the wasm is the packaged file, at runtime.
+    expect(requested.filter((url) => url.endsWith('.wasm'))).toEqual([
+      `${extensionOrigin}/sql-wasm-browser.wasm`
+    ])
+
+    expect(
+      requested.filter((url) => !url.startsWith(`${extensionOrigin}/`))
+    ).toEqual([])
+  } finally {
+    await context.close()
     fs.rmSync(userDataDir, {recursive: true, force: true})
   }
 })
