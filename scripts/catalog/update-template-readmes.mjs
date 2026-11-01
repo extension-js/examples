@@ -402,6 +402,15 @@ const OVERRIDES = {
       'which works in every host, rather than through `chrome.devtools.network`, ' +
       'which an emulated or embedded host is unlikely to relay.'
   },
+  'devtools-typescript-sqlite': {
+    title: 'SQLite DevTools Panel Example',
+    whatYoullSee:
+      'A DevTools panel with a SQL box and a table of the rows that query returns.',
+    extra:
+      'Records each request from the inspected page in [sql.js](https://www.npmjs.com/package/sql.js) ' +
+      '(SQLite compiled to WebAssembly). The WebAssembly binary is bundled into the extension, ' +
+      'so opening the panel does not fetch it from a CDN.'
+  },
   init: {
     title: 'Starter Extension (init)',
     extra:

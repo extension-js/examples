@@ -1975,6 +1975,67 @@
       "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript"
     },
     {
+      "slug": "devtools-typescript-sqlite",
+      "name": "devtools-typescript-sqlite",
+      "title": "SQLite DevTools Panel",
+      "version": "1.0.0",
+      "manifest_version": 3,
+      "description": "Records the inspected page's network requests in SQLite and lets you query them.",
+      "uiContext": ["devtools"],
+      "surfaces": ["devtools"],
+      "entrypoints": ["devtools/index.html"],
+      "uiFramework": "",
+      "css": "css",
+      "configFiles": ["tsconfig.json", "extension.config.js"],
+      "hasBackground": false,
+      "hasEnv": false,
+      "setup": {
+        "packageManager": "pnpm",
+        "scripts": {},
+        "env": {
+          "hasEnvExample": false,
+          "hasEnv": false
+        }
+      },
+      "permissions": [],
+      "host_permissions": [],
+      "optional_permissions": [],
+      "featured": false,
+      "tags": ["devtools", "panel", "sqlite", "wasm", "typescript"],
+      "difficulty": "beginner",
+      "timeToFirstSuccessMinutes": 3,
+      "firstSteps": [
+        "Run npm install, then npm run dev",
+        "Open the browser devtools on any page, then pick the Requests tab",
+        "Run a SQL query against the requests table"
+      ],
+      "useCases": [
+        "Record the inspected page's network requests in SQLite",
+        "Query those requests with SQL from a devtools panel",
+        "Ship sql.js inside an extension without a CDN"
+      ],
+      "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript",
+      "files": [
+        "examples/devtools-typescript-sqlite/extension.config.js",
+        "examples/devtools-typescript-sqlite/src/devtools/index.html",
+        "examples/devtools-typescript-sqlite/src/devtools/scripts.ts",
+        "examples/devtools-typescript-sqlite/src/images/icon-128.png",
+        "examples/devtools-typescript-sqlite/src/images/icon-16.png",
+        "examples/devtools-typescript-sqlite/src/images/icon-32.png",
+        "examples/devtools-typescript-sqlite/src/images/icon-48.png",
+        "examples/devtools-typescript-sqlite/src/images/icon-64.png",
+        "examples/devtools-typescript-sqlite/src/manifest.json",
+        "examples/devtools-typescript-sqlite/src/panel/index.html",
+        "examples/devtools-typescript-sqlite/src/panel/scripts.ts",
+        "examples/devtools-typescript-sqlite/src/panel/sql-js.d.ts",
+        "examples/devtools-typescript-sqlite/src/panel/styles.css"
+      ],
+      "browsers": ["chrome", "edge", "firefox"],
+      "screenshot": "examples/devtools-typescript-sqlite/screenshot.png",
+      "icon": "examples/devtools-typescript-sqlite/src/images/icon-128.png",
+      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript-sqlite"
+    },
+    {
       "slug": "devtools-vue",
       "name": "devtools-vue",
       "title": "Devtools panel with Vue",

@@ -278,6 +278,151 @@ function renderedPhrase(source: string): string | null {
   return match ? match[0].replace(/\s+/g, ' ').trim() : null
 }
 
+function htmlHeading(source: string): string | null {
+  const heading = source.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)
+
+  if (!heading) return null
+
+  const text = heading[1]
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+  return text.length > 0 ? text : null
+}
+
+function decodeJsString(body: string): string {
+  return JSON.parse(`"${body}"`)
+}
+
+function matchDelim(
+  source: string,
+  openIndex: number,
+  open: string,
+  close: string
+): number {
+  let depth = 0
+  let quote = ''
+
+  for (let i = openIndex; i < source.length; i++) {
+    const char = source[i]
+
+    if (quote) {
+      if (char === '\\') {
+        i += 1
+        continue
+      }
+
+      if (char === quote) quote = ''
+
+      continue
+    }
+
+    if (char === '"' || char === "'") {
+      quote = char
+      continue
+    }
+
+    if (char === open) depth += 1
+    else if (char === close) {
+      depth -= 1
+      if (depth === 0) return i
+    }
+  }
+
+  return -1
+}
+
+// Vue hoists a static heading to createElementVNode("h1", null, "text", -1).
+function compiledVueHeading(source: string): string | null {
+  const match = source.match(/\(\s*"h1"\s*,\s*null\s*,\s*"((?:\\.|[^"\\])*)"/)
+
+  if (!match) return null
+
+  const text = decodeJsString(match[1]).replace(/\s+/g, ' ').trim()
+
+  return text.length > 0 ? text : null
+}
+
+// Minified React keeps the heading as jsx("h1", {children: ...}). String
+// children are the visible text; element types and class names are not.
+function reactChildStrings(source: string): string[] {
+  const out: string[] = []
+  const re = /children:(?:"((?:\\.|[^"\\])*)"|\[)/g
+  let match: RegExpExecArray | null
+
+  while ((match = re.exec(source))) {
+    if (match[1] !== undefined) {
+      out.push(decodeJsString(match[1]))
+      continue
+    }
+
+    const start = match.index + 'children:'.length
+    const end = matchDelim(source, start, '[', ']')
+
+    if (end < 0) continue
+
+    const arraySource = source.slice(start, end + 1)
+
+    if (arraySource.includes('children:')) continue
+
+    for (const part of arraySource.matchAll(/"((?:\\.|[^"\\])*)"/g)) {
+      out.push(decodeJsString(part[1]))
+    }
+  }
+
+  return out
+}
+
+function compiledReactHeading(source: string): string | null {
+  const marker = /\)\(\s*"h1"\s*,\s*\{/g
+  let match: RegExpExecArray | null
+
+  while ((match = marker.exec(source))) {
+    const start = match.index + match[0].length - 1
+    const end = matchDelim(source, start, '{', '}')
+
+    if (end < 0) continue
+
+    const text = reactChildStrings(source.slice(start, end + 1))
+      .join('')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    if (text.length > 0) return text
+  }
+
+  return null
+}
+
+// The new-tab document only. A sidebar page or the shared runtime can
+// contain a different h1, and that text is not what this page renders.
+function pageHeading(extPath: string, html: string): string | null {
+  const markup = html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+  const fromHtml = htmlHeading(markup)
+
+  if (fromHtml) return fromHtml
+
+  for (const match of html.matchAll(/<script\b[^>]*\bsrc=["']([^"']+)["']/gi)) {
+    const rel = match[1].replace(/^\//, '').split(/[?#]/)[0]
+
+    if (!rel.endsWith('.js') || rel.startsWith('shared/')) continue
+
+    const scriptPath = path.join(extPath, rel)
+
+    if (!fs.existsSync(scriptPath)) continue
+
+    const source = fs.readFileSync(scriptPath, 'utf8')
+    const heading = compiledVueHeading(source) || compiledReactHeading(source)
+
+    if (heading) return heading
+  }
+
+  return null
+}
+
 function phraseFromBuiltExtension(extPath: string, newtabPath: string): string {
   const htmlPath = path.join(extPath, newtabPath)
   const html = fs.readFileSync(htmlPath, 'utf8')
@@ -309,12 +454,20 @@ function phraseFromBuiltExtension(extPath: string, newtabPath: string): string {
     }
   }
 
+  // Shell phrases win, so the new-tab examples already on main keep the
+  // same text. A page with its own heading still has something visible.
+  const heading = pageHeading(extPath, html)
+
+  if (heading) return heading
+
   throw new Error(
-    `${extPath}: built new tab has no Welcome/Branded phrase to assert`
+    `${extPath}: built new tab has no Welcome/Branded phrase or page heading to assert`
   )
 }
 
 const newtabSourceSlugs: string[] = []
+const newtabUnreadable = new Set<string>()
+const newtabDiscoveryErrors: string[] = []
 const newtabExamples: Array<{
   name: string
   extPath: string
@@ -364,19 +517,33 @@ for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
       newtabPath,
       phrase: phraseFromBuiltExtension(extPath, newtabPath)
     })
-  } catch {}
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error)
+
+    newtabUnreadable.add(entry.name)
+    newtabDiscoveryErrors.push(`${entry.name}: ${message}`)
+  }
 }
 
 baseTest(
   'firefox: new tab sweep discovers every built new tab override',
   async () => {
     const discovered = new Set(newtabExamples.map((example) => example.name))
-    const missing = newtabSourceSlugs.filter((slug) => !discovered.has(slug))
+    const missing = newtabSourceSlugs.filter(
+      (slug) => !discovered.has(slug) && !newtabUnreadable.has(slug)
+    )
 
     baseTest
       .expect(
         missing,
         `Firefox new tab sweep is missing ${missing.join(', ') || 'nothing'}; build those examples for Firefox (dist/firefox) before running this suite`
+      )
+      .toEqual([])
+
+    baseTest
+      .expect(
+        newtabDiscoveryErrors,
+        `Firefox new tab sweep could not read a rendered phrase from:\n${newtabDiscoveryErrors.join('\n')}`
       )
       .toEqual([])
   }

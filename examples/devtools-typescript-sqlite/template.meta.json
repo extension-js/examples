@@ -1,0 +1,17 @@
+{
+  "title": "SQLite DevTools Panel",
+  "tags": ["devtools", "panel", "sqlite", "wasm", "typescript"],
+  "difficulty": "beginner",
+  "timeToFirstSuccessMinutes": 3,
+  "firstSteps": [
+    "Run npm install, then npm run dev",
+    "Open the browser devtools on any page, then pick the Requests tab",
+    "Run a SQL query against the requests table"
+  ],
+  "useCases": [
+    "Record the inspected page's network requests in SQLite",
+    "Query those requests with SQL from a devtools panel",
+    "Ship sql.js inside an extension without a CDN"
+  ],
+  "docsUrl": "https://extension.js.org/docs/languages-and-frameworks/typescript"
+}
