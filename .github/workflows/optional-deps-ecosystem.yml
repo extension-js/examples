@@ -52,13 +52,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             pm: pnpm
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             pm: npm
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             pm: yarn
-          - os: ubuntu-latest
+          - os: ubuntu-24.04
             pm: bun
           - os: macos-latest
             pm: pnpm
@@ -93,7 +93,7 @@ jobs:
   first-run-repros:
     if: github.event_name != 'pull_request' || github.base_ref == 'main'
     name: first-run reproducibility guards
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -121,7 +121,7 @@ jobs:
   install-vs-exec-matrix:
     if: github.event_name != 'pull_request' || github.base_ref == 'main'
     name: install vs exec (${{ matrix.pm }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
