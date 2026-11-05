@@ -87,8 +87,8 @@ then `artifacts:stage`. The stage step rewrites the raw generator output
 
 - To regenerate the committed artifacts locally, run `pnpm artifacts:prepare`.
   Never run `pnpm generate` alone for this: the raw generator writes the
-  pre-stage shape, and committing that regresses the paths that
-  templates.extension.dev and other consumers read.
+  pre-stage shape, and committing that regresses the paths that downstream
+  consumers read.
 - `pnpm generate` refuses to overwrite a staged `templates-meta.json` and
   points at the commands above. `pnpm generate:raw` bypasses the guard and is
   meant for the pipeline only.

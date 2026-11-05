@@ -314,10 +314,9 @@ export function renderStoreMd({manifest, packageJson, seed, slug}) {
     '# Store metadata',
     '',
     ...paragraph(
-      "Starter file generated from this template's manifest. STORE.md is what " +
-        '`extension_submit sync-listing` reads to fill the Chrome Web Store, ' +
-        'Firefox Add-ons, Edge Add-ons and Mac App Store listings, and what the ' +
-        'store preflights check. Every store asks for this material at ' +
+      "Starter file generated from this template's manifest. STORE.md holds " +
+        'the listing material for the Chrome Web Store, Firefox Add-ons, Edge ' +
+        'Add-ons and the Mac App Store. Every store asks for this material at ' +
         'submission time, so keep it current as the code changes instead of ' +
         'rewriting it at the end. A line marked TODO is a fact only the owner ' +
         'can supply: the file shows what is missing and never invents listing ' +
@@ -481,9 +480,8 @@ export function renderStoreMd({manifest, packageJson, seed, slug}) {
         '(replace both with the output of node --version and npm --version on ' +
         'the machine that built the upload): run npm install, then npx ' +
         'extension build --browser firefox. The upload is dist/firefox, byte ' +
-        'for byte. With the Firefox source archive setting on in extension.dev, ' +
-        'the platform attaches the repository at the built commit, so no ' +
-        'separate source zip is uploaded.'
+        'for byte. Upload the repository at the built commit as the source ' +
+        'archive.'
     ),
     '',
     '### Release notes',

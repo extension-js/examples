@@ -40,7 +40,7 @@ npx extension@latest create my-extension --template javascript
 
 | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/a9e2541a-96f0-4caa-9fc9-5fc5c3e901c8" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/b42c5330-9e2a-4045-99c3-1f7d264dfaf4" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/f19edff3-9005-4f50-b05c-fba615896a7f" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/ff64721d-d145-4213-930d-e70193f8d57e" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/15f1314a-aa65-4ce2-a3f3-cf53c4f730cf" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/de1082fd-7cf6-4202-8c12-a5c3cd3e5b42" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/8807efd9-93e5-4db5-a1d2-9ac524f7ecc2" width="70"> |
 | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-|                             ESNext<br>[Try out](https://templates.extension.dev/javascript)                             |                           TypeScript<br>[Try out](https://templates.extension.dev/typescript)                           |                           WASM<br>[Try out](https://templates.extension.dev/transformers-js)                            |                                React<br>[Try out](https://templates.extension.dev/react)                                |                                  Vue<br>[Try out](https://templates.extension.dev/vue)                                  |                               Svelte<br>[Try out](https://templates.extension.dev/svelte)                               |                               Preact<br>[Try out](https://templates.extension.dev/preact)                               |
+|                             ESNext<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/javascript)                             |                           TypeScript<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/typescript)                           |                           WASM<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/transformers-js)                            |                                React<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/react)                                |                                  Vue<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/vue)                                  |                               Svelte<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/svelte)                               |                               Preact<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/preact)                               |
 
 </div>
 
@@ -66,7 +66,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/javascript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/javascript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -89,7 +89,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -112,7 +112,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -135,7 +135,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -158,7 +158,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -181,7 +181,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -204,7 +204,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -227,7 +227,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-shadcn">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -250,7 +250,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/ai-chatgpt">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-chatgpt">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -273,7 +273,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/ai-claude">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-claude">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -296,7 +296,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/ai-gemini">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-gemini">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -319,7 +319,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/ai-perplexity">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-perplexity">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -342,7 +342,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-antd">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-antd">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -365,7 +365,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/playwright">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/playwright">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -388,7 +388,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/transformers-js">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/transformers-js">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -411,7 +411,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-monorepo-turborepo">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turborepo">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -434,7 +434,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/sidebar-monorepo-nx">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-nx">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -459,7 +459,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/action">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/action">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -482,7 +482,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/action-locales">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/action-locales">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -507,7 +507,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -530,7 +530,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -553,7 +553,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -576,7 +576,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -599,7 +599,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-typescript-sqlite">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-typescript-sqlite">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -622,7 +622,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -645,7 +645,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/devtools-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -670,7 +670,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -693,7 +693,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-css-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-css-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -716,7 +716,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-custom-font">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-custom-font">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -739,7 +739,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-env">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-env">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -762,7 +762,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-less">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-less">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -785,7 +785,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-less-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-less-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -808,7 +808,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-main-world">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-main-world">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -831,7 +831,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-multi-one-entry">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -854,7 +854,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-multi-three-entries">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -877,7 +877,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -900,7 +900,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -923,7 +923,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-sass">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-sass">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -946,7 +946,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-sass-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-sass-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -969,7 +969,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -992,7 +992,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1015,7 +1015,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/content-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1040,7 +1040,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1063,7 +1063,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-browser-flags">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-browser-flags">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1086,7 +1086,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-config-eslint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-eslint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1109,7 +1109,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-config-prettier">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-prettier">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1132,7 +1132,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-config-stylelint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-stylelint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1155,7 +1155,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-crypto">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-crypto">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1178,7 +1178,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-env">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-env">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1201,7 +1201,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-less">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-less">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1224,7 +1224,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1247,7 +1247,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1270,7 +1270,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-react-router">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-react-router">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1293,7 +1293,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-sass">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-sass">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1316,7 +1316,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1339,7 +1339,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1362,7 +1362,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/newtab-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1387,7 +1387,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/special-folders-pages">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/special-folders-pages">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1410,7 +1410,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://templates.extension.dev/special-folders-scripts">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/special-folders-scripts">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1435,7 +1435,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://templates.extension.dev/init">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/init">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
