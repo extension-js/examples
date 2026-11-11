@@ -441,11 +441,12 @@ const OVERRIDES = {
   'content-main-world': {
     title: 'Content Script in MAIN World Example',
     extra:
-      "Loads the content script in the page's **MAIN world** (Chromium-only). " +
-      'Useful when your script needs direct access to page-side globals or ' +
-      'classes that the isolated world cannot reach. Firefox does not ' +
-      'support MAIN-world content scripts, so this template is gated to ' +
-      'Chromium targets.'
+      "Loads the content script in the page's **MAIN world**, which Chrome " +
+      '111, Firefox 128 and Safari 18 or later all support. Useful when ' +
+      'your script needs direct access to page-side globals or classes ' +
+      'that the isolated world cannot reach. A MAIN world script has no ' +
+      'extension APIs, so the template pairs it with isolated scripts ' +
+      'that bridge to the extension.'
   },
   'content-custom-font': {
     title: 'Custom Fonts Content Script Example',
