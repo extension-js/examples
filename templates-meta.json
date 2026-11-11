@@ -1,6 +1,6 @@
 {
   "version": "2",
-  "sourceRepo": "extension-js/examples",
+  "sourceRepo": "extension-js/templates",
   "generatorVersion": "2",
   "commit": "main",
   "generatedAt": "2026-11-11T17:15:50.577Z",
@@ -64,7 +64,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/action/screenshot.png",
       "icon": "examples/action/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/action"
     },
     {
       "slug": "action-locales",
@@ -127,7 +127,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/action-locales/screenshot.png",
       "icon": "examples/action-locales/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/action-locales"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/action-locales"
     },
     {
       "slug": "ai-chatgpt",
@@ -220,7 +220,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/ai-chatgpt/screenshot.png",
       "icon": "examples/ai-chatgpt/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/ai-chatgpt"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/ai-chatgpt"
     },
     {
       "slug": "ai-claude",
@@ -312,7 +312,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/ai-claude/screenshot.png",
       "icon": "examples/ai-claude/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/ai-claude"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/ai-claude"
     },
     {
       "slug": "ai-gemini",
@@ -404,7 +404,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/ai-gemini/screenshot.png",
       "icon": "examples/ai-gemini/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/ai-gemini"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/ai-gemini"
     },
     {
       "slug": "ai-perplexity",
@@ -496,7 +496,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/ai-perplexity/screenshot.png",
       "icon": "examples/ai-perplexity/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/ai-perplexity"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/ai-perplexity"
     },
     {
       "slug": "content",
@@ -564,7 +564,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content/screenshot.png",
       "icon": "examples/content/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content"
     },
     {
       "slug": "content-css-modules",
@@ -624,7 +624,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-css-modules/screenshot.png",
       "icon": "examples/content-css-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-css-modules"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-css-modules"
     },
     {
       "slug": "content-custom-font",
@@ -694,7 +694,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-custom-font/screenshot.png",
       "icon": "examples/content-custom-font/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-custom-font"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-custom-font"
     },
     {
       "slug": "content-env",
@@ -754,7 +754,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-env/screenshot.png",
       "icon": "examples/content-env/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-env"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-env"
     },
     {
       "slug": "content-less",
@@ -821,7 +821,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-less/screenshot.png",
       "icon": "examples/content-less/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-less"
     },
     {
       "slug": "content-less-modules",
@@ -888,7 +888,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-less-modules/screenshot.png",
       "icon": "examples/content-less-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-less-modules"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-less-modules"
     },
     {
       "slug": "content-main-world",
@@ -971,7 +971,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-main-world/screenshot.png",
       "icon": "examples/content-main-world/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-main-world"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-main-world"
     },
     {
       "slug": "content-multi-one-entry",
@@ -1042,7 +1042,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-multi-one-entry/screenshot.png",
       "icon": "examples/content-multi-one-entry/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-multi-one-entry"
     },
     {
       "slug": "content-multi-three-entries",
@@ -1113,7 +1113,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-multi-three-entries/screenshot.png",
       "icon": "examples/content-multi-three-entries/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-multi-three-entries"
     },
     {
       "slug": "content-preact",
@@ -1197,7 +1197,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-preact/screenshot.png",
       "icon": "examples/content-preact/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-preact"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-preact"
     },
     {
       "slug": "content-react",
@@ -1282,7 +1282,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-react/screenshot.png",
       "icon": "examples/content-react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-react"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-react"
     },
     {
       "slug": "content-sass",
@@ -1349,7 +1349,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-sass/screenshot.png",
       "icon": "examples/content-sass/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-sass"
     },
     {
       "slug": "content-sass-modules",
@@ -1418,7 +1418,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-sass-modules/screenshot.png",
       "icon": "examples/content-sass-modules/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-sass-modules"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-sass-modules"
     },
     {
       "slug": "content-svelte",
@@ -1504,7 +1504,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-svelte/screenshot.png",
       "icon": "examples/content-svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-svelte"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-svelte"
     },
     {
       "slug": "content-typescript",
@@ -1572,7 +1572,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-typescript/screenshot.png",
       "icon": "examples/content-typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-typescript"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-typescript"
     },
     {
       "slug": "content-vue",
@@ -1658,7 +1658,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/content-vue/screenshot.png",
       "icon": "examples/content-vue/src/images/logo.svg",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/content-vue"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/content-vue"
     },
     {
       "slug": "devtools",
@@ -1720,7 +1720,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools/screenshot.png",
       "icon": "examples/devtools/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools"
     },
     {
       "slug": "devtools-preact",
@@ -1783,7 +1783,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-preact/screenshot.png",
       "icon": "examples/devtools-preact/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-preact"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-preact"
     },
     {
       "slug": "devtools-react",
@@ -1846,7 +1846,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-react/screenshot.png",
       "icon": "examples/devtools-react/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-react"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-react"
     },
     {
       "slug": "devtools-svelte",
@@ -1910,7 +1910,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-svelte/screenshot.png",
       "icon": "examples/devtools-svelte/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-svelte"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-svelte"
     },
     {
       "slug": "devtools-typescript",
@@ -1972,7 +1972,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-typescript/screenshot.png",
       "icon": "examples/devtools-typescript/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-typescript"
     },
     {
       "slug": "devtools-typescript-sqlite",
@@ -2033,7 +2033,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-typescript-sqlite/screenshot.png",
       "icon": "examples/devtools-typescript-sqlite/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-typescript-sqlite"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-typescript-sqlite"
     },
     {
       "slug": "devtools-vue",
@@ -2097,7 +2097,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/devtools-vue/screenshot.png",
       "icon": "examples/devtools-vue/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/devtools-vue"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/devtools-vue"
     },
     {
       "slug": "init",
@@ -2152,7 +2152,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/init/screenshot.png",
       "icon": "examples/init/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/init"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/init"
     },
     {
       "slug": "javascript",
@@ -2222,7 +2222,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/javascript/screenshot.png",
       "icon": "examples/javascript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/javascript"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/javascript"
     },
     {
       "slug": "newtab",
@@ -2283,7 +2283,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab/screenshot.png",
       "icon": "examples/newtab/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab"
     },
     {
       "slug": "newtab-browser-flags",
@@ -2353,7 +2353,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-browser-flags/screenshot.png",
       "icon": "examples/newtab-browser-flags/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-browser-flags"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-browser-flags"
     },
     {
       "slug": "newtab-config-eslint",
@@ -2418,7 +2418,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-config-eslint/screenshot.png",
       "icon": "examples/newtab-config-eslint/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-config-eslint"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-config-eslint"
     },
     {
       "slug": "newtab-config-prettier",
@@ -2479,7 +2479,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-config-prettier/screenshot.png",
       "icon": "examples/newtab-config-prettier/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-config-prettier"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-config-prettier"
     },
     {
       "slug": "newtab-config-stylelint",
@@ -2540,7 +2540,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-config-stylelint/screenshot.png",
       "icon": "examples/newtab-config-stylelint/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-config-stylelint"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-config-stylelint"
     },
     {
       "slug": "newtab-crypto",
@@ -2601,7 +2601,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-crypto/screenshot.png",
       "icon": "examples/newtab-crypto/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-crypto"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-crypto"
     },
     {
       "slug": "newtab-env",
@@ -2662,7 +2662,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-env/screenshot.png",
       "icon": "examples/newtab-env/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-env"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-env"
     },
     {
       "slug": "newtab-less",
@@ -2723,7 +2723,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-less/screenshot.png",
       "icon": "examples/newtab-less/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-less"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-less"
     },
     {
       "slug": "newtab-preact",
@@ -2785,7 +2785,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-preact/screenshot.png",
       "icon": "examples/newtab-preact/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-preact"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-preact"
     },
     {
       "slug": "newtab-react",
@@ -2847,7 +2847,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-react/screenshot.png",
       "icon": "examples/newtab-react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-react"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-react"
     },
     {
       "slug": "newtab-react-router",
@@ -2909,7 +2909,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-react-router/screenshot.png",
       "icon": "examples/newtab-react-router/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-react-router"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-react-router"
     },
     {
       "slug": "newtab-sass",
@@ -2970,7 +2970,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-sass/screenshot.png",
       "icon": "examples/newtab-sass/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-sass"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-sass"
     },
     {
       "slug": "newtab-svelte",
@@ -3032,7 +3032,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-svelte/screenshot.png",
       "icon": "examples/newtab-svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-svelte"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-svelte"
     },
     {
       "slug": "newtab-typescript",
@@ -3093,7 +3093,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-typescript/screenshot.png",
       "icon": "examples/newtab-typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-typescript"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-typescript"
     },
     {
       "slug": "newtab-vue",
@@ -3156,7 +3156,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/newtab-vue/screenshot.png",
       "icon": "examples/newtab-vue/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/newtab-vue"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/newtab-vue"
     },
     {
       "slug": "playwright",
@@ -3227,7 +3227,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/playwright/screenshot.png",
       "icon": "examples/playwright/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/playwright"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/playwright"
     },
     {
       "slug": "preact",
@@ -3299,7 +3299,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/preact/screenshot.png",
       "icon": "examples/preact/public/logo.svg",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/preact"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/preact"
     },
     {
       "slug": "react",
@@ -3369,7 +3369,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/react/screenshot.png",
       "icon": "examples/react/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/react"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/react"
     },
     {
       "slug": "sidebar",
@@ -3436,7 +3436,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/sidebar/screenshot.png",
       "icon": "examples/sidebar/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/sidebar"
     },
     {
       "slug": "sidebar-antd",
@@ -3505,7 +3505,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/sidebar-antd/screenshot.png",
       "icon": "examples/sidebar-antd/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-antd"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/sidebar-antd"
     },
     {
       "slug": "sidebar-monorepo-nx",
@@ -3575,7 +3575,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/sidebar-monorepo-nx/screenshot.png",
       "icon": null,
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-nx"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/sidebar-monorepo-nx"
     },
     {
       "slug": "sidebar-monorepo-turborepo",
@@ -3645,7 +3645,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/sidebar-monorepo-turborepo/screenshot.png",
       "icon": null,
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turborepo"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/sidebar-monorepo-turborepo"
     },
     {
       "slug": "sidebar-shadcn",
@@ -3723,7 +3723,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/sidebar-shadcn/screenshot.png",
       "icon": "examples/sidebar-shadcn/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/sidebar-shadcn"
     },
     {
       "slug": "special-folders-pages",
@@ -3790,7 +3790,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/special-folders-pages/screenshot.png",
       "icon": "examples/special-folders-pages/src/images/icon-128.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-pages"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/special-folders-pages"
     },
     {
       "slug": "special-folders-scripts",
@@ -3853,7 +3853,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/special-folders-scripts/screenshot.png",
       "icon": "examples/special-folders-scripts/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/special-folders-scripts"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/special-folders-scripts"
     },
     {
       "slug": "svelte",
@@ -3924,7 +3924,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/svelte/screenshot.png",
       "icon": "examples/svelte/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/svelte"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/svelte"
     },
     {
       "slug": "transformers-js",
@@ -3993,7 +3993,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/transformers-js/screenshot.png",
       "icon": "examples/transformers-js/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/transformers-js"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/transformers-js"
     },
     {
       "slug": "typescript",
@@ -4064,7 +4064,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/typescript/screenshot.png",
       "icon": "examples/typescript/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/typescript"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/typescript"
     },
     {
       "slug": "vue",
@@ -4136,7 +4136,7 @@
       "browsers": ["chrome", "edge", "firefox"],
       "screenshot": "examples/vue/screenshot.png",
       "icon": "examples/vue/src/images/icon.png",
-      "repositoryUrl": "https://github.com/extension-js/examples/tree/main/examples/vue"
+      "repositoryUrl": "https://github.com/extension-js/templates/tree/main/examples/vue"
     }
   ]
 }
