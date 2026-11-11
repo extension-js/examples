@@ -28,12 +28,9 @@ function readFileIfExists(filePath: string): string | null {
 // Auto-discover content examples with Firefox builds
 
 const contentExamples: Array<{name: string; extPath: string}> = []
-// MAIN world content scripts are Chromium-only; skip them in Firefox
-const FIREFOX_SKIP = new Set(['content-main-world'])
 
 for (const entry of fs.readdirSync(__dirname, {withFileTypes: true})) {
   if (!entry.isDirectory() || !entry.name.startsWith('content')) continue
-  if (FIREFOX_SKIP.has(entry.name)) continue
 
   const exampleDir = path.join(__dirname, entry.name)
   const extPath = resolveBuiltFirefoxExtensionPath(exampleDir)
