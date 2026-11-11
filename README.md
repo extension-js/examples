@@ -1,7 +1,7 @@
 [powered-image]: https://img.shields.io/badge/Powered%20by-Extension.js-0971fe?logo=extension.js&logoColor=white&style=flat
 [powered-url]: https://extension.js.org
-[action-image]: https://img.shields.io/github/actions/workflow/status/extension-js/examples/ci.yml?branch=main&label=CI&logo=github&color=2ecc40&style=flat
-[action-url]: https://github.com/extension-js/examples/actions
+[action-image]: https://img.shields.io/github/actions/workflow/status/extension-js/templates/ci.yml?branch=main&label=CI&logo=github&color=2ecc40&style=flat
+[action-url]: https://github.com/extension-js/templates/actions
 [chromium-image]: https://img.shields.io/badge/Chromium-Compatible-4285F4?logo=googlechrome&logoColor=white&style=flat
 [chromium-url]: https://www.chromium.org
 [firefox-image]: https://img.shields.io/badge/Firefox-Compatible-FF7139?logo=firefox-browser&logoColor=white&style=flat
@@ -22,7 +22,7 @@ This repository contains browser extension examples built with Extension.js. Eac
 The examples ship without npm scripts, so run Extension.js directly from the example directory. Run `npm install` first when the example declares dependencies:
 
 ```bash
-git clone https://github.com/extension-js/examples.git
+git clone https://github.com/extension-js/templates.git
 cd examples/examples/javascript
 npm install
 npx extension@latest dev .
@@ -40,7 +40,7 @@ npx extension@latest create my-extension --template javascript
 
 | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/a9e2541a-96f0-4caa-9fc9-5fc5c3e901c8" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/b42c5330-9e2a-4045-99c3-1f7d264dfaf4" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/f19edff3-9005-4f50-b05c-fba615896a7f" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/ff64721d-d145-4213-930d-e70193f8d57e" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/15f1314a-aa65-4ce2-a3f3-cf53c4f730cf" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/de1082fd-7cf6-4202-8c12-a5c3cd3e5b42" width="70"> | <img src="https://github.com/cezaraugusto/extension.js/assets/4672033/8807efd9-93e5-4db5-a1d2-9ac524f7ecc2" width="70"> |
 | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
-|                             ESNext<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/javascript)                             |                           TypeScript<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/typescript)                           |                           WASM<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/transformers-js)                            |                                React<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/react)                                |                                  Vue<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/vue)                                  |                               Svelte<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/svelte)                               |                               Preact<br>[Try out](https://github.com/extension-js/examples/tree/main/examples/preact)                               |
+|                             ESNext<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/javascript)                             |                           TypeScript<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/typescript)                           |                           WASM<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/transformers-js)                            |                                React<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/react)                                |                                  Vue<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/vue)                                  |                               Svelte<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/svelte)                               |                               Preact<br>[Try out](https://github.com/extension-js/templates/tree/main/examples/preact)                               |
 
 </div>
 
@@ -56,7 +56,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/javascript/README.md">examples/javascript</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/javascript/README.md">examples/javascript</a></td>
       <td rowspan="5"><img src="./examples/javascript/screenshot.png" alt="javascript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -66,7 +66,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/javascript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/javascript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -79,7 +79,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/react/README.md">examples/react</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/react/README.md">examples/react</a></td>
       <td rowspan="5"><img src="./examples/react/screenshot.png" alt="react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -89,7 +89,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -102,7 +102,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/preact/README.md">examples/preact</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/preact/README.md">examples/preact</a></td>
       <td rowspan="5"><img src="./examples/preact/screenshot.png" alt="preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -112,7 +112,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -125,7 +125,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/svelte/README.md">examples/svelte</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/svelte/README.md">examples/svelte</a></td>
       <td rowspan="5"><img src="./examples/svelte/screenshot.png" alt="svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -135,7 +135,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -148,7 +148,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/vue/README.md">examples/vue</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/vue/README.md">examples/vue</a></td>
       <td rowspan="5"><img src="./examples/vue/screenshot.png" alt="vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -158,7 +158,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -171,7 +171,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/typescript/README.md">examples/typescript</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/typescript/README.md">examples/typescript</a></td>
       <td rowspan="5"><img src="./examples/typescript/screenshot.png" alt="typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -181,7 +181,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -194,7 +194,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar/README.md">examples/sidebar</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/sidebar/README.md">examples/sidebar</a></td>
       <td rowspan="5"><img src="./examples/sidebar/screenshot.png" alt="sidebar screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -204,7 +204,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/sidebar">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -217,7 +217,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-shadcn/README.md">examples/sidebar-shadcn</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/sidebar-shadcn/README.md">examples/sidebar-shadcn</a></td>
       <td rowspan="5"><img src="./examples/sidebar-shadcn/screenshot.png" alt="sidebar-shadcn screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -227,7 +227,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-shadcn">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/sidebar-shadcn">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -240,7 +240,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-chatgpt/README.md">examples/ai-chatgpt</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/ai-chatgpt/README.md">examples/ai-chatgpt</a></td>
       <td rowspan="5"><img src="./examples/ai-chatgpt/screenshot.png" alt="ai-chatgpt screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -250,7 +250,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-chatgpt">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/ai-chatgpt">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -263,7 +263,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-claude/README.md">examples/ai-claude</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/ai-claude/README.md">examples/ai-claude</a></td>
       <td rowspan="5"><img src="./examples/ai-claude/screenshot.png" alt="ai-claude screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -273,7 +273,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-claude">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/ai-claude">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -286,7 +286,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-gemini/README.md">examples/ai-gemini</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/ai-gemini/README.md">examples/ai-gemini</a></td>
       <td rowspan="5"><img src="./examples/ai-gemini/screenshot.png" alt="ai-gemini screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -296,7 +296,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-gemini">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/ai-gemini">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -309,7 +309,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/ai-perplexity/README.md">examples/ai-perplexity</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/ai-perplexity/README.md">examples/ai-perplexity</a></td>
       <td rowspan="5"><img src="./examples/ai-perplexity/screenshot.png" alt="ai-perplexity screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -319,7 +319,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/ai-perplexity">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/ai-perplexity">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -332,7 +332,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-antd/README.md">examples/sidebar-antd</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/sidebar-antd/README.md">examples/sidebar-antd</a></td>
       <td rowspan="5"><img src="./examples/sidebar-antd/screenshot.png" alt="sidebar-antd screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -342,7 +342,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-antd">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/sidebar-antd">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -355,7 +355,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/playwright/README.md">examples/playwright</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/playwright/README.md">examples/playwright</a></td>
       <td rowspan="5"><img src="./examples/playwright/screenshot.png" alt="playwright screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -365,7 +365,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/playwright">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/playwright">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -378,7 +378,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/transformers-js/README.md">examples/transformers-js</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/transformers-js/README.md">examples/transformers-js</a></td>
       <td rowspan="5"><img src="./examples/transformers-js/screenshot.png" alt="transformers-js screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -388,7 +388,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/transformers-js">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/transformers-js">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -401,7 +401,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-turborepo/README.md">examples/sidebar-monorepo-turborepo</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/sidebar-monorepo-turborepo/README.md">examples/sidebar-monorepo-turborepo</a></td>
       <td rowspan="5"><img src="./examples/sidebar-monorepo-turborepo/screenshot.png" alt="sidebar-monorepo-turborepo screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -411,7 +411,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-turborepo">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/sidebar-monorepo-turborepo">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -424,7 +424,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/sidebar-monorepo-nx/README.md">examples/sidebar-monorepo-nx</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/sidebar-monorepo-nx/README.md">examples/sidebar-monorepo-nx</a></td>
       <td rowspan="5"><img src="./examples/sidebar-monorepo-nx/screenshot.png" alt="sidebar-monorepo-nx screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -434,7 +434,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/sidebar-monorepo-nx">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/sidebar-monorepo-nx">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -449,7 +449,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/action/README.md">examples/action</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/action/README.md">examples/action</a></td>
       <td rowspan="5"><img src="./examples/action/screenshot.png" alt="action screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -459,7 +459,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/action">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/action">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -472,7 +472,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/action-locales/README.md">examples/action-locales</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/action-locales/README.md">examples/action-locales</a></td>
       <td rowspan="5"><img src="./examples/action-locales/screenshot.png" alt="action-locales screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -482,7 +482,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/action-locales">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/action-locales">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -497,7 +497,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools/README.md">examples/devtools</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools/README.md">examples/devtools</a></td>
       <td rowspan="5"><img src="./examples/devtools/screenshot.png" alt="devtools screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -507,7 +507,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -520,7 +520,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-react/README.md">examples/devtools-react</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-react/README.md">examples/devtools-react</a></td>
       <td rowspan="5"><img src="./examples/devtools-react/screenshot.png" alt="devtools-react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -530,7 +530,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -543,7 +543,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-preact/README.md">examples/devtools-preact</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-preact/README.md">examples/devtools-preact</a></td>
       <td rowspan="5"><img src="./examples/devtools-preact/screenshot.png" alt="devtools-preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -553,7 +553,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -566,7 +566,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-typescript/README.md">examples/devtools-typescript</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-typescript/README.md">examples/devtools-typescript</a></td>
       <td rowspan="5"><img src="./examples/devtools-typescript/screenshot.png" alt="devtools-typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -576,7 +576,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -589,7 +589,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-typescript-sqlite/README.md">examples/devtools-typescript-sqlite</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-typescript-sqlite/README.md">examples/devtools-typescript-sqlite</a></td>
       <td rowspan="5"><img src="./examples/devtools-typescript-sqlite/screenshot.png" alt="devtools-typescript-sqlite screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -599,7 +599,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-typescript-sqlite">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-typescript-sqlite">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -612,7 +612,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-svelte/README.md">examples/devtools-svelte</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-svelte/README.md">examples/devtools-svelte</a></td>
       <td rowspan="5"><img src="./examples/devtools-svelte/screenshot.png" alt="devtools-svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -622,7 +622,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -635,7 +635,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/devtools-vue/README.md">examples/devtools-vue</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/devtools-vue/README.md">examples/devtools-vue</a></td>
       <td rowspan="5"><img src="./examples/devtools-vue/screenshot.png" alt="devtools-vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -645,7 +645,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/devtools-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/devtools-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -660,7 +660,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content/README.md">examples/content</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content/README.md">examples/content</a></td>
       <td rowspan="5"><img src="./examples/content/screenshot.png" alt="content screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -670,7 +670,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -683,7 +683,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-css-modules/README.md">examples/content-css-modules</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-css-modules/README.md">examples/content-css-modules</a></td>
       <td rowspan="5"><img src="./examples/content-css-modules/screenshot.png" alt="content-css-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -693,7 +693,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-css-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-css-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -706,7 +706,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-custom-font/README.md">examples/content-custom-font</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-custom-font/README.md">examples/content-custom-font</a></td>
       <td rowspan="5"><img src="./examples/content-custom-font/screenshot.png" alt="content-custom-font screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -716,7 +716,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-custom-font">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-custom-font">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -729,7 +729,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-env/README.md">examples/content-env</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-env/README.md">examples/content-env</a></td>
       <td rowspan="5"><img src="./examples/content-env/screenshot.png" alt="content-env screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -739,7 +739,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-env">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-env">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -752,7 +752,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-less/README.md">examples/content-less</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-less/README.md">examples/content-less</a></td>
       <td rowspan="5"><img src="./examples/content-less/screenshot.png" alt="content-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -762,7 +762,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-less">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-less">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -775,7 +775,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-less-modules/README.md">examples/content-less-modules</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-less-modules/README.md">examples/content-less-modules</a></td>
       <td rowspan="5"><img src="./examples/content-less-modules/screenshot.png" alt="content-less-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -785,7 +785,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-less-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-less-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -798,7 +798,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-main-world/README.md">examples/content-main-world</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-main-world/README.md">examples/content-main-world</a></td>
       <td rowspan="5"><img src="./examples/content-main-world/screenshot.png" alt="content-main-world screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -808,7 +808,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-main-world">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-main-world">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -821,7 +821,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-multi-one-entry/README.md">examples/content-multi-one-entry</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-multi-one-entry/README.md">examples/content-multi-one-entry</a></td>
       <td rowspan="5"><img src="./examples/content-multi-one-entry/screenshot.png" alt="content-multi-one-entry screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -831,7 +831,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-multi-one-entry">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-multi-one-entry">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -844,7 +844,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-multi-three-entries/README.md">examples/content-multi-three-entries</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-multi-three-entries/README.md">examples/content-multi-three-entries</a></td>
       <td rowspan="5"><img src="./examples/content-multi-three-entries/screenshot.png" alt="content-multi-three-entries screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -854,7 +854,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-multi-three-entries">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-multi-three-entries">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -867,7 +867,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-preact/README.md">examples/content-preact</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-preact/README.md">examples/content-preact</a></td>
       <td rowspan="5"><img src="./examples/content-preact/screenshot.png" alt="content-preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -877,7 +877,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -890,7 +890,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-react/README.md">examples/content-react</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-react/README.md">examples/content-react</a></td>
       <td rowspan="5"><img src="./examples/content-react/screenshot.png" alt="content-react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -900,7 +900,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -913,7 +913,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-sass/README.md">examples/content-sass</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-sass/README.md">examples/content-sass</a></td>
       <td rowspan="5"><img src="./examples/content-sass/screenshot.png" alt="content-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -923,7 +923,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-sass">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-sass">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -936,7 +936,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-sass-modules/README.md">examples/content-sass-modules</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-sass-modules/README.md">examples/content-sass-modules</a></td>
       <td rowspan="5"><img src="./examples/content-sass-modules/screenshot.png" alt="content-sass-modules screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -946,7 +946,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-sass-modules">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-sass-modules">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -959,7 +959,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-svelte/README.md">examples/content-svelte</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-svelte/README.md">examples/content-svelte</a></td>
       <td rowspan="5"><img src="./examples/content-svelte/screenshot.png" alt="content-svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -969,7 +969,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -982,7 +982,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-typescript/README.md">examples/content-typescript</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-typescript/README.md">examples/content-typescript</a></td>
       <td rowspan="5"><img src="./examples/content-typescript/screenshot.png" alt="content-typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -992,7 +992,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1005,7 +1005,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/content-vue/README.md">examples/content-vue</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/content-vue/README.md">examples/content-vue</a></td>
       <td rowspan="5"><img src="./examples/content-vue/screenshot.png" alt="content-vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1015,7 +1015,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/content-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/content-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1030,7 +1030,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab/README.md">examples/newtab</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab/README.md">examples/newtab</a></td>
       <td rowspan="5"><img src="./examples/newtab/screenshot.png" alt="newtab screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1040,7 +1040,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1053,7 +1053,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-browser-flags/README.md">examples/newtab-browser-flags</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-browser-flags/README.md">examples/newtab-browser-flags</a></td>
       <td rowspan="5"><img src="./examples/newtab-browser-flags/screenshot.png" alt="newtab-browser-flags screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1063,7 +1063,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-browser-flags">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-browser-flags">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1076,7 +1076,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-eslint/README.md">examples/newtab-config-eslint</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-config-eslint/README.md">examples/newtab-config-eslint</a></td>
       <td rowspan="5"><img src="./examples/newtab-config-eslint/screenshot.png" alt="newtab-config-eslint screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1086,7 +1086,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-eslint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-config-eslint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1099,7 +1099,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-prettier/README.md">examples/newtab-config-prettier</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-config-prettier/README.md">examples/newtab-config-prettier</a></td>
       <td rowspan="5"><img src="./examples/newtab-config-prettier/screenshot.png" alt="newtab-config-prettier screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1109,7 +1109,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-prettier">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-config-prettier">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1122,7 +1122,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-config-stylelint/README.md">examples/newtab-config-stylelint</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-config-stylelint/README.md">examples/newtab-config-stylelint</a></td>
       <td rowspan="5"><img src="./examples/newtab-config-stylelint/screenshot.png" alt="newtab-config-stylelint screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1132,7 +1132,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-config-stylelint">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-config-stylelint">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1145,7 +1145,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-crypto/README.md">examples/newtab-crypto</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-crypto/README.md">examples/newtab-crypto</a></td>
       <td rowspan="5"><img src="./examples/newtab-crypto/screenshot.png" alt="newtab-crypto screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1155,7 +1155,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-crypto">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-crypto">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1168,7 +1168,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-env/README.md">examples/newtab-env</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-env/README.md">examples/newtab-env</a></td>
       <td rowspan="5"><img src="./examples/newtab-env/screenshot.png" alt="newtab-env screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1178,7 +1178,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-env">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-env">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1191,7 +1191,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-less/README.md">examples/newtab-less</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-less/README.md">examples/newtab-less</a></td>
       <td rowspan="5"><img src="./examples/newtab-less/screenshot.png" alt="newtab-less screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1201,7 +1201,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-less">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-less">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1214,7 +1214,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-preact/README.md">examples/newtab-preact</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-preact/README.md">examples/newtab-preact</a></td>
       <td rowspan="5"><img src="./examples/newtab-preact/screenshot.png" alt="newtab-preact screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1224,7 +1224,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-preact">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-preact">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1237,7 +1237,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-react/README.md">examples/newtab-react</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-react/README.md">examples/newtab-react</a></td>
       <td rowspan="5"><img src="./examples/newtab-react/screenshot.png" alt="newtab-react screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1247,7 +1247,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-react">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-react">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1260,7 +1260,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-react-router/README.md">examples/newtab-react-router</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-react-router/README.md">examples/newtab-react-router</a></td>
       <td rowspan="5"><img src="./examples/newtab-react-router/screenshot.png" alt="newtab-react-router screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1270,7 +1270,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-react-router">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-react-router">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1283,7 +1283,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-sass/README.md">examples/newtab-sass</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-sass/README.md">examples/newtab-sass</a></td>
       <td rowspan="5"><img src="./examples/newtab-sass/screenshot.png" alt="newtab-sass screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1293,7 +1293,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-sass">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-sass">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1306,7 +1306,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-svelte/README.md">examples/newtab-svelte</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-svelte/README.md">examples/newtab-svelte</a></td>
       <td rowspan="5"><img src="./examples/newtab-svelte/screenshot.png" alt="newtab-svelte screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1316,7 +1316,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-svelte">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-svelte">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1329,7 +1329,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-typescript/README.md">examples/newtab-typescript</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-typescript/README.md">examples/newtab-typescript</a></td>
       <td rowspan="5"><img src="./examples/newtab-typescript/screenshot.png" alt="newtab-typescript screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1339,7 +1339,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-typescript">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-typescript">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1352,7 +1352,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/newtab-vue/README.md">examples/newtab-vue</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/newtab-vue/README.md">examples/newtab-vue</a></td>
       <td rowspan="5"><img src="./examples/newtab-vue/screenshot.png" alt="newtab-vue screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1362,7 +1362,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/newtab-vue">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/newtab-vue">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1377,7 +1377,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/special-folders-pages/README.md">examples/special-folders-pages</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/special-folders-pages/README.md">examples/special-folders-pages</a></td>
       <td rowspan="5"><img src="./examples/special-folders-pages/screenshot.png" alt="special-folders-pages screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1387,7 +1387,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/special-folders-pages">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/special-folders-pages">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1400,7 +1400,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/special-folders-scripts/README.md">examples/special-folders-scripts</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/special-folders-scripts/README.md">examples/special-folders-scripts</a></td>
       <td rowspan="5"><img src="./examples/special-folders-scripts/screenshot.png" alt="special-folders-scripts screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1410,7 +1410,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">Yes</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/special-folders-scripts">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/special-folders-scripts">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>
@@ -1425,7 +1425,7 @@ npx extension@latest create my-extension --template javascript
   <table>
     <tr>
       <td>Repository</td>
-      <td align="right"><a href="https://github.com/extension-js/examples/blob/main/examples/init/README.md">examples/init</a></td>
+      <td align="right"><a href="https://github.com/extension-js/templates/blob/main/examples/init/README.md">examples/init</a></td>
       <td rowspan="5"><img src="./examples/init/screenshot.png" alt="init screenshot" width="360" /></td>
     </tr>
     <tr><td>Version</td><td align="right">1.0.0</td></tr>
@@ -1435,7 +1435,7 @@ npx extension@latest create my-extension --template javascript
     <tr>
       <td>Background included</td>
       <td align="right">No</td>
-      <td align="center"><a href="https://github.com/extension-js/examples/tree/main/examples/init">Start with this template &#8599;</a></td>
+      <td align="center"><a href="https://github.com/extension-js/templates/tree/main/examples/init">Start with this template &#8599;</a></td>
     </tr>
   </table>
 </details>

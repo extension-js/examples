@@ -14,7 +14,7 @@ const outFile = path.join(repoRoot, 'templates-meta.json')
 const outDtsFile = path.join(repoRoot, 'templates-meta.d.ts')
 const artifactsIndexPath = path.join(repoRoot, 'artifacts', 'index.json')
 const RELEASE_TAG = process.env.RELEASE_TAG || 'nightly'
-const REPO = process.env.GITHUB_REPOSITORY || 'extension-js/examples'
+const REPO = process.env.GITHUB_REPOSITORY || 'extension-js/templates'
 const templatesSchemaPath = path.join(
   repoRoot,
   'schemas',
@@ -948,7 +948,7 @@ function main() {
 
   const templatesMetadata = {
     version: '2',
-    sourceRepo: 'extension-js/examples',
+    sourceRepo: 'extension-js/templates',
     generatorVersion: '2',
     commit: getGitCommit(),
     generatedAt: new Date().toISOString(),

@@ -68,7 +68,7 @@ function main() {
         files: (template.files || []).map((filePath) =>
           normalizeTemplatePath(slug, filePath)
         ),
-        repositoryUrl: `https://github.com/extension-js/examples/tree/main/examples/${slug}`
+        repositoryUrl: `https://github.com/extension-js/templates/tree/main/examples/${slug}`
       }
     }
   )
