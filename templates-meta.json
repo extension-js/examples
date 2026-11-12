@@ -3,11 +3,11 @@
   "sourceRepo": "extension-js/templates",
   "generatorVersion": "2",
   "commit": "main",
-  "generatedAt": "2026-11-12T23:36:17.784Z",
+  "generatedAt": "2026-11-12T23:38:52.358Z",
   "templates": [
     {
       "slug": "action",
-      "name": "action",
+      "name": "@extension-js/action",
       "title": "Action (Popup)",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -68,7 +68,7 @@
     },
     {
       "slug": "action-locales",
-      "name": "action-locales",
+      "name": "@extension-js/action-locales",
       "title": "Action Locales",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -131,7 +131,7 @@
     },
     {
       "slug": "ai-chatgpt",
-      "name": "ai-chatgpt",
+      "name": "@extension-js/ai-chatgpt",
       "title": "ChatGPT AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -224,7 +224,7 @@
     },
     {
       "slug": "ai-claude",
-      "name": "ai-claude",
+      "name": "@extension-js/ai-claude",
       "title": "Claude AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -316,7 +316,7 @@
     },
     {
       "slug": "ai-gemini",
-      "name": "ai-gemini",
+      "name": "@extension-js/ai-gemini",
       "title": "Gemini AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -408,7 +408,7 @@
     },
     {
       "slug": "ai-perplexity",
-      "name": "ai-perplexity",
+      "name": "@extension-js/ai-perplexity",
       "title": "Perplexity AI Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -628,7 +628,7 @@
     },
     {
       "slug": "content-custom-font",
-      "name": "content-custom-font",
+      "name": "@extension-js/content-custom-font",
       "title": "Custom fonts in a content script",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -698,7 +698,7 @@
     },
     {
       "slug": "content-env",
-      "name": "content-env",
+      "name": "@extension-js/content-env",
       "title": "Content Env",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -892,7 +892,7 @@
     },
     {
       "slug": "content-main-world",
-      "name": "content-main-world",
+      "name": "@extension-js/content-main-world",
       "title": "Main-world Content Script",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -975,7 +975,7 @@
     },
     {
       "slug": "content-multi-one-entry",
-      "name": "content-multi-one-entry",
+      "name": "@extension-js/content-multi-one-entry",
       "title": "Content Multi One Entry",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1046,7 +1046,7 @@
     },
     {
       "slug": "content-multi-three-entries",
-      "name": "content-multi-three-entries",
+      "name": "@extension-js/content-multi-three-entries",
       "title": "Multi-entry Content Scripts",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1117,7 +1117,7 @@
     },
     {
       "slug": "content-preact",
-      "name": "content-preact",
+      "name": "@extension-js/content-preact",
       "title": "Content Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1201,7 +1201,7 @@
     },
     {
       "slug": "content-react",
-      "name": "content-react",
+      "name": "@extension-js/content-react",
       "title": "Content React",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1422,7 +1422,7 @@
     },
     {
       "slug": "content-svelte",
-      "name": "content-svelte",
+      "name": "@extension-js/content-svelte",
       "title": "Content Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1508,7 +1508,7 @@
     },
     {
       "slug": "content-typescript",
-      "name": "content-typescript",
+      "name": "@extension-js/content-typescript",
       "title": "Content TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1576,7 +1576,7 @@
     },
     {
       "slug": "content-vue",
-      "name": "content-vue",
+      "name": "@extension-js/content-vue",
       "title": "Content Vue",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1662,7 +1662,7 @@
     },
     {
       "slug": "devtools",
-      "name": "devtools",
+      "name": "@extension-js/devtools",
       "title": "Devtools panel",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1724,7 +1724,7 @@
     },
     {
       "slug": "devtools-preact",
-      "name": "devtools-preact",
+      "name": "@extension-js/devtools-preact",
       "title": "Devtools panel Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1787,7 +1787,7 @@
     },
     {
       "slug": "devtools-react",
-      "name": "devtools-react",
+      "name": "@extension-js/devtools-react",
       "title": "React devtools panel",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1850,7 +1850,7 @@
     },
     {
       "slug": "devtools-svelte",
-      "name": "devtools-svelte",
+      "name": "@extension-js/devtools-svelte",
       "title": "Devtools panel with Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1914,7 +1914,7 @@
     },
     {
       "slug": "devtools-typescript",
-      "name": "devtools-typescript",
+      "name": "@extension-js/devtools-typescript",
       "title": "Devtools panel (TypeScript)",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -1976,7 +1976,7 @@
     },
     {
       "slug": "devtools-typescript-sqlite",
-      "name": "devtools-typescript-sqlite",
+      "name": "@extension-js/devtools-typescript-sqlite",
       "title": "SQLite DevTools Panel",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2037,7 +2037,7 @@
     },
     {
       "slug": "devtools-vue",
-      "name": "devtools-vue",
+      "name": "@extension-js/devtools-vue",
       "title": "Devtools panel with Vue",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2101,7 +2101,7 @@
     },
     {
       "slug": "init",
-      "name": "init",
+      "name": "@extension-js/init",
       "title": "Initial",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2156,7 +2156,7 @@
     },
     {
       "slug": "javascript",
-      "name": "javascript",
+      "name": "@extension-js/javascript",
       "title": "JavaScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2226,7 +2226,7 @@
     },
     {
       "slug": "newtab",
-      "name": "newtab",
+      "name": "@extension-js/newtab",
       "title": "New Tab",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2287,7 +2287,7 @@
     },
     {
       "slug": "newtab-browser-flags",
-      "name": "newtab-browser-flags",
+      "name": "@extension-js/newtab-browser-flags",
       "title": "New Tab Browser Flags",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2357,7 +2357,7 @@
     },
     {
       "slug": "newtab-config-eslint",
-      "name": "newtab-config-eslint",
+      "name": "@extension-js/newtab-config-eslint",
       "title": "New Tab Config ESLint",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2422,7 +2422,7 @@
     },
     {
       "slug": "newtab-config-prettier",
-      "name": "newtab-config-prettier",
+      "name": "@extension-js/newtab-config-prettier",
       "title": "New Tab Config Prettier",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2483,7 +2483,7 @@
     },
     {
       "slug": "newtab-config-stylelint",
-      "name": "newtab-config-stylelint",
+      "name": "@extension-js/newtab-config-stylelint",
       "title": "New Tab Config Stylelint",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2544,7 +2544,7 @@
     },
     {
       "slug": "newtab-crypto",
-      "name": "newtab-crypto",
+      "name": "@extension-js/newtab-crypto",
       "title": "New Tab Crypto",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2605,7 +2605,7 @@
     },
     {
       "slug": "newtab-env",
-      "name": "newtab-env",
+      "name": "@extension-js/newtab-env",
       "title": "Environment Variables",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2666,7 +2666,7 @@
     },
     {
       "slug": "newtab-less",
-      "name": "newtab-less",
+      "name": "@extension-js/newtab-less",
       "title": "New Tab Less",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2727,7 +2727,7 @@
     },
     {
       "slug": "newtab-preact",
-      "name": "newtab-preact",
+      "name": "@extension-js/newtab-preact",
       "title": "New Tab Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2789,7 +2789,7 @@
     },
     {
       "slug": "newtab-react",
-      "name": "newtab-react",
+      "name": "@extension-js/newtab-react",
       "title": "New Tab React",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2851,7 +2851,7 @@
     },
     {
       "slug": "newtab-react-router",
-      "name": "newtab-react-router",
+      "name": "@extension-js/newtab-react-router",
       "title": "New Tab React Router",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2913,7 +2913,7 @@
     },
     {
       "slug": "newtab-sass",
-      "name": "newtab-sass",
+      "name": "@extension-js/newtab-sass",
       "title": "New Tab Sass",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -2974,7 +2974,7 @@
     },
     {
       "slug": "newtab-svelte",
-      "name": "newtab-svelte",
+      "name": "@extension-js/newtab-svelte",
       "title": "New Tab Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3036,7 +3036,7 @@
     },
     {
       "slug": "newtab-typescript",
-      "name": "newtab-typescript",
+      "name": "@extension-js/newtab-typescript",
       "title": "New Tab TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3097,7 +3097,7 @@
     },
     {
       "slug": "newtab-vue",
-      "name": "newtab-vue",
+      "name": "@extension-js/newtab-vue",
       "title": "New Tab Vue",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3160,7 +3160,7 @@
     },
     {
       "slug": "playwright",
-      "name": "playwright",
+      "name": "@extension-js/playwright",
       "title": "Playwright E2E Sidebar",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3231,7 +3231,7 @@
     },
     {
       "slug": "preact",
-      "name": "preact",
+      "name": "@extension-js/preact",
       "title": "Preact",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3303,7 +3303,7 @@
     },
     {
       "slug": "react",
-      "name": "react",
+      "name": "@extension-js/react",
       "title": "React",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3373,7 +3373,7 @@
     },
     {
       "slug": "sidebar",
-      "name": "sidebar",
+      "name": "@extension-js/sidebar",
       "title": "Sidebar page",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3440,7 +3440,7 @@
     },
     {
       "slug": "sidebar-antd",
-      "name": "sidebar-antd",
+      "name": "@extension-js/sidebar-antd",
       "title": "Sidebar Ant Design",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3509,7 +3509,7 @@
     },
     {
       "slug": "sidebar-monorepo-nx",
-      "name": "sidebar-monorepo-nx",
+      "name": "@extension-js/sidebar-monorepo-nx",
       "title": "Sidebar Nx",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3579,7 +3579,7 @@
     },
     {
       "slug": "sidebar-monorepo-turborepo",
-      "name": "sidebar-monorepo-turborepo",
+      "name": "@extension-js/sidebar-monorepo-turborepo",
       "title": "Sidebar Turborepo",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3649,7 +3649,7 @@
     },
     {
       "slug": "sidebar-shadcn",
-      "name": "sidebar-shadcn",
+      "name": "@extension-js/sidebar-shadcn",
       "title": "Sidebar shadcn",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3727,7 +3727,7 @@
     },
     {
       "slug": "special-folders-pages",
-      "name": "special-folders-pages",
+      "name": "@extension-js/special-folders-pages",
       "title": "Special Folders: pages/",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3794,7 +3794,7 @@
     },
     {
       "slug": "special-folders-scripts",
-      "name": "special-folders-scripts",
+      "name": "@extension-js/special-folders-scripts",
       "title": "Special Folders Scripts",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3857,7 +3857,7 @@
     },
     {
       "slug": "svelte",
-      "name": "svelte",
+      "name": "@extension-js/svelte",
       "title": "Svelte",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3928,7 +3928,7 @@
     },
     {
       "slug": "transformers-js",
-      "name": "transformers-js",
+      "name": "@extension-js/transformers-js",
       "title": "Transformers.js",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -3997,7 +3997,7 @@
     },
     {
       "slug": "typescript",
-      "name": "typescript",
+      "name": "@extension-js/typescript",
       "title": "TypeScript",
       "version": "1.0.0",
       "manifest_version": 3,
@@ -4068,7 +4068,7 @@
     },
     {
       "slug": "vue",
-      "name": "vue",
+      "name": "@extension-js/vue",
       "title": "Vue",
       "version": "1.0.0",
       "manifest_version": 3,
