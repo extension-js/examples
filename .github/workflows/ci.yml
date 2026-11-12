@@ -749,4 +749,41 @@ jobs:
           retention-days: 7
           if-no-files-found: ignore
 
+  # ──────────────────────────────────────────────────────────────────────────
+  # CI passed — the one check the main ruleset requires
+  # ──────────────────────────────────────────────────────────────────────────
+  ci-passed:
+    # Waits on every CI job and passes only when each one succeeded or was
+    # skipped, so a pull request cannot merge before its checks have run.
+    name: CI passed
+    if: always()
+    needs:
+      - setup
+      - build-and-lint
+      - optional-deps-guards
+      - create-dev-workflow-guards
+      - create-dev-workflow-guards-windows
+      - dev-reload-chromium
+      - e2e-content
+      - e2e-sidebar
+      - e2e-newtab
+      - e2e-mixed-context
+      - e2e-small
+      - e2e-assets
+      - e2e-firefox
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Check the result of every CI job
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "job results: ${RESULTS}"
+          for result in ${RESULTS}; do
+            case "${result}" in
+              success|skipped) ;;
+              *) echo "a CI job ended as ${result}"; exit 1 ;;
+            esac
+          done
+
   # Packaging and publication are handled by publish-artifacts.yml on main
