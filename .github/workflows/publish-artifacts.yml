@@ -39,6 +39,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # The push below goes out with this key, which the main ruleset
+          # lets through. The Actions token cannot bypass a required check.
+          ssh-key: ${{ secrets.ARTIFACTS_DEPLOY_KEY }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
